@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://localhost/en</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/about</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/services</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/programs</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/products</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/case-studies</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/insights</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/partners</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/careers</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/contact</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/legal/impressum</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/legal/privacy-policy</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/legal/cookie-policy</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/en/services/ai-strategy</loc>
+        <lastmod>2026-04-27T19:20:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/platform-modernization</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/data-governance</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/web-development</loc>
+        <lastmod>2026-04-26T11:04:55+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/ai-strategy-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/enterprise-ai-automation</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/data-platform-engineering</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/analytics-dashboards</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/digital-transformation-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/cloud-architecture-consulting</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/data-strategy</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/technology-advisory</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/enterprise-architecture-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/process-optimization</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/ai-model-development</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/ai-powered-automation</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/nlp-solutions</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/predictive-analytics</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/computer-vision</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/data-platform-development</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/api-based-data-products</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/data-monetization</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/bi-dashboards</loc>
+        <lastmod>2026-04-27T19:19:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/kpi-tracking-systems</loc>
+        <lastmod>2026-04-27T05:58:09+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/services/real-time-analytics</loc>
+        <lastmod>2026-04-27T05:58:09+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/enterprise-ai-foundation</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/digital-product-execution</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/applied-ai-fundamentals</loc>
+        <lastmod>2026-04-26T11:07:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/generative-ai-masterclass</loc>
+        <lastmod>2026-04-26T11:09:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/ethical-hacking-web-developers</loc>
+        <lastmod>2026-04-26T16:59:23+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/hopn-ai-training</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/skillbridge-program</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/innovation-bootcamp</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/programs/data-leadership-workshop</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/products/hopn-command-center</loc>
+        <lastmod>2026-04-26T17:11:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/products/shareprogress-task-manager</loc>
+        <lastmod>2026-04-26T17:11:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/case-studies/global-rollout-automation</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/case-studies/shared-data-platform-launch</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/case-studies/ai-assist-service-desk</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/case-studies/syncide-collaborative-editor</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/insights/building-ai-ready-organizations</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/insights/ethical-hacking-fundamentals</loc>
+        <lastmod>2026-04-26T16:49:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/insights/ai-transforming-enterprise-operations</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/insights/building-data-driven-culture</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/insights/future-data-products-enterprise</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/home</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/Privacy Policy</loc>
+        <lastmod>2026-04-26T16:13:04+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/privacy-policy</loc>
+        <lastmod>2026-04-26T16:44:20+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/en/projects</loc>
+        <lastmod>2026-04-26T16:54:30+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/about</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/services</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/programs</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/products</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/case-studies</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/insights</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/partners</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/careers</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/contact</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/legal/impressum</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/legal/privacy-policy</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/legal/cookie-policy</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost/de/services/ai-strategy</loc>
+        <lastmod>2026-04-27T19:20:38+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/platform-modernization</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/data-governance</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/web-development</loc>
+        <lastmod>2026-04-26T11:04:55+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/ai-strategy-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/enterprise-ai-automation</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/data-platform-engineering</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/analytics-dashboards</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/digital-transformation-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/cloud-architecture-consulting</loc>
+        <lastmod>2026-04-27T05:51:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/data-strategy</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/technology-advisory</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/enterprise-architecture-consulting</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/process-optimization</loc>
+        <lastmod>2026-04-27T05:57:29+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/ai-model-development</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/ai-powered-automation</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/nlp-solutions</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/predictive-analytics</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/computer-vision</loc>
+        <lastmod>2026-04-27T05:57:40+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/data-platform-development</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/api-based-data-products</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/data-monetization</loc>
+        <lastmod>2026-04-27T05:57:56+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/bi-dashboards</loc>
+        <lastmod>2026-04-27T19:19:41+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/kpi-tracking-systems</loc>
+        <lastmod>2026-04-27T05:58:09+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/services/real-time-analytics</loc>
+        <lastmod>2026-04-27T05:58:09+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/enterprise-ai-foundation</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/digital-product-execution</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/applied-ai-fundamentals</loc>
+        <lastmod>2026-04-26T11:07:28+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/generative-ai-masterclass</loc>
+        <lastmod>2026-04-26T11:09:12+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/ethical-hacking-web-developers</loc>
+        <lastmod>2026-04-26T16:59:23+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/hopn-ai-training</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/skillbridge-program</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/innovation-bootcamp</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/programs/data-leadership-workshop</loc>
+        <lastmod>2026-04-27T05:58:22+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/products/hopn-command-center</loc>
+        <lastmod>2026-04-26T17:11:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/products/shareprogress-task-manager</loc>
+        <lastmod>2026-04-26T17:11:02+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/case-studies/global-rollout-automation</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/case-studies/shared-data-platform-launch</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/case-studies/ai-assist-service-desk</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/case-studies/syncide-collaborative-editor</loc>
+        <lastmod>2026-04-26T17:11:13+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/insights/building-ai-ready-organizations</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/insights/ethical-hacking-fundamentals</loc>
+        <lastmod>2026-04-26T16:49:47+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/insights/ai-transforming-enterprise-operations</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/insights/building-data-driven-culture</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/insights/future-data-products-enterprise</loc>
+        <lastmod>2026-04-27T06:02:43+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/home</loc>
+        <lastmod>2026-04-26T05:29:33+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/Privacy Policy</loc>
+        <lastmod>2026-04-26T16:13:04+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/privacy-policy</loc>
+        <lastmod>2026-04-26T16:44:20+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://localhost/de/projects</loc>
+        <lastmod>2026-04-26T16:54:30+00:00</lastmod>
+
+            </url>
+</urlset>

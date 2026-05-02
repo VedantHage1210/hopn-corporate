@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-hopn-primary text-slate-100 font-sans antialiased;
+    }
+}
+
+@layer components {
+    .container-shell {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .card-panel {
+        @apply rounded-xl border border-slate-800 bg-hopn-soft/70 backdrop-blur;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-md bg-hopn-accent px-4 py-2 font-semibold text-white transition hover:bg-indigo-500;
+    }
+}
