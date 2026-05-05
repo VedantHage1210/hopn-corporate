@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('page_blocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->constrained()->cascadeOnDelete();
+           $table->unsignedBigInteger('page_id')->nullable();
             $table->string('block_type');
             $table->string('title')->nullable();
             $table->string('title_de')->nullable();

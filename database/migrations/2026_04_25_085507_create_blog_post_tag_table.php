@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('blog_post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_post_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('blog_tag_id')->constrained()->cascadeOnDelete();
+          $table->unsignedBigInteger('blog_post_id')->nullable();
+$table->unsignedBigInteger('blog_tag_id')->nullable();
             $table->unique(['blog_post_id', 'blog_tag_id']);
             $table->timestamps();
         });

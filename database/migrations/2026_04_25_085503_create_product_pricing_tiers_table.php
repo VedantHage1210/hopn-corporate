@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_pricing_tiers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+           $table->unsignedBigInteger('product_id')->nullable();
             $table->string('name_en');
             $table->string('name_de')->nullable();
             $table->decimal('price', 12, 2)->nullable();

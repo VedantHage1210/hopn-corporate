@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->string('title_en');
             $table->string('title_de')->nullable();
             $table->text('description_en')->nullable();
