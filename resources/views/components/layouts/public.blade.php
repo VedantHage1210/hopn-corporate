@@ -13,7 +13,7 @@
     @stack('head')
 <script type="text/javascript"> function googleTranslateElementInit() {     new google.translate.TranslateElement({         pageLanguage: "en",         includedLanguages: "en,de,ar,fr,es",         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,         autoDisplay: false     }, "google_translate_element"); } </script> <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> </head>
 <body>
-    <div id="google_translate_element" style="position:fixed;bottom:16px;right:16px;z-index:9999;background:#1e293b;padding:4px 8px;border-radius:6px;border:1px solid #334155;transform:scale(0.85);transform-origin:bottom right;"></div> <x-nav />
+<div id="google_translate_element" style="position:fixed;bottom:12px;right:12px;z-index:9999;transform:scale(0.75);transform-origin:bottom right;"></div> <x-nav />
     <main class="min-h-[70vh] py-10">
         {{ $slot }}
     </main>
