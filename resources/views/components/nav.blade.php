@@ -17,10 +17,10 @@
                 <a href="{{ preg_replace('#^/(en|de)#', '/en', request()->getPathInfo()) }}" class="rounded px-2 py-1 {{ $lang === 'en' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:text-white' }}">EN</a>
                 <a href="{{ preg_replace('#^/(en|de)#', '/de', request()->getPathInfo()) }}" class="rounded px-2 py-1 {{ $lang === 'de' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:text-white' }}">DE</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 focus:outline-none z-50 rounded-lg border border-slate-600 bg-slate-800" aria-label="Toggle menu">
-    <span class="block w-6 h-0.5 bg-indigo-400 transition-all duration-300" id="bar1"></span>
-    <span class="block w-6 h-0.5 bg-indigo-400 transition-all duration-300" id="bar2"></span>
-    <span class="block w-6 h-0.5 bg-indigo-400 transition-all duration-300" id="bar3"></span>
+          <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none z-50 rounded-lg border-2 border-indigo-500 bg-indigo-600/20" aria-label="Toggle menu">
+    <span class="block w-5 h-0.5 bg-indigo-300 transition-all duration-300" id="bar1"></span>
+    <span class="block w-5 h-0.5 bg-indigo-300 transition-all duration-300" id="bar2"></span>
+    <span class="block w-5 h-0.5 bg-indigo-300 transition-all duration-300" id="bar3"></span>
 </button>
         </div>
     </div>
