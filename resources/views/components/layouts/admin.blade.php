@@ -192,7 +192,13 @@
                         </button>
                         <p class="font-semibold">{{ $title ?? 'Dashboard' }}</p>
                     </div>
-                    <a href="{{ route('home', ['lang' => app()->getLocale()]) }}" class="text-sm text-slate-300 hover:text-white">View Site</a>
+                    <div class="flex items-center gap-4">
+                        <a href="{{ route('home', ['lang' => app()->getLocale()]) }}" class="text-sm text-slate-300 hover:text-white">View Site</a>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="text-sm text-slate-300 hover:text-white transition-colors duration-200">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </header>
             <section class="container-shell py-8">
