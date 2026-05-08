@@ -14,12 +14,12 @@ $icons = [
     'default'      => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
 ];
 
-$slug = $service->slug ?? 'default';
+$slug = $service->slug ?? '';
 $iconKey = 'default';
 foreach(array_keys($icons) as $key) {
     if(str_contains($slug, $key)) { $iconKey = $key; break; }
 }
-$icon = $icons[$iconKey];
+$iconSvg = $icons[$iconKey];
 
 $name    = $lang === 'de' && !empty($service->name_de)    ? $service->name_de    : $service->name;
 $summary = $lang === 'de' && !empty($service->summary_de) ? $service->summary_de : $service->summary;
@@ -35,7 +35,7 @@ $summary = $lang === 'de' && !empty($service->summary_de) ? $service->summary_de
     {{-- Icon --}}
     <div style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); margin-bottom:16px;">
         <svg style="width:18px; height:18px; color:#818CF8;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {!! $icon !!}
+            {!! $iconSvg !!}
         </svg>
     </div>
 
@@ -52,7 +52,7 @@ $summary = $lang === 'de' && !empty($service->summary_de) ? $service->summary_de
     {{-- CTA --}}
     @if(!empty($service->slug))
     <a href="{{ route('services.show', ['lang' => $lang, 'slug' => $service->slug]) }}"
-       style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none; transition:gap 0.2s;"
+       style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none;"
        onmouseover="this.style.gap='10px'"
        onmouseout="this.style.gap='6px'">
         {{ $lang === 'de' ? 'Mehr lesen' : 'Read more' }}
