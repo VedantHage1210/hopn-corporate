@@ -7,7 +7,6 @@
     <title>{{ ($title ?? 'Admin') . ' | HOPn Admin' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Mobile sidebar toggle */
         .sidebar-open aside {
             display: block !important;
             position: fixed;
@@ -21,8 +20,7 @@
             display: block !important;
         }
         @media (min-width: 768px) {
-            .sidebar-open aside,
-            aside {
+            .sidebar-open aside, aside {
                 position: static !important;
                 height: auto !important;
             }
@@ -34,25 +32,17 @@
 </head>
 <body class="bg-slate-950 text-slate-100">
     <div class="flex min-h-screen" id="app-container">
-        <!-- Sidebar Overlay (Mobile) -->
         <div class="sidebar-overlay fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="sidebar-overlay"></div>
-
-        <!-- Sidebar -->
         <aside class="hidden w-64 border-r border-slate-800 bg-slate-900/80 p-5 md:block">
-            <!-- Mobile Close Button -->
             <div class="flex items-center justify-between mb-6 md:hidden">
                 <p class="text-lg font-bold">HOPn Admin</p>
-                <button id="close-sidebar" class="text-slate-300 hover:text-white text-2xl">
+                <button id="close-sidebar" class="text-slate-300 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-
-            <!-- Desktop Logo -->
             <p class="text-lg font-bold hidden md:block">HOPn Admin</p>
-
-            <!-- Navigation -->
             <nav class="mt-6 space-y-3 text-sm text-slate-300">
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Content</div>
@@ -87,15 +77,11 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.audit-logs.index') }}">Audit Logs</a>
             </nav>
         </aside>
-
-        <!-- Main Content -->
         <div class="flex-1 flex flex-col w-full">
-            <!-- Header -->
             <header class="border-b border-slate-800 bg-slate-900/70 p-4">
                 <div class="container-shell flex items-center justify-between">
                     <div class="flex items-center gap-4">
-                        <!-- Hamburger Menu (Mobile) -->
-                        <button id="toggle-sidebar" class="md:hidden text-slate-300 hover:text-white transition-colors duration-200">
+                        <button id="toggle-sidebar" class="md:hidden text-slate-300 hover:text-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
@@ -105,37 +91,26 @@
                     <a href="{{ route('home', ['lang' => app()->getLocale()]) }}" class="text-sm text-slate-300 hover:text-white">View Site</a>
                 </div>
             </header>
-
-            <!-- Page Content -->
             <section class="container-shell py-8 flex-1">
                 {{ $slot }}
             </section>
         </div>
     </div>
-
-    <!-- JavaScript for Sidebar Toggle -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const appContainer = document.getElementById('app-container');
             const toggleBtn = document.getElementById('toggle-sidebar');
             const closeBtn = document.getElementById('close-sidebar');
             const overlay = document.getElementById('sidebar-overlay');
-
-            // Open sidebar
             toggleBtn?.addEventListener('click', function() {
                 appContainer.classList.add('sidebar-open');
             });
-
-            // Close sidebar
             closeBtn?.addEventListener('click', function() {
                 appContainer.classList.remove('sidebar-open');
             });
-
             overlay?.addEventListener('click', function() {
                 appContainer.classList.remove('sidebar-open');
             });
-
-            // Close sidebar when a link is clicked (mobile)
             if (window.innerWidth < 768) {
                 document.querySelectorAll('aside a').forEach(link => {
                     link.addEventListener('click', function() {
