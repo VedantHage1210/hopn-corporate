@@ -1,19 +1,19 @@
 @php($lang = request()->route('lang', app()->getLocale()))
-<header x-data="{ open: false }" class="sticky top-0 z-50">
+<header x-data="{ open: false }" class="sticky top-0 z-50"
+        style="background: rgba(10,15,30,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);">
 
-    {{-- Glass background --}}
-    <div class="absolute inset-0 border-b border-white/5 bg-hopn-primary/80 backdrop-blur-xl"></div>
-
-    <div class="relative container-shell flex h-14 items-center justify-between">
+    <div class="container-shell flex items-center justify-between" style="height:56px;">
 
         {{-- Logo --}}
-        <a href="{{ route('home', ['lang' => $lang]) }}" class="flex items-center gap-2 group">
-            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-hopn-accent text-xs font-black text-white shadow-lg transition group-hover:opacity-80">H</span>
-            <span class="text-base font-bold tracking-tight text-white">HOPn</span>
+        <a href="{{ route('home', ['lang' => $lang]) }}"
+           class="flex items-center"
+           style="gap:8px; text-decoration:none;">
+            <span style="display:flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:#4F6EF7; color:white; font-size:12px; font-weight:900;">H</span>
+            <span style="font-size:16px; font-weight:700; color:white; letter-spacing:-0.3px;">HOPn</span>
         </a>
 
         {{-- Desktop Nav --}}
-        <nav class="hidden gap-1 text-sm md:flex">
+        <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen'],
                 ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme'],
@@ -24,37 +24,46 @@
                 ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
-                   class="rounded-md px-3 py-1.5 text-hopn-muted transition hover:bg-white/5 hover:text-white">
+                   style="padding:6px 12px; border-radius:6px; color:#94A3B8; font-size:14px; text-decoration:none; transition:all 0.2s;"
+                   onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
+                   onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
                     {{ $lang === 'de' ? $item['de'] : $item['en'] }}
                 </a>
             @endforeach
         </nav>
 
         {{-- Right Side --}}
-        <div class="flex items-center gap-3">
+        <div class="flex items-center" style="gap:12px;">
 
-            {{-- Language Switcher Desktop --}}
-            <div class="hidden items-center rounded-lg border border-white/10 bg-white/5 p-0.5 text-xs font-medium md:flex">
+            {{-- Language Switcher --}}
+            <div class="hidden md:flex items-center"
+                 style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
                 <a href="{{ preg_replace('#^/(en|de)#', '/en', request()->getPathInfo()) }}"
-                   class="rounded-md px-2.5 py-1 transition {{ $lang === 'en' ? 'bg-hopn-accent text-white' : 'text-hopn-muted hover:text-white' }}">EN</a>
+                   style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.2s;
+                   {{ $lang === 'en' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">EN</a>
                 <a href="{{ preg_replace('#^/(en|de)#', '/de', request()->getPathInfo()) }}"
-                   class="rounded-md px-2.5 py-1 transition {{ $lang === 'de' ? 'bg-hopn-accent text-white' : 'text-hopn-muted hover:text-white' }}">DE</a>
+                   style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.2s;
+                   {{ $lang === 'de' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">DE</a>
             </div>
 
-            {{-- Contact CTA Button --}}
+            {{-- Contact CTA --}}
             <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-               class="hidden rounded-lg bg-hopn-accent px-4 py-1.5 text-sm font-semibold text-white transition hover:opacity-90 md:block">
+               class="hidden md:block"
+               style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none; transition:opacity 0.2s;"
+               onmouseover="this.style.opacity='0.85'"
+               onmouseout="this.style.opacity='1'">
                 {{ $lang === 'de' ? 'Kontakt' : 'Contact' }}
             </a>
 
-            {{-- Mobile Hamburger --}}
+            {{-- Mobile Button --}}
             <button @click="open = !open"
-                    class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-hopn-muted transition hover:bg-white/10 hover:text-white md:hidden"
+                    class="md:hidden"
+                    style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94A3B8; cursor:pointer;"
                     aria-label="Toggle menu">
-                <svg x-show="!open" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg x-show="!open" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
-                <svg x-show="open" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none">
+                <svg x-show="open" style="width:16px;height:16px;display:none;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
@@ -64,14 +73,13 @@
     {{-- Mobile Menu --}}
     <div x-show="open"
          x-transition:enter="transition ease-out duration-200"
-         x-transition:enter-start="opacity-0 -translate-y-1"
-         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
          x-transition:leave="transition ease-in duration-150"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 -translate-y-1"
-         class="relative border-t border-white/5 bg-hopn-primary/95 backdrop-blur-xl"
-         style="display:none">
-        <nav class="container-shell flex flex-col px-4 py-3 gap-1 text-sm">
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         style="display:none; border-top:1px solid rgba(255,255,255,0.05); background:rgba(10,15,30,0.98); backdrop-filter:blur(20px);">
+        <nav class="container-shell" style="display:flex; flex-direction:column; padding:12px 16px; gap:4px;">
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen'],
                 ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme'],
@@ -83,18 +91,22 @@
                 ['route' => 'contact.index',  'en' => 'Contact',   'de' => 'Kontakt'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
-                   class="rounded-lg px-3 py-2.5 text-hopn-muted transition hover:bg-white/5 hover:text-white">
+                   style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
+                   onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
+                   onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
                     {{ $lang === 'de' ? $item['de'] : $item['en'] }}
                 </a>
             @endforeach
 
             {{-- Mobile Language Switcher --}}
-            <div class="mt-2 flex items-center gap-2 border-t border-white/5 pt-3">
-                <span class="text-xs text-hopn-muted">Language:</span>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
+                <span style="font-size:12px; color:#94A3B8;">Language:</span>
                 <a href="{{ preg_replace('#^/(en|de)#', '/en', request()->getPathInfo()) }}"
-                   class="rounded-md px-3 py-1 text-xs font-medium transition {{ $lang === 'en' ? 'bg-hopn-accent text-white' : 'text-hopn-muted hover:text-white' }}">EN</a>
+                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
+                   {{ $lang === 'en' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">EN</a>
                 <a href="{{ preg_replace('#^/(en|de)#', '/de', request()->getPathInfo()) }}"
-                   class="rounded-md px-3 py-1 text-xs font-medium transition {{ $lang === 'de' ? 'bg-hopn-accent text-white' : 'text-hopn-muted hover:text-white' }}">DE</a>
+                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
+                   {{ $lang === 'de' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">DE</a>
             </div>
         </nav>
     </div>
