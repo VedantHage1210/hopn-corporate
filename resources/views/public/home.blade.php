@@ -13,7 +13,6 @@
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">One Hub for Innovation</span>
             <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white; margin-bottom:16px;">Where Business, Education & Research Connect</h2>
             <p style="color:#94A3B8; max-width:560px; margin:0 auto 48px; font-size:16px; line-height:1.7;">HOPn is the bridge between enterprises, universities, startups, and investors — creating a complete innovation ecosystem.</p>
-
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; max-width:900px; margin:0 auto;">
                 @foreach([
                     ['icon' => '🏢', 'label' => 'Business',    'desc' => 'Enterprise clients & consulting'],
@@ -22,7 +21,7 @@
                     ['icon' => '🚀', 'label' => 'Startups',    'desc' => 'Venture building & ecosystems'],
                     ['icon' => '💰', 'label' => 'Investors',   'desc' => 'Funds & strategic partnerships'],
                 ] as $item)
-                <div style="border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:16px; padding:24px 16px; transition:all 0.2s;"
+                <div style="border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:16px; padding:24px 16px;"
                      onmouseover="this.style.background='rgba(79,110,247,0.1)'; this.style.borderColor='rgba(79,110,247,0.4)'"
                      onmouseout="this.style.background='rgba(79,110,247,0.05)'; this.style.borderColor='rgba(79,110,247,0.2)'">
                     <div style="font-size:28px; margin-bottom:10px;">{{ $item['icon'] }}</div>
@@ -48,7 +47,7 @@
             </div>
             <div style="text-align:center; margin-top:36px;">
                 <a href="{{ route('services.index', ['lang' => request()->route('lang', 'en')]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.4); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.4); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none;"
                    onmouseover="this.style.background='rgba(79,110,247,0.1)'"
                    onmouseout="this.style.background='transparent'">
                     View All Services →
@@ -75,7 +74,7 @@
                     ['name' => 'EduBridge', 'desc' => 'Education-industry bridge connecting universities with enterprise partners.', 'users' => 'Universities, Employers', 'color' => '#06B6D4'],
                 ] as $product)
                 <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.2s; display:flex; flex-direction:column; gap:12px;"
-                     onmouseover="this.style.borderColor='{{ $product['color'] }}40'; this.style.background='#141D2E'"
+                     onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
                     <div style="display:flex; align-items:center; gap:12px;">
                         <div style="width:40px; height:40px; border-radius:10px; background:{{ $product['color'] }}20; border:1px solid {{ $product['color'] }}40; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $product['color'] }};">
@@ -84,9 +83,7 @@
                         <div style="font-size:17px; font-weight:700; color:white;">{{ $product['name'] }}</div>
                     </div>
                     <p style="font-size:13px; color:#94A3B8; line-height:1.6; flex:1;">{{ $product['desc'] }}</p>
-                    <div style="font-size:11px; color:#64748B; padding:4px 10px; background:rgba(255,255,255,0.04); border-radius:6px; display:inline-block;">
-                        {{ $product['users'] }}
-                    </div>
+                    <div style="font-size:11px; color:#64748B; padding:4px 10px; background:rgba(255,255,255,0.04); border-radius:6px; display:inline-block;">{{ $product['users'] }}</div>
                     <a href="{{ route('products.index', ['lang' => request()->route('lang', 'en')]) }}"
                        style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $product['color'] }}; text-decoration:none; margin-top:4px;">
                         Learn More →
@@ -115,7 +112,7 @@
                     ['icon' => '🚚', 'name' => 'Logistics'],
                     ['icon' => '🔬', 'name' => 'Research'],
                 ] as $industry)
-                <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; padding:20px 12px; text-align:center; transition:all 0.2s;"
+                <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; padding:20px 12px; text-align:center;"
                      onmouseover="this.style.background='rgba(79,110,247,0.08)'; this.style.borderColor='rgba(79,110,247,0.3)'"
                      onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.07)'">
                     <div style="font-size:24px; margin-bottom:8px;">{{ $industry['icon'] }}</div>
@@ -126,7 +123,7 @@
         </div>
     </section>
 
-    {{-- 6. Partners/Logos --}}
+    {{-- 6. Partners --}}
     <section style="padding:80px 0; background:#0A0F1E;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:48px;">
