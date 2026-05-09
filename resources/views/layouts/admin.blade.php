@@ -144,6 +144,10 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.products.index') }}">Products</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.pages.index') }}">Pages</a>
+                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Ecosystem</div>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.startups.index') }}">Startups</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.investors.index') }}">Investors</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.events.index') }}">Events</a>
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Blog</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-posts.index') }}">Posts</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-categories.index') }}">Categories</a>
