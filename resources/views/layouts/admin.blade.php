@@ -133,7 +133,7 @@
             </div>
 
             <!-- Desktop Logo -->
-            <p class="text-lg font-bold desktop-logo">HOPn Admin</p>
+          <p class="text-lg font-bold desktop-logo">HOPn Admin Panel</p>
 
             <!-- Navigation -->
             <nav class="mt-6 space-y-3 text-sm text-slate-300">
