@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\CaseStudyController;
+use App\Http\Controllers\Admin\StartupController;
+use App\Http\Controllers\Admin\InvestorController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -38,6 +41,9 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
     Route::resource('programs', ProgramController::class);
     Route::resource('products', ProductController::class);
     Route::resource('case-studies', CaseStudyController::class);
+    Route::resource('startups', StartupController::class);
+    Route::resource('investors', InvestorController::class);
+    Route::resource('events', EventController::class);
     Route::resource('pages', PageController::class);
 
     // Blog / Insights
