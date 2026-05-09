@@ -5,6 +5,7 @@ use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CareerController;
 use App\Http\Controllers\Public\StartupController;
 use App\Http\Controllers\Public\InvestorController;
+use App\Http\Controllers\Public\EventController;
 use App\Http\Controllers\Public\CaseStudyController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
@@ -62,6 +63,8 @@ Route::prefix('{lang}')
         Route::get('/startups', [StartupController::class, 'index'])->name('startups.index');
 
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
+
+        Route::get('/events', [EventController::class, 'index'])->name('events.index');
         
 
         Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
