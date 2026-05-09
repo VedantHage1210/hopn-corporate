@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CareerController;
+use App\Http\Controllers\Public\StartupController;
 use App\Http\Controllers\Public\CaseStudyController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
@@ -56,6 +57,9 @@ Route::prefix('{lang}')
         Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
             ->middleware('throttle:5,1')
             ->name('careers.apply');
+
+        Route::get('/startups', [StartupController::class, 'index'])->name('startups.index');
+        
 
         Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
         Route::post('/contact', [ContactController::class, 'submit'])
