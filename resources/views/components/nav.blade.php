@@ -16,6 +16,7 @@
         <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
                 ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
                 ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
