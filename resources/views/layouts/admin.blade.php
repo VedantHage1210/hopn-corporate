@@ -135,44 +135,45 @@
             <!-- Desktop Logo -->
           <p class="text-lg font-bold desktop-logo">HOPn Admin Panel</p>
 
-            <!-- Navigation -->
-            <nav class="mt-6 space-y-3 text-sm text-slate-300">
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Content</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.services.index') }}">Services</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.programs.index') }}">Programs</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.products.index') }}">Products</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.pages.index') }}">Pages</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Ecosystem</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.startups.index') }}">Startups</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.investors.index') }}">Investors</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.events.index') }}">Events</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Blog</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-posts.index') }}">Posts</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-categories.index') }}">Categories</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-tags.index') }}">Tags</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.authors.index') }}">Authors</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">People</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.partners.index') }}">Partners</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.testimonials.index') }}">Testimonials</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.team-members.index') }}">Team</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Careers</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.jobs.index') }}">Jobs</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.applicants.index') }}">Applicants</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">CRM</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.leads.index') }}">Leads</a>
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">System</div>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.users.index') }}">Users</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.roles.index') }}">Roles</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.settings.index') }}">Settings</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.navigation.index') }}">Navigation</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.media-assets.index') }}">Media</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.seo.index') }}">SEO</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.languages.index') }}">Languages</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.legal.index') }}">Legal</a>
-                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.audit-logs.index') }}">Audit Logs</a>
-            </nav>
+           
+           <!-- Navigation -->
+<nav class="mt-6 space-y-3 text-sm text-slate-300">
+    <a class="block hover:text-white" href="{{ route('admin.dashboard') }}">Dashboard</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">CONTENT</div>
+    <a class="block hover:text-white" href="{{ route('admin.services.index') }}">Services</a>
+    <a class="block hover:text-white" href="{{ route('admin.programs.index') }}">Programs</a>
+    <a class="block hover:text-white" href="{{ route('admin.products.index') }}">Products</a>
+    <a class="block hover:text-white" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
+    <a class="block hover:text-white" href="{{ route('admin.pages.index') }}">Pages</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">ECOSYSTEM</div>
+    <a class="block hover:text-white" href="{{ route('admin.startups.index') }}">Startups</a>
+    <a class="block hover:text-white" href="{{ route('admin.investors.index') }}">Investors</a>
+    <a class="block hover:text-white" href="{{ route('admin.events.index') }}">Events</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">BLOG</div>
+    <a class="block hover:text-white" href="{{ route('admin.blog-posts.index') }}">Posts</a>
+    <a class="block hover:text-white" href="{{ route('admin.blog-categories.index') }}">Categories</a>
+    <a class="block hover:text-white" href="{{ route('admin.blog-tags.index') }}">Tags</a>
+    <a class="block hover:text-white" href="{{ route('admin.authors.index') }}">Authors</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">PEOPLE</div>
+    <a class="block hover:text-white" href="{{ route('admin.partners.index') }}">Partners</a>
+    <a class="block hover:text-white" href="{{ route('admin.testimonials.index') }}">Testimonials</a>
+    <a class="block hover:text-white" href="{{ route('admin.team-members.index') }}">Team</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">CAREERS</div>
+    <a class="block hover:text-white" href="{{ route('admin.jobs.index') }}">Jobs</a>
+    <a class="block hover:text-white" href="{{ route('admin.applicants.index') }}">Applicants</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">CRM</div>
+    <a class="block hover:text-white" href="{{ route('admin.leads.index') }}">Leads</a>
+    <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">SYSTEM</div>
+    <a class="block hover:text-white" href="{{ route('admin.users.index') }}">Users</a>
+    <a class="block hover:text-white" href="{{ route('admin.roles.index') }}">Roles</a>
+    <a class="block hover:text-white" href="{{ route('admin.settings.index') }}">Settings</a>
+    <a class="block hover:text-white" href="{{ route('admin.navigation.index') }}">Navigation</a>
+    <a class="block hover:text-white" href="{{ route('admin.media-assets.index') }}">Media</a>
+    <a class="block hover:text-white" href="{{ route('admin.seo.index') }}">SEO</a>
+    <a class="block hover:text-white" href="{{ route('admin.languages.index') }}">Languages</a>
+    <a class="block hover:text-white" href="{{ route('admin.legal.index') }}">Legal</a>
+    <a class="block hover:text-white" href="{{ route('admin.audit-logs.index') }}">Audit Logs</a>
+</nav>
         </aside>
 
         <!-- Main Content -->
