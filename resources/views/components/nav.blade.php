@@ -15,19 +15,19 @@
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
-                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen'],
-                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme'],
-                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte'],
-                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke'],
-                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training'],
-                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner'],
-                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere'],
+                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
+                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
+                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
+                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training',   'ar' => 'تدريب'],
+                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner',    'ar' => 'الشركاء'],
+                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere',   'ar' => 'وظائف'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
                    style="padding:6px 12px; border-radius:6px; color:#94A3B8; font-size:14px; text-decoration:none; transition:all 0.2s;"
                    onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
                    onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
-                    {{ $lang === 'de' ? $item['de'] : $item['en'] }}
+                    {{ $item[$lang] ?? $item['en'] }}
                 </a>
             @endforeach
         </nav>
@@ -38,21 +38,22 @@
             {{-- Language Switcher --}}
             <div class="hidden md:flex items-center"
                  style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
-                <a href="{{ preg_replace('#^/(en|de)#', '/en', request()->getPathInfo()) }}"
+                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+                <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
                    style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.2s;
-                   {{ $lang === 'en' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">EN</a>
-                <a href="{{ preg_replace('#^/(en|de)#', '/de', request()->getPathInfo()) }}"
-                   style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.2s;
-                   {{ $lang === 'de' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">DE</a>
+                   {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
+                    {{ $label }}
+                </a>
+                @endforeach
             </div>
 
             {{-- Contact CTA --}}
             <a href="{{ route('contact.index', ['lang' => $lang]) }}"
                class="hidden md:block"
-               style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none; transition:opacity 0.2s;"
+               style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
                onmouseover="this.style.opacity='0.85'"
                onmouseout="this.style.opacity='1'">
-                {{ $lang === 'de' ? 'Kontakt' : 'Contact' }}
+                {{ $lang === 'de' ? 'Kontakt' : ($lang === 'ar' ? 'اتصل بنا' : 'Contact') }}
             </a>
 
             {{-- Mobile Button --}}
@@ -81,32 +82,33 @@
          style="display:none; border-top:1px solid rgba(255,255,255,0.05); background:rgba(10,15,30,0.98); backdrop-filter:blur(20px);">
         <nav class="container-shell" style="display:flex; flex-direction:column; padding:12px 16px; gap:4px;">
             @foreach([
-                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen'],
-                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme'],
-                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte'],
-                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke'],
-                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training'],
-                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner'],
-                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere'],
-                ['route' => 'contact.index',  'en' => 'Contact',   'de' => 'Kontakt'],
+                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
+                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
+                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
+                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training',   'ar' => 'تدريب'],
+                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner',    'ar' => 'الشركاء'],
+                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere',   'ar' => 'وظائف'],
+                ['route' => 'contact.index',  'en' => 'Contact',   'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
                    style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
                    onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
                    onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
-                    {{ $lang === 'de' ? $item['de'] : $item['en'] }}
+                    {{ $item[$lang] ?? $item['en'] }}
                 </a>
             @endforeach
 
             {{-- Mobile Language Switcher --}}
             <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
                 <span style="font-size:12px; color:#94A3B8;">Language:</span>
-                <a href="{{ preg_replace('#^/(en|de)#', '/en', request()->getPathInfo()) }}"
+                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+                <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
                    style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
-                   {{ $lang === 'en' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">EN</a>
-                <a href="{{ preg_replace('#^/(en|de)#', '/de', request()->getPathInfo()) }}"
-                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
-                   {{ $lang === 'de' ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">DE</a>
+                   {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
+                    {{ $label }}
+                </a>
+                @endforeach
             </div>
         </nav>
     </div>
