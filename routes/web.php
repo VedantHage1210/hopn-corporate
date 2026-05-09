@@ -16,12 +16,17 @@ use App\Http\Controllers\Public\ServiceController;
 use App\Http\Controllers\Public\SitemapController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect('/en'))->name('root');
+// Smart root redirect
+Route::get('/', function() {
+    $lang = request()->getPreferredLanguage(['en', 'de', 'ar']) ?? 'en';
+    return redirect('/' . $lang);
+})->name('root');
 
 Route::prefix('{lang}')
     ->whereIn('lang', ['en', 'de', 'ar'])
     ->middleware(['setLocale'])
     ->group(function () {
+
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [PageController::class, 'about'])->name('about');
 
@@ -41,7 +46,10 @@ Route::prefix('{lang}')
         Route::get('/insights/category/{slug}', [BlogController::class, 'category'])->name('insights.category');
         Route::get('/insights/{slug}', [BlogController::class, 'show'])->name('insights.show');
 
-        Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');         Route::get('/partner-inquiry', function() { return view('public.partners.inquiry'); })->name('partner-inquiry.index');
+        Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
+        Route::get('/partner-inquiry', function () {
+            return view('public.partners.inquiry');
+        })->name('partner-inquiry.index');
 
         Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
         Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('careers.show');
@@ -50,11 +58,23 @@ Route::prefix('{lang}')
             ->name('careers.apply');
 
         Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-        Route::post('/contact', [ContactController::class, 'submit'])->middleware('throttle:5,1')->name('contact.submit');
+        Route::post('/contact', [ContactController::class, 'submit'])
+            ->middleware('throttle:5,1')
+            ->name('contact.submit');
 
-        Route::post('/request-proposal', [LeadController::class, 'proposal'])->middleware('throttle:5,1')->name('leads.proposal');
-        Route::post('/partner-inquiry', [LeadController::class, 'partnerInquiry'])->middleware('throttle:5,1')->name('leads.partner');
-        Route::get('/training', function() { return view('public.training.index'); })->name('training.index');         Route::post('/training-application', [LeadController::class, 'trainingApplication'])->middleware('throttle:5,1')->name('leads.training');
+        Route::post('/request-proposal', [LeadController::class, 'proposal'])
+            ->middleware('throttle:5,1')
+            ->name('leads.proposal');
+        Route::post('/partner-inquiry', [LeadController::class, 'partnerInquiry'])
+            ->middleware('throttle:5,1')
+            ->name('leads.partner');
+
+        Route::get('/training', function () {
+            return view('public.training.index');
+        })->name('training.index');
+        Route::post('/training-application', [LeadController::class, 'trainingApplication'])
+            ->middleware('throttle:5,1')
+            ->name('leads.training');
 
         Route::get('/legal/impressum', [LegalController::class, 'impressum'])->name('legal.impressum');
         Route::get('/legal/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
