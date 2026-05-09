@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn () => redirect('/en'))->name('root');
 
 Route::prefix('{lang}')
-    ->whereIn('lang', ['en', 'de'])
+    ->whereIn('lang', ['en', 'de', 'ar'])
     ->middleware(['setLocale'])
     ->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
