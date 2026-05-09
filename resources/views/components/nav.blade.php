@@ -17,6 +17,7 @@
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
                 ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+                ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'], 
                 ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
                 ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
@@ -85,6 +86,7 @@
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
                 ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+                ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'],
                 ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
                 ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
