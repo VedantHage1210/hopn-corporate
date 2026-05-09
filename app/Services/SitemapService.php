@@ -14,7 +14,7 @@ use Spatie\Sitemap\Tags\Url;
 
 class SitemapService
 {
-    private array $locales = ['en', 'de'];
+   private array $locales = ['en', 'de', 'ar'];
 
     public function generate(): Sitemap
     {
