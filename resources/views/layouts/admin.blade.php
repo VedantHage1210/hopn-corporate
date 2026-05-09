@@ -1,3 +1,5 @@
+{{-- v2.1 --}}
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
