@@ -124,7 +124,7 @@
         <aside class="hidden w-64 border-r border-slate-800 bg-slate-900/80 p-5 md:block">
             <!-- Mobile Close Button -->
             <div class="mobile-logo">
-                <p class="text-lg font-bold">HOPn Admin</p>
+               <p class="text-lg font-bold">HOPn Admin Panel</p>
                 <button class="close-sidebar-btn" id="close-sidebar">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
