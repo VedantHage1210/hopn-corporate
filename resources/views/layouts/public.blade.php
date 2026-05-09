@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @stack('head')
     <style>
         /* Scroll reveal */
@@ -22,9 +23,30 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* RTL support */
-        [dir="rtl"] body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+
+        /* RTL Support */
+        [dir="rtl"] {
+            font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+        }
+        [dir="rtl"] .container-shell {
+            direction: rtl;
+        }
+        [dir="rtl"] nav {
+            direction: rtl;
+        }
+        /* Flip arrows in RTL */
+        [dir="rtl"] svg.arrow {
+            transform: scaleX(-1);
+        }
+        /* Footer RTL */
+        [dir="rtl"] footer {
+            direction: rtl;
+            text-align: right;
+        }
+        /* Cards RTL */
+        [dir="rtl"] article {
+            direction: rtl;
+            text-align: right;
         }
     </style>
 </head>
@@ -39,12 +61,12 @@
     <script>
         // Scroll reveal
         document.addEventListener('DOMContentLoaded', function() {
-            var reveals = document.querySelectorAll('section');
-            reveals.forEach(function(el) {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(el) {
                 el.classList.add('reveal');
             });
             function checkReveal() {
-                reveals.forEach(function(el) {
+                sections.forEach(function(el) {
                     var top = el.getBoundingClientRect().top;
                     if (top < window.innerHeight - 80) {
                         el.classList.add('visible');
