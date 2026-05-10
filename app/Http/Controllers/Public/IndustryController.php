@@ -1,17 +1,23 @@
 <?php
 namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Industry;
 
 class IndustryController extends Controller
 {
     public function index()
     {
-        return view('public.industries.index');
+        $industries = Industry::where('is_published', true)
+            ->orderBy('sort_order')
+            ->get();
+        return view('public.industries.index', compact('industries'));
     }
 
     public function show(string $lang, string $slug)
     {
-        return view('public.industries.show', compact('slug'));
+        $industry = Industry::where('slug', $slug)
+            ->where('is_published', true)
+            ->firstOrFail();
+        return view('public.industries.show', compact('industry'));
     }
 }
