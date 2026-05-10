@@ -16,6 +16,7 @@
         <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'industries.index', 'en' => 'Industries', 'de' => 'Branchen', 'ar' => 'القطاعات'],
                 ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
                 ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'], 
                 ['route' => 'events.index', 'en' => 'Events', 'de' => 'Events', 'ar' => 'الفعاليات'],
@@ -86,6 +87,7 @@
         <nav class="container-shell" style="display:flex; flex-direction:column; padding:12px 16px; gap:4px;">
             @foreach([
                 ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'industries.index', 'en' => 'Industries', 'de' => 'Branchen', 'ar' => 'القطاعات'],
                 ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
                 ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'],
                 ['route' => 'events.index', 'en' => 'Events', 'de' => 'Events', 'ar' => 'الفعاليات'],
