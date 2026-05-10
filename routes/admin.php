@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CaseStudyController;
 use App\Http\Controllers\Admin\StartupController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
     Route::resource('startups', StartupController::class);
     Route::resource('investors', InvestorController::class);
     Route::resource('events', EventController::class);
+    Route::resource('industries', IndustryController::class);
     Route::resource('pages', PageController::class);
 
     // Blog / Insights
