@@ -61,6 +61,8 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.events.index') }}">Events</a>
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Industries</div>
 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.industries.index') }}">Industries</a>
+                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Innovation</div>
+<a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.innovation-domains.index') }}">Innovation Domains</a>
 
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Blog</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-posts.index') }}">Posts</a>
