@@ -8,6 +8,7 @@ use App\Http\Controllers\Public\InvestorController;
 use App\Http\Controllers\Public\EventController;
 use App\Http\Controllers\Public\IndustryController;
 use App\Http\Controllers\Public\CaseStudyController;
+use App\Http\Controllers\Public\InnovationDomainController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LeadController;
@@ -68,9 +69,11 @@ Route::prefix('{lang}')
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
         Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
-Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
+        Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
         
-
+        Route::get('/innovation', [InnovationDomainController::class, 'index'])->name('innovation.index');
+        Route::get('/innovation/{slug}', [InnovationDomainController::class, 'show'])->name('innovation.show');
+        
         Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
         Route::post('/contact', [ContactController::class, 'submit'])
             ->middleware('throttle:5,1')
