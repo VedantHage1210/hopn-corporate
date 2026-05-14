@@ -49,9 +49,9 @@
                 </h2>
             </div>
 
-            @php
+            <!-- @php
                 $startups = \App\Models\Startup::latest()->get();
-            @endphp
+            @endphp -->
 
             @if($startups->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
