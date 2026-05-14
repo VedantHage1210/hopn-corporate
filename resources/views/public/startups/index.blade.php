@@ -49,10 +49,6 @@
                 </h2>
             </div>
 
-            <!-- @php
-                $startups = \App\Models\Startup::latest()->get();
-            @endphp -->
-
             @if($startups->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
                 @foreach($startups as $startup)
@@ -60,10 +56,8 @@
                      onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
 
-                    {{-- Top accent line --}}
                     <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
 
-                    {{-- Icon + Name --}}
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
                         <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); font-size:18px; font-weight:800; color:#818CF8;">
                             {{ strtoupper(substr($startup->name, 0, 1)) }}
@@ -76,14 +70,12 @@
                         </div>
                     </div>
 
-                    {{-- Description --}}
                     @if($startup->description)
                     <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1;">
                         {{ Str::limit($startup->description, 120) }}
                     </p>
                     @endif
 
-                    {{-- Stage badge --}}
                     @if($startup->stage)
                     <div style="margin-top:16px;">
                         <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">
@@ -92,7 +84,6 @@
                     </div>
                     @endif
 
-                    {{-- Website --}}
                     @if($startup->website)
                     <a href="{{ $startup->website }}" target="_blank"
                        style="display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:13px; font-weight:600; color:#4F6EF7; text-decoration:none;">
@@ -124,12 +115,12 @@
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach([
-                    ['icon' => '🚀', 'en' => 'Venture Building',      'de' => 'Venture Building',        'ar' => 'بناء المشاريع',         'desc_en' => 'Co-build your startup from idea to product with HOPn\'s engineering and design teams.'],
-                    ['icon' => '🧠', 'en' => 'Mentoring & Advisory',  'de' => 'Mentoring & Beratung',    'ar' => 'الإرشاد والاستشارة',    'desc_en' => 'Access a network of industry experts, CTOs, and serial entrepreneurs.'],
-                    ['icon' => '💰', 'en' => 'Investor Access',       'de' => 'Investorenzugang',        'ar' => 'الوصول للمستثمرين',     'desc_en' => 'Connect with HOPn\'s investor network and funding partners across Europe.'],
-                    ['icon' => '🔬', 'en' => 'Research & Innovation', 'de' => 'Forschung & Innovation',  'ar' => 'البحث والابتكار',       'desc_en' => 'Collaborate with universities and R&D labs to build cutting-edge solutions.'],
-                    ['icon' => '🛠', 'en' => 'Tech Infrastructure',   'de' => 'Tech-Infrastruktur',      'ar' => 'البنية التحتية التقنية', 'desc_en' => 'AI, data, cloud, and DevOps infrastructure to accelerate your build.'],
-                    ['icon' => '🌍', 'en' => 'Market Access',         'de' => 'Marktzugang',             'ar' => 'الوصول للسوق',          'desc_en' => 'Enter European, Middle Eastern, and global markets with HOPn\'s partner network.'],
+                    ['icon' => '🚀', 'en' => 'Venture Building', 'de' => 'Venture Building', 'ar' => 'بناء المشاريع', 'desc' => 'Co-build your startup from idea to product with HOPn engineering and design teams.'],
+                    ['icon' => '🧠', 'en' => 'Mentoring & Advisory', 'de' => 'Mentoring & Beratung', 'ar' => 'الإرشاد والاستشارة', 'desc' => 'Access a network of industry experts, CTOs, and serial entrepreneurs.'],
+                    ['icon' => '💰', 'en' => 'Investor Access', 'de' => 'Investorenzugang', 'ar' => 'الوصول للمستثمرين', 'desc' => 'Connect with HOPn investor network and funding partners across Europe.'],
+                    ['icon' => '🔬', 'en' => 'Research & Innovation', 'de' => 'Forschung & Innovation', 'ar' => 'البحث والابتكار', 'desc' => 'Collaborate with universities and R&D labs to build cutting-edge solutions.'],
+                    ['icon' => '🛠', 'en' => 'Tech Infrastructure', 'de' => 'Tech-Infrastruktur', 'ar' => 'البنية التحتية التقنية', 'desc' => 'AI, data, cloud, and DevOps infrastructure to accelerate your build.'],
+                    ['icon' => '🌍', 'en' => 'Market Access', 'de' => 'Marktzugang', 'ar' => 'الوصول للسوق', 'desc' => 'Enter European, Middle Eastern, and global markets with HOPn partner network.'],
                 ] as $item)
                 <div style="position:relative; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.25s; overflow:hidden;"
                      onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'; this.querySelector('.top-line').style.opacity='1';"
@@ -137,7 +128,7 @@
                     <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
                     <div style="font-size:28px; margin-bottom:12px;">{{ $item['icon'] }}</div>
                     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px;">{{ $item[$lang] ?? $item['en'] }}</h3>
-                    <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc_en'] }}</p>
+                    <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc'] }}</p>
                 </div>
                 @endforeach
             </div>
@@ -155,9 +146,9 @@
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
                 @foreach([
-                    ['name' => 'HOPn Launchpad',    'desc' => '12-week intensive program to validate and launch your startup idea.', 'badge' => 'Applications Open', 'color' => '#4F6EF7'],
-                    ['name' => 'AI Founders Track',  'desc' => 'Specialized program for AI and data-driven startups with technical mentorship.', 'badge' => 'Coming Soon', 'color' => '#8B5CF6'],
-                    ['name' => 'Deep Tech Studio',   'desc' => 'Co-building program for robotics, digital twins, and hardware startups.', 'badge' => 'Invite Only', 'color' => '#10B981'],
+                    ['name' => 'HOPn Launchpad', 'desc' => '12-week intensive program to validate and launch your startup idea.', 'badge' => 'Applications Open', 'color' => '#4F6EF7'],
+                    ['name' => 'AI Founders Track', 'desc' => 'Specialized program for AI and data-driven startups with technical mentorship.', 'badge' => 'Coming Soon', 'color' => '#8B5CF6'],
+                    ['name' => 'Deep Tech Studio', 'desc' => 'Co-building program for robotics, digital twins, and hardware startups.', 'badge' => 'Invite Only', 'color' => '#10B981'],
                 ] as $program)
                 <div style="position:relative; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;"
                      onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'"
