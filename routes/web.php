@@ -68,6 +68,8 @@ Route::prefix('{lang}')
 
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
         Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
+        Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
+Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware('throttle:5,1')->name('leads.startup-application');
 
         Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
         Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
