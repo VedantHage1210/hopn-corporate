@@ -27,7 +27,7 @@
                 @else HOPn supports founders through mentoring, capital access, and deep-tech infrastructure.
                 @endif
             </p>
-            <a href="{{ route('contact.index', ['lang' => $lang]) }}"
+            <a href="#apply"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(79,110,247,0.3);"
                onmouseover="this.style.opacity='0.88'"
                onmouseout="this.style.opacity='1'">
@@ -168,8 +168,121 @@
         </div>
     </section>
 
+    {{-- Startup Application Form --}}
+    <section id="apply" style="padding:80px 0; background:#0A0F1E;">
+        <div class="container-shell">
+            <div style="max-width:640px; margin:0 auto;">
+                <div style="text-align:center; margin-bottom:40px;">
+                    <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Apply</span>
+                    <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white;">
+                        @if($lang === 'ar') قدم شركتك الناشئة @elseif($lang === 'de') Startup bewerben @else Apply with Your Startup @endif
+                    </h2>
+                    <p style="color:#94A3B8; font-size:15px; margin-top:12px; line-height:1.7;">
+                        @if($lang === 'ar') انضم إلى نظام HOPn البيئي للشركات الناشئة.
+                        @elseif($lang === 'de') Treten Sie dem HOPn-Startup-Ökosystem bei.
+                        @else Join the HOPn startup ecosystem and get access to mentoring, funding, and tech infrastructure.
+                        @endif
+                    </p>
+                </div>
+
+                <div style="border:1px solid rgba(79,110,247,0.2); background:#111827; border-radius:20px; padding:36px;">
+                    @if(session('startup_success'))
+                    <div style="margin-bottom:20px; padding:12px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px;">
+                        ✅ {{ session('startup_success') }}
+                    </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('leads.startup-application', ['lang' => $lang]) }}">
+                        @csrf
+                        <div style="display:grid; gap:16px;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                                <div>
+                                    <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                        @if($lang === 'ar') اسم المؤسس @elseif($lang === 'de') Gründername @else Founder Name @endif *
+                                    </label>
+                                    <input type="text" name="founder_name" required
+                                           style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                           onfocus="this.style.borderColor='#4F6EF7'"
+                                           onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                </div>
+                                <div>
+                                    <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                        @if($lang === 'ar') البريد الإلكتروني @elseif($lang === 'de') E-Mail @else Email Address @endif *
+                                    </label>
+                                    <input type="email" name="email" required
+                                           style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                           onfocus="this.style.borderColor='#4F6EF7'"
+                                           onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                    @if($lang === 'ar') اسم الشركة الناشئة @elseif($lang === 'de') Startup-Name @else Startup Name @endif *
+                                </label>
+                                <input type="text" name="startup_name" required
+                                       style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                       onfocus="this.style.borderColor='#4F6EF7'"
+                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                                <div>
+                                    <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                        @if($lang === 'ar') القطاع @elseif($lang === 'de') Branche @else Industry @endif
+                                    </label>
+                                    <input type="text" name="industry"
+                                           style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                           onfocus="this.style.borderColor='#4F6EF7'"
+                                           onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+                                           placeholder="AI, Healthcare, FinTech...">
+                                </div>
+                                <div>
+                                    <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                        @if($lang === 'ar') المرحلة @elseif($lang === 'de') Phase @else Stage @endif
+                                    </label>
+                                    <select name="stage"
+                                            style="width:100%; padding:10px 14px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
+                                        <option value="idea">Idea</option>
+                                        <option value="mvp">MVP</option>
+                                        <option value="seed">Seed</option>
+                                        <option value="series-a">Series A</option>
+                                        <option value="growth">Growth</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                    @if($lang === 'ar') رسالة @elseif($lang === 'de') Nachricht @else Tell us about your startup @endif
+                                </label>
+                                <textarea name="message" rows="4"
+                                          style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
+                                          onfocus="this.style.borderColor='#4F6EF7'"
+                                          onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+                                          placeholder="What problem are you solving? What stage are you at?"></textarea>
+                            </div>
+                            <div style="display:flex; align-items:flex-start; gap:10px;">
+                                <input type="checkbox" name="gdpr_consent" id="gdpr_startup" required style="margin-top:3px;">
+                                <label for="gdpr_startup" style="font-size:12px; color:#64748B; line-height:1.5;">
+                                    @if($lang === 'ar') أوافق على سياسة الخصوصية.
+                                    @elseif($lang === 'de') Ich stimme der Datenschutzerklärung zu.
+                                    @else I agree to the Privacy Policy and consent to data processing. *
+                                    @endif
+                                </label>
+                            </div>
+                            <button type="submit"
+                                    style="width:100%; padding:14px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer; transition:opacity 0.2s;"
+                                    onmouseover="this.style.opacity='0.88'"
+                                    onmouseout="this.style.opacity='1'">
+                                @if($lang === 'ar') قدم الآن @elseif($lang === 'de') Jetzt bewerben @else Submit Application @endif
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- CTA --}}
-    <section style="padding:80px 0; background:#0A0F1E;">
+    <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell" style="text-align:center;">
             <div style="max-width:600px; margin:0 auto; border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:24px; padding:60px 32px;">
                 <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white; margin-bottom:16px;">
