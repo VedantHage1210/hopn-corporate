@@ -67,6 +67,7 @@ Route::prefix('{lang}')
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
 
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
+        Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
 
         Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
         Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
