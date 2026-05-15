@@ -13,6 +13,6 @@
         }
     },
     "deploy": {
-        "startCmd": "php artisan view:clear && php artisan cache:clear && php artisan migrate --force && php artisan storage:link && /start-container.sh"
+        "startCmd": "php artisan migrate --force && php artisan storage:link && /start-container.sh"
     }
 }
