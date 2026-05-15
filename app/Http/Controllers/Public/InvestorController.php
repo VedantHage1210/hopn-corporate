@@ -1,12 +1,13 @@
 <?php
 namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Investor;
 
 class InvestorController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return view('public.investors.index');
+        $investors = Investor::latest()->get();
+        return view('public.investors.index', compact('investors'));
     }
 }
