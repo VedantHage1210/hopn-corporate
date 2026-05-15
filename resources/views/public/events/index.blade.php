@@ -22,7 +22,7 @@
                 @endif
             </h1>
             <p style="font-size:clamp(15px,2vw,18px); color:#94A3B8; max-width:600px; margin:0 auto 36px; line-height:1.7;">
-                @if($lang === 'ar') انضم إلى مؤتمراتنا وورش العمل والفعاليات الخاصة بالشركات الناشئة.
+                @if($lang === 'ar') انضم إلى مؤتمراتنا وورش العمل والفعاليات.
                 @elseif($lang === 'de') Nehmen Sie an unseren Konferenzen, Workshops und Startup-Events teil.
                 @else Join our conferences, workshops, webinars, and startup events across Europe and beyond.
                 @endif
@@ -43,35 +43,33 @@
             @if($events->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
                 @foreach($events as $event)
-                @php
-                    $typeColors = [
-                        'conference' => '#4F6EF7',
-                        'workshop'   => '#10B981',
-                        'webinar'    => '#06B6D4',
-                        'hackathon'  => '#8B5CF6',
-                        'startup'    => '#F59E0B',
-                        'networking' => '#EF4444',
-                        'research'   => '#A855F7',
-                    ];
-                    $color = $typeColors[$event->type] ?? '#4F6EF7';
-                    $title = $lang === 'de' && $event->title_de ? $event->title_de : ($lang === 'ar' && $event->title_ar ? $event->title_ar : $event->title);
-                    $desc = $lang === 'de' && $event->description_de ? $event->description_de : ($lang === 'ar' && $event->description_ar ? $event->description_ar : $event->description);
-                    $speakers = $event->speaker_names ? explode(',', $event->speaker_names) : [];
-                    $sponsors = $event->sponsor_names ? explode(',', $event->sponsor_names) : [];
-                @endphp
                 <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; overflow:hidden; transition:all 0.25s;"
-                     onmouseover="this.style.borderColor='{{ $color }}40'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'"
+                     onmouseover="this.style.borderColor='rgba(245,158,11,0.3)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
 
-                    {{-- Top color bar --}}
-                    <div style="height:3px; background:{{ $color }};"></div>
+                    {{-- Top color bar based on type --}}
+                    @if($event->type === 'conference')
+                        <div style="height:3px; background:#4F6EF7;"></div>
+                    @elseif($event->type === 'workshop')
+                        <div style="height:3px; background:#10B981;"></div>
+                    @elseif($event->type === 'webinar')
+                        <div style="height:3px; background:#06B6D4;"></div>
+                    @elseif($event->type === 'hackathon')
+                        <div style="height:3px; background:#8B5CF6;"></div>
+                    @elseif($event->type === 'networking')
+                        <div style="height:3px; background:#EF4444;"></div>
+                    @elseif($event->type === 'research')
+                        <div style="height:3px; background:#A855F7;"></div>
+                    @else
+                        <div style="height:3px; background:#F59E0B;"></div>
+                    @endif
 
                     <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:16px;">
 
-                        {{-- Type + Date --}}
+                        {{-- Type badge + Date --}}
                         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-                            <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $color }}20; color:{{ $color }}; border:1px solid {{ $color }}40; text-transform:uppercase; letter-spacing:0.05em;">
-                                {{ ucfirst($event->type) }}
+                            <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(245,158,11,0.15); color:#F59E0B; border:1px solid rgba(245,158,11,0.3); text-transform:uppercase; letter-spacing:0.05em;">
+                                {{ ucfirst($event->type ?? 'event') }}
                             </span>
                             @if($event->date)
                             <span style="font-size:12px; color:#64748B;">
@@ -81,28 +79,37 @@
                         </div>
 
                         {{-- Title --}}
-                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.4;">{{ $title }}</h3>
+                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.4;">
+                            @if($lang === 'de' && $event->title_de) {{ $event->title_de }}
+                            @elseif($lang === 'ar' && $event->title_ar) {{ $event->title_ar }}
+                            @else {{ $event->title }}
+                            @endif
+                        </h3>
 
                         {{-- Description --}}
-                        @if($desc)
+                        @if($event->description)
                         <p style="font-size:13px; color:#64748B; line-height:1.7;">
-                            {{ Str::limit($desc, 120) }}
+                            @if($lang === 'de' && $event->description_de)
+                                {{ Str::limit($event->description_de, 120) }}
+                            @elseif($lang === 'ar' && $event->description_ar)
+                                {{ Str::limit($event->description_ar, 120) }}
+                            @else
+                                {{ Str::limit($event->description, 120) }}
+                            @endif
                         </p>
                         @endif
 
                         {{-- Location --}}
                         @if($event->location)
-                        <div style="font-size:13px; color:#94A3B8;">
-                            📍 {{ $event->location }}
-                        </div>
+                        <div style="font-size:13px; color:#94A3B8;">📍 {{ $event->location }}</div>
                         @endif
 
                         {{-- Speakers --}}
-                        @if(count($speakers) > 0)
+                        @if($event->speaker_names)
                         <div>
                             <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:8px;">Speakers</div>
                             <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                                @foreach($speakers as $speaker)
+                                @foreach(explode(',', $event->speaker_names) as $speaker)
                                 <span style="font-size:12px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); color:#94A3B8;">
                                     {{ trim($speaker) }}
                                 </span>
@@ -112,11 +119,11 @@
                         @endif
 
                         {{-- Sponsors --}}
-                        @if(count($sponsors) > 0)
+                        @if($event->sponsor_names)
                         <div>
                             <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:8px;">Sponsors</div>
                             <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                                @foreach($sponsors as $sponsor)
+                                @foreach(explode(',', $event->sponsor_names) as $sponsor)
                                 <span style="font-size:12px; padding:3px 10px; border-radius:999px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); color:#F59E0B;">
                                     {{ trim($sponsor) }}
                                 </span>
@@ -127,24 +134,22 @@
 
                         {{-- Max Attendees --}}
                         @if($event->max_attendees)
-                        <div style="font-size:12px; color:#64748B;">
-                            👥 Max {{ number_format($event->max_attendees) }} attendees
-                        </div>
+                        <div style="font-size:12px; color:#64748B;">👥 Max {{ number_format($event->max_attendees) }} attendees</div>
                         @endif
 
-                        {{-- Registration --}}
+                        {{-- Registration button --}}
                         <div style="margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                             @if($event->registration_open)
-                                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                                   style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:{{ $color }}; color:white; font-size:13px; font-weight:600; text-decoration:none;"
-                                   onmouseover="this.style.opacity='0.88'"
-                                   onmouseout="this.style.opacity='1'">
-                                    @if($lang === 'ar') سجل الآن @elseif($lang === 'de') Jetzt anmelden @else Register Now @endif →
-                                </a>
+                            <a href="{{ route('contact.index', ['lang' => $lang]) }}"
+                               style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:#F59E0B; color:white; font-size:13px; font-weight:600; text-decoration:none;"
+                               onmouseover="this.style.opacity='0.88'"
+                               onmouseout="this.style.opacity='1'">
+                                @if($lang === 'ar') سجل الآن @elseif($lang === 'de') Jetzt anmelden @else Register Now @endif →
+                            </a>
                             @else
-                                <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:rgba(255,255,255,0.05); color:#64748B; font-size:13px; font-weight:600;">
-                                    @if($lang === 'ar') التسجيل مغلق @elseif($lang === 'de') Anmeldung geschlossen @else Registration Closed @endif
-                                </span>
+                            <span style="display:inline-flex; align-items:center; padding:10px 20px; border-radius:8px; background:rgba(255,255,255,0.05); color:#64748B; font-size:13px; font-weight:600;">
+                                @if($lang === 'ar') التسجيل مغلق @elseif($lang === 'de') Anmeldung geschlossen @else Registration Closed @endif
+                            </span>
                             @endif
                         </div>
                     </div>
@@ -247,7 +252,7 @@
                             <div style="display:flex; align-items:flex-start; gap:10px;">
                                 <input type="checkbox" name="gdpr_consent" id="gdpr_event" required style="margin-top:3px;">
                                 <label for="gdpr_event" style="font-size:12px; color:#64748B; line-height:1.5;">
-                                    @if($lang === 'ar') أوافق على سياسة الخصوصية ومعالجة بياناتي.
+                                    @if($lang === 'ar') أوافق على سياسة الخصوصية.
                                     @elseif($lang === 'de') Ich stimme der Datenschutzerklärung zu.
                                     @else I agree to the Privacy Policy and consent to data processing. *
                                     @endif
