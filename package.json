@@ -1,8 +1,9 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "echo 'Build skipped - using pre-built assets'"
+        "build": "echo 'Build skipped'"
     },
     "devDependencies": {}
 }
