@@ -38,7 +38,7 @@ class LeadController extends Controller
         return back()->with('status', 'Your training application has been received!');
     }
 
-  public function eventRegistration(Request $request, string $lang)
+public function eventRegistration(Request $request, string $lang)
 {
     $request->validate([
         'first_name'   => 'required|string|max:255',
@@ -47,17 +47,17 @@ class LeadController extends Controller
         'gdpr_consent' => 'required|accepted',
     ]);
 
-    $eventTitle = $request->event_title ?? $request->event_interest ?? 'Event Registration';
+    $eventTitle = $request->event_title ?? 'Event';
     $eventType  = $request->event_interest ?? 'event';
 
     $this->leadService->store([
         'name'    => $request->first_name . ' ' . $request->last_name,
         'email'   => $request->email,
         'company' => $request->company,
-        'message' => 'Event: ' . $eventTitle . ' (' . $eventType . ')' . ($request->message ? "\n\n" . $request->message : ''),
-    ], 'event-registration', $request);
+        'message' => 'Registered for: ' . $eventTitle . ' | Type: ' . $eventType . ($request->message ? "\n\nNote: " . $request->message : ''),
+    ], 'event-registration: ' . $eventTitle, $request);
 
-    return back()->with('event_success', 'Thank you! Your registration for "' . $eventTitle . '" has been received.');
+    return back()->with('event_success', '✅ Your registration for "' . $eventTitle . '" has been received! We will contact you soon.');
 }
 
     public function startupApplication(Request $request, string $lang)
