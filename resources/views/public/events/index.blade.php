@@ -1,6 +1,19 @@
 <x-layouts.public :title="'Events'">
 @php($lang = request()->route('lang', 'en'))
 
+    {{-- Success Toast --}}
+    @if(session('event_success'))
+    <div id="success-toast" style="display:flex; position:fixed; top:24px; right:24px; z-index:2000; align-items:center; gap:12px; background:#111827; border:1px solid rgba(16,185,129,0.4); border-radius:12px; padding:16px 20px; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:380px; transition:opacity 0.5s;">
+        <div style="font-size:24px;">✅</div>
+        <div>
+            <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">Registration Received!</div>
+            <div style="font-size:13px; color:#94A3B8;">{{ session('event_success') }}</div>
+        </div>
+        <button onclick="document.getElementById('success-toast').style.display='none'"
+                style="margin-left:auto; background:none; border:none; color:#64748B; cursor:pointer; font-size:18px; padding:0; line-height:1;">×</button>
+    </div>
+    @endif
+
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
         <div style="position:absolute; inset:0; pointer-events:none;
@@ -139,7 +152,7 @@
         <div style="max-width:900px; margin:40px auto; display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.1);">
 
             {{-- Left: Event Details --}}
-            <div id="modal-event-info" style="background:#0F172A; padding:40px; display:flex; flex-direction:column; gap:20px;">
+            <div style="background:#0F172A; padding:40px; display:flex; flex-direction:column; gap:20px;">
                 <div>
                     <span id="modal-event-type" style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(245,158,11,0.15); color:#F59E0B; border:1px solid rgba(245,158,11,0.3); text-transform:uppercase; letter-spacing:0.05em;"></span>
                 </div>
@@ -151,7 +164,7 @@
                 <div style="padding:20px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:12px;">
                     <p style="font-size:13px; color:#94A3B8; line-height:1.7;">
                         @if($lang === 'ar') سجل الآن لتأمين مكانك في هذه الفعالية.
-                        @elseif($lang === 'de') Melden Sie sich jetzt an, um Ihren Platz bei dieser Veranstaltung zu sichern.
+                        @elseif($lang === 'de') Melden Sie sich jetzt an, um Ihren Platz zu sichern.
                         @else Register now to secure your spot at this event. Seats are limited.
                         @endif
                     </p>
@@ -169,12 +182,6 @@
                 <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:24px;">
                     @if($lang === 'ar') تسجيل @elseif($lang === 'de') Anmeldung @else Register @endif
                 </h3>
-
-             @if(session('event_success'))
-<div id="global-success-msg" style="margin-bottom:20px; padding:16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
-    ✅ {{ session('event_success') }}
-</div>
-@endif
 
                 <form method="POST" action="{{ route('leads.event-registration', ['lang' => $lang]) }}">
                     @csrf
@@ -249,38 +256,41 @@
         </div>
     </div>
 
-  <script>
-    function openEventForm(id, title, type, date, location) {
-        document.getElementById('modal-event-title').textContent = title;
-        document.getElementById('modal-event-type').textContent = type.charAt(0).toUpperCase() + type.slice(1);
-        document.getElementById('modal-event-date').textContent = date ? '📅 ' + date : '';
-        document.getElementById('modal-event-location').textContent = location ? '📍 ' + location : '';
-        document.getElementById('modal-event-type-input').value = type;
-        document.getElementById('modal-event-title-input').value = title;
-        document.getElementById('event-modal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-
-        // Show success message inside modal if exists
-        var successMsg = document.getElementById('global-success-msg');
-        if (successMsg) {
-            successMsg.style.display = 'block';
-        }
-    }
-    function closeEventForm() {
-        document.getElementById('event-modal').style.display = 'none';
-        document.body.style.overflow = '';
-    }
-    document.getElementById('event-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeEventForm();
-    });
-
-    // Auto-open modal if form was submitted (session has success)
-    @if(session('event_success'))
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        function openEventForm(id, title, type, date, location) {
+            document.getElementById('modal-event-title').textContent = title;
+            document.getElementById('modal-event-type').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+            document.getElementById('modal-event-date').textContent = date ? '📅 ' + date : '';
+            document.getElementById('modal-event-location').textContent = location ? '📍 ' + location : '';
+            document.getElementById('modal-event-type-input').value = type;
+            document.getElementById('modal-event-title-input').value = title;
             document.getElementById('event-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
+        }
+
+        function closeEventForm() {
+            document.getElementById('event-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('event-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeEventForm();
         });
-    @endif
-</script>
+
+        @if(session('event_success'))
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('event-modal').style.display = 'none';
+            document.body.style.overflow = '';
+            var toast = document.getElementById('success-toast');
+            if (toast) {
+                toast.style.display = 'flex';
+                setTimeout(function() {
+                    toast.style.opacity = '0';
+                    setTimeout(function() { toast.style.display = 'none'; }, 500);
+                }, 5000);
+            }
+        });
+        @endif
+    </script>
 
 </x-layouts.public>
