@@ -38,26 +38,27 @@ class LeadController extends Controller
         return back()->with('status', 'Your training application has been received!');
     }
 
-    public function eventRegistration(Request $request, string $lang)
-    {
-        $request->validate([
-            'first_name'   => 'required|string|max:255',
-            'last_name'    => 'required|string|max:255',
-            'email'        => 'required|email|max:255',
-            'gdpr_consent' => 'required|accepted',
-        ]);
+  public function eventRegistration(Request $request, string $lang)
+{
+    $request->validate([
+        'first_name'   => 'required|string|max:255',
+        'last_name'    => 'required|string|max:255',
+        'email'        => 'required|email|max:255',
+        'gdpr_consent' => 'required|accepted',
+    ]);
 
-        $this->leadService->store([
-            'name'           => $request->first_name . ' ' . $request->last_name,
-            'email'          => $request->email,
-            'company'        => $request->company,
-            'event_interest' => $request->event_interest,
-            'message'        => $request->message,
-            'gdpr_consent'   => true,
-        ], 'event-registration', $request);
+    $eventTitle = $request->event_title ?? $request->event_interest ?? 'Event Registration';
+    $eventType  = $request->event_interest ?? 'event';
 
-        return back()->with('event_success', 'Thank you! Your registration has been received.');
-    }
+    $this->leadService->store([
+        'name'    => $request->first_name . ' ' . $request->last_name,
+        'email'   => $request->email,
+        'company' => $request->company,
+        'message' => 'Event: ' . $eventTitle . ' (' . $eventType . ')' . ($request->message ? "\n\n" . $request->message : ''),
+    ], 'event-registration', $request);
+
+    return back()->with('event_success', 'Thank you! Your registration for "' . $eventTitle . '" has been received.');
+}
 
     public function startupApplication(Request $request, string $lang)
     {
