@@ -140,7 +140,7 @@
                         {{-- Registration button --}}
                         <div style="margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                             @if($event->registration_open)
-                            <a href="{{ route('contact.index', ['lang' => $lang]) }}"
+                           <a href="#register"
                                style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:#F59E0B; color:white; font-size:13px; font-weight:600; text-decoration:none;"
                                onmouseover="this.style.opacity='0.88'"
                                onmouseout="this.style.opacity='1'">
