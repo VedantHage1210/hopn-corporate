@@ -170,11 +170,11 @@
                     @if($lang === 'ar') تسجيل @elseif($lang === 'de') Anmeldung @else Register @endif
                 </h3>
 
-                @if(session('event_success'))
-                <div style="margin-bottom:20px; padding:12px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px;">
-                    ✅ {{ session('event_success') }}
-                </div>
-                @endif
+             @if(session('event_success'))
+<div id="global-success-msg" style="margin-bottom:20px; padding:16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
+    ✅ {{ session('event_success') }}
+</div>
+@endif
 
                 <form method="POST" action="{{ route('leads.event-registration', ['lang' => $lang]) }}">
                     @csrf
