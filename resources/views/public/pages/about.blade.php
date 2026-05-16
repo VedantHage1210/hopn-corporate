@@ -219,13 +219,7 @@
                     @endif
                 </p>
             </div>
-          @php
-    try {
-        $teamMembers = \App\Models\TeamMember::orderBy('sort_order')->get();
-    } catch (\Exception $e) {
-        $teamMembers = collect();
-    }
-@endphp
+        
             @if($teamMembers->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
                 @foreach($teamMembers as $member)
