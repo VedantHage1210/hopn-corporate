@@ -249,24 +249,38 @@
         </div>
     </div>
 
-    <script>
-        function openEventForm(id, title, type, date, location) {
-            document.getElementById('modal-event-title').textContent = title;
-            document.getElementById('modal-event-type').textContent = type.charAt(0).toUpperCase() + type.slice(1);
-            document.getElementById('modal-event-date').textContent = date ? '📅 ' + date : '';
-            document.getElementById('modal-event-location').textContent = location ? '📍 ' + location : '';
-            document.getElementById('modal-event-type-input').value = type;
-            document.getElementById('modal-event-title-input').value = title;
+  <script>
+    function openEventForm(id, title, type, date, location) {
+        document.getElementById('modal-event-title').textContent = title;
+        document.getElementById('modal-event-type').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+        document.getElementById('modal-event-date').textContent = date ? '📅 ' + date : '';
+        document.getElementById('modal-event-location').textContent = location ? '📍 ' + location : '';
+        document.getElementById('modal-event-type-input').value = type;
+        document.getElementById('modal-event-title-input').value = title;
+        document.getElementById('event-modal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+
+        // Show success message inside modal if exists
+        var successMsg = document.getElementById('global-success-msg');
+        if (successMsg) {
+            successMsg.style.display = 'block';
+        }
+    }
+    function closeEventForm() {
+        document.getElementById('event-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    document.getElementById('event-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeEventForm();
+    });
+
+    // Auto-open modal if form was submitted (session has success)
+    @if(session('event_success'))
+        document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('event-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
-        }
-        function closeEventForm() {
-            document.getElementById('event-modal').style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        document.getElementById('event-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeEventForm();
         });
-    </script>
+    @endif
+</script>
 
 </x-layouts.public>
