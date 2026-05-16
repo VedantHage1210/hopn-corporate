@@ -252,6 +252,111 @@
         </div>
     </section>
 
+
+{{-- Core Values --}}
+<section style="padding:80px 0; background:#0A0F1E;">
+    <div class="container-shell">
+        <div style="text-align:center; margin-bottom:48px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8B5CF6; margin-bottom:12px;">Core Values</span>
+            <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">
+                @if($lang === 'ar') قيمنا الأساسية @elseif($lang === 'de') Unsere Kernwerte @else Our Core Values @endif
+            </h2>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+            @foreach([
+                ['icon' => '🎯', 'en' => 'Impact First',        'de' => 'Wirkung zuerst',       'ar' => 'الأثر أولاً',
+                 'en_desc' => 'Every solution we build must create measurable, real-world impact.',
+                 'de_desc' => 'Jede Lösung muss messbare Wirkung erzielen.',
+                 'ar_desc' => 'كل حل نبنيه يجب أن يحقق تأثيراً حقيقياً وقابلاً للقياس.'],
+                ['icon' => '🔬', 'en' => 'Research-Driven',     'de' => 'Forschungsgetrieben',   'ar' => 'مدفوع بالبحث',
+                 'en_desc' => 'We ground our work in academic research and proven methodologies.',
+                 'de_desc' => 'Wir stützen unsere Arbeit auf akademische Forschung.',
+                 'ar_desc' => 'نستند في عملنا إلى البحث الأكاديمي والمنهجيات المثبتة.'],
+                ['icon' => '🤝', 'en' => 'Ecosystem Thinking',  'de' => 'Ökosystem-Denken',      'ar' => 'التفكير البيئي',
+                 'en_desc' => 'We believe in collaboration over competition — building together.',
+                 'de_desc' => 'Wir glauben an Zusammenarbeit statt Wettbewerb.',
+                 'ar_desc' => 'نؤمن بالتعاون على التنافس — نبني معاً.'],
+                ['icon' => '⚡', 'en' => 'Speed & Discipline',  'de' => 'Geschwindigkeit & Disziplin', 'ar' => 'السرعة والانضباط',
+                 'en_desc' => 'We deliver enterprise-grade outcomes with startup-level speed.',
+                 'de_desc' => 'Wir liefern Unternehmensergebnisse mit Startup-Geschwindigkeit.',
+                 'ar_desc' => 'نقدم نتائج على مستوى المؤسسات بسرعة الشركات الناشئة.'],
+                ['icon' => '🌍', 'en' => 'European Values',     'de' => 'Europäische Werte',     'ar' => 'القيم الأوروبية',
+                 'en_desc' => 'Privacy, transparency, and ethical AI are non-negotiable.',
+                 'de_desc' => 'Datenschutz, Transparenz und ethische KI sind nicht verhandelbar.',
+                 'ar_desc' => 'الخصوصية والشفافية والذكاء الاصطناعي الأخلاقي غير قابلة للتفاوض.'],
+                ['icon' => '🚀', 'en' => 'Continuous Innovation', 'de' => 'Kontinuierliche Innovation', 'ar' => 'الابتكار المستمر',
+                 'en_desc' => 'We never stop learning, experimenting, and pushing boundaries.',
+                 'de_desc' => 'Wir hören nie auf zu lernen, zu experimentieren und Grenzen zu erweitern.',
+                 'ar_desc' => 'لا نتوقف أبداً عن التعلم والتجريب ودفع الحدود.'],
+            ] as $value)
+            <div style="position:relative; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.25s; overflow:hidden;"
+                 onmouseover="this.style.borderColor='rgba(139,92,246,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'; this.querySelector('.top-line').style.opacity='1';"
+                 onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
+                <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, #8B5CF6, #4F6EF7); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
+                <div style="font-size:28px; margin-bottom:16px;">{{ $value['icon'] }}</div>
+                <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px;">
+                    @if($lang === 'de') {{ $value['de'] }}
+                    @elseif($lang === 'ar') {{ $value['ar'] }}
+                    @else {{ $value['en'] }}
+                    @endif
+                </h3>
+                <p style="font-size:13px; color:#64748B; line-height:1.7;">
+                    @if($lang === 'de') {{ $value['de_desc'] }}
+                    @elseif($lang === 'ar') {{ $value['ar_desc'] }}
+                    @else {{ $value['en_desc'] }}
+                    @endif
+                </p>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- Office Locations --}}
+<section style="padding:80px 0; background:#080D1A;">
+    <div class="container-shell">
+        <div style="text-align:center; margin-bottom:48px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#06B6D4; margin-bottom:12px;">Locations</span>
+            <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">
+                @if($lang === 'ar') مكاتبنا @elseif($lang === 'de') Unsere Standorte @else Where We Are @endif
+            </h2>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+            @foreach([
+                ['flag' => '🇩🇪', 'city' => 'Berlin', 'country_en' => 'Germany', 'country_de' => 'Deutschland', 'country_ar' => 'ألمانيا',
+                 'type_en' => 'Headquarters', 'type_de' => 'Hauptsitz', 'type_ar' => 'المقر الرئيسي', 'color' => '#4F6EF7'],
+                ['flag' => '🇪🇺', 'city' => 'European Union', 'country_en' => 'EU Markets', 'country_de' => 'EU-Märkte', 'country_ar' => 'أسواق الاتحاد الأوروبي',
+                 'type_en' => 'Regional Operations', 'type_de' => 'Regionalbetrieb', 'type_ar' => 'العمليات الإقليمية', 'color' => '#10B981'],
+                ['flag' => '🌍', 'city' => 'MENA Region', 'country_en' => 'Middle East & North Africa', 'country_de' => 'Naher Osten & Nordafrika', 'country_ar' => 'منطقة الشرق الأوسط وشمال أفريقيا',
+                 'type_en' => 'Partner Network', 'type_de' => 'Partnernetzwerk', 'type_ar' => 'شبكة الشركاء', 'color' => '#F59E0B'],
+            ] as $location)
+            <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; transition:all 0.25s;"
+                 onmouseover="this.style.borderColor='{{ $location['color'] }}40'; this.style.background='#141D2E'"
+                 onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
+                <div style="font-size:40px; margin-bottom:16px;">{{ $location['flag'] }}</div>
+                <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:6px;">{{ $location['city'] }}</h3>
+                <p style="font-size:14px; color:#94A3B8; margin-bottom:12px;">
+                    @if($lang === 'de') {{ $location['country_de'] }}
+                    @elseif($lang === 'ar') {{ $location['country_ar'] }}
+                    @else {{ $location['country_en'] }}
+                    @endif
+                </p>
+                <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 12px; border-radius:999px; background:{{ $location['color'] }}20; color:{{ $location['color'] }}; border:1px solid {{ $location['color'] }}40;">
+                    @if($lang === 'de') {{ $location['type_de'] }}
+                    @elseif($lang === 'ar') {{ $location['type_ar'] }}
+                    @else {{ $location['type_en'] }}
+                    @endif
+                </span>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+
+
+    
     {{-- CTA --}}
     <section style="padding:80px 0; background:#0A0F1E;">
         <div class="container-shell" style="text-align:center;">
