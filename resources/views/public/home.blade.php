@@ -200,7 +200,7 @@
                 <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Announcements, partnerships, product updates, and research activities.</p>
             </div>
             @php
-                $latestPosts = \App\Models\BlogPost::where('status', 'published')->latest('published_at')->take(3)->get();
+                $latestPosts = \App\Models\BlogPost::latest('published_at')->take(3)->get();
             @endphp
             @if($latestPosts->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:36px;">
