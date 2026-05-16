@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LegalController;
 use App\Http\Controllers\Admin\LeadController;
+use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\MediaAssetController;
 use App\Http\Controllers\Admin\NavigationController;
 use App\Http\Controllers\Admin\PageController;
@@ -71,6 +72,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
     // Leads / CRM
     Route::resource('leads', LeadController::class)->except(['create', 'store', 'destroy']);
     Route::get('leads/export', [LeadController::class, 'export'])->name('leads.export');
+    Route::resource('logos', LogoController::class);
 
     // Admin & settings
     Route::resource('users', UserController::class);
