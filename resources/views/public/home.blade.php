@@ -7,13 +7,35 @@
         cta="Explore Services"
         :cta-url="route('services.index', ['lang' => request()->route('lang', 'en')])" />
 
-    {{-- 2. Innovation Ecosystem --}}
+ {{-- 2. Innovation Ecosystem --}}
     <section style="padding:80px 0; background:#0A0F1E;">
         <div class="container-shell" style="text-align:center;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">One Hub for Innovation</span>
             <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white; margin-bottom:16px;">Where Business, Education & Research Connect</h2>
             <p style="color:#94A3B8; max-width:560px; margin:0 auto 48px; font-size:16px; line-height:1.7;">HOPn is the bridge between enterprises, universities, startups, and investors — creating a complete innovation ecosystem.</p>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; max-width:900px; margin:0 auto;">
+
+            {{-- Innovation Domains — dynamic --}}
+            @php
+                $homeDomains = \App\Models\InnovationDomain::where('is_published', true)->orderBy('sort_order')->take(6)->get();
+            @endphp
+
+            @if($homeDomains->count() > 0)
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; max-width:1000px; margin:0 auto 48px;">
+                @foreach($homeDomains as $domain)
+                <a href="{{ route('innovation.show', ['lang' => request()->route('lang', 'en'), 'slug' => $domain->slug]) }}"
+                   style="border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:16px; padding:24px 16px; text-decoration:none; transition:all 0.25s;"
+                   onmouseover="this.style.background='rgba(79,110,247,0.1)'; this.style.borderColor='rgba(79,110,247,0.4)'"
+                   onmouseout="this.style.background='rgba(79,110,247,0.05)'; this.style.borderColor='rgba(79,110,247,0.2)'">
+                    <div style="font-size:28px; margin-bottom:10px;">{{ $domain->icon ?? '🔬' }}</div>
+                    <div style="font-size:15px; font-weight:700; color:white; margin-bottom:6px;">{{ $domain->name }}</div>
+                    @if($domain->description)
+                    <div style="font-size:12px; color:#94A3B8; line-height:1.5;">{{ Str::limit($domain->description, 60) }}</div>
+                    @endif
+                </a>
+                @endforeach
+            </div>
+            @else
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; max-width:900px; margin:0 auto 48px;">
                 @foreach([
                     ['icon' => '🏢', 'label' => 'Business',    'desc' => 'Enterprise clients & consulting'],
                     ['icon' => '🎓', 'label' => 'Education',   'desc' => 'Universities & training programs'],
@@ -21,15 +43,21 @@
                     ['icon' => '🚀', 'label' => 'Startups',    'desc' => 'Venture building & ecosystems'],
                     ['icon' => '💰', 'label' => 'Investors',   'desc' => 'Funds & strategic partnerships'],
                 ] as $item)
-                <div style="border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:16px; padding:24px 16px;"
-                     onmouseover="this.style.background='rgba(79,110,247,0.1)'; this.style.borderColor='rgba(79,110,247,0.4)'"
-                     onmouseout="this.style.background='rgba(79,110,247,0.05)'; this.style.borderColor='rgba(79,110,247,0.2)'">
+                <div style="border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:16px; padding:24px 16px;">
                     <div style="font-size:28px; margin-bottom:10px;">{{ $item['icon'] }}</div>
                     <div style="font-size:15px; font-weight:700; color:white; margin-bottom:6px;">{{ $item['label'] }}</div>
                     <div style="font-size:12px; color:#94A3B8; line-height:1.5;">{{ $item['desc'] }}</div>
                 </div>
                 @endforeach
             </div>
+            @endif
+
+            <a href="{{ route('innovation.index', ['lang' => request()->route('lang', 'en')]) }}"
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.4); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none;"
+               onmouseover="this.style.background='rgba(79,110,247,0.1)'"
+               onmouseout="this.style.background='transparent'">
+                Explore Innovation Domains →
+            </a>
         </div>
     </section>
 
