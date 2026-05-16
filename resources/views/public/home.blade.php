@@ -94,13 +94,31 @@
         </div>
     </section>
 
-    {{-- 5. Industries --}}
+   {{-- 5. Industries --}}
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:48px;">
                 <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Industries</span>
                 <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">Industries We Serve</h2>
             </div>
+            @php
+                $homeIndustries = \App\Models\Industry::where('is_published', true)->orderBy('sort_order')->take(9)->get();
+            @endphp
+            @if($homeIndustries->count() > 0)
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
+                @foreach($homeIndustries as $industry)
+                <a href="{{ route('industries.show', ['lang' => request()->route('lang', 'en'), 'slug' => $industry->slug]) }}"
+                   style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; padding:20px 12px; text-align:center; transition:all 0.25s; text-decoration:none;"
+                   onmouseover="this.style.background='rgba(79,110,247,0.08)'; this.style.borderColor='rgba(79,110,247,0.3)'"
+                   onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.07)'">
+                    <div style="font-size:24px; margin-bottom:8px;">{{ $industry->icon ?? '🏭' }}</div>
+                    <div style="font-size:13px; font-weight:600; color:#CBD5E1;">
+                        {{ $industry->name }}
+                    </div>
+                </a>
+                @endforeach
+            </div>
+            @else
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
                 @foreach([
                     ['icon' => '🚗', 'name' => 'Automotive'],
@@ -112,13 +130,20 @@
                     ['icon' => '🚚', 'name' => 'Logistics'],
                     ['icon' => '🔬', 'name' => 'Research'],
                 ] as $industry)
-                <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; padding:20px 12px; text-align:center;"
-                     onmouseover="this.style.background='rgba(79,110,247,0.08)'; this.style.borderColor='rgba(79,110,247,0.3)'"
-                     onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.07)'">
+                <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; padding:20px 12px; text-align:center;">
                     <div style="font-size:24px; margin-bottom:8px;">{{ $industry['icon'] }}</div>
                     <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $industry['name'] }}</div>
                 </div>
                 @endforeach
+            </div>
+            @endif
+            <div style="text-align:center; margin-top:32px;">
+                <a href="{{ route('industries.index', ['lang' => request()->route('lang', 'en')]) }}"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.4); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none;"
+                   onmouseover="this.style.background='rgba(79,110,247,0.1)'"
+                   onmouseout="this.style.background='transparent'">
+                    View All Industries →
+                </a>
             </div>
         </div>
     </section>
