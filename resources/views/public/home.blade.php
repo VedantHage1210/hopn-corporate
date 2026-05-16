@@ -15,9 +15,7 @@
             <p style="color:#94A3B8; max-width:560px; margin:0 auto 48px; font-size:16px; line-height:1.7;">HOPn is the bridge between enterprises, universities, startups, and investors — creating a complete innovation ecosystem.</p>
 
             {{-- Innovation Domains — dynamic --}}
-            @php
-                $homeDomains = \App\Models\InnovationDomain::where('is_published', true)->orderBy('sort_order')->take(6)->get();
-            @endphp
+          
 
             @if($homeDomains->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; max-width:1000px; margin:0 auto 48px;">
@@ -129,9 +127,7 @@
                 <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Industries</span>
                 <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">Industries We Serve</h2>
             </div>
-            @php
-                $homeIndustries = \App\Models\Industry::where('is_published', true)->orderBy('sort_order')->take(9)->get();
-            @endphp
+          2
             @if($homeIndustries->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
                 @foreach($homeIndustries as $industry)
@@ -197,9 +193,7 @@
                 <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">Upcoming Events</h2>
                 <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Join our conferences, workshops, webinars, and startup events.</p>
             </div>
-            @php
-                $upcomingEvents = \App\Models\Event::where('is_published', true)->orderBy('date')->take(3)->get();
-            @endphp
+          
             @if($upcomingEvents->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:36px;">
                 @foreach($upcomingEvents as $event)
@@ -252,9 +246,7 @@
                 <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">Latest from HOPn</h2>
                 <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Announcements, partnerships, product updates, and research activities.</p>
             </div>
-            @php
-                $latestPosts = \App\Models\BlogPost::latest('published_at')->take(3)->get();
-            @endphp
+         
             @if($latestPosts->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:36px;">
                 @foreach($latestPosts as $post)
