@@ -15,19 +15,19 @@
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
-                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
-            ['route' => 'about', 'en' => 'About', 'de' => 'Über uns', 'ar' => 'من نحن'],
-                ['route' => 'industries.index', 'en' => 'Industries', 'de' => 'Branchen', 'ar' => 'القطاعات'],
-                ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
-                ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'], 
-                ['route' => 'events.index', 'en' => 'Events', 'de' => 'Events', 'ar' => 'الفعاليات'],
-            ['route' => 'innovation.index', 'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
-                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
-                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
-                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
-                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training',   'ar' => 'تدريب'],
-                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner',    'ar' => 'الشركاء'],
-                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere',   'ar' => 'وظائف'],
+                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'about',             'en' => 'About',      'de' => 'Über uns',   'ar' => 'من نحن'],
+                ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
+                ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+                ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
+                ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
+                ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
+                ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
+                ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
+                ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
+                ['route' => 'training.index',    'en' => 'Training',   'de' => 'Training',   'ar' => 'تدريب'],
+                ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
+                ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
                    style="padding:6px 12px; border-radius:6px; color:#94A3B8; font-size:14px; text-decoration:none; transition:all 0.2s;"
@@ -54,7 +54,7 @@
             </div>
 
             {{-- Contact CTA --}}
-    href="{{ route('contact.index', ['lang' => $lang]) }}"
+            <a href="{{ route('contact.index', ['lang' => $lang]) }}"
                class="hidden md:block"
                style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
                onmouseover="this.style.opacity='0.85'"
@@ -88,20 +88,20 @@
          style="display:none; border-top:1px solid rgba(255,255,255,0.05); background:rgba(10,15,30,0.98); backdrop-filter:blur(20px);">
         <nav class="container-shell" style="display:flex; flex-direction:column; padding:12px 16px; gap:4px;">
             @foreach([
-                ['route' => 'services.index', 'en' => 'Services',  'de' => 'Leistungen', 'ar' => 'الخدمات'],
-                ['route' => 'about', 'en' => 'About', 'de' => 'Über uns', 'ar' => 'من نحن'],
-                ['route' => 'industries.index', 'en' => 'Industries', 'de' => 'Branchen', 'ar' => 'القطاعات'],
-                ['route' => 'startups.index', 'en' => 'Startups',  'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
-                ['route' => 'investors.index', 'en' => 'Investors', 'de' => 'Investoren', 'ar' => 'المستثمرون'],
-                ['route' => 'events.index', 'en' => 'Events', 'de' => 'Events', 'ar' => 'الفعاليات'],
-            ['route' => 'innovation.index', 'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
-                ['route' => 'programs.index', 'en' => 'Programs',  'de' => 'Programme',  'ar' => 'البرامج'],
-                ['route' => 'products.index', 'en' => 'Products',  'de' => 'Produkte',   'ar' => 'المنتجات'],
-                ['route' => 'insights.index', 'en' => 'Insights',  'de' => 'Einblicke',  'ar' => 'رؤى'],
-                ['route' => 'training.index', 'en' => 'Training',  'de' => 'Training',   'ar' => 'تدريب'],
-                ['route' => 'partners.index', 'en' => 'Partners',  'de' => 'Partner',    'ar' => 'الشركاء'],
-                ['route' => 'careers.index',  'en' => 'Careers',   'de' => 'Karriere',   'ar' => 'وظائف'],
-                ['route' => 'contact.index',  'en' => 'Contact',   'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
+                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
+                ['route' => 'about',             'en' => 'About',      'de' => 'Über uns',   'ar' => 'من نحن'],
+                ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
+                ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+                ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
+                ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
+                ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
+                ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
+                ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
+                ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
+                ['route' => 'training.index',    'en' => 'Training',   'de' => 'Training',   'ar' => 'تدريب'],
+                ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
+                ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
+                ['route' => 'contact.index',     'en' => 'Contact',    'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
                    style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
