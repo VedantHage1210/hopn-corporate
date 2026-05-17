@@ -89,6 +89,10 @@ Route::post('/startup-application', [LeadController::class, 'startupApplication'
             ->middleware('throttle:5,1')
             ->name('leads.partner');
 
+Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware('throttle:5,1')->name('leads.book-call');
+
+
+        
         Route::get('/training', function () {
             return view('public.training.index');
         })->name('training.index');
