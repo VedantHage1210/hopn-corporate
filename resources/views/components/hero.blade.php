@@ -53,7 +53,7 @@
             </a>
             @endif
 
-        href="{{ route('contact.index', ['lang' => $lang]) }}"
+      href="#" onclick="event.preventDefault(); openBookCall()"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none; transition:background 0.2s;"
                onmouseover="this.style.background='rgba(255,255,255,0.1)'"
                onmouseout="this.style.background='rgba(255,255,255,0.05)'">
