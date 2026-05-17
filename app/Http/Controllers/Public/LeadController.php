@@ -81,4 +81,26 @@ public function eventRegistration(Request $request, string $lang)
 
         return back()->with('startup_success', 'Thank you! Your startup application has been received.');
     }
+
+    public function bookCall(Request $request, string $lang)
+{
+    $request->validate([
+        'first_name'   => 'required|string|max:255',
+        'last_name'    => 'required|string|max:255',
+        'email'        => 'required|email|max:255',
+        'gdpr_consent' => 'required|accepted',
+    ]);
+
+    $this->leadService->store([
+        'name'    => $request->first_name . ' ' . $request->last_name,
+        'email'   => $request->email,
+        'company' => $request->company,
+        'message' => 'Topic: ' . ($request->topic ?? 'N/A') . ' | Time: ' . ($request->preferred_time ?? 'Flexible') . ($request->message ? "\n\n" . $request->message : ''),
+    ], 'book-call', $request);
+
+    return back()->with('book_call_success', 'Thank you! We will contact you shortly to confirm your call.');
+}
+
+
+    
 }
