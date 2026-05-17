@@ -4,7 +4,7 @@
         <a href="{{ route('admin.authors.index') }}" class="text-sm text-slate-400 hover:text-white">← Back to Authors</a>
     </div>
 
-    <div class="card-panel p-6 max-w-2xl">
+    <div class="card-panel p-6 max-w-3xl">
         <form method="POST"
               action="{{ isset($author->id) ? route('admin.authors.update', $author) : route('admin.authors.store') }}"
               enctype="multipart/form-data"
@@ -19,16 +19,21 @@
                 @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
             </div>
 
-            <div class="grid gap-5 md:grid-cols-2">
+            <div class="grid gap-5 md:grid-cols-3">
                 <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">Bio (English)</label>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">🇬🇧 Bio (English)</label>
                     <textarea name="bio_en" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('bio_en', $author->bio_en ?? '') }}</textarea>
                     @error('bio_en')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">Bio (Deutsch)</label>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">🇩🇪 Bio (Deutsch)</label>
                     <textarea name="bio_de" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('bio_de', $author->bio_de ?? '') }}</textarea>
                     @error('bio_de')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">🇸🇦 Bio (العربية)</label>
+                    <textarea name="bio_ar" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('bio_ar', $author->bio_ar ?? '') }}</textarea>
+                    @error('bio_ar')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                 </div>
             </div>
 
@@ -68,6 +73,12 @@
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
                     @error('website_url')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                 </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <input type="checkbox" name="is_active" id="is_active" value="1"
+                    @checked(old('is_active', $author->is_active ?? true))>
+                <label for="is_active" class="text-sm text-slate-300">Active Author</label>
             </div>
 
             <div class="pt-2 flex gap-3">
