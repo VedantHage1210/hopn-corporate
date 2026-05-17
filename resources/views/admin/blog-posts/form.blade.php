@@ -16,7 +16,9 @@
             <div class="lg:col-span-2 space-y-6">
                 <div class="card-panel p-6">
                     <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Content</h2>
-                    <div class="grid gap-6 md:grid-cols-2">
+                    <div class="grid gap-6 md:grid-cols-3">
+
+                        {{-- English --}}
                         <div class="space-y-4">
                             <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
                             <div>
@@ -33,6 +35,8 @@
                                 <textarea name="body" rows="8" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body', $item->body ?? '') }}</textarea>
                             </div>
                         </div>
+
+                        {{-- German --}}
                         <div class="space-y-4">
                             <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
                             <div>
@@ -49,6 +53,25 @@
                                 <textarea name="body_de" rows="8" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body_de', $item->body_de ?? '') }}</textarea>
                             </div>
                         </div>
+
+                        {{-- Arabic --}}
+                        <div class="space-y-4">
+                            <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-slate-200">Title (AR)</label>
+                                <input type="text" name="title_ar" value="{{ old('title_ar', $item->title_ar ?? '') }}"
+                                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-slate-200">Excerpt (AR)</label>
+                                <textarea name="excerpt_ar" rows="2" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('excerpt_ar', $item->excerpt_ar ?? '') }}</textarea>
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm font-medium text-slate-200">Body (AR)</label>
+                                <textarea name="body_ar" rows="8" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('body_ar', $item->body_ar ?? '') }}</textarea>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
