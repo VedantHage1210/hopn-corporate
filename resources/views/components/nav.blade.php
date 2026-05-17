@@ -54,7 +54,7 @@
             </div>
 
             {{-- Contact CTA --}}
-            <a href="{{ route('contact.index', ['lang' => $lang]) }}"
+         href="{{ route('contact.index', ['lang' => $lang]) }}"
                class="hidden md:block"
                style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
                onmouseover="this.style.opacity='0.85'"
