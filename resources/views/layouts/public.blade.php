@@ -45,7 +45,7 @@
     <x-cookie-banner />
 
     {{-- Book a Call Modal --}}
-    <div id="book-call-modal">
+    <div id="book-call-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); padding:20px; overflow-y:auto;">
         <div style="width:100%; max-width:560px; background:#111827; border:1px solid rgba(79,110,247,0.2); border-radius:20px; overflow:hidden; position:relative;">
 
             {{-- Top bar --}}
@@ -168,17 +168,30 @@
 
     <script>
         // Book a Call Modal
-        function openBookCall() {
-            document.getElementById('book-call-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeBookCall() {
-            document.getElementById('book-call-modal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        document.getElementById('book-call-modal').addEventListener('click', function(e) {
+      function openBookCall() {
+    var modal = document.getElementById('book-call-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        document.body.style.overflow = 'hidden';
+    }
+}
+function closeBookCall() {
+    var modal = document.getElementById('book-call-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('book-call-modal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
             if (e.target === this) closeBookCall();
         });
+    }
+});
 
         // Auto open if success session
         @if(session('book_call_success'))
