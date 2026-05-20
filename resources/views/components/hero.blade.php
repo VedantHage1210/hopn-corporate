@@ -4,7 +4,7 @@
     'cta'      => 'Explore Services',
     'ctaUrl'   => null,
 ])
-@php($lang = request()->route('lang', app()->getLocale()))
+@php($lang = request()->route('lang', app()->getLocale()))   .
 
 <section style="position:relative; overflow:hidden; background:#0A0F1E; padding: 80px 0 100px;">
 
