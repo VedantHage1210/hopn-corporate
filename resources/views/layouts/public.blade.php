@@ -21,17 +21,30 @@
         [dir="rtl"] svg.arrow { transform:scaleX(-1); }
         [dir="rtl"] footer { direction:rtl; text-align:right; }
         [dir="rtl"] article { direction:rtl; text-align:right; }
-        #book-call-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); padding:20px; overflow-y:auto; align-items:center; justify-content:center; }
+        #book-call-modal {
+            display:none;
+            position:fixed;
+            inset:0;
+            z-index:9999;
+            background:rgba(0,0,0,0.75);
+            backdrop-filter:blur(8px);
+            padding:20px;
+            overflow-y:auto;
+            align-items:center;
+            justify-content:center;
+        }
     </style>
     <script>
-        function openBookCall() {
+        window.openBookCall = function() {
             var modal = document.getElementById('book-call-modal');
             if (modal) {
                 modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
                 document.body.style.overflow = 'hidden';
             }
         }
-        function closeBookCall() {
+        window.closeBookCall = function() {
             var modal = document.getElementById('book-call-modal');
             if (modal) {
                 modal.style.display = 'none';
@@ -57,7 +70,7 @@
                     <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8; margin-bottom:6px;">HOPn</div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">Book a Call</h2>
                 </div>
-                <button onclick="closeBookCall()"
+                <button onclick="window.closeBookCall()"
                         style="width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#64748B; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center;"
                         onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.color='white'"
                         onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#64748B'">×</button>
@@ -157,14 +170,9 @@
             var modal = document.getElementById('book-call-modal');
             if (modal) {
                 modal.addEventListener('click', function(e) {
-                    if (e.target === this) closeBookCall();
+                    if (e.target === this) window.closeBookCall();
                 });
             }
-
-            @if(session('book_call_success'))
-            closeBookCall();
-            @endif
-
             var sections = document.querySelectorAll('section');
             sections.forEach(function(el) { el.classList.add('reveal'); });
             function checkReveal() {
