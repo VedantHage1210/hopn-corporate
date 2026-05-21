@@ -34,24 +34,7 @@
             justify-content:center;
         }
     </style>
-    <script>
-        window.openBookCall = function() {
-            var modal = document.getElementById('book-call-modal');
-            if (modal) {
-                modal.style.display = 'flex';
-                modal.style.alignItems = 'center';
-                modal.style.justifyContent = 'center';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        window.closeBookCall = function() {
-            var modal = document.getElementById('book-call-modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        }
-    </script>
+  
 </head>
 <body>
     <x-nav />
