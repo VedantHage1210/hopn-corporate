@@ -145,10 +145,25 @@
             </div>
         </div>
     </div>
-
-    @stack('scripts')
+@stack('scripts')
 
     <script>
+        window.openBookCall = function() {
+            var modal = document.getElementById('book-call-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                document.body.style.overflow = 'hidden';
+            }
+        };
+        window.closeBookCall = function() {
+            var modal = document.getElementById('book-call-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        };
         document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('book-call-modal');
             if (modal) {
@@ -170,4 +185,5 @@
         });
     </script>
 </body>
+  
 </html>
