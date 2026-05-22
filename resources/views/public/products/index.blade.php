@@ -17,24 +17,50 @@
         </div>
     </section>
 
+    <style>
+        .prod-card-0 .prod-bar { background:#4F6EF7; }
+        .prod-card-0 .prod-icon { background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.3); color:#4F6EF7; }
+        .prod-card-0 .prod-link { color:#4F6EF7; }
+        .prod-card-0:hover { border-color:rgba(79,110,247,0.3) !important; }
+
+        .prod-card-1 .prod-bar { background:#10B981; }
+        .prod-card-1 .prod-icon { background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:#10B981; }
+        .prod-card-1 .prod-link { color:#10B981; }
+        .prod-card-1:hover { border-color:rgba(16,185,129,0.3) !important; }
+
+        .prod-card-2 .prod-bar { background:#8B5CF6; }
+        .prod-card-2 .prod-icon { background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.3); color:#8B5CF6; }
+        .prod-card-2 .prod-link { color:#8B5CF6; }
+        .prod-card-2:hover { border-color:rgba(139,92,246,0.3) !important; }
+
+        .prod-card-3 .prod-bar { background:#F59E0B; }
+        .prod-card-3 .prod-icon { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); color:#F59E0B; }
+        .prod-card-3 .prod-link { color:#F59E0B; }
+        .prod-card-3:hover { border-color:rgba(245,158,11,0.3) !important; }
+
+        .prod-card-4 .prod-bar { background:#EF4444; }
+        .prod-card-4 .prod-icon { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:#EF4444; }
+        .prod-card-4 .prod-link { color:#EF4444; }
+        .prod-card-4:hover { border-color:rgba(239,68,68,0.3) !important; }
+
+        .prod-card-5 .prod-bar { background:#06B6D4; }
+        .prod-card-5 .prod-icon { background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); color:#06B6D4; }
+        .prod-card-5 .prod-link { color:#06B6D4; }
+        .prod-card-5:hover { border-color:rgba(6,182,212,0.3) !important; }
+
+        .prod-card { transition:all 0.25s; }
+        .prod-card:hover { background:#141D2E !important; transform:translateY(-4px); }
+    </style>
+
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
 
             @if($products->count() > 0)
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-
                 @foreach($products as $product)
                 @php
-                    $idx          = $loop->index % 6;
-                    $topColors    = ['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
-                    $borderColors = ['rgba(79,110,247,0.3)','rgba(16,185,129,0.3)','rgba(139,92,246,0.3)','rgba(245,158,11,0.3)','rgba(239,68,68,0.3)','rgba(6,182,212,0.3)'];
-                    $bgColors     = ['rgba(79,110,247,0.1)','rgba(16,185,129,0.1)','rgba(139,92,246,0.1)','rgba(245,158,11,0.1)','rgba(239,68,68,0.1)','rgba(6,182,212,0.1)'];
-                    $topColor     = $topColors[$idx];
-                    $borderColor  = $borderColors[$idx];
-                    $bgColor      = $bgColors[$idx];
-                    $textColor    = $topColor;
-
+                    $idx = $loop->index % 6;
                     if ($lang === 'de' && $product->title_de) {
                         $ptitle = $product->title_de;
                     } elseif ($lang === 'ar' && !empty($product->title_ar)) {
@@ -42,7 +68,6 @@
                     } else {
                         $ptitle = $product->title_en ?? '';
                     }
-
                     if ($lang === 'de' && $product->summary_de) {
                         $psummary = $product->summary_de;
                     } elseif ($lang === 'ar' && !empty($product->summary_ar)) {
@@ -50,18 +75,16 @@
                     } else {
                         $psummary = $product->summary_en ?? '';
                     }
-
                     $initial = strtoupper(substr($ptitle, 0, 1));
                 @endphp
 
-                <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                     onmouseover="this.style.borderColor='{{ $borderColor }}'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'"
-                     onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
+                <div class="prod-card prod-card-{{ $idx }}"
+                     style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; overflow:hidden;">
 
-                    <div style="position:absolute; top:0; left:0; right:0; height:3px; background:{{ $topColor }}; border-radius:16px 16px 0 0;"></div>
+                    <div class="prod-bar" style="position:absolute; top:0; left:0; right:0; height:3px; border-radius:16px 16px 0 0;"></div>
 
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div style="width:48px; height:48px; border-radius:12px; background:{{ $bgColor }}; border:1px solid {{ $borderColor }}; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:{{ $textColor }}; flex-shrink:0;">
+                        <div class="prod-icon" style="width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0;">
                             {{ $initial }}
                         </div>
                         <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $ptitle }}</h3>
@@ -71,13 +94,13 @@
 
                     <div style="padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                         <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
-                           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $textColor }}; text-decoration:none;">
+                           class="prod-link"
+                           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; text-decoration:none;">
                             View Product →
                         </a>
                     </div>
                 </div>
                 @endforeach
-
             </div>
 
             @if($products->hasPages())
