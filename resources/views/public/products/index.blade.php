@@ -2,7 +2,7 @@
 @php($lang = request()->route('lang', 'en'))
 
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-        <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
+        <div style="position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(79,110,247,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(79,110,247,0.06) 1px,transparent 1px); background-size:48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.10); filter:blur(80px);"></div>
         <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
@@ -23,17 +23,17 @@
             @if($products->count() > 0)
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+
                 @foreach($products as $product)
                 @php
-                    $idx = $loop->index % 6;
-                    $borderColors = ['rgba(79,110,247,0.3)','rgba(16,185,129,0.3)','rgba(139,92,246,0.3)','rgba(245,158,11,0.3)','rgba(239,68,68,0.3)','rgba(6,182,212,0.3)'];
+                    $idx          = $loop->index % 6;
                     $topColors    = ['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
-                    $textColors   = ['color:#4F6EF7','color:#10B981','color:#8B5CF6','color:#F59E0B','color:#EF4444','color:#06B6D4'];
+                    $borderColors = ['rgba(79,110,247,0.3)','rgba(16,185,129,0.3)','rgba(139,92,246,0.3)','rgba(245,158,11,0.3)','rgba(239,68,68,0.3)','rgba(6,182,212,0.3)'];
                     $bgColors     = ['rgba(79,110,247,0.1)','rgba(16,185,129,0.1)','rgba(139,92,246,0.1)','rgba(245,158,11,0.1)','rgba(239,68,68,0.1)','rgba(6,182,212,0.1)'];
                     $topColor     = $topColors[$idx];
                     $borderColor  = $borderColors[$idx];
-                    $textColor    = $textColors[$idx];
                     $bgColor      = $bgColors[$idx];
+                    $textColor    = $topColor;
 
                     if ($lang === 'de' && $product->title_de) {
                         $ptitle = $product->title_de;
@@ -61,7 +61,7 @@
                     <div style="position:absolute; top:0; left:0; right:0; height:3px; background:{{ $topColor }}; border-radius:16px 16px 0 0;"></div>
 
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div style="width:48px; height:48px; border-radius:12px; background:{{ $bgColor }}; border:1px solid {{ $borderColor }}; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; {{ $textColor }}; flex-shrink:0;">
+                        <div style="width:48px; height:48px; border-radius:12px; background:{{ $bgColor }}; border:1px solid {{ $borderColor }}; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:{{ $textColor }}; flex-shrink:0;">
                             {{ $initial }}
                         </div>
                         <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $ptitle }}</h3>
@@ -71,12 +71,13 @@
 
                     <div style="padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                         <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
-                           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; {{ $textColor }}; text-decoration:none;">
+                           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $textColor }}; text-decoration:none;">
                             View Product →
                         </a>
                     </div>
                 </div>
                 @endforeach
+
             </div>
 
             @if($products->hasPages())
