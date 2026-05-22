@@ -82,43 +82,54 @@
         </div>
     </section>
 
-    {{-- 4. HOPn Products --}}
-    <section style="padding:80px 0; background:#0A0F1E;">
-        <div class="container-shell">
-            <div style="text-align:center; margin-bottom:48px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Our Platforms</span>
-                <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">HOPn Products</h2>
-                <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Intelligent platforms built for the future of business and education.</p>
-            </div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
-                @foreach([
-                    ['name' => 'Praktix',   'desc' => 'Practical skills platform connecting talent with enterprise training programs.', 'users' => 'Enterprises, Trainers', 'color' => '#4F6EF7'],
-                    ['name' => 'FintEch',   'desc' => 'Financial technology platform for modern banking and fintech innovation.', 'users' => 'Banks, Fintechs', 'color' => '#10B981'],
-                    ['name' => 'AI Pass',   'desc' => 'AI certification and credentialing platform for professionals and organizations.', 'users' => 'Professionals, Teams', 'color' => '#8B5CF6'],
-                    ['name' => 'Sovra AI',  'desc' => 'Enterprise AI orchestration platform for intelligent automation and workflows.', 'users' => 'Enterprises, CTOs', 'color' => '#F59E0B'],
-                    ['name' => 'Sportify',  'desc' => 'Sports data and analytics platform for clubs, athletes, and federations.', 'users' => 'Sports Orgs, Clubs', 'color' => '#EF4444'],
-                    ['name' => 'EduBridge', 'desc' => 'Education-industry bridge connecting universities with enterprise partners.', 'users' => 'Universities, Employers', 'color' => '#06B6D4'],
-                ] as $product)
-                <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.2s; display:flex; flex-direction:column; gap:12px;"
-                     onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
-                     onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <div style="width:40px; height:40px; border-radius:10px; background:{{ $product['color'] }}20; border:1px solid {{ $product['color'] }}40; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $product['color'] }};">
-                            {{ substr($product['name'], 0, 1) }}
-                        </div>
-                        <div style="font-size:17px; font-weight:700; color:white;">{{ $product['name'] }}</div>
-                    </div>
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.6; flex:1;">{{ $product['desc'] }}</p>
-                    <div style="font-size:11px; color:#64748B; padding:4px 10px; background:rgba(255,255,255,0.04); border-radius:6px; display:inline-block;">{{ $product['users'] }}</div>
-                    <a href="{{ route('products.index', ['lang' => request()->route('lang', 'en')]) }}"
-                       style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $product['color'] }}; text-decoration:none; margin-top:4px;">
-                        Learn More →
-                    </a>
-                </div>
-                @endforeach
-            </div>
+  {{-- 4. HOPn Products --}}
+<section style="padding:80px 0; background:#0A0F1E;">
+    <div class="container-shell">
+        <div style="text-align:center; margin-bottom:48px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Our Platforms</span>
+            <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">HOPn Products</h2>
+            <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Intelligent platforms built for the future of business and education.</p>
         </div>
-    </section>
+        @php
+            $homeProducts = \App\Models\Product::where('is_published', true)->latest()->take(6)->get();
+        @endphp
+        @if($homeProducts->count() > 0)
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            @foreach($homeProducts as $product)
+            @php
+                $colors = ['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                $color = $colors[$loop->index % count($colors)];
+                $title = request()->route('lang') === 'de' && $product->title_de ? $product->title_de : $product->title_en;
+                $summary = request()->route('lang') === 'de' && $product->summary_de ? $product->summary_de : $product->summary_en;
+            @endphp
+            <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.2s; display:flex; flex-direction:column; gap:12px;"
+                 onmouseover="this.style.borderColor='{{ $color }}40'; this.style.background='#141D2E'"
+                 onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:40px; height:40px; border-radius:10px; background:{{ $color }}20; border:1px solid {{ $color }}40; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $color }};">
+                        {{ strtoupper(substr($title, 0, 1)) }}
+                    </div>
+                    <div style="font-size:17px; font-weight:700; color:white;">{{ $title }}</div>
+                </div>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.6; flex:1;">{{ Str::limit($summary, 100) }}</p>
+                <a href="{{ route('products.show', ['lang' => request()->route('lang', 'en'), 'slug' => $product->slug]) }}"
+                   style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $color }}; text-decoration:none; margin-top:4px;">
+                    Learn More →
+                </a>
+            </div>
+            @endforeach
+        </div>
+        @endif
+        <div style="text-align:center; margin-top:36px;">
+            <a href="{{ route('products.index', ['lang' => request()->route('lang', 'en')]) }}"
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.4); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none;"
+               onmouseover="this.style.background='rgba(79,110,247,0.1)'"
+               onmouseout="this.style.background='transparent'">
+                View All Products →
+            </a>
+        </div>
+    </div>
+</section>
 
    {{-- 5. Industries --}}
     <section style="padding:80px 0; background:#080D1A;">
