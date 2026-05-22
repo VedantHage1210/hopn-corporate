@@ -30,7 +30,7 @@
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
-                   style="padding:6px 12px; border-radius:6px; color:#94A3B8; font-size:14px; text-decoration:none; transition:all 0.2s;"
+                 style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
                    onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
                    onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
                     {{ $item[$lang] ?? $item['en'] }}
@@ -46,7 +46,7 @@
                  style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
                 @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
-                   style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.2s;
+                 style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s;
                    {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
                 </a>
