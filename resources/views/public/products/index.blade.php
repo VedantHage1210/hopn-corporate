@@ -18,73 +18,51 @@
     </section>
 
     <style>
-        .prod-card-0 .prod-bar { background:#4F6EF7; }
-        .prod-card-0 .prod-icon { background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.3); color:#4F6EF7; }
-        .prod-card-0 .prod-link { color:#4F6EF7; }
-        .prod-card-0:hover { border-color:rgba(79,110,247,0.3) !important; }
-
-        .prod-card-1 .prod-bar { background:#10B981; }
-        .prod-card-1 .prod-icon { background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:#10B981; }
-        .prod-card-1 .prod-link { color:#10B981; }
-        .prod-card-1:hover { border-color:rgba(16,185,129,0.3) !important; }
-
-        .prod-card-2 .prod-bar { background:#8B5CF6; }
-        .prod-card-2 .prod-icon { background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.3); color:#8B5CF6; }
-        .prod-card-2 .prod-link { color:#8B5CF6; }
-        .prod-card-2:hover { border-color:rgba(139,92,246,0.3) !important; }
-
-        .prod-card-3 .prod-bar { background:#F59E0B; }
-        .prod-card-3 .prod-icon { background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); color:#F59E0B; }
-        .prod-card-3 .prod-link { color:#F59E0B; }
-        .prod-card-3:hover { border-color:rgba(245,158,11,0.3) !important; }
-
-        .prod-card-4 .prod-bar { background:#EF4444; }
-        .prod-card-4 .prod-icon { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:#EF4444; }
-        .prod-card-4 .prod-link { color:#EF4444; }
-        .prod-card-4:hover { border-color:rgba(239,68,68,0.3) !important; }
-
-        .prod-card-5 .prod-bar { background:#06B6D4; }
-        .prod-card-5 .prod-icon { background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); color:#06B6D4; }
-        .prod-card-5 .prod-link { color:#06B6D4; }
-        .prod-card-5:hover { border-color:rgba(6,182,212,0.3) !important; }
-
-        .prod-card { transition:all 0.25s; }
-        .prod-card:hover { background:#141D2E !important; transform:translateY(-4px); }
+        .pc0 .pb{background:#4F6EF7}.pc0 .pi{background:rgba(79,110,247,0.1);border:1px solid rgba(79,110,247,0.3);color:#4F6EF7}.pc0 .pl{color:#4F6EF7}
+        .pc1 .pb{background:#10B981}.pc1 .pi{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10B981}.pc1 .pl{color:#10B981}
+        .pc2 .pb{background:#8B5CF6}.pc2 .pi{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);color:#8B5CF6}.pc2 .pl{color:#8B5CF6}
+        .pc3 .pb{background:#F59E0B}.pc3 .pi{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:#F59E0B}.pc3 .pl{color:#F59E0B}
+        .pc4 .pb{background:#EF4444}.pc4 .pi{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#EF4444}.pc4 .pl{color:#EF4444}
+        .pc5 .pb{background:#06B6D4}.pc5 .pi{background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:#06B6D4}.pc5 .pl{color:#06B6D4}
+        .pcard{transition:all 0.25s}
+        .pcard:hover{background:#141D2E !important;transform:translateY(-4px)}
     </style>
 
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
 
-            @if($products->count() > 0)
+            @forelse($products as $product)
 
+            @php
+                $idx = $loop->index % 6;
+                if ($lang === 'de' && $product->title_de) {
+                    $ptitle = $product->title_de;
+                } elseif ($lang === 'ar' && !empty($product->title_ar)) {
+                    $ptitle = $product->title_ar;
+                } else {
+                    $ptitle = $product->title_en ?? '';
+                }
+                if ($lang === 'de' && $product->summary_de) {
+                    $psummary = $product->summary_de;
+                } elseif ($lang === 'ar' && !empty($product->summary_ar)) {
+                    $psummary = $product->summary_ar;
+                } else {
+                    $psummary = $product->summary_en ?? '';
+                }
+                $initial = strtoupper(substr($ptitle, 0, 1));
+            @endphp
+
+            @if($loop->first)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-                @foreach($products as $product)
-                @php
-                    $idx = $loop->index % 6;
-                    if ($lang === 'de' && $product->title_de) {
-                        $ptitle = $product->title_de;
-                    } elseif ($lang === 'ar' && !empty($product->title_ar)) {
-                        $ptitle = $product->title_ar;
-                    } else {
-                        $ptitle = $product->title_en ?? '';
-                    }
-                    if ($lang === 'de' && $product->summary_de) {
-                        $psummary = $product->summary_de;
-                    } elseif ($lang === 'ar' && !empty($product->summary_ar)) {
-                        $psummary = $product->summary_ar;
-                    } else {
-                        $psummary = $product->summary_en ?? '';
-                    }
-                    $initial = strtoupper(substr($ptitle, 0, 1));
-                @endphp
+            @endif
 
-                <div class="prod-card prod-card-{{ $idx }}"
+                <div class="pcard pc{{ $idx }}"
                      style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; overflow:hidden;">
 
-                    <div class="prod-bar" style="position:absolute; top:0; left:0; right:0; height:3px; border-radius:16px 16px 0 0;"></div>
+                    <div class="pb" style="position:absolute; top:0; left:0; right:0; height:3px; border-radius:16px 16px 0 0;"></div>
 
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div class="prod-icon" style="width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0;">
+                        <div class="pi" style="width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0;">
                             {{ $initial }}
                         </div>
                         <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $ptitle }}</h3>
@@ -94,13 +72,14 @@
 
                     <div style="padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                         <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
-                           class="prod-link"
+                           class="pl"
                            style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; text-decoration:none;">
                             View Product →
                         </a>
                     </div>
                 </div>
-                @endforeach
+
+            @if($loop->last)
             </div>
 
             @if($products->hasPages())
@@ -109,14 +88,16 @@
             </div>
             @endif
 
-            @else
+            @endif
+
+            @empty
 
             <div style="text-align:center; padding:80px; color:#64748B;">
                 <div style="font-size:48px; margin-bottom:16px;">📦</div>
                 <p style="font-size:16px;">No products found. Add products from the admin panel.</p>
             </div>
 
-            @endif
+            @endforelse
 
         </div>
     </section>
