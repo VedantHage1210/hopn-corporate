@@ -35,18 +35,18 @@
                     $colors = ['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
                     $color  = $colors[$loop->index % count($colors)];
                     if ($lang === 'de' && $product->title_de) {
-                        $title = $product->title_de;
-                    } elseif ($lang === 'ar' && isset($product->title_ar) && $product->title_ar) {
-                        $title = $product->title_ar;
+                        $ptitle = $product->title_de;
+                    } elseif ($lang === 'ar' && !empty($product->title_ar)) {
+                        $ptitle = $product->title_ar;
                     } else {
-                        $title = $product->title_en ?? '';
+                        $ptitle = $product->title_en ?? '';
                     }
                     if ($lang === 'de' && $product->summary_de) {
-                        $summary = $product->summary_de;
-                    } elseif ($lang === 'ar' && isset($product->summary_ar) && $product->summary_ar) {
-                        $summary = $product->summary_ar;
+                        $psummary = $product->summary_de;
+                    } elseif ($lang === 'ar' && !empty($product->summary_ar)) {
+                        $psummary = $product->summary_ar;
                     } else {
-                        $summary = $product->summary_en ?? '';
+                        $psummary = $product->summary_en ?? '';
                     }
                 @endphp
                 <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
@@ -57,12 +57,12 @@
 
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                         <div style="width:48px; height:48px; border-radius:12px; background:{{ $color }}20; border:1px solid {{ $color }}40; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:{{ $color }}; flex-shrink:0;">
-                            {{ strtoupper(substr($title, 0, 1)) }}
+                            {{ strtoupper(substr($ptitle, 0, 1)) }}
                         </div>
-                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $title }}</h3>
+                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $ptitle }}</h3>
                     </div>
 
-                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($summary, 120) }}</p>
+                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($psummary, 120) }}</p>
 
                     <div style="padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                         <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
