@@ -35,41 +35,41 @@
             @if($products->count() > 0)
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
                 @foreach($products as $product)
-                @php
-                    $title   = $lang === 'de' && $product->title_de   ? $product->title_de   : ($lang === 'ar' && $product->title_ar   ? $product->title_ar   : $product->title_en);
-                    $summary = $lang === 'de' && $product->summary_de ? $product->summary_de : ($lang === 'ar' && $product->summary_ar ? $product->summary_ar : $product->summary_en);
-                    $colors  = ['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
-                    $color   = $colors[$loop->index % count($colors)];
-                @endphp
                 <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                     onmouseover="this.style.borderColor='{{ $color }}40'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
+                     onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
 
-                    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:3px; background:{{ $color }}; opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
+                    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
 
-                    {{-- Icon + Title --}}
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; background:{{ $color }}20; border:1px solid {{ $color }}40; font-size:20px; font-weight:800; color:{{ $color }}; flex-shrink:0;">
-                            {{ strtoupper(substr($title, 0, 1)) }}
+                        <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); font-size:20px; font-weight:800; color:#818CF8; flex-shrink:0;">
+                            {{ strtoupper(substr($lang === 'de' && $product->title_de ? $product->title_de : $product->title_en, 0, 1)) }}
                         </div>
-                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">{{ $title }}</h3>
+                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">
+                            @if($lang === 'de' && $product->title_de) {{ $product->title_de }}
+                            @elseif($lang === 'ar' && $product->title_ar) {{ $product->title_ar }}
+                            @else {{ $product->title_en }}
+                            @endif
+                        </h3>
                     </div>
 
-                    {{-- Summary --}}
-                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1;">{{ $summary }}</p>
+                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1;">
+                        @if($lang === 'de' && $product->summary_de) {{ $product->summary_de }}
+                        @elseif($lang === 'ar' && $product->summary_ar) {{ $product->summary_ar }}
+                        @else {{ $product->summary_en }}
+                        @endif
+                    </p>
 
-                    {{-- Tags --}}
                     @if($product->target_audience)
                     <div style="margin-top:16px; margin-bottom:16px;">
-                        <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ $color }}10; border:1px solid {{ $color }}30; color:{{ $color }};">
+                        <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">
                             {{ $product->target_audience }}
                         </span>
                     </div>
                     @endif
 
-                    {{-- CTA --}}
                     <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
-                       style="display:inline-flex; align-items:center; gap:6px; margin-top:auto; font-size:13px; font-weight:600; color:{{ $color }}; text-decoration:none; transition:gap 0.2s;"
+                       style="display:inline-flex; align-items:center; gap:6px; margin-top:auto; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none;"
                        onmouseover="this.style.gap='10px'"
                        onmouseout="this.style.gap='6px'">
                         @if($lang === 'ar') عرض المنتج
@@ -84,7 +84,6 @@
                 @endforeach
             </div>
 
-            {{-- Pagination --}}
             @if($products->hasPages())
             <div style="margin-top:40px; display:flex; justify-content:center;">
                 {{ $products->links() }}
