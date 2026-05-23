@@ -24,7 +24,7 @@
                 ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-                ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
+             ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
               
                 ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
@@ -97,7 +97,7 @@
                 ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-                ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
+              ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
                
                 ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
