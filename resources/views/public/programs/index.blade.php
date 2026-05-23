@@ -1,6 +1,7 @@
 <x-layouts.public :title="'Programs'">
 @php($lang = request()->route('lang', 'en'))
 
+    {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
         <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.12); filter:blur(80px);"></div>
@@ -21,6 +22,7 @@
         </div>
     </section>
 
+    {{-- Programs Grid --}}
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
             @if($programs->count() > 0)
@@ -72,16 +74,121 @@
         </div>
     </section>
 
-    <section style="padding:60px 0; background:#0A0F1E;">
-        <div class="container-shell" style="text-align:center;">
-            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:rgba(139,92,246,0.05); border-radius:24px; padding:48px 32px;">
-                <h2 style="font-size:28px; font-weight:800; color:white; margin-bottom:16px;">Ready to Upskill Your Team?</h2>
-                <p style="color:#94A3B8; font-size:15px; line-height:1.7; margin-bottom:28px;">Contact us to find the right program for your organization.</p>
-                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-                    Get in Touch →
-                </a>
+    {{-- Training Application Form --}}
+    <section style="padding:80px 0; background:#0A0F1E;" id="apply">
+        <div class="container-shell">
+            <div style="text-align:center; margin-bottom:48px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8B5CF6; margin-bottom:12px;">Apply Now</span>
+                <h2 style="font-size:clamp(24px,4vw,40px); font-weight:800; color:white; margin-bottom:16px;">
+                    @if($lang === 'ar') سجل في برنامج @elseif($lang === 'de') Für ein Programm anmelden @else Apply for a Program @endif
+                </h2>
+                <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:16px; line-height:1.7;">
+                    @if($lang === 'ar') أرسل طلبك وسنتواصل معك قريباً.
+                    @elseif($lang === 'de') Senden Sie Ihre Bewerbung und wir melden uns bei Ihnen.
+                    @else Submit your application and we'll get back to you shortly.
+                    @endif
+                </p>
+            </div>
+
+            @if(session('status'))
+            <div style="max-width:700px; margin:0 auto 24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
+                ✅ {{ session('status') }}
+            </div>
+            @endif
+
+            <div style="max-width:700px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:20px; padding:40px;">
+                <form action="{{ route('leads.training', ['lang' => $lang]) }}" method="POST">
+                    @csrf
+                    <input type="text" name="honeypot" style="display:none">
+                    <div style="display:grid; gap:16px;">
+
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                            <div>
+                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                    @if($lang === 'ar') الاسم الكامل @elseif($lang === 'de') Name @else Full Name @endif *
+                                </label>
+                                <input type="text" name="name" value="{{ old('name') }}" required
+                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                       onfocus="this.style.borderColor='#8B5CF6'"
+                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                @error('name')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
+                            </div>
+                            <div>
+                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                    @if($lang === 'ar') البريد الإلكتروني @elseif($lang === 'de') E-Mail @else Email @endif *
+                                </label>
+                                <input type="email" name="email" value="{{ old('email') }}" required
+                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                       onfocus="this.style.borderColor='#8B5CF6'"
+                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                @error('email')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                @if($lang === 'ar') الهاتف @elseif($lang === 'de') Telefon @else Phone @endif
+                            </label>
+                            <input type="text" name="phone" value="{{ old('phone') }}"
+                                   style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
+                                   onfocus="this.style.borderColor='#8B5CF6'"
+                                   onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                @if($lang === 'ar') البرنامج المطلوب @elseif($lang === 'de') Interessiertes Programm @else Program of Interest @endif
+                            </label>
+                            <select name="program_of_interest"
+                                    style="width:100%; padding:10px 12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
+                                <option value="">
+                                    @if($lang === 'ar') اختر البرنامج @elseif($lang === 'de') Bitte wählen @else Select program @endif
+                                </option>
+                                @foreach($programs as $prog)
+                                <option value="{{ $prog->slug }}">
+                                    @if($lang === 'de' && $prog->title_de) {{ $prog->title_de }}
+                                    @elseif($lang === 'ar' && $prog->title_ar) {{ $prog->title_ar }}
+                                    @else {{ $prog->title_en }}
+                                    @endif
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px;">
+                                @if($lang === 'ar') رسالة @elseif($lang === 'de') Nachricht @else Message @endif *
+                            </label>
+                            <textarea name="message" rows="4" required
+                                      style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
+                                      onfocus="this.style.borderColor='#8B5CF6'"
+                                      onblur="this.style.borderColor='rgba(255,255,255,0.1)'">{{ old('message') }}</textarea>
+                            @error('message')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
+                        </div>
+
+                        <input type="hidden" name="utm_source" value="{{ request('utm_source') }}">
+                        <input type="hidden" name="utm_medium" value="{{ request('utm_medium') }}">
+                        <input type="hidden" name="utm_campaign" value="{{ request('utm_campaign') }}">
+
+                        <div style="display:flex; align-items:flex-start; gap:10px;">
+                            <input type="checkbox" name="gdpr" id="gdpr_programs" value="1" required style="margin-top:3px;">
+                            <label for="gdpr_programs" style="font-size:12px; color:#64748B; line-height:1.5;">
+                                @if($lang === 'ar') أوافق على سياسة الخصوصية. *
+                                @elseif($lang === 'de') Ich stimme der Datenschutzerklärung zu. *
+                                @else I agree to the Privacy Policy and consent to data processing. *
+                                @endif
+                            </label>
+                        </div>
+                        @error('gdpr')<p style="font-size:11px; color:#F87171;">{{ $message }}</p>@enderror
+
+                        <button type="submit"
+                                style="width:100%; padding:13px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(139,92,246,0.3);"
+                                onmouseover="this.style.opacity='0.88'"
+                                onmouseout="this.style.opacity='1'">
+                            @if($lang === 'ar') إرسال الطلب @elseif($lang === 'de') Bewerbung absenden @else Submit Application @endif
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
