@@ -90,9 +90,7 @@
             <h2 style="font-size:clamp(24px,4vw,42px); font-weight:800; color:white;">HOPn Products</h2>
             <p style="color:#94A3B8; max-width:500px; margin:12px auto 0; font-size:16px;">Intelligent platforms built for the future of business and education.</p>
         </div>
-        @php
-            $homeProducts = \App\Models\Product::where('is_published', true)->latest()->take(6)->get();
-        @endphp
+     
         @if($homeProducts->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
             @foreach($homeProducts as $product)
