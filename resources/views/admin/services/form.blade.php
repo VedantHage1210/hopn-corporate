@@ -11,10 +11,11 @@
         @csrf
         @if(isset($item->id)) @method('PUT') @endif
 
-        {{-- EN / DE Tabs --}}
+        {{-- Content --}}
         <div class="card-panel p-6">
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Content</h2>
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="grid gap-6 md:grid-cols-3">
+                {{-- English --}}
                 <div class="space-y-4">
                     <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
                     <div>
@@ -29,9 +30,10 @@
                     </div>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Body (EN)</label>
-                        <textarea name="body" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white tinymce">{{ old('body', $item->body ?? '') }}</textarea>
+                        <textarea name="body" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body', $item->body ?? '') }}</textarea>
                     </div>
                 </div>
+                {{-- German --}}
                 <div class="space-y-4">
                     <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
                     <div>
@@ -46,6 +48,23 @@
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Body (DE)</label>
                         <textarea name="body_de" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body_de', $item->body_de ?? '') }}</textarea>
+                    </div>
+                </div>
+                {{-- Arabic --}}
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Title (AR)</label>
+                        <input type="text" name="name_ar" value="{{ old('name_ar', $item->name_ar ?? '') }}"
+                            class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Summary (AR)</label>
+                        <textarea name="summary_ar" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('summary_ar', $item->summary_ar ?? '') }}</textarea>
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Body (AR)</label>
+                        <textarea name="body_ar" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('body_ar', $item->body_ar ?? '') }}</textarea>
                     </div>
                 </div>
             </div>
