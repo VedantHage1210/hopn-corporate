@@ -15,8 +15,7 @@
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="gap:4px;">
             @foreach([
-                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
-             
+                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],      
                 ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
                 ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
                 ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
@@ -24,9 +23,7 @@
                 ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-             ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
-              
-                ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
+                ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
             ] as $item)
                 <a href="{{ route($item['route'], ['lang' => $lang]) }}"
@@ -98,8 +95,6 @@
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
               ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
-               
-                ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
                 ['route' => 'contact.index',     'en' => 'Contact',    'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
             ] as $item)
