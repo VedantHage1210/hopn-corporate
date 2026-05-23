@@ -25,7 +25,7 @@
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
                 ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
-                ['route' => 'training.index',    'en' => 'Training',   'de' => 'Training',   'ar' => 'تدريب'],
+              
                 ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
             ] as $item)
@@ -98,7 +98,7 @@
                 ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
                 ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
                 ['route' => 'insights.index',    'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'رؤى'],
-                ['route' => 'training.index',    'en' => 'Training',   'de' => 'Training',   'ar' => 'تدريب'],
+               
                 ['route' => 'partners.index',    'en' => 'Partners',   'de' => 'Partner',    'ar' => 'الشركاء'],
                 ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
                 ['route' => 'contact.index',     'en' => 'Contact',    'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
