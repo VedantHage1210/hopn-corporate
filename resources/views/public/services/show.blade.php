@@ -4,7 +4,7 @@
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
         @if($service->hero_image)
-        <div style="position:absolute; inset:0; background:url('{{ Storage::url($service->hero_image) }}') center/cover no-repeat; opacity:0.15;"></div>
+      <div style="position:absolute; inset:0; background:url('{{ $service->hero_image }}') center/cover no-repeat; opacity:0.15;"></div>
         @endif
         <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
