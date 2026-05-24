@@ -30,61 +30,80 @@
     </section>
 
     {{-- Products Grid --}}
-  @foreach($products as $product)
-<div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; overflow:hidden; transition:all 0.25s;"
-     onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
-     onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
+    <section style="padding:80px 0; background:#080D1A;">
+        <div class="container-shell">
+            @if($products->count() > 0)
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+                @foreach($products as $product)
+                <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; overflow:hidden; transition:all 0.25s;"
+                     onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
+                     onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
 
-    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; z-index:1;"></div>
+                    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; z-index:1;"></div>
 
-    {{-- Hero Image --}}
-    @if($product->hero_image_url)
-    <div style="height:160px; overflow:hidden;">
-        <img src="{{ $product->hero_image_url }}" alt="{{ $product->title_en }}"
-             style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;"
-             onmouseover="this.style.transform='scale(1.05)'"
-             onmouseout="this.style.transform='scale(1)'">
-    </div>
-    @else
-    <div style="height:80px; background:linear-gradient(135deg, rgba(79,110,247,0.2), rgba(139,92,246,0.2)); display:flex; align-items:center; justify-content:center;">
-        <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; background:rgba(79,110,247,0.15); border:1px solid rgba(79,110,247,0.2); font-size:18px; font-weight:800; color:#818CF8;">
-            {{ strtoupper(substr($lang === 'de' && $product->title_de ? $product->title_de : $product->title_en, 0, 1)) }}
-        </div>
-    </div>
-    @endif
+                    @if($product->hero_image_url)
+                    <div style="height:160px; overflow:hidden;">
+                        <img src="{{ $product->hero_image_url }}" alt="{{ $product->title_en }}"
+                             style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;"
+                             onmouseover="this.style.transform='scale(1.05)'"
+                             onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    @else
+                    <div style="height:80px; background:linear-gradient(135deg, rgba(79,110,247,0.2), rgba(139,92,246,0.2)); display:flex; align-items:center; justify-content:center;">
+                        <div style="display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; background:rgba(79,110,247,0.15); border:1px solid rgba(79,110,247,0.2); font-size:18px; font-weight:800; color:#818CF8;">
+                            {{ strtoupper(substr($lang === 'de' && $product->title_de ? $product->title_de : $product->title_en, 0, 1)) }}
+                        </div>
+                    </div>
+                    @endif
 
-    <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:12px;">
-        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">
-            @if($lang === 'de' && $product->title_de) {{ $product->title_de }}
-            @elseif($lang === 'ar' && $product->title_ar) {{ $product->title_ar }}
-            @else {{ $product->title_en }}
+                    <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:12px;">
+                        <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3;">
+                            @if($lang === 'de' && $product->title_de) {{ $product->title_de }}
+                            @elseif($lang === 'ar' && $product->title_ar) {{ $product->title_ar }}
+                            @else {{ $product->title_en }}
+                            @endif
+                        </h3>
+                        <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1;">
+                            @if($lang === 'de' && $product->summary_de) {{ $product->summary_de }}
+                            @elseif($lang === 'ar' && $product->summary_ar) {{ $product->summary_ar }}
+                            @else {{ $product->summary_en }}
+                            @endif
+                        </p>
+                        @if($product->target_audience)
+                        <div>
+                            <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">
+                                {{ $product->target_audience }}
+                            </span>
+                        </div>
+                        @endif
+                        <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
+                           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none; margin-top:auto;"
+                           onmouseover="this.style.gap='10px'"
+                           onmouseout="this.style.gap='6px'">
+                            @if($lang === 'ar') عرض المنتج @elseif($lang === 'de') Produkt ansehen @else View Product @endif
+                            <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+            @if($products->hasPages())
+            <div style="margin-top:40px; display:flex; justify-content:center;">
+                {{ $products->links() }}
+            </div>
             @endif
-        </h3>
-        <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1;">
-            @if($lang === 'de' && $product->summary_de) {{ $product->summary_de }}
-            @elseif($lang === 'ar' && $product->summary_ar) {{ $product->summary_ar }}
-            @else {{ $product->summary_en }}
+
+            @else
+            <div style="text-align:center; padding:80px; color:#64748B;">
+                <div style="font-size:48px; margin-bottom:16px;">📦</div>
+                <p style="font-size:16px;">No products found. Add products from the admin panel.</p>
+            </div>
             @endif
-        </p>
-        @if($product->target_audience)
-        <div style="margin-top:4px;">
-            <span style="display:inline-block; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">
-                {{ $product->target_audience }}
-            </span>
         </div>
-        @endif
-        <a href="{{ route('products.show', ['lang' => $lang, 'slug' => $product->slug]) }}"
-           style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none; margin-top:auto;"
-           onmouseover="this.style.gap='10px'"
-           onmouseout="this.style.gap='6px'">
-            @if($lang === 'ar') عرض المنتج @elseif($lang === 'de') Produkt ansehen @else View Product @endif
-            <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-        </a>
-    </div>
-</div>
-@endforeach
+    </section>
 
     {{-- CTA --}}
     <section style="padding:80px 0; background:#0A0F1E;">
