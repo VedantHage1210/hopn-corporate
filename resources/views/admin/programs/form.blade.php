@@ -71,7 +71,7 @@
         {{-- Settings --}}
         <div class="card-panel p-6">
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Settings</h2>
-            <div class="grid gap-4 md:grid-cols-3">
+            <div class="grid gap-4 md:grid-cols-2">
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-200">Slug</label>
                     <input type="text" name="slug" value="{{ old('slug', $item->slug ?? '') }}"
@@ -81,7 +81,7 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-200">Duration</label>
                     <input type="text" name="duration" value="{{ old('duration', $item->duration ?? '') }}"
-                        placeholder="e.g. 6 weeks"
+                        placeholder="e.g. 6 Weeks"
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
                 </div>
                 <div>
@@ -89,8 +89,20 @@
                     <input type="number" name="duration_weeks" value="{{ old('duration_weeks', $item->duration_weeks ?? '') }}"
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
                 </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Image URL</label>
+                    <input type="url" name="image_url" value="{{ old('image_url', $item->image_url ?? '') }}"
+                        placeholder="https://example.com/image.jpg"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    <p class="mt-1 text-xs text-slate-500">Paste image URL from Cloudinary, ImgBB, etc.</p>
+                    @if(!empty($item->image_url))
+                    <div style="margin-top:8px;">
+                        <img src="{{ $item->image_url }}" style="height:60px; border-radius:6px; object-fit:cover;">
+                    </div>
+                    @endif
+                </div>
             </div>
-            <div class="mt-4 flex gap-6">
+            <div class="mt-4">
                 <label class="flex items-center gap-2 text-sm text-slate-300">
                     <input type="checkbox" name="is_published" value="1" @checked(old('is_published', $item->is_published ?? false))>
                     Published
