@@ -44,9 +44,9 @@ class ServiceController extends Controller
         $data['is_published'] = $request->boolean('is_published');
         $data['is_active']    = $request->boolean('is_active', true);
 
-        if ($request->hasFile('hero_image')) {
-            $data['hero_image'] = $request->file('hero_image')->store('services', 'public');
-        }
+      if ($request->filled('hero_image_url')) {
+    $data['hero_image'] = $request->hero_image_url;
+}
 
         Service::create($data);
         return redirect()->route('admin.services.index')->with('status', 'Service created.');
@@ -80,17 +80,16 @@ class ServiceController extends Controller
             'service_category_id' => ['nullable', 'exists:service_categories,id'],
             'meta_title'          => ['nullable', 'string', 'max:255'],
             'meta_description'    => ['nullable', 'string', 'max:500'],
-            'hero_image'          => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+          'hero_image_url' => ['nullable', 'url', 'max:500'],
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['name']);
         $data['is_published'] = $request->boolean('is_published');
         $data['is_active']    = $request->boolean('is_active', true);
 
-        if ($request->hasFile('hero_image')) {
-            if ($service->hero_image) Storage::disk('public')->delete($service->hero_image);
-            $data['hero_image'] = $request->file('hero_image')->store('services', 'public');
-        }
+    if ($request->filled('hero_image_url')) {
+    $data['hero_image'] = $request->hero_image_url;
+}
 
         $service->update($data);
         return redirect()->route('admin.services.index')->with('status', 'Service updated.');
