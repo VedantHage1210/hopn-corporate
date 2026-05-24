@@ -15,7 +15,7 @@
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Title & Tagline</h2>
             <div class="grid gap-6 md:grid-cols-3">
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
+                    <p class="text-xs font-bold uppercase text-indigo-300">en English</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Title (EN) *</label>
                         <input type="text" name="title_en" value="{{ old('title_en', $item->title_en ?? '') }}" required
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
+                    <p class="text-xs font-bold uppercase text-yellow-400">de Deutsch</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Title (DE)</label>
                         <input type="text" name="title_de" value="{{ old('title_de', $item->title_de ?? '') }}"
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                    <p class="text-xs font-bold uppercase text-green-400">ar العربية</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Title (AR)</label>
                         <input type="text" name="title_ar" value="{{ old('title_ar', $item->title_ar ?? '') }}"
@@ -73,7 +73,7 @@
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Problem & Solution</h2>
             <div class="grid gap-6 md:grid-cols-3">
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
+                    <p class="text-xs font-bold uppercase text-indigo-300">en English</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Problem (EN)</label>
                         <textarea name="problem_en" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('problem_en', $item->problem_en ?? '') }}</textarea>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
+                    <p class="text-xs font-bold uppercase text-yellow-400">de Deutsch</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Problem (DE)</label>
                         <textarea name="problem_de" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('problem_de', $item->problem_de ?? '') }}</textarea>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                    <p class="text-xs font-bold uppercase text-green-400">ar العربية</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Problem (AR)</label>
                         <textarea name="problem_ar" rows="4" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('problem_ar', $item->problem_ar ?? '') }}</textarea>
@@ -113,7 +113,7 @@
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Features & Use Cases</h2>
             <div class="grid gap-6 md:grid-cols-3">
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
+                    <p class="text-xs font-bold uppercase text-indigo-300">en English</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Features (EN)</label>
                         <textarea name="features_en" rows="4" placeholder="One feature per line"
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
+                    <p class="text-xs font-bold uppercase text-yellow-400">de Deutsch</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Features (DE)</label>
                         <textarea name="features_de" rows="4"
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                    <p class="text-xs font-bold uppercase text-green-400">ar العربية</p>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Features (AR)</label>
                         <textarea name="features_ar" rows="4"
