@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
@@ -16,20 +14,24 @@ class Service extends Model
         'service_category_id',
         'name',
         'name_de',
+        'name_ar',
         'slug',
         'summary',
         'summary_de',
+        'summary_ar',
         'body',
         'body_de',
+        'body_ar',
         'highlights',
+        'hero_image',
         'is_active',
         'is_published',
         'published_at',
     ];
 
     protected $casts = [
-        'highlights' => 'array',
-        'is_active' => 'boolean',
+        'highlights'   => 'array',
+        'is_active'    => 'boolean',
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
@@ -48,6 +50,7 @@ class Service extends Model
     {
         return $query->where('is_published', true);
     }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();
