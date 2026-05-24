@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\RedirectController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
 
     // Content modules
     Route::resource('services', ServiceController::class);
+    Route::resource('services', ServiceController::class);
+Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('programs', ProgramController::class);
     Route::resource('products', ProductController::class);
     Route::resource('case-studies', CaseStudyController::class);
