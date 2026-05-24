@@ -20,7 +20,7 @@
             <tbody>
                 @forelse($items as $item)
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
-                    <td class="px-3 py-3 text-slate-400 text-xs">{{ $item->id }}</td>
+                  <td class="px-3 py-3 text-slate-400 text-xs">{{ $loop->iteration }}</td>
                     <td class="px-3 py-3">
                         <div class="font-medium text-white">{{ $item->title_en }}</div>
                         @if($item->title_de)
