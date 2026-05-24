@@ -6,7 +6,6 @@
 
     <form method="POST"
           action="{{ isset($item->id) ? route('admin.services.update', $item) : route('admin.services.store') }}"
-          enctype="multipart/form-data"
           class="space-y-6">
         @csrf
         @if(isset($item->id)) @method('PUT') @endif
@@ -90,11 +89,15 @@
                     </select>
                 </div>
                 <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">Hero Image</label>
-                    <input type="file" name="hero_image" accept="image/*"
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Hero Image URL</label>
+                    <input type="url" name="hero_image_url" value="{{ old('hero_image_url', $item->hero_image ?? '') }}"
+                        placeholder="https://example.com/image.jpg"
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    <p class="mt-1 text-xs text-slate-500">Paste image URL from Cloudinary, ImgBB, etc.</p>
                     @if(!empty($item->hero_image))
-                        <img src="{{ Storage::url($item->hero_image) }}" class="mt-2 h-16 rounded object-cover">
+                    <div style="margin-top:8px;">
+                        <img src="{{ $item->hero_image }}" style="height:60px; border-radius:6px; object-fit:cover;">
+                    </div>
                     @endif
                 </div>
             </div>
