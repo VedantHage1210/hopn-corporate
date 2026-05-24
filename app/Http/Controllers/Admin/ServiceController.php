@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceCategory;
@@ -28,11 +26,14 @@ class ServiceController extends Controller
         $data = $request->validate([
             'name'                => ['required', 'string', 'max:255'],
             'name_de'             => ['nullable', 'string', 'max:255'],
+            'name_ar'             => ['nullable', 'string', 'max:255'],
             'slug'                => ['nullable', 'string', 'max:255', 'unique:services,slug'],
             'summary'             => ['nullable', 'string'],
             'summary_de'          => ['nullable', 'string'],
+            'summary_ar'          => ['nullable', 'string'],
             'body'                => ['nullable', 'string'],
             'body_de'             => ['nullable', 'string'],
+            'body_ar'             => ['nullable', 'string'],
             'service_category_id' => ['nullable', 'exists:service_categories,id'],
             'meta_title'          => ['nullable', 'string', 'max:255'],
             'meta_description'    => ['nullable', 'string', 'max:500'],
@@ -48,7 +49,6 @@ class ServiceController extends Controller
         }
 
         Service::create($data);
-
         return redirect()->route('admin.services.index')->with('status', 'Service created.');
     }
 
@@ -69,11 +69,14 @@ class ServiceController extends Controller
         $data = $request->validate([
             'name'                => ['required', 'string', 'max:255'],
             'name_de'             => ['nullable', 'string', 'max:255'],
-            'slug'                => ['nullable', 'string', 'max:255', 'unique:services,slug,' . $service->id],
+            'name_ar'             => ['nullable', 'string', 'max:255'],
+            'slug'                => ['nullable', 'string', 'max:255', 'unique:services,slug,'.$service->id],
             'summary'             => ['nullable', 'string'],
             'summary_de'          => ['nullable', 'string'],
+            'summary_ar'          => ['nullable', 'string'],
             'body'                => ['nullable', 'string'],
             'body_de'             => ['nullable', 'string'],
+            'body_ar'             => ['nullable', 'string'],
             'service_category_id' => ['nullable', 'exists:service_categories,id'],
             'meta_title'          => ['nullable', 'string', 'max:255'],
             'meta_description'    => ['nullable', 'string', 'max:500'],
@@ -90,7 +93,6 @@ class ServiceController extends Controller
         }
 
         $service->update($data);
-
         return redirect()->route('admin.services.index')->with('status', 'Service updated.');
     }
 
