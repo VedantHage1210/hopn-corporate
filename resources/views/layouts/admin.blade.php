@@ -50,6 +50,7 @@
 
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Content</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.services.index') }}">Services</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.service-categories.index') }}">Service Categories</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.programs.index') }}">Programs</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.products.index') }}">Products</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
