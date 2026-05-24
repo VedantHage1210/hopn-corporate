@@ -1,120 +1,122 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Industry;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('admin.shared.index', [
-            'title' => 'Products',
-            'items' => Product::query()->latest()->paginate(15),
-            'columns' => ['ID' => 'id', 'Title' => 'title_en', 'Slug' => 'slug', 'Published' => 'is_published'],
-            'createRoute' => route('admin.products.create'),
-            'editRouteName' => 'admin.products.edit',
-            'destroyRouteName' => 'admin.products.destroy',
-        ]);
+        $items = Product::orderBy('id', 'asc')->paginate(15);
+        return view('admin.products.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('admin.shared.form', [
-            'title' => 'Create Product',
-            'action' => route('admin.products.store'),
-            'method' => 'POST',
-            'fields' => [
-                ['name' => 'title_en', 'label' => 'Title (EN)'],
-                ['name' => 'title_de', 'label' => 'Title (DE)'],
-                ['name' => 'slug', 'label' => 'Slug'],
-                ['name' => 'summary_en', 'label' => 'Summary (EN)', 'type' => 'textarea'],
-                ['name' => 'problem_en', 'label' => 'Problem (EN)', 'type' => 'textarea'],
-                ['name' => 'solution_en', 'label' => 'Solution (EN)', 'type' => 'textarea'],
-                ['name' => 'is_published', 'label' => 'Published', 'type' => 'checkbox'],
-            ],
-        ]);
+        $item       = new Product();
+        $industries = Industry::where('is_published', true)->orderBy('name')->get();
+        $services   = Service::where('is_published', true)->orderBy('name')->get();
+        return view('admin.products.form', compact('item', 'industries', 'services'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title_en' => ['required', 'string', 'max:255'],
-            'title_de' => ['nullable', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:products,slug'],
-            'summary_en' => ['nullable', 'string'],
-            'problem_en' => ['nullable', 'string'],
-            'solution_en' => ['nullable', 'string'],
+            'title_en'      => ['required', 'string', 'max:255'],
+            'title_de'      => ['nullable', 'string', 'max:255'],
+            'title_ar'      => ['nullable', 'string', 'max:255'],
+            'tagline_en'    => ['nullable', 'string', 'max:500'],
+            'tagline_de'    => ['nullable', 'string', 'max:500'],
+            'tagline_ar'    => ['nullable', 'string', 'max:500'],
+            'slug'          => ['nullable', 'string', 'max:255', 'unique:products,slug'],
+            'summary_en'    => ['nullable', 'string'],
+            'summary_de'    => ['nullable', 'string'],
+            'summary_ar'    => ['nullable', 'string'],
+            'problem_en'    => ['nullable', 'string'],
+            'problem_de'    => ['nullable', 'string'],
+            'problem_ar'    => ['nullable', 'string'],
+            'solution_en'   => ['nullable', 'string'],
+            'solution_de'   => ['nullable', 'string'],
+            'solution_ar'   => ['nullable', 'string'],
+            'features_en'   => ['nullable', 'string'],
+            'features_de'   => ['nullable', 'string'],
+            'features_ar'   => ['nullable', 'string'],
+            'use_cases_en'  => ['nullable', 'string'],
+            'use_cases_de'  => ['nullable', 'string'],
+            'use_cases_ar'  => ['nullable', 'string'],
+            'cta_label_en'  => ['nullable', 'string', 'max:255'],
+            'cta_url'       => ['nullable', 'url', 'max:500'],
+            'hero_image_url'=> ['nullable', 'url', 'max:500'],
+            'target_audience'=> ['nullable', 'string', 'max:500'],
         ]);
+
+        $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
         $data['is_published'] = $request->boolean('is_published');
+        $data['industry_ids'] = $request->industry_ids ?? [];
+        $data['service_ids']  = $request->service_ids ?? [];
+
         Product::create($data);
         return redirect()->route('admin.products.index')->with('status', 'Product created.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         return redirect()->route('admin.products.edit', $id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
-        return view('admin.shared.form', [
-            'title' => 'Edit Product',
-            'action' => route('admin.products.update', $product->id),
-            'method' => 'PUT',
-            'item' => $product,
-            'fields' => [
-                ['name' => 'title_en', 'label' => 'Title (EN)'],
-                ['name' => 'title_de', 'label' => 'Title (DE)'],
-                ['name' => 'slug', 'label' => 'Slug'],
-                ['name' => 'summary_en', 'label' => 'Summary (EN)', 'type' => 'textarea'],
-                ['name' => 'problem_en', 'label' => 'Problem (EN)', 'type' => 'textarea'],
-                ['name' => 'solution_en', 'label' => 'Solution (EN)', 'type' => 'textarea'],
-                ['name' => 'is_published', 'label' => 'Published', 'type' => 'checkbox'],
-            ],
-        ]);
+        $item       = Product::findOrFail($id);
+        $industries = Industry::where('is_published', true)->orderBy('name')->get();
+        $services   = Service::where('is_published', true)->orderBy('name')->get();
+        return view('admin.products.form', compact('item', 'industries', 'services'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        $product = Product::findOrFail($id);
+        $item = Product::findOrFail($id);
         $data = $request->validate([
-            'title_en' => ['required', 'string', 'max:255'],
-            'title_de' => ['nullable', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:products,slug,' . $product->id],
-            'summary_en' => ['nullable', 'string'],
-            'problem_en' => ['nullable', 'string'],
-            'solution_en' => ['nullable', 'string'],
+            'title_en'      => ['required', 'string', 'max:255'],
+            'title_de'      => ['nullable', 'string', 'max:255'],
+            'title_ar'      => ['nullable', 'string', 'max:255'],
+            'tagline_en'    => ['nullable', 'string', 'max:500'],
+            'tagline_de'    => ['nullable', 'string', 'max:500'],
+            'tagline_ar'    => ['nullable', 'string', 'max:500'],
+            'slug'          => ['nullable', 'string', 'max:255', 'unique:products,slug,'.$item->id],
+            'summary_en'    => ['nullable', 'string'],
+            'summary_de'    => ['nullable', 'string'],
+            'summary_ar'    => ['nullable', 'string'],
+            'problem_en'    => ['nullable', 'string'],
+            'problem_de'    => ['nullable', 'string'],
+            'problem_ar'    => ['nullable', 'string'],
+            'solution_en'   => ['nullable', 'string'],
+            'solution_de'   => ['nullable', 'string'],
+            'solution_ar'   => ['nullable', 'string'],
+            'features_en'   => ['nullable', 'string'],
+            'features_de'   => ['nullable', 'string'],
+            'features_ar'   => ['nullable', 'string'],
+            'use_cases_en'  => ['nullable', 'string'],
+            'use_cases_de'  => ['nullable', 'string'],
+            'use_cases_ar'  => ['nullable', 'string'],
+            'cta_label_en'  => ['nullable', 'string', 'max:255'],
+            'cta_url'       => ['nullable', 'url', 'max:500'],
+            'hero_image_url'=> ['nullable', 'url', 'max:500'],
+            'target_audience'=> ['nullable', 'string', 'max:500'],
         ]);
+
+        $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
         $data['is_published'] = $request->boolean('is_published');
-        $product->update($data);
+        $data['industry_ids'] = $request->industry_ids ?? [];
+        $data['service_ids']  = $request->service_ids ?? [];
+
+        $item->update($data);
         return redirect()->route('admin.products.index')->with('status', 'Product updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Product::findOrFail($id)->delete();
