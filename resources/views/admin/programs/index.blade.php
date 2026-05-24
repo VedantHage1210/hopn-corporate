@@ -10,6 +10,7 @@
         <table class="min-w-full text-sm text-slate-300">
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
+                    <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Title</th>
                     <th class="px-3 py-2">Duration</th>
                     <th class="px-3 py-2">Status</th>
@@ -19,26 +20,33 @@
             <tbody>
                 @forelse($items as $item)
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                    <td class="px-3 py-3 text-slate-400 text-xs">{{ $item->id }}</td>
                     <td class="px-3 py-3">
                         <div class="font-medium text-white">{{ $item->title_en }}</div>
-                        <div class="text-xs text-slate-400 font-mono">{{ $item->slug }}</div>
+                        @if($item->title_de)
+                        <div class="text-xs text-slate-400">DE: {{ $item->title_de }}</div>
+                        @endif
+                        <div class="text-xs text-slate-500 font-mono">{{ $item->slug }}</div>
                     </td>
-                    <td class="px-3 py-3 text-slate-400">{{ $item->duration ?? '—' }}</td>
+                    <td class="px-3 py-3 text-slate-400">{{ $item->duration ?? ($item->duration_weeks ? $item->duration_weeks.' weeks' : '—') }}</td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $item->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
                             {{ $item->is_published ? 'Published' : 'Draft' }}
                         </span>
                     </td>
-                    <td class="px-3 py-3 flex gap-3">
-                        <a href="{{ route('admin.programs.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                        <form method="POST" action="{{ route('admin.programs.destroy', $item) }}" class="inline-block">
-                            @csrf @method('DELETE')
-                            <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
-                        </form>
+                    <td class="px-3 py-3">
+                        <div class="flex gap-3">
+                            <a href="{{ route('admin.programs.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                            <a href="{{ url('/en/programs/'.$item->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                            <form method="POST" action="{{ route('admin.programs.destroy', $item) }}" class="inline-block">
+                                @csrf @method('DELETE')
+                                <button type="submit" onclick="return confirm('Delete this program?')" class="text-rose-300 hover:text-rose-200">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="4" class="px-3 py-6 text-center text-slate-500">No programs found.</td></tr>
+                <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No programs found.</td></tr>
                 @endforelse
             </tbody>
         </table>
