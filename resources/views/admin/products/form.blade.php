@@ -154,36 +154,44 @@
             </div>
         </div>
 
-        {{-- Industries & Services --}}
-        <div class="card-panel p-6">
-            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Industries & Related Services</h2>
-            <div class="grid gap-6 md:grid-cols-2">
-                <div>
-                    <label class="mb-2 block text-sm font-medium text-slate-200">Industries</label>
-                    <div class="space-y-2 max-h-48 overflow-y-auto">
-                        @foreach($industries as $industry)
-                        <label class="flex items-center gap-2 text-sm text-slate-300">
-                            <input type="checkbox" name="industry_ids[]" value="{{ $industry->id }}"
-                                @checked(in_array($industry->id, old('industry_ids', $item->industry_ids ?? [])))>
-                            {{ $industry->name }}
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
-                <div>
-                    <label class="mb-2 block text-sm font-medium text-slate-200">Related Services</label>
-                    <div class="space-y-2 max-h-48 overflow-y-auto">
-                        @foreach($services as $service)
-                        <label class="flex items-center gap-2 text-sm text-slate-300">
-                            <input type="checkbox" name="service_ids[]" value="{{ $service->id }}"
-                                @checked(in_array($service->id, old('service_ids', $item->service_ids ?? [])))>
-                            {{ $service->name }}
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
+       {{-- Industries & Services --}}
+<div class="card-panel p-6">
+    <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Industries & Related Services</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+        <div>
+            <label class="mb-2 block text-sm font-medium text-slate-200">Industries</label>
+            <div class="rounded border border-slate-700 bg-slate-900 p-3 space-y-2 max-h-52 overflow-y-auto">
+                @foreach($industries as $industry)
+                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer hover:text-white">
+                    <input type="checkbox" name="industry_ids[]" value="{{ $industry->id }}"
+                        @checked(in_array($industry->id, old('industry_ids', $item->industry_ids ?? [])))
+                        class="rounded border-slate-600">
+                    {{ $industry->name }}
+                </label>
+                @endforeach
+                @if($industries->isEmpty())
+                <p class="text-xs text-slate-500">No industries found. Add from Industries module.</p>
+                @endif
             </div>
         </div>
+        <div>
+            <label class="mb-2 block text-sm font-medium text-slate-200">Related Services</label>
+            <div class="rounded border border-slate-700 bg-slate-900 p-3 space-y-2 max-h-52 overflow-y-auto">
+                @foreach($services as $service)
+                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer hover:text-white">
+                    <input type="checkbox" name="service_ids[]" value="{{ $service->id }}"
+                        @checked(in_array($service->id, old('service_ids', $item->service_ids ?? [])))
+                        class="rounded border-slate-600">
+                    {{ $service->name }}
+                </label>
+                @endforeach
+                @if($services->isEmpty())
+                <p class="text-xs text-slate-500">No services found. Add from Services module.</p>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
         {{-- Settings --}}
         <div class="card-panel p-6">
