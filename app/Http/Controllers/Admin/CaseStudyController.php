@@ -96,9 +96,7 @@ class CaseStudyController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
         $caseStudy = CaseStudy::findOrFail($id);
@@ -116,9 +114,7 @@ class CaseStudyController extends Controller
         return redirect()->route('admin.case-studies.index')->with('status', 'Case study updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         CaseStudy::findOrFail($id)->delete();
