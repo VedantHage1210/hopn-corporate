@@ -9,30 +9,50 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('case_studies', function (Blueprint $table) {
-            $table->id();
-            $table->string('title_en');
-            $table->string('title_de')->nullable();
-            $table->string('slug')->unique();
-            $table->string('industry')->nullable();
-            $table->string('client_name')->nullable();
-            $table->longText('challenge_en')->nullable();
-            $table->longText('challenge_de')->nullable();
-            $table->longText('solution_en')->nullable();
-            $table->longText('solution_de')->nullable();
-            $table->longText('outcomes_en')->nullable();
-            $table->longText('outcomes_de')->nullable();
-            $table->json('tech_stack')->nullable();
-            $table->string('pdf_path')->nullable();
-            $table->boolean('is_published')->default(false);
-            $table->timestamp('published_at')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
-    }
-
+public function up(): void
+{
+    Schema::create('case_studies', function (Blueprint $table) {
+        $table->id();
+        // Titles
+        $table->string('title_en');
+        $table->string('title_de')->nullable();
+        $table->string('title_ar')->nullable(); // Naya
+        
+        $table->string('slug')->unique();
+        $table->string('industry')->nullable();
+        
+        // Client Names
+        $table->string('client_name_en')->nullable(); // Naya
+        $table->string('client_name_de')->nullable(); // Naya
+        $table->string('client_name_ar')->nullable(); // Naya
+        
+        // Challenges
+        $table->longText('challenge_en')->nullable();
+        $table->longText('challenge_de')->nullable();
+        $table->longText('challenge_ar')->nullable(); // Naya
+        
+        // Solutions
+        $table->longText('solution_en')->nullable();
+        $table->longText('solution_de')->nullable();
+        $table->longText('solution_ar')->nullable(); // Naya
+        
+        // Outcomes
+        $table->longText('outcomes_en')->nullable();
+        $table->longText('outcomes_de')->nullable();
+        $table->longText('outcomes_ar')->nullable(); // Naya
+        
+        $table->json('tech_stack')->nullable();
+        
+        // Media
+        $table->string('image_url')->nullable(); // Naya
+        $table->string('pdf_url')->nullable();   // Naya (tumhare model mein pdf_url hai)
+        
+        $table->boolean('is_published')->default(false);
+        $table->timestamp('published_at')->nullable();
+        $table->timestamps();
+        $table->softDeletes();
+    });
+}
     /**
      * Reverse the migrations.
      */
