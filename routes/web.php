@@ -21,7 +21,6 @@ use App\Http\Controllers\Public\ServiceController;
 use App\Http\Controllers\Public\SitemapController;
 use Illuminate\Support\Facades\Route;
 
-// Smart root redirect
 Route::get('/', function() {
     $lang = request()->getPreferredLanguage(['en', 'de', 'ar']) ?? 'en';
     return redirect('/' . $lang);
@@ -43,9 +42,10 @@ Route::prefix('{lang}')
 
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');
         Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
-
+        
+        // Case Studies ab group ke andar hain
         Route::get('/case-studies', [CaseStudyController::class, 'index'])->name('case-studies.index');
-       <a href="{{ route('case-studies.show', ['lang' => $lang, 'slug' => $caseStudy->slug]) }}"
+        Route::get('/case-studies/{slug}', [CaseStudyController::class, 'show'])->name('case-studies.show');
 
         Route::get('/insights', [BlogController::class, 'index'])->name('insights.index');
         Route::get('/insights/category/{slug}', [BlogController::class, 'category'])->name('insights.category');
@@ -63,13 +63,11 @@ Route::prefix('{lang}')
             ->name('careers.apply');
 
         Route::get('/startups', [StartupController::class, 'index'])->name('startups.index');
-
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
 
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
         Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
-        Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
-Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware('throttle:5,1')->name('leads.startup-application');
+        Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware('throttle:5,1')->name('leads.startup-application');
 
         Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
         Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
@@ -89,9 +87,7 @@ Route::post('/startup-application', [LeadController::class, 'startupApplication'
             ->middleware('throttle:5,1')
             ->name('leads.partner');
 
-Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware('throttle:5,1')->name('leads.book-call');
-
-
+        Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware('throttle:5,1')->name('leads.book-call');
         
         Route::get('/training', function () {
             return view('public.training.index');
