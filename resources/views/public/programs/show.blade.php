@@ -65,6 +65,28 @@
     </section>
     @endif
 
+
+{{-- Duration --}}
+@if($program->duration || $program->duration_weeks)
+<section style="padding:40px 0; background:#0A0F1E;">
+    <div class="container-shell">
+        <div style="max-width:800px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
+            <div style="font-size:28px; flex-shrink:0;">🕐</div>
+            <div>
+                <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
+                    @if($lang === 'ar') المدة @elseif($lang === 'de') Dauer @else Duration @endif
+                </h3>
+                <p style="font-size:14px; color:#94A3B8; line-height:1.7;">
+                    {{ $program->duration ?? $program->duration_weeks.' weeks' }}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+    
+
     {{-- Apply Form --}}
     <section style="padding:80px 0; background:#0A0F1E;" id="apply">
         <div class="container-shell">
