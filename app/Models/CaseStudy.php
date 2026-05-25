@@ -12,21 +12,17 @@ class CaseStudy extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-    protected $fillable = [
-        'title_en',
-        'title_de',
-        'slug',
-        'industry',
-        'client_name',
-        'challenge_en',
-        'challenge_de',
-        'solution_en',
-        'solution_de',
-        'outcomes_en',
-        'outcomes_de',
-        'tech_stack',
-        'pdf_path',
-        'is_published',
+  protected $fillable = [
+        'title_en', 'title_de', 'title_ar', 
+        'client_name_en', 'client_name_de', 'client_name_ar',
+        'slug', 'industry', 
+        'challenge_en', 'challenge_de', 'challenge_ar',
+        'solution_en', 'solution_de', 'solution_ar',
+        'outcomes_en', 'outcomes_de', 'outcomes_ar',
+        'tech_stack', 
+        'image_url',   
+        'pdf_url',     
+        'is_published', 
         'published_at',
     ];
 
