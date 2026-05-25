@@ -103,10 +103,12 @@
                     @if($lang === 'ar') المميزات @elseif($lang === 'de') Funktionen @else Key Features @endif
                 </h2>
             </div>
-            @php
-                $features = $lang === 'de' && $product->features_de ? $product->features_de : ($lang === 'ar' && $product->features_ar ? $product->features_ar : $product->features_en);
-                $featureList = array_filter(explode("\n", $features));
-            @endphp
+         @php
+    $features = $product->features_en;
+    if ($lang === 'de' && $product->features_de) $features = $product->features_de;
+    if ($lang === 'ar' && $product->features_ar) $features = $product->features_ar;
+    $featureList = array_filter(explode("\n", $features ?? ''));
+@endphp
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($featureList as $feature)
                 <div style="border:1px solid rgba(79,110,247,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
@@ -129,10 +131,12 @@
                     @if($lang === 'ar') حالات الاستخدام @elseif($lang === 'de') Anwendungsfälle @else Use Cases @endif
                 </h2>
             </div>
-            @php
-                $useCases = $lang === 'de' && $product->use_cases_de ? $product->use_cases_de : ($lang === 'ar' && $product->use_cases_ar ? $product->use_cases_ar : $product->use_cases_en);
-                $useCaseList = array_filter(explode("\n", $useCases));
-            @endphp
+           @php
+    $useCases = $product->use_cases_en;
+    if ($lang === 'de' && $product->use_cases_de) $useCases = $product->use_cases_de;
+    if ($lang === 'ar' && $product->use_cases_ar) $useCases = $product->use_cases_ar;
+    $useCaseList = array_filter(explode("\n", $useCases ?? ''));
+@endphp
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($useCaseList as $useCase)
                 <div style="border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
@@ -152,9 +156,9 @@
             <h2 style="font-size:20px; font-weight:700; color:white; margin-bottom:24px; text-align:center;">
                 @if($lang === 'ar') الصناعات @elseif($lang === 'de') Branchen @else Industries @endif
             </h2>
-            @php
-                $productIndustries = \App\Models\Industry::whereIn('id', $product->industry_ids)->get();
-            @endphp
+        @php
+    $productIndustries = \App\Models\Industry::whereIn('id', $product->industry_ids ?? [])->get();
+@endphp
             <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
                 @foreach($productIndustries as $industry)
                 <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}"
@@ -176,9 +180,9 @@
             <h2 style="font-size:20px; font-weight:700; color:white; margin-bottom:24px; text-align:center;">
                 @if($lang === 'ar') الخدمات ذات الصلة @elseif($lang === 'de') Verwandte Leistungen @else Related Services @endif
             </h2>
-            @php
-                $relatedServices = \App\Models\Service::whereIn('id', $product->service_ids)->where('is_published', true)->get();
-            @endphp
+          @php
+    $relatedServices = \App\Models\Service::whereIn('id', $product->service_ids ?? [])->where('is_published', true)->get();
+@endphp
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($relatedServices as $service)
                 <a href="{{ route('services.show', ['lang' => $lang, 'slug' => $service->slug]) }}"
