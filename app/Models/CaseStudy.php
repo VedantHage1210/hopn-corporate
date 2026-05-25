@@ -12,7 +12,7 @@ class CaseStudy extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-  protected $fillable = [
+    protected $fillable = [
         'title_en', 'title_de', 'title_ar', 
         'client_name_en', 'client_name_de', 'client_name_ar',
         'slug', 'industry', 
@@ -31,6 +31,17 @@ class CaseStudy extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
+
+    public function industries()
+    {
+        return $this->belongsToMany(Industry::class);
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();
