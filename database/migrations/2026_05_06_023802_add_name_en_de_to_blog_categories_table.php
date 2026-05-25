@@ -1,21 +1,20 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    public function up(): void
-    {
+return new class extends Migration {
+    public function up(): void {
         Schema::table('blog_categories', function (Blueprint $table) {
-            $table->string('name_en')->nullable()->after('id');
-            $table->string('name_de')->nullable()->after('name_en');
+            if (!Schema::hasColumn('blog_categories', 'name_en')) {
+                $table->string('name_en')->nullable()->after('id');
+            }
+            if (!Schema::hasColumn('blog_categories', 'name_de')) {
+                $table->string('name_de')->nullable()->after('name_en');
+            }
         });
     }
-
-    public function down(): void
-    {
+    public function down(): void {
         Schema::table('blog_categories', function (Blueprint $table) {
             $table->dropColumn(['name_en', 'name_de']);
         });
