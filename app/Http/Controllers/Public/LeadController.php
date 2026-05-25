@@ -29,12 +29,21 @@ class LeadController extends Controller
         return back()->with('status', 'Thank you for your partner inquiry!');
     }
 
-    public function trainingApplication(TrainingApplicationFormRequest $request, string $lang)
+  public function trainingApplication(TrainingApplicationFormRequest $request, string $lang)
     {
-        $this->leadService->store($request->validated(), 'training-application', $request);
+        $programName = $request->program_of_interest ?? 'Training Program';
+        
+        $data = $request->validated();
+        
+        $originalMessage = $request->message ?? '';
+        $data['message'] = 'Program: ' . $programName . ($originalMessage ? "\n\n" . $originalMessage : '');
+        
+        $this->leadService->store($data, 'training-application: ' . $programName, $request);
+        
         if ($request->expectsJson()) {
             return response()->json(['message' => 'Your training application has been received!']);
         }
+        
         return back()->with('status', 'Your training application has been received!');
     }
 
