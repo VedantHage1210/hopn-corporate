@@ -45,7 +45,7 @@ Route::prefix('{lang}')
         Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
         Route::get('/case-studies', [CaseStudyController::class, 'index'])->name('case-studies.index');
-        Route::get('/case-studies/{slug}', [CaseStudyController::class, 'show'])->name('case-studies.show');
+       <a href="{{ route('case-studies.show', ['lang' => $lang, 'slug' => $caseStudy->slug]) }}"
 
         Route::get('/insights', [BlogController::class, 'index'])->name('insights.index');
         Route::get('/insights/category/{slug}', [BlogController::class, 'category'])->name('insights.category');
