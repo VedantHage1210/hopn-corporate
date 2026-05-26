@@ -123,5 +123,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/pages', [PageAdminController::class, 'store'])->name('admin.pages.store');
 });
 
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    
+    Route::resource('pages', PageAdminController::class);
+    
+});
+
 
 require __DIR__.'/auth.php';
