@@ -62,19 +62,18 @@ class CaseStudyController extends Controller
         return redirect()->route('admin.case-studies.edit', $id);
     }
 
-  public function edit(string $id)
-
-    {
-
-        $item       = CaseStudy::findOrFail($id);
-
-        $industries = Industry::orderBy('name')->get();
-
-        $services   = Service::orderBy('name')->get();
-
-        return view('admin.case-studies.form', compact('item', 'industries', 'services'));
-
-    }
+ public function edit(string $id)
+{
+    $item = CaseStudy::findOrFail($id);
+    
+   
+    $industries = Industry::orderBy('name', 'asc')->get();
+    
+    
+    $services   = Service::orderBy('name', 'asc')->get(); 
+    
+    return view('admin.case-studies.form', compact('item', 'industries', 'services'));
+}
     public function update(Request $request, string $id)
     {
         $caseStudy = CaseStudy::findOrFail($id);
