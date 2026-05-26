@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
@@ -33,6 +35,20 @@ class CaseStudy extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
+
+    // --- Dynamic Relationships (Ye tumhare Blade file ke error ko fix karega) ---
+    
+    public function getIndustriesAttribute()
+    {
+        return Industry::whereIn('id', $this->industry_ids ?? [])->get();
+    }
+
+    public function getServicesAttribute()
+    {
+        return Service::whereIn('id', $this->service_ids ?? [])->get();
+    }
+
+    // --------------------------------------------------------------------------
 
     public function getActivitylogOptions(): LogOptions
     {
