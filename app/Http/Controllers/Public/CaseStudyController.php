@@ -15,9 +15,14 @@ class CaseStudyController extends Controller
     }
 
     public function show(string $lang, string $slug)
-    {
-        $caseStudy = CaseStudy::query()->where('slug', $slug)->where('is_published', true)->firstOrFail();
+{
+    // 'with' ka use karke relationships ko load karo
+    $caseStudy = CaseStudy::query()
+                    ->with(['industries', 'services']) // Yeh line error fix karegi
+                    ->where('slug', $slug)
+                    ->where('is_published', true)
+                    ->firstOrFail();
 
-        return view('public.case-studies.show', compact('caseStudy'));
-    }
+    return view('public.case-studies.show', compact('caseStudy'));
+}
 }
