@@ -10,6 +10,7 @@
         <table class="min-w-full text-sm text-slate-300">
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
+                    <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Icon</th>
                     <th class="px-3 py-2">Name</th>
                     <th class="px-3 py-2">Slug</th>
@@ -19,28 +20,30 @@
             </thead>
             <tbody>
                 @forelse($items as $domain)
-                    <tr class="border-t border-slate-800 hover:bg-slate-800/30">
-                        <td class="px-3 py-3 text-2xl">{{ $domain->icon }}</td>
-                        <td class="px-3 py-3">
-                            <div class="font-medium text-white">{{ $domain->name }}</div>
-                            <div class="text-xs text-slate-400">{{ $domain->name_de }}</div>
-                        </td>
-                        <td class="px-3 py-3 font-mono text-xs text-indigo-300">{{ $domain->slug }}</td>
-                        <td class="px-3 py-3">
-                            <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $domain->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
-                                {{ $domain->is_published ? 'Published' : 'Draft' }}
-                            </span>
-                        </td>
-                        <td class="px-3 py-3 flex gap-3">
-                            <a href="{{ route('admin.innovation-domains.edit', $domain) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                            <form method="POST" action="{{ route('admin.innovation-domains.destroy', $domain) }}" class="inline-block">
-                                @csrf @method('DELETE')
-                                <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                    <td class="px-3 py-3 text-slate-400">{{ $domain->id }}</td>
+                    <td class="px-3 py-3 text-2xl">{{ $domain->icon }}</td>
+                    <td class="px-3 py-3">
+                        <div class="font-medium text-white">{{ $domain->name }}</div>
+                        <div class="text-xs text-slate-400">{{ $domain->name_de }}</div>
+                    </td>
+                    <td class="px-3 py-3 font-mono text-xs text-indigo-300">{{ $domain->slug }}</td>
+                    <td class="px-3 py-3">
+                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $domain->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
+                            {{ $domain->is_published ? 'Published' : 'Draft' }}
+                        </span>
+                    </td>
+                    <td class="px-3 py-3 flex gap-3">
+                        <a href="{{ route('admin.innovation-domains.edit', $domain) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        <a href="{{ route('innovation.show', ['lang' => 'en', 'slug' => $domain->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        <form method="POST" action="{{ route('admin.innovation-domains.destroy', $domain) }}" class="inline-block">
+                            @csrf @method('DELETE')
+                            <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No domains found. Click "+ New Domain" to add one.</td></tr>
+                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No domains found.</td></tr>
                 @endforelse
             </tbody>
         </table>
