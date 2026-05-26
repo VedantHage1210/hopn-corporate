@@ -11,15 +11,15 @@ class Page extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'slug',
-        'title',
-        'title_de',
-        'excerpt',
-        'excerpt_de',
-        'seo_meta',
-        'is_visible',
-        'is_published',
-        'published_at',
+       protected $fillable = [
+    'slug',
+    'title', 'title_de', 'title_ar',
+    'excerpt', 'excerpt_de', 'excerpt_ar',
+    'seo_meta',
+    'is_visible',
+    'is_published',
+    'published_at',
+];
     ];
 
     protected $casts = [
