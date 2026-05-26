@@ -110,18 +110,27 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div>
-                        <label class="block text-xs text-slate-400 mb-1">Cover Image</label>
-                        @if($post->cover_image)
-                        <div class="mb-2">
-                            <img src="{{ Storage::url($post->cover_image) }}" alt="Cover"
-                                 style="width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
-                        </div>
-                        @endif
-                        <input type="file" name="cover_image" form="post-form" accept="image/*"
-                               class="w-full text-sm text-slate-400 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-indigo-900 file:text-indigo-300 hover:file:bg-indigo-800">
-                        <p class="text-xs text-slate-500 mt-1">Leave empty to keep current image</p>
-                    </div>
+    <label class="block text-xs text-slate-400 mb-1">Cover Image URL</label>
+    <input type="url" name="cover_image_url" value="{{ old('cover_image_url', $post->cover_image_url ?? $post->cover_image ?? '') }}"
+           form="post-form"
+           placeholder="https://example.com/image.jpg"
+           class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white mb-2">
+    @if($post->cover_image_url ?? $post->cover_image)
+    <div class="mt-2">
+        <img src="{{ $post->cover_image_url ?? $post->cover_image }}" alt="Cover"
+             style="width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+    </div>
+    @endif
+    <p class="text-xs text-slate-500 mt-1">Paste image URL from Cloudinary, ImgBB, etc.</p>
+</div>
+                   
+
+
+
+
+                    
                 </div>
             </div>
 
