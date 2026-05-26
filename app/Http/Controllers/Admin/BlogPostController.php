@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
 use App\Models\Author;
@@ -20,29 +18,37 @@ class BlogPostController extends Controller
 
     public function create()
     {
-        $item = new BlogPost();
-        return view('admin.blog-posts.form', compact('item'));
+        $post       = new BlogPost();
+        $authors    = Author::orderBy('name')->get();
+        $categories = BlogCategory::orderBy('name_en')->get();
+        return view('admin.blog-posts.create', compact('post', 'authors', 'categories'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'            => ['required', 'string', 'max:255'],
-            'title_de'         => ['nullable', 'string', 'max:255'],
-            'slug'             => ['nullable', 'string', 'max:255', 'unique:blog_posts,slug'],
-            'excerpt'          => ['nullable', 'string'],
-            'excerpt_de'       => ['nullable', 'string'],
-            'body'             => ['nullable', 'string'],
-            'body_de'          => ['nullable', 'string'],
-            'author_id'        => ['nullable', 'exists:authors,id'],
-            'blog_category_id' => ['nullable', 'exists:blog_categories,id'],
-            'published_at'     => ['nullable', 'date'],
-            'meta_title'       => ['nullable', 'string', 'max:255'],
-            'meta_description' => ['nullable', 'string', 'max:500'],
-            'cover_image'      => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'title_en'         => 'required|string|max:255',
+            'title_de'         => 'nullable|string|max:255',
+            'title_ar'         => 'nullable|string|max:255',
+            'slug'             => 'nullable|string|max:255|unique:blog_posts,slug',
+            'excerpt_en'       => 'nullable|string',
+            'excerpt_de'       => 'nullable|string',
+            'excerpt_ar'       => 'nullable|string',
+            'body_en'          => 'nullable|string',
+            'body_de'          => 'nullable|string',
+            'body_ar'          => 'nullable|string',
+            'author_id'        => 'nullable|exists:authors,id',
+            'category_id'      => 'nullable|exists:blog_categories,id',
+            'published_at'     => 'nullable|date',
+            'meta_title'       => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'cover_image'      => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
+        $data['title']        = $request->title_en;
+        $data['excerpt']      = $request->excerpt_en;
+        $data['body']         = $request->body_en;
+        $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
         if ($request->hasFile('cover_image')) {
@@ -60,35 +66,46 @@ class BlogPostController extends Controller
 
     public function edit(string $id)
     {
-        $item = BlogPost::findOrFail($id);
-        return view('admin.blog-posts.form', compact('item'));
+        $post       = BlogPost::findOrFail($id);
+        $authors    = Author::orderBy('name')->get();
+        $categories = BlogCategory::orderBy('name_en')->get();
+        return view('admin.blog-posts.edit', compact('post', 'authors', 'categories'));
     }
 
     public function update(Request $request, string $id)
     {
         $post = BlogPost::findOrFail($id);
+
         $data = $request->validate([
-            'title'            => ['required', 'string', 'max:255'],
-            'title_de'         => ['nullable', 'string', 'max:255'],
-            'slug'             => ['nullable', 'string', 'max:255', 'unique:blog_posts,slug,' . $post->id],
-            'excerpt'          => ['nullable', 'string'],
-            'excerpt_de'       => ['nullable', 'string'],
-            'body'             => ['nullable', 'string'],
-            'body_de'          => ['nullable', 'string'],
-            'author_id'        => ['nullable', 'exists:authors,id'],
-            'blog_category_id' => ['nullable', 'exists:blog_categories,id'],
-            'published_at'     => ['nullable', 'date'],
-            'meta_title'       => ['nullable', 'string', 'max:255'],
-            'meta_description' => ['nullable', 'string', 'max:500'],
-            'cover_image'      => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'title_en'         => 'required|string|max:255',
+            'title_de'         => 'nullable|string|max:255',
+            'title_ar'         => 'nullable|string|max:255',
+            'slug'             => 'nullable|string|max:255|unique:blog_posts,slug,'.$post->id,
+            'excerpt_en'       => 'nullable|string',
+            'excerpt_de'       => 'nullable|string',
+            'excerpt_ar'       => 'nullable|string',
+            'body_en'          => 'nullable|string',
+            'body_de'          => 'nullable|string',
+            'body_ar'          => 'nullable|string',
+            'author_id'        => 'nullable|exists:authors,id',
+            'category_id'      => 'nullable|exists:blog_categories,id',
+            'published_at'     => 'nullable|date',
+            'meta_title'       => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'cover_image'      => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
+        $data['title']        = $request->title_en;
+        $data['excerpt']      = $request->excerpt_en;
+        $data['body']         = $request->body_en;
+        $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
         if ($request->hasFile('cover_image')) {
             if ($post->cover_image) Storage::disk('public')->delete($post->cover_image);
             $data['cover_image'] = $request->file('cover_image')->store('blog', 'public');
+        } else {
+            unset($data['cover_image']);
         }
 
         $post->update($data);
@@ -97,7 +114,9 @@ class BlogPostController extends Controller
 
     public function destroy(string $id)
     {
-        BlogPost::findOrFail($id)->delete();
+        $post = BlogPost::findOrFail($id);
+        if ($post->cover_image) Storage::disk('public')->delete($post->cover_image);
+        $post->delete();
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post deleted.');
     }
 }
