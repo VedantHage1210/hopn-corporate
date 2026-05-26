@@ -14,6 +14,7 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LeadController;
 use App\Http\Controllers\Public\LegalController;
 use App\Http\Controllers\Public\PageController;
+use App\Http\Controllers\Admin\PageAdminController;
 use App\Http\Controllers\Public\PartnerController;
 use App\Http\Controllers\Public\ProductController;
 use App\Http\Controllers\Public\ProgramController;
@@ -112,5 +113,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::prefix('{lang}')->whereIn('lang', ['en', 'de', 'ar'])->middleware(['setLocale'])->group(function () {
+    Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/pages/create', [PageAdminController::class, 'create'])->name('admin.pages.create');
+    Route::post('/pages', [PageAdminController::class, 'store'])->name('admin.pages.store');
+});
+
 
 require __DIR__.'/auth.php';
