@@ -1,18 +1,18 @@
 <x-layouts.admin title="Edit Page">
-    <div class="max-w-4xl mx-auto p-6 bg-slate-900 rounded-lg border border-slate-800">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-white">Edit Page</h1>
-            <a href="{{ route('admin.pages.index') }}" class="text-slate-400 hover:text-white">← Back to List</a>
-        </div>
-        
-        <form action="{{ route('admin.pages.update', $page->id) }}" method="POST">
-            @csrf 
-            @method('PUT')
-            @include('admin.pages._form')
-            
-            <button type="submit" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-bold transition">
-                Update Page
-            </button>
+    <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-xl font-semibold text-white">Edit Page</h1>
+        <a href="{{ route('admin.pages.index') }}" class="text-sm text-slate-400 hover:text-white">← Back</a>
+    </div>
+    <div class="card-panel p-6">
+        @if(session('status'))
+        <div class="mb-4 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
+        @endif
+        <form method="POST" action="{{ route('admin.pages.update', $page->id) }}">
+            @csrf @method('PUT')
+            @include('admin.pages._form', ['page' => $page])
+            <div class="mt-6">
+                <button type="submit" class="btn-primary">Update Page</button>
+            </div>
         </form>
     </div>
 </x-layouts.admin>
