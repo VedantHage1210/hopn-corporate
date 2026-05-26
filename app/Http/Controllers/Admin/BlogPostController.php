@@ -51,10 +51,9 @@ class BlogPostController extends Controller
         $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
-        if ($request->hasFile('cover_image')) {
-            $data['cover_image'] = $request->file('cover_image')->store('blog', 'public');
-        }
-
+       if ($request->filled('cover_image_url')) {
+    $data['cover_image'] = $request->cover_image_url;
+}
         BlogPost::create($data);
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post created.');
     }
@@ -101,12 +100,11 @@ class BlogPostController extends Controller
         $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
-        if ($request->hasFile('cover_image')) {
-            if ($post->cover_image) Storage::disk('public')->delete($post->cover_image);
-            $data['cover_image'] = $request->file('cover_image')->store('blog', 'public');
-        } else {
-            unset($data['cover_image']);
-        }
+     if ($request->filled('cover_image_url')) {
+    $data['cover_image'] = $request->cover_image_url;
+} else {
+    unset($data['cover_image']);
+}
 
         $post->update($data);
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post updated.');
