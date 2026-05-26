@@ -8,6 +8,9 @@ use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Industry;
+use App\Models\Service;
+
 class CaseStudy extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
@@ -36,19 +39,23 @@ class CaseStudy extends Model
         'published_at' => 'datetime',
     ];
 
-    // --- Dynamic Relationships (Ye tumhare Blade file ke error ko fix karega) ---
-    
+    /**
+     * Dynamic Industries Attribute
+     * Access using $caseStudy->industries
+     */
     public function getIndustriesAttribute()
     {
         return Industry::whereIn('id', $this->industry_ids ?? [])->get();
     }
 
+    /**
+     * Dynamic Services Attribute
+     * Access using $caseStudy->services
+     */
     public function getServicesAttribute()
     {
         return Service::whereIn('id', $this->service_ids ?? [])->get();
     }
-
-    // --------------------------------------------------------------------------
 
     public function getActivitylogOptions(): LogOptions
     {
