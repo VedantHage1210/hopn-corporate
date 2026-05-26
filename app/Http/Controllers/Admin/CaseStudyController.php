@@ -57,10 +57,15 @@ class CaseStudyController extends Controller
         return redirect()->route('admin.case-studies.index')->with('status', 'Case study created successfully.');
     }
 
-    public function show(string $id)
-    {
-        return redirect()->route('admin.case-studies.edit', $id);
-    }
+  public function show(string $slug)
+{
+   
+    $caseStudy = CaseStudy::with(['industries', 'services'])
+                    ->where('slug', $slug)
+                    ->firstOrFail();
+
+    return view('public.case-studies.show', compact('caseStudy'));
+}
 
  public function edit(string $id)
 {
