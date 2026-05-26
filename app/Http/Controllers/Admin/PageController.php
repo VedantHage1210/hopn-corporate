@@ -65,9 +65,11 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+  public function show($lang, $slug)
     {
-        return redirect()->route('admin.pages.edit', $id);
+        app()->setLocale($lang);
+        $page = Page::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        return view('public.pages.show', compact('page'));
     }
 
     /**
