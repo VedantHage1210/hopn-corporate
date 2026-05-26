@@ -15,6 +15,7 @@ use App\Http\Controllers\Public\LeadController;
 use App\Http\Controllers\Public\LegalController;
 use App\Http\Controllers\Public\PageController;
 use App\Http\Controllers\Admin\PageAdminController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Public\PartnerController;
 use App\Http\Controllers\Public\ProductController;
 use App\Http\Controllers\Public\ProgramController;
@@ -44,7 +45,6 @@ Route::prefix('{lang}')
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');
         Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
         
-        // Case Studies ab group ke andar hain
         Route::get('/case-studies', [CaseStudyController::class, 'index'])->name('case-studies.index');
         Route::get('/case-studies/{slug}', [CaseStudyController::class, 'show'])->name('case-studies.show');
 
@@ -100,36 +100,27 @@ Route::prefix('{lang}')
         Route::get('/legal/impressum', [LegalController::class, 'impressum'])->name('legal.impressum');
         Route::get('/legal/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
         Route::get('/legal/cookie-policy', [LegalController::class, 'cookie'])->name('legal.cookie');
+        
+        // Public Page Show Route (Localized)
+        Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
     });
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['verified'])->name('dashboard');
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('{lang}')->whereIn('lang', ['en', 'de', 'ar'])->middleware(['setLocale'])->group(function () {
-    Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
-});
-
+// Clean Admin Routes
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/pages/create', [PageAdminController::class, 'create'])->name('admin.pages.create');
-    Route::post('/pages', [PageAdminController::class, 'store'])->name('admin.pages.store');
-});
-
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    
     Route::resource('pages', PageAdminController::class);
-    
 });
-
 
 require __DIR__.'/auth.php';
