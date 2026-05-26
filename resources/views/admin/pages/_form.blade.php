@@ -12,12 +12,12 @@
             @endforeach
         </div>
 
-        @foreach(['en', 'de', 'ar'] as $lang)
-        <div x-show="tab === '{{ $lang }}'" class="space-y-4">
-            <input type="text" name="title[{{ $lang }}]" value="{{ old('title.'.$lang, $page->getTranslation('title', $lang, false) ?? '') }}" placeholder="Title ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white">
-            <textarea name="content[{{ $lang }}]" placeholder="Content ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white h-40">{{ old('content.'.$lang, $page->getTranslation('content', $lang, false) ?? '') }}</textarea>
-        </div>
-        @endforeach
+      @foreach(['en', 'de', 'ar'] as $lang)
+<div x-show="tab === '{{ $lang }}'" x-cloak class="space-y-4">
+    <input type="text" name="title[{{ $lang }}]" value="{{ old('title.'.$lang, $page->getTranslation('title', $lang, false) ?? '') }}" placeholder="Title ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white">
+    <textarea name="content[{{ $lang }}]" placeholder="Content ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white h-40">{{ old('content.'.$lang, $page->getTranslation('content', $lang, false) ?? '') }}</textarea>
+</div>
+@endforeach
     </div>
 
     <label class="flex items-center text-slate-300">
