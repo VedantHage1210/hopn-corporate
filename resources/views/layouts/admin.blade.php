@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ ($title ?? 'Admin') . ' | HOPn Admin' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         #toggle-sidebar { display:block; background:none; border:none; cursor:pointer; padding:0; color:#cbd5e1; transition:color 0.2s; }
         #toggle-sidebar:hover { color:#ffffff; }
