@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $item       = new Product();
         $industries = Industry::where('is_published', true)->orderBy('name')->get();
-        $services   = Service::where('is_published', true)->orderBy('name')->get();
+      $services = Service::orderBy('name')->get();
         return view('admin.products.form', compact('item', 'industries', 'services'));
     }
 
@@ -72,7 +72,7 @@ class ProductController extends Controller
     {
         $item       = Product::findOrFail($id);
         $industries = Industry::where('is_published', true)->orderBy('name')->get();
-        $services   = Service::where('is_published', true)->orderBy('name')->get();
+      $services = Service::orderBy('name')->get();
         return view('admin.products.form', compact('item', 'industries', 'services'));
     }
 
