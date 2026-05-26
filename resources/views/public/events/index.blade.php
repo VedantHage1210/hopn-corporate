@@ -58,7 +58,16 @@
                 <div style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; overflow:hidden; transition:all 0.25s;"
                      onmouseover="this.style.borderColor='rgba(245,158,11,0.3)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
-
+                    
+                    
+                    @if($event->image_url)
+                    <div style="height:180px; overflow:hidden;">
+                        <img src="{{ $event->image_url }}" alt="{{ $event->title }}"
+                             style="width:100%; height:100%; object-fit:cover; opacity:0.85;">
+                    </div>
+                    @endif
+                   
+                    
                     @if($event->type === 'conference')
                         <div style="height:3px; background:#4F6EF7;"></div>
                     @elseif($event->type === 'workshop')
