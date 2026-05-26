@@ -10,6 +10,7 @@
         <table class="min-w-full text-sm text-slate-300">
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
+                    <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Icon</th>
                     <th class="px-3 py-2">Name</th>
                     <th class="px-3 py-2">Slug</th>
@@ -19,28 +20,30 @@
             </thead>
             <tbody>
                 @forelse($items as $industry)
-                    <tr class="border-t border-slate-800 hover:bg-slate-800/30">
-                        <td class="px-3 py-3 text-2xl">{{ $industry->icon }}</td>
-                        <td class="px-3 py-3">
-                            <div class="font-medium text-white">{{ $industry->name }}</div>
-                            <div class="text-xs text-slate-400">{{ $industry->name_de }}</div>
-                        </td>
-                        <td class="px-3 py-3 font-mono text-xs text-indigo-300">{{ $industry->slug }}</td>
-                        <td class="px-3 py-3">
-                            <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $industry->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
-                                {{ $industry->is_published ? 'Published' : 'Draft' }}
-                            </span>
-                        </td>
-                        <td class="px-3 py-3 flex gap-3">
-                            <a href="{{ route('admin.industries.edit', $industry) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                            <form method="POST" action="{{ route('admin.industries.destroy', $industry) }}" class="inline-block">
-                                @csrf @method('DELETE')
-                                <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                    <td class="px-3 py-3 text-slate-400">{{ $industry->id }}</td>
+                    <td class="px-3 py-3 text-2xl">{{ $industry->icon }}</td>
+                    <td class="px-3 py-3">
+                        <div class="font-medium text-white">{{ $industry->name }}</div>
+                        <div class="text-xs text-slate-400">{{ $industry->name_de }}</div>
+                    </td>
+                    <td class="px-3 py-3 font-mono text-xs text-indigo-300">{{ $industry->slug }}</td>
+                    <td class="px-3 py-3">
+                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $industry->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
+                            {{ $industry->is_published ? 'Published' : 'Draft' }}
+                        </span>
+                    </td>
+                    <td class="px-3 py-3 flex gap-3">
+                        <a href="{{ route('admin.industries.edit', $industry) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        <a href="{{ route('industries.show', ['lang' => 'en', 'slug' => $industry->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        <form method="POST" action="{{ route('admin.industries.destroy', $industry) }}" class="inline-block">
+                            @csrf @method('DELETE')
+                            <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No industries found.</td></tr>
+                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No industries found.</td></tr>
                 @endforelse
             </tbody>
         </table>
