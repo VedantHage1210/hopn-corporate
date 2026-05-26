@@ -1,26 +1,57 @@
-@csrf
-<div class="space-y-6">
+<div class="grid gap-4 md:grid-cols-2">
+
+    {{-- Basic Info --}}
+    <div class="md:col-span-2">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Basic Info</p>
+    </div>
+
     <div>
-        <label class="block text-sm text-slate-400 mb-2">Page Slug</label>
-        <input type="text" name="slug" value="{{ old('slug', $page->slug ?? '') }}" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white" required>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Title (EN) *</label>
+        <input type="text" name="title" value="{{ old('title', $page->title ?? '') }}"
+               class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white" required>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Title (DE)</label>
+        <input type="text" name="title_de" value="{{ old('title_de', $page->title_de ?? '') }}"
+               class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Title (AR)</label>
+        <input type="text" name="title_ar" value="{{ old('title_ar', $page->title_ar ?? '') }}"
+               class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Slug *</label>
+        <input type="text" name="slug" value="{{ old('slug', $page->slug ?? '') }}"
+               class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white" required>
     </div>
 
-    <div x-data="{ tab: 'en' }">
-        <div class="flex gap-4 border-b border-slate-800 mb-4">
-            @foreach(['en' => 'English', 'de' => 'German', 'ar' => 'Arabic'] as $key => $label)
-                <button type="button" @click="tab = '{{ $key }}'" :class="tab === '{{ $key }}' ? 'text-white border-b-2 border-indigo-500' : 'text-slate-500'" class="pb-2">{{ $label }}</button>
-            @endforeach
-        </div>
-
-      @foreach(['en', 'de', 'ar'] as $lang)
-<div x-show="tab === '{{ $lang }}'" x-cloak class="space-y-4">
-    <input type="text" name="title[{{ $lang }}]" value="{{ old('title.'.$lang, $page->getTranslation('title', $lang, false) ?? '') }}" placeholder="Title ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white">
-    <textarea name="content[{{ $lang }}]" placeholder="Content ({{ strtoupper($lang) }})" class="w-full bg-slate-950 border border-slate-700 rounded p-3 text-white h-40">{{ old('content.'.$lang, $page->getTranslation('content', $lang, false) ?? '') }}</textarea>
-</div>
-@endforeach
+    {{-- Published --}}
+    <div class="md:col-span-2 flex items-center gap-4 mt-2">
+        <label class="flex items-center gap-2 text-sm text-slate-300">
+            <input type="checkbox" name="is_published" {{ ($page->is_published ?? false) ? 'checked' : '' }}>
+            Published
+        </label>
+        <label class="flex items-center gap-2 text-sm text-slate-300">
+            <input type="checkbox" name="is_visible" {{ ($page->is_visible ?? false) ? 'checked' : '' }}>
+            Visible
+        </label>
     </div>
 
-    <label class="flex items-center text-slate-300">
-        <input type="checkbox" name="is_published" {{ ($page->is_published ?? false) ? 'checked' : '' }} class="mr-2"> Published
-    </label>
+    {{-- Excerpt --}}
+    <div class="md:col-span-2 mt-2">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Excerpt / Description</p>
+    </div>
+    <div class="md:col-span-2">
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Excerpt (EN)</label>
+        <textarea name="excerpt" rows="3" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('excerpt', $page->excerpt ?? '') }}</textarea>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Excerpt (DE)</label>
+        <textarea name="excerpt_de" rows="3" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('excerpt_de', $page->excerpt_de ?? '') }}</textarea>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Excerpt (AR)</label>
+        <textarea name="excerpt_ar" rows="3" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('excerpt_ar', $page->excerpt_ar ?? '') }}</textarea>
+    </div>
 </div>
