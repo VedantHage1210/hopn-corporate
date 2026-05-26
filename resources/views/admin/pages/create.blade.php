@@ -1,13 +1,15 @@
-<x-layouts.admin title="Create Page">
-    <div class="max-w-4xl mx-auto p-6 bg-slate-900 rounded-lg border border-slate-800">
-        <h1 class="text-2xl font-bold mb-6 text-white">Create New Page</h1>
-        
-        <form action="{{ route('admin.pages.store') }}" method="POST">
-            @include('admin.pages._form')
-            
-            <button type="submit" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-bold transition">
-                Save Page
-            </button>
+<x-layouts.admin title="New Page">
+    <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-xl font-semibold text-white">New Page</h1>
+        <a href="{{ route('admin.pages.index') }}" class="text-sm text-slate-400 hover:text-white">← Back</a>
+    </div>
+    <div class="card-panel p-6">
+        <form method="POST" action="{{ route('admin.pages.store') }}">
+            @csrf
+            @include('admin.pages._form', ['page' => null])
+            <div class="mt-6">
+                <button type="submit" class="btn-primary">Save Page</button>
+            </div>
         </form>
     </div>
 </x-layouts.admin>
