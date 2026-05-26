@@ -1,44 +1,49 @@
 <x-layouts.admin title="Pages">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold text-white">Pages</h1>
-        <a href="{{ route('admin.pages.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold">
-            + Create Page
-        </a>
+    <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-xl font-semibold text-white">Pages</h1>
+        <a href="{{ route('admin.pages.create') }}" class="btn-primary text-sm">+ New Page</a>
     </div>
 
-    <div class="bg-[#0B1120] border border-slate-800 rounded-2xl p-6 shadow-xl">
-        <table class="w-full text-left text-slate-300">
-            <thead>
-                <tr class="text-xs uppercase text-slate-500 border-b border-slate-800">
-                    <th class="pb-3">ID</th>
-                    <th class="pb-3">Title</th>
-                    <th class="pb-3">Slug</th>
-                    <th class="pb-3">Status</th>
-                    <th class="pb-3">Actions</th>
+    @if(session('status'))
+    <div class="mb-4 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
+    @endif
+
+    <div class="card-panel overflow-x-auto p-4">
+        <table class="min-w-full text-sm text-slate-300">
+            <thead class="text-left text-xs uppercase text-slate-400">
+                <tr>
+                    <th class="px-3 py-2">ID</th>
+                    <th class="px-3 py-2">Title</th>
+                    <th class="px-3 py-2">Slug</th>
+                    <th class="px-3 py-2">Status</th>
+                    <th class="px-3 py-2">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($pages as $page)
-                <tr class="border-b border-slate-800">
-                    <td class="py-4">{{ $page->id }}</td>
-                    <td class="py-4 font-medium text-white">{{ $page->title }}</td>
-                    <td class="py-4 text-slate-400">{{ $page->slug }}</td>
-                    <td class="py-4">
-                        <span class="{{ $page->is_published ? 'bg-green-900/30 text-green-400' : 'bg-slate-800 text-slate-400' }} px-2 py-1 rounded text-xs font-semibold">
+                @forelse($pages as $page)
+                <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                    <td class="px-3 py-3 text-slate-400">{{ $page->id }}</td>
+                    <td class="px-3 py-3 font-medium text-white">{{ $page->title }}</td>
+                    <td class="px-3 py-3 font-mono text-xs text-slate-400">{{ $page->slug }}</td>
+                    <td class="px-3 py-3">
+                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $page->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
                             {{ $page->is_published ? 'Published' : 'Draft' }}
                         </span>
                     </td>
-                    <td class="py-4 flex gap-4">
-                        <a href="{{ route('pages.show', ['lang' => 'en', 'slug' => $page->slug]) }}" target="_blank" class="text-indigo-400 hover:text-indigo-300">View</a>
-                        <a href="{{ route('admin.pages.edit', $page->id) }}" class="text-slate-400 hover:text-white">Edit</a>
-                        <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                    <td class="px-3 py-3 flex gap-3">
+                        <a href="{{ route('admin.pages.edit', $page->id) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        <a href="{{ url('/en/' . $page->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}" class="inline-block">
                             @csrf @method('DELETE')
-                            <button type="submit" class="text-red-400 hover:text-red-300">Delete</button>
+                            <button type="submit" onclick="return confirm('Delete this page?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No pages found.</td></tr>
+                @endforelse
             </tbody>
         </table>
+        <div class="mt-4">{{ $pages->links() }}</div>
     </div>
 </x-layouts.admin>
