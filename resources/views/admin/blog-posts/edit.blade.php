@@ -70,7 +70,7 @@
                     <div>
                         <label class="block text-xs text-slate-400 mb-1">Slug</label>
                         <input type="text" name="slug" value="{{ old('slug', $post->slug) }}"
-                               form="post-form"
+                               form="post-form" 
                                class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
                     </div>
                     <div>
