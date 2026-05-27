@@ -49,11 +49,11 @@ class CareerController extends Controller
         ]);
     }
 
-    public function track(string $lang, string $token)
-    {
-        $application = JobApplication::where('tracking_token', $token)
-            ->with('job')
-            ->firstOrFail();
-        return view('public.careers.track', compact('application'));
-    }
+   public function track(string $lang, string $token)
+{
+    $application = JobApplication::where('tracking_token', $token)
+        ->with('job')
+        ->firstOrFail();
+    return view('public.careers.track', compact('application'));
+}
 }
