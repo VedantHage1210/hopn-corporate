@@ -1,49 +1,54 @@
 @props(['partners' => collect()])
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<div class="swiper partner-swiper"
-     style="width:100%; padding:8px 0; overflow:hidden;">
-    <div class="swiper-wrapper" style="align-items:center;">
-        @foreach($partners as $partner)
-        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center;">
-            <div style="display:flex; align-items:center; justify-content:center; height:64px; padding:0 24px; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); border-radius:12px; transition:all 0.3s; cursor:default;"
-                 onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='rgba(79,110,247,0.06)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.03)'">
-                @if(!empty($partner->logo_url))
-                    <img src="{{ $partner->logo_url }}"
-                         alt="{{ $partner->name }}"
-                         style="max-height:32px; max-width:120px; object-fit:contain; filter:grayscale(100%) brightness(0.7); transition:filter 0.3s;"
-                         onmouseover="this.style.filter='grayscale(0%) brightness(1)'"
-                         onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'">
-                @else
-                    <span style="font-size:13px; font-weight:600; color:#475569; white-space:nowrap; transition:color 0.3s;"
-                          onmouseover="this.style.color='#94A3B8'"
-                          onmouseout="this.style.color='#475569'">
-                        {{ $partner->name }}
-                    </span>
-                @endif
-            </div>
+@php
+    use App\Models\Logo;
+    $logos = Logo::where('visible', true)->orderBy('sort_order')->get();
+    $allItems = $logos->count() > 0 ? $logos : $partners;
+@endphp
+
+@if($allItems->count() > 0)
+<div style="position:relative; overflow:hidden;">
+    <div style="position:absolute; left:0; top:0; bottom:0; width:80px; background:linear-gradient(90deg, #0A0F1E, transparent); z-index:2; pointer-events:none;"></div>
+    <div style="position:absolute; right:0; top:0; bottom:0; width:80px; background:linear-gradient(270deg, #0A0F1E, transparent); z-index:2; pointer-events:none;"></div>
+
+    <div class="logo-track" style="display:flex; gap:32px; align-items:center; animation:logoScroll 30s linear infinite;">
+        @foreach($allItems as $item)
+        <div style="flex-shrink:0; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px 24px; display:flex; align-items:center; justify-content:center; min-width:140px; height:64px; transition:all 0.25s;"
+             onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
+            @if(isset($item->logo_url) && $item->logo_url)
+            <img src="{{ $item->logo_url }}" alt="{{ $item->name }}"
+                 style="height:32px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);"
+                 onmouseover="this.style.filter='brightness(1) grayscale(0)'"
+                 onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
+            @else
+            <span style="font-size:13px; font-weight:700; color:#64748B; white-space:nowrap;">{{ $item->name }}</span>
+            @endif
+        </div>
+        @endforeach
+
+        @foreach($allItems as $item)
+        <div style="flex-shrink:0; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px 24px; display:flex; align-items:center; justify-content:center; min-width:140px; height:64px;"
+             onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
+            @if(isset($item->logo_url) && $item->logo_url)
+            <img src="{{ $item->logo_url }}" alt="{{ $item->name }}"
+                 style="height:32px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);"
+                 onmouseover="this.style.filter='brightness(1) grayscale(0)'"
+                 onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
+            @else
+            <span style="font-size:13px; font-weight:700; color:#64748B; white-space:nowrap;">{{ $item->name }}</span>
+            @endif
         </div>
         @endforeach
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    new Swiper('.partner-swiper', {
-        slidesPerView: 2,
-        spaceBetween: 16,
-        loop: true,
-        speed: 3000,
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        freeMode: true,
-        breakpoints: {
-            640:  { slidesPerView: 3, spaceBetween: 16 },
-            768:  { slidesPerView: 4, spaceBetween: 20 },
-            1024: { slidesPerView: 6, spaceBetween: 24 },
-        }
-    });
-</script>
+<style>
+@keyframes logoScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.logo-track:hover { animation-play-state: paused; }
+</style>
+@endif
