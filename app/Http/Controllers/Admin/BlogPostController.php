@@ -6,7 +6,6 @@ use App\Models\Author;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class BlogPostController extends Controller
 {
@@ -26,7 +25,7 @@ class BlogPostController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'title_en'         => 'required|string|max:255',
             'title_de'         => 'nullable|string|max:255',
             'title_ar'         => 'nullable|string|max:255',
@@ -38,24 +37,30 @@ class BlogPostController extends Controller
             'body_de'          => 'nullable|string',
             'body_ar'          => 'nullable|string',
             'author_id'        => 'nullable|exists:authors,id',
-            'category_id'      => 'nullable|exists:blog_categories,id',
+            'blog_category_id' => 'nullable|exists:blog_categories,id',
             'published_at'     => 'nullable|date',
             'meta_title'       => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
-            'cover_image'      => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
+            'cover_image_url'  => 'nullable|string|max:500',
         ]);
 
-        $data['title']        = $request->title_en;
-        $data['excerpt']      = $request->excerpt_en;
-        $data['body']         = $request->body_en;
-        $data['cover_image'] = $request->cover_image_url ?: $post->cover_image;
-        $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
-        $data['is_published'] = $request->boolean('is_published');
+        BlogPost::create([
+            'title'               => $request->title_en,
+            'title_de'            => $request->title_de,
+            'slug'                => $request->slug ?: Str::slug($request->title_en),
+            'excerpt'             => $request->excerpt_en,
+            'excerpt_de'          => $request->excerpt_de,
+            'content'             => $request->body_en,
+            'content_de'          => $request->body_de,
+            'author_id'           => $request->author_id,
+            'blog_category_id'    => $request->blog_category_id,
+            'published_at'        => $request->published_at,
+            'is_published'        => $request->boolean('is_published'),
+            'meta_title'          => $request->meta_title,
+            'meta_description'    => $request->meta_description,
+            'featured_image_path' => $request->cover_image_url,
+        ]);
 
-       if ($request->filled('cover_image_url')) {
-    $data['cover_image'] = $request->cover_image_url;
-}
-        BlogPost::create($data);
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post created.');
     }
 
@@ -76,7 +81,7 @@ class BlogPostController extends Controller
     {
         $post = BlogPost::findOrFail($id);
 
-        $data = $request->validate([
+        $request->validate([
             'title_en'         => 'required|string|max:255',
             'title_de'         => 'nullable|string|max:255',
             'title_ar'         => 'nullable|string|max:255',
@@ -88,32 +93,36 @@ class BlogPostController extends Controller
             'body_de'          => 'nullable|string',
             'body_ar'          => 'nullable|string',
             'author_id'        => 'nullable|exists:authors,id',
-            'category_id'      => 'nullable|exists:blog_categories,id',
+            'blog_category_id' => 'nullable|exists:blog_categories,id',
             'published_at'     => 'nullable|date',
             'meta_title'       => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
-            'cover_image'      => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
+            'cover_image_url'  => 'nullable|string|max:500',
         ]);
 
-        $data['title']        = $request->title_en;
-        $data['excerpt']      = $request->excerpt_en;
-        $data['body']         = $request->body_en;
-        $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
-        $data['is_published'] = $request->boolean('is_published');
+        $post->update([
+            'title'               => $request->title_en,
+            'title_de'            => $request->title_de,
+            'slug'                => $request->slug ?: Str::slug($request->title_en),
+            'excerpt'             => $request->excerpt_en,
+            'excerpt_de'          => $request->excerpt_de,
+            'content'             => $request->body_en,
+            'content_de'          => $request->body_de,
+            'author_id'           => $request->author_id,
+            'blog_category_id'    => $request->blog_category_id,
+            'published_at'        => $request->published_at,
+            'is_published'        => $request->boolean('is_published'),
+            'meta_title'          => $request->meta_title,
+            'meta_description'    => $request->meta_description,
+            'featured_image_path' => $request->cover_image_url ?: $post->featured_image_path,
+        ]);
 
-  $data['cover_image'] = $request->filled('cover_image_url') 
-    ? $request->cover_image_url 
-    : $post->cover_image;
-
-        $post->update($data);
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post updated.');
     }
 
     public function destroy(string $id)
     {
-        $post = BlogPost::findOrFail($id);
-        if ($post->cover_image) Storage::disk('public')->delete($post->cover_image);
-        $post->delete();
+        BlogPost::findOrFail($id)->delete();
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post deleted.');
     }
 }
