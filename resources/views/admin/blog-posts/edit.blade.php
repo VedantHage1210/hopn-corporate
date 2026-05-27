@@ -114,15 +114,15 @@
                     <div>
     <label class="block text-xs text-slate-400 mb-1">Cover Image URL</label>
 <input type="url" name="cover_image_url" value="{{ old('cover_image_url', $post->featured_image_path ?? '') }}"
-           form="post-form"
-           placeholder="https://example.com/image.jpg"
-           class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white mb-2">
-  @if($post->featured_image_path)
+       form="post-form"
+       placeholder="https://example.com/image.jpg"
+       class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white mb-2">
+@if($post->featured_image_path)
 <div class="mt-2">
     <img src="{{ $post->featured_image_path }}" alt="Cover"
-             style="width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
-    </div>
-    @endif
+         style="width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+</div>
+@endif
     <p class="text-xs text-slate-500 mt-1">Paste image URL from Cloudinary, ImgBB, etc.</p>
 </div>
                    
