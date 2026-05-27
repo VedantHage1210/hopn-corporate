@@ -41,7 +41,7 @@
                         <p style="font-size:14px; color:#94A3B8; margin-bottom:8px;">Your Application ID:</p>
                         <p style="font-size:20px; font-weight:800; color:#10B981; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
                         <p style="font-size:12px; color:#64748B; margin-bottom:12px;">Save this ID to track your application status.</p>
-                        <a href="{{ route('careers.track', ['lang' => $lang, 'token' => session('tracking_token')]) }}"
+                       <a href="{{ route('careers.track', ['lang' => $lang, 'token' => session('tracking_token')]) }}"
                            style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#10B981; color:white; font-size:13px; font-weight:600; text-decoration:none;">
                             Track My Application →
                         </a>
