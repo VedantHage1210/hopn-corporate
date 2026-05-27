@@ -48,6 +48,7 @@ class BlogPostController extends Controller
         $data['title']        = $request->title_en;
         $data['excerpt']      = $request->excerpt_en;
         $data['body']         = $request->body_en;
+        $data['cover_image'] = $request->cover_image_url ?: $post->cover_image;
         $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
@@ -100,11 +101,9 @@ class BlogPostController extends Controller
         $data['slug']         = $data['slug'] ?: Str::slug($request->title_en);
         $data['is_published'] = $request->boolean('is_published');
 
-     if ($request->filled('cover_image_url')) {
-    $data['cover_image'] = $request->cover_image_url;
-} else {
-    unset($data['cover_image']);
-}
+  $data['cover_image'] = $request->filled('cover_image_url') 
+    ? $request->cover_image_url 
+    : $post->cover_image;
 
         $post->update($data);
         return redirect()->route('admin.blog-posts.index')->with('status', 'Post updated.');
