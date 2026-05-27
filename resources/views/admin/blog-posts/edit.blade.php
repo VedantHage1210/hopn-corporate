@@ -106,20 +106,20 @@
                         <select name="category_id" form="post-form" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
                             <option value="">Select Category</option>
                             @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}" {{ $post->category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
+                          <option value="{{ $cat->id }}" {{ $post->blog_category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div>
     <label class="block text-xs text-slate-400 mb-1">Cover Image URL</label>
-    <input type="url" name="cover_image_url" value="{{ old('cover_image_url', $post->cover_image_url ?? $post->cover_image ?? '') }}"
+<input type="url" name="cover_image_url" value="{{ old('cover_image_url', $post->featured_image_path ?? '') }}"
            form="post-form"
            placeholder="https://example.com/image.jpg"
            class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white mb-2">
-    @if($post->cover_image_url ?? $post->cover_image)
-    <div class="mt-2">
-        <img src="{{ $post->cover_image_url ?? $post->cover_image }}" alt="Cover"
+  @if($post->featured_image_path)
+<div class="mt-2">
+    <img src="{{ $post->featured_image_path }}" alt="Cover"
              style="width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
     </div>
     @endif
