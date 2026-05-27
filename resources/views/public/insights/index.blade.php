@@ -31,9 +31,9 @@
                    onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'"
                    onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
 
-                    @if($post->cover_image)
+                   @if($post->featured_image_path)
                     <div style="height:180px; overflow:hidden;">
-                        <img src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title }}"
+                       <img src="{{ $post->featured_image_path }}" alt="{{ $post->title }}"
                              style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;"
                              onmouseover="this.style.transform='scale(1.05)'"
                              onmouseout="this.style.transform='scale(1)'">
