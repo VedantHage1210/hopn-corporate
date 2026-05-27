@@ -32,7 +32,7 @@ Route::prefix('{lang}')
     ->whereIn('lang', ['en', 'de', 'ar'])
     ->middleware(['setLocale'])
     ->group(function () {
-         Route::get('/careers/track/{token}', [CareerController::class, 'track'])->name('careers.track');
+         
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [PageController::class, 'about'])->name('about');
 
@@ -57,11 +57,12 @@ Route::prefix('{lang}')
             return view('public.partners.inquiry');
         })->name('partner-inquiry.index');
 
-        Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
-        Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('careers.show');
-        Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
-            ->middleware('throttle:5,1')
-            ->name('careers.apply');
+      Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+Route::get('/careers/track/{token}', [CareerController::class, 'track'])->name('careers.track');
+Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('careers.show');
+Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
+    ->middleware('throttle:5,1')
+    ->name('careers.apply');
 
         Route::get('/startups', [StartupController::class, 'index'])->name('startups.index');
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
