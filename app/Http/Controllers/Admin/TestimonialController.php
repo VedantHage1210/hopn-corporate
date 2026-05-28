@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class TestimonialController extends Controller
 {
@@ -18,28 +15,34 @@ class TestimonialController extends Controller
     public function create()
     {
         $item = new Testimonial();
-        return view('admin.testimonials.form', compact('item'));
+        return view('admin.testimonials.create', compact('item'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'quote_en'    => ['required', 'string'],
-            'quote_de'    => ['nullable', 'string'],
-            'author_name' => ['required', 'string', 'max:120'],
-            'author_role' => ['nullable', 'string', 'max:120'],
-            'company'     => ['nullable', 'string', 'max:120'],
-            'sort_order'  => ['nullable', 'integer'],
-            'avatar'      => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        $request->validate([
+            'quote_en'    => 'required|string',
+            'quote_de'    => 'nullable|string',
+            'quote_ar'    => 'nullable|string',
+            'author_name' => 'required|string|max:120',
+            'author_role' => 'nullable|string|max:120',
+            'company'     => 'nullable|string|max:120',
+            'avatar_url'  => 'nullable|string|max:500',
+            'sort_order'  => 'nullable|integer',
         ]);
 
-        $data['visible'] = $request->boolean('visible', true);
+        Testimonial::create([
+            'quote_en'    => $request->quote_en,
+            'quote_de'    => $request->quote_de,
+            'quote_ar'    => $request->quote_ar,
+            'author_name' => $request->author_name,
+            'author_role' => $request->author_role,
+            'company'     => $request->company,
+            'avatar'      => $request->avatar_url,
+            'sort_order'  => $request->sort_order ?? 0,
+            'visible'     => $request->boolean('visible', true),
+        ]);
 
-        if ($request->hasFile('avatar')) {
-            $data['avatar'] = $request->file('avatar')->store('testimonials', 'public');
-        }
-
-        Testimonial::create($data);
         return redirect()->route('admin.testimonials.index')->with('status', 'Testimonial created.');
     }
 
@@ -51,38 +54,42 @@ class TestimonialController extends Controller
     public function edit(string $id)
     {
         $item = Testimonial::findOrFail($id);
-        return view('admin.testimonials.form', compact('item'));
+        return view('admin.testimonials.edit', compact('item'));
     }
 
     public function update(Request $request, string $id)
     {
         $testimonial = Testimonial::findOrFail($id);
-        $data        = $request->validate([
-            'quote_en'    => ['required', 'string'],
-            'quote_de'    => ['nullable', 'string'],
-            'author_name' => ['required', 'string', 'max:120'],
-            'author_role' => ['nullable', 'string', 'max:120'],
-            'company'     => ['nullable', 'string', 'max:120'],
-            'sort_order'  => ['nullable', 'integer'],
-            'avatar'      => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+
+        $request->validate([
+            'quote_en'    => 'required|string',
+            'quote_de'    => 'nullable|string',
+            'quote_ar'    => 'nullable|string',
+            'author_name' => 'required|string|max:120',
+            'author_role' => 'nullable|string|max:120',
+            'company'     => 'nullable|string|max:120',
+            'avatar_url'  => 'nullable|string|max:500',
+            'sort_order'  => 'nullable|integer',
         ]);
 
-        $data['visible'] = $request->boolean('visible');
+        $testimonial->update([
+            'quote_en'    => $request->quote_en,
+            'quote_de'    => $request->quote_de,
+            'quote_ar'    => $request->quote_ar,
+            'author_name' => $request->author_name,
+            'author_role' => $request->author_role,
+            'company'     => $request->company,
+            'avatar'      => $request->avatar_url ?: $testimonial->avatar,
+            'sort_order'  => $request->sort_order ?? 0,
+            'visible'     => $request->boolean('visible'),
+        ]);
 
-        if ($request->hasFile('avatar')) {
-            if ($testimonial->avatar) Storage::disk('public')->delete($testimonial->avatar);
-            $data['avatar'] = $request->file('avatar')->store('testimonials', 'public');
-        }
-
-        $testimonial->update($data);
         return redirect()->route('admin.testimonials.index')->with('status', 'Testimonial updated.');
     }
 
     public function destroy(string $id)
     {
-        $t = Testimonial::findOrFail($id);
-        if ($t->avatar) Storage::disk('public')->delete($t->avatar);
-        $t->delete();
+        Testimonial::findOrFail($id)->delete();
         return redirect()->route('admin.testimonials.index')->with('status', 'Testimonial deleted.');
     }
 }
