@@ -12,16 +12,11 @@ class Partner extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-    protected $fillable = [
-        'name',
-        'type',
-        'logo',
-        'url',
-        'description_en',
-        'description_de',
-        'sort_order',
-        'visible',
-    ];
+  protected $fillable = [
+    'name', 'type', 'url', 'logo',
+    'description_en', 'description_de', 'description_ar',
+    'sort_order', 'visible',
+];
 
     protected $casts = [
         'visible' => 'boolean',
