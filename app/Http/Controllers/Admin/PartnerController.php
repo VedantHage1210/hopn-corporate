@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -18,26 +15,34 @@ class PartnerController extends Controller
     public function create()
     {
         $item = new Partner();
-        return view('admin.partners.form', compact('item'));
+        return view('admin.partners.create', compact('item'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name'       => ['required', 'string', 'max:255'],
-            'type'       => ['nullable', 'string', 'max:50'],
-            'url'        => ['nullable', 'url', 'max:255'],
-            'sort_order' => ['nullable', 'integer'],
-            'logo'       => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+        $request->validate([
+            'name'           => 'required|string|max:255',
+            'type'           => 'nullable|string|max:50',
+            'url'            => 'nullable|string|max:255',
+            'logo_url'       => 'nullable|string|max:500',
+            'description_en' => 'nullable|string',
+            'description_de' => 'nullable|string',
+            'description_ar' => 'nullable|string',
+            'sort_order'     => 'nullable|integer',
         ]);
 
-        $data['visible'] = $request->boolean('visible', true);
+        Partner::create([
+            'name'           => $request->name,
+            'type'           => $request->type,
+            'url'            => $request->url,
+            'logo'           => $request->logo_url,
+            'description_en' => $request->description_en,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'sort_order'     => $request->sort_order ?? 0,
+            'visible'        => $request->boolean('visible', true),
+        ]);
 
-        if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('partners', 'public');
-        }
-
-        Partner::create($data);
         return redirect()->route('admin.partners.index')->with('status', 'Partner created.');
     }
 
@@ -49,36 +54,42 @@ class PartnerController extends Controller
     public function edit(string $id)
     {
         $item = Partner::findOrFail($id);
-        return view('admin.partners.form', compact('item'));
+        return view('admin.partners.edit', compact('item'));
     }
 
     public function update(Request $request, string $id)
     {
         $partner = Partner::findOrFail($id);
-        $data    = $request->validate([
-            'name'       => ['required', 'string', 'max:255'],
-            'type'       => ['nullable', 'string', 'max:50'],
-            'url'        => ['nullable', 'url', 'max:255'],
-            'sort_order' => ['nullable', 'integer'],
-            'logo'       => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+
+        $request->validate([
+            'name'           => 'required|string|max:255',
+            'type'           => 'nullable|string|max:50',
+            'url'            => 'nullable|string|max:255',
+            'logo_url'       => 'nullable|string|max:500',
+            'description_en' => 'nullable|string',
+            'description_de' => 'nullable|string',
+            'description_ar' => 'nullable|string',
+            'sort_order'     => 'nullable|integer',
         ]);
 
-        $data['visible'] = $request->boolean('visible');
+        $partner->update([
+            'name'           => $request->name,
+            'type'           => $request->type,
+            'url'            => $request->url,
+            'logo'           => $request->logo_url ?: $partner->logo,
+            'description_en' => $request->description_en,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'sort_order'     => $request->sort_order ?? 0,
+            'visible'        => $request->boolean('visible'),
+        ]);
 
-        if ($request->hasFile('logo')) {
-            if ($partner->logo) Storage::disk('public')->delete($partner->logo);
-            $data['logo'] = $request->file('logo')->store('partners', 'public');
-        }
-
-        $partner->update($data);
         return redirect()->route('admin.partners.index')->with('status', 'Partner updated.');
     }
 
     public function destroy(string $id)
     {
-        $partner = Partner::findOrFail($id);
-        if ($partner->logo) Storage::disk('public')->delete($partner->logo);
-        $partner->delete();
+        Partner::findOrFail($id)->delete();
         return redirect()->route('admin.partners.index')->with('status', 'Partner deleted.');
     }
 }
