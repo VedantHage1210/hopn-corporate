@@ -12,6 +12,10 @@
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Submission Details</h2>
                 <dl class="space-y-3 text-sm">
                     <div class="flex gap-4">
+                        <dt class="w-36 shrink-0 text-slate-400">ID</dt>
+                        <dd class="text-white font-mono">#{{ $lead->id }}</dd>
+                    </div>
+                    <div class="flex gap-4">
                         <dt class="w-36 shrink-0 text-slate-400">Form Type</dt>
                         <dd><span class="rounded bg-slate-800 px-2 py-0.5 text-xs capitalize">{{ str_replace('-', ' ', $lead->type) }}</span></dd>
                     </div>
@@ -109,6 +113,29 @@
                 @if(session('status'))
                     <div class="mt-3 rounded bg-green-900/40 border border-green-700 px-3 py-2 text-xs text-green-300">{{ session('status') }}</div>
                 @endif
+            </div>
+
+            {{-- Quick Info --}}
+            <div class="card-panel p-6">
+                <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Quick Info</h2>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Lead ID</span>
+                        <span class="font-mono text-white">#{{ $lead->id }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Current Status</span>
+                        <span class="text-white">{{ ucfirst(str_replace('-', ' ', $lead->status)) }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Assigned To</span>
+                        <span class="text-white">{{ $lead->assignedUser?->name ?? '—' }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Received</span>
+                        <span class="text-slate-300">{{ $lead->created_at->diffForHumans() }}</span>
+                    </div>
+                </div>
             </div>
 
             <div class="card-panel p-4 text-center">
