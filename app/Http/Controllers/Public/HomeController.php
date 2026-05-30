@@ -11,7 +11,7 @@ use App\Models\Industry;
 use App\Models\InnovationDomain;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
-use App\Models\Logo;
+
 
 class HomeController extends Controller
 {
@@ -21,7 +21,7 @@ class HomeController extends Controller
         $caseStudies     = CaseStudy::where('is_published', true)->latest()->take(3)->get();
         $homeProducts = Product::where('is_published', true)->latest()->take(6)->get();
         $partners        = Partner::where('visible', true)->orderBy('sort_order')->get();
-        $logos = Logo::where('visible', true)->orderBy('sort_order')->take(20)->get();
+      $logos = Partner::where('visible', true)->orderBy('sort_order')->take(20)->get();
         $testimonials    = Testimonial::where('visible', true)->orderBy('sort_order')->get();
         $upcomingEvents  = Event::where('is_published', true)->orderBy('date')->take(3)->get();
         $homeIndustries  = Industry::where('is_published', true)->orderBy('sort_order')->take(9)->get();
