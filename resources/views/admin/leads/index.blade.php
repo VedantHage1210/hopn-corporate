@@ -50,6 +50,7 @@
         <table class="min-w-full text-sm text-slate-300">
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
+                    <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Contact</th>
                     <th class="px-3 py-2">Type</th>
                     <th class="px-3 py-2">Company</th>
@@ -78,7 +79,6 @@
                         'startup-application'  => 'bg-violet-900 text-violet-200',
                         'career-application'   => 'bg-teal-900 text-teal-200',
                     ];
-                    $typeKey = str_starts_with($lead->type, 'event-registration') ? 'event-registration' : $lead->type;
                     $typeColor = str_starts_with($lead->type, 'event-registration')
                         ? 'bg-orange-900 text-orange-200'
                         : ($typeColors[$lead->type] ?? 'bg-slate-700 text-slate-300');
@@ -87,11 +87,12 @@
                         : ucwords(str_replace('-', ' ', $lead->type));
                 @endphp
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                    <td class="px-3 py-3 text-slate-400">{{ $lead->id }}</td>
                     <td class="px-3 py-3">
                         <div class="font-medium text-white">{{ $lead->name }}</div>
                         <div class="text-xs text-slate-400">{{ $lead->email }}</div>
                         @if($lead->phone)
-                        <div class="text-xs text-slate-500">{{ $lead->phone }}</div>
+                            <div class="text-xs text-slate-500">{{ $lead->phone }}</div>
                         @endif
                     </td>
                     <td class="px-3 py-3">
@@ -111,7 +112,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No leads found.</td></tr>
+                <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No leads found.</td></tr>
                 @endforelse
             </tbody>
         </table>
