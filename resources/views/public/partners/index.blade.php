@@ -1,8 +1,7 @@
 <x-layouts.public :title="'Partners'">
 @php
     $lang = request()->route('lang', 'en');
-    use App\Models\Logo;
-    $logos = Logo::where('visible', true)->orderBy('sort_order')->get();
+    $logos = \App\Models\Logo::where('visible', true)->orderBy('sort_order')->get();
     $categoryLabels = [
         'customer'   => 'Enterprise Customers',
         'partner'    => 'Technology Partners',
