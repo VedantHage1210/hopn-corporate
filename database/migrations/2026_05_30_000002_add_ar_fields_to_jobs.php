@@ -7,13 +7,13 @@ return new class extends Migration {
     public function up(): void {
         Schema::table('jobs', function (Blueprint $table) {
             if (!Schema::hasColumn('jobs', 'description_ar')) {
-                $table->text('description_ar')->nullable()->after('description_de');
+                $table->text('description_ar')->nullable();
             }
             if (!Schema::hasColumn('jobs', 'requirements_ar')) {
-                $table->text('requirements_ar')->nullable()->after('requirements_de');
+                $table->text('requirements_ar')->nullable();
             }
             if (!Schema::hasColumn('jobs', 'benefits_ar')) {
-                $table->text('benefits_ar')->nullable()->after('benefits_de');
+                $table->text('benefits_ar')->nullable();
             }
         });
     }
