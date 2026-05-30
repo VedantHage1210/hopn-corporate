@@ -11,10 +11,14 @@
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Applicant Details</h2>
                 <dl class="space-y-3 text-sm">
-                    <div class="flex gap-4">
-                        <dt class="w-32 text-slate-400">Name</dt>
-                        <dd class="text-white font-medium">{{ $applicant->full_name }}</dd>
-                    </div>
+                   <div class="flex gap-4">
+    <dt class="w-32 text-slate-400">ID</dt>
+    <dd class="text-white font-mono">#{{ $applicant->id }}</dd>
+</div>
+<div class="flex gap-4">
+    <dt class="w-32 text-slate-400">Name</dt>
+    <dd class="text-white font-medium">{{ $applicant->full_name }}</dd>
+</div>
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Email</dt>
                         <dd><a href="mailto:{{ $applicant->email }}" class="text-indigo-300 hover:text-indigo-200">{{ $applicant->email }}</a></dd>
