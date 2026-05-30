@@ -1,7 +1,6 @@
 <x-layouts.public :title="'Partners'">
 @php
     $lang = request()->route('lang', 'en');
-    $logos = \App\Models\Logo::where('visible', true)->orderBy('sort_order')->get();
     $categoryLabels = [
         'customer'   => 'Enterprise Customers',
         'partner'    => 'Technology Partners',
@@ -18,7 +17,6 @@
         'university' => '#06B6D4',
         'research'   => '#EF4444',
     ];
-    $allItems = $logos->count() > 0 ? $logos : $partners;
 @endphp
 
     {{-- Hero --}}
@@ -44,8 +42,8 @@
     {{-- Grouped Section --}}
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
-            @if($allItems->count() > 0)
-                @foreach($allItems->groupBy('category') as $category => $items)
+            @if($partners->count() > 0)
+                @foreach($partners->groupBy('type') as $category => $items)
                 @php $catColor = $categoryColors[$category] ?? '#4F6EF7'; @endphp
                 <div style="margin-bottom:60px;">
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
@@ -58,12 +56,11 @@
                     </div>
                     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px;">
                         @foreach($items as $item)
-                        @php $logoUrl = $item->logo_url ?? $item->logo ?? null; @endphp
-                        <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; transition:all 0.25s;"
+                        <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center;"
                              onmouseover="this.style.borderColor='{{ $catColor }}40'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'"
                              onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
-                            @if($logoUrl)
-                            <img src="{{ $logoUrl }}" alt="{{ $item->name }}"
+                            @if($item->logo)
+                            <img src="{{ $item->logo }}" alt="{{ $item->name }}"
                                  style="height:40px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.75) grayscale(0.2);"
                                  onmouseover="this.style.filter='brightness(1) grayscale(0)'"
                                  onmouseout="this.style.filter='brightness(0.75) grayscale(0.2)'">
@@ -73,8 +70,8 @@
                             </div>
                             @endif
                             <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $item->name }}</div>
-                            @if($item->website ?? $item->website_url ?? null)
-                            <a href="{{ $item->website ?? $item->website_url }}" target="_blank"
+                            @if($item->url)
+                            <a href="{{ $item->url }}" target="_blank"
                                style="font-size:11px; color:{{ $catColor }}; text-decoration:none; opacity:0.7;"
                                onmouseover="this.style.opacity='1'"
                                onmouseout="this.style.opacity='0.7'">Visit →</a>
@@ -87,7 +84,14 @@
             @else
             <div style="text-align:center; padding:80px; color:#64748B;">
                 <div style="font-size:48px; margin-bottom:16px;">🤝</div>
-                <p>No partners found. Add logos from Admin Panel → Logos & Partners.</p>
+                <p>No partners found. Add from Admin Panel → Logos & Partners.</p>
+            </div>
+            @endif
+
+            {{-- Pagination --}}
+            @if($partners->hasPages())
+            <div style="display:flex; justify-content:center; margin-top:40px;">
+                {{ $partners->links() }}
             </div>
             @endif
         </div>
