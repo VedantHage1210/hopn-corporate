@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Job;
 use Illuminate\Http\Request;
@@ -24,20 +22,23 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'          => ['required', 'string', 'max:255'],
-            'slug'           => ['nullable', 'string', 'max:255', 'unique:jobs,slug'],
-            'location'       => ['nullable', 'string', 'max:255'],
-            'type'           => ['nullable', 'string', 'max:50'],
-            'department'     => ['nullable', 'string', 'max:255'],
-            'seniority'      => ['nullable', 'string', 'max:100'],
-            'description'    => ['nullable', 'string'],
-            'description_de' => ['nullable', 'string'],
-            'requirements'   => ['nullable', 'string'],
-            'requirements_de'=> ['nullable', 'string'],
-            'benefits'       => ['nullable', 'string'],
-            'benefits_de'    => ['nullable', 'string'],
-            'published_at'   => ['nullable', 'date'],
-            'close_date'     => ['nullable', 'date'],
+            'title'          => 'required|string|max:255',
+            'slug'           => 'nullable|string|max:255|unique:jobs,slug',
+            'location'       => 'nullable|string|max:255',
+            'type'           => 'nullable|string|max:50',
+            'department'     => 'nullable|string|max:255',
+            'seniority'      => 'nullable|string|max:100',
+            'description'    => 'nullable|string',
+            'description_de' => 'nullable|string',
+            'description_ar' => 'nullable|string',
+            'requirements'   => 'nullable|string',
+            'requirements_de'=> 'nullable|string',
+            'requirements_ar'=> 'nullable|string',
+            'benefits'       => 'nullable|string',
+            'benefits_de'    => 'nullable|string',
+            'benefits_ar'    => 'nullable|string',
+            'published_at'   => 'nullable|date',
+            'close_date'     => 'nullable|date',
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
@@ -61,22 +62,26 @@ class JobController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $job  = Job::findOrFail($id);
+        $job = Job::findOrFail($id);
+
         $data = $request->validate([
-            'title'          => ['required', 'string', 'max:255'],
-            'slug'           => ['nullable', 'string', 'max:255', 'unique:jobs,slug,' . $job->id],
-            'location'       => ['nullable', 'string', 'max:255'],
-            'type'           => ['nullable', 'string', 'max:50'],
-            'department'     => ['nullable', 'string', 'max:255'],
-            'seniority'      => ['nullable', 'string', 'max:100'],
-            'description'    => ['nullable', 'string'],
-            'description_de' => ['nullable', 'string'],
-            'requirements'   => ['nullable', 'string'],
-            'requirements_de'=> ['nullable', 'string'],
-            'benefits'       => ['nullable', 'string'],
-            'benefits_de'    => ['nullable', 'string'],
-            'published_at'   => ['nullable', 'date'],
-            'close_date'     => ['nullable', 'date'],
+            'title'          => 'required|string|max:255',
+            'slug'           => 'nullable|string|max:255|unique:jobs,slug,' . $job->id,
+            'location'       => 'nullable|string|max:255',
+            'type'           => 'nullable|string|max:50',
+            'department'     => 'nullable|string|max:255',
+            'seniority'      => 'nullable|string|max:100',
+            'description'    => 'nullable|string',
+            'description_de' => 'nullable|string',
+            'description_ar' => 'nullable|string',
+            'requirements'   => 'nullable|string',
+            'requirements_de'=> 'nullable|string',
+            'requirements_ar'=> 'nullable|string',
+            'benefits'       => 'nullable|string',
+            'benefits_de'    => 'nullable|string',
+            'benefits_ar'    => 'nullable|string',
+            'published_at'   => 'nullable|date',
+            'close_date'     => 'nullable|date',
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
