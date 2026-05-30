@@ -9,21 +9,15 @@ class SiteSetting extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'site_name',
-        'site_name_de',
-        'site_tagline',
-        'site_tagline_de',
-        'default_locale',
-        'timezone',
-        'contact_email',
-        'contact_phone',
-        'office_address',
-        'office_address_de',
-        'social_links',
-        'seo_defaults',
-        'maintenance_mode',
-    ];
+ protected $fillable = [
+    'site_name', 'site_name_de', 'site_name_ar',
+    'site_tagline', 'site_tagline_de', 'site_tagline_ar',
+    'default_locale', 'timezone',
+    'contact_email', 'contact_phone',
+    'office_address', 'office_address_de',
+    'social_links', 'seo_defaults',
+    'maintenance_mode',
+];
 
     protected $casts = [
         'social_links' => 'array',
