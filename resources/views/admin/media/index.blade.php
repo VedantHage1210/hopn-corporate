@@ -43,7 +43,7 @@
                     <td class="px-3 py-3 text-slate-400">{{ $asset->id }}</td>
                     <td class="px-3 py-3">
                         @if(str_starts_with($asset->mime_type ?? '', 'image/'))
-                            <img src="{{ Storage::url($asset->path) }}" alt="{{ $asset->alt_text }}"
+                            <img src="{{ $asset->path }}" alt="{{ $asset->alt_text }}"
                                  class="h-10 w-16 object-cover rounded">
                         @elseif($asset->mime_type === 'application/pdf')
                             <div class="h-10 w-16 rounded bg-rose-900/30 flex items-center justify-center text-xs text-rose-300 font-bold">PDF</div>
@@ -66,7 +66,7 @@
                     </td>
                     <td class="px-3 py-3 text-slate-400 text-xs">{{ $asset->created_at->format('d M Y') }}</td>
                     <td class="px-3 py-3 flex gap-3 items-center">
-                        <a href="{{ Storage::url($asset->path) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        <a href="{{ $asset->path }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         <a href="{{ route('admin.media-assets.edit', $asset) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <form method="POST" action="{{ route('admin.media-assets.destroy', $asset) }}" class="inline-block">
                             @csrf @method('DELETE')
