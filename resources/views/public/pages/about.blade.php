@@ -226,8 +226,8 @@
                 <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; text-align:center; transition:all 0.25s;"
                      onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'"
                      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'">
-                    @if($member->avatar_url)
-                    <img src="{{ $member->avatar_url }}" alt="{{ $member->name }}"
+                  @if($member->photo)
+                    <img src="{{ $member->photo }}" alt="{{ $member->name }}"
                          style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto 16px; border:2px solid rgba(79,110,247,0.3);">
                     @else
                     <div style="width:80px; height:80px; border-radius:50%; background:rgba(79,110,247,0.1); border:2px solid rgba(79,110,247,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; font-weight:800; color:#818CF8;">
@@ -235,9 +235,24 @@
                     </div>
                     @endif
                     <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:4px;">{{ $member->name }}</h3>
-                    <p style="font-size:13px; color:#4F6EF7; margin-bottom:8px;">{{ $member->role }}</p>
-                    @if($member->bio)
-                    <p style="font-size:12px; color:#64748B; line-height:1.6;">{{ Str::limit($member->bio, 80) }}</p>
+                    <p style="font-size:13px; color:#4F6EF7; margin-bottom:8px;">
+                        @if($lang === 'ar' && !empty($member->role_ar)) {{ $member->role_ar }}
+                        @elseif($lang === 'de' && !empty($member->role_de)) {{ $member->role_de }}
+                        @else {{ $member->role_en ?? '' }}
+                        @endif
+                    </p>
+                    @php
+                        $bio = $lang === 'ar' && !empty($member->bio_ar) ? $member->bio_ar
+                             : ($lang === 'de' && !empty($member->bio_de) ? $member->bio_de
+                             : ($member->bio_en ?? ''));
+                    @endphp
+                    @if($bio)
+                    <p style="font-size:12px; color:#64748B; line-height:1.6;">{{ Str::limit($bio, 80) }}</p>
+                    @endif
+                    @if($member->linkedin)
+                    <a href="{{ $member->linkedin }}" target="_blank"
+                       style="display:inline-block; margin-top:10px; font-size:11px; color:#4F6EF7; text-decoration:none; opacity:0.8;"
+                       onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">LinkedIn →</a>
                     @endif
                 </div>
                 @endforeach
