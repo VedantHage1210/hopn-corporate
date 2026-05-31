@@ -5,33 +5,56 @@
     </div>
 
     @if(session('status'))
-        <div class="mb-6 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">
-            {{ session('status') }}
-        </div>
+        <div class="mb-6 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
     @endif
 
     <div class="grid gap-6 lg:grid-cols-2">
 
         {{-- Default SEO Settings --}}
         <div class="card-panel p-6">
-            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Default SEO Settings</h2>
+            <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">Default SEO Settings</h2>
             <form method="POST" action="{{ route('admin.seo.settings.update') }}" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="mb-1 block text-xs font-medium text-slate-300">Default Meta Title</label>
-                    <input type="text" name="seo_default_title" value="{{ old('seo_default_title', $seoSettings['seo_default_title']) }}" maxlength="70"
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Title (EN)</label>
+                    <input type="text" name="seo_default_title"
+                        value="{{ old('seo_default_title', $seoSettings['seo_default_title']) }}" maxlength="70"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                     <p class="mt-1 text-xs text-slate-500">Recommended: under 60 characters</p>
                 </div>
                 <div>
-                    <label class="mb-1 block text-xs font-medium text-slate-300">Default Meta Description</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Title (DE)</label>
+                    <input type="text" name="seo_default_title_de"
+                        value="{{ old('seo_default_title_de', $seoSettings['seo_default_title_de'] ?? '') }}" maxlength="70"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Title (AR)</label>
+                    <input type="text" name="seo_default_title_ar"
+                        value="{{ old('seo_default_title_ar', $seoSettings['seo_default_title_ar'] ?? '') }}" maxlength="70"
+                        dir="rtl"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Description (EN)</label>
                     <textarea name="seo_default_description" rows="3" maxlength="160"
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('seo_default_description', $seoSettings['seo_default_description']) }}</textarea>
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('seo_default_description', $seoSettings['seo_default_description']) }}</textarea>
                     <p class="mt-1 text-xs text-slate-500">Recommended: 120–160 characters</p>
                 </div>
                 <div>
-                    <label class="mb-1 block text-xs font-medium text-slate-300">robots.txt Content</label>
-                    <textarea name="robots_txt" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white font-mono">{{ old('robots_txt', $seoSettings['robots_txt']) }}</textarea>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Description (DE)</label>
+                    <textarea name="seo_default_description_de" rows="3" maxlength="160"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('seo_default_description_de', $seoSettings['seo_default_description_de'] ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Default Meta Description (AR)</label>
+                    <textarea name="seo_default_description_ar" rows="3" maxlength="160" dir="rtl"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('seo_default_description_ar', $seoSettings['seo_default_description_ar'] ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">robots.txt Content</label>
+                    <textarea name="robots_txt" rows="6"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono">{{ old('robots_txt', $seoSettings['robots_txt']) }}</textarea>
                 </div>
                 <button type="submit" class="btn-primary text-sm">Save SEO Settings</button>
             </form>
@@ -39,9 +62,9 @@
 
         {{-- Sitemap --}}
         <div class="card-panel p-6">
-            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Sitemap</h2>
-            <p class="mb-4 text-sm text-slate-400">Generate or refresh your sitemap.xml file. It will be written to <code class="text-indigo-300">/public/sitemap.xml</code>.</p>
-            <div class="mb-4 rounded bg-slate-900 px-4 py-3 text-sm">
+            <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">Sitemap</h2>
+            <p class="mb-4 text-sm text-slate-400">Generate or refresh your sitemap.xml file.</p>
+            <div class="mb-4 rounded-lg bg-slate-800 px-4 py-3 text-sm">
                 <span class="text-slate-400">URL:</span>
                 <a href="{{ url('/sitemap.xml') }}" target="_blank" class="ml-2 text-indigo-300 hover:text-indigo-200">{{ url('/sitemap.xml') }}</a>
             </div>
@@ -49,28 +72,45 @@
                 @csrf
                 <button type="submit" class="btn-primary text-sm">Generate Sitemap Now</button>
             </form>
+
+            {{-- OG Image --}}
+            <div class="mt-6">
+                <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">Default OG Image</h2>
+                <form method="POST" action="{{ route('admin.seo.settings.update') }}">
+                    @csrf
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">OG Image URL</label>
+                    <input type="url" name="seo_og_image"
+                        value="{{ old('seo_og_image', $seoSettings['seo_og_image'] ?? '') }}"
+                        placeholder="https://example.com/og-image.jpg"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white mb-3">
+                    @if(!empty($seoSettings['seo_og_image']))
+                        <img src="{{ $seoSettings['seo_og_image'] }}" class="h-20 rounded mb-3 object-cover">
+                    @endif
+                    <button type="submit" class="btn-primary text-sm">Save OG Image</button>
+                </form>
+            </div>
         </div>
     </div>
 
     {{-- Redirect Manager --}}
     <div class="mt-6 card-panel p-6">
-        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">URL Redirects</h2>
+        <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">URL Redirects</h2>
 
         <form method="POST" action="{{ route('admin.seo.redirects.store') }}" class="mb-6 flex flex-wrap items-end gap-3">
             @csrf
             <div>
-                <label class="mb-1 block text-xs text-slate-400">From URL</label>
+                <label class="block text-xs text-slate-400 mb-1">From URL</label>
                 <input type="text" name="from_url" placeholder="/old-page" required
-                    class="rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white w-56">
+                    class="rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white w-56">
             </div>
             <div>
-                <label class="mb-1 block text-xs text-slate-400">To URL</label>
+                <label class="block text-xs text-slate-400 mb-1">To URL</label>
                 <input type="text" name="to_url" placeholder="/new-page" required
-                    class="rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white w-56">
+                    class="rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white w-56">
             </div>
             <div>
-                <label class="mb-1 block text-xs text-slate-400">Status Code</label>
-                <select name="status_code" class="rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                <label class="block text-xs text-slate-400 mb-1">Status Code</label>
+                <select name="status_code" class="rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                     <option value="301">301 — Permanent</option>
                     <option value="302">302 — Temporary</option>
                 </select>
@@ -82,31 +122,41 @@
             <table class="min-w-full text-sm text-slate-300">
                 <thead class="text-left text-xs uppercase text-slate-400">
                     <tr>
+                        <th class="px-3 py-2">ID</th>
                         <th class="px-3 py-2">From</th>
                         <th class="px-3 py-2">To</th>
                         <th class="px-3 py-2">Code</th>
+                        <th class="px-3 py-2">Hits</th>
+                        <th class="px-3 py-2">Active</th>
                         <th class="px-3 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($redirects as $redirect)
-                        <tr class="border-t border-slate-800">
-                            <td class="px-3 py-2 font-mono text-xs text-slate-300">{{ $redirect->from_url }}</td>
-                            <td class="px-3 py-2 font-mono text-xs text-indigo-300">{{ $redirect->to_url }}</td>
-                            <td class="px-3 py-2">
-                                <span class="rounded px-2 py-0.5 text-xs {{ $redirect->status_code == 301 ? 'bg-green-900 text-green-200' : 'bg-yellow-900 text-yellow-200' }}">
-                                    {{ $redirect->status_code }}
-                                </span>
-                            </td>
-                            <td class="px-3 py-2">
-                                <form method="POST" action="{{ route('admin.seo.redirects.destroy', $redirect) }}" class="inline-block">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Delete this redirect?')" class="text-rose-300 hover:text-rose-200 text-xs">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr class="border-t border-slate-800 hover:bg-slate-800/30">
+                        <td class="px-3 py-2 text-slate-400">{{ $redirect->id }}</td>
+                        <td class="px-3 py-2 font-mono text-xs text-slate-300">{{ $redirect->from_url }}</td>
+                        <td class="px-3 py-2 font-mono text-xs text-indigo-300">{{ $redirect->to_url }}</td>
+                        <td class="px-3 py-2">
+                            <span class="rounded px-2 py-0.5 text-xs {{ $redirect->status_code == 301 ? 'bg-green-900 text-green-200' : 'bg-yellow-900 text-yellow-200' }}">
+                                {{ $redirect->status_code }}
+                            </span>
+                        </td>
+                        <td class="px-3 py-2 text-slate-400">{{ $redirect->hits ?? 0 }}</td>
+                        <td class="px-3 py-2">
+                            <span class="rounded-full px-2 py-0.5 text-xs {{ $redirect->is_active ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
+                                {{ $redirect->is_active ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                        <td class="px-3 py-2">
+                            <form method="POST" action="{{ route('admin.seo.redirects.destroy', $redirect) }}" class="inline-block">
+                                @csrf @method('DELETE')
+                                <button type="submit" onclick="return confirm('Delete this redirect?')" class="text-rose-300 hover:text-rose-200 text-xs">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                     @empty
-                        <tr><td colspan="4" class="px-3 py-6 text-center text-slate-500">No redirects configured.</td></tr>
+                    <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No redirects configured.</td></tr>
                     @endforelse
                 </tbody>
             </table>
