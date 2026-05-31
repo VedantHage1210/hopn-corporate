@@ -1,115 +1,98 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\MediaAsset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MediaAssetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.shared.index', [
-            'title' => 'Media Library',
-            'items' => MediaAsset::query()->latest()->paginate(20),
-            'columns' => ['ID' => 'id', 'File' => 'file_name', 'Mime' => 'mime_type', 'Path' => 'path'],
-            'createRoute' => route('admin.media-assets.create'),
-            'editRouteName' => 'admin.media-assets.edit',
-            'destroyRouteName' => 'admin.media-assets.destroy',
-        ]);
+        $query = MediaAsset::latest();
+
+        if ($request->filled('type')) {
+            $query->where('mime_type', 'like', $request->type . '%');
+        }
+        if ($request->filled('search')) {
+            $query->where('file_name', 'like', '%' . $request->search . '%');
+        }
+
+        $items = $query->paginate(20);
+        return view('admin.media.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('admin.shared.form', [
-            'title' => 'Upload Media Asset',
-            'action' => route('admin.media-assets.store'),
-            'method' => 'POST',
-            'fields' => [
-                ['name' => 'file', 'label' => 'File', 'type' => 'file'],
-                ['name' => 'title', 'label' => 'Title'],
-                ['name' => 'alt_text', 'label' => 'Alt Text'],
-            ],
-        ]);
+        $item = new MediaAsset();
+        return view('admin.media.form', compact('item'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'file' => ['required', 'file', 'mimes:jpg,jpeg,png,gif,webp,pdf,mp4', 'max:10240'],
-            'title' => ['nullable', 'string', 'max:255'],
-            'alt_text' => ['nullable', 'string', 'max:255'],
+        $request->validate([
+            'file'       => 'required|file|mimes:jpg,jpeg,png,gif,webp,pdf,mp4|max:10240',
+            'title'      => 'nullable|string|max:255',
+            'title_de'   => 'nullable|string|max:255',
+            'alt_text'   => 'nullable|string|max:255',
+            'alt_text_de'=> 'nullable|string|max:255',
         ]);
+
         $file = $request->file('file');
         $path = $file->store('media', 'public');
+
         MediaAsset::create([
-            'disk' => 'public',
-            'path' => $path,
-            'file_name' => $file->getClientOriginalName(),
-            'mime_type' => $file->getMimeType(),
-            'size' => $file->getSize(),
-            'title' => $data['title'] ?? null,
-            'alt_text' => $data['alt_text'] ?? null,
+            'disk'       => 'public',
+            'path'       => $path,
+            'file_name'  => $file->getClientOriginalName(),
+            'mime_type'  => $file->getMimeType(),
+            'size'       => $file->getSize(),
+            'title'      => $request->title,
+            'title_de'   => $request->title_de,
+            'alt_text'   => $request->alt_text,
+            'alt_text_de'=> $request->alt_text_de,
         ]);
+
         return redirect()->route('admin.media-assets.index')->with('status', 'Media uploaded.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         return redirect()->route('admin.media-assets.edit', $id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        $asset = MediaAsset::findOrFail($id);
-        return view('admin.shared.form', [
-            'title' => 'Edit Media Asset',
-            'action' => route('admin.media-assets.update', $asset->id),
-            'method' => 'PUT',
-            'item' => $asset,
-            'fields' => [
-                ['name' => 'title', 'label' => 'Title'],
-                ['name' => 'alt_text', 'label' => 'Alt Text'],
-            ],
-        ]);
+        $item = MediaAsset::findOrFail($id);
+        return view('admin.media.form', compact('item'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $asset = MediaAsset::findOrFail($id);
-        $data = $request->validate([
-            'title' => ['nullable', 'string', 'max:255'],
-            'alt_text' => ['nullable', 'string', 'max:255'],
+
+        $request->validate([
+            'title'      => 'nullable|string|max:255',
+            'title_de'   => 'nullable|string|max:255',
+            'alt_text'   => 'nullable|string|max:255',
+            'alt_text_de'=> 'nullable|string|max:255',
         ]);
-        $asset->update($data);
+
+        $asset->update([
+            'title'      => $request->title,
+            'title_de'   => $request->title_de,
+            'alt_text'   => $request->alt_text,
+            'alt_text_de'=> $request->alt_text_de,
+        ]);
+
         return redirect()->route('admin.media-assets.index')->with('status', 'Media updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        MediaAsset::findOrFail($id)->delete();
+        $asset = MediaAsset::findOrFail($id);
+        Storage::disk($asset->disk ?? 'public')->delete($asset->path);
+        $asset->delete();
         return redirect()->route('admin.media-assets.index')->with('status', 'Media deleted.');
     }
 }
