@@ -56,7 +56,7 @@ return [
     | Supported Locales
     |--------------------------------------------------------------------------
     */
-    'locales' => ['en', 'de'],
+    'locales' => ['en', 'de', 'ar'],
     'default_locale' => 'en',
 
     /*
