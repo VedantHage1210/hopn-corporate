@@ -28,10 +28,13 @@
                 <div>
                     <p class="text-xs font-semibold text-slate-400 mb-2">Current File</p>
                     @if(str_starts_with($item->mime_type ?? '', 'image/'))
-                        <img src="{{ Storage::url($item->path) }}" alt="{{ $item->alt_text }}"
+                        <img src="{{ $item->path }}" alt="{{ $item->alt_text }}"
                              class="h-24 object-contain rounded mb-2">
                     @endif
                     <p class="text-xs text-slate-500 font-mono">{{ $item->file_name }}</p>
+                    @if($item->path)
+                        <a href="{{ $item->path }}" target="_blank" class="text-xs text-indigo-300 hover:text-indigo-200">View on Cloudinary →</a>
+                    @endif
                 </div>
                 @endif
 
@@ -61,7 +64,7 @@
             </div>
 
             <div class="mt-6 flex gap-3">
-                <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update' : 'Upload' }}</button>
+                <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update' : 'Upload to Cloudinary' }}</button>
                 <a href="{{ route('admin.media-assets.index') }}" class="rounded border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:text-white">Cancel</a>
             </div>
         </form>
