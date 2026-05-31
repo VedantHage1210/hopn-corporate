@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.3",
         "artesaos/seotools": "^1.4",
-        "cloudinary-labs/cloudinary-laravel": "^2.0",
+      
         "guzzlehttp/guzzle": "^7.2",
         "laravel/breeze": "^1.29",
         "laravel/framework": "^10.0",
