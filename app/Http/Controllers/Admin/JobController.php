@@ -41,9 +41,11 @@ class JobController extends Controller
             'close_date'     => 'nullable|date',
         ]);
 
-        $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
-        $data['is_active']    = $request->boolean('is_active', true);
-        $data['is_published'] = $request->boolean('is_published');
+        $data['slug']            = $data['slug'] ?: Str::slug($data['title']);
+        $data['type']            = $request->type;
+        $data['employment_type'] = $request->type;
+        $data['is_active']       = $request->boolean('is_active', true);
+        $data['is_published']    = $request->boolean('is_published');
 
         Job::create($data);
         return redirect()->route('admin.jobs.index')->with('status', 'Job created.');
@@ -84,9 +86,11 @@ class JobController extends Controller
             'close_date'     => 'nullable|date',
         ]);
 
-        $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
-        $data['is_active']    = $request->boolean('is_active');
-        $data['is_published'] = $request->boolean('is_published');
+        $data['slug']            = $data['slug'] ?: Str::slug($data['title']);
+        $data['type']            = $request->type;
+        $data['employment_type'] = $request->type;
+        $data['is_active']       = $request->boolean('is_active');
+        $data['is_published']    = $request->boolean('is_published');
 
         $job->update($data);
         return redirect()->route('admin.jobs.index')->with('status', 'Job updated.');
