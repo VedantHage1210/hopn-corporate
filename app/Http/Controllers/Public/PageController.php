@@ -12,7 +12,15 @@ class PageController extends Controller
         $teamMembers = TeamMember::where('visible', true)
                                  ->orderBy('sort_order')
                                  ->get();
-
         return view('public.pages.about', compact('page', 'teamMembers'));
+    }
+
+    public function show(string $lang, string $slug)
+    {
+        $page = Page::where('slug', $slug)
+                    ->where('is_published', true)
+                    ->firstOrFail();
+
+        return view('public.pages.show', compact('page', 'lang'));
     }
 }
