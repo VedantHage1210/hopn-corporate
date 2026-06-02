@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,28 +15,32 @@ class Job extends Model
         'department',
         'location',
         'employment_type',
+        'type',
+        'seniority',
         'summary',
         'summary_de',
         'description',
         'description_de',
+        'description_ar',
+        'requirements',
+        'requirements_de',
+        'requirements_ar',
+        'benefits',
+        'benefits_de',
+        'benefits_ar',
         'is_published',
         'is_active',
         'application_deadline',
         'published_at',
-        'requirements',
-        'requirements_de',
-        'benefits',
-        'benefits_de',
-        'seniority',
-        'type',
         'close_date',
     ];
 
     protected $casts = [
-        'is_published' => 'boolean',
-        'is_active' => 'boolean',
+        'is_published'         => 'boolean',
+        'is_active'            => 'boolean',
         'application_deadline' => 'date',
-        'published_at' => 'datetime',
+        'published_at'         => 'datetime',
+        'close_date'           => 'date',
     ];
 
     public function applications()
