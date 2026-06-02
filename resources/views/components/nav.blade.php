@@ -1,4 +1,31 @@
-@php($lang = request()->route('lang', app()->getLocale()))
+@php
+    $lang = request()->route('lang', app()->getLocale());
+    $navItems = \App\Models\NavigationItem::where('menu_location', 'header')
+                    ->whereNull('parent_id')
+                    ->where('visible_' . $lang, true)
+                    ->orderBy('sort_order')
+                    ->get();
+    $footerItems = \App\Models\NavigationItem::where('menu_location', 'footer')
+                    ->where('visible_' . $lang, true)
+                    ->orderBy('sort_order')
+                    ->get();
+
+    // Fallback — agar DB mein koi items nahi hain to hardcoded use karo
+    $defaultItems = [
+        ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
+        ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
+        ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+        ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
+        ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
+        ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
+        ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
+        ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
+        ['route' => 'insights.index',    'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
+        ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
+    ];
+    $useCms = $navItems->count() > 0;
+@endphp
+
 <header x-data="{ open: false }" class="sticky top-0 z-50"
         style="background: rgba(10,15,30,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);">
 
@@ -14,25 +41,25 @@
 
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="gap:4px;">
-            @foreach([
-                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],      
-                ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
-                ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
-                ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
-                ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
-                ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
-                ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
-                ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-                ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
-                ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
-            ] as $item)
-                <a href="{{ route($item['route'], ['lang' => $lang]) }}"
-                 style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
-                   onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
-                   onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
-                    {{ $item[$lang] ?? $item['en'] }}
-                </a>
-            @endforeach
+            @if($useCms)
+                @foreach($navItems as $item)
+                    <a href="{{ $item->url ?? '#' }}"
+                       style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
+                       onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
+                       onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
+                        {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
+                    </a>
+                @endforeach
+            @else
+                @foreach($defaultItems as $item)
+                    <a href="{{ route($item['route'], ['lang' => $lang]) }}"
+                       style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
+                       onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
+                       onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
+                        {{ $item[$lang] ?? $item['en'] }}
+                    </a>
+                @endforeach
+            @endif
         </nav>
 
         {{-- Right Side --}}
@@ -43,7 +70,7 @@
                  style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
                 @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
-                 style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s;
+                   style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s;
                    {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
                 </a>
@@ -84,27 +111,25 @@
          x-transition:leave-end="opacity-0"
          style="display:none; border-top:1px solid rgba(255,255,255,0.05); background:rgba(10,15,30,0.98); backdrop-filter:blur(20px);">
         <nav class="container-shell" style="display:flex; flex-direction:column; padding:12px 16px; gap:4px;">
-            @foreach([
-                ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
-            
-                ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
-                ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
-                ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
-                ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
-                ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
-                ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
-                ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-              ['route' => 'insights.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
-                ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
-                ['route' => 'contact.index',     'en' => 'Contact',    'de' => 'Kontakt',    'ar' => 'اتصل بنا'],
-            ] as $item)
-                <a href="{{ route($item['route'], ['lang' => $lang]) }}"
-                   style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
-                   onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
-                   onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
-                    {{ $item[$lang] ?? $item['en'] }}
-                </a>
-            @endforeach
+            @if($useCms)
+                @foreach($navItems as $item)
+                    <a href="{{ $item->url ?? '#' }}"
+                       style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
+                       onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
+                       onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
+                        {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
+                    </a>
+                @endforeach
+            @else
+                @foreach(array_merge($defaultItems, [['route' => 'contact.index', 'en' => 'Contact', 'de' => 'Kontakt', 'ar' => 'اتصل بنا']]) as $item)
+                    <a href="{{ route($item['route'], ['lang' => $lang]) }}"
+                       style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
+                       onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
+                       onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
+                        {{ $item[$lang] ?? $item['en'] }}
+                    </a>
+                @endforeach
+            @endif
 
             {{-- Mobile Language Switcher --}}
             <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
