@@ -25,7 +25,7 @@
                     </div>
                     <div class="flex gap-4">
                         <dt class="w-36 shrink-0 text-slate-400">Email</dt>
-                        <dd><a href="mailto:{{ $lead->email }}" class="text-indigo-300 hover:text-indigo-200">{{ $lead->email }}</a></dd>
+                        <dd><a href="https://mail.google.com/mail/?view=cm&to={{ $lead->email }}&su=Re: Your Inquiry at HOPn" target="_blank" class="text-indigo-300 hover:text-indigo-200">{{ $lead->email }}</a></dd>
                     </div>
                     @if($lead->phone)
                     <div class="flex gap-4">
