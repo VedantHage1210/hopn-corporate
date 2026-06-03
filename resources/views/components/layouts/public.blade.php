@@ -22,14 +22,42 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-function triggerGoogleTranslate(lang) {
-    var langMap = { 'en': 'en', 'de': 'de', 'ar': 'ar' };
-    var targetLang = langMap[lang] || 'en';
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: "en",
+        includedLanguages: "en,de,ar",
+        autoDisplay: false
+    }, "google_translate_element");
+}
 
+// Page load par saved language apply karo
+window.addEventListener('load', function() {
+    var savedLang = getCookie('googtrans');
+    if (!savedLang) {
+        var pathLang = window.location.pathname.split('/')[1];
+        if (pathLang === 'de' || pathLang === 'ar') {
+            setTimeout(function() {
+                applyGoogleTranslate(pathLang);
+            }, 1000);
+        }
+    }
+});
+
+function applyGoogleTranslate(lang) {
+    var langCode = lang === 'en' ? 'en' : lang;
+    
+    // Cookie set karo taaki persist ho
+    if (lang === 'en') {
+        deleteCookie('googtrans');
+    } else {
+        setCookie('googtrans', '/en/' + langCode, 365);
+        setCookie('googtrans', '/en/' + langCode, 365, '.hopn-corporate-production-e881.up.railway.app');
+    }
+    
     function doTranslate() {
         var select = document.querySelector('.goog-te-combo');
         if (select) {
-            select.value = targetLang;
+            select.value = langCode;
             select.dispatchEvent(new Event('change'));
         } else {
             setTimeout(doTranslate, 300);
@@ -37,7 +65,38 @@ function triggerGoogleTranslate(lang) {
     }
     doTranslate();
 }
-</script> </head>
+
+function triggerGoogleTranslate(lang) {
+    applyGoogleTranslate(lang);
+}
+
+function setCookie(name, value, days, domain) {
+    var expires = '';
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+    }
+    var domainStr = domain ? '; domain=' + domain : '';
+    document.cookie = name + '=' + value + expires + domainStr + '; path=/';
+}
+
+function getCookie(name) {
+    var nameEQ = name + '=';
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> </head>
 <body>
 <div id="google_translate_element" style="display:none;"></div> <x-nav />
     <main class="min-h-[70vh] py-10">
