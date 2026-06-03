@@ -13,25 +13,24 @@
     @stack('head')
 
     <style>
-        #goog-gt-tt, 
-        .goog-te-balloon-frame, 
-        .goog-te-balloon-frame:hover,
-        .goog-tooltip, 
-        .goog-tooltip:hover {
+        /* 1. Hides the white top banner iframe completely */
+        .goog-te-banner-frame,
+        #goog-gt-tt,
+        .goog-te-balloon-frame {
             display: none !important;
             visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
         }
+        
+        /* 2. Prevents Google from pushing the body down and hiding your nav bar */
+        body {
+            top: 0 !important;
+            position: static !important;
+        }
+        
+        /* 3. Removes the hover highlight styling applied to texts */
         .goog-text-highlight {
             background-color: transparent !important;
             box-shadow: none !important;
-        }
-        .goog-te-banner-frame, iframe.goog-te-banner-frame {
-            display: none !important;
-        }
-        body {
-            top: 0 !important;
         }
     </style>
 
