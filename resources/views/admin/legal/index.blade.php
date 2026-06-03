@@ -55,7 +55,7 @@
                     </td>
                     <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.legal.edit', $page) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                        <a href="{{ route('legal.' . str_replace('-', '_', $page->slug), ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                       <a href="{{ url('/en/legal/' . $page->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         <form method="POST" action="{{ route('admin.legal.destroy', $page) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
