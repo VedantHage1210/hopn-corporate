@@ -11,9 +11,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @stack('head')
-<script type="text/javascript"> function googleTranslateElementInit() {     new google.translate.TranslateElement({         pageLanguage: "en",         includedLanguages: "en,de,ar,fr,es",         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,         autoDisplay: false     }, "google_translate_element"); } </script> <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> </head>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: "en",
+        includedLanguages: "en,de,ar",
+        autoDisplay: false
+    }, "google_translate_element");
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function triggerGoogleTranslate(lang) {
+    var langMap = { 'en': 'en', 'de': 'de', 'ar': 'ar' };
+    var targetLang = langMap[lang] || 'en';
+
+    function doTranslate() {
+        var select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = targetLang;
+            select.dispatchEvent(new Event('change'));
+        } else {
+            setTimeout(doTranslate, 300);
+        }
+    }
+    doTranslate();
+}
+</script> </head>
 <body>
-<div id="google_translate_element" style="position:fixed;bottom:12px;right:12px;z-index:9999;transform:scale(0.75);transform-origin:bottom right;"></div> <x-nav />
+<div id="google_translate_element" style="display:none;"></div> <x-nav />
     <main class="min-h-[70vh] py-10">
         {{ $slot }}
     </main>
