@@ -68,8 +68,9 @@
             {{-- Language Switcher --}}
             <div class="hidden md:flex items-center"
                  style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
-                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+              @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
+                   onclick="triggerGoogleTranslate('{{ $code }}')"
                    style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s;
                    {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
@@ -134,8 +135,9 @@
             {{-- Mobile Language Switcher --}}
             <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
                 <span style="font-size:12px; color:#94A3B8;">Language:</span>
-                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+          @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
+                   onclick="triggerGoogleTranslate('{{ $code }}')"
                    style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
                    {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
