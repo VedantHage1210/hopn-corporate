@@ -4,9 +4,9 @@
            : ($lang === 'de' && !empty($page->title_de) ? $page->title_de
            : ($page->title ?? ''));
 
-    $content = $lang === 'ar' && !empty($page->excerpt_ar) ? $page->excerpt_ar
-             : ($lang === 'de' && !empty($page->excerpt_de) ? $page->excerpt_de
-             : ($page->excerpt ?? ''));
+   $content = $lang === 'ar' && !empty($page->content_ar) ? $page->content_ar
+         : ($lang === 'de' && !empty($page->content_de) ? $page->content_de
+         : ($page->content_en ?? $page->excerpt ?? ''));
 @endphp
 
 {{-- Hero --}}
