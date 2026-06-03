@@ -11,29 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @stack('head')
-
-    <style>
-        /* 1. Hides the white top banner iframe completely */
-        .goog-te-banner-frame,
-        #goog-gt-tt,
-        .goog-te-balloon-frame {
-            display: none !important;
-            visibility: hidden !important;
-        }
-        
-        /* 2. Prevents Google from pushing the body down and hiding your nav bar */
-        body {
-            top: 0 !important;
-            position: static !important;
-        }
-        
-        /* 3. Removes the hover highlight styling applied to texts */
-        .goog-text-highlight {
-            background-color: transparent !important;
-            box-shadow: none !important;
-        }
-    </style>
-
 <script type="text/javascript">
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
