@@ -177,12 +177,29 @@
         </div>
     </div>
 
-    {{-- Bottom Bar --}}
-    <div style="border-top:1px solid rgba(255,255,255,0.05); padding:20px 0;">
-        <div class="container-shell" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
-            <p style="font-size:12px; color:#475569;">© {{ date('Y') }} HOPn GmbH. {{ $lang === 'ar' ? 'جميع الحقوق محفوظة.' : ($lang === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.') }}</p>
-            <p style="font-size:12px; color:#334155;">Built for enterprise innovation in Europe 🇪🇺</p>
+   {{-- Bottom Bar --}}
+@php
+    $footerSecondary = \App\Models\NavigationItem::where('menu_location', 'footer_secondary')
+                        ->where('visible_' . $lang, true)
+                        ->orderBy('sort_order')->get();
+@endphp
+<div style="border-top:1px solid rgba(255,255,255,0.05); padding:20px 0;">
+    <div class="container-shell" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+        <p style="font-size:12px; color:#475569;">© {{ date('Y') }} HOPn GmbH. {{ $lang === 'ar' ? 'جميع الحقوق محفوظة.' : ($lang === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.') }}</p>
+        @if($footerSecondary->count() > 0)
+        <div style="display:flex; flex-wrap:wrap; gap:16px;">
+            @foreach($footerSecondary as $item)
+            <a href="{{ $item->url ?? '#' }}"
+               style="font-size:12px; color:#475569; text-decoration:none; transition:color 0.2s;"
+               onmouseover="this.style.color='white'" onmouseout="this.style.color='#475569'">
+                {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
+            </a>
+            @endforeach
         </div>
+        @else
+        <p style="font-size:12px; color:#334155;">Built for enterprise innovation in Europe 🇪🇺</p>
+        @endif
     </div>
+</div>
 
 </footer>
