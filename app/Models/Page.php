@@ -8,16 +8,17 @@ class Page extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'slug',
-        'title', 'title_de', 'title_ar',
-        'excerpt', 'excerpt_de', 'excerpt_ar',
-        'seo_meta',
-        'is_visible',
-        'is_published',
-        'published_at',
-    ];
-
+  protected $fillable = [
+    'slug',
+    'title', 'title_de', 'title_ar',
+    'excerpt', 'excerpt_de', 'excerpt_ar',
+    'content_en', 'content_de', 'content_ar',
+    'featured_image',
+    'seo_meta',
+    'is_visible',
+    'is_published',
+    'published_at',
+];
     protected $casts = [
         'seo_meta'     => 'array',
         'is_visible'   => 'boolean',
