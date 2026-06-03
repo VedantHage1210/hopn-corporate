@@ -11,6 +11,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @stack('head')
+
+    <style>
+        #goog-gt-tt, 
+        .goog-te-balloon-frame, 
+        .goog-te-balloon-frame:hover,
+        .goog-tooltip, 
+        .goog-tooltip:hover {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+        .goog-te-banner-frame, iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            top: 0 !important;
+        }
+    </style>
+
 <script type="text/javascript">
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
