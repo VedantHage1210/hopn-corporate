@@ -21,10 +21,13 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Menu Location *</label>
-                    <select name="menu_location" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                   <select name="menu_location" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                         <option value="header" {{ old('menu_location', $item->menu_location ?? '') === 'header' ? 'selected' : '' }}>Header</option>
-                        <option value="footer" {{ old('menu_location', $item->menu_location ?? '') === 'footer' ? 'selected' : '' }}>Footer</option>
-                        <option value="footer_secondary" {{ old('menu_location', $item->menu_location ?? '') === 'footer_secondary' ? 'selected' : '' }}>Footer Secondary</option>
+                        <option value="footer" {{ old('menu_location', $item->menu_location ?? '') === 'footer' ? 'selected' : '' }}>Footer (Generic)</option>
+                        <option value="footer_solutions" {{ old('menu_location', $item->menu_location ?? '') === 'footer_solutions' ? 'selected' : '' }}>Footer — Solutions</option>
+                        <option value="footer_company" {{ old('menu_location', $item->menu_location ?? '') === 'footer_company' ? 'selected' : '' }}>Footer — Company</option>
+                        <option value="footer_contact" {{ old('menu_location', $item->menu_location ?? '') === 'footer_contact' ? 'selected' : '' }}>Footer — Contact</option>
+                        <option value="footer_secondary" {{ old('menu_location', $item->menu_location ?? '') === 'footer_secondary' ? 'selected' : '' }}>Footer Secondary (Bottom Bar)</option>
                     </select>
                 </div>
                 <div>
