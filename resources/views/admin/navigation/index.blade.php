@@ -43,8 +43,11 @@
                             <span class="rounded px-1.5 py-0.5 text-xs {{ $item->visible_ar ?? false ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">AR</span>
                         </div>
                     </td>
-                    <td class="px-3 py-3 flex gap-3">
+                   <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.navigation.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        @if($item->url)
+                        <a href="{{ $item->url }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        @endif
                         <form method="POST" action="{{ route('admin.navigation.destroy', $item) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
