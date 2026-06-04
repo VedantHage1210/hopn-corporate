@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @stack('head')
 
-    {{-- Google Translate tooltip/popup hide --}}
     <style>
         .goog-te-banner-frame,
         .goog-te-balloon-frame,
@@ -23,12 +22,8 @@
         .goog-te-spinner-pos {
             display: none !important;
         }
-        body {
-            top: 0 !important;
-        }
-        iframe.goog-te-banner-frame {
-            display: none !important;
-        }
+        body { top: 0 !important; }
+        iframe.goog-te-banner-frame { display: none !important; }
     </style>
 
     <script type="text/javascript">
@@ -40,25 +35,16 @@
         }, "google_translate_element");
     }
 
-    window.addEventListener('load', function() {
-        var savedLang = getCookie('googtrans');
-        if (!savedLang) {
-            var pathLang = window.location.pathname.split('/')[1];
-            if (pathLang === 'de' || pathLang === 'ar') {
-                setTimeout(function() {
-                    applyGoogleTranslate(pathLang);
-                }, 1000);
-            }
-        }
-    });
-
-    function applyGoogleTranslate(lang) {
+    function triggerGoogleTranslate(lang) {
         if (lang === 'en') {
             deleteCookie('googtrans');
-        } else {
-            setCookie('googtrans', '/en/' + lang, 365);
-            setCookie('googtrans', '/en/' + lang, 365, '.hopn-corporate-production-e881.up.railway.app');
+            deleteCookie('googtrans', '.hopn-corporate-production-e881.up.railway.app');
+            location.reload();
+            return;
         }
+        setCookie('googtrans', '/en/' + lang, 365);
+        setCookie('googtrans', '/en/' + lang, 365, '.hopn-corporate-production-e881.up.railway.app');
+
         function doTranslate() {
             var select = document.querySelector('.goog-te-combo');
             if (select) {
@@ -69,10 +55,6 @@
             }
         }
         doTranslate();
-    }
-
-    function triggerGoogleTranslate(lang) {
-        applyGoogleTranslate(lang);
     }
 
     function setCookie(name, value, days, domain) {
@@ -89,7 +71,7 @@
     function getCookie(name) {
         var nameEQ = name + '=';
         var ca = document.cookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
+        for (var i = 0; i < ca.length; i++) {
             var c = ca[i];
             while (c.charAt(0) == ' ') c = c.substring(1, c.length);
             if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
@@ -97,8 +79,9 @@
         return null;
     }
 
-    function deleteCookie(name) {
-        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    function deleteCookie(name, domain) {
+        var domainStr = domain ? '; domain=' + domain : '';
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/' + domainStr + ';';
     }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
