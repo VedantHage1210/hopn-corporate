@@ -13,7 +13,6 @@
     @stack('head')
 
     <style>
-        /* Google Translate — saari cheezein hide */
         .goog-te-banner-frame,
         .goog-te-balloon-frame,
         .goog-te-ftab-frame,
@@ -36,7 +35,6 @@
         iframe.skiptranslate {
             display: none !important;
         }
-        /* Google top bar completely remove */
         body > .skiptranslate {
             display: none !important;
         }
@@ -60,33 +58,13 @@
             return;
         }
 
+        // Cookie set karo aur page reload — instant translate
         setCookie('googtrans', '/en/' + lang, 365);
         setCookie('googtrans', '/en/' + lang, 365, '.hopn-corporate-production-e881.up.railway.app');
-
-        function doTranslate() {
-            var select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-
-                // Google bar hide karo translate ke baad
-                setTimeout(function() {
-                    var bars = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate, #goog-gt-tt');
-                    bars.forEach(function(el) {
-                        el.style.display = 'none';
-                        el.style.visibility = 'hidden';
-                    });
-                    document.body.style.top = '0';
-                    document.body.style.position = 'static';
-                }, 500);
-            } else {
-                setTimeout(doTranslate, 300);
-            }
-        }
-        doTranslate();
+        location.reload();
     }
 
-    // Google bar ko hamesha hide rakho
+    // Google bar hamesha hide rakho
     function hideGoogleBar() {
         var elements = document.querySelectorAll(
             '.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame'
@@ -99,7 +77,6 @@
         document.body.style.marginTop = '0px';
     }
 
-    // Observer — agar Google bar aaye to turant hide karo
     document.addEventListener('DOMContentLoaded', function() {
         hideGoogleBar();
         var observer = new MutationObserver(function() {
