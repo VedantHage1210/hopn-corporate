@@ -1,27 +1,34 @@
 @php
     $lang = request()->route('lang', app()->getLocale());
+
+    // Cookie se active language detect karo
+    $googtrans = $_COOKIE['googtrans'] ?? '';
+    $activeLang = $lang;
+    if ($googtrans) {
+        $parts = explode('/', trim($googtrans, '/'));
+        $cookieLang = end($parts);
+        if (in_array($cookieLang, ['en', 'de', 'ar'])) {
+            $activeLang = $cookieLang;
+        }
+    }
+
     $navItems = \App\Models\NavigationItem::where('menu_location', 'header')
                     ->whereNull('parent_id')
                     ->where('visible_' . $lang, true)
                     ->orderBy('sort_order')
                     ->get();
-    $footerItems = \App\Models\NavigationItem::where('menu_location', 'footer')
-                    ->where('visible_' . $lang, true)
-                    ->orderBy('sort_order')
-                    ->get();
 
-    // Fallback — agar DB mein koi items nahi hain to hardcoded use karo
     $defaultItems = [
         ['route' => 'services.index',   'en' => 'Services',   'de' => 'Leistungen', 'ar' => 'الخدمات'],
-        ['route' => 'industries.index',  'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
-        ['route' => 'startups.index',    'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
-        ['route' => 'investors.index',   'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
-        ['route' => 'events.index',      'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
-        ['route' => 'innovation.index',  'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
-        ['route' => 'programs.index',    'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
-        ['route' => 'products.index',    'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-        ['route' => 'insights.index',    'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
-        ['route' => 'careers.index',     'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
+        ['route' => 'industries.index', 'en' => 'Industries', 'de' => 'Branchen',   'ar' => 'القطاعات'],
+        ['route' => 'startups.index',   'en' => 'Startups',   'de' => 'Startups',   'ar' => 'الشركات الناشئة'],
+        ['route' => 'investors.index',  'en' => 'Investors',  'de' => 'Investoren', 'ar' => 'المستثمرون'],
+        ['route' => 'events.index',     'en' => 'Events',     'de' => 'Events',     'ar' => 'الفعاليات'],
+        ['route' => 'innovation.index', 'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
+        ['route' => 'programs.index',   'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
+        ['route' => 'products.index',   'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
+        ['route' => 'insights.index',   'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
+        ['route' => 'careers.index',    'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
     ];
     $useCms = $navItems->count() > 0;
 @endphp
@@ -47,7 +54,7 @@
                        style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
                        onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
-                        {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
+                        {{ $activeLang === 'ar' && $item->label_ar ? $item->label_ar : ($activeLang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                     </a>
                 @endforeach
             @else
@@ -56,7 +63,7 @@
                        style="padding:4px 8px; border-radius:6px; color:#94A3B8; font-size:12px; text-decoration:none; transition:all 0.2s;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.05)'"
                        onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
-                        {{ $item[$lang] ?? $item['en'] }}
+                        {{ $item[$activeLang] ?? $item['en'] }}
                     </a>
                 @endforeach
             @endif
@@ -68,11 +75,11 @@
             {{-- Language Switcher --}}
             <div class="hidden md:flex items-center"
                  style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.05);">
-              @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
-                   onclick="triggerGoogleTranslate('{{ $code }}')"
-                   style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s;
-                   {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
+                   onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
+                   style="padding:3px 7px; border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; transition:all 0.2s; cursor:pointer;
+                   {{ $activeLang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
                 </a>
                 @endforeach
@@ -84,7 +91,7 @@
                style="padding:6px 16px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
                onmouseover="this.style.opacity='0.85'"
                onmouseout="this.style.opacity='1'">
-                {{ $lang === 'de' ? 'Kontakt' : ($lang === 'ar' ? 'اتصل بنا' : 'Contact') }}
+                {{ $activeLang === 'de' ? 'Kontakt' : ($activeLang === 'ar' ? 'اتصل بنا' : 'Contact') }}
             </a>
 
             {{-- Mobile Button --}}
@@ -118,7 +125,7 @@
                        style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
                        onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
                        onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
-                        {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
+                        {{ $activeLang === 'ar' && $item->label_ar ? $item->label_ar : ($activeLang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                     </a>
                 @endforeach
             @else
@@ -127,7 +134,7 @@
                        style="padding:10px 12px; border-radius:8px; color:#94A3B8; font-size:14px; text-decoration:none;"
                        onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.color='white'"
                        onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
-                        {{ $item[$lang] ?? $item['en'] }}
+                        {{ $item[$activeLang] ?? $item['en'] }}
                     </a>
                 @endforeach
             @endif
@@ -135,11 +142,11 @@
             {{-- Mobile Language Switcher --}}
             <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
                 <span style="font-size:12px; color:#94A3B8;">Language:</span>
-          @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
+                @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $code => $label)
                 <a href="{{ preg_replace('#^/(en|de|ar)#', '/'.$code, request()->getPathInfo()) }}"
-                   onclick="triggerGoogleTranslate('{{ $code }}')"
-                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none;
-                   {{ $lang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
+                   onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
+                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer;
+                   {{ $activeLang === $code ? 'background:#4F6EF7; color:white;' : 'color:#94A3B8;' }}">
                     {{ $label }}
                 </a>
                 @endforeach
