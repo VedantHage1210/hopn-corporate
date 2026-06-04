@@ -13,26 +13,43 @@
     @stack('head')
 
     <style>
+        /* Google Translate — saari cheezein hide */
         .goog-te-banner-frame,
         .goog-te-balloon-frame,
+        .goog-te-ftab-frame,
         #goog-gt-tt,
         .goog-tooltip,
         .goog-tooltip:hover,
         .goog-text-highlight,
-        .goog-te-spinner-pos {
+        .goog-te-spinner-pos,
+        .goog-te-gadget,
+        #google_translate_element,
+        .skiptranslate {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        body {
+            top: 0 !important;
+            position: static !important;
+        }
+        iframe.goog-te-banner-frame,
+        iframe.skiptranslate {
             display: none !important;
         }
-        body { top: 0 !important; }
-        iframe.goog-te-banner-frame { display: none !important; }
+        /* Google top bar completely remove */
+        body > .skiptranslate {
+            display: none !important;
+        }
     </style>
 
     <script type="text/javascript">
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
-            pageLanguage: "en",
-            includedLanguages: "en,de,ar",
-            autoDisplay: false
-        }, "google_translate_element");
+            pageLanguage: 'en',
+            includedLanguages: 'en,de,ar',
+            autoDisplay: false,
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
     }
 
     function triggerGoogleTranslate(lang) {
@@ -42,6 +59,7 @@
             location.reload();
             return;
         }
+
         setCookie('googtrans', '/en/' + lang, 365);
         setCookie('googtrans', '/en/' + lang, 365, '.hopn-corporate-production-e881.up.railway.app');
 
@@ -50,12 +68,45 @@
             if (select) {
                 select.value = lang;
                 select.dispatchEvent(new Event('change'));
+
+                // Google bar hide karo translate ke baad
+                setTimeout(function() {
+                    var bars = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate, #goog-gt-tt');
+                    bars.forEach(function(el) {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                    document.body.style.top = '0';
+                    document.body.style.position = 'static';
+                }, 500);
             } else {
                 setTimeout(doTranslate, 300);
             }
         }
         doTranslate();
     }
+
+    // Google bar ko hamesha hide rakho
+    function hideGoogleBar() {
+        var elements = document.querySelectorAll(
+            '.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame'
+        );
+        elements.forEach(function(el) {
+            el.style.display = 'none';
+            el.style.visibility = 'hidden';
+        });
+        document.body.style.top = '0px';
+        document.body.style.marginTop = '0px';
+    }
+
+    // Observer — agar Google bar aaye to turant hide karo
+    document.addEventListener('DOMContentLoaded', function() {
+        hideGoogleBar();
+        var observer = new MutationObserver(function() {
+            hideGoogleBar();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
 
     function setCookie(name, value, days, domain) {
         var expires = '';
@@ -87,7 +138,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-    <div id="google_translate_element" style="display:none;"></div>
+    <div id="google_translate_element" style="display:none; visibility:hidden;"></div>
     <x-nav />
     <main class="min-h-[70vh] py-10">
         {{ $slot }}
