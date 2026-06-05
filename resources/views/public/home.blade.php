@@ -216,8 +216,8 @@
             @php
                 $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
                 $c=$colors[$loop->index%6];
-                $title=$lang==='de'&&$product->title_de?$product->title_de:$product->title_en;
-                $summary=$lang==='de'&&$product->summary_de?$product->summary_de:$product->summary_en;
+              $title=$lang==='ar'&&$product->title_ar?$product->title_ar:($lang==='de'&&$product->title_de?$product->title_de:$product->title_en);
+$summary=$lang==='ar'&&$product->summary_ar?$product->summary_ar:($lang==='de'&&$product->summary_de?$product->summary_de:$product->summary_en);
             @endphp
             <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;"
