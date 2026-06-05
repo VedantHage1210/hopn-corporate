@@ -37,7 +37,7 @@
 <header x-data="{ open: false }" class="sticky top-0 z-50"
         style="background: rgba(10,15,30,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);">
 
-    <div class="container-shell flex items-center justify-between" style="height:56px;">
+    <div class="container-shell flex items-center justify-between" style="height:56px; @if($lang === 'ar') direction:rtl; @endif">
 
         {{-- Logo --}}
         <a href="{{ route('home', ['lang' => $lang]) }}"
