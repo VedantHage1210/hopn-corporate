@@ -26,8 +26,7 @@ class HomeController extends Controller
         $upcomingEvents  = Event::where('is_published', true)->orderBy('date')->take(3)->get();
         $homeIndustries  = Industry::where('is_published', true)->orderBy('sort_order')->take(9)->get();
         $homeDomains     = InnovationDomain::where('is_published', true)->orderBy('sort_order')->take(6)->get();
-        $latestPosts     = BlogPost::latest('published_at')->take(3)->get();
-
+       $latestPosts = BlogPost::where('is_published', true)->latest('published_at')->take(3)->get();
        return view('public.home', compact(
     'services', 'caseStudies', 'partners','logos', 'testimonials',
     'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts'
