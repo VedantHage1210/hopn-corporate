@@ -79,14 +79,26 @@
         </div>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0; position:relative;">
-            @php
-            $steps = [
-                ['num'=>'01','icon'=>'💡','en'=>'Apply','de'=>'Bewerben','ar'=>'التقديم','desc_en'=>'Submit your startup application and tell us about your vision.','desc_de'=>'Bewerben Sie sich und teilen Sie Ihre Vision.','desc_ar'=>'قدم طلبك وأخبرنا عن رؤيتك.','color'=>'#4F6EF7'],
-                ['num'=>'02','icon'=>'🔍','en'=>'Review','de'=>'Prüfung','ar'=>'المراجعة','desc_en'=>'Our team reviews your application within 5 business days.','desc_de'=>'Unser Team prüft innerhalb von 5 Werktagen.','desc_ar'=>'فريقنا يراجع طلبك خلال 5 أيام عمل.','color'=>'#8B5CF6'],
-                ['num'=>'03','icon'=>'🤝','en'=>'Onboard','de'=>'Aufnahme','ar'=>'الانضمام','desc_en'=>'Join the ecosystem with access to mentors, tools, and network.','desc_de'=>'Treten Sie dem Ökosystem bei.','desc_ar'=>'انضم للنظام البيئي مع الوصول للموارد.','color'=>'#10B981'],
-                ['num'=>'04','icon'=>'🚀','en'=>'Scale','de'=>'Skalieren','ar'=>'التوسع','desc_en'=>'Build, validate, and scale with HOPn support at every step.','desc_de'=>'Aufbauen, validieren und skalieren.','desc_ar'=>'ابنِ واتحقق وتوسع مع دعم HOPn.','color'=>'#F59E0B'],
-            ];
-            @endphp
+           @php
+$steps = [
+    ['num'=>'01','icon'=>'💡','en'=>'Apply','de'=>'Bewerben','ar'=>'التقديم',
+     'desc_en'=>'Submit your startup application and tell us about your vision.',
+     'desc_de'=>'Bewerben Sie sich und teilen Sie Ihre Vision.',
+     'desc_ar'=>'قدم طلبك وأخبرنا عن رؤيتك.','color'=>'#4F6EF7'],
+    ['num'=>'02','icon'=>'🔍','en'=>'Review','de'=>'Prüfung','ar'=>'المراجعة',
+     'desc_en'=>'Our team reviews your application within 5 business days.',
+     'desc_de'=>'Unser Team prüft innerhalb von 5 Werktagen.',
+     'desc_ar'=>'فريقنا يراجع طلبك خلال 5 أيام عمل.','color'=>'#8B5CF6'],
+    ['num'=>'03','icon'=>'🤝','en'=>'Onboard','de'=>'Aufnahme','ar'=>'الانضمام',
+     'desc_en'=>'Join the ecosystem with access to mentors, tools, and network.',
+     'desc_de'=>'Treten Sie dem Ökosystem bei.',
+     'desc_ar'=>'انضم للنظام البيئي مع الوصول للموارد.','color'=>'#10B981'],
+    ['num'=>'04','icon'=>'🚀','en'=>'Scale','de'=>'Skalieren','ar'=>'التوسع',
+     'desc_en'=>'Build, validate, and scale with HOPn support at every step.',
+     'desc_de'=>'Aufbauen, validieren und skalieren.',
+     'desc_ar'=>'ابنِ واتحقق وتوسع مع دعم HOPn.','color'=>'#F59E0B'],
+];
+@endphp
             @foreach($steps as $i => $step)
             <div style="padding:32px 24px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; position:relative; transition:all 0.25s; @if(!$loop->last) border-right:none; @endif"
                  onmouseover="this.style.background='#0D1425'; this.style.borderColor='{{ $step['color'] }}30'"
