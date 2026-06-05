@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Public\CatalogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CareerController;
@@ -39,6 +39,8 @@ Route::prefix('{lang}')
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
+        Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
+        
         Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
         Route::get('/programs/{slug}', [ProgramController::class, 'show'])->name('programs.show');
 
