@@ -98,6 +98,10 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.languages.index') }}">Languages</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.legal.index') }}">Legal</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.audit-logs.index') }}">Audit Logs</a>
+                <a href="{{ route('catalog.index', ['lang' => 'en']) }}" target="_blank" 
+   class="block hover:text-white transition-colors duration-200">
+   View Catalog
+</a>
             </nav>
         </aside>
         <div class="flex-1 flex flex-col w-full">
