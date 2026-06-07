@@ -7,7 +7,10 @@ class InvestorController extends Controller
 {
     public function index()
     {
-        $investors = Investor::latest()->get();
-        return view('public.investors.index', compact('investors'));
+        $lang      = request()->route('lang', 'en');
+        $investors = Investor::where('is_visible', true)
+                             ->orderBy('sort_order')
+                             ->get();
+        return view('public.investors.index', compact('investors', 'lang'));
     }
 }
