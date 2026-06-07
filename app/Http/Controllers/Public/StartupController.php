@@ -10,7 +10,7 @@ class StartupController extends Controller
     {
         $lang     = request()->route('lang', 'en');
       $startups = Startup::latest()->get();
-        $programs = Program::where('is_published', true)->orderBy('sort_order')->take(3)->get();
+       $programs = Program::where('is_published', true)->latest()->take(3)->get();
 
         return view('public.startups.index', compact('startups', 'programs', 'lang'));
     }
