@@ -21,9 +21,30 @@ class StartupController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'logo' => 'nullable|string|max:500',
+            'website' => 'nullable|url|max:255',
         ]);
-        Startup::create($request->only(['name', 'industry', 'stage', 'website', 'description']));
-        return redirect()->route('admin.startups.index')->with('status', 'Startup added successfully!');
+
+        Startup::create([
+            'name'           => $request->name,
+            'logo'           => $request->logo,
+            'industry'       => $request->industry,
+            'industry_de'    => $request->industry_de,
+            'industry_ar'    => $request->industry_ar,
+            'stage'          => $request->stage,
+            'website'        => $request->website,
+            'description'    => $request->description,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'is_visible'     => $request->boolean('is_visible', true),
+        ]);
+
+        return redirect()->route('admin.startups.index')->with('status', 'Startup created.');
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('admin.startups.edit', $id);
     }
 
     public function edit($id)
@@ -35,20 +56,33 @@ class StartupController extends Controller
     public function update(Request $request, $id)
     {
         $startup = Startup::findOrFail($id);
-        $request->validate(['name' => 'required|string|max:255']);
-        $startup->update($request->only(['name', 'industry', 'stage', 'website', 'description']));
-        return redirect()->route('admin.startups.index')->with('status', 'Startup updated successfully!');
+
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'logo'    => 'nullable|string|max:500',
+            'website' => 'nullable|url|max:255',
+        ]);
+
+        $startup->update([
+            'name'           => $request->name,
+            'logo'           => $request->logo ?: $startup->logo,
+            'industry'       => $request->industry,
+            'industry_de'    => $request->industry_de,
+            'industry_ar'    => $request->industry_ar,
+            'stage'          => $request->stage,
+            'website'        => $request->website,
+            'description'    => $request->description,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'is_visible'     => $request->boolean('is_visible'),
+        ]);
+
+        return redirect()->route('admin.startups.index')->with('status', 'Startup updated.');
     }
 
     public function destroy($id)
     {
         Startup::findOrFail($id)->delete();
         return redirect()->route('admin.startups.index')->with('status', 'Startup deleted.');
-    }
-
-    public function show($id)
-    {
-        $startup = Startup::findOrFail($id);
-        return view('admin.startups.show', compact('startup'));
     }
 }
