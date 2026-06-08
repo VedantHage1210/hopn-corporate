@@ -8,7 +8,7 @@ class InvestorController extends Controller
 {
     public function index()
     {
-        $items = Investor::latest()->paginate(20);
+        $items = Investor::orderBy('sort_order')->paginate(20);
         return view('admin.investors.index', compact('items'));
     }
 
@@ -20,10 +20,35 @@ class InvestorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'    => 'required|string|max:255',
+            'logo'    => 'nullable|string|max:500',
+            'website' => 'nullable|url|max:255',
+            'email'   => 'nullable|email|max:255',
         ]);
-        Investor::create($request->only(['name', 'type', 'region', 'focus', 'website', 'email', 'description']));
-        return redirect()->route('admin.investors.index')->with('status', 'Investor added successfully!');
+
+        Investor::create([
+            'name'           => $request->name,
+            'logo'           => $request->logo,
+            'type'           => $request->type,
+            'region'         => $request->region,
+            'focus'          => $request->focus,
+            'focus_de'       => $request->focus_de,
+            'focus_ar'       => $request->focus_ar,
+            'website'        => $request->website,
+            'email'          => $request->email,
+            'description'    => $request->description,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'sort_order'     => $request->sort_order ?? 0,
+            'is_visible'     => $request->boolean('is_visible', true),
+        ]);
+
+        return redirect()->route('admin.investors.index')->with('status', 'Investor created.');
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('admin.investors.edit', $id);
     }
 
     public function edit($id)
@@ -35,20 +60,37 @@ class InvestorController extends Controller
     public function update(Request $request, $id)
     {
         $investor = Investor::findOrFail($id);
-        $request->validate(['name' => 'required|string|max:255']);
-        $investor->update($request->only(['name', 'type', 'region', 'focus', 'website', 'email', 'description']));
-        return redirect()->route('admin.investors.index')->with('status', 'Investor updated successfully!');
+
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'logo'    => 'nullable|string|max:500',
+            'website' => 'nullable|url|max:255',
+            'email'   => 'nullable|email|max:255',
+        ]);
+
+        $investor->update([
+            'name'           => $request->name,
+            'logo'           => $request->logo ?: $investor->logo,
+            'type'           => $request->type,
+            'region'         => $request->region,
+            'focus'          => $request->focus,
+            'focus_de'       => $request->focus_de,
+            'focus_ar'       => $request->focus_ar,
+            'website'        => $request->website,
+            'email'          => $request->email,
+            'description'    => $request->description,
+            'description_de' => $request->description_de,
+            'description_ar' => $request->description_ar,
+            'sort_order'     => $request->sort_order ?? 0,
+            'is_visible'     => $request->boolean('is_visible'),
+        ]);
+
+        return redirect()->route('admin.investors.index')->with('status', 'Investor updated.');
     }
 
     public function destroy($id)
     {
         Investor::findOrFail($id)->delete();
         return redirect()->route('admin.investors.index')->with('status', 'Investor deleted.');
-    }
-
-    public function show($id)
-    {
-        $investor = Investor::findOrFail($id);
-        return view('admin.investors.show', compact('investor'));
     }
 }
