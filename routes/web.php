@@ -5,6 +5,20 @@ use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\CareerController;
 use App\Http\Controllers\Public\StartupController;
 use App\Http\Controllers\Public\InvestorController;
+
+use App\Http\Controllers\Admin\InvestorController as AdminInvestorController;
+
+// Admin investors
+Route::resource('investors', AdminInvestorController::class)->names([
+    'index'   => 'admin.investors.index',
+    'create'  => 'admin.investors.create',
+    'store'   => 'admin.investors.store',
+    'show'    => 'admin.investors.show',
+    'edit'    => 'admin.investors.edit',
+    'update'  => 'admin.investors.update',
+    'destroy' => 'admin.investors.destroy',
+]);
+
 use App\Http\Controllers\Public\EventController;
 use App\Http\Controllers\Public\IndustryController;
 use App\Http\Controllers\Public\CaseStudyController;
