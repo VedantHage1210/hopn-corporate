@@ -7,9 +7,10 @@ class EventController extends Controller
 {
     public function index()
     {
+        $lang   = request()->route('lang', 'en');
         $events = Event::where('is_published', true)
-            ->orderBy('date')
-            ->get();
-        return view('public.events.index', compact('events'));
+                       ->orderBy('date')
+                       ->get();
+        return view('public.events.index', compact('events', 'lang'));
     }
 }
