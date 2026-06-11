@@ -1,5 +1,5 @@
-<x-layouts.public :title="$lang==='ar'?'الخدمات':($lang==='de'?'Leistungen':'Services')">
 @php $lang = request()->route('lang', 'en'); @endphp
+<x-layouts.public :title="$lang==='ar'?'الخدمات':($lang==='de'?'Leistungen':'Services')">
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
