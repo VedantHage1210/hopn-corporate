@@ -1,6 +1,6 @@
-<x-layouts.public :title="$lang==='ar'?'عن HOPn':($lang==='de'?'Über HOPn':'About HOPn')">
 @php $lang = request()->route('lang', 'en'); @endphp
-
+<x-layouts.public :title="$lang==='ar'?'عن HOPn':($lang==='de'?'Über HOPn':'About HOPn')">
+    
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; min-height:70vh; display:flex; align-items:center;">
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
