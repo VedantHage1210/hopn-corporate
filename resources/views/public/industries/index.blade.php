@@ -1,109 +1,103 @@
-<x-layouts.public :title="'Industries'">
-@php($lang = request()->route('lang', 'en'))
+@php $lang = request()->route('lang', 'en'); @endphp
+<x-layouts.public :title="$lang==='ar'?'القطاعات':($lang==='de'?'Branchen':'Industries')">
 
-    {{-- Hero --}}
-    <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-        <div style="position:absolute; inset:0; pointer-events:none;
-            background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
-            background-size: 48px 48px;"></div>
-        <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(6,182,212,0.10); filter:blur(80px);"></div>
-        <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.10); filter:blur(80px);"></div>
-        <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
-            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(6,182,212,0.35); background:rgba(6,182,212,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
-                <span style="width:7px; height:7px; border-radius:50%; background:#06B6D4; display:inline-block;"></span>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#06B6D4;">Industries</span>
-            </div>
-            <h1 style="font-size:clamp(28px,5vw,56px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 auto 20px;">
-                @if($lang === 'ar') القطاعات التي نخدمها
-                @elseif($lang === 'de') Branchen, die wir bedienen
-                @else Industries We Serve
-                @endif
-            </h1>
-            <p style="font-size:clamp(15px,2vw,18px); color:#94A3B8; max-width:600px; margin:0 auto 36px; line-height:1.7;">
-                @if($lang === 'ar') HOPn يقدم حلول مبتكرة لمختلف القطاعات الصناعية.
-                @elseif($lang === 'de') HOPn liefert innovative Lösungen für verschiedene Branchen.
-                @else HOPn delivers innovative AI, data, and digital solutions across key industries.
-                @endif
-            </p>
+{{-- HERO --}}
+<section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
+    <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%); pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
+
+    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(6,182,212,0.3); background:rgba(6,182,212,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#06B6D4; display:inline-block; box-shadow:0 0 8px #06B6D4;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#06B6D4;">
+                @if($lang==='ar') القطاعات @elseif($lang==='de') Branchen @else Industries @endif
+            </span>
         </div>
-    </section>
-
-    {{-- Industries Grid --}}
-    <section style="padding:80px 0; background:#080D1A;">
-        <div class="container-shell">
-            @if($industries->count() > 0)
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
-                @foreach($industries as $industry)
-                <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}"
-                   style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.25s; overflow:hidden;"
-                   onmouseover="this.style.borderColor='rgba(6,182,212,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-4px)'; this.querySelector('.top-line').style.opacity='1';"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
-
-                    {{-- Top accent line --}}
-                    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, #06B6D4, #4F6EF7); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
-
-                    {{-- Icon box --}}
-                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                        <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.2); font-size:22px;">
-                            {{ $industry->icon ?? '🏭' }}
-                        </div>
-                        <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.3;">
-                            @if($lang === 'de' && $industry->name_de) {{ $industry->name_de }}
-                            @elseif($lang === 'ar' && $industry->name_ar) {{ $industry->name_ar }}
-                            @else {{ $industry->name }}
-                            @endif
-                        </h3>
-                    </div>
-
-                    {{-- Description --}}
-                    <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1;">
-                        @if($lang === 'de' && $industry->description_de) {{ Str::limit($industry->description_de, 100) }}
-                        @elseif($lang === 'ar' && $industry->description_ar) {{ Str::limit($industry->description_ar, 100) }}
-                        @else {{ Str::limit($industry->description, 100) }}
-                        @endif
-                    </p>
-
-                    {{-- Learn More --}}
-                    <div style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#06B6D4;">
-                        @if($lang === 'ar') اعرف المزيد
-                        @elseif($lang === 'de') Mehr erfahren
-                        @else Learn More
-                        @endif
-                        <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </div>
-                </a>
-                @endforeach
-            </div>
+        <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
+            @if($lang==='ar')
+                <span style="color:white;">القطاعات</span>
+                <span style="background:linear-gradient(135deg,#06B6D4,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> التي نخدمها</span>
+            @elseif($lang==='de')
+                <span style="color:white;">Branchen,</span>
+                <span style="background:linear-gradient(135deg,#06B6D4,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> die wir bedienen</span>
             @else
-            <div style="text-align:center; padding:80px; color:#64748B;">
-                <div style="font-size:48px; margin-bottom:16px;">🏭</div>
-                <p style="font-size:16px;">No industries found. Add industries from the admin panel.</p>
-            </div>
+                <span style="color:white;">Industries</span>
+                <span style="background:linear-gradient(135deg,#06B6D4,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> We Serve</span>
             @endif
-        </div>
-    </section>
+        </h1>
+        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto; line-height:1.7;">
+            @if($lang==='ar') HOPn يقدم حلول مبتكرة في الذكاء الاصطناعي والبيانات لمختلف القطاعات الصناعية.
+            @elseif($lang==='de') HOPn liefert innovative KI- und Datenlösungen für verschiedene Branchen.
+            @else HOPn delivers innovative AI, data, and digital solutions across key industries. @endif
+        </p>
+    </div>
+</section>
 
-    {{-- CTA --}}
-    <section style="padding:80px 0; background:#0A0F1E;">
-        <div class="container-shell" style="text-align:center;">
-            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(6,182,212,0.2); background:rgba(6,182,212,0.05); border-radius:24px; padding:60px 32px;">
-                <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white; margin-bottom:16px;">
-                    @if($lang === 'ar') هل تريد حلاً مخصصاً لقطاعك؟
-                    @elseif($lang === 'de') Möchten Sie eine maßgeschneiderte Lösung?
-                    @else Looking for a Tailored Industry Solution?
-                    @endif
-                </h2>
-                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#06B6D4; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(6,182,212,0.3);"
-                   onmouseover="this.style.opacity='0.88'"
-                   onmouseout="this.style.opacity='1'">
-                    @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Contact HOPn @endif
-                </a>
-            </div>
+{{-- INDUSTRIES GRID --}}
+<section style="padding:60px 0 100px; background:#050A14;">
+    <div class="container-shell">
+        @if($industries->count() > 0)
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
+            @foreach($industries as $industry)
+            @php $colors=['#06B6D4','#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444']; $c=$colors[$loop->index%6]; @endphp
+            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}"
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
+               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
+               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+                    <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">
+                        {{ $industry->icon ?? '🏭' }}
+                    </div>
+                    <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3; margin:0;">
+                        @if($lang==='de'&&$industry->name_de) {{ $industry->name_de }}
+                        @elseif($lang==='ar'&&$industry->name_ar) {{ $industry->name_ar }}
+                        @else {{ $industry->name }} @endif
+                    </h3>
+                </div>
+                <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:20px;">
+                    @if($lang==='de'&&$industry->description_de) {{ Str::limit($industry->description_de,100) }}
+                    @elseif($lang==='ar'&&$industry->description_ar) {{ Str::limit($industry->description_ar,100) }}
+                    @else {{ Str::limit($industry->description,100) }} @endif
+                </p>
+                <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
+                    @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn More @endif
+                    <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+            </a>
+            @endforeach
         </div>
-    </section>
+        @else
+        <div style="text-align:center; padding:80px; color:#334155;">
+            <div style="font-size:48px; margin-bottom:16px;">🏭</div>
+            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+                @if($lang==='ar') القطاعات قادمة قريباً @elseif($lang==='de') Branchen folgen @else Industries Coming Soon @endif
+            </h3>
+        </div>
+        @endif
+    </div>
+</section>
+
+{{-- CTA --}}
+<section style="padding:80px 0; background:#030712; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:350px; background:radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%); pointer-events:none;"></div>
+    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+        <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
+            @if($lang==='ar') هل تريد حلاً مخصصاً لقطاعك؟ @elseif($lang==='de') Maßgeschneiderte Lösung gewünscht? @else Looking for a Tailored Solution? @endif
+        </h2>
+        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+            @if($lang==='ar') تواصل مع HOPn لمناقشة حل مخصص لقطاعك.
+            @elseif($lang==='de') Kontaktieren Sie HOPn für eine branchenspezifische Lösung.
+            @else Contact HOPn to discuss a tailored solution for your industry. @endif
+        </p>
+        <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
+           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#06B6D4; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(6,182,212,0.3); transition:all 0.2s;"
+           onmouseover="this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+            @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
+        </a>
+    </div>
+</section>
 
 </x-layouts.public>
