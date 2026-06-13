@@ -19,7 +19,7 @@
         ['route' => 'products.index',     'en' => 'Products',     'de' => 'Produkte',     'ar' => 'المنتجات'],
         ['route' => 'case-studies.index', 'en' => 'Case Studies', 'de' => 'Fallstudien',  'ar' => 'دراسات الحالة'],
         ['route' => 'insights.index',     'en' => 'Insights',     'de' => 'Einblicke',    'ar' => 'المقالات'],
-        ['route' => 'training.index',     'en' => 'Training',     'de' => 'Training',     'ar' => 'التدريب'],
+       ['route' => 'catalog.index', 'en' => 'Catalog', 'de' => 'Katalog', 'ar' => 'الكتالوج'],
     ];
     $defaultCompany = [
         ['route' => 'about',          'en' => 'About HOPn', 'de' => 'Über Uns',  'ar' => 'من نحن'],
