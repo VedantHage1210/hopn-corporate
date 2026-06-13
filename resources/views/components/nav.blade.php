@@ -30,6 +30,7 @@
         ['route' => 'insights.index',   'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
         ['route' => 'careers.index',    'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
        ['route' => 'catalog.index', 'en' => 'Catalog', 'de' => 'Katalog', 'ar' => 'الكتالوج'],
+['route' => 'newsroom.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
     ];
     $useCms = $navItems->count() > 0;
 @endphp
