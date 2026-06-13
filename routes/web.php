@@ -68,6 +68,8 @@ Route::prefix('{lang}')
         Route::get('/insights/category/{slug}', [BlogController::class, 'category'])->name('insights.category');
         Route::get('/insights/{slug}', [BlogController::class, 'show'])->name('insights.show');
 
+        Route::get('/newsroom', [BlogController::class, 'newsroom'])->name('newsroom.index');
+        
         Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
         Route::get('/partner-inquiry', function () {
             return view('public.partners.inquiry');
