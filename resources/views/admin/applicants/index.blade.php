@@ -46,7 +46,7 @@
                         <div class="font-medium text-white">{{ $applicant->full_name }}</div>
                         <div class="text-xs text-slate-400">{{ $applicant->email }}</div>
                         @if($applicant->linkedin_url)
-                            <a href="{{ $applicant->linkedin_url }}" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300">LinkedIn →</a>
+                        <a href="{{ $applicant->linkedin_url }}" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300">LinkedIn →</a>
                         @endif
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->job?->title ?? '—' }}</td>
@@ -59,17 +59,28 @@
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->created_at->format('d M Y') }}</td>
                     <td class="px-3 py-3">
                         @if($applicant->cv_path)
-                            <a href="{{ Storage::url($applicant->cv_path) }}" target="_blank" class="text-indigo-300 hover:text-indigo-200 text-xs">Download CV</a>
+                            @if(str_starts_with($applicant->cv_path, 'http'))
+                                {{-- Cloudinary URL — direct link --}}
+                                <a href="{{ $applicant->cv_path }}" target="_blank"
+                                   class="text-indigo-300 hover:text-indigo-200 text-xs">Download CV</a>
+                            @else
+                                {{-- Local storage — show warning --}}
+                                <span class="text-slate-500 text-xs" title="File not accessible on Railway">N/A</span>
+                            @endif
                         @else
                             <span class="text-slate-500">—</span>
                         @endif
                     </td>
-                    <td class="px-3 py-3 flex gap-3 items-center">
-                        <a href="{{ route('admin.applicants.show', $applicant) }}" class="text-indigo-300 hover:text-indigo-200">Review</a>
-                        <form method="POST" action="{{ route('admin.applicants.destroy', $applicant) }}" class="inline-block">
-                            @csrf @method('DELETE')
-                            <button type="submit" onclick="return confirm('Delete this applicant?')" class="text-rose-300 hover:text-rose-200">Delete</button>
-                        </form>
+                    <td class="px-3 py-3">
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <a href="{{ route('admin.applicants.show', $applicant) }}"
+                               class="text-indigo-300 hover:text-indigo-200">Review</a>
+                            <form method="POST" action="{{ route('admin.applicants.destroy', $applicant) }}" class="inline-block">
+                                @csrf @method('DELETE')
+                                <button type="submit" onclick="return confirm('Delete this applicant?')"
+                                        class="text-rose-300 hover:text-rose-200">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
