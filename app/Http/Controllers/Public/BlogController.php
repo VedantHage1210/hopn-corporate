@@ -24,18 +24,22 @@ class BlogController extends Controller
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('excerpt', 'like', "%{$search}%");
+                  ->orWhere('title_de', 'like', "%{$search}%")
+                  ->orWhere('excerpt', 'like', "%{$search}%")
+                  ->orWhere('excerpt_de', 'like', "%{$search}%");
             });
         }
 
-        $posts      = $query->paginate(12)->withQueryString();
-        $categories = BlogCategory::withCount(['posts' => fn($q) => $q->where('is_published', true)])
-                                  ->having('posts_count', '>', 0)
-                                  ->get();
-        $featured   = BlogPost::with('category')
-                              ->where('is_published', true)
-                              ->latest('published_at')
-                              ->first();
+        $posts = $query->paginate(12)->withQueryString();
+
+        $categories = BlogCategory::withCount([
+            'posts' => fn($q) => $q->where('is_published', true)
+        ])->having('posts_count', '>', 0)->get();
+
+        $featured = BlogPost::with('category')
+                            ->where('is_published', true)
+                            ->latest('published_at')
+                            ->first();
 
         return view('public.insights.index', compact(
             'posts', 'lang', 'category', 'search', 'categories', 'featured'
@@ -44,10 +48,11 @@ class BlogController extends Controller
 
     public function show(string $lang, string $slug)
     {
-        $post    = BlogPost::with('category')
-                           ->where('slug', $slug)
-                           ->where('is_published', true)
-                           ->firstOrFail();
+        $post = BlogPost::with(['category', 'author'])
+                        ->where('slug', $slug)
+                        ->where('is_published', true)
+                        ->firstOrFail();
+
         $related = BlogPost::with('category')
                            ->where('is_published', true)
                            ->where('id', '!=', $post->id)
@@ -69,22 +74,20 @@ class BlogController extends Controller
                               ->where('is_published', true)
                               ->latest('published_at')
                               ->paginate(12);
-        $categories = BlogCategory::withCount(['posts' => fn($q) => $q->where('is_published', true)])
-                                  ->having('posts_count', '>', 0)
-                                  ->get();
+        $categories = BlogCategory::withCount([
+            'posts' => fn($q) => $q->where('is_published', true)
+        ])->having('posts_count', '>', 0)->get();
 
-        return view('public.insights.category', compact('category', 'posts', 'categories', 'lang'));
+        return view('public.insights.category', compact(
+            'category', 'posts', 'categories', 'lang'
+        ));
     }
 
-    // Newsroom — alag method
     public function newsroom(Request $request)
     {
         $lang     = $request->route('lang', 'en');
         $category = $request->get('category', 'all');
         $search   = $request->get('search', '');
-
-        // Newsroom categories — hardcoded slugs ya "newsroom" type
-        $newsroomSlugs = ['ai', 'data', 'products', 'startups', 'funding', 'partnerships', 'events', 'research', 'robotics'];
 
         $query = BlogPost::with('category')
                          ->where('is_published', true)
@@ -97,18 +100,22 @@ class BlogController extends Controller
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('excerpt', 'like', "%{$search}%");
+                  ->orWhere('title_de', 'like', "%{$search}%")
+                  ->orWhere('excerpt', 'like', "%{$search}%")
+                  ->orWhere('excerpt_de', 'like', "%{$search}%");
             });
         }
 
-        $posts      = $query->paginate(12)->withQueryString();
-        $categories = BlogCategory::withCount(['posts' => fn($q) => $q->where('is_published', true)])
-                                  ->having('posts_count', '>', 0)
-                                  ->get();
-        $featured   = BlogPost::with('category')
-                              ->where('is_published', true)
-                              ->latest('published_at')
-                              ->first();
+        $posts = $query->paginate(12)->withQueryString();
+
+        $categories = BlogCategory::withCount([
+            'posts' => fn($q) => $q->where('is_published', true)
+        ])->having('posts_count', '>', 0)->get();
+
+        $featured = BlogPost::with('category')
+                            ->where('is_published', true)
+                            ->latest('published_at')
+                            ->first();
 
         return view('public.newsroom.index', compact(
             'posts', 'lang', 'category', 'search', 'categories', 'featured'
