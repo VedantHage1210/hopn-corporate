@@ -1,7 +1,6 @@
 @php
     $lang = request()->route('lang', app()->getLocale());
 
-    // Cookie se active language detect karo
     $googtrans = $_COOKIE['googtrans'] ?? '';
     $activeLang = $lang;
     if ($googtrans) {
@@ -27,10 +26,10 @@
         ['route' => 'innovation.index', 'en' => 'Innovation', 'de' => 'Innovation', 'ar' => 'الابتكار'],
         ['route' => 'programs.index',   'en' => 'Programs',   'de' => 'Programme',  'ar' => 'البرامج'],
         ['route' => 'products.index',   'en' => 'Products',   'de' => 'Produkte',   'ar' => 'المنتجات'],
-        ['route' => 'insights.index',   'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
+        ['route' => 'newsroom.index',   'en' => 'Newsroom',   'de' => 'Newsroom',   'ar' => 'غرفة الأخبار'],
+        ['route' => 'insights.index',   'en' => 'Insights',   'de' => 'Einblicke',  'ar' => 'المقالات'],
         ['route' => 'careers.index',    'en' => 'Careers',    'de' => 'Karriere',   'ar' => 'وظائف'],
-       ['route' => 'catalog.index', 'en' => 'Catalog', 'de' => 'Katalog', 'ar' => 'الكتالوج'],
-['route' => 'newsroom.index', 'en' => 'Newsroom', 'de' => 'Newsroom', 'ar' => 'غرفة الأخبار'],
+        ['route' => 'catalog.index',    'en' => 'Catalog',    'de' => 'Katalog',    'ar' => 'الكتالوج'],
     ];
     $useCms = $navItems->count() > 0;
 @endphp
@@ -49,7 +48,7 @@
         </a>
 
         {{-- Desktop Nav --}}
-        <nav class="hidden md:flex" style="gap:4px;">
+        <nav class="hidden md:flex" style="gap:2px;">
             @if($useCms)
                 @foreach($navItems as $item)
                     <a href="{{ $item->url ?? '#' }}"
