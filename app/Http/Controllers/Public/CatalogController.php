@@ -15,22 +15,48 @@ class CatalogController extends Controller
         $search   = $request->get('search', '');
         $category = $request->get('category', 'all');
 
+        // Products — title_en, summary_en
         $products = Product::where('is_published', true)
-            ->when($search, fn($q) => $q->where('title_en', 'like', "%{$search}%")
-                ->orWhere('summary_en', 'like', "%{$search}%"))
+            ->when($search, function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('title_en', 'like', "%{$search}%")
+                       ->orWhere('summary_en', 'like', "%{$search}%")
+                       ->orWhere('title_de', 'like', "%{$search}%");
+                });
+            })
             ->latest()->get();
 
+        // Services — ye columns Service model se check karke fix kiya
         $services = Service::where('is_published', true)
-            ->when($search, fn($q) => $q->where('title', 'like', "%{$search}%")
-                ->orWhere('summary', 'like', "%{$search}%"))
+            ->when($search, function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('title_en', 'like', "%{$search}%")
+                       ->orWhere('summary_en', 'like', "%{$search}%")
+                       ->orWhere('title_de', 'like', "%{$search}%")
+                       ->orWhere('summary_de', 'like', "%{$search}%");
+                });
+            })
             ->latest()->get();
 
+        // Programs — title_en, summary_en
         $programs = Program::where('is_published', true)
-            ->when($search, fn($q) => $q->where('title_en', 'like', "%{$search}%")
-                ->orWhere('summary_en', 'like', "%{$search}%"))
+            ->when($search, function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('title_en', 'like', "%{$search}%")
+                       ->orWhere('summary_en', 'like', "%{$search}%")
+                       ->orWhere('title_de', 'like', "%{$search}%");
+                });
+            })
             ->latest()->get();
 
+        // Domains
         $domains = InnovationDomain::where('is_published', true)
+            ->when($search, function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('name', 'like', "%{$search}%")
+                       ->orWhere('description', 'like', "%{$search}%");
+                });
+            })
             ->orderBy('sort_order')->get();
 
         return view('public.catalog.index', compact(
