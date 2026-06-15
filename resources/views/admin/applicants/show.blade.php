@@ -42,7 +42,7 @@
                         <dd>
                             @if($applicant->cv_path)
                                 @if(str_starts_with($applicant->cv_path, 'http'))
-                                    <a href="{{ $applicant->cv_path }}" target="_blank"
+                                   <a href="{{ str_replace('/raw/upload/', '/raw/upload/fl_attachment/', $applicant->cv_path) }}" target="_blank"
                                        class="btn-primary text-xs py-1 px-3">Download CV</a>
                                 @else
                                     <span class="text-slate-500 text-xs">CV uploaded locally — not accessible on Railway</span>
