@@ -3,18 +3,16 @@
         <h1 class="text-xl font-semibold text-white">Applicant: {{ $applicant->full_name }}</h1>
         <a href="{{ route('admin.applicants.index') }}" class="text-sm text-slate-400 hover:text-white">← Back to list</a>
     </div>
-
+ 
     @php
-        $cvUrl = null;
-        if ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http')) {
-            $cvUrl = str_contains($applicant->cv_path, 'cloudinary.com')
-                ? str_replace('/raw/upload/', '/raw/upload/fl_attachment/', $applicant->cv_path)
-                : $applicant->cv_path;
-        }
+        // Direct Cloudinary URL — NO fl_attachment (not supported for raw/pdf files)
+        $cvUrl = $applicant->cv_path && str_starts_with($applicant->cv_path, 'http')
+            ? $applicant->cv_path
+            : null;
     @endphp
-
+ 
     <div class="grid gap-6 lg:grid-cols-3">
-
+ 
         {{-- Main info --}}
         <div class="lg:col-span-2 space-y-6">
             <div class="card-panel p-6">
@@ -32,9 +30,7 @@
                         <dt class="w-32 text-slate-400">Email</dt>
                         <dd>
                             <a href="mailto:{{ $applicant->email }}"
-                               class="text-indigo-300 hover:text-indigo-200">
-                                {{ $applicant->email }}
-                            </a>
+                               class="text-indigo-300 hover:text-indigo-200">{{ $applicant->email }}</a>
                         </dd>
                     </div>
                     <div class="flex gap-4">
@@ -54,24 +50,16 @@
                         <dd>
                             @if($cvUrl)
                                 <a href="{{ $cvUrl }}" target="_blank"
-                                   class="btn-primary text-xs py-1 px-3">
-                                    Download CV
-                                </a>
-                            @elseif($applicant->cv_path)
-                                <span class="text-slate-500 text-xs">
-                                    CV stored locally — not accessible on Railway
-                                </span>
+                                   class="btn-primary text-xs py-1 px-3">Download CV</a>
                             @else
-                                <span class="text-slate-500">Not uploaded</span>
+                                <span class="text-slate-500 text-xs">Not uploaded</span>
                             @endif
                         </dd>
                     </div>
                     @if($applicant->tracking_token)
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Tracking ID</dt>
-                        <dd class="text-white font-mono text-xs tracking-widest">
-                            {{ $applicant->tracking_token }}
-                        </dd>
+                        <dd class="text-white font-mono text-xs tracking-widest">{{ $applicant->tracking_token }}</dd>
                     </div>
                     @endif
                     @if($applicant->linkedin_url)
@@ -79,82 +67,65 @@
                         <dt class="w-32 text-slate-400">LinkedIn</dt>
                         <dd>
                             <a href="{{ $applicant->linkedin_url }}" target="_blank"
-                               class="text-indigo-300 hover:text-indigo-200 text-xs">
-                                View Profile →
-                            </a>
+                               class="text-indigo-300 hover:text-indigo-200 text-xs">View Profile →</a>
                         </dd>
                     </div>
                     @endif
                 </dl>
             </div>
-
+ 
             @if($applicant->cover_letter)
             <div class="card-panel p-6">
                 <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Cover Letter</h2>
-                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">
-                    {{ $applicant->cover_letter }}
-                </p>
+                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{{ $applicant->cover_letter }}</p>
             </div>
             @endif
         </div>
-
+ 
         {{-- Sidebar --}}
         <div class="space-y-4">
-
+ 
             {{-- Quick Actions --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Quick Actions</h2>
-
-                {{-- Reply via Email --}}
-                <a href="mailto:{{ $applicant->email }}?subject=Re: Your Application for {{ urlencode($applicant->job?->title ?? 'the position') }} at HOPn&body=Dear {{ urlencode($applicant->full_name) }},%0D%0A%0D%0AThank you for applying for the {{ urlencode($applicant->job?->title ?? 'position') }} at HOPn.%0D%0A%0D%0ABest regards,%0D%0AHOPn Team"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; background:#10B981; color:white; font-size:14px; font-weight:600; text-decoration:none; margin-bottom:10px; transition:opacity 0.2s;"
-                   onmouseover="this.style.opacity='0.85'"
-                   onmouseout="this.style.opacity='1'">
+ 
+                <a href="mailto:{{ $applicant->email }}?subject=Re: Your Application for {{ urlencode($applicant->job?->title ?? 'the position') }} at HOPn&body=Dear {{ urlencode($applicant->full_name) }},%0D%0A%0D%0AThank you for applying.%0D%0A%0D%0ABest regards,%0D%0AHOPn Team"
+                   style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;background:#10B981;color:white;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;">
                     ✉ Reply via Email
                 </a>
-
-                {{-- Call --}}
+ 
                 @if($applicant->phone)
                 <a href="tel:{{ $applicant->phone }}"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none; margin-bottom:10px; transition:all 0.2s;"
-                   onmouseover="this.style.color='white'; this.style.borderColor='rgba(255,255,255,0.2)'"
-                   onmouseout="this.style.color='#94A3B8'; this.style.borderColor='rgba(255,255,255,0.1)'">
+                   style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:#94A3B8;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;">
                     📞 {{ $applicant->phone }}
                 </a>
                 @endif
-
-                {{-- Download CV --}}
+ 
                 @if($cvUrl)
                 <a href="{{ $cvUrl }}" target="_blank"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;"
-                   onmouseover="this.style.background='rgba(79,110,247,0.15)'"
-                   onmouseout="this.style.background='rgba(79,110,247,0.08)'">
+                   style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;border:1px solid rgba(79,110,247,0.3);background:rgba(79,110,247,0.08);color:#818CF8;font-size:14px;font-weight:600;text-decoration:none;">
                     📄 Download CV
                 </a>
                 @endif
             </div>
-
+ 
             {{-- Update Status --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Update Status</h2>
-                <form method="POST"
-                      action="{{ route('admin.applicants.update', $applicant) }}"
-                      class="space-y-4">
+                <form method="POST" action="{{ route('admin.applicants.update', $applicant) }}" class="space-y-4">
                     @csrf @method('PATCH')
                     <div>
                         <label class="mb-1 block text-xs font-medium text-slate-300">Status</label>
                         <select name="status"
                                 class="w-full rounded border-slate-700 bg-slate-900 text-white text-sm px-3 py-2">
                             @foreach(config('hopn.application_statuses', [
-                                'new'      => 'New',
-                                'reviewed' => 'Reviewed',
-                                'interview'=> 'Interview',
-                                'offer'    => 'Offer',
-                                'rejected' => 'Rejected'
+                                'new'       => 'New',
+                                'reviewed'  => 'Reviewed',
+                                'interview' => 'Interview',
+                                'offer'     => 'Offer',
+                                'rejected'  => 'Rejected',
                             ]) as $key => $label)
-                                <option value="{{ $key }}" @selected($applicant->status === $key)>
-                                    {{ $label }}
-                                </option>
+                                <option value="{{ $key }}" @selected($applicant->status === $key)>{{ $label }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -166,7 +137,7 @@
                     <button type="submit" class="btn-primary w-full text-sm">Save Changes</button>
                 </form>
             </div>
-
+ 
             @if(session('status'))
             <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">
                 {{ session('status') }}
