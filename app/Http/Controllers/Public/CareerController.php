@@ -52,37 +52,38 @@ class CareerController extends Controller
         ]);
     }
 
-  private function uploadToCloudinary($file): ?string
+ private function uploadToCloudinary($file): ?string
 {
+    $cloudName = env('CLOUDINARY_CLOUD_NAME', 'diz1kld4g');
+    $apiKey    = env('CLOUDINARY_API_KEY', '995583962582514');
+    $apiSecret = env('CLOUDINARY_API_SECRET');
+
+    // Agar secret missing hai to local fallback
+    if (!$apiSecret) {
+        \Illuminate\Support\Facades\Log::warning('CLOUDINARY_API_SECRET not set');
+        return $file->store('career-cv', 'public');
+    }
+
     try {
-        $cloudName = config('cloudinary.cloud_name', env('CLOUDINARY_CLOUD_NAME', 'diz1kld4g'));
-        $apiKey    = config('cloudinary.api_key', env('CLOUDINARY_API_KEY', '995583962582514'));
-        $apiSecret = config('cloudinary.api_secret', env('CLOUDINARY_API_SECRET'));
         $timestamp = time();
+        $signature = sha1("folder=hopn-cv&timestamp={$timestamp}{$apiSecret}");
 
-        // resource_type=raw for PDFs/DOCs
-        $paramsToSign = "folder=hopn-cv&resource_type=raw&timestamp={$timestamp}";
-        $signature    = sha1($paramsToSign . $apiSecret);
+        $response = \Illuminate\Support\Facades\Http::timeout(30)
+            ->attach('file', file_get_contents($file->getRealPath()), $file->getClientOriginalName())
+            ->post("https://api.cloudinary.com/v1_1/{$cloudName}/raw/upload", [
+                'api_key'   => $apiKey,
+                'timestamp' => $timestamp,
+                'signature' => $signature,
+                'folder'    => 'hopn-cv',
+            ]);
 
-        $response = \Illuminate\Support\Facades\Http::timeout(30)->attach(
-            'file',
-            file_get_contents($file->getRealPath()),
-            $file->getClientOriginalName()
-        )->post("https://api.cloudinary.com/v1_1/{$cloudName}/raw/upload", [
-            'api_key'       => $apiKey,
-            'timestamp'     => $timestamp,
-            'signature'     => $signature,
-            'folder'        => 'hopn-cv',
-            'resource_type' => 'raw',
-        ]);
-
-        if ($response->successful()) {
+        if ($response->successful() && isset($response->json()['secure_url'])) {
             return $response->json()['secure_url'];
         }
 
-        \Illuminate\Support\Facades\Log::error('Cloudinary upload failed: ' . $response->body());
+        \Illuminate\Support\Facades\Log::error('Cloudinary failed: ' . $response->body());
     } catch (\Exception $e) {
-        \Illuminate\Support\Facades\Log::error('Cloudinary CV upload exception: ' . $e->getMessage());
+        \Illuminate\Support\Facades\Log::error('Cloudinary exception: ' . $e->getMessage());
     }
 
     return $file->store('career-cv', 'public');
