@@ -39,13 +39,6 @@
                         'offer'     => 'bg-green-900 text-green-200',
                         'rejected'  => 'bg-rose-900 text-rose-200',
                     ];
-                    // CV URL fix — Cloudinary fl_attachment for force download
-                    $cvUrl = null;
-                    if ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http')) {
-                        $cvUrl = str_contains($applicant->cv_path, 'cloudinary.com')
-                            ? str_replace('/raw/upload/', '/raw/upload/fl_attachment/', $applicant->cv_path)
-                            : $applicant->cv_path;
-                    }
                 @endphp
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->id }}</td>
@@ -53,8 +46,7 @@
                         <div class="font-medium text-white">{{ $applicant->full_name }}</div>
                         <div class="text-xs text-slate-400">{{ $applicant->email }}</div>
                         @if($applicant->linkedin_url)
-                        <a href="{{ $applicant->linkedin_url }}" target="_blank"
-                           class="text-xs text-indigo-400 hover:text-indigo-300">LinkedIn →</a>
+                        <a href="{{ $applicant->linkedin_url }}" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300">LinkedIn →</a>
                         @endif
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->job?->title ?? '—' }}</td>
@@ -64,42 +56,35 @@
                             {{ ucfirst($applicant->status) }}
                         </span>
                     </td>
-                    <td class="px-3 py-3 text-slate-400">
-                        {{ $applicant->created_at->format('d M Y') }}
-                    </td>
+                    <td class="px-3 py-3 text-slate-400">{{ $applicant->created_at->format('d M Y') }}</td>
                     <td class="px-3 py-3">
-                        @if($cvUrl)
-                            <a href="{{ $cvUrl }}" target="_blank"
-                               class="text-indigo-300 hover:text-indigo-200 text-xs font-medium">
-                                Download CV
-                            </a>
-                        @elseif($applicant->cv_path)
-                            <span class="text-slate-600 text-xs" title="Not accessible on Railway">N/A</span>
+                        @if($applicant->cv_path)
+                            @if(str_starts_with($applicant->cv_path, 'http'))
+                                {{-- Cloudinary URL — direct link --}}
+                                <a href="{{ $applicant->cv_path }}" target="_blank"
+                                   class="text-indigo-300 hover:text-indigo-200 text-xs">Download CV</a>
+                            @else
+                                {{-- Local storage — show warning --}}
+                                <span class="text-slate-500 text-xs" title="File not accessible on Railway">N/A</span>
+                            @endif
                         @else
                             <span class="text-slate-500">—</span>
                         @endif
                     </td>
                     <td class="px-3 py-3">
-                        <div class="flex gap-3 items-center">
+                        <div style="display:flex; gap:12px; align-items:center;">
                             <a href="{{ route('admin.applicants.show', $applicant) }}"
                                class="text-indigo-300 hover:text-indigo-200">Review</a>
-                            <form method="POST"
-                                  action="{{ route('admin.applicants.destroy', $applicant) }}"
-                                  class="inline-block">
+                            <form method="POST" action="{{ route('admin.applicants.destroy', $applicant) }}" class="inline-block">
                                 @csrf @method('DELETE')
-                                <button type="submit"
-                                        onclick="return confirm('Delete this applicant?')"
+                                <button type="submit" onclick="return confirm('Delete this applicant?')"
                                         class="text-rose-300 hover:text-rose-200">Delete</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
-                <tr>
-                    <td colspan="8" class="px-3 py-6 text-center text-slate-500">
-                        No applicants found.
-                    </td>
-                </tr>
+                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No applicants found.</td></tr>
                 @endforelse
             </tbody>
         </table>
