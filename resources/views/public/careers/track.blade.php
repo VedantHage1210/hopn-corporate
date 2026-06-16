@@ -136,7 +136,7 @@
                     @if($lang==='ar') تتبع طلب آخر @elseif($lang==='de') Andere Bewerbung verfolgen @else Track Another Application @endif
                 </h3>
                 <form method="GET"
-                   onsubmit="var t=document.getElementById('track-input').value.trim(); if(t){window.location='{{ url('/'.$lang.'/careers/track') }}/'+t;} return false;"
+                  onsubmit="event.preventDefault(); var t=document.getElementById('track-input').value.trim(); if(t){ window.location.href='/{{ $lang }}/careers/track/'+t; }"
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="track-input"
                                placeholder="{{ $lang==='ar'?'أدخل معرف الطلب (مثال: ABCD-EFGH)':($lang==='de'?'Bewerbungs-ID eingeben':'Enter Application ID (e.g. ABCD-EFGH)') }}"
