@@ -87,11 +87,19 @@ class CareerController extends Controller
 
     return $file->store('career-cv', 'public');
 }
-    public function track(string $lang, string $token)
-    {
-        $application = JobApplication::where('tracking_token', $token)
-                                     ->with('job')
-                                     ->firstOrFail();
-        return view('public.careers.track', compact('application', 'lang'));
+  public function track(string $lang, string $token)
+{
+    $application = JobApplication::where('tracking_token', $token)
+                                 ->with('job')
+                                 ->first();
+
+    if (!$application) {
+        abort(404);
     }
+
+    return view('public.careers.track', [
+        'application' => $application,
+        'lang'        => $lang,
+    ]);
+}
 }
