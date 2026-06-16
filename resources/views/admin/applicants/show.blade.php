@@ -4,15 +4,6 @@
         <a href="{{ route('admin.applicants.index') }}" class="text-sm text-slate-400 hover:text-white">← Back to list</a>
     </div>
 
-    @php
-        $cvUrl = null;
-        if ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http')) {
-            $cvUrl = str_contains($applicant->cv_path, 'cloudinary.com')
-                ? str_replace('/raw/upload/', '/raw/upload/fl_attachment/', $applicant->cv_path)
-                : $applicant->cv_path;
-        }
-    @endphp
-
     <div class="grid gap-6 lg:grid-cols-3">
 
         {{-- Main info --}}
@@ -31,10 +22,7 @@
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Email</dt>
                         <dd>
-                            <a href="mailto:{{ $applicant->email }}"
-                               class="text-indigo-300 hover:text-indigo-200">
-                                {{ $applicant->email }}
-                            </a>
+                            <a href="mailto:{{ $applicant->email }}" class="text-indigo-300 hover:text-indigo-200">{{ $applicant->email }}</a>
                         </dd>
                     </div>
                     <div class="flex gap-4">
@@ -52,15 +40,13 @@
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">CV</dt>
                         <dd>
-                            @if($cvUrl)
-                                <a href="{{ $cvUrl }}" target="_blank"
-                                   class="btn-primary text-xs py-1 px-3">
-                                    Download CV
-                                </a>
-                            @elseif($applicant->cv_path)
-                                <span class="text-slate-500 text-xs">
-                                    CV stored locally — not accessible on Railway
-                                </span>
+                            @if($applicant->cv_path)
+                                @if(str_starts_with($applicant->cv_path, 'http'))
+                                   <a href="{{ str_replace('/raw/upload/', '/raw/upload/fl_attachment/', $applicant->cv_path) }}" target="_blank"
+                                       class="btn-primary text-xs py-1 px-3">Download CV</a>
+                                @else
+                                    <span class="text-slate-500 text-xs">CV uploaded locally — not accessible on Railway</span>
+                                @endif
                             @else
                                 <span class="text-slate-500">Not uploaded</span>
                             @endif
@@ -69,20 +55,7 @@
                     @if($applicant->tracking_token)
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Tracking ID</dt>
-                        <dd class="text-white font-mono text-xs tracking-widest">
-                            {{ $applicant->tracking_token }}
-                        </dd>
-                    </div>
-                    @endif
-                    @if($applicant->linkedin_url)
-                    <div class="flex gap-4">
-                        <dt class="w-32 text-slate-400">LinkedIn</dt>
-                        <dd>
-                            <a href="{{ $applicant->linkedin_url }}" target="_blank"
-                               class="text-indigo-300 hover:text-indigo-200 text-xs">
-                                View Profile →
-                            </a>
-                        </dd>
+                        <dd class="text-white font-mono text-xs">{{ $applicant->tracking_token }}</dd>
                     </div>
                     @endif
                 </dl>
@@ -91,45 +64,28 @@
             @if($applicant->cover_letter)
             <div class="card-panel p-6">
                 <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Cover Letter</h2>
-                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">
-                    {{ $applicant->cover_letter }}
-                </p>
+                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{{ $applicant->cover_letter }}</p>
             </div>
             @endif
         </div>
 
-        {{-- Sidebar --}}
+        {{-- Status sidebar --}}
         <div class="space-y-4">
-
-            {{-- Quick Actions --}}
+            {{-- Reply via Email --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Quick Actions</h2>
-
-                {{-- Reply via Email --}}
-                <a href="mailto:{{ $applicant->email }}?subject=Re: Your Application for {{ urlencode($applicant->job?->title ?? 'the position') }} at HOPn&body=Dear {{ urlencode($applicant->full_name) }},%0D%0A%0D%0AThank you for applying for the {{ urlencode($applicant->job?->title ?? 'position') }} at HOPn.%0D%0A%0D%0ABest regards,%0D%0AHOPn Team"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; background:#10B981; color:white; font-size:14px; font-weight:600; text-decoration:none; margin-bottom:10px; transition:opacity 0.2s;"
+                <a href="mailto:{{ $applicant->email }}?subject=Re: Your Application for {{ $applicant->job?->title ?? 'the position' }} at HOPn&body=Dear {{ $applicant->full_name }},%0D%0A%0D%0AThank you for applying for the {{ $applicant->job?->title ?? 'position' }} at HOPn.%0D%0A%0D%0A"
+                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:10px 16px; border-radius:8px; background:#10B981; color:white; font-size:14px; font-weight:600; text-decoration:none; margin-bottom:8px;"
                    onmouseover="this.style.opacity='0.85'"
                    onmouseout="this.style.opacity='1'">
                     ✉ Reply via Email
                 </a>
-
-                {{-- Call --}}
                 @if($applicant->phone)
                 <a href="tel:{{ $applicant->phone }}"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none; margin-bottom:10px; transition:all 0.2s;"
-                   onmouseover="this.style.color='white'; this.style.borderColor='rgba(255,255,255,0.2)'"
-                   onmouseout="this.style.color='#94A3B8'; this.style.borderColor='rgba(255,255,255,0.1)'">
+                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:10px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none;"
+                   onmouseover="this.style.color='white'"
+                   onmouseout="this.style.color='#94A3B8'">
                     📞 {{ $applicant->phone }}
-                </a>
-                @endif
-
-                {{-- Download CV --}}
-                @if($cvUrl)
-                <a href="{{ $cvUrl }}" target="_blank"
-                   style="display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;"
-                   onmouseover="this.style.background='rgba(79,110,247,0.15)'"
-                   onmouseout="this.style.background='rgba(79,110,247,0.08)'">
-                    📄 Download CV
                 </a>
                 @endif
             </div>
@@ -137,31 +93,19 @@
             {{-- Update Status --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Update Status</h2>
-                <form method="POST"
-                      action="{{ route('admin.applicants.update', $applicant) }}"
-                      class="space-y-4">
+                <form method="POST" action="{{ route('admin.applicants.update', $applicant) }}" class="space-y-4">
                     @csrf @method('PATCH')
                     <div>
                         <label class="mb-1 block text-xs font-medium text-slate-300">Status</label>
-                        <select name="status"
-                                class="w-full rounded border-slate-700 bg-slate-900 text-white text-sm px-3 py-2">
-                            @foreach(config('hopn.application_statuses', [
-                                'new'      => 'New',
-                                'reviewed' => 'Reviewed',
-                                'interview'=> 'Interview',
-                                'offer'    => 'Offer',
-                                'rejected' => 'Rejected'
-                            ]) as $key => $label)
-                                <option value="{{ $key }}" @selected($applicant->status === $key)>
-                                    {{ $label }}
-                                </option>
+                        <select name="status" class="w-full rounded border-slate-700 bg-slate-900 text-white text-sm px-3 py-2">
+                            @foreach(config('hopn.application_statuses', ['new' => 'New', 'reviewed' => 'Reviewed', 'interview' => 'Interview', 'offer' => 'Offer', 'rejected' => 'Rejected']) as $key => $label)
+                                <option value="{{ $key }}" @selected($applicant->status === $key)>{{ $label }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div>
                         <label class="mb-1 block text-xs font-medium text-slate-300">Internal Notes</label>
-                        <textarea name="notes" rows="5"
-                                  class="w-full rounded border-slate-700 bg-slate-900 text-white text-sm px-3 py-2">{{ old('notes', $applicant->notes ?? '') }}</textarea>
+                        <textarea name="notes" rows="5" class="w-full rounded border-slate-700 bg-slate-900 text-white text-sm px-3 py-2">{{ old('notes', $applicant->notes) }}</textarea>
                     </div>
                     <button type="submit" class="btn-primary w-full text-sm">Save Changes</button>
                 </form>
