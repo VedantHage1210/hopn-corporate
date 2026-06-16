@@ -19,9 +19,8 @@ class CatalogController extends Controller
         $products = Product::where('is_published', true)
             ->when($search, function($q) use ($search) {
                 $q->where(function($q2) use ($search) {
-                    $q2->where('title_en', 'like', "%{$search}%")
-                       ->orWhere('summary_en', 'like', "%{$search}%")
-                       ->orWhere('title_de', 'like', "%{$search}%");
+                  $q2->where('title', 'like', "%{$search}%")
+   ->orWhere('description', 'like', "%{$search}%");
                 });
             })
             ->latest()->get();
@@ -30,10 +29,8 @@ class CatalogController extends Controller
         $services = Service::where('is_published', true)
             ->when($search, function($q) use ($search) {
                 $q->where(function($q2) use ($search) {
-                    $q2->where('title_en', 'like', "%{$search}%")
-                       ->orWhere('summary_en', 'like', "%{$search}%")
-                       ->orWhere('title_de', 'like', "%{$search}%")
-                       ->orWhere('summary_de', 'like', "%{$search}%");
+                   $q2->where('title', 'like', "%{$search}%")
+   ->orWhere('description', 'like', "%{$search}%");
                 });
             })
             ->latest()->get();
@@ -42,9 +39,9 @@ class CatalogController extends Controller
         $programs = Program::where('is_published', true)
             ->when($search, function($q) use ($search) {
                 $q->where(function($q2) use ($search) {
-                    $q2->where('title_en', 'like', "%{$search}%")
-                       ->orWhere('summary_en', 'like', "%{$search}%")
-                       ->orWhere('title_de', 'like', "%{$search}%");
+                  $q2->where('title_en', 'like', "%{$search}%")
+   ->orWhere('title', 'like', "%{$search}%")
+   ->orWhere('description', 'like', "%{$search}%");
                 });
             })
             ->latest()->get();
