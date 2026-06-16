@@ -176,7 +176,11 @@
                         <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">
                             {{ $service->icon ?? '⚡' }}
                         </div>
-                        <h3 style="font-size:17px; font-weight:700; color:white; margin:0; line-height:1.3;">{{ $service->title }}</h3>
+                       <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">
+    @if($lang==='de'&&$service->name_de) {{ $service->name_de }}
+    @elseif($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
+    @else {{ $service->name }} @endif
+</h3>
                     </div>
                     <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($service->summary ?? $service->description ?? '',90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
