@@ -1,4 +1,4 @@
-<x-layouts.public :title="'Catalog'">
+<x-layouts.public :title="$lang==='ar'?'الكتالوج':($lang==='de'?'Katalog':'Catalog')">
 @php $lang = request()->route('lang', 'en'); @endphp
 
 {{-- Hero --}}
@@ -37,9 +37,6 @@
                            style="width:100%; padding:14px 14px 14px 44px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:15px; outline:none; box-sizing:border-box;"
                            onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
                            onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-                    @if(request('category'))
-                    <input type="hidden" name="category" value="{{ request('category') }}">
-                    @endif
                 </div>
                 <button type="submit"
                         style="padding:14px 24px; background:#4F6EF7; color:white; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap;"
@@ -47,6 +44,14 @@
                         onmouseout="this.style.opacity='1'">
                     @if($lang==='ar') بحث @elseif($lang==='de') Suchen @else Search @endif
                 </button>
+                @if($search)
+                <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
+                   style="padding:14px 20px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;"
+                   onmouseover="this.style.color='white'"
+                   onmouseout="this.style.color='#94A3B8'">
+                    ✕ @if($lang==='ar') مسح @elseif($lang==='de') Löschen @else Clear @endif
+                </a>
+                @endif
             </div>
         </form>
     </div>
@@ -57,42 +62,40 @@
     <div class="container-shell">
         <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
             @php
-            $categories = [
-                'all'      => $lang==='ar'?'الكل':($lang==='de'?'Alle':'All'),
-                'products' => $lang==='ar'?'المنتجات':($lang==='de'?'Produkte':'Products'),
-                'services' => $lang==='ar'?'الخدمات':($lang==='de'?'Leistungen':'Services'),
-                'programs' => $lang==='ar'?'البرامج':($lang==='de'?'Programme':'Programs'),
-                'domains'  => $lang==='ar'?'مجالات الابتكار':($lang==='de'?'Innovationsdomänen':'Innovation Domains'),
+            $tabs = [
+                ['key'=>'all',      'label'=>$lang==='ar'?'الكل':($lang==='de'?'Alle':'All'),                                           'count'=>null],
+                ['key'=>'products', 'label'=>$lang==='ar'?'المنتجات':($lang==='de'?'Produkte':'Products'),                              'count'=>$products->count()],
+                ['key'=>'services', 'label'=>$lang==='ar'?'الخدمات':($lang==='de'?'Leistungen':'Services'),                            'count'=>$services->count()],
+                ['key'=>'programs', 'label'=>$lang==='ar'?'البرامج':($lang==='de'?'Programme':'Programs'),                              'count'=>$programs->count()],
+                ['key'=>'domains',  'label'=>$lang==='ar'?'مجالات الابتكار':($lang==='de'?'Innovationsdomänen':'Innovation Domains'),   'count'=>$domains->count()],
             ];
             @endphp
-            @foreach($categories as $key => $label)
-            <a href="{{ route('catalog.index', ['lang'=>$lang, 'category'=>$key, 'search'=>$search]) }}"
+            @foreach($tabs as $tab)
+            {{-- Search mode mein 0 count tabs hide karo, All tab hamesha dikhe --}}
+            @if(!$search || $tab['key']==='all' || ($tab['count'] !== null && $tab['count'] > 0))
+            <a href="{{ route('catalog.index', ['lang'=>$lang, 'category'=>$tab['key']]) }}"
                style="padding:8px 20px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s;
-               {{ $category===$key ? 'background:#4F6EF7; color:white; border:1px solid #4F6EF7;' : 'background:rgba(255,255,255,0.04); color:#64748B; border:1px solid rgba(255,255,255,0.08);' }}"
-               onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'"
-               onmouseout="this.style.borderColor='{{ $category===$key ? '#4F6EF7' : 'rgba(255,255,255,0.08)' }}'">
-                {{ $label }}
-                @if($key==='products') ({{ $products->count() }})
-                @elseif($key==='services') ({{ $services->count() }})
-                @elseif($key==='programs') ({{ $programs->count() }})
-                @elseif($key==='domains') ({{ $domains->count() }})
-                @endif
+               {{ $category===$tab['key'] ? 'background:#4F6EF7; color:white; border:1px solid #4F6EF7;' : 'background:rgba(255,255,255,0.04); color:#64748B; border:1px solid rgba(255,255,255,0.08);' }}">
+                {{ $tab['label'] }}
+                @if($tab['count'] !== null) ({{ $tab['count'] }}) @endif
             </a>
+            @endif
             @endforeach
         </div>
+
+        {{-- Search result info --}}
+        @if($search)
+        <div style="text-align:center; margin-top:16px; font-size:14px; color:#64748B;">
+            @if($lang==='ar') نتائج البحث عن: @elseif($lang==='de') Suchergebnisse für: @else Search results for: @endif
+            <span style="color:white; font-weight:600;">"{{ $search }}"</span>
+        </div>
+        @endif
     </div>
 </section>
 
 {{-- Results --}}
 <section style="padding:60px 0; background:#050A14; min-height:60vh;">
     <div class="container-shell">
-
-        @if($search)
-        <div style="margin-bottom:32px; color:#64748B; font-size:14px;">
-            @if($lang==='ar') نتائج البحث عن: @elseif($lang==='de') Suchergebnisse für: @else Search results for: @endif
-            <span style="color:white; font-weight:600;">"{{ $search }}"</span>
-        </div>
-        @endif
 
         {{-- PRODUCTS --}}
         @if(in_array($category, ['all','products']) && $products->count() > 0)
@@ -114,7 +117,12 @@
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($products as $product)
-                @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; $title=$lang==='de'&&$product->title_de?$product->title_de:$product->title_en; $summary=$lang==='de'&&$product->summary_de?$product->summary_de:$product->summary_en; @endphp
+                @php
+                    $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                    $c=$colors[$loop->index%6];
+                    $title=$lang==='ar'&&$product->title_ar?$product->title_ar:($lang==='de'&&$product->title_de?$product->title_de:$product->title_en);
+                    $summary=$lang==='ar'&&$product->summary_ar?$product->summary_ar:($lang==='de'&&$product->summary_de?$product->summary_de:($product->summary_en??''));
+                @endphp
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                    style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
                    onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
@@ -161,7 +169,12 @@
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($services as $service)
-                @php $colors=['#10B981','#4F6EF7','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+                @php
+                    $colors=['#10B981','#4F6EF7','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                    $c=$colors[$loop->index%6];
+                    $svcTitle=$lang==='ar'&&$service->name_ar?$service->name_ar:($lang==='de'&&$service->name_de?$service->name_de:$service->name);
+                    $svcSummary=$lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:($service->summary??''));
+                @endphp
                 <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}"
                    style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
                    onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
@@ -176,13 +189,9 @@
                         <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">
                             {{ $service->icon ?? '⚡' }}
                         </div>
-                       <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">
-    @if($lang==='de'&&$service->name_de) {{ $service->name_de }}
-    @elseif($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
-    @else {{ $service->name }} @endif
-</h3>
+                        <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $svcTitle }}</h3>
                     </div>
-                    <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($service->summary ?? $service->description ?? '',90) }}</p>
+                    <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($svcSummary,90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr lesen @else Learn more @endif →
                     </span>
@@ -212,7 +221,12 @@
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($programs as $program)
-                @php $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; $title=$lang==='de'&&$program->title_de?$program->title_de:$program->title_en; $summary=$lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''); @endphp
+                @php
+                    $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4'];
+                    $c=$colors[$loop->index%6];
+                    $pTitle=$lang==='ar'&&$program->title_ar?$program->title_ar:($lang==='de'&&$program->title_de?$program->title_de:$program->title_en);
+                    $pSummary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''));
+                @endphp
                 <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
                    style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
                    onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
@@ -223,8 +237,8 @@
                             @if($lang==='ar') برنامج @elseif($lang==='de') Programm @else Program @endif
                         </span>
                     </div>
-                    <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 12px; line-height:1.3;">{{ $title }}</h3>
-                    <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($summary,90) }}</p>
+                    <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 12px; line-height:1.3;">{{ $pTitle }}</h3>
+                    <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($pSummary,90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                     </span>
@@ -273,16 +287,15 @@
             <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد نتائج @elseif($lang==='de') Keine Ergebnisse @else No results found @endif
             </h3>
-            <p style="font-size:14px; color:#334155;">
+            <p style="font-size:14px; color:#334155; margin-bottom:20px;">
                 @if($lang==='ar') جرب كلمات بحث مختلفة @elseif($lang==='de') Versuchen Sie andere Suchbegriffe @else Try different search terms @endif
             </p>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; margin-top:20px; padding:10px 24px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
+               style="display:inline-flex; padding:10px 24px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') مسح البحث @elseif($lang==='de') Suche löschen @else Clear search @endif
             </a>
         </div>
         @endif
-
     </div>
 </section>
 
