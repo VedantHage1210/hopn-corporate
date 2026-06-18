@@ -34,7 +34,7 @@ class CareerController extends Controller
 
         $cvPath = $this->uploadToCloudinary($request->file('cv'));
 
-        $token = Str::upper(Str::random(4)) . '-' . Str::upper(Str::random(4));
+        $token = $this->generateTrackingToken();
 
         JobApplication::create([
             'job_id'         => $job->id,
@@ -55,11 +55,16 @@ class CareerController extends Controller
 
     public function track(string $lang, string $token)
     {
-        $application = JobApplication::where('tracking_token', trim($token))
+        // Normalize the token the same way it was generated/stored:
+        // trim whitespace and force uppercase so case differences
+        // (e.g. user pastes lowercase) never cause a false "not found".
+        $normalized = Str::upper(trim($token));
+
+        $application = JobApplication::whereRaw('UPPER(tracking_token) = ?', [$normalized])
                                      ->with('job')
                                      ->first();
 
-        if (!$application) {
+        if (! $application) {
             return view('public.careers.track', [
                 'application' => null,
                 'lang'        => $lang,
@@ -70,27 +75,66 @@ class CareerController extends Controller
         return view('public.careers.track', compact('application', 'lang'));
     }
 
+    /**
+     * Generate a tracking token using only unambiguous uppercase letters
+     * and digits (no 0/O or 1/I confusion), so what the user reads and
+     * types back always matches exactly.
+     */
+    private function generateTrackingToken(): string
+    {
+        $alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no 0/O/1/I
+        $part = function () use ($alphabet) {
+            $out = '';
+            for ($i = 0; $i < 4; $i++) {
+                $out .= $alphabet[random_int(0, strlen($alphabet) - 1)];
+            }
+            return $out;
+        };
+
+        $token = $part() . '-' . $part();
+
+        // Extremely unlikely, but guard against collisions.
+        while (JobApplication::where('tracking_token', $token)->exists()) {
+            $token = $part() . '-' . $part();
+        }
+
+        return $token;
+    }
+
     private function uploadToCloudinary($file): ?string
     {
         $cloudName = env('CLOUDINARY_CLOUD_NAME', 'diz1kld4g');
         $apiKey    = env('CLOUDINARY_API_KEY', '995583962582514');
         $apiSecret = env('CLOUDINARY_API_SECRET');
 
-        if (!$apiSecret) {
+        if (! $apiSecret) {
             Log::warning('CLOUDINARY_API_SECRET not set — falling back to local storage');
             return $file->store('career-cv', 'public');
         }
+
+        $stream = null;
 
         try {
             $timestamp    = time();
             $paramsToSign = "folder=hopn-cv&timestamp={$timestamp}";
             $signature    = sha1($paramsToSign . $apiSecret);
 
+            // IMPORTANT: stream the file with its real Content-Type.
+            // The previous version used file_get_contents() with no
+            // mime type, which let Cloudinary mis-handle PDF bytes
+            // (Word docs happened to still open, PDFs came back corrupt).
+            $stream = fopen($file->getRealPath(), 'rb');
+
+            if ($stream === false) {
+                throw new \RuntimeException('Could not open uploaded file for reading.');
+            }
+
             $response = Http::timeout(60)
                 ->attach(
                     'file',
-                    file_get_contents($file->getRealPath()),
-                    $file->getClientOriginalName()
+                    $stream,
+                    $file->getClientOriginalName(),
+                    ['Content-Type' => $file->getMimeType() ?: 'application/octet-stream']
                 )
                 ->post("https://api.cloudinary.com/v1_1/{$cloudName}/raw/upload", [
                     'api_key'   => $apiKey,
@@ -107,8 +151,13 @@ class CareerController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Cloudinary exception: ' . $e->getMessage());
+        } finally {
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
         }
 
+        // Local fallback (ephemeral on Railway, but better than losing the file entirely)
         return $file->store('career-cv', 'public');
     }
 }
