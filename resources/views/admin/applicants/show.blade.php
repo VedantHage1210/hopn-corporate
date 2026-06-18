@@ -3,16 +3,16 @@
         <h1 class="text-xl font-semibold text-white">Applicant: {{ $applicant->full_name }}</h1>
         <a href="{{ route('admin.applicants.index') }}" class="text-sm text-slate-400 hover:text-white">← Back to list</a>
     </div>
-
+ 
     @php
-        // Direct Cloudinary URL — no fl_attachment modification
-        $cvUrl = ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http'))
+        // Direct Cloudinary URL — NO fl_attachment (not supported for raw/pdf files)
+        $cvUrl = $applicant->cv_path && str_starts_with($applicant->cv_path, 'http')
             ? $applicant->cv_path
             : null;
     @endphp
-
+ 
     <div class="grid gap-6 lg:grid-cols-3">
-
+ 
         {{-- Main info --}}
         <div class="lg:col-span-2 space-y-6">
             <div class="card-panel p-6">
@@ -50,11 +50,7 @@
                         <dd>
                             @if($cvUrl)
                                 <a href="{{ $cvUrl }}" target="_blank"
-                                   class="btn-primary text-xs py-1 px-3">
-                                    📄 Download CV
-                                </a>
-                            @elseif($applicant->cv_path)
-                                <span class="text-slate-500 text-xs">Stored locally — not accessible on Railway</span>
+                                   class="btn-primary text-xs py-1 px-3">Download CV</a>
                             @else
                                 <span class="text-slate-500 text-xs">Not uploaded</span>
                             @endif
@@ -77,7 +73,7 @@
                     @endif
                 </dl>
             </div>
-
+ 
             @if($applicant->cover_letter)
             <div class="card-panel p-6">
                 <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Cover Letter</h2>
@@ -85,26 +81,26 @@
             </div>
             @endif
         </div>
-
+ 
         {{-- Sidebar --}}
         <div class="space-y-4">
-
+ 
             {{-- Quick Actions --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Quick Actions</h2>
-
+ 
                 <a href="mailto:{{ $applicant->email }}?subject=Re: Your Application for {{ urlencode($applicant->job?->title ?? 'the position') }} at HOPn&body=Dear {{ urlencode($applicant->full_name) }},%0D%0A%0D%0AThank you for applying.%0D%0A%0D%0ABest regards,%0D%0AHOPn Team"
                    style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;background:#10B981;color:white;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;">
                     ✉ Reply via Email
                 </a>
-
+ 
                 @if($applicant->phone)
                 <a href="tel:{{ $applicant->phone }}"
                    style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:#94A3B8;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;">
                     📞 {{ $applicant->phone }}
                 </a>
                 @endif
-
+ 
                 @if($cvUrl)
                 <a href="{{ $cvUrl }}" target="_blank"
                    style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;border:1px solid rgba(79,110,247,0.3);background:rgba(79,110,247,0.08);color:#818CF8;font-size:14px;font-weight:600;text-decoration:none;">
@@ -112,7 +108,7 @@
                 </a>
                 @endif
             </div>
-
+ 
             {{-- Update Status --}}
             <div class="card-panel p-6">
                 <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Update Status</h2>
@@ -141,7 +137,7 @@
                     <button type="submit" class="btn-primary w-full text-sm">Save Changes</button>
                 </form>
             </div>
-
+ 
             @if(session('status'))
             <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">
                 {{ session('status') }}
