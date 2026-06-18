@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +20,7 @@ class JobApplication extends Model
         'status',
         'notes',
         'reviewed_at',
+        'tracking_token',
     ];
 
     protected $casts = [
