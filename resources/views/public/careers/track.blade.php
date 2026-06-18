@@ -23,6 +23,8 @@
     <div class="container-shell">
         <div style="max-width:700px; margin:0 auto;">
 
+            @if(isset($application) && $application)
+
             {{-- Application Card --}}
             <div style="border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; margin-bottom:20px; position:relative;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#4F6EF7,#8B5CF6,#06B6D4);"></div>
@@ -96,7 +98,6 @@
                 $statusOrder = ['new','reviewed','reviewing','shortlisted','interview','offered','hired'];
                 $stepKeys    = array_column($steps, 'key');
                 $currentKey  = $application->status;
-                // Map reviewed → reviewing for display
                 if ($currentKey === 'reviewed') $currentKey = 'reviewing';
                 $currentIndex = array_search($currentKey, $stepKeys);
                 if ($currentIndex === false) $currentIndex = 0;
@@ -130,13 +131,28 @@
                 </div>
             </div>
 
+            @elseif(isset($error))
+
+            {{-- Not Found State --}}
+            <div style="border:1px solid rgba(239,68,68,0.25); background:rgba(239,68,68,0.06); border-radius:20px; padding:36px; margin-bottom:20px; text-align:center;">
+                <div style="font-size:36px; margin-bottom:12px;">🔍</div>
+                <h3 style="font-size:18px; font-weight:700; color:#FCA5A5; margin:0 0 8px;">
+                    @if($lang==='ar') لم يتم العثور على الطلب @elseif($lang==='de') Bewerbung nicht gefunden @else Application Not Found @endif
+                </h3>
+                <p style="font-size:14px; color:#94A3B8; margin:0;">
+                    {{ $error }}
+                </p>
+            </div>
+
+            @endif
+
             {{-- Track Another --}}
             <div style="border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:16px; padding:28px;">
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:16px;">
                     @if($lang==='ar') تتبع طلب آخر @elseif($lang==='de') Andere Bewerbung verfolgen @else Track Another Application @endif
                 </h3>
                 <form method="GET"
-                  onsubmit="event.preventDefault(); var t=document.getElementById('track-input').value.trim(); if(t){ window.location.href='/{{ $lang }}/careers/track/'+t; }"
+                      onsubmit="event.preventDefault(); var t=document.getElementById('track-input').value.trim(); if(t){ window.location.href='/{{ $lang }}/careers/track/'+t; }">
                     <div style="display:flex; gap:10px;">
                         <input type="text" id="track-input"
                                placeholder="{{ $lang==='ar'?'أدخل معرف الطلب (مثال: ABCD-EFGH)':($lang==='de'?'Bewerbungs-ID eingeben':'Enter Application ID (e.g. ABCD-EFGH)') }}"
