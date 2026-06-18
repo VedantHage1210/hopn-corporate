@@ -71,48 +71,48 @@ class CareerController extends Controller
         return view('public.careers.track', compact('application', 'lang'));
     }
  
-    private function uploadToCloudinary($file): ?string
-    {
-        $cloudName = env('CLOUDINARY_CLOUD_NAME', 'diz1kld4g');
-        $apiKey    = env('CLOUDINARY_API_KEY', '995583962582514');
-        $apiSecret = env('CLOUDINARY_API_SECRET');
- 
-        if (! $apiSecret) {
-            Log::warning('CLOUDINARY_API_SECRET not set — falling back to local storage');
-            return $file->store('career-cv', 'public');
-        }
- 
-        try {
-            $timestamp = time();
- 
-            // Correct Cloudinary signature — parameters alphabetically sorted, NO resource_type in string
-            $paramsToSign = "folder=hopn-cv&timestamp={$timestamp}";
-            $signature    = sha1($paramsToSign . $apiSecret);
- 
-            $response = Http::timeout(60)
-                ->attach(
-                    'file',
-                    file_get_contents($file->getRealPath()),
-                    $file->getClientOriginalName()
-                )
-                ->post("https://api.cloudinary.com/v1_1/{$cloudName}/raw/upload", [
-                    'api_key'   => $apiKey,
-                    'timestamp' => $timestamp,
-                    'signature' => $signature,
-                    'folder'    => 'hopn-cv',
-                ]);
- 
-            if ($response->successful() && isset($response->json()['secure_url'])) {
-                return $response->json()['secure_url'];
-            }
- 
-            Log::error('Cloudinary upload failed: ' . $response->body());
- 
-        } catch (\Exception $e) {
-            Log::error('Cloudinary exception: ' . $e->getMessage());
-        }
- 
-        // Local fallback
+   private function uploadToCloudinary($file): ?string
+{
+    $cloudName = env('CLOUDINARY_CLOUD_NAME', 'diz1kld4g');
+    $apiKey    = env('CLOUDINARY_API_KEY', '995583962582514');
+    $apiSecret = env('CLOUDINARY_API_SECRET');
+
+    if (!$apiSecret) {
+        Log::warning('CLOUDINARY_API_SECRET not set — falling back to local storage');
         return $file->store('career-cv', 'public');
     }
+
+    try {
+        $timestamp    = time();
+        // auto type — PDF/DOC sab handle karta hai
+        $paramsToSign = "folder=hopn-cv&resource_type=auto&timestamp={$timestamp}";
+        $signature    = sha1($paramsToSign . $apiSecret);
+
+        $response = Http::timeout(60)
+            ->attach(
+                'file',
+                file_get_contents($file->getRealPath()),
+                $file->getClientOriginalName()
+            )
+            ->post("https://api.cloudinary.com/v1_1/{$cloudName}/auto/upload", [
+                'api_key'       => $apiKey,
+                'timestamp'     => $timestamp,
+                'signature'     => $signature,
+                'folder'        => 'hopn-cv',
+                'resource_type' => 'auto',
+            ]);
+
+        if ($response->successful() && isset($response->json()['secure_url'])) {
+            Log::info('CV uploaded to Cloudinary: ' . $response->json()['secure_url']);
+            return $response->json()['secure_url'];
+        }
+
+        Log::error('Cloudinary upload failed: ' . $response->body());
+
+    } catch (\Exception $e) {
+        Log::error('Cloudinary exception: ' . $e->getMessage());
+    }
+
+    return $file->store('career-cv', 'public');
+}
 }
