@@ -41,6 +41,7 @@
                             'reviewing'   => ['bg'=>'rgba(245,158,11,0.15)','border'=>'rgba(245,158,11,0.3)','color'=>'#F59E0B','en'=>'Being Reviewed','de'=>'Wird geprüft','ar'=>'يتم مراجعته'],
                             'shortlisted' => ['bg'=>'rgba(6,182,212,0.15)','border'=>'rgba(6,182,212,0.3)','color'=>'#06B6D4','en'=>'Shortlisted','de'=>'Vorselektiert','ar'=>'تم اختياره'],
                             'interview'   => ['bg'=>'rgba(139,92,246,0.15)','border'=>'rgba(139,92,246,0.3)','color'=>'#A78BFA','en'=>'Interview Stage','de'=>'Interviewphase','ar'=>'مرحلة المقابلة'],
+                            'offer'       => ['bg'=>'rgba(16,185,129,0.15)','border'=>'rgba(16,185,129,0.3)','color'=>'#10B981','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
                             'offered'     => ['bg'=>'rgba(16,185,129,0.15)','border'=>'rgba(16,185,129,0.3)','color'=>'#10B981','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
                             'hired'       => ['bg'=>'rgba(16,185,129,0.2)','border'=>'rgba(16,185,129,0.4)','color'=>'#10B981','en'=>'Hired! 🎉','de'=>'Eingestellt! 🎉','ar'=>'تم التوظيف! 🎉'],
                             'rejected'    => ['bg'=>'rgba(239,68,68,0.15)','border'=>'rgba(239,68,68,0.3)','color'=>'#EF4444','en'=>'Not Selected','de'=>'Nicht ausgewählt','ar'=>'لم يتم الاختيار'],
@@ -95,12 +96,30 @@
                     ['key'=>'offered',     'en'=>'Offer Extended',        'de'=>'Angebot erhalten',      'ar'=>'تم تقديم العرض',     'icon'=>'📋'],
                     ['key'=>'hired',       'en'=>'Hired',                 'de'=>'Eingestellt',           'ar'=>'تم التوظيف',         'icon'=>'🎉'],
                 ];
-                $statusOrder = ['new','reviewed','reviewing','shortlisted','interview','offered','hired'];
-                $stepKeys    = array_column($steps, 'key');
-                $currentKey  = $application->status;
-                if ($currentKey === 'reviewed') $currentKey = 'reviewing';
+                $stepKeys = array_column($steps, 'key');
+
+                // Admin panel saves: new, reviewed, interview, offer, rejected.
+                // These don't all match the step keys above 1:1 (e.g. 'offer'
+                // vs 'offered'), which silently reset the bar to step 0 for
+                // any unmapped status. This table maps every real saved
+                // status to the correct progress step.
+                $statusToStep = [
+                    'new'         => 'new',
+                    'reviewed'    => 'reviewing',
+                    'reviewing'   => 'reviewing',
+                    'shortlisted' => 'shortlisted',
+                    'interview'   => 'interview',
+                    'offer'       => 'offered',
+                    'offered'     => 'offered',
+                    'hired'       => 'hired',
+                    // 'rejected' intentionally has no forward step — it's
+                    // shown via the status badge above instead.
+                ];
+                $currentKey   = $statusToStep[$application->status] ?? 'new';
                 $currentIndex = array_search($currentKey, $stepKeys);
                 if ($currentIndex === false) $currentIndex = 0;
+
+                $isRejected = $application->status === 'rejected';
                 @endphp
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @foreach($steps as $i => $step)
