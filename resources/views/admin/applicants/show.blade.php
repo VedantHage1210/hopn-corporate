@@ -5,13 +5,10 @@
     </div>
 
     @php
-        $cvUrl = null;
-        if ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http')) {
-            $cvUrl = str_contains($applicant->cv_path, '/upload/')
-                ? str_replace('/upload/', '/upload/fl_attachment/', $applicant->cv_path)
-                : $applicant->cv_path;
-        }
-        $isPdf = $cvUrl && str_ends_with(strtolower(parse_url($cvUrl, PHP_URL_PATH)), '.pdf');
+        // Direct Cloudinary URL — no fl_attachment modification
+        $cvUrl = ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http'))
+            ? $applicant->cv_path
+            : null;
     @endphp
 
     <div class="grid gap-6 lg:grid-cols-3">
@@ -52,14 +49,11 @@
                         <dt class="w-32 text-slate-400">CV</dt>
                         <dd>
                             @if($cvUrl)
-                                <a href="{{ $cvUrl }}" target="_blank" download
+                                <a href="{{ $cvUrl }}" target="_blank"
                                    class="btn-primary text-xs py-1 px-3">
                                     📄 Download CV
                                 </a>
-                                @if($isPdf)
-                                <p class="text-xs text-slate-500 mt-1">PDF — opens in new tab if download fails</p>
-                                @endif
-                            @elseif($applicant->cv_path && !str_starts_with($applicant->cv_path, 'http'))
+                            @elseif($applicant->cv_path)
                                 <span class="text-slate-500 text-xs">Stored locally — not accessible on Railway</span>
                             @else
                                 <span class="text-slate-500 text-xs">Not uploaded</span>
@@ -112,7 +106,7 @@
                 @endif
 
                 @if($cvUrl)
-                <a href="{{ $cvUrl }}" target="_blank" download
+                <a href="{{ $cvUrl }}" target="_blank"
                    style="display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;padding:11px 16px;border-radius:8px;border:1px solid rgba(79,110,247,0.3);background:rgba(79,110,247,0.08);color:#818CF8;font-size:14px;font-weight:600;text-decoration:none;">
                     📄 Download CV
                 </a>
