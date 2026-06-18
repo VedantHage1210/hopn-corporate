@@ -39,13 +39,10 @@
                         'offer'     => 'bg-green-900 text-green-200',
                         'rejected'  => 'bg-rose-900 text-rose-200',
                     ];
-                    $cvUrl = null;
-                    if ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http')) {
-                        // Force download via Cloudinary fl_attachment flag
-                        $cvUrl = str_contains($applicant->cv_path, '/upload/')
-                            ? str_replace('/upload/', '/upload/fl_attachment/', $applicant->cv_path)
-                            : $applicant->cv_path;
-                    }
+                    // Direct Cloudinary URL — no fl_attachment modification
+                    $cvUrl = ($applicant->cv_path && str_starts_with($applicant->cv_path, 'http'))
+                        ? $applicant->cv_path
+                        : null;
                 @endphp
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->id }}</td>
@@ -67,14 +64,14 @@
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->created_at->format('d M Y') }}</td>
                     <td class="px-3 py-3">
                         @if($cvUrl)
-                            <a href="{{ $cvUrl }}" target="_blank" download
+                            <a href="{{ $cvUrl }}" target="_blank"
                                class="text-indigo-300 hover:text-indigo-200 text-xs font-medium">
                                 Download CV
                             </a>
-                        @elseif($applicant->cv_path && !str_starts_with($applicant->cv_path, 'http'))
-                            <span class="text-slate-500 text-xs">Local (unavailable)</span>
+                        @elseif($applicant->cv_path)
+                            <span class="text-slate-500 text-xs">N/A</span>
                         @else
-                            <span class="text-slate-500 text-xs">—</span>
+                            <span class="text-slate-500">—</span>
                         @endif
                     </td>
                     <td class="px-3 py-3">
