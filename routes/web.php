@@ -28,8 +28,6 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LeadController;
 use App\Http\Controllers\Public\LegalController;
 use App\Http\Controllers\Public\PageController;
-use App\Http\Controllers\Admin\PageAdminController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Public\PartnerController;
 use App\Http\Controllers\Public\ProductController;
 use App\Http\Controllers\Public\ProgramController;
@@ -134,12 +132,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Clean Admin Routes
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('pages', PageAdminController::class);
 });
 
 require __DIR__.'/auth.php';
