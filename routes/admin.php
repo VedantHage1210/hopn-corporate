@@ -42,7 +42,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
 
     // Content modules
     Route::resource('services', ServiceController::class);
-    Route::resource('services', ServiceController::class);
+  
 Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('programs', ProgramController::class);
     Route::resource('products', ProductController::class);
