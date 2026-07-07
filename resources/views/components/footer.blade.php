@@ -35,6 +35,42 @@
 
 <footer style="background:#060B17; border-top:1px solid rgba(255,255,255,0.06); padding-top:64px;">
 
+
+
+    {{-- Newsletter Bar --}}
+    <div style="border-bottom:1px solid rgba(255,255,255,0.06); padding:32px 0; margin-bottom:0;">
+        <div class="container-shell" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+            <div>
+                <h3 style="font-size:16px; font-weight:700; color:white; margin:0 0 4px;">HOPn Insights</h3>
+                <p style="font-size:13px; color:#334155; margin:0;">
+                    @if($lang==='ar') آخر المستجدات حول الذكاء الاصطناعي والابتكار والنظام البيئي.
+                    @elseif($lang==='de') Das Neueste zu KI, Innovation und dem europäischen Ökosystem.
+                    @else The latest on AI, innovation, and the European ecosystem. @endif
+                </p>
+            </div>
+            <form style="display:flex; gap:8px;" onsubmit="return false;">
+                <input type="email"
+                       placeholder="{{ $lang==='ar'?'بريدك الإلكتروني':($lang==='de'?'Ihre E-Mail':'Your email') }}"
+                       style="padding:10px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:13px; outline:none; width:240px;"
+                       onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                       onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <button type="submit"
+                        style="padding:10px 20px; border-radius:8px; background:#4F6EF7; color:white; font-size:13px; font-weight:700; border:none; cursor:pointer; transition:opacity 0.2s; white-space:nowrap;"
+                        onmouseover="this.style.opacity='0.85'"
+                        onmouseout="this.style.opacity='1'">
+                    @if($lang==='ar') اشتراك @elseif($lang==='de') Abonnieren @else Subscribe @endif
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    
     <div class="container-shell" style="padding-bottom:48px;">
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:40px;">
 
