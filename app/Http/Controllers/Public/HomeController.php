@@ -17,6 +17,11 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+
+$experts = \App\Models\Expert::where('is_visible', true)
+               ->orderBy('sort_order')
+               ->get();
+        
         $services        = Service::where('is_published', true)->latest()->take(6)->get();
         $caseStudies     = CaseStudy::where('is_published', true)->latest()->take(3)->get();
         $homeProducts = Product::where('is_published', true)->latest()->take(6)->get();
@@ -29,7 +34,7 @@ class HomeController extends Controller
        $latestPosts = BlogPost::where('is_published', true)->latest('published_at')->take(3)->get();
        return view('public.home', compact(
     'services', 'caseStudies', 'partners','logos', 'testimonials',
-    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts'
+    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts','experts'
 ));
     }
 }
