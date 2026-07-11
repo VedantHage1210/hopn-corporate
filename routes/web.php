@@ -101,6 +101,8 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
             ->middleware('throttle:5,1')
             ->name('leads.training');
 
+Route::resource('experts', \App\Http\Controllers\Admin\ExpertController::class);
+        
         Route::get('/legal/impressum', [LegalController::class, 'impressum'])->name('legal.impressum');
         Route::get('/legal/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
         Route::get('/legal/cookie-policy', [LegalController::class, 'cookie'])->name('legal.cookie');
