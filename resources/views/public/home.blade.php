@@ -437,35 +437,61 @@
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in touch @endif →
             </a>
         </div>
+
+        @if(isset($experts) && $experts->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
-            @php
-            $experts=[
-                ['DE','Dr. Elena Richter','AI Strategy & Governance','€450/hr',['AI Governance','MLOps','EU AI Act'],'#4F6EF7'],
-                ['MW','Marcus Weber','Digital Twins & IoT','€380/hr',['Digital Twins','Manufacturing','IoT'],'#10B981'],
-                ['PS','Prof. Sarah Chen','Research Commercialization','€420/hr',['R&D','University Partnerships','IP Strategy'],'#8B5CF6'],
-            ];
-            @endphp
             @foreach($experts as $expert)
+            @php $c = $expert->accent_color ?? '#4F6EF7'; @endphp
             <div style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; position:relative; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $expert[5] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
+                 onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
                  onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $expert[5] }}60,transparent);"></div>
+                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}60,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                    <div style="width:48px; height:48px; border-radius:12px; background:{{ $expert[5] }}20; border:1px solid {{ $expert[5] }}30; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:{{ $expert[5] }}; flex-shrink:0;">{{ $expert[0] }}</div>
+                    @if($expert->photo_url)
+                        <img src="{{ $expert->photo_url }}" alt="{{ $expert->name }}"
+                             style="width:48px; height:48px; border-radius:12px; object-fit:cover; flex-shrink:0;">
+                    @else
+                        <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}20; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:{{ $c }}; flex-shrink:0;">
+                            {{ $expert->initials ?? strtoupper(substr($expert->name,0,2)) }}
+                        </div>
+                    @endif
                     <div style="flex:1;">
-                        <div style="font-size:15px; font-weight:700; color:white;">{{ $expert[1] }}</div>
-                        <div style="font-size:12px; color:#64748B; margin-top:2px;">{{ $expert[2] }}</div>
+                        <div style="font-size:15px; font-weight:700; color:white;">{{ $expert->name }}</div>
+                        <div style="font-size:12px; color:#64748B; margin-top:2px;">
+                            @if($lang==='ar'&&$expert->specialization_ar) {{ $expert->specialization_ar }}
+                            @elseif($lang==='de'&&$expert->specialization_de) {{ $expert->specialization_de }}
+                            @else {{ $expert->specialization_en ?? '' }} @endif
+                        </div>
                     </div>
-                    <div style="font-size:15px; font-weight:800; color:{{ $expert[5] }}; white-space:nowrap;">{{ $expert[3] }}</div>
+                    @if($expert->hourly_rate)
+                    <div style="font-size:15px; font-weight:800; color:{{ $c }}; white-space:nowrap;">{{ $expert->hourly_rate }}</div>
+                    @endif
                 </div>
+                @if($expert->tags && count($expert->tags) > 0)
                 <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                    @foreach($expert[4] as $tag)
-                    <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ $expert[5] }}12; border:1px solid {{ $expert[5] }}25; color:{{ $expert[5] }};">{{ $tag }}</span>
+                    @foreach($expert->tags as $tag)
+                    <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ $c }}12; border:1px solid {{ $c }}25; color:{{ $c }};">{{ $tag }}</span>
                     @endforeach
                 </div>
+                @endif
+                @if($expert->linkedin_url)
+                <a href="{{ $expert->linkedin_url }}" target="_blank"
+                   style="display:inline-block; margin-top:14px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none; opacity:0.7;"
+                   onmouseover="this.style.opacity='1'"
+                   onmouseout="this.style.opacity='0.7'">LinkedIn →</a>
+                @endif
             </div>
             @endforeach
         </div>
+        @else
+        <div style="text-align:center; padding:60px; border:1px solid rgba(255,255,255,0.06); border-radius:16px; background:#0A0F1E;">
+            <p style="font-size:15px; color:#475569;">
+                @if($lang==='ar') أضف خبراء الاستشارة من لوحة الإدارة.
+                @elseif($lang==='de') Beratungsexperten über das Admin-Panel hinzufügen.
+                @else Add consulting experts from the Admin Panel → Experts. @endif
+            </p>
+        </div>
+        @endif
     </div>
 </section>
 
