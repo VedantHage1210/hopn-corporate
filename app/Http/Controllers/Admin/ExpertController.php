@@ -58,10 +58,11 @@ if ($photoUrl && str_starts_with($photoUrl, 'data:')) {
         return redirect()->route('admin.experts.index')->with('status', 'Expert created.');
     }
 
-    public function show(string $id)
-    {
-        return redirect()->route('admin.experts.edit', $id);
-    }
+  public function show(string $id)
+{
+    $item = Expert::findOrFail($id);
+    return view('admin.experts.show', compact('item'));
+}
 
     public function edit(string $id)
     {
