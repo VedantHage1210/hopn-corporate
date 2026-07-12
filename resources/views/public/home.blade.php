@@ -416,7 +416,7 @@
 </section>
 
 {{-- 8. CONSULTING EXPERTS --}}
-<section style="padding:100px 0; background:#050A14;">
+<section id="consulting-experts" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
