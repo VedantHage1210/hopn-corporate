@@ -72,7 +72,8 @@
 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.blog-tags.index') }}">Tags</a>
 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.authors.index') }}">Authors</a>
 
-                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">People</div>
+               <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">People</div>
+<a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.experts.index') }}">Consulting Experts</a>
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Logos</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.logos.index') }}">Logos & Partners</a>
                 
