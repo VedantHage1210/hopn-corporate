@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ExpertController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])->group(function () {
@@ -64,7 +65,7 @@ Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('partners', PartnerController::class);
     Route::resource('testimonials', TestimonialController::class);
     Route::resource('team-members', TeamMemberController::class);
-
+    Route::resource('experts', ExpertController::class); 
     // Careers
     Route::resource('jobs', JobController::class);
     Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
