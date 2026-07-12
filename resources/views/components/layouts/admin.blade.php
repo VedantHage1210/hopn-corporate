@@ -81,6 +81,9 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.testimonials.index') }}">Testimonials</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.team-members.index') }}">Team</a>
 
+               
+<a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.experts.index') }}">Consulting Experts</a>
+
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Careers</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.jobs.index') }}">Jobs</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.applicants.index') }}">Applicants</a>
