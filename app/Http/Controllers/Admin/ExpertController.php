@@ -32,7 +32,11 @@ class ExpertController extends Controller
         ]);
 
         $tags = array_filter(array_map('trim', explode(',', $request->tags_raw ?? '')));
-
+ 
+        $photoUrl = $request->photo_url;
+if ($photoUrl && str_starts_with($photoUrl, 'data:')) {
+    $photoUrl = null;
+}
         Expert::create([
             'name'              => $request->name,
             'initials'          => $request->initials,
@@ -44,7 +48,7 @@ class ExpertController extends Controller
             'bio_en'            => $request->bio_en,
             'bio_de'            => $request->bio_de,
             'bio_ar'            => $request->bio_ar,
-            'photo_url'         => $request->photo_url,
+           'photo_url' => $photoUrl,
             'linkedin_url'      => $request->linkedin_url,
             'accent_color'      => $request->accent_color ?? '#4F6EF7',
             'sort_order'        => $request->sort_order ?? 0,
@@ -81,6 +85,11 @@ class ExpertController extends Controller
 
         $tags = array_filter(array_map('trim', explode(',', $request->tags_raw ?? '')));
 
+$photoUrl = $request->photo_url;
+if ($photoUrl && str_starts_with($photoUrl, 'data:')) {
+    $photoUrl = null;
+}
+        
         $expert->update([
             'name'              => $request->name,
             'initials'          => $request->initials,
@@ -92,7 +101,7 @@ class ExpertController extends Controller
             'bio_en'            => $request->bio_en,
             'bio_de'            => $request->bio_de,
             'bio_ar'            => $request->bio_ar,
-            'photo_url'         => $request->photo_url,
+           'photo_url' => $photoUrl, 
             'linkedin_url'      => $request->linkedin_url,
             'accent_color'      => $request->accent_color ?? '#4F6EF7',
             'sort_order'        => $request->sort_order ?? 0,
