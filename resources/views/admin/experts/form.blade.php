@@ -30,15 +30,17 @@
                         placeholder="Auto-generated if empty"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Photo URL</label>
-                    <input type="url" name="photo_url" value="{{ old('photo_url', $item->photo_url ?? '') }}"
-                        placeholder="https://example.com/photo.jpg"
-                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
-                    @if(!empty($item->photo_url))
-                        <img src="{{ $item->photo_url }}" class="mt-2 h-12 w-12 rounded-full object-cover">
-                    @endif
-                </div>
+               <div>
+    <label class="block text-xs font-semibold text-slate-400 mb-1">Photo URL</label>
+    <input type="url" name="photo_url" 
+           value="{{ old('photo_url', $item->photo_url ?? '') }}"
+           placeholder="https://example.com/photo.jpg"
+           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+    <p class="text-xs text-slate-500 mt-1">Paste a direct image URL (not file upload)</p>
+    @if(!empty($item->photo_url) && !str_starts_with($item->photo_url, 'data:'))
+        <img src="{{ $item->photo_url }}" class="mt-2 h-12 w-12 rounded-full object-cover">
+    @endif
+</div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">LinkedIn URL</label>
                     <input type="url" name="linkedin_url" value="{{ old('linkedin_url', $item->linkedin_url ?? '') }}"
