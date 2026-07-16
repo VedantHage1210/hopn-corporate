@@ -16,7 +16,7 @@ class ContactFormRequest extends FormRequest
         return [
             'name'         => ['required', 'string', 'max:120'],
             'email'        => ['required', 'email', 'max:190'],
-            'phone'        => ['nullable', 'string', 'max:30'],
+            'phone'        => ['nullable', 'string', 'max:30', 'regex:/^[0-9+\-\s()]*$/'],
             'company'      => ['nullable', 'string', 'max:120'],
             'message'      => ['required', 'string', 'min:10', 'max:5000'],
             'gdpr'         => ['accepted'],
@@ -33,6 +33,7 @@ class ContactFormRequest extends FormRequest
             'gdpr.accepted'    => 'You must accept the privacy policy to proceed.',
             'honeypot.max'     => 'Spam detected.',
             'message.min'      => 'Please provide a more detailed message (at least 10 characters).',
+            'phone.regex'      => 'Please enter a valid phone number (numbers, spaces, +, -, and () only).',
         ];
     }
 }
