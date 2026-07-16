@@ -29,12 +29,6 @@
 <section style="padding:80px 0 100px; background:#050A14;">
     <div class="container-shell">
 
-        @if(session('status'))
-        <div style="margin-bottom:32px; padding:16px 20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; color:#10B981; font-size:15px;">
-            ✅ {{ session('status') }}
-        </div>
-        @endif
-
         {{-- Contact Info Cards --}}
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:60px;">
             @php
