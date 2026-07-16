@@ -55,9 +55,15 @@
 
 <style>
 .hopn-nav-item { position:relative; }
+/* Invisible bridge that fills the gap between the trigger button and the dropdown,
+   so the mouse never "leaves" the hoverable area while moving down to the submenu. */
+.hopn-nav-item::after {
+    content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    width:220px; height:10px; z-index:199;
+}
 .hopn-dropdown {
-    position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
-    min-width:220px; background:#0D1425; border:1px solid rgba(255,255,255,0.09);
+    position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    margin-top:10px; min-width:220px; background:#0D1425; border:1px solid rgba(255,255,255,0.09);
     border-radius:12px; padding:8px; box-shadow:0 24px 48px rgba(0,0,0,0.6);
     opacity:0; pointer-events:none; transition:opacity 0.15s ease, transform 0.15s ease;
     transform:translateX(-50%) translateY(4px); z-index:200;
