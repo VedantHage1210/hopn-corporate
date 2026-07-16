@@ -16,7 +16,7 @@ class TrainingApplicationFormRequest extends FormRequest
         return [
             'name'               => ['required', 'string', 'max:120'],
             'email'              => ['required', 'email', 'max:190'],
-            'phone'              => ['nullable', 'string', 'max:30'],
+            'phone'              => ['nullable', 'string', 'max:30', 'regex:/^[0-9+\-\s()]*$/'],
             'program_of_interest'=> ['nullable', 'string', 'max:255'],
             'message'            => ['required', 'string', 'min:10', 'max:5000'],
             'gdpr'               => ['accepted'],
@@ -32,6 +32,7 @@ class TrainingApplicationFormRequest extends FormRequest
         return [
             'gdpr.accepted' => 'You must accept the privacy policy to proceed.',
             'honeypot.max'  => 'Spam detected.',
+            'phone.regex'   => 'Please enter a valid phone number (numbers, spaces, +, -, and () only).',
         ];
     }
 }
