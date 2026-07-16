@@ -23,6 +23,6 @@ class ContactController extends Controller
             return response()->json(['message' => 'Thank you! We will contact you soon.']);
         }
 
-        return back()->with('status', 'Thank you! We will contact you soon.');
+        return back()->with('contact_status', 'Thank you! We will contact you soon.');
     }
 }
