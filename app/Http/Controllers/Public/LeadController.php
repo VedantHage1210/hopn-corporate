@@ -17,7 +17,7 @@ class LeadController extends Controller
         if ($request->expectsJson()) {
             return response()->json(['message' => 'Thank you! We will be in touch shortly.']);
         }
-        return back()->with('status', 'Thank you! We will be in touch shortly.');
+        return back()->with('proposal_status', 'Thank you! We will be in touch shortly.');
     }
 
     public function partnerInquiry(PartnerInquiryFormRequest $request, string $lang)
