@@ -88,6 +88,9 @@
 .hopn-trigger:hover, .hopn-nav-item:hover .hopn-trigger { color:white; background:rgba(255,255,255,0.05); }
 .hopn-trigger svg { transition:transform 0.2s; }
 .hopn-nav-item:hover .hopn-trigger svg { transform:rotate(180deg); }
+.hopn-lang-item { display:block; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#94A3B8; text-decoration:none; transition:all 0.15s; }
+.hopn-lang-item:hover { background:rgba(79,110,247,0.1); color:white; }
+.hopn-lang-item.active { background:rgba(79,110,247,0.15); color:#818CF8; }
 </style>
 
 <header x-data="{ open: false }" class="sticky top-0 z-50"
@@ -104,6 +107,9 @@
 
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="align-items:center; gap:2px;">
+            <a href="{{ route('home', ['lang'=>$lang]) }}" class="hopn-trigger" style="text-decoration:none;">
+                @if($activeLang==='ar') الرئيسية @elseif($activeLang==='de') Startseite @else Home @endif
+            </a>
             @foreach($groups as $group)
             <div class="hopn-nav-item">
                 <button class="hopn-trigger">
@@ -126,17 +132,22 @@
 
         {{-- Right --}}
         <div style="display:flex; align-items:center; gap:12px;">
-            {{-- Language --}}
-            <div class="hidden md:flex"
-                 style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:2px; background:rgba(255,255,255,0.04);">
-                @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
-                <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
-                   onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
-                   style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; cursor:pointer; transition:all 0.15s;
-                   {{ $activeLang===$code ? 'background:#4F6EF7; color:white;' : 'color:#64748B;' }}">
-                    {{ $label }}
-                </a>
-                @endforeach
+            {{-- Language Dropdown --}}
+            <div class="hidden md:block" x-data="{ langOpen:false }" @click.away="langOpen=false" style="position:relative;">
+                <button type="button" @click="langOpen=!langOpen"
+                        style="display:flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; background:rgba(255,255,255,0.04); color:#94A3B8; font-size:12px; font-weight:700; cursor:pointer;">
+                    {{ strtoupper($activeLang) }}
+                    <svg :class="langOpen ? 'rotate-180' : ''" style="width:10px;height:10px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="langOpen" x-transition style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:130px; background:#0D1425; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:6px; box-shadow:0 24px 48px rgba(0,0,0,0.6); z-index:210;">
+                    @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
+                    <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
+                       onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
+                       class="hopn-lang-item {{ $activeLang===$code ? 'active' : '' }}">
+                        {{ $label }}
+                    </a>
+                    @endforeach
+                </div>
             </div>
 
             {{-- CTA --}}
@@ -167,6 +178,12 @@
          x-transition:leave-end="opacity-0"
          style="display:none; border-top:1px solid rgba(255,255,255,0.06); background:rgba(3,7,18,0.98); backdrop-filter:blur(24px); max-height:80vh; overflow-y:auto;">
         <div class="container-shell" style="padding:16px; display:flex; flex-direction:column; gap:2px;">
+            <a href="{{ route('home', ['lang'=>$lang]) }}"
+               style="display:block; padding:12px 14px; border-radius:8px; color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none;"
+               onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.color='white'"
+               onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
+                @if($activeLang==='ar') الرئيسية @elseif($activeLang==='de') Startseite @else Home @endif
+            </a>
             @foreach($groups as $group)
             <div x-data="{sub:false}">
                 <button @click="sub=!sub"
@@ -189,16 +206,24 @@
             </div>
             @endforeach
 
-            <div style="display:flex; align-items:center; gap:8px; padding:12px 14px; border-top:1px solid rgba(255,255,255,0.05); margin-top:8px;">
-                <span style="font-size:12px; color:#475569;">Language:</span>
-                @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
-                <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
-                   onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
-                   style="padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; text-decoration:none; cursor:pointer;
-                   {{ $activeLang===$code ? 'background:#4F6EF7; color:white;' : 'color:#64748B;' }}">
-                    {{ $label }}
-                </a>
-                @endforeach
+            <div x-data="{ mLangOpen:false }" style="padding:12px 14px; border-top:1px solid rgba(255,255,255,0.05); margin-top:8px;">
+                <button type="button" @click="mLangOpen=!mLangOpen"
+                        style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:none; cursor:pointer; padding:0; color:#94A3B8; font-size:13px; font-weight:600;">
+                    <span style="display:flex; align-items:center; gap:8px;">
+                        <span style="font-size:12px; color:#475569;">Language:</span>
+                        <span style="color:white;">{{ strtoupper($activeLang) }}</span>
+                    </span>
+                    <svg :class="mLangOpen ? 'rotate-180' : ''" style="width:12px;height:12px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="mLangOpen" x-transition style="display:none; margin-top:8px; padding-left:4px;">
+                    @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
+                    <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
+                       onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
+                       class="hopn-lang-item {{ $activeLang===$code ? 'active' : '' }}">
+                        {{ $label }}
+                    </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
