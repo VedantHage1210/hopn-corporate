@@ -4,6 +4,18 @@
 <style>
 @keyframes marquee  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes marquee2 { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+
+/* Feature card grids: fixed column counts caused cards to be cut off / partially
+   visible on mobile viewports (BUG-010). Make them responsive. */
+.hopn-strategy-grid { grid-template-columns:repeat(3,1fr); }
+.hopn-ecosystem-grid { grid-template-columns:repeat(5,1fr); }
+@media (max-width:900px) {
+    .hopn-ecosystem-grid { grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:640px) {
+    .hopn-strategy-grid { grid-template-columns:1fr; }
+    .hopn-ecosystem-grid { grid-template-columns:repeat(2,1fr); }
+}
 </style>
 
 {{-- 1. HERO --}}
@@ -84,7 +96,7 @@
                 @if($lang==='ar') من الاستراتيجية إلى التأثير @elseif($lang==='de') Von der Strategie zur Wirkung @else From strategy to impact. @endif
             </h2>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,0.05); border-radius:20px; overflow:hidden;">
+        <div class="hopn-strategy-grid" style="display:grid; gap:2px; background:rgba(255,255,255,0.05); border-radius:20px; overflow:hidden;">
             @foreach([
                 ['S','#4F6EF7',
                  $lang==='ar'?'الاستراتيجية':($lang==='de'?'Strategie':'Strategy'),
@@ -128,7 +140,7 @@
             </p>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px; max-width:900px; margin:0 auto 64px;">
+        <div class="hopn-ecosystem-grid" style="display:grid; gap:12px; max-width:900px; margin:0 auto 64px;">
             @php
             $ecosystem = [
                 ['icon'=>'🏢','label'=>$lang==='ar'?'الأعمال':($lang==='de'?'Wirtschaft':'Business'),'color'=>'#4F6EF7','desc'=>$lang==='ar'?'مؤسسات وشركات':($lang==='de'?'Unternehmen':'Enterprises & Firms')],
