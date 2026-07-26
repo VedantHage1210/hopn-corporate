@@ -80,15 +80,39 @@
         }, 'google_translate_element');
     }
 
+    function getCookieDomainVariants() {
+        var host = window.location.hostname;
+        var domains = [host, '.' + host];
+        var parts = host.split('.');
+        if (parts.length > 2) {
+            var parent = parts.slice(-2).join('.');
+            domains.push(parent, '.' + parent);
+        }
+        return domains;
+    }
+
+    function clearGoogTransEverywhere() {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        getCookieDomainVariants().forEach(function(d) {
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + d + ';';
+        });
+    }
+
+    function setGoogTransEverywhere(value) {
+        var expires = '; max-age=' + (365 * 24 * 60 * 60);
+        document.cookie = 'googtrans=' + value + expires + '; path=/;';
+        getCookieDomainVariants().forEach(function(d) {
+            document.cookie = 'googtrans=' + value + expires + '; path=/; domain=' + d + ';';
+        });
+    }
+
     function triggerGoogleTranslate(lang) {
+        clearGoogTransEverywhere();
         if (lang === 'en') {
-            deleteCookie('googtrans');
-            deleteCookie('googtrans', '.hopn-corporate-production-e881.up.railway.app');
             location.reload();
             return;
         }
-        setCookie('googtrans', '/en/' + lang, 365);
-        setCookie('googtrans', '/en/' + lang, 365, '.hopn-corporate-production-e881.up.railway.app');
+        setGoogTransEverywhere('/en/' + lang);
         location.reload();
     }
 
