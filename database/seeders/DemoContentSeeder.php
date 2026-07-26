@@ -126,7 +126,7 @@ class DemoContentSeeder extends Seeder
             [
                 'title_en' => 'Global Rollout Automation',
                 'industry' => 'Manufacturing',
-                'client_name' => 'Acme AG',
+                'client_name_en' => 'Acme AG',
                 'challenge_en' => 'Manual governance slowed cross-region releases.',
                 'solution_en' => 'Automated release controls and KPI visibility.',
                 'outcomes_en' => 'Release cycle time reduced by 37% in two quarters.',
@@ -140,7 +140,7 @@ class DemoContentSeeder extends Seeder
             [
                 'title_en' => 'Shared Data Platform Launch',
                 'industry' => 'Logistics',
-                'client_name' => 'BlueRail',
+                'client_name_en' => 'BlueRail',
                 'challenge_en' => 'Data was fragmented across business units.',
                 'solution_en' => 'Unified data model and governance workflow.',
                 'outcomes_en' => 'Reporting lead time reduced from 14 days to 2 days.',
@@ -154,7 +154,7 @@ class DemoContentSeeder extends Seeder
             [
                 'title_en' => 'AI Assist Service Desk',
                 'industry' => 'Technology',
-                'client_name' => 'DataForge',
+                'client_name_en' => 'DataForge',
                 'challenge_en' => 'Support queues increased while SLA pressure grew.',
                 'solution_en' => 'AI-first triage and knowledge routing model.',
                 'outcomes_en' => 'First response SLA compliance improved to 96%.',
