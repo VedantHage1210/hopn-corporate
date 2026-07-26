@@ -15,9 +15,9 @@
             'label_en'=>'Solutions', 'label_de'=>'Lösungen', 'label_ar'=>'الحلول',
             'items'=>[
                 ['en'=>'Services Overview',        'de'=>'Leistungsübersicht',      'ar'=>'نظرة عامة على الخدمات',   'route'=>'services.index'],
-                ['en'=>'AI Solutions',             'de'=>'KI-Lösungen',             'ar'=>'حلول الذكاء الاصطناعي',   'route'=>'services.index'],
-                ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'services.index'],
-                ['en'=>'Tech Consulting',          'de'=>'Tech-Beratung',            'ar'=>'الاستشارات التقنية',       'route'=>'services.index'],
+                ['en'=>'AI Solutions',             'de'=>'KI-Lösungen',             'ar'=>'حلول الذكاء الاصطناعي',   'route'=>'services.index', 'params'=>['category'=>'ai-solutions']],
+                ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'services.index', 'params'=>['category'=>'digital-twin-solutions']],
+                ['en'=>'Tech Consulting',          'de'=>'Tech-Beratung',            'ar'=>'الاستشارات التقنية',       'route'=>'services.index', 'params'=>['category'=>'tech-consulting']],
                 ['en'=>'Workshops & Training',     'de'=>'Workshops & Training',     'ar'=>'ورش العمل',               'route'=>'programs.index'],
             ],
         ],
@@ -55,16 +55,11 @@
 
 <style>
 .hopn-nav-item { position:relative; }
-/* Invisible bridge that fills the gap between the trigger button and the dropdown,
-   so the mouse never "leaves" the hoverable area while moving down to the submenu. */
-.hopn-nav-item::after {
-    content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
-    width:220px; height:10px; z-index:199;
-}
 .hopn-dropdown {
     position:absolute; top:100%; left:50%; transform:translateX(-50%);
-    margin-top:10px; min-width:220px; background:#0D1425; border:1px solid rgba(255,255,255,0.09);
-    border-radius:12px; padding:8px; box-shadow:0 24px 48px rgba(0,0,0,0.6);
+    margin-top:0; padding:18px 8px 8px 8px; min-width:220px; background:#0D1425; border:1px solid rgba(255,255,255,0.09);
+    border-radius:12px; box-shadow:0 24px 48px rgba(0,0,0,0.6);
+    background-clip:padding-box;
     opacity:0; pointer-events:none; transition:opacity 0.15s ease, transform 0.15s ease;
     transform:translateX(-50%) translateY(4px); z-index:200;
 }
@@ -121,7 +116,7 @@
                 <div class="hopn-dropdown">
                     <div class="hopn-dropdown-header">{{ $group['label_en'] }}</div>
                     @foreach($group['items'] as $item)
-                    <a href="{{ route($item['route'], ['lang'=>$lang]) }}">
+                    <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}">
                         {{ $activeLang==='ar'?$item['ar']:($activeLang==='de'?$item['de']:$item['en']) }}
                     </a>
                     @endforeach
@@ -195,7 +190,7 @@
                 </button>
                 <div x-show="sub" style="padding-left:20px;">
                     @foreach($group['items'] as $item)
-                    <a href="{{ route($item['route'], ['lang'=>$lang]) }}"
+                    <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}"
                        style="display:block; padding:10px 14px; border-radius:8px; color:#64748B; font-size:13px; text-decoration:none;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.04)'"
                        onmouseout="this.style.color='#64748B'; this.style.background='transparent'">

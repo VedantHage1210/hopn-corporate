@@ -12,7 +12,11 @@
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">HOPn Services</span>
         </div>
         <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
-            @if($lang==='ar')
+            @if($activeCategory)
+                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                    {{ $lang==='de' && $activeCategory->name_de ? $activeCategory->name_de : $activeCategory->name }}
+                </span>
+            @elseif($lang==='ar')
                 <span style="color:white;">خدماتنا</span>
                 <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> الاحترافية</span>
             @elseif($lang==='de')
