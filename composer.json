@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
         "artesaos/seotools": "^1.4",
       
         "guzzlehttp/guzzle": "^7.2",
