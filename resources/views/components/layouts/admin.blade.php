@@ -32,6 +32,12 @@
             .desktop-logo { display:none; }
             .mobile-logo { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
         }
+        /* Safety net: header rows (title + action button) across admin index pages
+           use "flex items-center justify-between" without flex-wrap. On very narrow
+           screens this can overflow horizontally. Wrap gracefully instead. */
+        @media (max-width:480px) {
+            .flex.items-center.justify-between { flex-wrap:wrap; gap:10px; }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100">

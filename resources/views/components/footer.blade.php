@@ -33,7 +33,7 @@
     ];
 @endphp
 
-<footer style="background:#060B17; border-top:1px solid rgba(255,255,255,0.06); padding-top:64px;">
+<footer style="background:#060B17; border-top:1px solid rgba(255,255,255,0.06); padding-top:64px;" class="hopn-reveal">
 
 
 
@@ -72,9 +72,8 @@
                         ['href' => 'https://github.com/VedantHage1210/hopn-corporate', 'label' => 'GitHub',   'icon' => '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>'],
                     ] as $social)
                     <a href="{{ $social['href'] }}" aria-label="{{ $social['label'] }}"
-                       style="display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:#64748B; text-decoration:none; transition:all 0.2s;"
-                       onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.color='#818CF8'; this.style.background='rgba(79,110,247,0.1)'"
-                       onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.color='#64748B'; this.style.background='rgba(255,255,255,0.04)'">
+                       class="hopn-social-icon"
+                       style="display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:#64748B; text-decoration:none;">
                         <svg style="width:15px;height:15px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             {!! $social['icon'] !!}
                         </svg>
@@ -92,16 +91,14 @@
                     @if($footerSolutions->count() > 0)
                         @foreach($footerSolutions as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultSolutions as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -118,16 +115,14 @@
                     @if($footerCompany->count() > 0)
                         @foreach($footerCompany as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultCompany as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -144,16 +139,14 @@
                     @if($footerContact->count() > 0)
                         @foreach($footerContact as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultContact as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                           onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                           class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -168,18 +161,15 @@
                 </p>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     <a href="{{ route('legal.impressum', ['lang' => $lang]) }}"
-                       style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                       onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                       class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                         Impressum
                     </a>
                     <a href="{{ route('legal.privacy', ['lang' => $lang]) }}"
-                       style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                       onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                       class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الخصوصية' : ($lang === 'de' ? 'Datenschutzerklärung' : 'Privacy Policy') }}
                     </a>
                     <a href="{{ route('legal.cookie', ['lang' => $lang]) }}"
-                       style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;"
-                       onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+                       class="hopn-link-accent" style="font-size:13px; color:#64748B; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
                     </a>
                 </div>
@@ -201,8 +191,7 @@
         <div style="display:flex; flex-wrap:wrap; gap:16px;">
             @foreach($footerSecondary as $item)
             <a href="{{ $item->url ?? '#' }}"
-               style="font-size:12px; color:#475569; text-decoration:none; transition:color 0.2s;"
-               onmouseover="this.style.color='white'" onmouseout="this.style.color='#475569'">
+               class="hopn-link-accent" style="font-size:12px; color:#475569; text-decoration:none; transition:color 0.2s;">
                 {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
             </a>
             @endforeach

@@ -7,7 +7,7 @@
     <div style="position:absolute; top:-150px; left:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.12) 0%, transparent 70%); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
@@ -37,15 +37,11 @@
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
             <a href="#apply"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.4); transition:all 0.2s;"
-               onmouseover="this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.transform='translateY(0)'">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.4); transition:all 0.2s;">
                 @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Apply Now @endif →
             </a>
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.08)'"
-               onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') استكشف البرامج @elseif($lang==='de') Programme erkunden @else Explore Programs @endif
             </a>
         </div>
@@ -96,9 +92,7 @@
             ];
             @endphp
             @foreach($offerings as $item)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $item['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $item[$lang] ?? $item['en'] }}</h3>
@@ -127,9 +121,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
             @foreach($startups as $startup)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column; gap:14px;"
-                 onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column; gap:14px;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px;">
                     @if($startup->logo)
@@ -156,9 +148,7 @@
                     @endif
                     @if($startup->website)
                     <a href="{{ $startup->website }}" target="_blank"
-                       style="font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;"
-                       onmouseover="this.style.opacity='0.7'"
-                       onmouseout="this.style.opacity='1'">
+                       class="hopn-link-fade" style="font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;">
                         @if($lang==='ar') زيارة @elseif($lang==='de') Besuchen @else Visit @endif →
                     </a>
                     @endif
@@ -196,9 +186,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($programs as $program)
             @php $colors=['#4F6EF7','#8B5CF6','#10B981']; $c=$colors[$loop->index%3]; $title=$lang==='de'&&$program->title_de?$program->title_de:$program->title_en; $summary=$lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''); @endphp
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;"
-                 onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">{{ $title }}</h3>
@@ -221,9 +209,7 @@
                 ['name'=>'AI Founders Track','desc'=>'Specialized program for AI and data-driven startups with technical mentorship.','badge'=>'Coming Soon','color'=>'#8B5CF6'],
                 ['name'=>'Deep Tech Studio','desc'=>'Co-building program for robotics, digital twins, and hardware startups.','badge'=>'Invite Only','color'=>'#10B981'],
             ] as $program)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;"
-                 onmouseover="this.style.borderColor='{{ $program['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $program['color'] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">{{ $program['name'] }}</h3>
@@ -241,9 +227,7 @@
 
         <div style="text-align:center; margin-top:40px;">
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); color:#A78BFA; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;"
-               onmouseover="this.style.background='rgba(139,92,246,0.08)'"
-               onmouseout="this.style.background='transparent'">
+               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); color:#A78BFA; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') عرض جميع البرامج @elseif($lang==='de') Alle Programme anzeigen @else View All Programs @endif →
             </a>
         </div>
@@ -353,9 +337,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                style="width:100%; padding:16px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
-                                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0 60px rgba(79,110,247,0.4)'"
-                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 40px rgba(79,110,247,0.3)'">
+                                class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
                             @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Submit Application @endif
                         </button>
                     </div>
@@ -378,9 +360,7 @@
             @else Get in touch with the HOPn startup team today. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

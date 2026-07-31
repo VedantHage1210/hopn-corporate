@@ -7,7 +7,7 @@
     <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(6,182,212,0.3); background:rgba(6,182,212,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#06B6D4; display:inline-block; box-shadow:0 0 8px #06B6D4;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#06B6D4;">
@@ -38,13 +38,11 @@
 <section style="padding:60px 0 100px; background:#050A14;">
     <div class="container-shell">
         @if($industries->count() > 0)
-        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
+        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
             @foreach($industries as $industry)
             @php $colors=['#06B6D4','#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444']; $c=$colors[$loop->index%6]; @endphp
-            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
-               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-lift-card"
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">
@@ -82,7 +80,7 @@
 {{-- CTA --}}
 <section style="padding:80px 0; background:#030712; position:relative; overflow:hidden;">
     <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:350px; background:radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%); pointer-events:none;"></div>
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد حلاً مخصصاً لقطاعك؟ @elseif($lang==='de') Maßgeschneiderte Lösung gewünscht? @else Looking for a Tailored Solution? @endif
         </h2>
@@ -91,10 +89,8 @@
             @elseif($lang==='de') Kontaktieren Sie HOPn für eine branchenspezifische Lösung.
             @else Contact HOPn to discuss a tailored solution for your industry. @endif
         </p>
-        <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#06B6D4; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(6,182,212,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+        <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-lift-btn"
+           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#06B6D4; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(6,182,212,0.3);">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
         </a>
     </div>

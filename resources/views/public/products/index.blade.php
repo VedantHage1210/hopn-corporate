@@ -6,7 +6,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block; box-shadow:0 0 8px #8B5CF6;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
@@ -31,16 +31,12 @@
             @else Intelligent platforms built for the future of business and education. @endif
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
-            <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.06); color:#A78BFA; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;"
-               onmouseover="this.style.background='rgba(139,92,246,0.12)'"
-               onmouseout="this.style.background='rgba(139,92,246,0.06)'">
+            <a href="{{ route('catalog.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-purple"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.06); color:#A78BFA; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') عرض الكتالوج @elseif($lang==='de') Katalog @else View Catalog @endif
             </a>
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.4); transition:all 0.2s;"
-               onmouseover="this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.transform='translateY(0)'">
+            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-lift-btn"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.4);">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt @else Get in Touch @endif →
             </a>
         </div>
@@ -51,21 +47,17 @@
 <section style="padding:60px 0 100px; background:#050A14;">
     <div class="container-shell">
         @if($products->count() > 0)
-        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px;">
+        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px;">
             @foreach($products as $product)
             @php $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; $title=$lang==='de'&&$product->title_de?$product->title_de:($lang==='ar'&&$product->title_ar?$product->title_ar:$product->title_en); $summary=$lang==='de'&&$product->summary_de?$product->summary_de:($lang==='ar'&&$product->summary_ar?$product->summary_ar:$product->summary_en); @endphp
-            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;"
-               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-4px)'"
-               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-lift-card"
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; position:relative;">
 
                 {{-- Image or gradient --}}
                 @if($product->hero_image_url)
                 <div style="height:180px; overflow:hidden; position:relative;">
                     <img src="{{ $product->hero_image_url }}" alt="{{ $title }}"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;"
-                         onmouseover="this.style.transform='scale(1.05)'"
-                         onmouseout="this.style.transform='scale(1)'">
+                         style="width:100%; height:100%; object-fit:cover;">
                     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(10,15,30,0.8));"></div>
                 </div>
                 @else
@@ -112,7 +104,7 @@
 {{-- CTA --}}
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:800px; height:400px; background:radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%); pointer-events:none;"></div>
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد معرفة المزيد؟ @elseif($lang==='de') Möchten Sie mehr erfahren? @else Want to Learn More? @endif
         </h2>
@@ -121,10 +113,8 @@
             @elseif($lang==='de') Kontaktieren Sie das HOPn-Team für das richtige Produkt.
             @else Get in touch with HOPn to find the right product for your needs. @endif
         </p>
-        <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+        <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-lift-btn"
+           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.3);">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
         </a>
     </div>

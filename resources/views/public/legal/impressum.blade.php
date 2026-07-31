@@ -2,7 +2,7 @@
 @php $lang = request()->route('lang', 'en'); @endphp
 
 <section style="padding:60px 0; background:#080D1A;">
-    <div class="container-shell" style="max-width:800px;">
+    <div class="container-shell hopn-reveal" style="max-width:800px;">
 
         {{-- Header --}}
         <div style="margin-bottom:40px;">
@@ -84,7 +84,7 @@
 
         {{-- Back --}}
         <div style="margin-top:32px;">
-            <a href="{{ route('home', ['lang' => $lang]) }}"
+            <a href="{{ route('home', ['lang' => $lang]) }}" class="hopn-link-accent"
                style="font-size:13px; color:#4F6EF7; text-decoration:none;">
                 ← {{ $lang === 'ar' ? 'العودة للرئيسية' : ($lang === 'de' ? 'Zurück zur Startseite' : 'Back to Home') }}
             </a>

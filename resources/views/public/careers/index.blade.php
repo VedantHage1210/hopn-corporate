@@ -7,7 +7,7 @@
     <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; left:-100px; width:400px; height:400px; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block; box-shadow:0 0 8px #F59E0B;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
@@ -69,9 +69,7 @@
             ];
             @endphp
             @foreach($perks as $p)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $p['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $p['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $p['color'] }}15; border:1px solid {{ $p['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $p['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $p[$lang] ?? $p['en'] }}</h3>
@@ -98,9 +96,7 @@
 
         @forelse($jobs as $job)
         @php $types=['full-time'=>'#10B981','full_time'=>'#10B981','part-time'=>'#F59E0B','part_time'=>'#F59E0B','contract'=>'#8B5CF6','internship'=>'#06B6D4','remote'=>'#4F6EF7']; $tc=$types[strtolower(str_replace(' ','-',$job->type??''))]??'#F59E0B'; @endphp
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:20px 28px; margin-bottom:12px; transition:all 0.25s; position:relative; overflow:hidden;"
-             onmouseover="this.style.borderColor='rgba(245,158,11,0.25)'; this.style.background='#0D1425'"
-             onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'">
+        <div class="hopn-lift-card-nobg" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:20px 28px; margin-bottom:12px; transition:all 0.25s; position:relative; overflow:hidden;">
             <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:{{ $tc }};"></div>
             <div style="padding-left:8px;">
                 <h3 style="font-size:17px; font-weight:700; color:white; margin-bottom:8px;">{{ $job->title }}</h3>
@@ -120,9 +116,7 @@
                 </div>
             </div>
             <a href="{{ route('careers.show', ['lang'=>$lang,'slug'=>$job->slug]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:10px 24px; border-radius:8px; background:#F59E0B; color:white; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:all 0.2s; box-shadow:0 0 20px rgba(245,158,11,0.3);"
-               onmouseover="this.style.transform='translateY(-1px)'"
-               onmouseout="this.style.transform='translateY(0)'">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:10px 24px; border-radius:8px; background:#F59E0B; color:white; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:all 0.2s; box-shadow:0 0 20px rgba(245,158,11,0.3);">
                 @if($lang==='ar') تقدم الآن @elseif($lang==='de') Bewerben @else Apply Now @endif →
             </a>
         </div>
@@ -157,9 +151,7 @@
             @else Send us your CV and we'll keep you in mind for future opportunities. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(245,158,11,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(245,158,11,0.3); transition:all 0.2s;">
             @if($lang==='ar') أرسل سيرتك الذاتية @elseif($lang==='de') Lebenslauf senden @else Send Your CV @endif →
         </a>
     </div>

@@ -9,11 +9,9 @@
             background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
 
-        <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
-            <a href="{{ route('industries.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:6px; color:#64748B; font-size:13px; text-decoration:none; margin-bottom:24px;"
-               onmouseover="this.style.color='white'"
-               onmouseout="this.style.color='#64748B'">
+        <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
+            <a href="{{ route('industries.index', ['lang' => $lang]) }}" class="hopn-link-accent"
+               style="display:inline-flex; align-items:center; gap:6px; color:#64748B; font-size:13px; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') جميع القطاعات @elseif($lang === 'de') Alle Branchen @else All Industries @endif
             </a>
             <div style="font-size:56px; margin-bottom:20px;">{{ $industry->icon }}</div>
@@ -102,10 +100,8 @@
                 <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') هل تريد حلاً مخصصاً؟ @elseif($lang === 'de') Maßgeschneiderte Lösung gewünscht? @else Ready for a Custom Solution? @endif
                 </h2>
-                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(79,110,247,0.3);"
-                   onmouseover="this.style.opacity='0.88'"
-                   onmouseout="this.style.opacity='1'">
+                <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-link-fade"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(79,110,247,0.3);">
                     @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Contact HOPn @endif
                 </a>
             </div>

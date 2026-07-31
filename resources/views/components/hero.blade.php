@@ -17,7 +17,7 @@
     <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.10); filter:blur(80px); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
 
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
             <span style="width:7px; height:7px; border-radius:50%; background:#4F6EF7; display:inline-block; animation: pulse 2s infinite;"></span>
@@ -37,9 +37,8 @@
         <div style="margin-top:36px; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px;">
             @if($cta && $ctaUrl)
             <a href="{{ $ctaUrl }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(79,110,247,0.3); transition:opacity 0.2s;"
-               onmouseover="this.style.opacity='0.88'"
-               onmouseout="this.style.opacity='1'">
+               class="hopn-link-fade"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(79,110,247,0.3);">
                 {{ $cta }}
                 <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -47,17 +46,13 @@
             </a>
             @endif
 
-           <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none; transition:background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-               onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+           <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-bg-brighten"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 Book a Call
             </a>
 
-            <a href="{{ route('products.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none; transition:background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-               onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+            <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-bg-brighten"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 View Products
             </a>
         </div>

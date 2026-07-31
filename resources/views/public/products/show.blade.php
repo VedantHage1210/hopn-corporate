@@ -11,6 +11,14 @@
             box-shadow: 0 12px 24px rgba(79, 110, 247, 0.15) !important;
             border-color: rgba(79, 110, 247, 0.4) !important;
         }
+        .hopn-back-link { transition:color 0.25s ease; }
+        .hopn-back-link:hover { color:white; }
+        .hopn-opacity-btn { transition:opacity 0.25s ease; }
+        .hopn-opacity-btn:hover { opacity:0.88; }
+        .hopn-pill-hover { transition:background 0.25s ease; }
+        .hopn-pill-hover:hover { background:rgba(79,110,247,0.15); }
+        .hopn-related-card { transition:border-color 0.3s ease, background 0.3s ease; }
+        .hopn-related-card:hover { border-color:rgba(79,110,247,0.3); background:#141D2E; }
     </style>
 
     {{-- Hero --}}
@@ -21,9 +29,8 @@
         <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div class="container-shell" style="position:relative; z-index:10;">
-            <a href="{{ route('products.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;"
-               onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+            <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-back-link"
+               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة @elseif($lang === 'de') Zurück @else Back to Products @endif
             </a>
             @if(!empty($product->tagline_en))
@@ -52,15 +59,13 @@
             @endif
             <div style="display:flex; flex-wrap:wrap; gap:12px;">
                 @if(!empty($product->cta_url))
-                <a href="{{ $product->cta_url }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                <a href="{{ $product->cta_url }}" class="hopn-opacity-btn"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                     {{ $product->cta_label_en ?? 'Get Started' }} →
                 </a>
                 @endif
-                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-opacity-btn"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                     @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt @else Contact Us @endif
                 </a>
             </div>
@@ -173,10 +178,8 @@
             ?>
             <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
                 @foreach($productIndustries as $industry)
-                <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}"
-                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.background='rgba(79,110,247,0.15)'"
-                   onmouseout="this.style.background='rgba(79,110,247,0.08)'">
+                <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}" class="hopn-pill-hover"
+                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;">
                     {{ $industry->icon ?? '🏭' }} {{ $industry->name }}
                 </a>
                 @endforeach
@@ -197,10 +200,8 @@
             ?>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($relatedServices as $service)
-                <a href="{{ route('services.show', ['lang' => $lang, 'slug' => $service->slug]) }}"
-                   style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:20px; text-decoration:none; transition:all 0.25s;"
-                   onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
+                <a href="{{ route('services.show', ['lang' => $lang, 'slug' => $service->slug]) }}" class="hopn-related-card"
+                   style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:20px; text-decoration:none;">
                     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px;">{{ $service->name }}</h3>
                     @if(!empty($service->summary))
                     <p style="font-size:13px; color:#64748B; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
@@ -226,9 +227,8 @@
                     @else Get in touch with our team to learn more about this product.
                     @endif
                 </p>
-                <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-opacity-btn"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                     @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt @else Get in Touch → @endif
                 </a>
             </div>

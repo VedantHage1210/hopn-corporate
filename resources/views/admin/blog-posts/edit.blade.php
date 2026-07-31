@@ -13,7 +13,7 @@
 
                     <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Content</p>
 
-                    <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         @foreach(['en' => '🇬🇧 English', 'de' => '🇩🇪 Deutsch', 'ar' => '🇸🇦 Arabic'] as $lang => $label)
                         <div>
                             <p class="text-xs font-semibold text-indigo-400 mb-2">{{ str_replace(['🇬🇧 ', '🇩🇪 ', '🇸🇦 '], ['EN ', 'DE ', 'AR '], $label) }}</p>
