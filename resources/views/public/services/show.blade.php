@@ -8,11 +8,9 @@
         @endif
         <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
-        <div class="container-shell" style="position:relative; z-index:10;">
-            <a href="{{ route('services.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;"
-               onmouseover="this.style.color='white'"
-               onmouseout="this.style.color='#64748B'">
+        <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
+            <a href="{{ route('services.index', ['lang' => $lang]) }}" class="hopn-link-accent"
+               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة إلى الخدمات @elseif($lang === 'de') Zurück zu Leistungen @else Back to Services @endif
             </a>
             @if($service->category)
@@ -39,7 +37,7 @@
 
     {{-- Body --}}
     <section style="padding:80px 0; background:#080D1A;">
-        <div class="container-shell">
+        <div class="container-shell hopn-reveal">
             <div style="max-width:800px; margin:0 auto;">
                 @if($service->body || $service->body_de || $service->body_ar)
                 <div style="font-size:16px; color:#94A3B8; line-height:1.8;">
@@ -53,10 +51,8 @@
                 @endif
 
                 <div style="margin-top:48px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);">
-                    <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                       style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                       onmouseover="this.style.opacity='0.88'"
-                       onmouseout="this.style.opacity='1'">
+                    <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-btn-primary"
+                       style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                         @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Get in Touch →  @endif
                     </a>
                 </div>

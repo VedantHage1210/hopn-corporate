@@ -8,7 +8,7 @@
     @endif
 
     {{-- Quick links --}}
-    <div class="mb-6 grid grid-cols-3 gap-4">
+    <div class="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
         @foreach(['impressum' => 'Impressum', 'privacy-policy' => 'Privacy Policy', 'cookie-policy' => 'Cookie Policy'] as $slug => $label)
         @php $exists = $items->firstWhere('slug', $slug); @endphp
         <div class="card-panel p-4 flex items-center justify-between">

@@ -6,7 +6,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse, rgba(79,110,247,0.1) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
@@ -39,16 +39,12 @@
                            onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                 </div>
                 <button type="submit"
-                        style="padding:14px 24px; background:#4F6EF7; color:white; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap;"
-                        onmouseover="this.style.opacity='0.88'"
-                        onmouseout="this.style.opacity='1'">
+                        class="hopn-link-fade" style="padding:14px 24px; background:#4F6EF7; color:white; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap;">
                     @if($lang==='ar') بحث @elseif($lang==='de') Suchen @else Search @endif
                 </button>
                 @if($search)
                 <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-                   style="padding:14px 20px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;"
-                   onmouseover="this.style.color='white'"
-                   onmouseout="this.style.color='#94A3B8'">
+                   class="hopn-link-accent" style="padding:14px 20px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;">
                     ✕ @if($lang==='ar') مسح @elseif($lang==='de') Löschen @else Clear @endif
                 </a>
                 @endif
@@ -109,9 +105,7 @@
                     <span style="font-size:12px; color:#475569; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $products->count() }}</span>
                 </div>
                 <a href="{{ route('products.index', ['lang'=>$lang]) }}"
-                   style="font-size:13px; color:#818CF8; text-decoration:none; font-weight:600;"
-                   onmouseover="this.style.opacity='0.7'"
-                   onmouseout="this.style.opacity='1'">
+                   class="hopn-link-fade" style="font-size:13px; color:#818CF8; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -124,9 +118,7 @@
                     $summary=$lang==='ar'&&$product->summary_ar?$product->summary_ar:($lang==='de'&&$product->summary_de?$product->summary_de:($product->summary_en??''));
                 @endphp
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
-                   style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
-                   onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
@@ -161,9 +153,7 @@
                     <span style="font-size:12px; color:#475569; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $services->count() }}</span>
                 </div>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"
-                   style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;"
-                   onmouseover="this.style.opacity='0.7'"
-                   onmouseout="this.style.opacity='1'">
+                   class="hopn-link-fade" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -176,9 +166,7 @@
                     $svcSummary=$lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:($service->summary??''));
                 @endphp
                 <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}"
-                   style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
-                   onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#10B981; letter-spacing:0.08em;">
@@ -213,9 +201,7 @@
                     <span style="font-size:12px; color:#475569; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $programs->count() }}</span>
                 </div>
                 <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-                   style="font-size:13px; color:#A78BFA; text-decoration:none; font-weight:600;"
-                   onmouseover="this.style.opacity='0.7'"
-                   onmouseout="this.style.opacity='1'">
+                   class="hopn-link-fade" style="font-size:13px; color:#A78BFA; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -228,9 +214,7 @@
                     $pSummary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''));
                 @endphp
                 <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
-                   style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;"
-                   onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#A78BFA; letter-spacing:0.08em;">
@@ -260,18 +244,14 @@
                     <span style="font-size:12px; color:#475569; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $domains->count() }}</span>
                 </div>
                 <a href="{{ route('innovation.index', ['lang'=>$lang]) }}"
-                   style="font-size:13px; color:#F59E0B; text-decoration:none; font-weight:600;"
-                   onmouseover="this.style.opacity='0.7'"
-                   onmouseout="this.style.opacity='1'">
+                   class="hopn-link-fade" style="font-size:13px; color:#F59E0B; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;">
                 @foreach($domains as $domain)
                 <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
-                   style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:18px 20px; text-decoration:none; transition:all 0.25s;"
-                   onmouseover="this.style.borderColor='rgba(245,158,11,0.3)'; this.style.background='#0D1425'; this.style.transform='translateY(-2px)'"
-                   onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                   class="hopn-lift-card" style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:18px 20px; text-decoration:none; transition:all 0.25s;">
                     <span style="font-size:24px;">{{ $domain->icon ?? '🔬' }}</span>
                     <span style="font-size:14px; font-weight:600; color:#CBD5E1;">{{ $domain->name }}</span>
                 </a>
@@ -313,9 +293,7 @@
             @else Contact us and we'll help you find the right solution @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

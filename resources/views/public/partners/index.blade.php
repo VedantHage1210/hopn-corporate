@@ -30,7 +30,7 @@ $categoryColors = [
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(16,185,129,0.3); background:rgba(16,185,129,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#10B981; display:inline-block; box-shadow:0 0 8px #10B981;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981;">Partners & Clients</span>
@@ -72,14 +72,10 @@ $categoryColors = [
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px;">
                     @foreach($items as $item)
-                    <div style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; transition:all 0.25s;"
-                         onmouseover="this.style.borderColor='{{ $catColor }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                         onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                    <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; transition:all 0.25s;">
                         @if($item->logo)
                         <img src="{{ $item->logo }}" alt="{{ $item->name }}"
-                             style="height:40px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);"
-                             onmouseover="this.style.filter='brightness(1) grayscale(0)'"
-                             onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
+                             style="height:40px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);">
                         @else
                         <div style="width:48px; height:48px; border-radius:12px; background:{{ $catColor }}15; border:1px solid {{ $catColor }}30; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $catColor }};">
                             {{ strtoupper(substr($item->name,0,2)) }}
@@ -88,9 +84,7 @@ $categoryColors = [
                         <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $item->name }}</div>
                         @if($item->url)
                         <a href="{{ $item->url }}" target="_blank"
-                           style="font-size:11px; color:{{ $catColor }}; text-decoration:none; opacity:0.7;"
-                           onmouseover="this.style.opacity='1'"
-                           onmouseout="this.style.opacity='0.7'">
+                           class="hopn-link-fade-in" style="font-size:11px; color:{{ $catColor }}; text-decoration:none; opacity:0.7;">
                             @if($lang==='ar') زيارة @elseif($lang==='de') Besuchen @else Visit @endif →
                         </a>
                         @endif
@@ -127,9 +121,7 @@ $categoryColors = [
             @else Join HOPn's growing network of enterprise partners and innovators. @endif
         </p>
         <a href="{{ route('partner-inquiry.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#10B981; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(16,185,129,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#10B981; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(16,185,129,0.3); transition:all 0.2s;">
             @if($lang==='ar') استفسار شراكة @elseif($lang==='de') Partneranfrage @else Partner Inquiry @endif →
         </a>
     </div>

@@ -9,7 +9,7 @@
                 <form method="POST" action="{{ route('admin.blog-posts.store') }}" enctype="multipart/form-data" id="post-form">
                     @csrf
                     <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Content</p>
-                    <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         @foreach(['en' => 'EN', 'de' => 'DE', 'ar' => 'AR'] as $lang => $label)
                         <div>
                             <p class="text-xs font-semibold text-indigo-400 mb-2">{{ $label }}</p>

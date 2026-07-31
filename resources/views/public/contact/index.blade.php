@@ -6,7 +6,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(79,110,247,0.10) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">Contact HOPn</span>
@@ -40,9 +40,7 @@
             ];
             @endphp
             @foreach($infos as $info)
-            <div style="border:1px solid {{ $info['color'] }}20; background:#0A0F1E; border-radius:14px; padding:24px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $info['color'] }}40'; this.style.background='#0D1425'"
-                 onmouseout="this.style.borderColor='{{ $info['color'] }}20'; this.style.background='#0A0F1E'">
+            <div class="hopn-lift-card-nobg" style="border:1px solid {{ $info['color'] }}20; background:#0A0F1E; border-radius:14px; padding:24px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $info['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $info['color'] }}15; border:1px solid {{ $info['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin:0 auto 16px;">{{ $info['icon'] }}</div>
                 <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:8px;">{{ $info[$lang] ?? $info['en'] }}</div>

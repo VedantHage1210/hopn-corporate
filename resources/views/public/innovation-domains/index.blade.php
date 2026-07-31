@@ -7,7 +7,7 @@
     <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block; box-shadow:0 0 8px #8B5CF6;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
@@ -42,9 +42,7 @@
             @foreach($domains as $domain)
             @php $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;"
-               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-4px)'"
-               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+               class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
                 <div style="font-size:40px; margin-bottom:16px;">{{ $domain->icon ?? '🔬' }}</div>
                 <h3 style="font-size:20px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">
@@ -88,15 +86,11 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.3); transition:all 0.2s;"
-               onmouseover="this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.transform='translateY(0)'">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.3); transition:all 0.2s;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
             </a>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.08)'"
-               onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') عرض الكتالوج @elseif($lang==='de') Katalog @else View Catalog @endif
             </a>
         </div>

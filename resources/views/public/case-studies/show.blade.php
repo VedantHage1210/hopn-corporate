@@ -1,14 +1,14 @@
 <x-layouts.public :title="$caseStudy->title_en">
     <x-hero :title="$caseStudy->title_en" :subtitle="$caseStudy->industry" />
     
-    <section class="container-shell mt-8">
+    <section class="container-shell mt-8 hopn-reveal">
         <div class="grid lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 space-y-6">
                 @if($caseStudy->image_url)
-                    <img src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title_en }}" class="w-full rounded-2xl shadow-lg border border-slate-800">
+                    <img src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title_en }}" class="w-full rounded-2xl shadow-lg border border-slate-800 transition-transform duration-300 hover:scale-[1.02]">
                 @endif
                 
-                <div class="card-panel p-6 bg-[#0B1120] border border-slate-800 rounded-2xl">
+                <div class="card-panel p-6 bg-[#0B1120] border border-slate-800 rounded-2xl transition-all duration-300 hover:border-indigo-500/30">
                     <h4 class="text-indigo-400 font-bold mb-4">Project Details</h4>
                     <p class="text-slate-400 text-sm"><strong>Client:</strong> {{ $caseStudy->client_name_en }}</p>
                     
@@ -37,14 +37,14 @@
 @endif
                     
                     @if($caseStudy->pdf_url)
-                        <a href="{{ $caseStudy->pdf_url }}" target="_blank" class="mt-6 block w-full py-3 text-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">
+                        <a href="{{ $caseStudy->pdf_url }}" target="_blank" class="mt-6 block w-full py-3 text-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/30">
                             Download PDF Report
                         </a>
                     @endif
                 </div>
             </div>
 
-            <div class="lg:col-span-2 space-y-6">
+            <div class="lg:col-span-2 space-y-6 hopn-reveal">
                 <div class="card-panel p-8 text-slate-300 bg-[#0B1120] border border-slate-800 rounded-2xl">
                     <h3 class="text-xl font-bold text-indigo-400">Challenge</h3>
                     <p class="mt-2 leading-relaxed">{{ $caseStudy->challenge_en }}</p>

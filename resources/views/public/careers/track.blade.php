@@ -5,7 +5,7 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:400px; background:radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%); pointer-events:none;"></div>
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block; box-shadow:0 0 8px #F59E0B;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
@@ -179,18 +179,14 @@
                                onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         <button type="submit"
-                                style="padding:12px 24px; border-radius:10px; background:#F59E0B; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; transition:all 0.2s;"
-                                onmouseover="this.style.opacity='0.88'"
-                                onmouseout="this.style.opacity='1'">
+                                class="hopn-link-fade" style="padding:12px 24px; border-radius:10px; background:#F59E0B; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; transition:all 0.2s;">
                             @if($lang==='ar') تتبع @elseif($lang==='de') Verfolgen @else Track @endif
                         </button>
                     </div>
                 </form>
                 <div style="margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06);">
                     <a href="{{ route('careers.index', ['lang'=>$lang]) }}"
-                       style="font-size:14px; color:#818CF8; text-decoration:none; display:inline-flex; align-items:center; gap:6px;"
-                       onmouseover="this.style.opacity='0.7'"
-                       onmouseout="this.style.opacity='1'">
+                       class="hopn-link-fade" style="font-size:14px; color:#818CF8; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                         ← @if($lang==='ar') العودة للوظائف @elseif($lang==='de') Zurück zu Jobs @else Back to Jobs @endif
                     </a>
                 </div>

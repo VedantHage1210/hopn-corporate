@@ -8,10 +8,9 @@
         @endif
         <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(139,92,246,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.12); filter:blur(80px);"></div>
-        <div class="container-shell" style="position:relative; z-index:10;">
+        <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('programs.index', ['lang' => $lang]) }}"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;"
-               onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748B'">
+               class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') رجوع @elseif($lang === 'de') Zurück @else Back to Programs @endif
             </a>
             <h1 style="font-size:clamp(28px,5vw,52px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 0 20px;">
@@ -35,8 +34,7 @@
                 </span>
                 @endif
                 <a href="#apply"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:600; text-decoration:none;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                   class="hopn-link-fade" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                     @if($lang === 'ar') سجل الآن @elseif($lang === 'de') Jetzt anmelden @else Apply Now @endif →
                 </a>
             </div>
@@ -144,8 +142,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                style="width:100%; padding:13px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer;"
-                                onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                                class="hopn-link-fade" style="width:100%; padding:13px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer;">
                             @if($lang === 'ar') إرسال @elseif($lang === 'de') Absenden @else Submit Application @endif
                         </button>
                     </div>

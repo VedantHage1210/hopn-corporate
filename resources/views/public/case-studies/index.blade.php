@@ -6,7 +6,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
@@ -41,17 +41,13 @@
             @foreach($caseStudies as $caseStudy)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('case-studies.show', ['lang'=>$lang,'slug'=>$caseStudy->slug]) }}"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;"
-               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-4px)'"
-               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+               class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;">
 
                 {{-- Image --}}
                 @if(!empty($caseStudy->image_url))
                 <div style="height:200px; overflow:hidden; position:relative;">
                     <img src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title }}"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;"
-                         onmouseover="this.style.transform='scale(1.05)'"
-                         onmouseout="this.style.transform='scale(1)'">
+                         class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
                     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, rgba(10,15,30,0.9));"></div>
                 </div>
                 @else
@@ -155,15 +151,11 @@
             </p>
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
                 <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
-                   onmouseover="this.style.transform='translateY(-2px)'"
-                   onmouseout="this.style.transform='translateY(0)'">
+                   class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
                     @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
                 </a>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;"
-                   onmouseover="this.style.background='rgba(255,255,255,0.08)'"
-                   onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                   class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                     @if($lang==='ar') عرض الخدمات @elseif($lang==='de') Leistungen @else View Services @endif
                 </a>
             </div>

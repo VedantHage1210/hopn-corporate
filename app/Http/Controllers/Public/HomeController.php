@@ -10,6 +10,8 @@ use App\Models\Event;
 use App\Models\Industry;
 use App\Models\InnovationDomain;
 use App\Models\BlogPost;
+use App\Models\Startup;
+use App\Models\Investor;
 use Illuminate\Http\Request;
 
 
@@ -32,9 +34,12 @@ $experts = \App\Models\Expert::where('is_visible', true)
         $homeIndustries  = Industry::where('is_published', true)->orderBy('sort_order')->take(9)->get();
         $homeDomains     = InnovationDomain::where('is_published', true)->orderBy('sort_order')->take(6)->get();
        $latestPosts = BlogPost::where('is_published', true)->latest('published_at')->take(3)->get();
+       $featuredStartups = Startup::where('is_visible', true)->latest()->take(6)->get();
+       $featuredInvestors = Investor::where('is_visible', true)->orderBy('sort_order')->take(6)->get();
        return view('public.home', compact(
     'services', 'caseStudies', 'partners','logos', 'testimonials',
-    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts','experts'
+    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts','experts',
+    'featuredStartups', 'featuredInvestors'
 ));
     }
 }

@@ -6,7 +6,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:40px;">
             <div>
                 <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:20px;">
@@ -50,9 +50,7 @@
             </a>
             @foreach($categories as $cat)
             <a href="{{ route('newsroom.index', ['lang'=>$lang, 'category'=>$cat->slug]) }}"
-               style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ $category===$cat->slug?'#4F6EF7':'transparent' }}; color:{{ $category===$cat->slug?'white':'#64748B' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;"
-               onmouseover="this.style.color='white'"
-               onmouseout="if('{{ $category }}' !== '{{ $cat->slug }}') this.style.color='#64748B'">
+               class="hopn-link-accent" style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ $category===$cat->slug?'#4F6EF7':'transparent' }}; color:{{ $category===$cat->slug?'white':'#64748B' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;">
                 {{ $cat->name }}
                 @if($cat->posts_count > 0)
                 <span style="font-size:11px; opacity:0.6;">({{ $cat->posts_count }})</span>
@@ -68,9 +66,7 @@
 <section style="padding:40px 0 0; background:#030712;">
     <div class="container-shell">
         <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$featured->slug]) }}"
-           style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;"
-           onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;">
             <div style="position:relative; min-height:300px; background:linear-gradient(135deg,rgba(79,110,247,0.2),rgba(139,92,246,0.2)); display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 @if($featured->featured_image_path)
                 <img src="{{ $featured->featured_image_path }}" alt="{{ $featured->title }}"
@@ -129,16 +125,12 @@
             @foreach($posts as $post)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$post->slug]) }}"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden; text-decoration:none; transition:all 0.25s;"
-               onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-               onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+               class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden; text-decoration:none; transition:all 0.25s;">
 
                 @if($post->featured_image_path)
                 <div style="height:180px; overflow:hidden;">
                     <img src="{{ $post->featured_image_path }}" alt="{{ $post->title }}"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;"
-                         onmouseover="this.style.transform='scale(1.05)'"
-                         onmouseout="this.style.transform='scale(1)'">
+                         class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
                 </div>
                 @else
                 <div style="height:100px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.04);">

@@ -21,7 +21,7 @@
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(245,158,11,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div style="position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; border-radius:50%; background:radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block; box-shadow:0 0 8px #F59E0B;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
@@ -64,9 +64,7 @@
             @foreach($types as $type)
             <button onclick="filterEvents('{{ $type['key'] }}')"
                     id="filter-{{ $type['key'] }}"
-                    style="padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.1); background:{{ $type['key']==='all'?$type['color']:'rgba(255,255,255,0.04)' }}; color:{{ $type['key']==='all'?'white':'#64748B' }}; cursor:pointer; transition:all 0.2s;"
-                    onmouseover="if(this.dataset.active!=='true'){this.style.borderColor='{{ $type['color'] }}50'; this.style.color='white';}"
-                    onmouseout="if(this.dataset.active!=='true'){this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='#64748B';}">
+                    class="hopn-lift-btn" style="padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.1); background:{{ $type['key']==='all'?$type['color']:'rgba(255,255,255,0.04)' }}; color:{{ $type['key']==='all'?'white':'#64748B' }}; cursor:pointer; transition:all 0.2s;">
                 {{ $type[$lang] ?? $type['en'] }}
             </button>
             @endforeach
@@ -93,9 +91,7 @@
             @endphp
             <div class="event-card"
                  data-type="{{ $event->type }}"
-                 style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; transition:all 0.3s;"
-                 onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-4px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+                 class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; transition:all 0.3s;">
 
                 {{-- Top color bar --}}
                 <div style="height:3px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
@@ -104,9 +100,7 @@
                 @if($event->image_url)
                 <div style="height:180px; overflow:hidden; background:#0D1425;">
                     <img src="{{ $event->image_url }}" alt="{{ $title }}"
-                         style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:opacity 0.3s;"
-                         onmouseover="this.style.opacity='1'"
-                         onmouseout="this.style.opacity='0.8'">
+                         class="hopn-link-fade-in" style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:opacity 0.3s;">
                 </div>
                 @endif
 
@@ -166,9 +160,7 @@
                     <div style="margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05);">
                         @if($event->registration_open)
                         <button onclick="openEventForm({{ $event->id }}, '{{ addslashes($title) }}', '{{ $event->type }}', '{{ $event->date ? $event->date->format('d M Y') : '' }}', '{{ addslashes($event->location ?? '') }}')"
-                                style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:{{ $c }}; color:white; font-size:13px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 20px {{ $c }}40; transition:all 0.2s;"
-                                onmouseover="this.style.transform='translateY(-1px)'"
-                                onmouseout="this.style.transform='translateY(0)'">
+                                class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:{{ $c }}; color:white; font-size:13px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 20px {{ $c }}40; transition:all 0.2s;">
                             @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
                         </button>
                         @else
@@ -238,9 +230,7 @@
             ];
             @endphp
             @foreach($formats as $format)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $format['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $format['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $format['color'] }}15; border:1px solid {{ $format['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $format['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $format[$lang] ?? $format['en'] }}</h3>
@@ -273,9 +263,7 @@
                 </p>
             </div>
             <button onclick="closeEventForm()"
-                    style="margin-top:auto; display:inline-flex; align-items:center; gap:6px; color:#475569; font-size:13px; background:none; border:none; cursor:pointer; padding:0;"
-                    onmouseover="this.style.color='white'"
-                    onmouseout="this.style.color='#475569'">
+                    class="hopn-link-accent" style="margin-top:auto; display:inline-flex; align-items:center; gap:6px; color:#475569; font-size:13px; background:none; border:none; cursor:pointer; padding:0;">
                 ← @if($lang==='ar') رجوع @elseif($lang==='de') Zurück @else Back to Events @endif
             </button>
         </div>
@@ -346,9 +334,7 @@
                         </label>
                     </div>
                     <button type="submit"
-                            style="width:100%; padding:14px; border-radius:10px; background:#F59E0B; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 30px rgba(245,158,11,0.3); transition:all 0.2s;"
-                            onmouseover="this.style.transform='translateY(-1px)'"
-                            onmouseout="this.style.transform='translateY(0)'">
+                            class="hopn-lift-btn" style="width:100%; padding:14px; border-radius:10px; background:#F59E0B; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 30px rgba(245,158,11,0.3); transition:all 0.2s;">
                         @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt registrieren @else Register Now @endif
                     </button>
                 </div>
@@ -370,9 +356,7 @@
             @else Get in touch to discuss event partnerships and sponsorships. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(245,158,11,0.3); transition:all 0.2s;"
-           onmouseover="this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.transform='translateY(0)'">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(245,158,11,0.3); transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

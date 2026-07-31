@@ -7,7 +7,7 @@
     <div style="position:absolute; top:-150px; left:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.10) 0%, transparent 70%); pointer-events:none;"></div>
     <div style="position:absolute; bottom:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
-    <div class="container-shell" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
+    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
@@ -117,9 +117,7 @@
                 ];
                 @endphp
                 @foreach($domains as $d)
-                <div style="border:1px solid {{ $d['color'] }}20; background:{{ $d['color'] }}08; border-radius:12px; padding:16px; display:flex; align-items:center; gap:10px; transition:all 0.25s;"
-                     onmouseover="this.style.borderColor='{{ $d['color'] }}40'; this.style.background='{{ $d['color'] }}15'"
-                     onmouseout="this.style.borderColor='{{ $d['color'] }}20'; this.style.background='{{ $d['color'] }}08'">
+                <div class="hopn-lift-card-nobg" style="border:1px solid {{ $d['color'] }}20; background:{{ $d['color'] }}08; border-radius:12px; padding:16px; display:flex; align-items:center; gap:10px; transition:all 0.25s;">
                     <span style="font-size:20px;">{{ $d['icon'] }}</span>
                     <span style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $d[$lang] ?? $d['en'] }}</span>
                 </div>
@@ -149,9 +147,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;">
             @foreach($teamMembers as $member)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
-            <div style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $c }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 @if($member->photo)
                 <img src="{{ $member->photo }}" alt="{{ $member->name }}"
@@ -173,9 +169,7 @@
                 @endif
                 @if($member->linkedin)
                 <a href="{{ $member->linkedin }}" target="_blank"
-                   style="display:inline-block; margin-top:12px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none; border:1px solid {{ $c }}30; border-radius:6px; padding:4px 12px;"
-                   onmouseover="this.style.background='{{ $c }}15'"
-                   onmouseout="this.style.background='transparent'">LinkedIn →</a>
+                   class="hopn-bg-brighten" style="display:inline-block; margin-top:12px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none; border:1px solid {{ $c }}30; border-radius:6px; padding:4px 12px;">LinkedIn →</a>
                 @endif
             </div>
             @endforeach
@@ -213,9 +207,7 @@
             ];
             @endphp
             @foreach($values as $v)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $v['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $v['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $v['color'] }}15; border:1px solid {{ $v['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $v['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $v[$lang] ?? $v['en'] }}</h3>
@@ -247,9 +239,7 @@
             ];
             @endphp
             @foreach($collab as $item)
-            <div style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;"
-                 onmouseover="this.style.borderColor='{{ $item['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-3px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item[$lang] ?? $item['en'] }}</h3>
@@ -277,9 +267,7 @@
                 ['flag'=>'🇪🇺','city'=>'European Union','en'=>'EU Markets','de'=>'EU-Märkte','ar'=>'أسواق الاتحاد الأوروبي','type_en'=>'Regional Operations','type_de'=>'Regionalbetrieb','type_ar'=>'العمليات الإقليمية','color'=>'#10B981'],
                 ['flag'=>'🌍','city'=>'MENA Region','en'=>'Middle East & North Africa','de'=>'Naher Osten & Nordafrika','ar'=>'الشرق الأوسط وشمال أفريقيا','type_en'=>'Partner Network','type_de'=>'Partnernetzwerk','type_ar'=>'شبكة الشركاء','color'=>'#F59E0B'],
             ] as $loc)
-            <div style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s;"
-                 onmouseover="this.style.borderColor='{{ $loc['color'] }}30'; this.style.background='#0D1425'; this.style.transform='translateY(-2px)'"
-                 onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.background='#0A0F1E'; this.style.transform='translateY(0)'">
+            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s;">
                 <div style="font-size:40px; margin-bottom:16px;">{{ $loc['flag'] }}</div>
                 <h3 style="font-size:20px; font-weight:700; color:white; margin-bottom:6px;">{{ $loc['city'] }}</h3>
                 <p style="font-size:14px; color:#64748B; margin-bottom:16px;">{{ $loc[$lang] ?? $loc['en'] }}</p>
@@ -306,15 +294,11 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
-               onmouseover="this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.transform='translateY(0)'">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
             </a>
             <a href="{{ route('partners.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.08)'"
-               onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') عرض الشركاء @elseif($lang==='de') Partner ansehen @else View Partners @endif
             </a>
         </div>
