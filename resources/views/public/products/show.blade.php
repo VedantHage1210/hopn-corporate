@@ -30,7 +30,7 @@
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div class="container-shell" style="position:relative; z-index:10;">
             <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-back-link"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
+               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#94A3B8; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة @elseif($lang === 'de') Zurück @else Back to Products @endif
             </a>
             @if(!empty($product->tagline_en))
@@ -204,7 +204,7 @@
                    style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:20px; text-decoration:none;">
                     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px;">{{ $service->name }}</h3>
                     @if(!empty($service->summary))
-                    <p style="font-size:13px; color:#64748B; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
+                    <p style="font-size:13px; color:#94A3B8; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
                     @endif
                     <span style="display:inline-block; margin-top:10px; font-size:12px; color:#818CF8; font-weight:600;">Learn more →</span>
                 </a>

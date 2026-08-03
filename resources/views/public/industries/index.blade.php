@@ -26,7 +26,7 @@
                 <span style="background:linear-gradient(135deg,#06B6D4,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> We Serve</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
             @if($lang==='ar') HOPn يقدم حلول مبتكرة في الذكاء الاصطناعي والبيانات لمختلف القطاعات الصناعية.
             @elseif($lang==='de') HOPn liefert innovative KI- und Datenlösungen für verschiedene Branchen.
             @else HOPn delivers innovative AI, data, and digital solutions across key industries. @endif
@@ -54,7 +54,7 @@
                         @else {{ $industry->name }} @endif
                     </h3>
                 </div>
-                <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:20px;">
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:20px;">
                     @if($lang==='de'&&$industry->description_de) {{ Str::limit($industry->description_de,100) }}
                     @elseif($lang==='ar'&&$industry->description_ar) {{ Str::limit($industry->description_ar,100) }}
                     @else {{ Str::limit($industry->description,100) }} @endif
@@ -67,9 +67,9 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">🏭</div>
-            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') القطاعات قادمة قريباً @elseif($lang==='de') Branchen folgen @else Industries Coming Soon @endif
             </h3>
         </div>
@@ -84,7 +84,7 @@
         <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد حلاً مخصصاً لقطاعك؟ @elseif($lang==='de') Maßgeschneiderte Lösung gewünscht? @else Looking for a Tailored Solution? @endif
         </h2>
-        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع HOPn لمناقشة حل مخصص لقطاعك.
             @elseif($lang==='de') Kontaktieren Sie HOPn für eine branchenspezifische Lösung.
             @else Contact HOPn to discuss a tailored solution for your industry. @endif

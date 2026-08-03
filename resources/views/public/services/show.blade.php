@@ -10,7 +10,7 @@
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('services.index', ['lang' => $lang]) }}" class="hopn-link-accent"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
+               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#94A3B8; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة إلى الخدمات @elseif($lang === 'de') Zurück zu Leistungen @else Back to Services @endif
             </a>
             @if($service->category)
@@ -47,7 +47,7 @@
                     @endif
                 </div>
                 @else
-                <p style="color:#64748B;">Details will be published soon.</p>
+                <p style="color:#94A3B8;">Details will be published soon.</p>
                 @endif
 
                 <div style="margin-top:48px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);">

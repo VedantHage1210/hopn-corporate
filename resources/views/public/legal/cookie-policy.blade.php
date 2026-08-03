@@ -11,7 +11,7 @@
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
                 {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
             </h1>
-            <p style="color:#64748B; font-size:13px; margin-top:8px;">
+            <p style="color:#94A3B8; font-size:13px; margin-top:8px;">
                 {{ $lang === 'ar' ? 'آخر تحديث: يناير 2025' : ($lang === 'de' ? 'Letzte Aktualisierung: Januar 2025' : 'Last updated: January 2025') }}
             </p>
         </div>

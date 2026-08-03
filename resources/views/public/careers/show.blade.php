@@ -40,7 +40,7 @@
                         <div style="font-size:16px; font-weight:700; color:#10B981; margin-bottom:8px;">✅ Application Submitted!</div>
                         <p style="font-size:14px; color:#94A3B8; margin-bottom:8px;">Your Application ID:</p>
                         <p style="font-size:20px; font-weight:800; color:#10B981; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
-                        <p style="font-size:12px; color:#64748B; margin-bottom:12px;">Save this ID to track your application status.</p>
+                        <p style="font-size:12px; color:#94A3B8; margin-bottom:12px;">Save this ID to track your application status.</p>
                        <a href="{{ route('careers.track', ['lang' => $lang, 'token' => session('tracking_token')]) }}"
                            style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#10B981; color:white; font-size:13px; font-weight:600; text-decoration:none;">
                             Track My Application →
@@ -91,16 +91,16 @@
                     {{-- Meta --}}
                     <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px; display:flex; flex-wrap:wrap; gap:12px;">
                         @if($job->location)
-                        <span style="font-size:12px; color:#64748B;">📍 {{ $job->location }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">📍 {{ $job->location }}</span>
                         @endif
                         @if($job->type)
-                        <span style="font-size:12px; color:#64748B;">💼 {{ ucfirst($job->type) }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">💼 {{ ucfirst($job->type) }}</span>
                         @endif
                         @if($job->department)
-                        <span style="font-size:12px; color:#64748B;">🏢 {{ $job->department }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">🏢 {{ $job->department }}</span>
                         @endif
                         @if($job->close_date)
-                        <span style="font-size:12px; color:#64748B;">📅 {{ $lang === 'de' ? 'Bewerbungsschluss' : 'Closes' }}: {{ \Carbon\Carbon::parse($job->close_date)->format('d M Y') }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">📅 {{ $lang === 'de' ? 'Bewerbungsschluss' : 'Closes' }}: {{ \Carbon\Carbon::parse($job->close_date)->format('d M Y') }}</span>
                         @endif
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                  onmouseover="this.style.filter='brightness(1) grayscale(0)'"
                  onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
             @else
-            <span style="font-size:13px; font-weight:700; color:#64748B; white-space:nowrap;">{{ $item->name }}</span>
+            <span style="font-size:13px; font-weight:700; color:#94A3B8; white-space:nowrap;">{{ $item->name }}</span>
             @endif
         </div>
         @endforeach
@@ -35,7 +35,7 @@
                  onmouseover="this.style.filter='brightness(1) grayscale(0)'"
                  onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
             @else
-            <span style="font-size:13px; font-weight:700; color:#64748B; white-space:nowrap;">{{ $item->name }}</span>
+            <span style="font-size:13px; font-weight:700; color:#94A3B8; white-space:nowrap;">{{ $item->name }}</span>
             @endif
         </div>
         @endforeach

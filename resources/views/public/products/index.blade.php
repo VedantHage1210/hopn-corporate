@@ -25,7 +25,7 @@
                 <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> Products</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto 40px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') منصات ذكية مبنية لمستقبل الأعمال والتعليم.
             @elseif($lang==='de') Intelligente Plattformen für die Zukunft von Business und Bildung.
             @else Intelligent platforms built for the future of business and education. @endif
@@ -76,7 +76,7 @@
                     </span>
                     @endif
                     <h3 style="font-size:20px; font-weight:800; color:white; line-height:1.3; letter-spacing:-0.5px; margin:0;">{{ $title }}</h3>
-                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1; margin:0;">{{ Str::limit($summary,110) }}</p>
+                    <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin:0;">{{ Str::limit($summary,110) }}</p>
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); margin-top:auto;">
                         <span style="font-size:13px; font-weight:600; color:{{ $c }}; display:flex; align-items:center; gap:6px;">
                             @if($lang==='ar') عرض المنتج @elseif($lang==='de') Produkt ansehen @else View Product @endif
@@ -91,9 +91,9 @@
         <div style="margin-top:48px; display:flex; justify-content:center;">{{ $products->links() }}</div>
         @endif
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">📦</div>
-            <p style="font-size:16px; color:#475569;">
+            <p style="font-size:16px; color:#64748B;">
                 @if($lang==='ar') لا توجد منتجات حالياً @elseif($lang==='de') Keine Produkte gefunden @else No products found @endif
             </p>
         </div>
@@ -108,7 +108,7 @@
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد معرفة المزيد؟ @elseif($lang==='de') Möchten Sie mehr erfahren? @else Want to Learn More? @endif
         </h2>
-        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع فريق HOPn لمناقشة المنتج المناسب لك.
             @elseif($lang==='de') Kontaktieren Sie das HOPn-Team für das richtige Produkt.
             @else Get in touch with HOPn to find the right product for your needs. @endif

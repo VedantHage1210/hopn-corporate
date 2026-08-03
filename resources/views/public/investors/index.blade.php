@@ -28,7 +28,7 @@
             @endif
         </h1>
 
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto 48px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') HOPn يربط المستثمرين بأفضل الشركات الناشئة في مجال التكنولوجيا العميقة عبر أوروبا ومنطقة الشرق الأوسط.
             @elseif($lang==='de') HOPn verbindet Investoren mit den besten Deep-Tech-Startups in Europa und der MENA-Region.
             @else HOPn connects investors with the best deep-tech startups and innovation projects across Europe and MENA. @endif
@@ -55,7 +55,7 @@
             ] as $stat)
             <div style="flex:1; min-width:140px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
                 <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#475569; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat[$lang] ?? $stat['en'] }}</div>
+                <div style="font-size:11px; color:#64748B; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat[$lang] ?? $stat['en'] }}</div>
             </div>
             @endforeach
         </div>
@@ -113,7 +113,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $item[$lang] ?? $item['en'] }}</h3>
-                <p style="font-size:13px; color:#475569; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
+                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -151,7 +151,7 @@
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $investor->name }}</h3>
                         @if($investor->type)
-                        <span style="font-size:11px; color:#475569;">{{ ucfirst($investor->type) }}</span>
+                        <span style="font-size:11px; color:#64748B;">{{ ucfirst($investor->type) }}</span>
                         @endif
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                           : ($lang==='de'&&$investor->description_de ? $investor->description_de
                           : $investor->description);
                 @endphp
-                <p style="font-size:13px; color:#64748B; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($desc,110) }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($desc,110) }}</p>
                 @endif
 
                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
@@ -189,12 +189,12 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">💰</div>
-            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') المستثمرون قادمون قريباً @elseif($lang==='de') Investoren folgen in Kürze @else Investors Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#334155;">
+            <p style="font-size:14px; color:#475569;">
                 @if($lang==='ar') أضف المستثمرين من لوحة الإدارة @elseif($lang==='de') Investoren über das Admin-Panel hinzufügen @else Add investors from the admin panel @endif
             </p>
         </div>
@@ -244,7 +244,7 @@
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل أنت مستعد للاستثمار؟ @elseif($lang==='de') Bereit zu investieren? @else Ready to Invest? @endif
         </h2>
-        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع فريق علاقات المستثمرين في HOPn اليوم.
             @elseif($lang==='de') Kontaktieren Sie unser Investor-Relations-Team noch heute.
             @else Get in touch with the HOPn investor relations team today. @endif

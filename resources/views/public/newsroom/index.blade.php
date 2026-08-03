@@ -18,7 +18,7 @@
                 <h1 style="font-size:clamp(28px,5vw,56px); font-weight:900; color:white; letter-spacing:-2px; margin:0; line-height:1.1;">
                     @if($lang==='ar') آخر الأخبار والإعلانات @elseif($lang==='de') Neuigkeiten & Ankündigungen @else Latest News &amp; Announcements @endif
                 </h1>
-                <p style="font-size:16px; color:#64748B; margin-top:12px; line-height:1.7; max-width:500px;">
+                <p style="font-size:16px; color:#94A3B8; margin-top:12px; line-height:1.7; max-width:500px;">
                     @if($lang==='ar') الإعلانات والشراكات وتحديثات المنتجات وأبحاث الذكاء الاصطناعي وقصص الابتكار من HOPn.
                     @elseif($lang==='de') Ankündigungen, Partnerschaften, Produktupdates, KI-Forschung und Innovationsgeschichten von HOPn.
                     @else Announcements, partnerships, product updates, AI research, and innovation stories from HOPn. @endif
@@ -27,7 +27,7 @@
             {{-- Search --}}
             <form method="GET" action="{{ route('newsroom.index', ['lang'=>$lang]) }}" style="display:flex; gap:10px;">
                 <div style="position:relative;">
-                    <svg style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:#475569;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:#64748B;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/>
                     </svg>
                     <input type="text" name="search" value="{{ $search ?? '' }}"
@@ -45,12 +45,12 @@
         {{-- Category Tabs --}}
         <div style="display:flex; flex-wrap:wrap; gap:8px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0;">
             <a href="{{ route('newsroom.index', ['lang'=>$lang]) }}"
-               style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ !$category||$category==='all'?'#4F6EF7':'transparent' }}; color:{{ !$category||$category==='all'?'white':'#64748B' }}; transition:all 0.2s; margin-bottom:-1px;">
+               style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ !$category||$category==='all'?'#4F6EF7':'transparent' }}; color:{{ !$category||$category==='all'?'white':'#94A3B8' }}; transition:all 0.2s; margin-bottom:-1px;">
                 @if($lang==='ar') الكل @elseif($lang==='de') Alle @else All @endif
             </a>
             @foreach($categories as $cat)
             <a href="{{ route('newsroom.index', ['lang'=>$lang, 'category'=>$cat->slug]) }}"
-               class="hopn-link-accent" style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ $category===$cat->slug?'#4F6EF7':'transparent' }}; color:{{ $category===$cat->slug?'white':'#64748B' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;">
+               class="hopn-link-accent" style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ $category===$cat->slug?'#4F6EF7':'transparent' }}; color:{{ $category===$cat->slug?'white':'#94A3B8' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;">
                 {{ $cat->name }}
                 @if($cat->posts_count > 0)
                 <span style="font-size:11px; opacity:0.6;">({{ $cat->posts_count }})</span>
@@ -92,12 +92,12 @@
                     @else {{ $featured->title }} @endif
                 </h2>
                 @if($featured->excerpt)
-                <p style="font-size:15px; color:#64748B; line-height:1.7; margin:0;">
+                <p style="font-size:15px; color:#94A3B8; line-height:1.7; margin:0;">
                     {{ Str::limit($featured->excerpt, 150) }}
                 </p>
                 @endif
                 <div style="display:flex; align-items:center; gap:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
-                    <span style="font-size:13px; color:#475569;">{{ $featured->published_at?->format('d M Y') }}</span>
+                    <span style="font-size:13px; color:#64748B;">{{ $featured->published_at?->format('d M Y') }}</span>
                     <span style="font-size:13px; font-weight:600; color:#4F6EF7;">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read more @endif →
                     </span>
@@ -113,7 +113,7 @@
     <div class="container-shell">
 
         @if($search)
-        <div style="margin-bottom:24px; color:#64748B; font-size:14px;">
+        <div style="margin-bottom:24px; color:#94A3B8; font-size:14px;">
             @if($lang==='ar') نتائج: @elseif($lang==='de') Ergebnisse für: @else Results for: @endif
             <span style="color:white; font-weight:600;">"{{ $search }}"</span>
             <a href="{{ route('newsroom.index', ['lang'=>$lang]) }}" style="margin-left:12px; color:#EF4444; font-size:12px;">✕ Clear</a>
@@ -150,12 +150,12 @@
                         @else {{ $post->title }} @endif
                     </h3>
                     @if($post->excerpt)
-                    <p style="font-size:13px; color:#64748B; line-height:1.6; margin:0;">
+                    <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin:0;">
                         {{ Str::limit($post->excerpt, 90) }}
                     </p>
                     @endif
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
-                        <span style="font-size:12px; color:#334155;">{{ $post->published_at?->format('d M Y') }}</span>
+                        <span style="font-size:12px; color:#475569;">{{ $post->published_at?->format('d M Y') }}</span>
                         <span style="font-size:12px; font-weight:600; color:{{ $c }};">
                             @if($lang==='ar') اقرأ @elseif($lang==='de') Lesen @else Read @endif →
                         </span>
@@ -170,9 +170,9 @@
         @endif
 
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">📰</div>
-            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد مقالات @elseif($lang==='de') Keine Artikel @else No articles found @endif
             </h3>
         </div>

@@ -27,7 +27,7 @@
         @endif
         <div>
             <p style="font-size:14px; font-weight:600; color:white; margin-bottom:2px;">{{ $testimonial->author_name }}</p>
-            <p style="font-size:12px; color:#475569;">{{ $testimonial->author_role }} · {{ $testimonial->company }}</p>
+            <p style="font-size:12px; color:#64748B;">{{ $testimonial->author_role }} · {{ $testimonial->company }}</p>
         </div>
     </footer>
 </blockquote>

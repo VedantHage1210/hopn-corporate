@@ -10,7 +10,7 @@
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.12); filter:blur(80px);"></div>
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('programs.index', ['lang' => $lang]) }}"
-               class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748B; text-decoration:none; margin-bottom:24px;">
+               class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#94A3B8; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') رجوع @elseif($lang === 'de') Zurück @else Back to Programs @endif
             </a>
             <h1 style="font-size:clamp(28px,5vw,52px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 0 20px;">
@@ -134,7 +134,7 @@
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:10px;">
                             <input type="checkbox" name="gdpr" id="gdpr_show" value="1" required style="margin-top:3px;">
-                            <label for="gdpr_show" style="font-size:12px; color:#64748B; line-height:1.5;">
+                            <label for="gdpr_show" style="font-size:12px; color:#94A3B8; line-height:1.5;">
                                 @if($lang === 'ar') أوافق على سياسة الخصوصية. *
                                 @elseif($lang === 'de') Ich stimme der Datenschutzerklärung zu. *
                                 @else I agree to the Privacy Policy. *

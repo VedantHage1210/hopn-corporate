@@ -27,7 +27,7 @@
                 <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> Core Services</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto 40px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') حلول متكاملة للتحول الرقمي من الاستشارة إلى التنفيذ.
             @elseif($lang==='de') Ganzheitliche digitale Transformationsdienstleistungen von der Beratung bis zur Umsetzung.
             @else End-to-end digital transformation services from consulting to implementation. @endif
@@ -59,7 +59,7 @@
                     {{ $service->icon ?? '⚡' }}
                 </div>
                 <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:10px; line-height:1.3;">{{ $service->title }}</h3>
-                <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($service->summary ?? $service->description ?? '',100) }}</p>
+                <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($service->summary ?? $service->description ?? '',100) }}</p>
                 <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                 </span>
@@ -70,9 +70,9 @@
         <div style="margin-top:48px; display:flex; justify-content:center;">{{ $services->links() }}</div>
         @endif
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">⚡</div>
-            <p style="font-size:16px; color:#475569;">
+            <p style="font-size:16px; color:#64748B;">
                 @if($lang==='ar') لا توجد خدمات حالياً @elseif($lang==='de') Keine Leistungen gefunden @else No services found @endif
             </p>
         </div>
@@ -87,7 +87,7 @@
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد مناقشة مشروعك؟ @elseif($lang==='de') Möchten Sie Ihr Projekt besprechen? @else Ready to Discuss Your Project? @endif
         </h2>
-        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع فريق HOPn اليوم للحصول على استشارة مجانية.
             @elseif($lang==='de') Kontaktieren Sie das HOPn-Team für eine kostenlose Beratung.
             @else Get in touch with HOPn today for a free consultation. @endif

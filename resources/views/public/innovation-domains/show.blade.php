@@ -11,7 +11,7 @@
 
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
             <a href="{{ route('innovation.index', ['lang' => $lang]) }}"
-               class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; color:#64748B; font-size:13px; text-decoration:none; margin-bottom:24px;">
+               class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; color:#94A3B8; font-size:13px; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') جميع المجالات @elseif($lang === 'de') Alle Domänen @else All Domains @endif
             </a>
             <div style="font-size:56px; margin-bottom:20px;">{{ $domain->icon }}</div>

@@ -20,8 +20,8 @@
     <div class="container-shell" style="position:relative; z-index:10;" @if($lang === 'ar') dir="rtl" @endif>
 
         {{-- Breadcrumb --}}
-        <div style="display:flex; align-items:center; gap:8px; margin-bottom:24px; font-size:13px; color:#475569;">
-            <a href="{{ route('home', ['lang' => $lang]) }}" style="color:#475569; text-decoration:none; hover:color:white;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:24px; font-size:13px; color:#64748B;">
+            <a href="{{ route('home', ['lang' => $lang]) }}" style="color:#64748B; text-decoration:none; hover:color:white;">
                 {{ $lang === 'ar' ? 'الرئيسية' : ($lang === 'de' ? 'Startseite' : 'Home') }}
             </a>
             <span>→</span>
@@ -41,7 +41,7 @@
             @if(!empty($content))
                 <div style="color:#CBD5E1; line-height:1.9; font-size:15px; white-space:pre-line;">{{ $content }}</div>
             @else
-                <p style="color:#475569; font-size:15px;">
+                <p style="color:#64748B; font-size:15px;">
                     {{ $lang === 'ar' ? 'المحتوى قادم قريباً.' : ($lang === 'de' ? 'Inhalt kommt bald.' : 'Content coming soon.') }}
                 </p>
             @endif

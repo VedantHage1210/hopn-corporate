@@ -73,7 +73,7 @@
 .hopn-dropdown a:hover { background:rgba(79,110,247,0.1); color:white; }
 .hopn-dropdown-header {
     padding:6px 14px 10px; font-size:11px; font-weight:700; text-transform:uppercase;
-    letter-spacing:0.1em; color:#334155; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:4px;
+    letter-spacing:0.1em; color:#475569; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:4px;
 }
 .hopn-trigger {
     display:inline-flex; align-items:center; gap:4px; padding:6px 10px; border-radius:6px;
@@ -191,9 +191,9 @@
                 <div x-show="sub" style="padding-left:20px;">
                     @foreach($group['items'] as $item)
                     <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}"
-                       style="display:block; padding:10px 14px; border-radius:8px; color:#64748B; font-size:13px; text-decoration:none;"
+                       style="display:block; padding:10px 14px; border-radius:8px; color:#94A3B8; font-size:13px; text-decoration:none;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.04)'"
-                       onmouseout="this.style.color='#64748B'; this.style.background='transparent'">
+                       onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
                         {{ $activeLang==='ar'?$item['ar']:($activeLang==='de'?$item['de']:$item['en']) }}
                     </a>
                     @endforeach
@@ -205,7 +205,7 @@
                 <button type="button" @click="mLangOpen=!mLangOpen"
                         style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:none; cursor:pointer; padding:0; color:#94A3B8; font-size:13px; font-weight:600;">
                     <span style="display:flex; align-items:center; gap:8px;">
-                        <span style="font-size:12px; color:#475569;">Language:</span>
+                        <span style="font-size:12px; color:#64748B;">Language:</span>
                         <span style="color:white;">{{ strtoupper($activeLang) }}</span>
                     </span>
                     <svg :class="mLangOpen ? 'rotate-180' : ''" style="width:12px;height:12px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>

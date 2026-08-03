@@ -25,7 +25,7 @@
                 <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Transformation Programs</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto 40px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') برامج تطوير المهارات والتحول الرقمي لفرق المؤسسات والمتخصصين.
             @elseif($lang==='de') Weiterbildungs- und Transformationsprogramme für Unternehmensteams.
             @else Upskilling and transformation programs for enterprise teams and professionals. @endif
@@ -64,10 +64,10 @@
 
                 <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:12px;">
                     <h3 style="font-size:20px; font-weight:800; color:white; line-height:1.3; letter-spacing:-0.5px; margin:0;">{{ $title }}</h3>
-                    <p style="font-size:14px; color:#64748B; line-height:1.7; flex:1; margin:0;">{{ Str::limit($summary,100) }}</p>
+                    <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin:0;">{{ Str::limit($summary,100) }}</p>
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05);">
                         @if($program->duration)
-                        <span style="font-size:12px; color:#475569;">🕐 {{ $program->duration }}</span>
+                        <span style="font-size:12px; color:#64748B;">🕐 {{ $program->duration }}</span>
                         @endif
                         <span style="font-size:13px; font-weight:600; color:{{ $c }}; display:flex; align-items:center; gap:6px;">
                             @if($lang==='ar') عرض البرنامج @elseif($lang==='de') Programm ansehen @else View Program @endif
@@ -82,9 +82,9 @@
         <div style="margin-top:48px; display:flex; justify-content:center;">{{ $programs->links() }}</div>
         @endif
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">🎓</div>
-            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') البرامج قادمة قريباً @elseif($lang==='de') Programme folgen @else Programs Coming Soon @endif
             </h3>
         </div>
@@ -102,7 +102,7 @@
             <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') سجل في برنامج @elseif($lang==='de') Für ein Programm anmelden @else Apply for a Program @endif
             </h2>
-            <p style="color:#64748B; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') أرسل طلبك وسنتواصل معك قريباً.
                 @elseif($lang==='de') Senden Sie Ihre Bewerbung und wir melden uns bei Ihnen.
                 @else Submit your application and we'll get back to you shortly. @endif
@@ -124,7 +124,7 @@
                 <div style="display:grid; gap:20px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#64748B; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') الاسم الكامل @elseif($lang==='de') Name @else Full Name @endif *
                             </label>
                             <input type="text" name="name" value="{{ old('name') }}" required
@@ -134,7 +134,7 @@
                             @error('name')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#64748B; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') البريد الإلكتروني @elseif($lang==='de') E-Mail @else Email @endif *
                             </label>
                             <input type="email" name="email" value="{{ old('email') }}" required
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#64748B; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') الهاتف @elseif($lang==='de') Telefon @else Phone @endif
                         </label>
                         <input type="text" name="phone" value="{{ old('phone') }}"
@@ -154,7 +154,7 @@
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#64748B; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') البرنامج المطلوب @elseif($lang==='de') Interessiertes Programm @else Program of Interest @endif
                         </label>
                         <select name="program_of_interest"
@@ -169,7 +169,7 @@
                         </select>
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#64748B; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') رسالة @elseif($lang==='de') Nachricht @else Message @endif *
                         </label>
                         <textarea name="message" rows="5" required
@@ -183,7 +183,7 @@
                     <input type="hidden" name="utm_campaign" value="{{ request('utm_campaign') }}">
                     <div style="display:flex; align-items:flex-start; gap:10px;">
                         <input type="checkbox" name="gdpr" id="gdpr_programs" value="1" required style="margin-top:3px; flex-shrink:0;">
-                        <label for="gdpr_programs" style="font-size:12px; color:#475569; line-height:1.6;">
+                        <label for="gdpr_programs" style="font-size:12px; color:#64748B; line-height:1.6;">
                             @if($lang==='ar') أوافق على سياسة الخصوصية ومعالجة البيانات. *
                             @elseif($lang==='de') Ich stimme der Datenschutzerklärung und Datenverarbeitung zu. *
                             @else I agree to the Privacy Policy and consent to data processing. * @endif

@@ -47,7 +47,7 @@ $categoryColors = [
                 <span style="background:linear-gradient(135deg,#10B981,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> & Clients</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#64748B; max-width:600px; margin:0 auto; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
             @if($lang==='ar') موثوق به من قبل المنظمات الرائدة في جميع الصناعات حول العالم.
             @elseif($lang==='de') Vertrauen führender Organisationen aus allen Branchen weltweit.
             @else Trusted by leading organisations across industries worldwide. @endif
@@ -68,7 +68,7 @@ $categoryColors = [
                         {{ $categoryLabels[$category] ?? ucfirst($category) }}
                     </span>
                     <div style="height:1px; flex:1; background:rgba(255,255,255,0.05);"></div>
-                    <span style="font-size:12px; color:#334155; font-weight:600;">{{ $items->count() }} {{ $items->count()===1?'partner':'partners' }}</span>
+                    <span style="font-size:12px; color:#475569; font-weight:600;">{{ $items->count() }} {{ $items->count()===1?'partner':'partners' }}</span>
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px;">
                     @foreach($items as $item)
@@ -82,6 +82,15 @@ $categoryColors = [
                         </div>
                         @endif
                         <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $item->name }}</div>
+                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:{{ $catColor }}; background:{{ $catColor }}12; padding:3px 10px; border-radius:999px;">
+                            {{ $categoryLabels[$category] ?? ucfirst($category) }}
+                        </span>
+                        @php
+                            $desc = $lang==='de' && $item->description_de ? $item->description_de : ($item->description_en ?? null);
+                        @endphp
+                        @if($desc)
+                        <div style="font-size:12px; color:#94A3B8; line-height:1.5; max-width:170px;">{{ Str::limit($desc, 70) }}</div>
+                        @endif
                         @if($item->url)
                         <a href="{{ $item->url }}" target="_blank"
                            class="hopn-link-fade-in" style="font-size:11px; color:{{ $catColor }}; text-decoration:none; opacity:0.7;">
@@ -98,9 +107,9 @@ $categoryColors = [
             <div style="display:flex; justify-content:center; margin-top:40px;">{{ $partners->links() }}</div>
             @endif
         @else
-        <div style="text-align:center; padding:80px; color:#334155;">
+        <div style="text-align:center; padding:80px; color:#475569;">
             <div style="font-size:48px; margin-bottom:16px;">🤝</div>
-            <h3 style="font-size:20px; font-weight:700; color:#475569; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
                 @if($lang==='ar') الشركاء قادمون قريباً @elseif($lang==='de') Partner folgen in Kürze @else Partners Coming Soon @endif
             </h3>
         </div>
@@ -115,7 +124,7 @@ $categoryColors = [
         <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد أن تصبح شريكاً؟ @elseif($lang==='de') Partner werden? @else Become a Partner? @endif
         </h2>
-        <p style="color:#64748B; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') انضم إلى شبكة HOPn المتنامية من شركاء المؤسسات والمبتكرين.
             @elseif($lang==='de') Treten Sie HOPns wachsendem Netzwerk aus Unternehmenspartnern bei.
             @else Join HOPn's growing network of enterprise partners and innovators. @endif
