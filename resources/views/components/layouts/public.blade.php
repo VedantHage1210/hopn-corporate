@@ -200,17 +200,28 @@
         document.body.style.marginTop = '0px';
     }
 
+    var isStrippingHighlight = false;
     function stripGoogleHighlight() {
+        if (isStrippingHighlight) return;
+        isStrippingHighlight = true;
         var highlighted = document.querySelectorAll(
             '.goog-text-highlight, font[style*="background-color"], span[style*="background-color"], font[style*="box-shadow"], span[style*="box-shadow"]'
         );
         highlighted.forEach(function(el) {
-            el.style.setProperty('background-color', 'transparent', 'important');
-            el.style.setProperty('background', 'none', 'important');
-            el.style.setProperty('box-shadow', 'none', 'important');
-            el.style.setProperty('outline', 'none', 'important');
-            el.classList.remove('goog-text-highlight');
+            if (el.style.backgroundColor !== 'transparent') {
+                el.style.setProperty('background-color', 'transparent', 'important');
+            }
+            if (el.style.background !== 'none') {
+                el.style.setProperty('background', 'none', 'important');
+            }
+            if (el.style.boxShadow !== 'none') {
+                el.style.setProperty('box-shadow', 'none', 'important');
+            }
+            if (el.classList.contains('goog-text-highlight')) {
+                el.classList.remove('goog-text-highlight');
+            }
         });
+        isStrippingHighlight = false;
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -220,14 +231,14 @@
             hideGoogleBar();
             stripGoogleHighlight();
         });
-        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+        // Watch only for new nodes being added (e.g. Google injecting its widget),
+        // NOT attribute changes - stripGoogleHighlight() itself edits style/class
+        // attributes, so watching attributes here caused an infinite feedback loop.
+        observer.observe(document.body, { childList: true, subtree: true });
 
         // Belt-and-suspenders: Google Translate applies its highlight in direct
-        // response to click events, sometimes faster than the MutationObserver
-        // callback fires. Re-run the strip immediately and shortly after every click.
+        // response to click events. Re-run the strip shortly after every click.
         document.addEventListener('click', function() {
-            stripGoogleHighlight();
-            setTimeout(stripGoogleHighlight, 0);
             setTimeout(stripGoogleHighlight, 50);
             setTimeout(stripGoogleHighlight, 200);
         }, true);
