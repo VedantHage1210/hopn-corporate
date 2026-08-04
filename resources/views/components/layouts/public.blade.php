@@ -42,7 +42,7 @@
         [dir="rtl"] footer { direction: rtl; }
         @endif
 
-        /* Hide Google Translate UI */
+        /* Hide Google Translate UI - aggressively, including any loading/spinner state */
         .goog-te-banner-frame,
         .goog-te-balloon-frame,
         .goog-te-ftab-frame,
@@ -51,19 +51,37 @@
         .goog-tooltip:hover,
         .goog-te-spinner-pos,
         .goog-te-gadget,
+        .goog-te-gadget-simple,
+        .goog-te-menu-value,
+        .goog-te-menu-frame,
+        #goog-gt-,
         #google_translate_element,
-        .skiptranslate {
+        #google_translate_element2,
+        .skiptranslate,
+        iframe.skiptranslate,
+        iframe[id^="goog-gt"],
+        iframe[class*="goog-te"],
+        div[id^="goog-gt-"],
+        div[class^="goog-te"] {
             display: none !important;
             visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
         /* goog-text-highlight wraps actual translated text (not decoration-only),
            so it must stay visible - just strip the highlight box/background. */
-        .goog-text-highlight {
+        .goog-text-highlight, .goog-text-highlight * {
             background-color: transparent !important;
             background: none !important;
             box-shadow: none !important;
+            border: none !important;
         }
         * { -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, p, span, a, button { user-select: none; -webkit-user-select: none; }
+        ::selection { background: transparent; }
         body {
             top: 0 !important;
             position: static !important;
@@ -183,11 +201,14 @@
     }
 
     function stripGoogleHighlight() {
-        var highlighted = document.querySelectorAll('.goog-text-highlight, font[style*="background-color"]');
+        var highlighted = document.querySelectorAll(
+            '.goog-text-highlight, font[style*="background-color"], span[style*="background-color"], font[style*="box-shadow"], span[style*="box-shadow"]'
+        );
         highlighted.forEach(function(el) {
             el.style.setProperty('background-color', 'transparent', 'important');
             el.style.setProperty('background', 'none', 'important');
             el.style.setProperty('box-shadow', 'none', 'important');
+            el.style.setProperty('outline', 'none', 'important');
             el.classList.remove('goog-text-highlight');
         });
     }
@@ -200,6 +221,16 @@
             stripGoogleHighlight();
         });
         observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+
+        // Belt-and-suspenders: Google Translate applies its highlight in direct
+        // response to click events, sometimes faster than the MutationObserver
+        // callback fires. Re-run the strip immediately and shortly after every click.
+        document.addEventListener('click', function() {
+            stripGoogleHighlight();
+            setTimeout(stripGoogleHighlight, 0);
+            setTimeout(stripGoogleHighlight, 50);
+            setTimeout(stripGoogleHighlight, 200);
+        }, true);
 
         // Global scroll-reveal animation (used across all pages via .hopn-reveal)
         var revealEls = document.querySelectorAll('.hopn-reveal');
@@ -247,7 +278,7 @@
         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/' + domainStr + ';';
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
     @stack('head')
 </head>
