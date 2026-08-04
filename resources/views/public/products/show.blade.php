@@ -30,7 +30,7 @@
         <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div class="container-shell" style="position:relative; z-index:10;">
             <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-back-link"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#94A3B8; text-decoration:none; margin-bottom:24px;">
+               style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة @elseif($lang === 'de') Zurück @else Back to Products @endif
             </a>
             @if(!empty($product->tagline_en))
@@ -50,7 +50,7 @@
                 @endif
             </h1>
             @if(!empty($product->summary_en))
-            <p style="font-size:clamp(15px,2vw,18px); color:#94A3B8; max-width:640px; line-height:1.7; margin-bottom:32px;">
+            <p style="font-size:clamp(15px,2vw,18px); color:#CBD5E1; max-width:640px; line-height:1.7; margin-bottom:32px;">
                 @if($lang === 'de' && !empty($product->summary_de)) {{ $product->summary_de }}
                 @elseif($lang === 'ar' && !empty($product->summary_ar)) {{ $product->summary_ar }}
                 @else {{ $product->summary_en }}
@@ -83,7 +83,7 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                         @if($lang === 'ar') المشكلة @elseif($lang === 'de') Problem @else The Problem @endif
                     </h3>
-                    <p style="font-size:15px; color:#94A3B8; line-height:1.8;">
+                    <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
                         @if($lang === 'de' && !empty($product->problem_de)) {{ $product->problem_de }}
                         @elseif($lang === 'ar' && !empty($product->problem_ar)) {{ $product->problem_ar }}
                         @else {{ $product->problem_en }}
@@ -97,7 +97,7 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                         @if($lang === 'ar') الحل @elseif($lang === 'de') Lösung @else Our Solution @endif
                     </h3>
-                    <p style="font-size:15px; color:#94A3B8; line-height:1.8;">
+                    <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
                         @if($lang === 'de' && !empty($product->solution_de)) {{ $product->solution_de }}
                         @elseif($lang === 'ar' && !empty($product->solution_ar)) {{ $product->solution_ar }}
                         @else {{ $product->solution_en }}
@@ -204,7 +204,7 @@
                    style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:14px; padding:20px; text-decoration:none;">
                     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px;">{{ $service->name }}</h3>
                     @if(!empty($service->summary))
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
                     @endif
                     <span style="display:inline-block; margin-top:10px; font-size:12px; color:#818CF8; font-weight:600;">Learn more →</span>
                 </a>
@@ -221,7 +221,7 @@
                 <h2 style="font-size:clamp(22px,4vw,32px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') هل أنت مهتم؟ @elseif($lang === 'de') Interesse? @else Interested? @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:15px; line-height:1.7; margin-bottom:28px;">
+                <p style="color:#CBD5E1; font-size:15px; line-height:1.7; margin-bottom:28px;">
                     @if($lang === 'ar') تواصل مع فريقنا لمعرفة المزيد.
                     @elseif($lang === 'de') Kontaktieren Sie unser Team für mehr Informationen.
                     @else Get in touch with our team to learn more about this product.

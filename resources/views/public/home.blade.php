@@ -84,7 +84,7 @@
 .hopn-partner-card:hover img { filter:brightness(1) grayscale(0) !important; }
 
 .hopn-marquee-item { transition:color 0.25s ease; }
-.hopn-marquee-item:hover { color:#94A3B8 !important; }
+.hopn-marquee-item:hover { color:#CBD5E1 !important; }
 
 .hopn-ecosystem-node { transition:background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
 .hopn-ecosystem-node:hover { transform:translateY(-4px); }
@@ -162,7 +162,7 @@
             @endif
         </h1>
 
-        <p class="hopn-hero-in hopn-hero-in-3" style="font-size:clamp(16px,2.2vw,20px); color:#94A3B8; max-width:640px; margin:0 auto 48px; line-height:1.75;">
+        <p class="hopn-hero-in hopn-hero-in-3" style="font-size:clamp(16px,2.2vw,20px); color:#CBD5E1; max-width:640px; margin:0 auto 48px; line-height:1.75;">
             @if($lang==='ar') HOPn ينسّق الاستراتيجية والتكنولوجيا والأنظمة البيئية — يربط الشركات الكبرى والمؤسسين والمستثمرين والجامعات في نظام تشغيل ابتكار متكامل.
             @elseif($lang==='de') HOPn orchestriert Strategie, Technologie und Ökosysteme — verbindet Unternehmen, Gründer, Investoren und Universitäten zu einem integrierten Innovationsbetriebssystem.
             @else HOPn orchestrates strategy, technology, and ecosystems — connecting corporates, founders, investors, and universities into one integrated innovation operating system. @endif
@@ -189,7 +189,7 @@
             ] as $stat)
             <div style="padding:22px 36px; text-align:center; border-right:1px solid rgba(255,255,255,0.06);">
                 <div style="font-size:28px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat[0] }}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap;">{{ $stat[1] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap;">{{ $stat[1] }}</div>
             </div>
             @endforeach
         </div>
@@ -222,7 +222,7 @@
             <div class="hopn-strategy-step" style="padding:48px 40px; text-align:center;">
                 <div class="hopn-strategy-icon" style="width:56px; height:56px; border-radius:14px; background:{{ $step[1] }}15; border:1px solid {{ $step[1] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:{{ $step[1] }}; margin:0 auto 20px;">{{ $step[0] }}</div>
                 <h3 style="font-size:22px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">{{ $step[2] }}</h3>
-                <p style="font-size:14px; color:#64748B; line-height:1.75; max-width:280px; margin:0 auto;">{{ $step[3] }}</p>
+                <p style="font-size:14px; color:#94A3B8; line-height:1.75; max-width:280px; margin:0 auto;">{{ $step[3] }}</p>
             </div>
             @endforeach
         </div>
@@ -242,7 +242,7 @@
                 @elseif($lang==='de') Wo Wirtschaft, Bildung &amp; Forschung zusammenkommen
                 @else Where Business, Education &amp; Research Meet @endif
             </h2>
-            <p style="color:#94A3B8; max-width:560px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#CBD5E1; max-width:560px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') HOPn يمثل الجسر بين المؤسسات والجامعات والشركات الناشئة والمستثمرين
                 @elseif($lang==='de') HOPn verbindet Unternehmen, Universitäten, Startups und Investoren
                 @else HOPn bridges enterprises, universities, startups, and investors @endif
@@ -269,7 +269,7 @@
                 <div style="font-size:28px; margin-bottom:10px;">{{ $node['icon'] }}</div>
                 @endif
                 <div style="font-size:13px; font-weight:700; color:white; margin-bottom:4px;">{{ $node['label'] }}</div>
-                <div style="font-size:11px; color:#64748B; line-height:1.4;">{{ $node['desc'] }}</div>
+                <div style="font-size:11px; color:#94A3B8; line-height:1.4;">{{ $node['desc'] }}</div>
             </div>
             @endforeach
         </div>
@@ -323,7 +323,7 @@
                     @elseif($lang==='de'&&$service->name_de) {{ $service->name_de }}
                     @else {{ $service->name }} @endif
                 </h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.6; margin-bottom:16px;">{{ Str::limit($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary??'', 80) }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary??'', 80) }}</p>
                 <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr lesen @else Learn more @endif →
                 </span>
@@ -344,7 +344,7 @@
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') منتجات HOPn @elseif($lang==='de') HOPn Produkte @else HOPn Products @endif
             </h2>
-            <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#CBD5E1; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') منصات ذكية مبنية لمستقبل الأعمال والتعليم
                 @elseif($lang==='de') Intelligente Plattformen für die Zukunft von Wirtschaft und Bildung
                 @else Intelligent platforms built for the future of business and education @endif
@@ -371,7 +371,7 @@
                     </div>
                     <div style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.5px;">{{ $title }}</div>
                 </div>
-                <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($summary,100) }}</p>
+                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($summary,100) }}</p>
                 <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif
                     <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -406,7 +406,7 @@
             <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card"
                style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center; text-decoration:none;">
                 <div style="font-size:28px; margin-bottom:10px;">{{ $industry->icon ?? '🏭' }}</div>
-                <div style="font-size:13px; font-weight:600; color:#94A3B8;">{{ $industry->name }}</div>
+                <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $industry->name }}</div>
             </a>
             @endforeach
         </div>
@@ -415,7 +415,7 @@
             @foreach([['🚗','Automotive'],['🏥','Healthcare'],['🏭','Manufacturing'],['🛒','E-Commerce'],['🎓','Education'],['💳','Finance'],['🚚','Logistics'],['🔬','Research']] as [$icon,$name])
             <div class="hopn-industry-card" style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center;">
                 <div style="font-size:28px; margin-bottom:10px;">{{ $icon }}</div>
-                <div style="font-size:13px; font-weight:600; color:#94A3B8;">{{ $name }}</div>
+                <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $name }}</div>
             </div>
             @endforeach
         </div>
@@ -434,7 +434,7 @@
     <div class="container-shell hopn-reveal" style="margin-bottom:48px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
             <div>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#475569; display:block; margin-bottom:10px;">Partners & Trust</span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748B; display:block; margin-bottom:10px;">Partners & Trust</span>
                 <h2 style="font-size:clamp(22px,3vw,36px); font-weight:800; color:white; letter-spacing:-0.5px; margin:0;">
                     @if($lang==='ar') موثوق به من قادة الصناعة @elseif($lang==='de') Vertrauen von Industrieführern @else Trusted by industry leaders @endif
                 </h2>
@@ -443,7 +443,7 @@
                 @foreach([['50+','Partners'],['12+','Countries'],['15+','Universities'],['€500M+','Innovation Capital']] as $s)
                 <div style="text-align:center;">
                     <div style="font-size:20px; font-weight:900; color:white; letter-spacing:-0.5px;">{{ $s[0] }}</div>
-                    <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $s[1] }}</div>
+                    <div style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $s[1] }}</div>
                 </div>
                 @endforeach
             </div>
@@ -453,17 +453,17 @@
     {{-- DB partners first if available, otherwise marquee --}}
     @if($partners->count() > 0)
     <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#334155; text-align:center; margin-bottom:14px;">Our Partners</div>
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Our Partners</div>
         <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
             <div style="display:flex; align-items:center; animation:marquee {{ max(20, $partners->count() * 4) }}s linear infinite; width:fit-content;">
                 @foreach($partners->concat($partners) as $partner)
                 <a href="{{ route('partners.index', ['lang'=>$lang]) }}"
-                    class="hopn-partner-card" style="min-width:180px; padding:16px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border-right:1px solid rgba(255,255,255,0.04); text-decoration:none;">
+                    class="hopn-partner-card" style="min-width:240px; padding:28px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; border-right:1px solid rgba(255,255,255,0.04); text-decoration:none;">
                     @if($partner->logo)
                     <img src="{{ $partner->logo }}" alt="{{ $partner->name }}"
-                         style="height:28px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.6) grayscale(0.4);">
+                         style="height:44px; width:auto; max-width:170px; object-fit:contain; filter:brightness(0.75) grayscale(0.25);">
                     @endif
-                    <span style="font-size:12px; font-weight:600; color:#94A3B8; letter-spacing:0.03em; white-space:nowrap;">{{ $partner->name }}</span>
+                    <span style="font-size:15px; font-weight:700; color:#E2E8F0; letter-spacing:0.02em; white-space:nowrap;">{{ $partner->name }}</span>
                 </a>
                 @endforeach
             </div>
@@ -472,39 +472,39 @@
     @else
     {{-- Animated marquee fallback --}}
     <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#334155; text-align:center; margin-bottom:14px;">Industry Leaders</div>
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Industry Leaders</div>
         <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
             <div style="display:flex; animation:marquee 30s linear infinite; width:fit-content;">
                 @php $b1=['Bosch','BMW Group','Mercedes-Benz','Audi','Volkswagen','Allianz','Deutsche Bahn','Infineon','SAP','Siemens','Continental','Deutsche Telekom']; @endphp
                 @foreach(array_merge($b1,$b1) as $brand)
                 <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#334155; white-space:nowrap;">{{ $brand }}</span>
+                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
     <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#334155; text-align:center; margin-bottom:14px;">Technology Partners</div>
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Technology Partners</div>
         <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
             <div style="display:flex; animation:marquee2 28s linear infinite; width:fit-content;">
                 @php $b2=['Microsoft','Google','Google Cloud','AWS','IBM','Intel','NVIDIA','Oracle','Cisco','Lenovo','Neo4j','Datadog']; @endphp
                 @foreach(array_merge($b2,$b2) as $brand)
                 <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#334155; white-space:nowrap;">{{ $brand }}</span>
+                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
     <div>
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#334155; text-align:center; margin-bottom:14px;">Research & Academic Excellence</div>
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Research & Academic Excellence</div>
         <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
             <div style="display:flex; animation:marquee 35s linear infinite; width:fit-content;">
                 @php $b3=['TU München','ETH Zürich','MIT','Stanford','RWTH Aachen','TU Berlin','Fraunhofer','Max Planck','KIT','HU Berlin','LMU München','TU Dresden']; @endphp
                 @foreach(array_merge($b3,$b3) as $brand)
                 <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#334155; white-space:nowrap;">{{ $brand }}</span>
+                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
                 </div>
                 @endforeach
             </div>
@@ -526,7 +526,7 @@
                 @elseif($lang==='de') Die treibenden Kräfte unseres Ökosystems
                 @else The Ventures &amp; Capital Driving Our Ecosystem @endif
             </h2>
-            <p style="color:#94A3B8; max-width:560px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#CBD5E1; max-width:560px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') نربط الشركات الناشئة الواعدة بالمستثمرين الاستراتيجيين عبر أوروبا
                 @elseif($lang==='de') Wir verbinden vielversprechende Startups mit strategischen Investoren in ganz Europa
                 @else We connect promising startups with strategic investors across Europe @endif
@@ -555,7 +555,7 @@
                         @endif
                         <div style="flex:1; min-width:0;">
                             <div style="font-size:14px; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $startup->name }}</div>
-                            <div style="font-size:12px; color:#94A3B8;">{{ $startup->industry }}</div>
+                            <div style="font-size:12px; color:#CBD5E1;">{{ $startup->industry }}</div>
                         </div>
                         @if($startup->stage)
                         <span style="font-size:11px; font-weight:600; color:#EF4444; background:rgba(239,68,68,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $startup->stage }}</span>
@@ -590,7 +590,7 @@
                         @endif
                         <div style="flex:1; min-width:0;">
                             <div style="font-size:14px; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $investor->name }}</div>
-                            <div style="font-size:12px; color:#94A3B8;">{{ $investor->type }}</div>
+                            <div style="font-size:12px; color:#CBD5E1;">{{ $investor->type }}</div>
                         </div>
                         @if($investor->region)
                         <span style="font-size:11px; font-weight:600; color:#06B6D4; background:rgba(6,182,212,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $investor->region }}</span>
@@ -619,7 +619,7 @@
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:10px;">
                     @if($lang==='ar') احجز خبيراً @elseif($lang==='de') Einen Experten buchen @else Book an Expert @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:15px; max-width:480px; line-height:1.7; margin:0;">
+                <p style="color:#CBD5E1; font-size:15px; max-width:480px; line-height:1.7; margin:0;">
                     @if($lang==='ar') استفد من استراتيجيي HOPn في الذكاء الاصطناعي والتوائم الرقمية وتسويق الأبحاث واستراتيجية المواهب.
                     @elseif($lang==='de') Zugang zu HOPn-Strategen in KI, digitalen Zwillingen, Forschungskommerzialisierung und Talentstrategie.
                     @else Access HOPn strategists in AI, digital twins, research commercialization, and talent strategy. @endif
@@ -648,7 +648,7 @@
                     @endif
                     <div style="flex:1;">
                         <div style="font-size:15px; font-weight:700; color:white;">{{ $expert->name }}</div>
-                        <div style="font-size:12px; color:#94A3B8; margin-top:2px;">
+                        <div style="font-size:12px; color:#CBD5E1; margin-top:2px;">
                             @if($lang==='ar'&&$expert->specialization_ar) {{ $expert->specialization_ar }}
                             @elseif($lang==='de'&&$expert->specialization_de) {{ $expert->specialization_de }}
                             @else {{ $expert->specialization_en ?? '' }} @endif
@@ -675,7 +675,7 @@
         </div>
         @else
         <div style="text-align:center; padding:60px; border:1px solid rgba(255,255,255,0.06); border-radius:16px; background:#0A0F1E;">
-            <p style="font-size:15px; color:#64748B;">
+            <p style="font-size:15px; color:#94A3B8;">
                 @if($lang==='ar') أضف خبراء الاستشارة من لوحة الإدارة.
                 @elseif($lang==='de') Beratungsexperten über das Admin-Panel hinzufügen.
                 @else Add consulting experts from the Admin Panel → Experts. @endif
@@ -694,7 +694,7 @@
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:10px;">
                     @if($lang==='ar') رفع كفاءة الفرق لعصر الذكاء الاصطناعي @elseif($lang==='de') Teams für das KI-Zeitalter qualifizieren @else Upskill teams for the AI era @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:15px; max-width:520px; line-height:1.7; margin:0;">
+                <p style="color:#CBD5E1; font-size:15px; max-width:520px; line-height:1.7; margin:0;">
                     @if($lang==='ar') ورش عمل يقودها خبراء — مصممة لسد الفجوة بين طموح الابتكار والقدرة التشغيلية.
                     @elseif($lang==='de') Expertengeführte Workshops — konzipiert, um die Lücke zwischen Innovationsambition und operativer Fähigkeit zu schließen.
                     @else Expert-led workshops — designed to close the gap between innovation ambition and operational capability. @endif
@@ -730,10 +730,10 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $ws[4] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
                     <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $ws[4] }}15; color:{{ $ws[4] }}; border:1px solid {{ $ws[4] }}30;">{{ $ws[0] }}</span>
-                    <span style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $ws[1] }}</span>
+                    <span style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $ws[1] }}</span>
                 </div>
                 <h3 style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.3px; margin:0 0 10px; line-height:1.3;">{{ $ws[2] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7; margin:0 0 20px;">{{ $ws[3] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7; margin:0 0 20px;">{{ $ws[3] }}</p>
                 <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
                    style="font-size:13px; font-weight:600; color:{{ $ws[4] }}; text-decoration:none;">
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
@@ -749,7 +749,7 @@
             </a>
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
                class="hopn-btn-outline-neutral"
-               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); color:#CBD5E1; font-size:14px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') احجز ورشة عمل @elseif($lang==='de') Workshop buchen @else Book a Workshop @endif
             </a>
         </div>
@@ -782,10 +782,10 @@
                 <div style="padding:24px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
                         <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $c }}15; color:{{ $c }}; border:1px solid {{ $c }}30; text-transform:uppercase;">{{ ucfirst($event->type) }}</span>
-                        @if($event->date)<span style="font-size:12px; color:#64748B;">{{ $event->date->format('d M Y') }}</span>@endif
+                        @if($event->date)<span style="font-size:12px; color:#94A3B8;">{{ $event->date->format('d M Y') }}</span>@endif
                     </div>
                     <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $event->title }}</h3>
-                    @if($event->location)<div style="font-size:13px; color:#64748B; margin-bottom:16px;">📍 {{ $event->location }}</div>@endif
+                    @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">📍 {{ $event->location }}</div>@endif
                     <a href="{{ route('events.index', ['lang'=>$lang]) }}"
                        style="font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;">
                         @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
@@ -829,10 +829,10 @@
                 @endif
                 <h3 style="font-size:17px; font-weight:700; color:white; line-height:1.4; margin-bottom:12px; flex:1;">{{ $post->title }}</h3>
                 @if($post->excerpt)
-                <p style="font-size:13px; color:#64748B; line-height:1.6; margin-bottom:16px;">{{ Str::limit($post->excerpt,100) }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($post->excerpt,100) }}</p>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <span style="font-size:12px; color:#475569;">{{ $post->published_at?->format('d M Y') }}</span>
+                    <span style="font-size:12px; color:#64748B;">{{ $post->published_at?->format('d M Y') }}</span>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read more @endif →
                     </span>
@@ -841,7 +841,7 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:48px; color:#475569;">
+        <div style="text-align:center; padding:48px; color:#64748B;">
             <p>@if($lang==='ar') الأخبار قادمة قريباً @elseif($lang==='de') Neuigkeiten folgen in Kürze @else Latest news coming soon @endif</p>
         </div>
         @endif
@@ -880,7 +880,7 @@
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') ابنِ فريق أحلامك @elseif($lang==='de') Bauen Sie Ihr Traumteam @else Build Your Dream Team @endif
             </h2>
-            <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:17px;">
+            <p style="color:#CBD5E1; max-width:500px; margin:0 auto; font-size:17px;">
                 @if($lang==='ar') الوصول إلى أفضل المواهب التقنية في أوروبا وما وراءها
                 @elseif($lang==='de') Zugang zu erstklassigen technischen Talenten in Europa
                 @else Access top-tier technical talent across Europe and beyond @endif
@@ -900,7 +900,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $item['color'] }}40, transparent);"></div>
                 <div style="font-size:32px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc'] }}</p>
             </div>
             @endforeach
         </div>
@@ -924,7 +924,7 @@
             @elseif($lang==='de') Bereit, Ihren nächsten Durchbruch zu orchestrieren?
             @else Ready to orchestrate your next breakthrough? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:18px; max-width:540px; margin:0 auto 48px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:18px; max-width:540px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') تواصل مع استراتيجيي HOPn لتحديد نطاق مبادرتك الابتكارية.
             @elseif($lang==='de') Verbinden Sie sich mit HOPn-Strategen, um Ihre Innovationsinitiative zu gestalten.
             @else Connect with HOPn strategists to scope your innovation initiative — from AI governance to ecosystem partnerships. @endif

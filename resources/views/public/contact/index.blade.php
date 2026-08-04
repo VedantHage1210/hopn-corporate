@@ -17,7 +17,7 @@
             @else <span style="color:white;">Get in</span> <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Touch</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto; line-height:1.7;">
             @if($lang==='ar') نحن هنا للإجابة على استفساراتك ومناقشة فرص التعاون.
             @elseif($lang==='de') Wir freuen uns, von Ihnen zu hören.
             @else We would love to hear from you. Reach out for partnerships, projects, or inquiries. @endif
@@ -43,11 +43,11 @@
             <div class="hopn-lift-card-nobg" style="border:1px solid {{ $info['color'] }}20; background:#0A0F1E; border-radius:14px; padding:24px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $info['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $info['color'] }}15; border:1px solid {{ $info['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin:0 auto 16px;">{{ $info['icon'] }}</div>
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:8px;">{{ $info[$lang] ?? $info['en'] }}</div>
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94A3B8; margin-bottom:8px;">{{ $info[$lang] ?? $info['en'] }}</div>
                 @if($info['link'])
                 <a href="{{ $info['link'] }}" style="font-size:14px; font-weight:600; color:{{ $info['color'] }}; text-decoration:none;">{{ $info['value'] }} →</a>
                 @else
-                <div style="font-size:14px; color:#94A3B8;">{{ $info['value'] }}</div>
+                <div style="font-size:14px; color:#CBD5E1;">{{ $info['value'] }}</div>
                 @endif
             </div>
             @endforeach
@@ -62,7 +62,7 @@
                 <h2 style="font-size:22px; font-weight:800; color:white; margin-bottom:8px; letter-spacing:-0.5px;">
                     @if($lang==='ar') أرسل رسالة @elseif($lang==='de') Nachricht senden @else Send a Message @endif
                 </h2>
-                <p style="font-size:13px; color:#64748B; margin-bottom:28px; line-height:1.6;">
+                <p style="font-size:13px; color:#94A3B8; margin-bottom:28px; line-height:1.6;">
                     @if($lang==='ar') للاستفسارات العامة والتعاون @elseif($lang==='de') Für allgemeine Anfragen und Zusammenarbeit @else For general inquiries and collaboration @endif
                 </p>
                 <x-forms.contact :lang="$lang" />
@@ -74,7 +74,7 @@
                 <h2 style="font-size:22px; font-weight:800; color:white; margin-bottom:8px; letter-spacing:-0.5px;">
                     @if($lang==='ar') طلب عرض @elseif($lang==='de') Angebot anfordern @else Request a Proposal @endif
                 </h2>
-                <p style="font-size:13px; color:#64748B; margin-bottom:28px; line-height:1.6;">
+                <p style="font-size:13px; color:#94A3B8; margin-bottom:28px; line-height:1.6;">
                     @if($lang==='ar') لمناقشة مشروع محدد أو خدمة @elseif($lang==='de') Für ein konkretes Projekt oder eine Dienstleistung @else For a specific project or service discussion @endif
                 </p>
                 <x-forms.proposal :lang="$lang" />

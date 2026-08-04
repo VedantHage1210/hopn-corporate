@@ -26,7 +26,7 @@
                 <span style="background:linear-gradient(135deg,#F59E0B,#EF4444,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> HOPn</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 48px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') انضم إلى فريقنا من خبراء الذكاء الاصطناعي والبيانات والروبوتيكا والابتكار.
             @elseif($lang==='de') Werden Sie Teil unseres Teams aus KI-, Daten- und Innovationsexperten.
             @else Join our team of AI, data, robotics, and innovation experts building the future. @endif
@@ -41,7 +41,7 @@
             ] as $stat)
             <div style="flex:1; min-width:140px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
                 <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
             </div>
             @endforeach
         </div>
@@ -73,7 +73,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $p['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $p['color'] }}15; border:1px solid {{ $p['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $p['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $p[$lang] ?? $p['en'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $p['desc_'.$lang] ?? $p['desc_en'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $p['desc_'.$lang] ?? $p['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -102,7 +102,7 @@
                 <h3 style="font-size:17px; font-weight:700; color:white; margin-bottom:8px;">{{ $job->title }}</h3>
                 <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
                     @if($job->location)
-                    <span style="font-size:12px; color:#64748B;">📍 {{ $job->location }}</span>
+                    <span style="font-size:12px; color:#94A3B8;">📍 {{ $job->location }}</span>
                     @endif
                     @if($job->department)
                     <span style="font-size:11px; font-weight:600; padding:2px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">{{ $job->department }}</span>
@@ -111,7 +111,7 @@
                     <span style="font-size:11px; font-weight:700; padding:2px 10px; border-radius:999px; background:{{ $tc }}15; border:1px solid {{ $tc }}30; color:{{ $tc }}; text-transform:uppercase; letter-spacing:0.06em;">{{ ucfirst(str_replace('_',' ',$job->type)) }}</span>
                     @endif
                     @if($job->seniority)
-                    <span style="font-size:11px; color:#475569;">{{ $job->seniority }}</span>
+                    <span style="font-size:11px; color:#64748B;">{{ $job->seniority }}</span>
                     @endif
                 </div>
             </div>
@@ -121,12 +121,12 @@
             </a>
         </div>
         @empty
-        <div style="text-align:center; padding:80px; color:#475569;">
+        <div style="text-align:center; padding:80px; color:#64748B;">
             <div style="font-size:48px; margin-bottom:16px;">💼</div>
-            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد وظائف متاحة حالياً @elseif($lang==='de') Derzeit keine offenen Stellen @else No Open Positions Right Now @endif
             </h3>
-            <p style="font-size:14px; color:#475569;">
+            <p style="font-size:14px; color:#64748B;">
                 @if($lang==='ar') تحقق مرة أخرى قريباً @elseif($lang==='de') Schauen Sie bald wieder vorbei @else Check back soon! @endif
             </p>
         </div>
@@ -145,7 +145,7 @@
         <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') لم تجد وظيفتك؟ @elseif($lang==='de') Keine passende Stelle? @else Don't See Your Role? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') أرسل لنا سيرتك الذاتية وسنضعك في الاعتبار لفرص مستقبلية.
             @elseif($lang==='de') Senden Sie uns Ihren Lebenslauf für zukünftige Möglichkeiten.
             @else Send us your CV and we'll keep you in mind for future opportunities. @endif

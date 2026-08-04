@@ -11,7 +11,7 @@
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
                 {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
             </h1>
-            <p style="color:#94A3B8; font-size:13px; margin-top:8px;">
+            <p style="color:#CBD5E1; font-size:13px; margin-top:8px;">
                 {{ $lang === 'ar' ? 'آخر تحديث: يناير 2025' : ($lang === 'de' ? 'Letzte Aktualisierung: Januar 2025' : 'Last updated: January 2025') }}
             </p>
         </div>
@@ -23,7 +23,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '1. ما هي الكوكيز؟' : ($lang === 'de' ? '1. Was sind Cookies?' : '1. What are Cookies?') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         الكوكيز هي ملفات نصية صغيرة تُخزَّن على جهازك عند زيارة موقعنا. تساعدنا في تحسين تجربتك وتذكر تفضيلاتك.
                     @elseif($lang === 'de')
@@ -55,7 +55,7 @@
                                 {{ $lang === 'ar' ? $cookie['label_ar'] : ($lang === 'de' ? $cookie['label_de'] : $cookie['label_en']) }}
                             </span>
                         </div>
-                        <p style="color:#94A3B8; font-size:13px; margin:0;">
+                        <p style="color:#CBD5E1; font-size:13px; margin:0;">
                             {{ $lang === 'ar' ? $cookie['desc_ar'] : ($lang === 'de' ? $cookie['desc_de'] : $cookie['desc_en']) }}
                         </p>
                     </div>
@@ -68,7 +68,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '3. كيفية التحكم في الكوكيز' : ($lang === 'de' ? '3. Cookie-Verwaltung' : '3. Managing Cookies') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         يمكنك التحكم في الكوكيز من خلال إعدادات متصفحك أو من خلال لافتة الكوكيز عند زيارة موقعنا لأول مرة. يرجى ملاحظة أن تعطيل بعض الكوكيز قد يؤثر على وظائف الموقع.
                     @elseif($lang === 'de')
@@ -84,7 +84,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '4. التواصل' : ($lang === 'de' ? '4. Kontakt' : '4. Contact') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     {{ $lang === 'ar' ? 'لأي استفسارات بشأن سياسة الكوكيز:' : ($lang === 'de' ? 'Bei Fragen zu unserer Cookie-Richtlinie:' : 'For questions about our cookie policy:') }}<br>
                     Email: <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a>
                 </p>

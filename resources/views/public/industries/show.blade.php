@@ -11,7 +11,7 @@
 
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
             <a href="{{ route('industries.index', ['lang' => $lang]) }}" class="hopn-link-accent"
-               style="display:inline-flex; align-items:center; gap:6px; color:#94A3B8; font-size:13px; text-decoration:none; margin-bottom:24px;">
+               style="display:inline-flex; align-items:center; gap:6px; color:#CBD5E1; font-size:13px; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') جميع القطاعات @elseif($lang === 'de') Alle Branchen @else All Industries @endif
             </a>
             <div style="font-size:56px; margin-bottom:20px;">{{ $industry->icon }}</div>
@@ -21,7 +21,7 @@
                 @else {{ $industry->name }}
                 @endif
             </h1>
-            <p style="font-size:clamp(15px,2vw,18px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
+            <p style="font-size:clamp(15px,2vw,18px); color:#CBD5E1; max-width:600px; margin:0 auto; line-height:1.7;">
                 @if($lang === 'de' && $industry->description_de) {{ $industry->description_de }}
                 @elseif($lang === 'ar' && $industry->description_ar) {{ $industry->description_ar }}
                 @else {{ $industry->description }}
@@ -39,7 +39,7 @@
                 <h2 style="font-size:clamp(22px,3vw,32px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') التحديات @elseif($lang === 'de') Herausforderungen @else Industry Challenges @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:16px; line-height:1.8;">
+                <p style="color:#CBD5E1; font-size:16px; line-height:1.8;">
                     @if($lang === 'de' && $industry->challenges_de) {{ $industry->challenges_de }}
                     @elseif($lang === 'ar' && $industry->challenges_ar) {{ $industry->challenges_ar }}
                     @else {{ $industry->challenges }}
@@ -59,7 +59,7 @@
                 <h2 style="font-size:clamp(22px,3vw,32px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') الحلول @elseif($lang === 'de') Lösungen @else HOPn Solutions @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:16px; line-height:1.8;">
+                <p style="color:#CBD5E1; font-size:16px; line-height:1.8;">
                     @if($lang === 'de' && $industry->solutions_de) {{ $industry->solutions_de }}
                     @elseif($lang === 'ar' && $industry->solutions_ar) {{ $industry->solutions_ar }}
                     @else {{ $industry->solutions }}

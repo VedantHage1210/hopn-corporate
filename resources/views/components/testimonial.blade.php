@@ -11,7 +11,7 @@
     </svg>
 
     {{-- Quote text --}}
-    <p style="flex:1; font-size:14px; line-height:1.75; color:#94A3B8; font-style:italic; margin-bottom:20px;">
+    <p style="flex:1; font-size:14px; line-height:1.75; color:#CBD5E1; font-style:italic; margin-bottom:20px;">
         "{{ $lang === 'ar' && !empty($testimonial->quote_ar) ? $testimonial->quote_ar : ($lang === 'de' && !empty($testimonial->quote_de) ? $testimonial->quote_de : $testimonial->quote_en) }}"
     </p>
 
@@ -27,7 +27,7 @@
         @endif
         <div>
             <p style="font-size:14px; font-weight:600; color:white; margin-bottom:2px;">{{ $testimonial->author_name }}</p>
-            <p style="font-size:12px; color:#64748B;">{{ $testimonial->author_role }} · {{ $testimonial->company }}</p>
+            <p style="font-size:12px; color:#94A3B8;">{{ $testimonial->author_role }} · {{ $testimonial->company }}</p>
         </div>
     </footer>
 </blockquote>

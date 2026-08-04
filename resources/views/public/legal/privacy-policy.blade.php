@@ -11,7 +11,7 @@
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
                 {{ $lang === 'ar' ? 'سياسة الخصوصية' : ($lang === 'de' ? 'Datenschutzerklärung' : 'Privacy Policy') }}
             </h1>
-            <p style="color:#94A3B8; font-size:13px; margin-top:8px;">
+            <p style="color:#CBD5E1; font-size:13px; margin-top:8px;">
                 {{ $lang === 'ar' ? 'آخر تحديث: يناير 2025' : ($lang === 'de' ? 'Letzte Aktualisierung: Januar 2025' : 'Last updated: January 2025') }}
             </p>
         </div>
@@ -23,7 +23,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '1. مسؤول معالجة البيانات' : ($lang === 'de' ? '1. Verantwortlicher' : '1. Data Controller') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     HOPn Corporate GmbH<br>
                     Musterstraße 1, 10115 Berlin, Germany<br>
                     Email: <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a>
@@ -35,7 +35,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '2. البيانات التي نجمعها' : ($lang === 'de' ? '2. Erhobene Daten' : '2. Data We Collect') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         نجمع البيانات التي تقدمها طوعاً عند استخدام نماذج الاتصال أو التسجيل أو التقديم على الوظائف، بما في ذلك: الاسم، البريد الإلكتروني، رقم الهاتف، واسم الشركة. كما نجمع بيانات الاستخدام تلقائياً مثل عنوان IP وبيانات المتصفح.
                     @elseif($lang === 'de')
@@ -51,7 +51,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '3. الغرض من معالجة البيانات' : ($lang === 'de' ? '3. Zweck der Datenverarbeitung' : '3. Purpose of Processing') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         نعالج بياناتك للرد على استفساراتك، ومعالجة طلبات التوظيف، وتحسين خدماتنا، والامتثال للالتزامات القانونية. الأساس القانوني: المادة 6(1)(ب) و(ج) و(و) من اللائحة الأوروبية العامة لحماية البيانات.
                     @elseif($lang === 'de')
@@ -67,7 +67,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '4. حقوقك' : ($lang === 'de' ? '4. Ihre Rechte' : '4. Your Rights') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         وفقاً للائحة GDPR، لديك الحق في: الوصول إلى بياناتك، تصحيحها، حذفها، تقييد معالجتها، نقلها، والاعتراض على معالجتها. للممارسة هذه الحقوق، تواصل معنا على: privacy@hopn.eu
                     @elseif($lang === 'de')
@@ -83,7 +83,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '5. الاحتفاظ بالبيانات' : ($lang === 'de' ? '5. Datenspeicherung' : '5. Data Retention') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     @if($lang === 'ar')
                         نحتفظ ببياناتك فقط للمدة اللازمة للأغراض المذكورة أو وفقاً للمتطلبات القانونية. بيانات الاتصال تُحذف بعد 3 سنوات، وبيانات الوظائف بعد 6 أشهر من انتهاء الإجراءات.
                     @elseif($lang === 'de')
@@ -99,7 +99,7 @@
                 <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                     {{ $lang === 'ar' ? '6. التواصل' : ($lang === 'de' ? '6. Kontakt' : '6. Contact') }}
                 </h2>
-                <p style="color:#94A3B8;">
+                <p style="color:#CBD5E1;">
                     Email: <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a><br>
                     HOPn Corporate GmbH, Musterstraße 1, 10115 Berlin, Germany
                 </p>

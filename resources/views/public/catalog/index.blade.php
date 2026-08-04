@@ -18,7 +18,7 @@
             @elseif($lang==='de') Entdecken Sie unsere Produkte, Services &amp; Programme
             @else Explore Our Products, Services &amp; Programs @endif
         </h1>
-        <p style="color:#94A3B8; font-size:17px; max-width:560px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:560px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') كل ما تحتاجه لتحويل مؤسستك في مكان واحد
             @elseif($lang==='de') Alles was Sie für die digitale Transformation brauchen
             @else Everything you need to transform your organization, in one place @endif
@@ -29,7 +29,7 @@
               style="max-width:600px; margin:0 auto;">
             <div style="display:flex; gap:12px;">
                 <div style="flex:1; position:relative;">
-                    <svg style="position:absolute; left:14px; top:50%; transform:translateY(-50%); width:18px; height:18px; color:#64748B;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg style="position:absolute; left:14px; top:50%; transform:translateY(-50%); width:18px; height:18px; color:#94A3B8;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/>
                     </svg>
                     <input type="text" name="search" value="{{ $search }}"
@@ -44,7 +44,7 @@
                 </button>
                 @if($search)
                 <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-                   class="hopn-link-accent" style="padding:14px 20px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;">
+                   class="hopn-link-accent" style="padding:14px 20px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#CBD5E1; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; white-space:nowrap;">
                     ✕ @if($lang==='ar') مسح @elseif($lang==='de') Löschen @else Clear @endif
                 </a>
                 @endif
@@ -71,7 +71,7 @@
             @if(!$search || $tab['key']==='all' || ($tab['count'] !== null && $tab['count'] > 0))
             <a href="{{ route('catalog.index', ['lang'=>$lang, 'category'=>$tab['key']]) }}"
                style="padding:8px 20px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s;
-               {{ $category===$tab['key'] ? 'background:#4F6EF7; color:white; border:1px solid #4F6EF7;' : 'background:rgba(255,255,255,0.04); color:#94A3B8; border:1px solid rgba(255,255,255,0.08);' }}">
+               {{ $category===$tab['key'] ? 'background:#4F6EF7; color:white; border:1px solid #4F6EF7;' : 'background:rgba(255,255,255,0.04); color:#CBD5E1; border:1px solid rgba(255,255,255,0.08);' }}">
                 {{ $tab['label'] }}
                 @if($tab['count'] !== null) ({{ $tab['count'] }}) @endif
             </a>
@@ -81,7 +81,7 @@
 
         {{-- Search result info --}}
         @if($search)
-        <div style="text-align:center; margin-top:16px; font-size:14px; color:#94A3B8;">
+        <div style="text-align:center; margin-top:16px; font-size:14px; color:#CBD5E1;">
             @if($lang==='ar') نتائج البحث عن: @elseif($lang==='de') Suchergebnisse für: @else Search results for: @endif
             <span style="color:white; font-weight:600;">"{{ $search }}"</span>
         </div>
@@ -102,7 +102,7 @@
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') المنتجات @elseif($lang==='de') Produkte @else Products @endif
                     </h2>
-                    <span style="font-size:12px; color:#64748B; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $products->count() }}</span>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $products->count() }}</span>
                 </div>
                 <a href="{{ route('products.index', ['lang'=>$lang]) }}"
                    class="hopn-link-fade" style="font-size:13px; color:#818CF8; text-decoration:none; font-weight:600;">
@@ -131,7 +131,7 @@
                         </div>
                         <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $title }}</h3>
                     </div>
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($summary,90) }}</p>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($summary,90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                     </span>
@@ -150,7 +150,7 @@
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') الخدمات @elseif($lang==='de') Leistungen @else Services @endif
                     </h2>
-                    <span style="font-size:12px; color:#64748B; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $services->count() }}</span>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $services->count() }}</span>
                 </div>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"
                    class="hopn-link-fade" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">
@@ -179,7 +179,7 @@
                         </div>
                         <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $svcTitle }}</h3>
                     </div>
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($svcSummary,90) }}</p>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($svcSummary,90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr lesen @else Learn more @endif →
                     </span>
@@ -198,7 +198,7 @@
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') البرامج @elseif($lang==='de') Programme @else Programs @endif
                     </h2>
-                    <span style="font-size:12px; color:#64748B; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $programs->count() }}</span>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $programs->count() }}</span>
                 </div>
                 <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
                    class="hopn-link-fade" style="font-size:13px; color:#A78BFA; text-decoration:none; font-weight:600;">
@@ -222,7 +222,7 @@
                         </span>
                     </div>
                     <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 12px; line-height:1.3;">{{ $pTitle }}</h3>
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($pSummary,90) }}</p>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($pSummary,90) }}</p>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                     </span>
@@ -241,7 +241,7 @@
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') مجالات الابتكار @elseif($lang==='de') Innovationsdomänen @else Innovation Domains @endif
                     </h2>
-                    <span style="font-size:12px; color:#64748B; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $domains->count() }}</span>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $domains->count() }}</span>
                 </div>
                 <a href="{{ route('innovation.index', ['lang'=>$lang]) }}"
                    class="hopn-link-fade" style="font-size:13px; color:#F59E0B; text-decoration:none; font-weight:600;">
@@ -262,12 +262,12 @@
 
         {{-- Empty State --}}
         @if($products->count()===0 && $services->count()===0 && $programs->count()===0 && $domains->count()===0)
-        <div style="text-align:center; padding:80px; color:#475569;">
+        <div style="text-align:center; padding:80px; color:#64748B;">
             <div style="font-size:48px; margin-bottom:16px;">🔍</div>
-            <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#CBD5E1; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد نتائج @elseif($lang==='de') Keine Ergebnisse @else No results found @endif
             </h3>
-            <p style="font-size:14px; color:#475569; margin-bottom:20px;">
+            <p style="font-size:14px; color:#64748B; margin-bottom:20px;">
                 @if($lang==='ar') جرب كلمات بحث مختلفة @elseif($lang==='de') Versuchen Sie andere Suchbegriffe @else Try different search terms @endif
             </p>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
@@ -287,7 +287,7 @@
             @elseif($lang==='de') Nicht gefunden was Sie suchen?
             @else Can't find what you're looking for? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:16px; margin-bottom:32px;">
+        <p style="color:#CBD5E1; font-size:16px; margin-bottom:32px;">
             @if($lang==='ar') تواصل معنا وسنساعدك في إيجاد الحل المناسب
             @elseif($lang==='de') Kontaktieren Sie uns und wir helfen Ihnen
             @else Contact us and we'll help you find the right solution @endif

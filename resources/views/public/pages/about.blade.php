@@ -26,7 +26,7 @@
                 <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">European Innovation Hub</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:640px; margin:0 auto 48px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:640px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') نربط الأعمال والتعليم والبحث لبناء حلول رقمية ذكية عبر أوروبا والشرق الأوسط.
             @elseif($lang==='de') Wir verbinden Business, Bildung und Forschung für intelligente digitale Lösungen.
             @else Connecting business, education, and research to build intelligent digital solutions across Europe and beyond. @endif
@@ -42,7 +42,7 @@
             ] as $stat)
             <div style="flex:1; min-width:120px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
                 <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
             </div>
             @endforeach
         </div>
@@ -59,7 +59,7 @@
                 <h2 style="font-size:24px; font-weight:800; color:white; margin-bottom:16px; letter-spacing:-0.5px;">
                     @if($lang==='ar') مهمتنا @elseif($lang==='de') Unsere Mission @else Our Mission @endif
                 </h2>
-                <p style="font-size:15px; color:#94A3B8; line-height:1.8;">
+                <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
                     @if($lang==='ar') تمكين المؤسسات والجامعات والشركات الناشئة من بناء مستقبل رقمي من خلال الذكاء الاصطناعي والبيانات والروبوتات والتوائم الرقمية.
                     @elseif($lang==='de') Unternehmen, Universitäten und Startups zu befähigen, eine digitale Zukunft durch KI, Daten, Robotik und digitale Zwillinge aufzubauen.
                     @else To empower enterprises, universities, and startups to build a digital future through AI, data, robotics, and digital twins — delivering measurable impact across Europe and MENA. @endif
@@ -71,7 +71,7 @@
                 <h2 style="font-size:24px; font-weight:800; color:white; margin-bottom:16px; letter-spacing:-0.5px;">
                     @if($lang==='ar') رؤيتنا @elseif($lang==='de') Unsere Vision @else Our Vision @endif
                 </h2>
-                <p style="font-size:15px; color:#94A3B8; line-height:1.8;">
+                <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
                     @if($lang==='ar') أن نكون المنصة الرائدة في أوروبا التي تربط ابتكار الأعمال والبحث الأكاديمي وريادة الأعمال في نظام بيئي متكامل.
                     @elseif($lang==='de') Die führende europäische Plattform zu werden, die Business-Innovation, akademische Forschung und Unternehmertum in einem integrierten Ökosystem verbindet.
                     @else To become the leading European platform that bridges business innovation, academic research, and entrepreneurship — creating a complete innovation ecosystem for the digital age. @endif
@@ -94,12 +94,12 @@
                     @elseif($lang==='de') Ein multidisziplinärer Innovationshub
                     @else A Multidisciplinary Innovation Hub @endif
                 </h2>
-                <p style="font-size:16px; color:#94A3B8; line-height:1.8; margin-bottom:20px;">
+                <p style="font-size:16px; color:#CBD5E1; line-height:1.8; margin-bottom:20px;">
                     @if($lang==='ar') HOPn هو شريك مؤسسي متعدد التخصصات يجمع الاستشارات والمنتجات الرقمية وبناء القدرات في منظومة ابتكار متكاملة.
                     @elseif($lang==='de') HOPn ist ein multidisziplinärer Unternehmenspartner, der Beratung, digitale Produkte und Kompetenzaufbau in einem integrierten Innovationsökosystem vereint.
                     @else HOPn is a multidisciplinary corporate partner that combines consulting, digital products, and capability building into one integrated innovation ecosystem — serving enterprises, universities, startups, and investors across Europe and MENA. @endif
                 </p>
-                <p style="font-size:16px; color:#94A3B8; line-height:1.8;">
+                <p style="font-size:16px; color:#CBD5E1; line-height:1.8;">
                     @if($lang==='ar') نتخصص في الذكاء الاصطناعي والروبوتات والتوائم الرقمية ومنصات البيانات.
                     @elseif($lang==='de') Wir sind spezialisiert auf KI, Robotik, digitale Zwillinge und Datenplattformen.
                     @else We specialize in AI, robotics, swarming systems, digital twins, healthcare technology, and data platforms. @endif
@@ -137,7 +137,7 @@
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') تعرف على الفريق @elseif($lang==='de') Das Team @else Meet the Team @endif
             </h2>
-            <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#CBD5E1; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') خبراء في الذكاء الاصطناعي والروبوتيكا والبيانات والابتكار الرقمي
                 @elseif($lang==='de') Experten für KI, Robotik, Daten und digitale Innovation
                 @else Experts in AI, robotics, data, and digital innovation @endif
@@ -165,7 +165,7 @@
                 </p>
                 @php $bio=$lang==='ar'&&!empty($member->bio_ar)?$member->bio_ar:($lang==='de'&&!empty($member->bio_de)?$member->bio_de:($member->bio_en??'')); @endphp
                 @if($bio)
-                <p style="font-size:12px; color:#64748B; line-height:1.6;">{{ Str::limit($bio,80) }}</p>
+                <p style="font-size:12px; color:#94A3B8; line-height:1.6;">{{ Str::limit($bio,80) }}</p>
                 @endif
                 @if($member->linkedin)
                 <a href="{{ $member->linkedin }}" target="_blank"
@@ -176,7 +176,7 @@
         </div>
         @else
         <div style="text-align:center; padding:60px; border:1px solid rgba(255,255,255,0.06); border-radius:16px; background:#0A0F1E;">
-            <p style="font-size:15px; color:#64748B;">
+            <p style="font-size:15px; color:#94A3B8;">
                 @if($lang==='ar') الفريق قادم قريباً @elseif($lang==='de') Team folgt in Kürze @else Team members coming soon @endif
             </p>
         </div>
@@ -211,7 +211,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $v['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $v['color'] }}15; border:1px solid {{ $v['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $v['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $v[$lang] ?? $v['en'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $v['desc_'.$lang] ?? $v['desc_en'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $v['desc_'.$lang] ?? $v['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -243,7 +243,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item[$lang] ?? $item['en'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -270,7 +270,7 @@
             <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s;">
                 <div style="font-size:40px; margin-bottom:16px;">{{ $loc['flag'] }}</div>
                 <h3 style="font-size:20px; font-weight:700; color:white; margin-bottom:6px;">{{ $loc['city'] }}</h3>
-                <p style="font-size:14px; color:#94A3B8; margin-bottom:16px;">{{ $loc[$lang] ?? $loc['en'] }}</p>
+                <p style="font-size:14px; color:#CBD5E1; margin-bottom:16px;">{{ $loc[$lang] ?? $loc['en'] }}</p>
                 <span style="display:inline-block; font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:{{ $loc['color'] }}15; color:{{ $loc['color'] }}; border:1px solid {{ $loc['color'] }}30; text-transform:uppercase; letter-spacing:0.06em;">
                     {{ $loc['type_'.$lang] ?? $loc['type_en'] }}
                 </span>
@@ -287,7 +287,7 @@
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد التعاون مع HOPn؟ @elseif($lang==='de') Mit HOPn zusammenarbeiten? @else Want to Partner with HOPn? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل معنا لمناقشة فرص الشراكة والتعاون.
             @elseif($lang==='de') Kontaktieren Sie uns für Partnerschaftsmöglichkeiten.
             @else Get in touch to discuss partnership, research, or innovation opportunities. @endif

@@ -56,13 +56,13 @@
                     <span style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:900;">H</span>
                     <span style="font-size:18px; font-weight:700; color:white;">HOPn</span>
                 </a>
-                <p style="font-size:13px; color:#94A3B8; line-height:1.7; max-width:220px; margin-bottom:20px;">
+                <p style="font-size:13px; color:#CBD5E1; line-height:1.7; max-width:220px; margin-bottom:20px;">
                     {{ $lang === 'ar' ? 'مركز الابتكار الأوروبي يربط الأعمال والتعليم والبحث.' : ($lang === 'de' ? 'Europäischer Innovationshub für Business, Bildung und Forschung.' : 'European innovation hub connecting business, education, and research.') }}
                 </p>
-                <div style="font-size:13px; color:#94A3B8; margin-bottom:8px;">
+                <div style="font-size:13px; color:#CBD5E1; margin-bottom:8px;">
                     📧 <a href="mailto:contact@hopn.eu" style="color:#818CF8; text-decoration:none;">contact@hopn.eu</a>
                 </div>
-                <div style="font-size:13px; color:#94A3B8; margin-bottom:24px;">
+                <div style="font-size:13px; color:#CBD5E1; margin-bottom:24px;">
                     📍 Berlin, Germany
                 </div>
                 <div style="display:flex; gap:10px;">
@@ -73,7 +73,7 @@
                     ] as $social)
                     <a href="{{ $social['href'] }}" aria-label="{{ $social['label'] }}"
                        class="hopn-social-icon"
-                       style="display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:#94A3B8; text-decoration:none;">
+                       style="display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:#CBD5E1; text-decoration:none;">
                         <svg style="width:15px;height:15px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             {!! $social['icon'] !!}
                         </svg>
@@ -84,21 +84,21 @@
 
             {{-- Solutions --}}
             <div>
-                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#94A3B8; margin-bottom:16px;">
+                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#CBD5E1; margin-bottom:16px;">
                     {{ $lang === 'ar' ? 'الحلول' : ($lang === 'de' ? 'Lösungen' : 'Solutions') }}
                 </p>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerSolutions->count() > 0)
                         @foreach($footerSolutions as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultSolutions as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -108,21 +108,21 @@
 
             {{-- Company --}}
             <div>
-                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#94A3B8; margin-bottom:16px;">
+                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#CBD5E1; margin-bottom:16px;">
                     {{ $lang === 'ar' ? 'الشركة' : ($lang === 'de' ? 'Unternehmen' : 'Company') }}
                 </p>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerCompany->count() > 0)
                         @foreach($footerCompany as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultCompany as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -132,21 +132,21 @@
 
             {{-- Contact --}}
             <div>
-                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#94A3B8; margin-bottom:16px;">
+                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#CBD5E1; margin-bottom:16px;">
                     {{ $lang === 'ar' ? 'تواصل' : ($lang === 'de' ? 'Kontakt' : 'Contact') }}
                 </p>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerContact->count() > 0)
                         @foreach($footerContact as $item)
                         <a href="{{ $item->url ?? '#' }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
                         @endforeach
                     @else
                         @foreach($defaultContact as $link)
                         <a href="{{ route($link['route'], ['lang' => $lang]) }}"
-                           class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                           class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
@@ -156,20 +156,20 @@
 
             {{-- Legal --}}
             <div>
-                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#94A3B8; margin-bottom:16px;">
+                <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#CBD5E1; margin-bottom:16px;">
                     {{ $lang === 'ar' ? 'قانوني' : ($lang === 'de' ? 'Rechtliches' : 'Legal') }}
                 </p>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     <a href="{{ route('legal.impressum', ['lang' => $lang]) }}"
-                       class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                         Impressum
                     </a>
                     <a href="{{ route('legal.privacy', ['lang' => $lang]) }}"
-                       class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الخصوصية' : ($lang === 'de' ? 'Datenschutzerklärung' : 'Privacy Policy') }}
                     </a>
                     <a href="{{ route('legal.cookie', ['lang' => $lang]) }}"
-                       class="hopn-link-accent" style="font-size:13px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
                     </a>
                 </div>
@@ -186,18 +186,18 @@
 @endphp
 <div style="border-top:1px solid rgba(255,255,255,0.05); padding:20px 0;">
     <div class="container-shell" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
-        <p style="font-size:12px; color:#64748B;">© {{ date('Y') }} HOPn GmbH. {{ $lang === 'ar' ? 'جميع الحقوق محفوظة.' : ($lang === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.') }}</p>
+        <p style="font-size:12px; color:#94A3B8;">© {{ date('Y') }} HOPn GmbH. {{ $lang === 'ar' ? 'جميع الحقوق محفوظة.' : ($lang === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.') }}</p>
         @if($footerSecondary->count() > 0)
         <div style="display:flex; flex-wrap:wrap; gap:16px;">
             @foreach($footerSecondary as $item)
             <a href="{{ $item->url ?? '#' }}"
-               class="hopn-link-accent" style="font-size:12px; color:#64748B; text-decoration:none; transition:color 0.2s;">
+               class="hopn-link-accent" style="font-size:12px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
                 {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
             </a>
             @endforeach
         </div>
         @else
-        <p style="font-size:12px; color:#475569;">Built for enterprise innovation in Europe 🇪🇺</p>
+        <p style="font-size:12px; color:#64748B;">Built for enterprise innovation in Europe 🇪🇺</p>
         @endif
     </div>
 </div>

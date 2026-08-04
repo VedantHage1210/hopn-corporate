@@ -25,7 +25,7 @@
                 <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#10B981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> for Real Clients</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto; line-height:1.7;">
             @if($lang==='ar') اكتشف كيف يساعد HOPn المؤسسات والشركات الناشئة على تحويل أعمالها.
             @elseif($lang==='de') Entdecken Sie, wie HOPn Unternehmen bei der digitalen Transformation unterstützt.
             @else Discover how HOPn helps enterprises and startups transform their operations with AI and data. @endif
@@ -72,7 +72,7 @@
                     </h3>
 
                     @if(!empty($caseStudy->summary) || !empty($caseStudy->excerpt))
-                    <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin:0;">
+                    <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin:0;">
                         {{ Str::limit($caseStudy->summary ?? $caseStudy->excerpt ?? '', 110) }}
                     </p>
                     @endif
@@ -90,7 +90,7 @@
 
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05);">
                         @if(!empty($caseStudy->client_name))
-                        <span style="font-size:12px; color:#64748B; font-weight:500;">{{ $caseStudy->client_name }}</span>
+                        <span style="font-size:12px; color:#94A3B8; font-weight:500;">{{ $caseStudy->client_name }}</span>
                         @endif
                         <span style="font-size:13px; font-weight:600; color:{{ $c }}; display:flex; align-items:center; gap:6px; margin-left:auto;">
                             @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read More @endif →
@@ -109,12 +109,12 @@
         @endif
 
         @else
-        <div style="text-align:center; padding:80px; color:#475569;">
+        <div style="text-align:center; padding:80px; color:#64748B;">
             <div style="font-size:48px; margin-bottom:16px;">💡</div>
-            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') دراسات الحالة قادمة قريباً @elseif($lang==='de') Fallstudien folgen in Kürze @else Case Studies Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#475569;">
+            <p style="font-size:14px; color:#64748B;">
                 @if($lang==='ar') أضف دراسات الحالة من لوحة الإدارة @elseif($lang==='de') Über das Admin-Panel hinzufügen @else Add from the admin panel @endif
             </p>
         </div>
@@ -134,7 +134,7 @@
             ] as $stat)
             <div style="flex:1; min-width:140px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
                 <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
             </div>
             @endforeach
         </div>
@@ -144,7 +144,7 @@
             <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') هل تريد نتائج مماثلة؟ @elseif($lang==='de') Möchten Sie ähnliche Ergebnisse? @else Want Similar Results? @endif
             </h2>
-            <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+            <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
                 @if($lang==='ar') تواصل مع HOPn لمناقشة مشروعك.
                 @elseif($lang==='de') Kontaktieren Sie HOPn um Ihr Projekt zu besprechen.
                 @else Get in touch with HOPn to discuss your project and goals. @endif

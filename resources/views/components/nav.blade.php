@@ -68,22 +68,22 @@
 }
 .hopn-dropdown a {
     display:flex; align-items:center; padding:9px 14px; border-radius:8px;
-    color:#94A3B8; font-size:13px; text-decoration:none; transition:all 0.15s; white-space:nowrap;
+    color:#CBD5E1; font-size:13px; text-decoration:none; transition:all 0.15s; white-space:nowrap;
 }
 .hopn-dropdown a:hover { background:rgba(79,110,247,0.1); color:white; }
 .hopn-dropdown-header {
     padding:6px 14px 10px; font-size:11px; font-weight:700; text-transform:uppercase;
-    letter-spacing:0.1em; color:#475569; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:4px;
+    letter-spacing:0.1em; color:#64748B; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:4px;
 }
 .hopn-trigger {
     display:inline-flex; align-items:center; gap:4px; padding:6px 10px; border-radius:6px;
-    color:#94A3B8; font-size:13px; font-weight:500; cursor:pointer;
+    color:#CBD5E1; font-size:13px; font-weight:500; cursor:pointer;
     background:none; border:none; transition:all 0.15s; white-space:nowrap;
 }
 .hopn-trigger:hover, .hopn-nav-item:hover .hopn-trigger { color:white; background:rgba(255,255,255,0.05); }
 .hopn-trigger svg { transition:transform 0.2s; }
 .hopn-nav-item:hover .hopn-trigger svg { transform:rotate(180deg); }
-.hopn-lang-item { display:block; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#94A3B8; text-decoration:none; transition:all 0.15s; }
+.hopn-lang-item { display:block; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#CBD5E1; text-decoration:none; transition:all 0.15s; }
 .hopn-lang-item:hover { background:rgba(79,110,247,0.1); color:white; }
 .hopn-lang-item.active { background:rgba(79,110,247,0.15); color:#818CF8; }
 </style>
@@ -130,7 +130,7 @@
             {{-- Language Dropdown --}}
             <div class="hidden md:block" x-data="{ langOpen:false }" @click.away="langOpen=false" style="position:relative;">
                 <button type="button" @click="langOpen=!langOpen"
-                        style="display:flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; background:rgba(255,255,255,0.04); color:#94A3B8; font-size:12px; font-weight:700; cursor:pointer;">
+                        style="display:flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; background:rgba(255,255,255,0.04); color:#CBD5E1; font-size:12px; font-weight:700; cursor:pointer;">
                     {{ strtoupper($activeLang) }}
                     <svg :class="langOpen ? 'rotate-180' : ''" style="width:10px;height:10px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
@@ -156,7 +156,7 @@
 
             {{-- Mobile toggle --}}
             <button @click="open=!open" class="md:hidden"
-                    style="width:38px; height:38px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94A3B8; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                    style="width:38px; height:38px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#CBD5E1; display:flex; align-items:center; justify-content:center; cursor:pointer;">
                 <svg x-show="!open" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 <svg x-show="open" style="width:16px;height:16px;display:none;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
@@ -174,15 +174,15 @@
          style="display:none; border-top:1px solid rgba(255,255,255,0.06); background:rgba(3,7,18,0.98); backdrop-filter:blur(24px); max-height:80vh; overflow-y:auto;">
         <div class="container-shell" style="padding:16px; display:flex; flex-direction:column; gap:2px;">
             <a href="{{ route('home', ['lang'=>$lang]) }}"
-               style="display:block; padding:12px 14px; border-radius:8px; color:#94A3B8; font-size:14px; font-weight:600; text-decoration:none;"
+               style="display:block; padding:12px 14px; border-radius:8px; color:#CBD5E1; font-size:14px; font-weight:600; text-decoration:none;"
                onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.color='white'"
-               onmouseout="this.style.background='transparent'; this.style.color='#94A3B8'">
+               onmouseout="this.style.background='transparent'; this.style.color='#CBD5E1'">
                 @if($activeLang==='ar') الرئيسية @elseif($activeLang==='de') Startseite @else Home @endif
             </a>
             @foreach($groups as $group)
             <div x-data="{sub:false}">
                 <button @click="sub=!sub"
-                        style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:8px; color:#94A3B8; font-size:14px; font-weight:600; background:none; border:none; cursor:pointer; text-align:left;"
+                        style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:8px; color:#CBD5E1; font-size:14px; font-weight:600; background:none; border:none; cursor:pointer; text-align:left;"
                         onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.color='white'"
                         onmouseout="this.style.background='transparent'">
                     {{ $activeLang==='ar'?$group['label_ar']:($activeLang==='de'?$group['label_de']:$group['label_en']) }}
@@ -191,9 +191,9 @@
                 <div x-show="sub" style="padding-left:20px;">
                     @foreach($group['items'] as $item)
                     <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}"
-                       style="display:block; padding:10px 14px; border-radius:8px; color:#94A3B8; font-size:13px; text-decoration:none;"
+                       style="display:block; padding:10px 14px; border-radius:8px; color:#CBD5E1; font-size:13px; text-decoration:none;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.04)'"
-                       onmouseout="this.style.color='#94A3B8'; this.style.background='transparent'">
+                       onmouseout="this.style.color='#CBD5E1'; this.style.background='transparent'">
                         {{ $activeLang==='ar'?$item['ar']:($activeLang==='de'?$item['de']:$item['en']) }}
                     </a>
                     @endforeach
@@ -203,9 +203,9 @@
 
             <div x-data="{ mLangOpen:false }" style="padding:12px 14px; border-top:1px solid rgba(255,255,255,0.05); margin-top:8px;">
                 <button type="button" @click="mLangOpen=!mLangOpen"
-                        style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:none; cursor:pointer; padding:0; color:#94A3B8; font-size:13px; font-weight:600;">
+                        style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:none; cursor:pointer; padding:0; color:#CBD5E1; font-size:13px; font-weight:600;">
                     <span style="display:flex; align-items:center; gap:8px;">
-                        <span style="font-size:12px; color:#64748B;">Language:</span>
+                        <span style="font-size:12px; color:#94A3B8;">Language:</span>
                         <span style="color:white;">{{ strtoupper($activeLang) }}</span>
                     </span>
                     <svg :class="mLangOpen ? 'rotate-180' : ''" style="width:12px;height:12px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>

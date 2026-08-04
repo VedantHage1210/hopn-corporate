@@ -26,7 +26,7 @@
                 <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> Domains</span>
             @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto; line-height:1.7;">
             @if($lang==='ar') HOPn يقود الابتكار في مجالات التكنولوجيا المتقدمة — الذكاء الاصطناعي والروبوتيكا والبيانات.
             @elseif($lang==='de') HOPn treibt Innovation in KI, Robotik, digitalen Zwillingen und Datenplattformen voran.
             @else HOPn leads innovation across AI, robotics, data, and deep-tech domains. @endif
@@ -50,7 +50,7 @@
                     @elseif($lang==='ar'&&$domain->name_ar) {{ $domain->name_ar }}
                     @else {{ $domain->name }} @endif
                 </h3>
-                <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1; margin-bottom:20px;">
+                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">
                     @if($lang==='de'&&$domain->description_de) {{ Str::limit($domain->description_de,120) }}
                     @elseif($lang==='ar'&&$domain->description_ar) {{ Str::limit($domain->description_ar,120) }}
                     @else {{ Str::limit($domain->description,120) }} @endif
@@ -62,9 +62,9 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:80px; color:#475569;">
+        <div style="text-align:center; padding:80px; color:#64748B;">
             <div style="font-size:48px; margin-bottom:16px;">🔬</div>
-            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') المجالات قادمة قريباً @elseif($lang==='de') Domänen folgen @else Domains Coming Soon @endif
             </h3>
         </div>
@@ -79,7 +79,7 @@
         <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد الابتكار مع HOPn؟ @elseif($lang==='de') Mit HOPn innovieren? @else Ready to Innovate with HOPn? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع فريق HOPn لمناقشة فرص الابتكار.
             @elseif($lang==='de') Kontaktieren Sie HOPn für Innovationsmöglichkeiten.
             @else Get in touch with HOPn to explore innovation opportunities. @endif

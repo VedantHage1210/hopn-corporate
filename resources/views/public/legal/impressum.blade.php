@@ -12,7 +12,7 @@
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
                 Impressum
             </h1>
-            <p style="color:#94A3B8; font-size:13px; margin-top:8px;">
+            <p style="color:#CBD5E1; font-size:13px; margin-top:8px;">
                 {{ $lang === 'ar' ? 'آخر تحديث: يناير 2025' : ($lang === 'de' ? 'Letzte Aktualisierung: Januar 2025' : 'Last updated: January 2025') }}
             </p>
         </div>
@@ -71,7 +71,7 @@
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
                 {{ $lang === 'ar' ? 'إخلاء المسؤولية' : ($lang === 'de' ? 'Haftungsausschluss' : 'Disclaimer') }}
             </h2>
-            <p style="color:#94A3B8;">
+            <p style="color:#CBD5E1;">
                 @if($lang === 'ar')
                     محتوى موقعنا تم إنشاؤه بعناية فائقة. ومع ذلك، لا نتحمل أي مسؤولية عن صحة المحتوى أو اكتماله أو حداثته. وفقاً للمادة 7 الفقرة 1 من قانون التيليميديا الألماني، نحن كمزود خدمة مسؤولون عن المحتوى الخاص بنا على هذه الصفحات وفقاً للقوانين العامة.
                 @elseif($lang === 'de')

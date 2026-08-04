@@ -17,7 +17,7 @@
         {{ $lang === 'de' && !empty($service->name_de) ? $service->name_de : $service->name }}
     </h3>
 
-    <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1;">
+    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1;">
         {{ $lang === 'de' && !empty($service->summary_de) ? $service->summary_de : $service->summary }}
     </p>
 

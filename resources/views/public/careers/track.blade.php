@@ -31,7 +31,7 @@
                 <div style="padding:32px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
                         <div>
-                            <p style="font-size:12px; color:#94A3B8; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.08em;">Application ID</p>
+                            <p style="font-size:12px; color:#CBD5E1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.08em;">Application ID</p>
                             <p style="font-size:22px; font-weight:900; color:#818CF8; font-family:monospace; letter-spacing:2px;">{{ $application->tracking_token }}</p>
                         </div>
                         @php
@@ -55,28 +55,28 @@
 
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                         <div>
-                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:6px;">
+                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') المتقدم @elseif($lang==='de') Bewerber @else Applicant @endif
                             </p>
                             <p style="font-size:16px; font-weight:600; color:white; margin:0;">{{ $application->full_name }}</p>
                         </div>
                         <div>
-                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:6px;">
+                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') المنصب @elseif($lang==='de') Position @else Position @endif
                             </p>
                             <p style="font-size:16px; font-weight:600; color:white; margin:0;">{{ $application->job?->title ?? '—' }}</p>
                         </div>
                         <div>
-                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:6px;">
+                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') تاريخ التقديم @elseif($lang==='de') Bewerbungsdatum @else Applied On @endif
                             </p>
-                            <p style="font-size:15px; color:#94A3B8; margin:0;">{{ $application->created_at->format('d M Y') }}</p>
+                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->created_at->format('d M Y') }}</p>
                         </div>
                         <div>
-                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:6px;">
+                            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') آخر تحديث @elseif($lang==='de') Zuletzt aktualisiert @else Last Updated @endif
                             </p>
-                            <p style="font-size:15px; color:#94A3B8; margin:0;">{{ $application->updated_at->format('d M Y') }}</p>
+                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->updated_at->format('d M Y') }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,9 +126,9 @@
                     @php
                     $done    = $i <= $currentIndex;
                     $active  = $i === $currentIndex;
-                    $c       = $done ? '#10B981' : '#334155';
+                    $c       = $done ? '#10B981' : '#475569';
                     $border  = $done ? 'rgba(16,185,129,0.35)' : 'rgba(255,255,255,0.06)';
-                    $txt     = $done ? 'white' : '#64748B';
+                    $txt     = $done ? 'white' : '#94A3B8';
                     @endphp
                     <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:12px; background:{{ $active?'rgba(16,185,129,0.08)':'rgba(255,255,255,0.02)' }}; border:1px solid {{ $border }}; transition:all 0.2s;">
                         <div style="width:36px; height:36px; border-radius:50%; background:{{ $done?'rgba(16,185,129,0.2)':'rgba(255,255,255,0.05)' }}; border:1px solid {{ $border }}; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
@@ -158,7 +158,7 @@
                 <h3 style="font-size:18px; font-weight:700; color:#FCA5A5; margin:0 0 8px;">
                     @if($lang==='ar') لم يتم العثور على الطلب @elseif($lang==='de') Bewerbung nicht gefunden @else Application Not Found @endif
                 </h3>
-                <p style="font-size:14px; color:#94A3B8; margin:0;">
+                <p style="font-size:14px; color:#CBD5E1; margin:0;">
                     {{ $error }}
                 </p>
             </div>

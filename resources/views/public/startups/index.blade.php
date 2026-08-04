@@ -28,7 +28,7 @@
             @endif
         </h1>
 
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 48px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') HOPn يدعم رواد الأعمال من خلال التوجيه والتمويل والبنية التحتية التقنية المتعمقة.
             @elseif($lang==='de') HOPn unterstützt Gründer durch Mentoring, Kapitalzugang und Deep-Tech-Infrastruktur.
             @else HOPn supports founders through mentoring, capital access, and deep-tech infrastructure.
@@ -56,7 +56,7 @@
             ] as $stat)
             <div style="flex:1; min-width:140px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
                 <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
             </div>
             @endforeach
         </div>
@@ -73,7 +73,7 @@
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                 @if($lang==='ar') دعم شامل للشركات الناشئة @elseif($lang==='de') Vollständige Startup-Unterstützung @else Full-Stack Startup Support @endif
             </h2>
-            <p style="color:#94A3B8; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
+            <p style="color:#CBD5E1; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
                 @if($lang==='ar') كل ما تحتاجه من الفكرة إلى الإطلاق وما بعده
                 @elseif($lang==='de') Alles was Sie von der Idee bis zum Launch brauchen
                 @else Everything you need from idea to launch and beyond @endif
@@ -96,7 +96,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $item[$lang] ?? $item['en'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -135,12 +135,12 @@
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $startup->name }}</h3>
                         @if($startup->industry)
-                        <span style="font-size:12px; color:#64748B;">{{ $startup->industry }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">{{ $startup->industry }}</span>
                         @endif
                     </div>
                 </div>
                 @if($startup->description)
-                <p style="font-size:13px; color:#94A3B8; line-height:1.7; flex:1; margin:0;">{{ Str::limit($startup->description,110) }}</p>
+                <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin:0;">{{ Str::limit($startup->description,110) }}</p>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     @if($startup->stage)
@@ -157,12 +157,12 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:80px; color:#475569;">
+        <div style="text-align:center; padding:80px; color:#64748B;">
             <div style="font-size:48px; margin-bottom:16px;">🚀</div>
-            <h3 style="font-size:20px; font-weight:700; color:#64748B; margin-bottom:8px;">
+            <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') الشركات الناشئة قادمة قريباً @elseif($lang==='de') Startups folgen in Kürze @else Startups Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#475569;">
+            <p style="font-size:14px; color:#64748B;">
                 @if($lang==='ar') أضف الشركات الناشئة من لوحة الإدارة @elseif($lang==='de') Startups über das Admin-Panel hinzufügen @else Add startups from the admin panel @endif
             </p>
         </div>
@@ -194,7 +194,7 @@
                         @if($lang==='ar') برنامج @elseif($lang==='de') Programm @else Program @endif
                     </span>
                 </div>
-                <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1;">{{ Str::limit($summary,100) }}</p>
+                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1;">{{ Str::limit($summary,100) }}</p>
                 <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
                    style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;">
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn More @endif →
@@ -215,7 +215,7 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">{{ $program['name'] }}</h3>
                     <span style="font-size:10px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $program['color'] }}15; color:{{ $program['color'] }}; border:1px solid {{ $program['color'] }}30; text-transform:uppercase;">{{ $program['badge'] }}</span>
                 </div>
-                <p style="font-size:14px; color:#94A3B8; line-height:1.7; flex:1;">{{ $program['desc'] }}</p>
+                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1;">{{ $program['desc'] }}</p>
                 <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
                    style="font-size:13px; font-weight:600; color:{{ $program['color'] }}; text-decoration:none;">
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn More @endif →
@@ -245,7 +245,7 @@
                 <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
                     @if($lang==='ar') قدم شركتك الناشئة @elseif($lang==='de') Startup bewerben @else Apply with Your Startup @endif
                 </h2>
-                <p style="color:#94A3B8; font-size:17px; line-height:1.7;">
+                <p style="color:#CBD5E1; font-size:17px; line-height:1.7;">
                     @if($lang==='ar') انضم إلى نظام HOPn البيئي واحصل على الإرشاد والتمويل والبنية التحتية.
                     @elseif($lang==='de') Treten Sie dem HOPn-Ökosystem bei und erhalten Sie Mentoring, Kapital und Infrastruktur.
                     @else Join the HOPn ecosystem and get access to mentoring, funding, and tech infrastructure. @endif
@@ -266,7 +266,7 @@
                     <div style="display:grid; gap:20px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') اسم المؤسس @elseif($lang==='de') Gründername @else Founder Name @endif *
                                 </label>
                                 <input type="text" name="founder_name" required
@@ -275,7 +275,7 @@
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') البريد الإلكتروني @elseif($lang==='de') E-Mail @else Email @endif *
                                 </label>
                                 <input type="email" name="email" required
@@ -285,7 +285,7 @@
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') اسم الشركة الناشئة @elseif($lang==='de') Startup-Name @else Startup Name @endif *
                             </label>
                             <input type="text" name="startup_name" required
@@ -295,7 +295,7 @@
                         </div>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') القطاع @elseif($lang==='de') Branche @else Industry @endif
                                 </label>
                                 <input type="text" name="industry"
@@ -305,7 +305,7 @@
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') المرحلة @elseif($lang==='de') Phase @else Stage @endif
                                 </label>
                                 <select name="stage"
@@ -319,7 +319,7 @@
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') رسالة @elseif($lang==='de') Nachricht @else Tell us about your startup @endif
                             </label>
                             <textarea name="message" rows="5"
@@ -330,7 +330,7 @@
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:10px;">
                             <input type="checkbox" name="gdpr_consent" id="gdpr_startup" required style="margin-top:3px; flex-shrink:0;">
-                            <label for="gdpr_startup" style="font-size:12px; color:#64748B; line-height:1.6;">
+                            <label for="gdpr_startup" style="font-size:12px; color:#94A3B8; line-height:1.6;">
                                 @if($lang==='ar') أوافق على سياسة الخصوصية ومعالجة البيانات.
                                 @elseif($lang==='de') Ich stimme der Datenschutzerklärung und Datenverarbeitung zu.
                                 @else I agree to the Privacy Policy and consent to data processing. * @endif
@@ -354,7 +354,7 @@
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل أنت مستعد لبناء المستقبل؟ @elseif($lang==='de') Bereit, die Zukunft zu bauen? @else Ready to Build the Future? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل مع فريق HOPn اليوم.
             @elseif($lang==='de') Kontaktieren Sie das HOPn-Team noch heute.
             @else Get in touch with the HOPn startup team today. @endif

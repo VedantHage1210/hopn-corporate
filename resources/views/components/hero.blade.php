@@ -29,7 +29,7 @@
         </h1>
 
         @if($subtitle)
-        <p style="margin-top:20px; font-size:clamp(15px, 2vw, 20px); color:#94A3B8; max-width:640px; margin-left:auto; margin-right:auto; line-height:1.6;">
+        <p style="margin-top:20px; font-size:clamp(15px, 2vw, 20px); color:#CBD5E1; max-width:640px; margin-left:auto; margin-right:auto; line-height:1.6;">
             {{ $subtitle }}
         </p>
         @endif
@@ -66,7 +66,7 @@
             ] as $stat)
             <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px; backdrop-filter:blur(8px);">
                 <div style="font-size:28px; font-weight:800; color:white;">{{ $stat['value'] }}</div>
-                <div style="margin-top:4px; font-size:12px; color:#94A3B8;">{{ $stat['label'] }}</div>
+                <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat['label'] }}</div>
             </div>
             @endforeach
         </div>

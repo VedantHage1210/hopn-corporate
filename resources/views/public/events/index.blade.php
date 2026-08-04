@@ -9,10 +9,10 @@
         <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">
             @if($lang==='ar') تم التسجيل! @elseif($lang==='de') Registrierung erhalten! @else Registration Received! @endif
         </div>
-        <div style="font-size:13px; color:#94A3B8;">{{ session('event_success') }}</div>
+        <div style="font-size:13px; color:#CBD5E1;">{{ session('event_success') }}</div>
     </div>
     <button onclick="document.getElementById('success-toast').style.display='none'"
-            style="margin-left:auto; background:none; border:none; color:#94A3B8; cursor:pointer; font-size:18px;">×</button>
+            style="margin-left:auto; background:none; border:none; color:#CBD5E1; cursor:pointer; font-size:18px;">×</button>
 </div>
 @endif
 
@@ -42,7 +42,7 @@
             @endif
         </h1>
 
-        <p style="font-size:clamp(16px,2vw,20px); color:#94A3B8; max-width:600px; margin:0 auto 48px; line-height:1.7;">
+        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto 48px; line-height:1.7;">
             @if($lang==='ar') انضم إلى مؤتمراتنا وورش العمل والويبينار وفعاليات الشركات الناشئة عبر أوروبا وما وراءها.
             @elseif($lang==='de') Nehmen Sie an unseren Konferenzen, Workshops, Webinaren und Startup-Events teil.
             @else Join our conferences, workshops, webinars, hackathons, and startup events across Europe and beyond. @endif
@@ -64,7 +64,7 @@
             @foreach($types as $type)
             <button onclick="filterEvents('{{ $type['key'] }}')"
                     id="filter-{{ $type['key'] }}"
-                    class="hopn-lift-btn" style="padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.1); background:{{ $type['key']==='all'?$type['color']:'rgba(255,255,255,0.04)' }}; color:{{ $type['key']==='all'?'white':'#94A3B8' }}; cursor:pointer; transition:all 0.2s;">
+                    class="hopn-lift-btn" style="padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.1); background:{{ $type['key']==='all'?$type['color']:'rgba(255,255,255,0.04)' }}; color:{{ $type['key']==='all'?'white':'#CBD5E1' }}; cursor:pointer; transition:all 0.2s;">
                 {{ $type[$lang] ?? $type['en'] }}
             </button>
             @endforeach
@@ -112,7 +112,7 @@
                             {{ ucfirst($event->type ?? 'event') }}
                         </span>
                         @if($event->date)
-                        <span style="font-size:12px; color:#64748B; font-weight:500;">
+                        <span style="font-size:12px; color:#94A3B8; font-weight:500;">
                             📅 {{ $event->date->format('d M Y') }}
                         </span>
                         @endif
@@ -123,12 +123,12 @@
 
                     {{-- Description --}}
                     @if($desc)
-                    <p style="font-size:13px; color:#94A3B8; line-height:1.7; margin:0;">{{ Str::limit($desc, 110) }}</p>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; margin:0;">{{ Str::limit($desc, 110) }}</p>
                     @endif
 
                     {{-- Location --}}
                     @if($event->location)
-                    <div style="display:flex; align-items:center; gap:6px; font-size:13px; color:#94A3B8;">
+                    <div style="display:flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1;">
                         <span>📍</span> {{ $event->location }}
                     </div>
                     @endif
@@ -136,12 +136,12 @@
                     {{-- Speakers --}}
                     @if($event->speaker_names)
                     <div>
-                        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#475569; margin-bottom:6px;">
+                        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                             @if($lang==='ar') المتحدثون @elseif($lang==='de') Referenten @else Speakers @endif
                         </div>
                         <div style="display:flex; flex-wrap:wrap; gap:6px;">
                             @foreach(explode(',', $event->speaker_names) as $speaker)
-                            <span style="font-size:12px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#94A3B8;">
+                            <span style="font-size:12px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#CBD5E1;">
                                 {{ trim($speaker) }}
                             </span>
                             @endforeach
@@ -151,7 +151,7 @@
 
                     {{-- Attendees --}}
                     @if($event->max_attendees)
-                    <div style="font-size:12px; color:#64748B;">
+                    <div style="font-size:12px; color:#94A3B8;">
                         👥 @if($lang==='ar') حد أقصى @elseif($lang==='de') Max. @else Max @endif {{ number_format($event->max_attendees) }} @if($lang==='ar') مشارك @elseif($lang==='de') Teilnehmer @else attendees @endif
                     </div>
                     @endif
@@ -164,7 +164,7 @@
                             @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
                         </button>
                         @else
-                        <span style="display:inline-flex; align-items:center; padding:10px 20px; border-radius:8px; background:rgba(255,255,255,0.04); color:#64748B; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.06);">
+                        <span style="display:inline-flex; align-items:center; padding:10px 20px; border-radius:8px; background:rgba(255,255,255,0.04); color:#94A3B8; font-size:13px; font-weight:600; border:1px solid rgba(255,255,255,0.06);">
                             @if($lang==='ar') التسجيل مغلق @elseif($lang==='de') Anmeldung geschlossen @else Registration Closed @endif
                         </span>
                         @endif
@@ -174,12 +174,12 @@
             @endforeach
         </div>
         @else
-        <div style="text-align:center; padding:100px 40px; color:#475569;">
+        <div style="text-align:center; padding:100px 40px; color:#64748B;">
             <div style="font-size:64px; margin-bottom:20px;">🎤</div>
-            <h3 style="font-size:24px; font-weight:800; color:#64748B; margin-bottom:12px;">
+            <h3 style="font-size:24px; font-weight:800; color:#94A3B8; margin-bottom:12px;">
                 @if($lang==='ar') لا توجد فعاليات قادمة @elseif($lang==='de') Keine bevorstehenden Events @else No Upcoming Events @endif
             </h3>
-            <p style="font-size:16px; color:#475569; max-width:400px; margin:0 auto;">
+            <p style="font-size:16px; color:#64748B; max-width:400px; margin:0 auto;">
                 @if($lang==='ar') تحقق مرة أخرى قريباً للاطلاع على الفعاليات القادمة.
                 @elseif($lang==='de') Schauen Sie bald wieder vorbei für kommende Events.
                 @else Check back soon for upcoming events and workshops. @endif
@@ -234,7 +234,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $format['color'] }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $format['color'] }}15; border:1px solid {{ $format['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $format['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $format[$lang] ?? $format['en'] }}</h3>
-                <p style="font-size:13px; color:#64748B; line-height:1.7;">{{ $format['desc_'.$lang] ?? $format['desc_en'] }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $format['desc_'.$lang] ?? $format['desc_en'] }}</p>
             </div>
             @endforeach
         </div>
@@ -252,18 +252,18 @@
             </div>
             <div>
                 <h2 id="modal-event-title" style="font-size:22px; font-weight:800; color:white; line-height:1.3; margin-bottom:12px;"></h2>
-                <div id="modal-event-date" style="font-size:14px; color:#94A3B8; margin-bottom:8px;"></div>
-                <div id="modal-event-location" style="font-size:14px; color:#94A3B8;"></div>
+                <div id="modal-event-date" style="font-size:14px; color:#CBD5E1; margin-bottom:8px;"></div>
+                <div id="modal-event-location" style="font-size:14px; color:#CBD5E1;"></div>
             </div>
             <div style="padding:20px; background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15); border-radius:12px;">
-                <p style="font-size:13px; color:#94A3B8; line-height:1.7; margin:0;">
+                <p style="font-size:13px; color:#CBD5E1; line-height:1.7; margin:0;">
                     @if($lang==='ar') سجل الآن لتأمين مكانك. الأماكن محدودة.
                     @elseif($lang==='de') Melden Sie sich an, um Ihren Platz zu sichern. Plätze sind begrenzt.
                     @else Register now to secure your spot. Seats are limited. @endif
                 </p>
             </div>
             <button onclick="closeEventForm()"
-                    class="hopn-link-accent" style="margin-top:auto; display:inline-flex; align-items:center; gap:6px; color:#64748B; font-size:13px; background:none; border:none; cursor:pointer; padding:0;">
+                    class="hopn-link-accent" style="margin-top:auto; display:inline-flex; align-items:center; gap:6px; color:#94A3B8; font-size:13px; background:none; border:none; cursor:pointer; padding:0;">
                 ← @if($lang==='ar') رجوع @elseif($lang==='de') Zurück @else Back to Events @endif
             </button>
         </div>
@@ -280,7 +280,7 @@
                 <div style="display:grid; gap:14px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') الاسم الأول @elseif($lang==='de') Vorname @else First Name @endif *
                             </label>
                             <input type="text" name="first_name" required
@@ -289,7 +289,7 @@
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') اسم العائلة @elseif($lang==='de') Nachname @else Last Name @endif *
                             </label>
                             <input type="text" name="last_name" required
@@ -299,7 +299,7 @@
                         </div>
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') البريد الإلكتروني @elseif($lang==='de') E-Mail @else Email Address @endif *
                         </label>
                         <input type="email" name="email" required
@@ -308,7 +308,7 @@
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') الشركة @elseif($lang==='de') Unternehmen @else Company / Organization @endif
                         </label>
                         <input type="text" name="company"
@@ -317,7 +317,7 @@
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') رسالة @elseif($lang==='de') Nachricht @else Message @endif
                         </label>
                         <textarea name="message" rows="3"
@@ -327,7 +327,7 @@
                     </div>
                     <div style="display:flex; align-items:flex-start; gap:10px;">
                         <input type="checkbox" name="gdpr_consent" id="gdpr_event" required style="margin-top:3px; flex-shrink:0;">
-                        <label for="gdpr_event" style="font-size:12px; color:#64748B; line-height:1.6;">
+                        <label for="gdpr_event" style="font-size:12px; color:#94A3B8; line-height:1.6;">
                             @if($lang==='ar') أوافق على سياسة الخصوصية. *
                             @elseif($lang==='de') Ich stimme der Datenschutzerklärung zu. *
                             @else I agree to the Privacy Policy and consent to data processing. * @endif
@@ -350,7 +350,7 @@
         <h2 style="font-size:clamp(28px,4vw,48px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل تريد استضافة فعالية مع HOPn؟ @elseif($lang==='de') Möchten Sie ein Event mit HOPn veranstalten? @else Want to Host an Event with HOPn? @endif
         </h2>
-        <p style="color:#94A3B8; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
             @if($lang==='ar') تواصل معنا لمناقشة شراكات الفعاليات.
             @elseif($lang==='de') Kontaktieren Sie uns für Event-Partnerschaften.
             @else Get in touch to discuss event partnerships and sponsorships. @endif
@@ -378,7 +378,7 @@ function filterEvents(type) {
     buttons.forEach(function(btn) {
         btn.dataset.active = 'false';
         btn.style.background = 'rgba(255,255,255,0.04)';
-        btn.style.color = '#94A3B8';
+        btn.style.color = '#CBD5E1';
         btn.style.borderColor = 'rgba(255,255,255,0.1)';
     });
     var activeBtn = document.getElementById('filter-' + type);
