@@ -49,7 +49,6 @@
         #goog-gt-tt,
         .goog-tooltip,
         .goog-tooltip:hover,
-        .goog-text-highlight,
         .goog-te-spinner-pos,
         .goog-te-gadget,
         #google_translate_element,
@@ -57,6 +56,14 @@
             display: none !important;
             visibility: hidden !important;
         }
+        /* goog-text-highlight wraps actual translated text (not decoration-only),
+           so it must stay visible - just strip the highlight box/background. */
+        .goog-text-highlight {
+            background-color: transparent !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
         body {
             top: 0 !important;
             position: static !important;
@@ -175,12 +182,24 @@
         document.body.style.marginTop = '0px';
     }
 
+    function stripGoogleHighlight() {
+        var highlighted = document.querySelectorAll('.goog-text-highlight, font[style*="background-color"]');
+        highlighted.forEach(function(el) {
+            el.style.setProperty('background-color', 'transparent', 'important');
+            el.style.setProperty('background', 'none', 'important');
+            el.style.setProperty('box-shadow', 'none', 'important');
+            el.classList.remove('goog-text-highlight');
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         hideGoogleBar();
+        stripGoogleHighlight();
         var observer = new MutationObserver(function() {
             hideGoogleBar();
+            stripGoogleHighlight();
         });
-        observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
 
         // Global scroll-reveal animation (used across all pages via .hopn-reveal)
         var revealEls = document.querySelectorAll('.hopn-reveal');
