@@ -73,12 +73,15 @@
         }
         /* goog-text-highlight wraps actual translated text (not decoration-only),
            so it must stay visible - just strip the highlight box/background. */
-        .goog-text-highlight, .goog-text-highlight * {
-            background-color: transparent !important;
-            background: none !important;
-            box-shadow: none !important;
-            border: none !important;
-        }
+      .goog-text-highlight, .goog-text-highlight *,
+font, font *,
+span[style*="background-color"], span[style*="box-shadow"] {
+    background-color: transparent !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
         * { -webkit-tap-highlight-color: transparent; }
         h1, h2, h3, p, span, a, button { user-select: none; -webkit-user-select: none; }
         ::selection { background: transparent; }
