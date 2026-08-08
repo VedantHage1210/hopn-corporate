@@ -231,10 +231,11 @@
             hideGoogleBar();
             stripGoogleHighlight();
         });
-        // Watch only for new nodes being added (e.g. Google injecting its widget),
-        // NOT attribute changes - stripGoogleHighlight() itself edits style/class
-        // attributes, so watching attributes here caused an infinite feedback loop.
-        observer.observe(document.body, { childList: true, subtree: true });
+        // Watch for new nodes AND style/class attribute changes (Google applies its
+        // highlight via inline style/class after click). The equality guards inside
+        // stripGoogleHighlight() prevent redundant re-application, so this does not
+        // create a feedback loop with our own fix.
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
 
         // Belt-and-suspenders: Google Translate applies its highlight in direct
         // response to click events. Re-run the strip shortly after every click.
