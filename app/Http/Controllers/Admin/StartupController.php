@@ -27,6 +27,8 @@ class StartupController extends Controller
 
         Startup::create([
             'name'           => $request->name,
+            'name_de'        => $request->name_de,
+            'name_ar'        => $request->name_ar,
             'logo'           => $request->logo,
             'industry'       => $request->industry,
             'industry_de'    => $request->industry_de,
@@ -65,6 +67,8 @@ class StartupController extends Controller
 
         $startup->update([
             'name'           => $request->name,
+            'name_de'        => $request->name_de,
+            'name_ar'        => $request->name_ar,
             'logo'           => $request->logo ?: $startup->logo,
             'industry'       => $request->industry,
             'industry_de'    => $request->industry_de,

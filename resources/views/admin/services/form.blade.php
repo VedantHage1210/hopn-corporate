@@ -113,26 +113,50 @@
             </div>
         </div>
 
-        {{-- SEO --}}
-        <div class="card-panel p-6">
-            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">SEO</h2>
-            <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">Meta Title</label>
-                    <input type="text" name="meta_title" value="{{ old('meta_title', $item->meta_title ?? '') }}" maxlength="70"
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
-                </div>
-                <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">Meta Description</label>
-                    <input type="text" name="meta_description" value="{{ old('meta_description', $item->meta_description ?? '') }}" maxlength="160"
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
-                </div>
+       {{-- SEO --}}
+<div class="card-panel p-6">
+    <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">SEO</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+        <div class="space-y-4">
+            <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Title (EN)</label>
+                <input type="text" name="meta_title" value="{{ old('meta_title', $item->meta_title ?? '') }}" maxlength="70"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Description (EN)</label>
+                <input type="text" name="meta_description" value="{{ old('meta_description', $item->meta_description ?? '') }}" maxlength="160"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
             </div>
         </div>
-
-        <div class="flex gap-3">
-            <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update Service' : 'Create Service' }}</button>
-            <a href="{{ route('admin.services.index') }}" class="rounded border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:text-white">Cancel</a>
+        <div class="space-y-4">
+            <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Title (DE)</label>
+                <input type="text" name="meta_title_de" value="{{ old('meta_title_de', $item->meta_title_de ?? '') }}" maxlength="70"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Description (DE)</label>
+                <input type="text" name="meta_description_de" value="{{ old('meta_description_de', $item->meta_description_de ?? '') }}" maxlength="160"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
         </div>
+        <div class="space-y-4">
+            <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Title (AR)</label>
+                <input type="text" name="meta_title_ar" value="{{ old('meta_title_ar', $item->meta_title_ar ?? '') }}" maxlength="70" dir="rtl"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-200">Meta Description (AR)</label>
+                <input type="text" name="meta_description_ar" value="{{ old('meta_description_ar', $item->meta_description_ar ?? '') }}" maxlength="160" dir="rtl"
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
+        </div>
+    </div>
+</div>
     </form>
 </x-layouts.admin>

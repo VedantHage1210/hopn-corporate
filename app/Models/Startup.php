@@ -9,6 +9,8 @@ class Startup extends Model
 
     protected $fillable = [
         'name',
+        'name_de',
+        'name_ar',
         'logo',
         'industry',
         'industry_de',

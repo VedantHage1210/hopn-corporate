@@ -3,23 +3,49 @@
         <h1 class="text-xl font-semibold text-white">{{ isset($item->id) ? 'Edit Category' : 'New Category' }}</h1>
         <a href="{{ route('admin.service-categories.index') }}" class="text-sm text-slate-400 hover:text-white">← Back</a>
     </div>
-    <div class="card-panel p-6 max-w-xl">
+    <div class="card-panel p-6">
         <form method="POST"
               action="{{ isset($item->id) ? route('admin.service-categories.update', $item) : route('admin.service-categories.store') }}"
               class="space-y-4">
             @csrf
             @if(isset($item->id)) @method('PUT') @endif
-            <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">🇬🇧 Name (English) *</label>
-                    <input type="text" name="name" value="{{ old('name', $item->name ?? '') }}" required
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
-                    @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase text-indigo-300">🇬🇧 English</p>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Name (EN) *</label>
+                        <input type="text" name="name" value="{{ old('name', $item->name ?? '') }}" required
+                            class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                        @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Description (EN)</label>
+                        <textarea name="description" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description', $item->description ?? '') }}</textarea>
+                    </div>
                 </div>
-                <div>
-                    <label class="mb-1 block text-sm font-medium text-slate-200">🇩🇪 Name (Deutsch)</label>
-                    <input type="text" name="name_de" value="{{ old('name_de', $item->name_de ?? '') }}"
-                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase text-yellow-400">🇩🇪 Deutsch</p>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Name (DE)</label>
+                        <input type="text" name="name_de" value="{{ old('name_de', $item->name_de ?? '') }}"
+                            class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Description (DE)</label>
+                        <textarea name="description_de" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description_de', $item->description_de ?? '') }}</textarea>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase text-green-400">🇸🇦 العربية</p>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Name (AR)</label>
+                        <input type="text" name="name_ar" value="{{ old('name_ar', $item->name_ar ?? '') }}" dir="rtl"
+                            class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-slate-200">Description (AR)</label>
+                        <textarea name="description_ar" rows="3" dir="rtl" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description_ar', $item->description_ar ?? '') }}</textarea>
+                    </div>
                 </div>
             </div>
             <div>
@@ -27,10 +53,6 @@
                 <input type="text" name="slug" value="{{ old('slug', $item->slug ?? '') }}"
                     placeholder="auto-generated"
                     class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white font-mono">
-            </div>
-            <div>
-                <label class="mb-1 block text-sm font-medium text-slate-200">Description</label>
-                <textarea name="description" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description', $item->description ?? '') }}</textarea>
             </div>
             <div class="flex items-center gap-2">
                 <input type="checkbox" name="is_active" id="is_active" value="1" @checked(old('is_active', $item->is_active ?? true))>

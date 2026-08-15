@@ -16,12 +16,14 @@ class Page extends Model
     'featured_image',
     'seo_meta',
     'is_visible',
+    'is_landing_page',
     'is_published',
     'published_at',
 ];
     protected $casts = [
         'seo_meta'     => 'array',
         'is_visible'   => 'boolean',
+        'is_landing_page' => 'boolean',
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
@@ -39,5 +41,10 @@ class Page extends Model
     public function scopeVisible($query)
     {
         return $query->where('is_visible', true);
+    }
+
+    public function scopeLandingPages($query)
+    {
+        return $query->where('is_landing_page', true);
     }
 }

@@ -53,6 +53,10 @@
             <input type="checkbox" name="is_visible" value="1" {{ old('is_visible', $page->is_visible ?? true) ? 'checked' : '' }}>
             Visible
         </label>
+        <label class="flex items-center gap-2 text-sm text-slate-300">
+            <input type="checkbox" name="is_landing_page" value="1" {{ old('is_landing_page', $page->is_landing_page ?? false) ? 'checked' : '' }}>
+            Landing page <span class="text-xs text-slate-500">(standalone page, not shown in site navigation)</span>
+        </label>
     </div>
 
     {{-- Excerpt --}}

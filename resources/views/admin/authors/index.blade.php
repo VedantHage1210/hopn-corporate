@@ -44,10 +44,12 @@
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.authors.edit', $author) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ url('/en/insights') }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.authors.destroy', $author) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.authors.destroy', $author) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this author?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty

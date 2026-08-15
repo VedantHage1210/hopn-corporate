@@ -13,6 +13,7 @@
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Logo</th>
                     <th class="px-3 py-2">Name</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Type</th>
                     <th class="px-3 py-2">Region</th>
                     <th class="px-3 py-2">Focus</th>
@@ -35,6 +36,7 @@
                         @endif
                     </td>
                     <td class="px-3 py-3 font-medium text-white">{{ $investor->name }}</td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$investor" :fields="['name']" /></td>
                     <td class="px-3 py-3 text-slate-400">{{ ucfirst($investor->type ?? '—') }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ $investor->region ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ Str::limit($investor->focus ?? '—', 30) }}</td>
@@ -46,14 +48,16 @@
                     <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.investors.edit', $investor) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ route('investors.index', ['lang'=>'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.investors.destroy', $investor) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.investors.destroy', $investor) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No investors found.</td></tr>
+                <tr><td colspan="9" class="px-3 py-6 text-center text-slate-500">No investors found.</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -18,7 +18,7 @@
                     <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Basic Info</p>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Name *</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Name (EN) *</label>
                     <input type="text" name="name" value="{{ old('name') }}" required
                            class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
@@ -28,6 +28,16 @@
                            placeholder="https://example.com/logo.png"
                            class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                     <p class="text-xs text-slate-500 mt-1">Paste image URL (Cloudinary, ImgBB etc.)</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Name (DE)</label>
+                    <input type="text" name="name_de" value="{{ old('name_de') }}"
+                           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Name (AR)</label>
+                    <input type="text" name="name_ar" value="{{ old('name_ar') }}" dir="rtl"
+                           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
 
                 {{-- Industry --}}

@@ -18,7 +18,7 @@
             <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">Job Details</h2>
             <div class="grid gap-4 md:grid-cols-2">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Title *</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Title (EN) *</label>
                     <input type="text" name="title" value="{{ old('title', $item->title ?? '') }}" required
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
@@ -26,6 +26,16 @@
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Slug</label>
                     <input type="text" name="slug" value="{{ old('slug', $item->slug ?? '') }}"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Title (DE)</label>
+                    <input type="text" name="title_de" value="{{ old('title_de', $item->title_de ?? '') }}"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Title (AR)</label>
+                    <input type="text" name="title_ar" value="{{ old('title_ar', $item->title_ar ?? '') }}" dir="rtl"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Location</label>
@@ -49,6 +59,28 @@
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Seniority</label>
                     <input type="text" name="seniority" value="{{ old('seniority', $item->seniority ?? '') }}"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+            </div>
+        </div>
+
+        {{-- Summary --}}
+        <div class="card-panel p-6 mb-4">
+            <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-slate-500">Summary (short listing text)</h2>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Summary (EN)</label>
+                    <textarea name="summary" rows="3"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('summary', $item->summary ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Summary (DE)</label>
+                    <textarea name="summary_de" rows="3"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('summary_de', $item->summary_de ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Summary (AR)</label>
+                    <textarea name="summary_ar" rows="3" dir="rtl"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('summary_ar', $item->summary_ar ?? '') }}</textarea>
                 </div>
             </div>
         </div>

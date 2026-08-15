@@ -19,18 +19,44 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title'      => 'required|string|max:255',
-            'title_de'   => 'nullable|string|max:255',
-            'title_ar'   => 'nullable|string|max:255',
-            'slug'       => 'required|string|max:255|unique:pages,slug',
-            'excerpt'    => 'nullable|string',
-            'excerpt_de' => 'nullable|string',
-            'excerpt_ar' => 'nullable|string',
+        $request->validate([
+            'title'           => 'required|string|max:255',
+            'title_de'        => 'nullable|string|max:255',
+            'title_ar'        => 'nullable|string|max:255',
+            'slug'            => 'required|string|max:255|unique:pages,slug',
+            'featured_image'  => 'nullable|string|max:500',
+            'excerpt'         => 'nullable|string',
+            'excerpt_de'      => 'nullable|string',
+            'excerpt_ar'      => 'nullable|string',
+            'content_en'      => 'nullable|string',
+            'content_de'      => 'nullable|string',
+            'content_ar'      => 'nullable|string',
+            'seo_title'       => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:500',
+            'is_landing_page' => 'nullable|boolean',
         ]);
-        $data['is_visible']   = $request->boolean('is_visible');
-        $data['is_published'] = $request->boolean('is_published');
-        Page::create($data);
+
+        Page::create([
+            'title'          => $request->title,
+            'title_de'       => $request->title_de,
+            'title_ar'       => $request->title_ar,
+            'slug'           => $request->slug,
+            'featured_image' => $request->featured_image,
+            'excerpt'        => $request->excerpt,
+            'excerpt_de'     => $request->excerpt_de,
+            'excerpt_ar'     => $request->excerpt_ar,
+            'content_en'     => $request->content_en,
+            'content_de'     => $request->content_de,
+            'content_ar'     => $request->content_ar,
+            'seo_meta'       => array_filter([
+                'title'       => $request->seo_title,
+                'description' => $request->seo_description,
+            ]),
+            'is_visible'     => $request->boolean('is_visible', true),
+            'is_landing_page' => $request->boolean('is_landing_page'),
+            'is_published'   => $request->boolean('is_published'),
+        ]);
+
         return redirect()->route('admin.pages.index')->with('status', 'Page created.');
     }
 
@@ -49,18 +75,45 @@ class PageController extends Controller
     public function update(Request $request, string $id)
     {
         $page = Page::findOrFail($id);
-        $data = $request->validate([
-            'title'      => 'required|string|max:255',
-            'title_de'   => 'nullable|string|max:255',
-            'title_ar'   => 'nullable|string|max:255',
-            'slug'       => 'required|string|max:255|unique:pages,slug,'.$page->id,
-            'excerpt'    => 'nullable|string',
-            'excerpt_de' => 'nullable|string',
-            'excerpt_ar' => 'nullable|string',
+
+        $request->validate([
+            'title'           => 'required|string|max:255',
+            'title_de'        => 'nullable|string|max:255',
+            'title_ar'        => 'nullable|string|max:255',
+            'slug'            => 'required|string|max:255|unique:pages,slug,'.$page->id,
+            'featured_image'  => 'nullable|string|max:500',
+            'excerpt'         => 'nullable|string',
+            'excerpt_de'      => 'nullable|string',
+            'excerpt_ar'      => 'nullable|string',
+            'content_en'      => 'nullable|string',
+            'content_de'      => 'nullable|string',
+            'content_ar'      => 'nullable|string',
+            'seo_title'       => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:500',
+            'is_landing_page' => 'nullable|boolean',
         ]);
-        $data['is_visible']   = $request->boolean('is_visible');
-        $data['is_published'] = $request->boolean('is_published');
-        $page->update($data);
+
+        $page->update([
+            'title'          => $request->title,
+            'title_de'       => $request->title_de,
+            'title_ar'       => $request->title_ar,
+            'slug'           => $request->slug,
+            'featured_image' => $request->featured_image,
+            'excerpt'        => $request->excerpt,
+            'excerpt_de'     => $request->excerpt_de,
+            'excerpt_ar'     => $request->excerpt_ar,
+            'content_en'     => $request->content_en,
+            'content_de'     => $request->content_de,
+            'content_ar'     => $request->content_ar,
+            'seo_meta'       => array_filter([
+                'title'       => $request->seo_title,
+                'description' => $request->seo_description,
+            ]),
+            'is_visible'     => $request->boolean('is_visible'),
+            'is_landing_page' => $request->boolean('is_landing_page'),
+            'is_published'   => $request->boolean('is_published'),
+        ]);
+
         return redirect()->route('admin.pages.index')->with('status', 'Page updated.');
     }
 

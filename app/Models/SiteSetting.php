@@ -14,8 +14,11 @@ class SiteSetting extends Model
     'site_tagline', 'site_tagline_de', 'site_tagline_ar',
     'default_locale', 'timezone',
     'contact_email', 'contact_phone',
-    'office_address', 'office_address_de',
+    'office_address', 'office_address_de', 'office_address_ar',
     'social_links', 'seo_defaults',
+    'seo_default_title', 'seo_default_title_de', 'seo_default_title_ar',
+    'seo_default_description', 'seo_default_description_de', 'seo_default_description_ar',
+    'seo_og_image', 'robots_txt',
     'maintenance_mode',
 ];
 

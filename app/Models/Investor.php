@@ -10,6 +10,8 @@ class Investor extends Model
 
     protected $fillable = [
         'name',
+        'name_de',
+        'name_ar',
         'logo',
         'type',
         'region',

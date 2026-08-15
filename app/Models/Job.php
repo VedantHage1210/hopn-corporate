@@ -11,6 +11,7 @@ class Job extends Model
     protected $fillable = [
         'title',
         'title_de',
+        'title_ar',
         'slug',
         'department',
         'location',
@@ -19,6 +20,7 @@ class Job extends Model
         'seniority',
         'summary',
         'summary_de',
+        'summary_ar',
         'description',
         'description_de',
         'description_ar',

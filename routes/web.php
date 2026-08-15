@@ -113,6 +113,12 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+Route::get('/robots.txt', function (\App\Services\SettingsService $settings) {
+    $default = "User-agent: *\nAllow: /\nSitemap: " . url('/sitemap.xml');
+    return response($settings->get('robots_txt', $default) ?: $default, 200)
+        ->header('Content-Type', 'text/plain');
+})->name('robots');
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');

@@ -59,12 +59,8 @@ class CaseStudyController extends Controller
 
   public function show(string $slug)
 {
-   
-    $caseStudy = CaseStudy::with(['industries', 'services'])
-                    ->where('slug', $slug)
-                    ->firstOrFail();
-
-    return view('public.case-studies.show', compact('caseStudy'));
+    $item = CaseStudy::where('slug', $slug)->firstOrFail();
+    return redirect()->route('admin.case-studies.edit', $item->id);
 }
 
  public function edit(string $id)

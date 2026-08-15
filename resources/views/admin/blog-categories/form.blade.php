@@ -36,10 +36,22 @@
                     class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white font-mono">
                 @error('slug')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
             </div>
-            <div>
-                <label class="mb-1 block text-sm font-medium text-slate-200">Description</label>
-                <textarea name="description" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description', $category->description ?? '') }}</textarea>
-                @error('description')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+            <div class="grid gap-5 md:grid-cols-3">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Description (EN)</label>
+                    <textarea name="description" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description', $category->description ?? '') }}</textarea>
+                    @error('description')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Description (DE)</label>
+                    <textarea name="description_de" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description_de', $category->description_de ?? '') }}</textarea>
+                    @error('description_de')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Description (AR)</label>
+                    <textarea name="description_ar" rows="3" dir="rtl" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('description_ar', $category->description_ar ?? '') }}</textarea>
+                    @error('description_ar')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
             </div>
             <div class="pt-2 flex gap-3">
                 <button type="submit" class="btn-primary">{{ isset($category->id) ? 'Update Category' : 'Create Category' }}</button>

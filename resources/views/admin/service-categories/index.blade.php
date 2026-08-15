@@ -11,6 +11,7 @@
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
                     <th class="px-3 py-2">Name</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Slug</th>
                     <th class="px-3 py-2">Status</th>
                     <th class="px-3 py-2">Actions</th>
@@ -25,6 +26,7 @@
                         <div class="text-xs text-slate-400">DE: {{ $item->name_de }}</div>
                         @endif
                     </td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$item" :fields="['name']" /></td>
                     <td class="px-3 py-3 font-mono text-xs text-slate-400">{{ $item->slug }}</td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $item->is_active ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
@@ -33,14 +35,16 @@
                     </td>
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.service-categories.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                        <form method="POST" action="{{ route('admin.service-categories.destroy', $item) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.service-categories.destroy', $item) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="4" class="px-3 py-6 text-center text-slate-500">No categories found.</td></tr>
+                <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No categories found.</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -4,18 +4,32 @@
         <a href="{{ route('admin.blog-tags.index') }}" class="text-sm text-slate-400 hover:text-white">← Back to Tags</a>
     </div>
 
-    <div class="card-panel p-6 max-w-md">
+    <div class="card-panel p-6 max-w-2xl">
         <form method="POST"
               action="{{ isset($tag->id) ? route('admin.blog-tags.update', $tag) : route('admin.blog-tags.store') }}"
               class="space-y-5">
             @csrf
             @if(isset($tag->id)) @method('PUT') @endif
 
-            <div>
-                <label class="mb-1 block text-sm font-medium text-slate-200">Tag Name <span class="text-rose-400">*</span></label>
-                <input type="text" name="name" value="{{ old('name', $tag->name ?? '') }}" required maxlength="80"
-                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
-                @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+            <div class="grid gap-4 md:grid-cols-3">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Tag Name (EN) <span class="text-rose-400">*</span></label>
+                    <input type="text" name="name" value="{{ old('name', $tag->name ?? '') }}" required maxlength="80"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Tag Name (DE)</label>
+                    <input type="text" name="name_de" value="{{ old('name_de', $tag->name_de ?? '') }}" maxlength="80"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    @error('name_de')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Tag Name (AR)</label>
+                    <input type="text" name="name_ar" value="{{ old('name_ar', $tag->name_ar ?? '') }}" maxlength="80" dir="rtl"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    @error('name_ar')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                </div>
             </div>
 
             <div>

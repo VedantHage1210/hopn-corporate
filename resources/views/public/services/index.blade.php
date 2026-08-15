@@ -9,12 +9,14 @@
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
             <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">HOPn Services</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
+                @if($lang==='ar') خدمات HOPn @elseif($lang==='de') HOPn Leistungen @else HOPn Services @endif
+            </span>
         </div>
         <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
             @if($activeCategory)
                 <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
-                    {{ $lang==='de' && $activeCategory->name_de ? $activeCategory->name_de : $activeCategory->name }}
+                    {{ $lang==='ar' && $activeCategory->name_ar ? $activeCategory->name_ar : ($lang==='de' && $activeCategory->name_de ? $activeCategory->name_de : $activeCategory->name) }}
                 </span>
             @elseif($lang==='ar')
                 <span style="color:white;">خدماتنا</span>
@@ -51,15 +53,19 @@
         @if($services->count() > 0)
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
             @foreach($services as $service)
-            @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+            @php
+                $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6];
+                $svcTitle = $lang==='ar' && $service->name_ar ? $service->name_ar : ($lang==='de' && $service->name_de ? $service->name_de : $service->name);
+                $svcSummary = $lang==='ar' && $service->summary_ar ? $service->summary_ar : ($lang==='de' && $service->summary_de ? $service->summary_de : $service->summary);
+            @endphp
             <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-lift-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; flex-shrink:0;">
                     {{ $service->icon ?? '⚡' }}
                 </div>
-                <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:10px; line-height:1.3;">{{ $service->title }}</h3>
-                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($service->summary ?? $service->description ?? '',100) }}</p>
+                <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:10px; line-height:1.3;">{{ $svcTitle }}</h3>
+                <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($svcSummary ?? '',100) }}</p>
                 <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                 </span>

@@ -36,7 +36,11 @@ class ServiceController extends Controller
             'body_ar'             => ['nullable', 'string'],
             'service_category_id' => ['nullable', 'exists:service_categories,id'],
             'meta_title'          => ['nullable', 'string', 'max:255'],
+            'meta_title_de'       => ['nullable', 'string', 'max:255'],
+            'meta_title_ar'       => ['nullable', 'string', 'max:255'],
             'meta_description'    => ['nullable', 'string', 'max:500'],
+            'meta_description_de' => ['nullable', 'string', 'max:500'],
+            'meta_description_ar' => ['nullable', 'string', 'max:500'],
             'hero_image'          => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
         ]);
 
@@ -79,7 +83,11 @@ class ServiceController extends Controller
             'body_ar'             => ['nullable', 'string'],
             'service_category_id' => ['nullable', 'exists:service_categories,id'],
             'meta_title'          => ['nullable', 'string', 'max:255'],
+            'meta_title_de'       => ['nullable', 'string', 'max:255'],
+            'meta_title_ar'       => ['nullable', 'string', 'max:255'],
             'meta_description'    => ['nullable', 'string', 'max:500'],
+            'meta_description_de' => ['nullable', 'string', 'max:500'],
+            'meta_description_ar' => ['nullable', 'string', 'max:500'],
           'hero_image_url' => ['nullable', 'url', 'max:500'],
         ]);
 

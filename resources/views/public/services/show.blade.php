@@ -1,5 +1,10 @@
-<x-layouts.public :title="$service->name ?? 'Service'">
-@php($lang = request()->route('lang', 'en'))
+@php
+    $lang = request()->route('lang', 'en');
+    $svcName = $lang==='ar' && $service->name_ar ? $service->name_ar : ($lang==='de' && $service->name_de ? $service->name_de : $service->name);
+    $svcMetaTitle = $lang==='ar' && $service->meta_title_ar ? $service->meta_title_ar : ($lang==='de' && $service->meta_title_de ? $service->meta_title_de : ($service->meta_title ?: $svcName));
+    $svcMetaDesc = $lang==='ar' && $service->meta_description_ar ? $service->meta_description_ar : ($lang==='de' && $service->meta_description_de ? $service->meta_description_de : ($service->meta_description ?: null));
+@endphp
+<x-layouts.public :title="$svcMetaTitle ?? 'Service'" :description="$svcMetaDesc">
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
@@ -15,7 +20,7 @@
             </a>
             @if($service->category)
             <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#818CF8;">{{ $service->category->name }}</span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#818CF8;">{{ $lang==='ar' && $service->category->name_ar ? $service->category->name_ar : ($lang==='de' && $service->category->name_de ? $service->category->name_de : $service->category->name) }}</span>
             </div>
             @endif
             <h1 style="font-size:clamp(28px,5vw,52px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 0 20px;">
@@ -47,7 +52,7 @@
                     @endif
                 </div>
                 @else
-                <p style="color:#CBD5E1;">Details will be published soon.</p>
+                <p style="color:#CBD5E1;">@if($lang === 'ar') سيتم نشر التفاصيل قريباً. @elseif($lang === 'de') Details werden in Kürze veröffentlicht. @else Details will be published soon. @endif</p>
                 @endif
 
                 <div style="margin-top:48px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);">

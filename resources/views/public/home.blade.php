@@ -323,7 +323,7 @@
                     @elseif($lang==='de'&&$service->name_de) {{ $service->name_de }}
                     @else {{ $service->name }} @endif
                 </h3>
-                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary??'', 80) }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary)??'', 80) }}</p>
                 <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr lesen @else Learn more @endif →
                 </span>

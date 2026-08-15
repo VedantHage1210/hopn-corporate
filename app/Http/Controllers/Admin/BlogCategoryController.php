@@ -55,10 +55,13 @@ class BlogCategoryController extends Controller
     private function validateCategory(Request $request, ?int $ignoreId = null): array
     {
         $data = $request->validate([
-            'name_en'     => ['required', 'string', 'max:120'],
-            'name_de'     => ['nullable', 'string', 'max:120'],
-            'slug'        => ['nullable', 'string', 'max:160', 'unique:blog_categories,slug' . ($ignoreId ? ",{$ignoreId}" : '')],
-            'description' => ['nullable', 'string', 'max:500'],
+            'name_en'         => ['required', 'string', 'max:120'],
+            'name_de'         => ['nullable', 'string', 'max:120'],
+            'name_ar'         => ['nullable', 'string', 'max:120'],
+            'slug'            => ['nullable', 'string', 'max:160', 'unique:blog_categories,slug' . ($ignoreId ? ",{$ignoreId}" : '')],
+            'description'     => ['nullable', 'string', 'max:500'],
+            'description_de'  => ['nullable', 'string', 'max:500'],
+            'description_ar'  => ['nullable', 'string', 'max:500'],
         ]);
 
         // Map name_en → name for DB column compatibility

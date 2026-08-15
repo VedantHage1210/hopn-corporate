@@ -14,6 +14,7 @@
                     <th class="px-3 py-2">Title</th>
                     <th class="px-3 py-2">Author</th>
                     <th class="px-3 py-2">Category</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Status</th>
                     <th class="px-3 py-2">Date</th>
                     <th class="px-3 py-2">Actions</th>
@@ -29,6 +30,7 @@
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $post->author->name ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ $post->category->name ?? '—' }}</td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$post" :fields="['title', 'excerpt']" /></td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $post->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
                             {{ $post->is_published ? 'Published' : 'Draft' }}
@@ -38,14 +40,16 @@
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.blog-posts.edit', $post) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ url('/en/insights/' . $post->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.blog-posts.destroy', $post) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.blog-posts.destroy', $post) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this post?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No posts found.</td></tr>
+                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No posts found.</td></tr>
                 @endforelse
             </tbody>
         </table>

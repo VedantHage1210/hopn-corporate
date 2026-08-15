@@ -15,6 +15,7 @@
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Expert</th>
                     <th class="px-3 py-2">Specialization (EN)</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Rate</th>
                     <th class="px-3 py-2">Tags</th>
                     <th class="px-3 py-2">Visible</th>
@@ -42,6 +43,7 @@
                         </div>
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $expert->specialization_en ?? '—' }}</td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$expert" :fields="['specialization']" en-suffix="_en" /></td>
                     <td class="px-3 py-3">
                         @if($expert->hourly_rate)
                             <span style="color:{{ $expert->accent_color ?? '#4F6EF7' }}; font-weight:700;">{{ $expert->hourly_rate }}</span>
@@ -67,14 +69,16 @@
                     <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.experts.edit', $expert) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                        <a href="{{ route('home', ['lang'=>'en']) }}#consulting-experts" target="_blank" class="text-sky-300 hover:text-sky-200">View</a>
-                        <form method="POST" action="{{ route('admin.experts.destroy', $expert) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.experts.destroy', $expert) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No experts yet. Add your first consulting expert.</td></tr>
+                <tr><td colspan="9" class="px-3 py-6 text-center text-slate-500">No experts yet. Add your first consulting expert.</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -216,6 +216,16 @@
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
                 </div>
                 <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">CTA Label (DE)</label>
+                    <input type="text" name="cta_label_de" value="{{ old('cta_label_de', $item->cta_label_de ?? '') }}"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">CTA Label (AR)</label>
+                    <input type="text" name="cta_label_ar" value="{{ old('cta_label_ar', $item->cta_label_ar ?? '') }}" dir="rtl"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
                     <label class="mb-1 block text-sm font-medium text-slate-200">CTA URL</label>
                     <input type="url" name="cta_url" value="{{ old('cta_url', $item->cta_url ?? '') }}"
                         placeholder="https://..."

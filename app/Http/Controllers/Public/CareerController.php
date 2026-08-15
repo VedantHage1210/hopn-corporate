@@ -47,6 +47,14 @@ class CareerController extends Controller
             'tracking_token' => $token,
         ]);
 
+        \App\Jobs\SendCareerApplicationJob::dispatch([
+            'name'            => $data['name'],
+            'email'           => $data['email'],
+            'phone'           => $data['phone'] ?? null,
+            'cover_letter'    => $data['cover_letter'] ?? null,
+            'tracking_token'  => $token,
+        ], $job->title);
+
         return back()->with([
             'status'         => 'Your application has been submitted successfully!',
             'tracking_token' => $token,

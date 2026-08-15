@@ -28,6 +28,8 @@ class InvestorController extends Controller
 
         Investor::create([
             'name'           => $request->name,
+            'name_de'        => $request->name_de,
+            'name_ar'        => $request->name_ar,
             'logo'           => $request->logo,
             'type'           => $request->type,
             'region'         => $request->region,
@@ -70,6 +72,8 @@ class InvestorController extends Controller
 
         $investor->update([
             'name'           => $request->name,
+            'name_de'        => $request->name_de,
+            'name_ar'        => $request->name_ar,
             'logo'           => $request->logo ?: $investor->logo,
             'type'           => $request->type,
             'region'         => $request->region,

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3abcc653d508c576068a542877715302
+class ComposerStaticInit3775253e4c5ecd3b72453cb38712dd5d
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -630,7 +630,6 @@ class ComposerStaticInit3abcc653d508c576068a542877715302
         'App\\Http\\Controllers\\Admin\\LegalController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LegalController.php',
         'App\\Http\\Controllers\\Admin\\MediaAssetController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MediaAssetController.php',
         'App\\Http\\Controllers\\Admin\\NavigationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NavigationController.php',
-        'App\\Http\\Controllers\\Admin\\PageAdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PageAdminController.php',
         'App\\Http\\Controllers\\Admin\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PageController.php',
         'App\\Http\\Controllers\\Admin\\PartnerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PartnerController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
@@ -676,8 +675,10 @@ class ComposerStaticInit3abcc653d508c576068a542877715302
         'App\\Http\\Controllers\\Public\\SitemapController' => __DIR__ . '/../..' . '/app/Http/Controllers/Public/SitemapController.php',
         'App\\Http\\Controllers\\Public\\StartupController' => __DIR__ . '/../..' . '/app/Http/Controllers/Public/StartupController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AddSecurityHeaders' => __DIR__ . '/../..' . '/app/Http/Middleware/AddSecurityHeaders.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\HandleRedirects' => __DIR__ . '/../..' . '/app/Http/Middleware/HandleRedirects.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\SetLocale' => __DIR__ . '/../..' . '/app/Http/Middleware/SetLocale.php',
@@ -7275,9 +7276,9 @@ class ComposerStaticInit3abcc653d508c576068a542877715302
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3abcc653d508c576068a542877715302::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3abcc653d508c576068a542877715302::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3abcc653d508c576068a542877715302::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3775253e4c5ecd3b72453cb38712dd5d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3775253e4c5ecd3b72453cb38712dd5d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3775253e4c5ecd3b72453cb38712dd5d::$classMap;
 
         }, null, ClassLoader::class);
     }

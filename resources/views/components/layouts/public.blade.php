@@ -42,58 +42,6 @@
         [dir="rtl"] footer { direction: rtl; }
         @endif
 
-        /* Hide Google Translate UI - aggressively, including any loading/spinner state */
-        .goog-te-banner-frame,
-        .goog-te-balloon-frame,
-        .goog-te-ftab-frame,
-        #goog-gt-tt,
-        .goog-tooltip,
-        .goog-tooltip:hover,
-        .goog-te-spinner-pos,
-        .goog-te-gadget,
-        .goog-te-gadget-simple,
-        .goog-te-menu-value,
-        .goog-te-menu-frame,
-        #goog-gt-,
-        #google_translate_element,
-        #google_translate_element2,
-        .skiptranslate,
-        iframe.skiptranslate,
-        iframe[id^="goog-gt"],
-        iframe[class*="goog-te"],
-        div[id^="goog-gt-"],
-        div[class^="goog-te"] {
-            display: none !important;
-            visibility: hidden !important;
-            height: 0 !important;
-            width: 0 !important;
-            overflow: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-        /* goog-text-highlight wraps actual translated text (not decoration-only),
-           so it must stay visible - just strip the highlight box/background. */
-        .goog-text-highlight, .goog-text-highlight * {
-            background-color: transparent !important;
-            background: none !important;
-            box-shadow: none !important;
-            border: none !important;
-        }
-        * { -webkit-tap-highlight-color: transparent; }
-        h1, h2, h3, p, span, a, button { user-select: none; -webkit-user-select: none; }
-        ::selection { background: transparent; }
-        body {
-            top: 0 !important;
-            position: static !important;
-        }
-        iframe.goog-te-banner-frame,
-        iframe.skiptranslate {
-            display: none !important;
-        }
-        body > .skiptranslate {
-            display: none !important;
-        }
-
         /* ===== Shared premium design-system utilities (used across all pages) ===== */
         .hopn-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .hopn-reveal.is-visible { opacity:1; transform:translateY(0); }
@@ -140,110 +88,45 @@
         .hopn-lift-card img, .hopn-lift-card-nobg img { transition:transform 0.4s ease, filter 0.4s ease; }
         .hopn-lift-card:hover img { filter:brightness(1) grayscale(0); }
         .hopn-lift-card:hover img, .hopn-lift-card-nobg:hover img { transform:scale(1.05); }
+
+        /* ===== Global mobile responsiveness fixes ===== */
+        /* Many page sections use inline 2-column grids (grid-template-columns:1fr 1fr) which
+           were not built with mobile in mind. This forces every such grid to stack to a single
+           column on small screens, site-wide, without needing to edit every page individually. */
+        @media (max-width: 760px) {
+            [style*="grid-template-columns:1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            [style*="grid-template-columns:1fr 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            /* Sticky sidebars (e.g. application forms next to job details) shouldn't stay
+               pinned on mobile - there isn't enough vertical room and it can trap the layout. */
+            [style*="position:sticky"] {
+                position: static !important;
+                top: auto !important;
+            }
+            /* Prevent large hero/heading font-size clamps and wide fixed paddings from
+               overflowing narrow viewports. */
+            .container-shell { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+        @media (max-width: 480px) {
+            /* Stat strips and small info grids that use 3-4 columns should drop to 2 on
+               very small phones so numbers/labels don't get crushed. */
+            [style*="grid-template-columns:repeat(4"],
+            [style*="grid-template-columns:repeat(3"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        /* Prevent horizontal scroll caused by any element wider than the viewport
+           (long words, unwrapped tables, fixed-width inline elements, etc.) */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, video { max-width: 100%; height: auto; }
+        table { max-width: 100%; display: block; overflow-x: auto; }
     </style>
 
     <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'en,de,ar',
-            autoDisplay: false,
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
-
-    function getCookieDomainVariants() {
-        var host = window.location.hostname;
-        var domains = [host, '.' + host];
-        var parts = host.split('.');
-        if (parts.length > 2) {
-            var parent = parts.slice(-2).join('.');
-            domains.push(parent, '.' + parent);
-        }
-        return domains;
-    }
-
-    function clearGoogTransEverywhere() {
-        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        getCookieDomainVariants().forEach(function(d) {
-            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + d + ';';
-        });
-    }
-
-    function setGoogTransEverywhere(value) {
-        var expires = '; max-age=' + (365 * 24 * 60 * 60);
-        document.cookie = 'googtrans=' + value + expires + '; path=/;';
-        getCookieDomainVariants().forEach(function(d) {
-            document.cookie = 'googtrans=' + value + expires + '; path=/; domain=' + d + ';';
-        });
-    }
-
-    function triggerGoogleTranslate(lang) {
-        clearGoogTransEverywhere();
-        if (lang === 'en') {
-            location.reload();
-            return;
-        }
-        setGoogTransEverywhere('/en/' + lang);
-        location.reload();
-    }
-
-    function hideGoogleBar() {
-        var elements = document.querySelectorAll(
-            '.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame'
-        );
-        elements.forEach(function(el) {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-        });
-        document.body.style.top = '0px';
-        document.body.style.marginTop = '0px';
-    }
-
-    var isStrippingHighlight = false;
-    function stripGoogleHighlight() {
-        if (isStrippingHighlight) return;
-        isStrippingHighlight = true;
-        var highlighted = document.querySelectorAll(
-            '.goog-text-highlight, font[style*="background-color"], span[style*="background-color"], font[style*="box-shadow"], span[style*="box-shadow"]'
-        );
-        highlighted.forEach(function(el) {
-            if (el.style.backgroundColor !== 'transparent') {
-                el.style.setProperty('background-color', 'transparent', 'important');
-            }
-            if (el.style.background !== 'none') {
-                el.style.setProperty('background', 'none', 'important');
-            }
-            if (el.style.boxShadow !== 'none') {
-                el.style.setProperty('box-shadow', 'none', 'important');
-            }
-            if (el.classList.contains('goog-text-highlight')) {
-                el.classList.remove('goog-text-highlight');
-            }
-        });
-        isStrippingHighlight = false;
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
-        hideGoogleBar();
-        stripGoogleHighlight();
-        var observer = new MutationObserver(function() {
-            hideGoogleBar();
-            stripGoogleHighlight();
-        });
-        // Watch for new nodes AND style/class attribute changes (Google applies its
-        // highlight via inline style/class after click). The equality guards inside
-        // stripGoogleHighlight() prevent redundant re-application, so this does not
-        // create a feedback loop with our own fix.
-        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
-
-        // Belt-and-suspenders: Google Translate applies its highlight in direct
-        // response to click events. Re-run the strip shortly after every click.
-        document.addEventListener('click', function() {
-            setTimeout(stripGoogleHighlight, 50);
-            setTimeout(stripGoogleHighlight, 200);
-        }, true);
-
         // Global scroll-reveal animation (used across all pages via .hopn-reveal)
         var revealEls = document.querySelectorAll('.hopn-reveal');
         if (revealEls.length > 0) {
@@ -290,12 +173,10 @@
         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/' + domainStr + ';';
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
     @stack('head')
 </head>
 <body @if($lang === 'ar') style="direction:rtl;" @endif>
-    <div id="google_translate_element" style="display:none; visibility:hidden;"></div>
     <x-nav />
     <main class="min-h-[70vh] @if($lang !== 'ar') py-10 @endif">
         {{ $slot }}

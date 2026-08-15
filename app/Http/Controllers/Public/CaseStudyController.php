@@ -22,6 +22,6 @@ class CaseStudyController extends Controller
                         ->where('is_published', true)
                         ->firstOrFail();
 
-        return view('public.case-studies.show', compact('caseStudy'));
+        return view('public.case-studies.show', compact('caseStudy', 'lang'));
     }
 }

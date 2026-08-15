@@ -14,11 +14,11 @@
     </div>
 
     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px; line-height:1.4;">
-        {{ $lang === 'de' && !empty($service->name_de) ? $service->name_de : $service->name }}
+        {{ $lang === 'ar' && !empty($service->name_ar) ? $service->name_ar : ($lang === 'de' && !empty($service->name_de) ? $service->name_de : $service->name) }}
     </h3>
 
     <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1;">
-        {{ $lang === 'de' && !empty($service->summary_de) ? $service->summary_de : $service->summary }}
+        {{ $lang === 'ar' && !empty($service->summary_ar) ? $service->summary_ar : ($lang === 'de' && !empty($service->summary_de) ? $service->summary_de : $service->summary) }}
     </p>
 
     @if(!empty($service->slug))
@@ -26,7 +26,7 @@
        style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none;"
        onmouseover="this.style.gap='10px'"
        onmouseout="this.style.gap='6px'">
-        {{ $lang === 'de' ? 'Mehr lesen' : 'Read more' }}
+        {{ $lang === 'ar' ? 'اقرأ المزيد' : ($lang === 'de' ? 'Mehr lesen' : 'Read more') }}
         <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>

@@ -14,9 +14,11 @@ class BlogCategory extends Model
         'name',      // English name (primary)
         'name_en',   // alias if seeded with _en suffix
         'name_de',
+        'name_ar',
         'slug',
         'description',
         'description_de',
+        'description_ar',
         'is_active',
     ];
 

@@ -65,6 +65,11 @@
                     <input type="text" name="office_address_de" value="{{ old('office_address_de', $settings['office_address_de'] ?? '') }}"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Office Address (AR)</label>
+                    <input type="text" name="office_address_ar" value="{{ old('office_address_ar', $settings['office_address_ar'] ?? '') }}" dir="rtl"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
             </div>
         </div>
 

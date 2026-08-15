@@ -23,6 +23,11 @@ class JobController extends Controller
     {
         $data = $request->validate([
             'title'          => 'required|string|max:255',
+            'title_de'       => 'nullable|string|max:255',
+            'title_ar'       => 'nullable|string|max:255',
+            'summary'        => 'nullable|string|max:500',
+            'summary_de'     => 'nullable|string|max:500',
+            'summary_ar'     => 'nullable|string|max:500',
             'slug'           => 'nullable|string|max:255|unique:jobs,slug',
             'location'       => 'nullable|string|max:255',
             'type'           => 'nullable|string|max:50',
@@ -68,6 +73,11 @@ class JobController extends Controller
 
         $data = $request->validate([
             'title'          => 'required|string|max:255',
+            'title_de'       => 'nullable|string|max:255',
+            'title_ar'       => 'nullable|string|max:255',
+            'summary'        => 'nullable|string|max:500',
+            'summary_de'     => 'nullable|string|max:500',
+            'summary_ar'     => 'nullable|string|max:500',
             'slug'           => 'nullable|string|max:255|unique:jobs,slug,' . $job->id,
             'location'       => 'nullable|string|max:255',
             'type'           => 'nullable|string|max:50',

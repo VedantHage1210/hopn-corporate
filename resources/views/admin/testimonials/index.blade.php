@@ -15,6 +15,7 @@
                     <th class="px-3 py-2">Author</th>
                     <th class="px-3 py-2">Company</th>
                     <th class="px-3 py-2">Quote (EN)</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Visible</th>
                     <th class="px-3 py-2">Order</th>
                     <th class="px-3 py-2">Actions</th>
@@ -44,6 +45,7 @@
                     <td class="px-3 py-3 text-slate-400 max-w-xs">
                         <span class="italic">"{{ Str::limit($t->quote_en, 80) }}"</span>
                     </td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$t" :fields="['quote']" en-suffix="_en" /></td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs {{ $t->visible ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
                             {{ $t->visible ? 'Visible' : 'Hidden' }}
@@ -53,14 +55,16 @@
                     <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.testimonials.edit', $t) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                       <a href="{{ route('home', ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.testimonials.destroy', $t) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.testimonials.destroy', $t) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No testimonials found.</td></tr>
+                <tr><td colspan="9" class="px-3 py-6 text-center text-slate-500">No testimonials found.</td></tr>
                 @endforelse
             </tbody>
         </table>

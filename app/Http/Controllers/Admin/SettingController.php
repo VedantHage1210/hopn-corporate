@@ -47,6 +47,7 @@ class SettingController extends Controller
             'contact_phone'   => 'nullable|string|max:50',
             'office_address'  => 'nullable|string|max:500',
             'office_address_de' => 'nullable|string|max:500',
+            'office_address_ar' => 'nullable|string|max:500',
             'default_locale'  => 'nullable|in:en,de,ar',
             'timezone'        => 'nullable|string|max:100',
             'social_links'    => 'nullable|array',
@@ -57,7 +58,7 @@ class SettingController extends Controller
             'site_name', 'site_name_de', 'site_name_ar',
             'site_tagline', 'site_tagline_de', 'site_tagline_ar',
             'contact_email', 'contact_phone',
-            'office_address', 'office_address_de',
+            'office_address', 'office_address_de', 'office_address_ar',
             'default_locale', 'timezone',
         ]);
 

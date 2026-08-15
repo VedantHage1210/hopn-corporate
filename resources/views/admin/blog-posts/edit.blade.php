@@ -15,25 +15,30 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         @foreach(['en' => '🇬🇧 English', 'de' => '🇩🇪 Deutsch', 'ar' => '🇸🇦 Arabic'] as $lang => $label)
+                        @php
+                            $titleCol   = $lang === 'en' ? 'title'   : 'title_'.$lang;
+                            $excerptCol = $lang === 'en' ? 'excerpt' : 'excerpt_'.$lang;
+                            $contentCol = $lang === 'en' ? 'content' : 'content_'.$lang;
+                        @endphp
                         <div>
                             <p class="text-xs font-semibold text-indigo-400 mb-2">{{ str_replace(['🇬🇧 ', '🇩🇪 ', '🇸🇦 '], ['EN ', 'DE ', 'AR '], $label) }}</p>
                             <div class="space-y-3">
                                 <div>
                                     <label class="block text-xs text-slate-400 mb-1">Title {{ $lang === 'en' ? '*' : '' }}</label>
                                     <input type="text" name="title_{{ $lang }}"
-                                           value="{{ old('title_'.$lang, $post->{'title_'.$lang} ?? ($lang === 'en' ? $post->title : '')) }}"
+                                           value="{{ old('title_'.$lang, $post->{$titleCol} ?? '') }}"
                                            class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white"
                                            {{ $lang === 'en' ? 'required' : '' }}>
                                 </div>
                                 <div>
                                     <label class="block text-xs text-slate-400 mb-1">Excerpt</label>
                                     <textarea name="excerpt_{{ $lang }}" rows="3"
-                                              class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white resize-none">{{ old('excerpt_'.$lang, $post->{'excerpt_'.$lang} ?? ($lang === 'en' ? $post->excerpt : '')) }}</textarea>
+                                              class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white resize-none">{{ old('excerpt_'.$lang, $post->{$excerptCol} ?? '') }}</textarea>
                                 </div>
                                 <div>
                                     <label class="block text-xs text-slate-400 mb-1">Body</label>
                                     <textarea name="body_{{ $lang }}" rows="8"
-                                              class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white resize-y">{{ old('body_'.$lang, $post->{'body_'.$lang} ?? ($lang === 'en' ? $post->body : '')) }}</textarea>
+                                              class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white resize-y">{{ old('body_'.$lang, $post->{$contentCol} ?? '') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -43,17 +48,22 @@
                     {{-- SEO --}}
                     <div class="mt-6 pt-6 border-t border-slate-800">
                         <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">SEO</p>
-                        <div class="grid gap-3 md:grid-cols-2">
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Meta Title</label>
-                                <input type="text" name="meta_title" value="{{ old('meta_title', $post->meta_title ?? '') }}"
-                                       class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <div class="grid gap-4 md:grid-cols-3">
+                            @foreach(['' => 'EN', '_de' => 'DE', '_ar' => 'AR'] as $suf => $label)
+                            <div class="space-y-3">
+                                <p class="text-xs font-semibold text-indigo-400 mb-2">{{ $label }}</p>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Meta Title</label>
+                                    <input type="text" name="meta_title{{ $suf }}" value="{{ old('meta_title'.$suf, $post->{'meta_title'.$suf} ?? '') }}" maxlength="70"
+                                           class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Meta Description</label>
+                                    <input type="text" name="meta_description{{ $suf }}" value="{{ old('meta_description'.$suf, $post->{'meta_description'.$suf} ?? '') }}" maxlength="160"
+                                           class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Meta Description</label>
-                                <input type="text" name="meta_description" value="{{ old('meta_description', $post->meta_description ?? '') }}"
-                                       class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </form>
@@ -103,10 +113,10 @@
                     </div>
                     <div>
                         <label class="block text-xs text-slate-400 mb-1">Category</label>
-                        <select name="category_id" form="post-form" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <select name="blog_category_id" form="post-form" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
                             <option value="">Select Category</option>
                             @foreach($categories as $cat)
-                          <option value="{{ $cat->id }}" {{ $post->blog_category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
+                          <option value="{{ $cat->id }}" {{ old('blog_category_id', $post->blog_category_id) == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
                             @endforeach
                         </select>
                     </div>

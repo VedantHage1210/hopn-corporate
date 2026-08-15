@@ -92,11 +92,16 @@
 
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Careers</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.jobs.index') }}">Jobs</a>
+                @can('system.manage')
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.applicants.index') }}">Applicants</a>
+                @endcan
 
+                @can('system.manage')
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">CRM</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.leads.index') }}">Leads</a>
+                @endcan
 
+                @can('system.manage')
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">System</div>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.users.index') }}">Users</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.roles.index') }}">Roles</a>
@@ -107,6 +112,10 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.languages.index') }}">Languages</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.legal.index') }}">Legal</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.audit-logs.index') }}">Audit Logs</a>
+                @else
+                <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Media</div>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.media-assets.index') }}">Media</a>
+                @endcan
                 <a href="{{ route('catalog.index', ['lang' => 'en']) }}" target="_blank" 
    class="block hover:text-white transition-colors duration-200">
    View Catalog

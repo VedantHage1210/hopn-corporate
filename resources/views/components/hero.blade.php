@@ -21,7 +21,9 @@
 
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
             <span style="width:7px; height:7px; border-radius:50%; background:#4F6EF7; display:inline-block; animation: pulse 2s infinite;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8;">European Innovation Hub</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8;">
+                @if($lang === 'ar') مركز الابتكار الأوروبي @elseif($lang === 'de') Europäisches Innovationszentrum @else European Innovation Hub @endif
+            </span>
         </div>
 
         <h1 style="font-size:clamp(28px, 5vw, 60px); font-weight:800; line-height:1.15; letter-spacing:-0.02em; color:white; max-width:900px; margin:0 auto;">
@@ -48,25 +50,28 @@
 
            <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-bg-brighten"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none;">
-                Book a Call
+                @if($lang === 'ar') احجز مكالمة @elseif($lang === 'de') Termin buchen @else Book a Call @endif
             </a>
 
             <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-bg-brighten"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none;">
-                View Products
+                @if($lang === 'ar') عرض المنتجات @elseif($lang === 'de') Produkte ansehen @else View Products @endif
             </a>
         </div>
 
         <div style="margin-top:60px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:700px; margin-left:auto; margin-right:auto;">
-            @foreach([
-                ['value' => '50+',  'label' => 'Enterprise Clients'],
-                ['value' => '10+',  'label' => 'AI Products'],
-                ['value' => '6',    'label' => 'Innovation Domains'],
-                ['value' => 'EU',   'label' => 'Based & Trusted'],
-            ] as $stat)
+            @php
+            $heroStats = [
+                ['value' => '50+',  'en' => 'Enterprise Clients',   'de' => 'Unternehmenskunden',      'ar' => 'عملاء المؤسسات'],
+                ['value' => '10+',  'en' => 'AI Products',          'de' => 'KI-Produkte',             'ar' => 'منتجات الذكاء الاصطناعي'],
+                ['value' => '6',    'en' => 'Innovation Domains',   'de' => 'Innovationsbereiche',     'ar' => 'مجالات الابتكار'],
+                ['value' => 'EU',   'en' => 'Based & Trusted',      'de' => 'Ansässig & Vertrauenswürdig', 'ar' => 'موثوق ومقره أوروبا'],
+            ];
+            @endphp
+            @foreach($heroStats as $stat)
             <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px; backdrop-filter:blur(8px);">
                 <div style="font-size:28px; font-weight:800; color:white;">{{ $stat['value'] }}</div>
-                <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat['label'] }}</div>
+                <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat[$lang] ?? $stat['en'] }}</div>
             </div>
             @endforeach
         </div>

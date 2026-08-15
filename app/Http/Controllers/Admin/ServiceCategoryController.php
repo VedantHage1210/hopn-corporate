@@ -23,11 +23,14 @@ class ServiceCategoryController extends Controller
     {
         $request->validate(['name' => 'required|string|max:255']);
         ServiceCategory::create([
-            'name'        => $request->name,
-            'name_de'     => $request->name_de,
-            'slug'        => $request->slug ?: Str::slug($request->name),
-            'description' => $request->description,
-            'is_active'   => $request->boolean('is_active', true),
+            'name'            => $request->name,
+            'name_de'         => $request->name_de,
+            'name_ar'         => $request->name_ar,
+            'slug'            => $request->slug ?: Str::slug($request->name),
+            'description'     => $request->description,
+            'description_de'  => $request->description_de,
+            'description_ar'  => $request->description_ar,
+            'is_active'       => $request->boolean('is_active', true),
         ]);
         return redirect()->route('admin.service-categories.index')->with('status', 'Category created!');
     }
@@ -48,11 +51,14 @@ class ServiceCategoryController extends Controller
         $item = ServiceCategory::findOrFail($id);
         $request->validate(['name' => 'required|string|max:255']);
         $item->update([
-            'name'        => $request->name,
-            'name_de'     => $request->name_de,
-            'slug'        => $request->slug ?: Str::slug($request->name),
-            'description' => $request->description,
-            'is_active'   => $request->boolean('is_active', true),
+            'name'            => $request->name,
+            'name_de'         => $request->name_de,
+            'name_ar'         => $request->name_ar,
+            'slug'            => $request->slug ?: Str::slug($request->name),
+            'description'     => $request->description,
+            'description_de'  => $request->description_de,
+            'description_ar'  => $request->description_ar,
+            'is_active'       => $request->boolean('is_active', true),
         ]);
         return redirect()->route('admin.service-categories.index')->with('status', 'Category updated!');
     }

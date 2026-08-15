@@ -20,7 +20,7 @@ class PartnerInquiryFormRequest extends FormRequest
             'partner_type' => ['nullable', 'string', 'in:customer,tech_partner,academic,delivery'],
             'message'      => ['required', 'string', 'min:10', 'max:5000'],
             'gdpr'         => ['accepted'],
-            'honeypot'     => ['nullable', 'string'],
+            'honeypot'     => ['nullable', 'max:0'],
             'utm_source'   => ['nullable', 'string', 'max:100'],
             'utm_medium'   => ['nullable', 'string', 'max:100'],
             'utm_campaign' => ['nullable', 'string', 'max:100'],

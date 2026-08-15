@@ -61,7 +61,10 @@
                 @if(!empty($product->cta_url))
                 <a href="{{ $product->cta_url }}" class="hopn-opacity-btn"
                    style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
-                    {{ $product->cta_label_en ?? 'Get Started' }} →
+                    @if($lang === 'ar' && !empty($product->cta_label_ar)) {{ $product->cta_label_ar }}
+                    @elseif($lang === 'de' && !empty($product->cta_label_de)) {{ $product->cta_label_de }}
+                    @else {{ $product->cta_label_en ?? ($lang === 'ar' ? 'ابدأ الآن' : ($lang === 'de' ? 'Jetzt starten' : 'Get Started')) }}
+                    @endif →
                 </a>
                 @endif
                 <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-opacity-btn"

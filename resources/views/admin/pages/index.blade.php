@@ -14,6 +14,7 @@
                 <tr>
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Title</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Slug</th>
                     <th class="px-3 py-2">Status</th>
                     <th class="px-3 py-2">Actions</th>
@@ -23,7 +24,13 @@
                 @forelse($pages as $page)
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $page->id }}</td>
-                    <td class="px-3 py-3 font-medium text-white">{{ $page->title }}</td>
+                    <td class="px-3 py-3 font-medium text-white">
+                        {{ $page->title }}
+                        @if($page->is_landing_page)
+                            <span class="ml-1 inline-block rounded bg-amber-900/50 border border-amber-700 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-300">Landing</span>
+                        @endif
+                    </td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$page" :fields="['title']" /></td>
                     <td class="px-3 py-3 font-mono text-xs text-slate-400">{{ $page->slug }}</td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $page->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
@@ -33,14 +40,16 @@
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.pages.edit', $page->id) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                       <a href="{{ route('pages.show', ['lang' => 'en', 'slug' => $page->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this page?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="5" class="px-3 py-6 text-center text-slate-500">No pages found.</td></tr>
+                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No pages found.</td></tr>
                 @endforelse
             </tbody>
         </table>

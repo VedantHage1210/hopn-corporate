@@ -13,6 +13,7 @@
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Name (EN)</th>
                     <th class="px-3 py-2">Name (DE)</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Slug</th>
                     <th class="px-3 py-2">Posts</th>
                     <th class="px-3 py-2">Actions</th>
@@ -24,6 +25,7 @@
                     <td class="px-3 py-3 text-slate-400">{{ $category->id }}</td>
                     <td class="px-3 py-3 font-medium text-white">{{ $category->name_en ?? $category->name ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ $category->name_de ?? '—' }}</td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$category" :fields="['name']" /></td>
                     <td class="px-3 py-3 font-mono text-xs text-indigo-300">{{ $category->slug }}</td>
                     <td class="px-3 py-3">
                         <span class="rounded-full bg-slate-800 px-2 py-0.5 text-xs">{{ $category->posts_count }}</span>
@@ -31,14 +33,16 @@
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.blog-categories.edit', $category) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ url('/en/insights?category=' . $category->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.blog-categories.destroy', $category) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.blog-categories.destroy', $category) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this category?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No categories found.</td></tr>
+                <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No categories found.</td></tr>
                 @endforelse
             </tbody>
         </table>

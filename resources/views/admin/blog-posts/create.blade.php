@@ -35,6 +35,24 @@
                         </div>
                         @endforeach
                     </div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 mt-6">SEO</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        @foreach(['' => 'EN', '_de' => 'DE', '_ar' => 'AR'] as $suf => $label)
+                        <div class="space-y-3">
+                            <p class="text-xs font-semibold text-indigo-400 mb-2">{{ $label }}</p>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Meta Title</label>
+                                <input type="text" name="meta_title{{ $suf }}" value="{{ old('meta_title'.$suf) }}" maxlength="70" form="post-form"
+                                       class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Meta Description</label>
+                                <input type="text" name="meta_description{{ $suf }}" value="{{ old('meta_description'.$suf) }}" maxlength="160" form="post-form"
+                                       class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </form>
             </div>
         </div>
@@ -72,10 +90,10 @@
                     </div>
                     <div>
                         <label class="block text-xs text-slate-400 mb-1">Category</label>
-                        <select name="category_id" form="post-form" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <select name="blog_category_id" form="post-form" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm text-white">
                             <option value="">Select Category</option>
                             @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
+                            <option value="{{ $cat->id }}" {{ old('blog_category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name_en ?? $cat->name }}</option>
                             @endforeach
                         </select>
                     </div>

@@ -135,21 +135,24 @@
         @if($investors->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
             @foreach($investors as $investor)
-            @php $colors=['#10B981','#4F6EF7','#8B5CF6','#F59E0B','#06B6D4','#EF4444']; $c=$colors[$loop->index%6]; @endphp
+            @php
+                $colors=['#10B981','#4F6EF7','#8B5CF6','#F59E0B','#06B6D4','#EF4444']; $c=$colors[$loop->index%6];
+                $iName = $lang==='ar' && $investor->name_ar ? $investor->name_ar : ($lang==='de' && $investor->name_de ? $investor->name_de : $investor->name);
+            @endphp
             <div class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
 
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($investor->logo)
-                    <img src="{{ $investor->logo }}" alt="{{ $investor->name }}"
+                    <img src="{{ $investor->logo }}" alt="{{ $iName }}"
                          style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08); flex-shrink:0;">
                     @else
                     <div style="width:44px; height:44px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
-                        {{ strtoupper(substr($investor->name,0,1)) }}
+                        {{ strtoupper(substr($iName,0,1)) }}
                     </div>
                     @endif
                     <div>
-                        <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $investor->name }}</h3>
+                        <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $iName }}</h3>
                         @if($investor->type)
                         <span style="font-size:11px; color:#94A3B8;">{{ ucfirst($investor->type) }}</span>
                         @endif

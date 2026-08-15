@@ -86,7 +86,7 @@ $categoryColors = [
                             {{ $categoryLabels[$category] ?? ucfirst($category) }}
                         </span>
                         @php
-                            $desc = $lang==='de' && $item->description_de ? $item->description_de : ($item->description_en ?? null);
+                            $desc = $lang==='ar' && $item->description_ar ? $item->description_ar : ($lang==='de' && $item->description_de ? $item->description_de : ($item->description_en ?? null));
                         @endphp
                         @if($desc)
                         <div style="font-size:12px; color:#CBD5E1; line-height:1.5; max-width:170px;">{{ Str::limit($desc, 70) }}</div>

@@ -120,27 +120,32 @@
         @if($startups->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
             @foreach($startups as $startup)
-            @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+            @php
+                $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6];
+                $sName = $lang==='ar' && $startup->name_ar ? $startup->name_ar : ($lang==='de' && $startup->name_de ? $startup->name_de : $startup->name);
+                $sIndustry = $lang==='ar' && $startup->industry_ar ? $startup->industry_ar : ($lang==='de' && $startup->industry_de ? $startup->industry_de : $startup->industry);
+                $sDesc = $lang==='ar' && $startup->description_ar ? $startup->description_ar : ($lang==='de' && $startup->description_de ? $startup->description_de : $startup->description);
+            @endphp
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column; gap:14px;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px;">
                     @if($startup->logo)
-                    <img src="{{ $startup->logo }}" alt="{{ $startup->name }}"
+                    <img src="{{ $startup->logo }}" alt="{{ $sName }}"
                          style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08);">
                     @else
                     <div style="width:44px; height:44px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
-                        {{ strtoupper(substr($startup->name,0,1)) }}
+                        {{ strtoupper(substr($sName,0,1)) }}
                     </div>
                     @endif
                     <div>
-                        <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $startup->name }}</h3>
-                        @if($startup->industry)
-                        <span style="font-size:12px; color:#94A3B8;">{{ $startup->industry }}</span>
+                        <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $sName }}</h3>
+                        @if($sIndustry)
+                        <span style="font-size:12px; color:#94A3B8;">{{ $sIndustry }}</span>
                         @endif
                     </div>
                 </div>
-                @if($startup->description)
-                <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin:0;">{{ Str::limit($startup->description,110) }}</p>
+                @if($sDesc)
+                <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin:0;">{{ Str::limit($sDesc,110) }}</p>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     @if($startup->stage)
@@ -185,7 +190,7 @@
         @if($programs->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($programs as $program)
-            @php $colors=['#4F6EF7','#8B5CF6','#10B981']; $c=$colors[$loop->index%3]; $title=$lang==='de'&&$program->title_de?$program->title_de:$program->title_en; $summary=$lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''); @endphp
+            @php $colors=['#4F6EF7','#8B5CF6','#10B981']; $c=$colors[$loop->index%3]; $title=$lang==='ar'&&$program->title_ar?$program->title_ar:($lang==='de'&&$program->title_de?$program->title_de:$program->title_en); $summary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??'')); @endphp
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">

@@ -1,14 +1,6 @@
 @php
     $lang = request()->route('lang', app()->getLocale());
-    $googtrans = $_COOKIE['googtrans'] ?? '';
     $activeLang = $lang;
-    if ($googtrans) {
-        $parts = explode('/', trim($googtrans, '/'));
-        $cookieLang = end($parts);
-        if (in_array($cookieLang, ['en', 'de', 'ar'])) {
-            $activeLang = $cookieLang;
-        }
-    }
 
     $groups = [
         [
@@ -137,7 +129,6 @@
                 <div x-show="langOpen" x-transition style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:130px; background:#0D1425; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:6px; box-shadow:0 24px 48px rgba(0,0,0,0.6); z-index:210;">
                     @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
                     <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
-                       onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
                        class="hopn-lang-item {{ $activeLang===$code ? 'active' : '' }}">
                         {{ $label }}
                     </a>
@@ -213,7 +204,6 @@
                 <div x-show="mLangOpen" x-transition style="display:none; margin-top:8px; padding-left:4px;">
                     @foreach(['en'=>'EN','de'=>'DE','ar'=>'AR'] as $code=>$label)
                     <a href="{{ preg_replace('#^/(en|de|ar)#','/'.$code,request()->getPathInfo()) }}"
-                       onclick="triggerGoogleTranslate('{{ $code }}'); return false;"
                        class="hopn-lang-item {{ $activeLang===$code ? 'active' : '' }}">
                         {{ $label }}
                     </a>

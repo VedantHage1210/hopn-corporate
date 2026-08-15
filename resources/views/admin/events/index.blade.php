@@ -14,6 +14,7 @@
                 <tr>
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Title</th>
+                    <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Type</th>
                     <th class="px-3 py-2">Date</th>
                     <th class="px-3 py-2">Location</th>
@@ -26,6 +27,7 @@
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $event->id }}</td>
                     <td class="px-3 py-3 font-medium text-white">{{ $event->title }}</td>
+                    <td class="px-3 py-3"><x-admin.translation-status :item="$event" :fields="['title']" /></td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold bg-indigo-900 text-indigo-200">
                             {{ ucfirst($event->type ?? '—') }}
@@ -45,14 +47,16 @@
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.events.edit', $event) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ route('events.index', ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
-                        <form method="POST" action="{{ route('admin.events.destroy', $event) }}" class="inline-block">
+                        @can('content.delete')
+<form method="POST" action="{{ route('admin.events.destroy', $event) }}" class="inline-block">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete?')" class="text-rose-300 hover:text-rose-200">Delete</button>
                         </form>
+@endcan
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No events found.</td></tr>
+                <tr><td colspan="8" class="px-3 py-6 text-center text-slate-500">No events found.</td></tr>
                 @endforelse
             </tbody>
         </table>

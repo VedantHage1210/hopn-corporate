@@ -110,6 +110,35 @@
             </div>
         </div>
 
+        {{-- CTA Button --}}
+        <div class="card-panel p-6 mt-4">
+            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">CTA Button</h2>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Button Label (EN)</label>
+                    <input type="text" name="cta_label_en" value="{{ old('cta_label_en', $item->cta_label_en ?? '') }}" maxlength="100"
+                        placeholder="Apply Now"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Button Label (DE)</label>
+                    <input type="text" name="cta_label_de" value="{{ old('cta_label_de', $item->cta_label_de ?? '') }}" maxlength="100"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Button Label (AR)</label>
+                    <input type="text" name="cta_label_ar" value="{{ old('cta_label_ar', $item->cta_label_ar ?? '') }}" maxlength="100" dir="rtl"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="mb-1 block text-sm font-medium text-slate-200">Button URL</label>
+                <input type="text" name="cta_url" value="{{ old('cta_url', $item->cta_url ?? '') }}"
+                    placeholder="/training or https://..."
+                    class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            </div>
+        </div>
+
         <div class="flex gap-3">
             <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update Program' : 'Create Program' }}</button>
             <a href="{{ route('admin.programs.index') }}" class="rounded border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:text-white">Cancel</a>

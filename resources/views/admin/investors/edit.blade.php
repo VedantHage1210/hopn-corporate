@@ -22,6 +22,17 @@
                     <input type="text" name="name" value="{{ old('name', $investor->name) }}" required
                            class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
+
+                <div>
+    <label class="block text-xs font-semibold text-slate-400 mb-1">Name (DE)</label>
+    <input type="text" name="name_de" value="{{ old('name_de', $investor->name_de ?? '') }}"
+           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+</div>
+<div>
+    <label class="block text-xs font-semibold text-slate-400 mb-1">Name (AR)</label>
+    <input type="text" name="name_ar" value="{{ old('name_ar', $investor->name_ar ?? '') }}" dir="rtl"
+           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+</div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Logo URL</label>
                     <input type="url" name="logo" value="{{ old('logo', $investor->logo ?? '') }}"

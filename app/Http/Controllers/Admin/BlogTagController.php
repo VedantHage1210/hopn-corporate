@@ -55,8 +55,10 @@ class BlogTagController extends Controller
     private function validateTag(Request $request, ?int $ignoreId = null): array
     {
         return $request->validate([
-            'name' => ['required', 'string', 'max:80'],
-            'slug' => ['nullable', 'string', 'max:100', 'unique:blog_tags,slug' . ($ignoreId ? ",{$ignoreId}" : '')],
+            'name'    => ['required', 'string', 'max:80'],
+            'name_de' => ['nullable', 'string', 'max:80'],
+            'name_ar' => ['nullable', 'string', 'max:80'],
+            'slug'    => ['nullable', 'string', 'max:100', 'unique:blog_tags,slug' . ($ignoreId ? ",{$ignoreId}" : '')],
         ]);
     }
 }

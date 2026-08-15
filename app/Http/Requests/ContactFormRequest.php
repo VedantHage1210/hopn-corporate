@@ -20,7 +20,7 @@ class ContactFormRequest extends FormRequest
             'company'      => ['nullable', 'string', 'max:120'],
             'message'      => ['required', 'string', 'min:10', 'max:5000'],
             'gdpr'         => ['accepted'],
-            'honeypot'     => ['nullable', 'string'],   // spam trap — must be empty
+            'honeypot'     => ['nullable', 'max:0'],   // spam trap — must be empty
             'utm_source'   => ['nullable', 'string', 'max:100'],
             'utm_medium'   => ['nullable', 'string', 'max:100'],
             'utm_campaign' => ['nullable', 'string', 'max:100'],

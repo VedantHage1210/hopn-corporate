@@ -28,6 +28,7 @@ class Program extends Model
         'pricing_tiers',
         'cta_label_en',
         'cta_label_de',
+        'cta_label_ar',
         'cta_url',
         'is_published',
         'published_at',
