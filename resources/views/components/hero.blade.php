@@ -4,8 +4,15 @@
     'cta'      => 'Explore Services',
     'ctaUrl'   => null,
 ])
-@php($lang = request()->route('lang', app()->getLocale()))   
-
+@php
+    $lang = request()->route('lang', app()->getLocale());
+    $heroStats = [
+        ['value' => '50+',  'en' => 'Enterprise Clients',   'de' => 'Unternehmenskunden',      'ar' => 'عملاء المؤسسات'],
+        ['value' => '10+',  'en' => 'AI Products',          'de' => 'KI-Produkte',             'ar' => 'منتجات الذكاء الاصطناعي'],
+        ['value' => '6',    'en' => 'Innovation Domains',   'de' => 'Innovationsbereiche',     'ar' => 'مجالات الابتكار'],
+        ['value' => 'EU',   'en' => 'Based & Trusted',      'de' => 'Ansässig & Vertrauenswürdig', 'ar' => 'موثوق ومقره أوروبا'],
+    ];
+@endphp
 <section style="position:relative; overflow:hidden; background:#0A0F1E; padding: 80px 0 100px;">
 
     <div style="position:absolute; inset:0; pointer-events:none;
@@ -60,14 +67,7 @@
         </div>
 
         <div style="margin-top:60px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:700px; margin-left:auto; margin-right:auto;">
-            @php
-            $heroStats = [
-                ['value' => '50+',  'en' => 'Enterprise Clients',   'de' => 'Unternehmenskunden',      'ar' => 'عملاء المؤسسات'],
-                ['value' => '10+',  'en' => 'AI Products',          'de' => 'KI-Produkte',             'ar' => 'منتجات الذكاء الاصطناعي'],
-                ['value' => '6',    'en' => 'Innovation Domains',   'de' => 'Innovationsbereiche',     'ar' => 'مجالات الابتكار'],
-                ['value' => 'EU',   'en' => 'Based & Trusted',      'de' => 'Ansässig & Vertrauenswürdig', 'ar' => 'موثوق ومقره أوروبا'],
-            ];
-            @endphp
+           
             @foreach($heroStats as $stat)
             <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px; backdrop-filter:blur(8px);">
                 <div style="font-size:28px; font-weight:800; color:white;">{{ $stat['value'] }}</div>

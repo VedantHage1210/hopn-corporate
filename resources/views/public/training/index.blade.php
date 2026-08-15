@@ -1,4 +1,6 @@
-@php($lang = request()->route('lang', 'en'))
+@php
+    $lang = request()->route('lang', 'en');
+@endphp
 <x-layouts.public :title="$lang === 'ar' ? 'طلب التدريب' : ($lang === 'de' ? 'Trainingsanmeldung' : 'Training Application')">
     <x-hero :title="$lang === 'ar' ? 'طلب التدريب' : ($lang === 'de' ? 'Trainingsanmeldung' : 'Training Application')"
             :subtitle="$lang === 'ar' ? 'قدم طلبًا للانضمام إلى برامجنا التدريبية.' : ($lang === 'de' ? 'Melden Sie sich für unsere Programme an.' : 'Apply for our training programs.')" />
