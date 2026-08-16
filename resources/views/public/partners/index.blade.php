@@ -74,7 +74,7 @@ $categoryColors = [
                     @foreach($items as $item)
                     <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:24px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; text-align:center; transition:all 0.25s;">
                         @if($item->logo)
-                        <img src="{{ $item->logo }}" alt="{{ $item->name }}"
+                        <img loading="lazy" decoding="async" src="{{ $item->logo }}" alt="{{ $item->name }}"
                              style="height:40px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);">
                         @else
                         <div style="width:48px; height:48px; border-radius:12px; background:{{ $catColor }}15; border:1px solid {{ $catColor }}30; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $catColor }};">

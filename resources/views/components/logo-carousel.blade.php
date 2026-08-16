@@ -15,7 +15,7 @@
              onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
              onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
             @if(isset($item->logo_url) && $item->logo_url)
-            <img src="{{ $item->logo_url }}" alt="{{ $item->name }}"
+            <img loading="lazy" decoding="async" src="{{ $item->logo_url }}" alt="{{ $item->name }}"
                  style="height:32px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);"
                  onmouseover="this.style.filter='brightness(1) grayscale(0)'"
                  onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">
@@ -30,7 +30,7 @@
              onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
              onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
            @if(isset($item->logo) && $item->logo)
-<img src="{{ $item->logo }}"
+<img loading="lazy" decoding="async" src="{{ $item->logo }}"
                  style="height:32px; width:auto; max-width:120px; object-fit:contain; filter:brightness(0.7) grayscale(0.3);"
                  onmouseover="this.style.filter='brightness(1) grayscale(0)'"
                  onmouseout="this.style.filter='brightness(0.7) grayscale(0.3)'">

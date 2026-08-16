@@ -460,7 +460,7 @@
                 <a href="{{ route('partners.index', ['lang'=>$lang]) }}"
                     class="hopn-partner-card" style="min-width:240px; padding:28px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; border-right:1px solid rgba(255,255,255,0.04); text-decoration:none;">
                     @if($partner->logo)
-                    <img src="{{ $partner->logo }}" alt="{{ $partner->name }}"
+                    <img loading="lazy" decoding="async" src="{{ $partner->logo }}" alt="{{ $partner->name }}"
                          style="height:44px; width:auto; max-width:170px; object-fit:contain; filter:brightness(0.75) grayscale(0.25);">
                     @endif
                     <span style="font-size:15px; font-weight:700; color:#E2E8F0; letter-spacing:0.02em; white-space:nowrap;">{{ $partner->name }}</span>
@@ -547,7 +547,7 @@
                     @foreach($featuredStartups as $startup)
                     <div class="hopn-row-hover" style="display:flex; align-items:center; gap:14px; padding:12px; border-radius:12px;">
                         @if($startup->logo)
-                        <img src="{{ $startup->logo }}" alt="{{ $startup->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
+                        <img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $startup->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
                         @else
                         <div style="width:40px; height:40px; border-radius:10px; background:rgba(239,68,68,0.12); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#EF4444; flex-shrink:0;">
                             {{ strtoupper(substr($startup->name,0,1)) }}
@@ -582,7 +582,7 @@
                     @foreach($featuredInvestors as $investor)
                     <div class="hopn-row-hover" style="display:flex; align-items:center; gap:14px; padding:12px; border-radius:12px;">
                         @if($investor->logo)
-                        <img src="{{ $investor->logo }}" alt="{{ $investor->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
+                        <img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $investor->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
                         @else
                         <div style="width:40px; height:40px; border-radius:10px; background:rgba(6,182,212,0.12); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#06B6D4; flex-shrink:0;">
                             {{ strtoupper(substr($investor->name,0,1)) }}
@@ -639,7 +639,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}60,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($expert->photo_url)
-                        <img src="{{ $expert->photo_url }}" alt="{{ $expert->name }}"
+                        <img loading="lazy" decoding="async" src="{{ $expert->photo_url }}" alt="{{ $expert->name }}"
                              style="width:48px; height:48px; border-radius:12px; object-fit:cover; flex-shrink:0;">
                     @else
                         <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}20; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:{{ $c }}; flex-shrink:0;">

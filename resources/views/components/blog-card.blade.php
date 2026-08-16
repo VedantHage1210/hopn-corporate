@@ -6,7 +6,7 @@
 @endphp
 <article class="card-panel p-5">
     @if(!empty($post->featured_image_path))
-        <img src="{{ Storage::url($post->featured_image_path) }}" alt="{{ $cardTitle }}" class="mb-3 h-40 w-full rounded object-cover" loading="lazy">
+        <img loading="lazy" decoding="async" src="{{ Storage::url($post->featured_image_path) }}" alt="{{ $cardTitle }}" class="mb-3 h-40 w-full rounded object-cover" loading="lazy">
     @endif
     <h3 class="text-lg font-semibold text-white">{{ $cardTitle }}</h3>
     <p class="mt-2 text-sm text-slate-300">{{ $cardExcerpt }}</p>

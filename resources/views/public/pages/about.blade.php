@@ -150,7 +150,7 @@
             <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 @if($member->photo)
-                <img src="{{ $member->photo }}" alt="{{ $member->name }}"
+                <img loading="lazy" decoding="async" src="{{ $member->photo }}" alt="{{ $member->name }}"
                      style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto 16px; display:block; border:2px solid {{ $c }}30;">
                 @else
                 <div style="width:80px; height:80px; border-radius:50%; background:{{ $c }}15; border:2px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; font-weight:900; color:{{ $c }};">

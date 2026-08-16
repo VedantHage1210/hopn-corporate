@@ -69,7 +69,7 @@
            class="hopn-lift-btn" style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;">
             <div style="position:relative; min-height:300px; background:linear-gradient(135deg,rgba(79,110,247,0.2),rgba(139,92,246,0.2)); display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 @if($featured->featured_image_path)
-                <img src="{{ $featured->featured_image_path }}" alt="{{ $featured->title }}"
+                <img loading="lazy" decoding="async" src="{{ $featured->featured_image_path }}" alt="{{ $featured->title }}"
                      style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
                 @else
                 <span style="font-size:64px;">📰</span>
@@ -129,7 +129,7 @@
 
                 @if($post->featured_image_path)
                 <div style="height:180px; overflow:hidden;">
-                    <img src="{{ $post->featured_image_path }}" alt="{{ $post->title }}"
+                    <img loading="lazy" decoding="async" src="{{ $post->featured_image_path }}" alt="{{ $post->title }}"
                          class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
                 </div>
                 @else

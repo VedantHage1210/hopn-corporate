@@ -130,7 +130,7 @@
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px;">
                     @if($startup->logo)
-                    <img src="{{ $startup->logo }}" alt="{{ $sName }}"
+                    <img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $sName }}"
                          style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08);">
                     @else
                     <div style="width:44px; height:44px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">

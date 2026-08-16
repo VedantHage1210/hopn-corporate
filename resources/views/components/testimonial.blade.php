@@ -18,7 +18,7 @@
     {{-- Author --}}
     <footer style="display:flex; align-items:center; gap:12px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
         @if(!empty($testimonial->avatar))
-            <img src="{{ $testimonial->avatar }}" alt="{{ $testimonial->author_name }}"
+            <img loading="lazy" decoding="async" src="{{ $testimonial->avatar }}" alt="{{ $testimonial->author_name }}"
                  style="width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0;">
         @else
             <div style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:rgba(79,110,247,0.15); border:1px solid rgba(79,110,247,0.3); font-size:14px; font-weight:700; color:#818CF8; flex-shrink:0;">

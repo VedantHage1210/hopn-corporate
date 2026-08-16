@@ -12,7 +12,7 @@
         <div class="grid lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 space-y-6">
                 @if($caseStudy->image_url)
-                    <img src="{{ $caseStudy->image_url }}" alt="{{ $csTitle }}" class="w-full rounded-2xl shadow-lg border border-slate-800 transition-transform duration-300 hover:scale-[1.02]">
+                    <img loading="lazy" decoding="async" src="{{ $caseStudy->image_url }}" alt="{{ $csTitle }}" class="w-full rounded-2xl shadow-lg border border-slate-800 transition-transform duration-300 hover:scale-[1.02]">
                 @endif
 
                 <div class="card-panel p-6 bg-[#0B1120] border border-slate-800 rounded-2xl transition-all duration-300 hover:border-indigo-500/30" @if($lang === 'ar') dir="rtl" @endif>

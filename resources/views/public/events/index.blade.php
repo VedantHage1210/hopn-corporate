@@ -99,7 +99,7 @@
                 {{-- Image --}}
                 @if($event->image_url)
                 <div style="height:180px; overflow:hidden; background:#0D1425;">
-                    <img src="{{ $event->image_url }}" alt="{{ $title }}"
+                    <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $title }}"
                          class="hopn-link-fade-in" style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:opacity 0.3s;">
                 </div>
                 @endif

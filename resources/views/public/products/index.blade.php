@@ -56,7 +56,7 @@
                 {{-- Image or gradient --}}
                 @if($product->hero_image_url)
                 <div style="height:180px; overflow:hidden; position:relative;">
-                    <img src="{{ $product->hero_image_url }}" alt="{{ $title }}"
+                    <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}"
                          style="width:100%; height:100%; object-fit:cover;">
                     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(10,15,30,0.8));"></div>
                 </div>

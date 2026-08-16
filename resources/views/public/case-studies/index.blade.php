@@ -46,7 +46,7 @@
                 {{-- Image --}}
                 @if(!empty($caseStudy->image_url))
                 <div style="height:200px; overflow:hidden; position:relative;">
-                    <img src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title }}"
+                    <img loading="lazy" decoding="async" src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title }}"
                          class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
                     <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, rgba(10,15,30,0.9));"></div>
                 </div>

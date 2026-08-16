@@ -144,7 +144,7 @@
 
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($investor->logo)
-                    <img src="{{ $investor->logo }}" alt="{{ $iName }}"
+                    <img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $iName }}"
                          style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08); flex-shrink:0;">
                     @else
                     <div style="width:44px; height:44px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
