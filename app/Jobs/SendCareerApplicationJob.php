@@ -23,18 +23,22 @@ class SendCareerApplicationJob implements ShouldQueue
         public readonly string $jobTitle
     ) {}
 
-    public function handle(): void
-    {
-        $adminEmail = config('hopn.admin_email', env('ADMIN_EMAIL', 'admin@hopn.eu'));
+   public function handle(): void
+{
+    $adminEmail = config('hopn.admin_email', env('ADMIN_EMAIL', 'admin@hopn.eu'));
 
-        // Notify applicant
+    try {
         Mail::to($this->applicationData['email'])
             ->send(new CareerApplicationReceivedMail($this->applicationData, $this->jobTitle));
 
-        // Notify HR admin
         Mail::to($adminEmail)
             ->send(new CareerApplicationAdminMail($this->applicationData, $this->jobTitle));
+    } catch (\Throwable $e) {
+        \Illuminate\Support\Facades\Log::error('Career application email failed', [
+            'error' => $e->getMessage(),
+        ]);
     }
+}
 
     public function failed(\Throwable $exception): void
     {

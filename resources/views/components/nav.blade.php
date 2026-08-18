@@ -81,8 +81,7 @@
 </style>
 
 <header x-data="{ open: false }" class="sticky top-0 z-50"
-        style="background:rgba(3,7,18,0.90); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); transform:translateZ(0); will-change:transform;">
-
+        style="background:#030712; border-bottom:1px solid rgba(255,255,255,0.06); transform:translateZ(0);">
     <div class="container-shell" style="display:flex; align-items:center; justify-content:space-between; height:60px;">
 
         {{-- Logo --}}
