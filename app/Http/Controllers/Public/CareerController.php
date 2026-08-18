@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CareerApplicationFormRequest;
 use App\Models\Job;
+use App\Models\Lead;
 use App\Models\JobApplication;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
@@ -46,6 +47,17 @@ class CareerController extends Controller
             'status'         => 'new',
             'tracking_token' => $token,
         ]);
+
+Lead::create([
+    'type'       => 'career-application',
+    'name'       => $data['name'],
+    'email'      => $data['email'],
+    'phone'      => $data['phone'] ?? null,
+    'company'    => null,
+    'message'    => 'Applied for: ' . $job->title . ($data['cover_letter'] ? "\n\n" . $data['cover_letter'] : ''),
+    'source_url' => $request->url(),
+    'status'     => 'new',
+]);
 
         \App\Jobs\SendCareerApplicationJob::dispatch([
             'name'            => $data['name'],
