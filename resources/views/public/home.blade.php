@@ -99,6 +99,13 @@
 .hopn-strategy-step:hover .hopn-strategy-icon { transform:scale(1.08); }
 .hopn-strategy-icon { transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
 
+/* 3D tilt-on-hover — hero/feature cards only (Strategy/Build/Scale, HOPn Products) */
+[data-tilt] { position:relative; transform-style:preserve-3d; will-change:transform; transition:transform 0.15s ease; }
+[data-tilt] .hopn-tilt-glow { position:absolute; inset:0; border-radius:inherit; opacity:0; transition:opacity 0.3s ease; pointer-events:none; background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(139,92,246,0.14), transparent 60%); z-index:1; }
+[data-tilt]:hover .hopn-tilt-glow, [data-tilt].is-touched .hopn-tilt-glow { opacity:1; }
+[data-tilt].is-touched { transform:translateY(-4px) scale(1.02) !important; }
+[data-tilt] > * { position:relative; z-index:2; }
+
 .hopn-service-card, .hopn-product-card {
     transition:background 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1);
 }
@@ -219,7 +226,7 @@
                  $lang==='ar'?'التوسع':($lang==='de'?'Skalierung':'Scale'),
                  $lang==='ar'?'حقق التأثير مع المنصات والشراكات والنتائج القابلة للقياس.':($lang==='de'?'Wirkung mit Plattformen und messbaren Ergebnissen operationalisieren.':'Operationalize impact with platforms, partnerships, and measurable outcomes.')],
             ] as $step)
-            <div class="hopn-strategy-step" style="padding:48px 40px; text-align:center;">
+            <div class="hopn-strategy-step" data-tilt style="padding:48px 40px; text-align:center;">
                 <div class="hopn-strategy-icon" style="width:56px; height:56px; border-radius:14px; background:{{ $step[1] }}15; border:1px solid {{ $step[1] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:{{ $step[1] }}; margin:0 auto 20px;">{{ $step[0] }}</div>
                 <h3 style="font-size:22px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">{{ $step[2] }}</h3>
                 <p style="font-size:14px; color:#94A3B8; line-height:1.75; max-width:280px; margin:0 auto;">{{ $step[3] }}</p>
@@ -231,6 +238,7 @@
 
 {{-- 3. INNOVATION ECOSYSTEM --}}
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
+    <x-particle-network height="100%" color="79,110,247" :density="22" />
     <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
@@ -315,7 +323,7 @@
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); border-radius:16px; overflow:hidden;">
             @foreach($services as $service)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
-            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card"
+            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card" data-tilt
                style="display:block; padding:28px; background:#050A14; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:18px;">⚡</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
@@ -361,7 +369,7 @@
                 $categories=['Innovation Project Management','AI-Powered Fintech Platform','AI Tools & Certification','AI Governance & Compliance','Sports Performance Analytics','Education–Industry Bridge'];
                 $cat=$categories[$loop->index] ?? 'Platform';
             @endphp
-            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card"
+            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card" data-tilt
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $c }}60, transparent);"></div>
                 <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:{{ $c }}; margin-bottom:12px; opacity:0.85;">{{ $cat }}</div>
@@ -403,7 +411,7 @@
         @if($homeIndustries->count() > 0)
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;">
             @foreach($homeIndustries as $industry)
-            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card"
+            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card" data-tilt
                style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center; text-decoration:none;">
                 <div style="font-size:28px; margin-bottom:10px;">{{ $industry->icon ?? '🏭' }}</div>
                 <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $industry->name }}</div>
@@ -413,7 +421,7 @@
         @else
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;">
             @foreach([['🚗','Automotive'],['🏥','Healthcare'],['🏭','Manufacturing'],['🛒','E-Commerce'],['🎓','Education'],['💳','Finance'],['🚚','Logistics'],['🔬','Research']] as [$icon,$name])
-            <div class="hopn-industry-card" style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center;">
+            <div class="hopn-industry-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center;">
                 <div style="font-size:28px; margin-bottom:10px;">{{ $icon }}</div>
                 <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $name }}</div>
             </div>
@@ -625,7 +633,7 @@
                     @else Access HOPn strategists in AI, digital twins, research commercialization, and talent strategy. @endif
                 </p>
             </div>
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
+            <a href="{{ route('consulting.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
                style="font-size:14px; font-weight:600; color:#10B981; text-decoration:none;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in touch @endif →
             </a>
@@ -635,7 +643,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @foreach($experts as $expert)
             @php $c = $expert->accent_color ?? '#4F6EF7'; @endphp
-            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+            <div class="hopn-lift-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}60,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($expert->photo_url)
@@ -655,7 +663,7 @@
                         </div>
                     </div>
                     @if($expert->hourly_rate)
-                    <div style="font-size:15px; font-weight:800; color:{{ $c }}; white-space:nowrap;">{{ $expert->hourly_rate }}</div>
+                    <div style="font-size:15px; font-weight:800; color:{{ $c }}; white-space:nowrap;">€{{ $expert->hourly_rate }}{{ str_contains($expert->hourly_rate, '/') ? '' : '/hr' }}</div>
                     @endif
                 </div>
                 @if($expert->tags && count($expert->tags) > 0)
@@ -665,10 +673,14 @@
                     @endforeach
                 </div>
                 @endif
+                <a href="{{ route('consulting.book', ['lang'=>$lang, 'id'=>$expert->id]) }}"
+                   style="display:block; text-align:center; margin-top:16px; padding:12px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:700; text-decoration:none;">
+                    @if($lang==='ar') احجز هذا الخبير @elseif($lang==='de') Diesen Experten buchen @else Book this expert @endif
+                </a>
                 @if($expert->linkedin_url)
                 <a href="{{ $expert->linkedin_url }}" target="_blank"
                    class="hopn-link-fade-in"
-                   style="display:inline-block; margin-top:14px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none;">LinkedIn →</a>
+                   style="display:inline-block; margin-top:10px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none;">LinkedIn →</a>
                 @endif
             </div>
             @endforeach
@@ -700,49 +712,35 @@
                     @else Expert-led workshops — designed to close the gap between innovation ambition and operational capability. @endif
                 </p>
             </div>
-            <a href="{{ route('programs.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
+            <a href="{{ route('workshops.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
                style="font-size:14px; font-weight:600; color:#F59E0B; text-decoration:none;">
                 @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
             </a>
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @php
-            $workshops=[
-                ['1 '.($lang==='ar'?'يوم':($lang==='de'?'Tag':'day')),
-                 $lang==='ar'?'تدريب الذكاء الاصطناعي للشركات':($lang==='de'?'KI-Training für Unternehmen':'AI Training for Companies'),
-                 $lang==='ar'?'ورشة استراتيجية الذكاء الاصطناعي':($lang==='de'?'KI-Strategie-Workshop':'AI Strategy Workshop'),
-                 $lang==='ar'?'تحديد خرائط طريق الذكاء الاصطناعي وأطر الحوكمة وعائد الاستثمار.':($lang==='de'?'KI-Roadmaps, Governance und ROI-Rahmen definieren.':'Define enterprise AI roadmaps, governance frameworks, and ROI.'),
-                 '#4F6EF7'],
-                ['3 '.($lang==='ar'?'أيام':($lang==='de'?'Tage':'days')),
-                 $lang==='ar'?'تدريب تحليل البيانات':($lang==='de'?'Datenanalyse-Training':'Data Analytics Training'),
-                 $lang==='ar'?'معسكر تدريب هندسة البيانات':($lang==='de'?'Data Engineering Bootcamp':'Data Engineering Bootcamp'),
-                 $lang==='ar'?'خطوط أنابيب عملية، التخزين، وأسس MLOps.':($lang==='de'?'Praktische Pipelines, Warehousing und MLOps-Grundlagen.':'Hands-on pipelines, warehousing, and MLOps foundations.'),
-                 '#10B981'],
-                ['2 '.($lang==='ar'?'يومان':($lang==='de'?'Tage':'days')),
-                 $lang==='ar'?'ورش التوائم الرقمية':($lang==='de'?'Digital-Twin-Workshops':'Digital Twin Workshops'),
-                 $lang==='ar'?'التوأم الرقمي للتصنيع':($lang==='de'?'Digital Twin für Produktion':'Digital Twin for Manufacturing'),
-                 $lang==='ar'?'من التجريب إلى الإنتاج في بيئة المصنع.':($lang==='de'?'Vom Piloten zur Produktion in der Fabrik.':'From pilot to production on the factory floor.'),
-                 '#8B5CF6'],
-            ];
+                $homeWorkshops = \App\Models\Workshop::published()->orderBy('sort_order')->limit(3)->get();
+                $wsColors = ['#4F6EF7','#10B981','#8B5CF6'];
             @endphp
-            @foreach($workshops as $ws)
-            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $ws[4] }},transparent);"></div>
+            @forelse($homeWorkshops as $ws)
+            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$ws->slug]) }}" data-tilt class="hopn-lift-card" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $wsColors[$loop->index % 3] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
-                    <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $ws[4] }}15; color:{{ $ws[4] }}; border:1px solid {{ $ws[4] }}30;">{{ $ws[0] }}</span>
-                    <span style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $ws[1] }}</span>
+                    <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $wsColors[$loop->index % 3] }}15; color:{{ $wsColors[$loop->index % 3] }}; border:1px solid {{ $wsColors[$loop->index % 3] }}30;">{{ $ws->duration_label_en ?? $ws->format }}</span>
+                    <span style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $ws->category }}</span>
                 </div>
-                <h3 style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.3px; margin:0 0 10px; line-height:1.3;">{{ $ws[2] }}</h3>
-                <p style="font-size:13px; color:#94A3B8; line-height:1.7; margin:0 0 20px;">{{ $ws[3] }}</p>
-                <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-                   style="font-size:13px; font-weight:600; color:{{ $ws[4] }}; text-decoration:none;">
+                <h3 style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.3px; margin:0 0 10px; line-height:1.3;">{{ $ws->title_en }}</h3>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.7; margin:0 0 20px;">{{ \Illuminate\Support\Str::limit($ws->summary_en, 100) }}</p>
+                <span style="font-size:13px; font-weight:600; color:{{ $wsColors[$loop->index % 3] }};">
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
-                </a>
-            </div>
-            @endforeach
+                </span>
+            </a>
+            @empty
+            <p style="color:#64748B; grid-column:1/-1; text-align:center; padding:20px 0;">No workshops published yet — add them from Admin → Workshops.</p>
+            @endforelse
         </div>
         <div style="display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;">
-            <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
+            <a href="{{ route('workshops.index', ['lang'=>$lang]) }}"
                class="hopn-btn-outline-amber"
                style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(245,158,11,0.3); color:#F59E0B; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
                 @if($lang==='ar') عرض جميع ورش العمل @elseif($lang==='de') Alle Workshops @else View All Workshops @endif
@@ -896,7 +894,7 @@
             ];
             @endphp
             @foreach($talentItems as $item)
-            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+            <div class="hopn-lift-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $item['color'] }}40, transparent);"></div>
                 <div style="font-size:32px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
@@ -961,6 +959,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(function (el) { observer.observe(el); });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+        var glow = document.createElement('div');
+        glow.className = 'hopn-tilt-glow';
+        card.appendChild(glow);
+        if (reduceMotion) return;
+        if (supportsHover) {
+            card.addEventListener('mousemove', function (e) {
+                var r = card.getBoundingClientRect();
+                var x = e.clientX - r.left, y = e.clientY - r.top;
+                var px = (x / r.width) - 0.5, py = (y / r.height) - 0.5;
+                card.style.transform = 'perspective(700px) rotateY(' + (px * 10) + 'deg) rotateX(' + (-py * 10) + 'deg) translateY(-4px)';
+                glow.style.setProperty('--mx', (x / r.width * 100) + '%');
+                glow.style.setProperty('--my', (y / r.height * 100) + '%');
+            });
+            card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+        } else {
+            card.addEventListener('touchstart', function () {
+                card.classList.add('is-touched');
+                setTimeout(function () { card.classList.remove('is-touched'); }, 900);
+            }, { passive: true });
+        }
+    });
 });
 </script>
 @endpush

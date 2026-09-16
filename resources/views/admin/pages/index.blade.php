@@ -33,12 +33,25 @@
                     <td class="px-3 py-3"><x-admin.translation-status :item="$page" :fields="['title']" /></td>
                     <td class="px-3 py-3 font-mono text-xs text-slate-400">{{ $page->slug }}</td>
                     <td class="px-3 py-3">
-                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $page->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
-                            {{ $page->is_published ? 'Published' : 'Draft' }}
+                        @php
+                            $statusColors = [
+                                'published' => 'bg-green-900 text-green-200',
+                                'scheduled' => 'bg-amber-900 text-amber-200',
+                                'draft'     => 'bg-slate-700 text-slate-400',
+                            ];
+                            $badgeClass = $statusColors[$page->status] ?? $statusColors['draft'];
+                        @endphp
+                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $badgeClass }}">
+                            {{ ucfirst($page->status) }}
                         </span>
+                        @if($page->status === 'scheduled' && $page->scheduled_at)
+                            <div class="text-[10px] text-slate-500 mt-0.5">{{ $page->scheduled_at->format('d M Y, H:i') }}</div>
+                        @endif
                     </td>
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.pages.edit', $page->id) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        <a href="{{ route('admin.pages.preview', $page->id) }}" target="_blank" class="text-slate-400 hover:text-white">Preview</a>
+                        <a href="{{ route('admin.pages.versions', $page->id) }}" class="text-slate-400 hover:text-white">History</a>
                       <a href="{{ route('pages.show', ['lang' => 'en', 'slug' => $page->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         @can('content.delete')
 <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}" class="inline-block">

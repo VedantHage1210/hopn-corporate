@@ -15,7 +15,8 @@
                     <th class="px-3 py-2">Label (DE)</th>
                     <th class="px-3 py-2">Label (AR)</th>
                     <th class="px-3 py-2">Location</th>
-                    <th class="px-3 py-2">URL</th>
+                    <th class="px-3 py-2">Dropdown</th>
+                    <th class="px-3 py-2">Links To</th>
                     <th class="px-3 py-2">Order</th>
                     <th class="px-3 py-2">Visible</th>
                     <th class="px-3 py-2">Actions</th>
@@ -34,7 +35,14 @@
                             {{ ucfirst($item->menu_location) }}
                         </span>
                     </td>
-                    <td class="px-3 py-3 text-slate-400 text-xs font-mono">{{ $item->url ?? '—' }}</td>
+                    <td class="px-3 py-3 text-slate-400 text-xs">{{ $item->dropdown_group ? ucfirst($item->dropdown_group) : '—' }}</td>
+                    <td class="px-3 py-3 text-slate-400 text-xs font-mono">
+                        @if($item->page_id && $item->page)
+                            Page: {{ $item->page->title }}
+                        @else
+                            {{ $item->url ?? '—' }}
+                        @endif
+                    </td>
                     <td class="px-3 py-3 text-slate-400">{{ $item->sort_order ?? 0 }}</td>
                     <td class="px-3 py-3">
                         <div class="flex gap-1">
@@ -45,8 +53,8 @@
                     </td>
                    <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.navigation.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                        @if($item->url)
-                        <a href="{{ $item->url }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        @if($item->url || $item->page_id)
+                        <a href="{{ $item->hrefFor('en') }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         @endif
                         <form method="POST" action="{{ route('admin.navigation.destroy', $item) }}" class="inline-block">
                             @csrf @method('DELETE')
@@ -55,7 +63,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="9" class="px-3 py-6 text-center text-slate-500">No navigation items found.</td></tr>
+                <tr><td colspan="10" class="px-3 py-6 text-center text-slate-500">No navigation items found.</td></tr>
                 @endforelse
             </tbody>
         </table>

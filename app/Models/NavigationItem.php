@@ -11,6 +11,7 @@ class NavigationItem extends Model
     protected $fillable = [
         'parent_id',
         'menu_location',
+        'dropdown_group',
         'sort_order',
         'label_en', 'label_de', 'label_ar',
         'url',
@@ -37,5 +38,18 @@ class NavigationItem extends Model
     public function page()
     {
         return $this->belongsTo(Page::class);
+    }
+
+    /**
+     * Locale-correct href for this item — resolves through the linked Page
+     * (if any) so the same item works across EN/DE/AR, otherwise falls
+     * back to the raw `url` field as before.
+     */
+    public function hrefFor(string $lang): string
+    {
+        if ($this->page_id && $this->page) {
+            return route('pages.show', ['lang' => $lang, 'slug' => $this->page->slug]);
+        }
+        return $this->url ?? '#';
     }
 }

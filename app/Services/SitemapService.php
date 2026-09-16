@@ -92,7 +92,7 @@ class SitemapService
             });
 
             // CMS Pages
-            Page::where('is_published', true)->each(function (Page $page) use ($sitemap, $lang) {
+            Page::published()->each(function (Page $page) use ($sitemap, $lang) {
                 $sitemap->add(Url::create(url("/{$lang}/{$page->slug}"))
                     ->setLastModificationDate($page->updated_at)
                     ->setChangeFrequency('monthly')->setPriority(0.5));

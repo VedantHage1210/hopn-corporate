@@ -61,6 +61,13 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.service-categories.index') }}">Service Categories</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.programs.index') }}">Programs</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.products.index') }}">Products</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.workshops.index') }}">Workshops</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.platform-apps.index') }}">Apps</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.labs.hero.edit') }}">HOPn Labs</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.solution-pages.index') }}">Digital Twins &amp; Engineering</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.consulting-categories.index') }}">Consulting Categories</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.consulting-packages.index') }}">Consulting Packages</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.consulting-bookings.index') }}">Consulting Bookings</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.pages.index') }}">Pages</a>
 

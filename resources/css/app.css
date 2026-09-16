@@ -8,6 +8,8 @@
     }
 }
 
+[x-cloak] { display: none !important; }
+
 @layer components {
     .container-shell {
         @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;

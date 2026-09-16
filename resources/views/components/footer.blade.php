@@ -11,6 +11,9 @@
     $footerContact = \App\Models\NavigationItem::where('menu_location', 'footer_contact')
                         ->where('visible_' . $lang, true)
                         ->orderBy('sort_order')->get();
+    $footerLegal = \App\Models\NavigationItem::where('menu_location', 'footer_legal')
+                        ->where('visible_' . $lang, true)
+                        ->orderBy('sort_order')->get();
 
     // Fallback hardcoded
     $defaultSolutions = [
@@ -33,7 +36,7 @@
     ];
 @endphp
 
-<footer style="background:#060B17; border-top:1px solid rgba(255,255,255,0.06); padding-top:64px;" class="hopn-reveal">
+<footer style="background:#060B17; border-top:1px solid rgba(255,255,255,0.06); padding-top:64px;" class="hopn-reveal hopn-footer-surface">
 
 
 
@@ -65,6 +68,9 @@
                 <div style="font-size:13px; color:#CBD5E1; margin-bottom:24px;">
                     📍 Berlin, Germany
                 </div>
+                <div style="margin-bottom:24px; max-width:340px;">
+                    <x-newsletter-subscribe />
+                </div>
                 <div style="display:flex; gap:10px;">
                     @foreach([
                       ['href' => 'https://www.linkedin.com/company/hopn-ug/', 'label' => 'LinkedIn', 'icon' => '<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>'],
@@ -90,7 +96,7 @@
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerSolutions->count() > 0)
                         @foreach($footerSolutions as $item)
-                        <a href="{{ $item->url ?? '#' }}"
+                        <a href="{{ $item->hrefFor($lang) }}"
                            class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
@@ -114,7 +120,7 @@
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerCompany->count() > 0)
                         @foreach($footerCompany as $item)
-                        <a href="{{ $item->url ?? '#' }}"
+                        <a href="{{ $item->hrefFor($lang) }}"
                            class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
@@ -138,7 +144,7 @@
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @if($footerContact->count() > 0)
                         @foreach($footerContact as $item)
-                        <a href="{{ $item->url ?? '#' }}"
+                        <a href="{{ $item->hrefFor($lang) }}"
                            class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                             {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
                         </a>
@@ -172,6 +178,12 @@
                        class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
                     </a>
+                    @foreach($footerLegal as $item)
+                    <a href="{{ $item->hrefFor($lang) }}"
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
+                        {{ $lang === 'ar' ? ($item->label_ar ?: $item->label_en) : ($lang === 'de' ? ($item->label_de ?: $item->label_en) : $item->label_en) }}
+                    </a>
+                    @endforeach
                 </div>
             </div>
 
@@ -190,7 +202,7 @@
         @if($footerSecondary->count() > 0)
         <div style="display:flex; flex-wrap:wrap; gap:16px;">
             @foreach($footerSecondary as $item)
-            <a href="{{ $item->url ?? '#' }}"
+            <a href="{{ $item->hrefFor($lang) }}"
                class="hopn-link-accent" style="font-size:12px; color:#94A3B8; text-decoration:none; transition:color 0.2s;">
                 {{ $lang === 'ar' && $item->label_ar ? $item->label_ar : ($lang === 'de' && $item->label_de ? $item->label_de : $item->label_en) }}
             </a>

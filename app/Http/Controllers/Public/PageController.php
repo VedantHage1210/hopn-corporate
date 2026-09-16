@@ -17,10 +17,24 @@ class PageController extends Controller
 
     public function show(string $lang, string $slug)
     {
-        $page = Page::where('slug', $slug)
-                    ->where('is_published', true)
+        $page = Page::with('blocks')->where('slug', $slug)
+                    ->published()
                     ->firstOrFail();
 
         return view('public.pages.show', compact('page', 'lang'));
+    }
+
+    /**
+     * Signed preview link — same view as the public page, but bypasses
+     * the published-only restriction. Only reachable via a valid,
+     * time-limited signature (see the 'signed' middleware on this route),
+     * so a draft is never guessable/public.
+     */
+    public function preview(string $lang, string $slug)
+    {
+        $page = Page::with('blocks')->where('slug', $slug)->firstOrFail();
+
+        return view('public.pages.show', compact('page', 'lang'))
+            ->with('isPreview', true);
     }
 }

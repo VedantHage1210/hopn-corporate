@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\MediaAssetController;
 use App\Http\Controllers\Admin\NavigationController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PageBlockController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProgramController;
@@ -34,6 +35,17 @@ use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExpertController;
+use App\Http\Controllers\Admin\ExpertAvailabilityController;
+use App\Http\Controllers\Admin\ConsultingCategoryController;
+use App\Http\Controllers\Admin\ConsultingPackageController;
+use App\Http\Controllers\Admin\ConsultingBookingController;
+use App\Http\Controllers\Admin\WorkshopController;
+use App\Http\Controllers\Admin\PlatformAppController;
+use App\Http\Controllers\Admin\LabsPageController;
+use App\Http\Controllers\Admin\SolutionPageController;
+use App\Http\Controllers\Admin\SolutionBlockController;
+use App\Http\Controllers\Admin\LabItemController;
+use App\Http\Controllers\Admin\LabStepController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +75,28 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::resource('service-categories', ServiceCategoryController::class)->except(['destroy']);
         Route::resource('programs', ProgramController::class)->except(['destroy']);
         Route::resource('products', ProductController::class)->except(['destroy']);
+        Route::resource('workshops', WorkshopController::class)->except(['destroy']);
+        Route::get('workshops/{workshop}/bookings', [WorkshopController::class, 'bookings'])->name('workshops.bookings');
+        Route::resource('platform-apps', PlatformAppController::class)->except(['destroy', 'show']);
+        Route::delete('platform-apps/{platform_app}', [PlatformAppController::class, 'destroy'])->name('platform-apps.destroy');
+
+        Route::get('labs-hero', [LabsPageController::class, 'edit'])->name('labs.hero.edit');
+        Route::put('labs-hero', [LabsPageController::class, 'update'])->name('labs.hero.update');
+        Route::resource('lab-items', LabItemController::class)->except(['destroy', 'show']);
+        Route::delete('lab-items/{lab_item}', [LabItemController::class, 'destroy'])->name('lab-items.destroy');
+        Route::resource('lab-steps', LabStepController::class)->except(['destroy', 'show']);
+        Route::delete('lab-steps/{lab_step}', [LabStepController::class, 'destroy'])->name('lab-steps.destroy');
+
+        Route::get('solution-pages', [SolutionPageController::class, 'index'])->name('solution-pages.index');
+        Route::get('solution-pages/{page}/edit', [SolutionPageController::class, 'edit'])->name('solution-pages.edit');
+        Route::put('solution-pages/{page}', [SolutionPageController::class, 'update'])->name('solution-pages.update');
+
+        Route::get('solution-pages/{page}/blocks', [SolutionBlockController::class, 'index'])->name('solution-blocks.index');
+        Route::get('solution-pages/{page}/blocks/create', [SolutionBlockController::class, 'create'])->name('solution-blocks.create');
+        Route::post('solution-pages/{page}/blocks', [SolutionBlockController::class, 'store'])->name('solution-blocks.store');
+        Route::get('solution-pages/{page}/blocks/{block}/edit', [SolutionBlockController::class, 'edit'])->name('solution-blocks.edit');
+        Route::put('solution-pages/{page}/blocks/{block}', [SolutionBlockController::class, 'update'])->name('solution-blocks.update');
+        Route::delete('solution-pages/{page}/blocks/{block}', [SolutionBlockController::class, 'destroy'])->name('solution-blocks.destroy');
         Route::resource('case-studies', CaseStudyController::class)->except(['destroy']);
         Route::resource('startups', StartupController::class)->except(['destroy']);
         Route::resource('investors', InvestorController::class)->except(['destroy']);
@@ -70,6 +104,13 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::resource('industries', IndustryController::class)->except(['destroy']);
         Route::resource('innovation-domains', InnovationDomainController::class)->except(['destroy']);
         Route::resource('pages', PageController::class)->except(['destroy']);
+        Route::get('pages/{page}/preview', [PageController::class, 'previewLink'])->name('pages.preview');
+        Route::get('pages/{page}/versions', [PageController::class, 'versions'])->name('pages.versions');
+        Route::post('pages/{page}/versions/{version}/restore', [PageController::class, 'restoreVersion'])->name('pages.versions.restore');
+        Route::post('pages/{page}/blocks', [PageBlockController::class, 'store'])->name('page-blocks.store');
+        Route::put('pages/{page}/blocks/{block}', [PageBlockController::class, 'update'])->name('page-blocks.update');
+        Route::delete('pages/{page}/blocks/{block}', [PageBlockController::class, 'destroy'])->name('page-blocks.destroy');
+        Route::post('pages/{page}/blocks/reorder', [PageBlockController::class, 'reorder'])->name('page-blocks.reorder');
 
         Route::resource('blog-posts', BlogPostController::class)->except(['destroy']);
         Route::resource('blog-categories', BlogCategoryController::class)->except(['destroy']);
@@ -80,6 +121,17 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::resource('testimonials', TestimonialController::class)->except(['destroy']);
         Route::resource('team-members', TeamMemberController::class)->except(['destroy']);
         Route::resource('experts', ExpertController::class)->except(['destroy']);
+        Route::get('experts/{expert}/availability', [ExpertAvailabilityController::class, 'index'])->name('experts.availability.index');
+        Route::post('experts/{expert}/availability', [ExpertAvailabilityController::class, 'store'])->name('experts.availability.store');
+        Route::delete('experts/{expert}/availability/{availability}', [ExpertAvailabilityController::class, 'destroy'])->name('experts.availability.destroy');
+
+        Route::resource('consulting-categories', ConsultingCategoryController::class)->except(['destroy', 'show']);
+        Route::delete('consulting-categories/{consulting_category}', [ConsultingCategoryController::class, 'destroy'])->name('consulting-categories.destroy');
+
+        Route::resource('consulting-packages', ConsultingPackageController::class)->except(['destroy', 'show']);
+        Route::delete('consulting-packages/{consulting_package}', [ConsultingPackageController::class, 'destroy'])->name('consulting-packages.destroy');
+
+        Route::get('consulting-bookings', [ConsultingBookingController::class, 'index'])->name('consulting-bookings.index');
 
         Route::resource('jobs', JobController::class)->except(['destroy']);
         Route::resource('logos', LogoController::class)->except(['destroy']);
@@ -94,6 +146,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::delete('service-categories/{service_category}', [ServiceCategoryController::class, 'destroy'])->name('service-categories.destroy');
         Route::delete('programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
         Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+        Route::delete('workshops/{workshop}', [WorkshopController::class, 'destroy'])->name('workshops.destroy');
         Route::delete('case-studies/{case_study}', [CaseStudyController::class, 'destroy'])->name('case-studies.destroy');
         Route::delete('startups/{startup}', [StartupController::class, 'destroy'])->name('startups.destroy');
         Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('investors.destroy');

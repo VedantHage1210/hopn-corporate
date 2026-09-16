@@ -49,8 +49,9 @@
                     <td class="px-3 py-3 text-slate-400">{{ $page->title_ar ?? '—' }}</td>
                     <td class="px-3 py-3 font-mono text-xs text-slate-400">{{ $page->slug }}</td>
                     <td class="px-3 py-3">
-                        <span class="rounded-full px-2 py-0.5 text-xs {{ $page->is_published ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
-                            {{ $page->is_published ? 'Published' : 'Draft' }}
+                        @php $statusColors = ['published'=>'bg-green-900 text-green-200','scheduled'=>'bg-amber-900 text-amber-200','draft'=>'bg-slate-700 text-slate-400']; @endphp
+                        <span class="rounded-full px-2 py-0.5 text-xs {{ $statusColors[$page->status] ?? $statusColors['draft'] }}">
+                            {{ ucfirst($page->status) }}
                         </span>
                     </td>
                     <td class="px-3 py-3 flex gap-3 items-center">

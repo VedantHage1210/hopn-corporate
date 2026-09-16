@@ -8,7 +8,11 @@
             @foreach($errors->all() as $e)<div>{{ $e }}</div>@endforeach
         </div>
     @endif
-    <div class="card-panel p-6 max-w-2xl">
+    @php
+        $currentLocation = old('menu_location', $item->menu_location ?? 'header');
+        $currentLinkType = old('link_type', ($item->page_id ?? null) ? 'page' : 'url');
+    @endphp
+    <div class="card-panel p-6 max-w-2xl" x-data="{ location: '{{ $currentLocation }}', linkType: '{{ $currentLinkType }}' }">
         <form method="POST"
               action="{{ isset($item->id) ? route('admin.navigation.update', $item) : route('admin.navigation.store') }}">
             @csrf
@@ -21,25 +25,63 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Menu Location *</label>
-                   <select name="menu_location" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
-                        <option value="header" {{ old('menu_location', $item->menu_location ?? '') === 'header' ? 'selected' : '' }}>Header</option>
-                        <option value="footer" {{ old('menu_location', $item->menu_location ?? '') === 'footer' ? 'selected' : '' }}>Footer (Generic)</option>
-                        <option value="footer_solutions" {{ old('menu_location', $item->menu_location ?? '') === 'footer_solutions' ? 'selected' : '' }}>Footer — Solutions</option>
-                        <option value="footer_company" {{ old('menu_location', $item->menu_location ?? '') === 'footer_company' ? 'selected' : '' }}>Footer — Company</option>
-                        <option value="footer_contact" {{ old('menu_location', $item->menu_location ?? '') === 'footer_contact' ? 'selected' : '' }}>Footer — Contact</option>
-                        <option value="footer_secondary" {{ old('menu_location', $item->menu_location ?? '') === 'footer_secondary' ? 'selected' : '' }}>Footer Secondary (Bottom Bar)</option>
+                    <select name="menu_location" x-model="location" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <option value="header" {{ $currentLocation === 'header' ? 'selected' : '' }}>Header</option>
+                        <option value="footer" {{ $currentLocation === 'footer' ? 'selected' : '' }}>Footer (Generic)</option>
+                        <option value="footer_solutions" {{ $currentLocation === 'footer_solutions' ? 'selected' : '' }}>Footer — Solutions</option>
+                        <option value="footer_company" {{ $currentLocation === 'footer_company' ? 'selected' : '' }}>Footer — Company</option>
+                        <option value="footer_contact" {{ $currentLocation === 'footer_contact' ? 'selected' : '' }}>Footer — Contact</option>
+                        <option value="footer_legal" {{ $currentLocation === 'footer_legal' ? 'selected' : '' }}>Footer — Legal</option>
+                        <option value="footer_secondary" {{ $currentLocation === 'footer_secondary' ? 'selected' : '' }}>Footer Secondary (Bottom Bar)</option>
                     </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">URL</label>
-                    <input type="text" name="url" value="{{ old('url', $item->url ?? '') }}"
-                        placeholder="/en/services"
-                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Sort Order</label>
                     <input type="number" name="sort_order" value="{{ old('sort_order', $item->sort_order ?? 0) }}"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+
+                {{-- Header dropdown group — only relevant when Menu Location = Header --}}
+                <div x-show="location === 'header'" x-cloak class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Which header dropdown does this belong to? *</label>
+                    <select name="dropdown_group" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <option value="">— choose a dropdown —</option>
+                        @foreach(['solutions'=>'Solutions','products'=>'Products','apps'=>'Apps','ecosystem'=>'Ecosystem','company'=>'Company'] as $val => $label)
+                            <option value="{{ $val }}" {{ old('dropdown_group', $item->dropdown_group ?? '') === $val ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    <p class="text-xs text-slate-500 mt-1">This item is appended to the chosen dropdown's list, alongside the site's built-in items — nothing existing is replaced.</p>
+                </div>
+
+                {{-- Link target: an existing Page, or a direct URL --}}
+                <div class="md:col-span-2 mt-2">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Links To</p>
+                    <div class="flex gap-6 mb-3">
+                        <label class="flex items-center gap-2 text-sm text-slate-300">
+                            <input type="radio" name="link_type" value="page" x-model="linkType">
+                            An existing Page
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-slate-300">
+                            <input type="radio" name="link_type" value="url" x-model="linkType">
+                            A direct URL
+                        </label>
+                    </div>
+                </div>
+                <div x-show="linkType === 'page'" x-cloak class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Page</label>
+                    <select name="page_id" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                        <option value="">— choose a page —</option>
+                        @foreach($pages as $p)
+                            <option value="{{ $p->id }}" {{ old('page_id', $item->page_id ?? '') == $p->id ? 'selected' : '' }}>{{ $p->title }} (/{{ $p->slug }})</option>
+                        @endforeach
+                    </select>
+                    <p class="text-xs text-slate-500 mt-1">The link automatically points to the right language version of this page for every visitor.</p>
+                </div>
+                <div x-show="linkType === 'url'" x-cloak class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">URL</label>
+                    <input type="text" name="url" value="{{ old('url', $item->url ?? '') }}"
+                        placeholder="/en/services"
+                        class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono">
                 </div>
 
                 {{-- Labels --}}

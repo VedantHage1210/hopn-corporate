@@ -20,6 +20,12 @@ use App\Http\Controllers\Public\ProductController;
 use App\Http\Controllers\Public\ProgramController;
 use App\Http\Controllers\Public\ServiceController;
 use App\Http\Controllers\Public\SitemapController;
+use App\Http\Controllers\Public\WorkshopController;
+use App\Http\Controllers\Public\NewsletterController;
+use App\Http\Controllers\Public\ConsultingController;
+use App\Http\Controllers\Public\SolutionPageController;
+use App\Http\Controllers\Public\AppsController;
+use App\Http\Controllers\Public\LabsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
@@ -97,6 +103,32 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         Route::get('/training', function () {
             return view('public.training.index');
         })->name('training.index');
+
+        Route::get('/workshops', [WorkshopController::class, 'index'])->name('workshops.index');
+        Route::get('/workshops/{slug}/book', [WorkshopController::class, 'book'])->name('workshops.book');
+        Route::post('/workshops/{slug}/book', [WorkshopController::class, 'storeBooking'])->middleware('throttle:5,1')->name('workshops.book.store');
+        Route::get('/workshops/{slug}', [WorkshopController::class, 'show'])->name('workshops.show');
+
+        Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
+        Route::get('/apps/{slug}', [AppsController::class, 'show'])->name('apps.show');
+
+        Route::get('/labs', [LabsController::class, 'index'])->name('labs.index');
+
+        Route::get('/consulting', [ConsultingController::class, 'index'])->name('consulting.index');
+        Route::get('/consulting/experts/{id}/book', [ConsultingController::class, 'book'])->name('consulting.book');
+        Route::post('/consulting/experts/{id}/book', [ConsultingController::class, 'storeBooking'])->middleware('throttle:5,1')->name('consulting.book.store');
+        Route::get('/consulting/experts/{id}', [ConsultingController::class, 'showExpert'])->name('consulting.expert');
+
+        Route::get('/engineering', function (string $lang) {
+            return app(SolutionPageController::class)->show($lang, 'engineering-as-a-service');
+        })->name('engineering.index');
+
+        Route::get('/digital-twins', function (string $lang) {
+            return app(SolutionPageController::class)->show($lang, 'digital-twins-oems');
+        })->name('digital-twins.index');
+
+        Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->middleware('throttle:5,1')->name('newsletter.subscribe');
+
         Route::post('/training-application', [LeadController::class, 'trainingApplication'])
             ->middleware('throttle:5,1')
             ->name('leads.training');
@@ -109,6 +141,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         
         // Public Page Show Route (Localized)
         Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
+        Route::get('/page/{slug}/preview', [PageController::class, 'preview'])->name('pages.preview')->middleware('signed');
     });
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');

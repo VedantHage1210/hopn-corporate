@@ -2,18 +2,23 @@
     $lang = request()->route('lang', app()->getLocale());
     $activeLang = $lang;
 
+    $navPlatformApps = \App\Models\PlatformApp::visible()->orderBy('sort_order')->get();
+
     $groups = [
         [
+            'key'=>'solutions',
             'label_en'=>'Solutions', 'label_de'=>'Lösungen', 'label_ar'=>'الحلول',
             'items'=>[
                 ['en'=>'Services Overview',        'de'=>'Leistungsübersicht',      'ar'=>'نظرة عامة على الخدمات',   'route'=>'services.index'],
                 ['en'=>'AI Solutions',             'de'=>'KI-Lösungen',             'ar'=>'حلول الذكاء الاصطناعي',   'route'=>'services.index', 'params'=>['category'=>'ai-solutions']],
-                ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'services.index', 'params'=>['category'=>'digital-twin-solutions']],
-                ['en'=>'Tech Consulting',          'de'=>'Tech-Beratung',            'ar'=>'الاستشارات التقنية',       'route'=>'services.index', 'params'=>['category'=>'tech-consulting']],
-                ['en'=>'Workshops & Training',     'de'=>'Workshops & Training',     'ar'=>'ورش العمل',               'route'=>'programs.index'],
+                ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'digital-twins.index'],
+                ['en'=>'Book an Expert',           'de'=>'Experten buchen',          'ar'=>'احجز خبيرًا',              'route'=>'consulting.index'],
+                ['en'=>'Engineering as a Service', 'de'=>'Engineering as a Service', 'ar'=>'الهندسة كخدمة',            'route'=>'engineering.index'],
+                ['en'=>'Workshops & Training',     'de'=>'Workshops & Training',     'ar'=>'ورش العمل',               'route'=>'workshops.index'],
             ],
         ],
         [
+            'key'=>'products',
             'label_en'=>'Products', 'label_de'=>'Produkte', 'label_ar'=>'المنتجات',
             'items'=>[
                 ['en'=>'All Products',  'de'=>'Alle Produkte',  'ar'=>'جميع المنتجات', 'route'=>'products.index'],
@@ -22,6 +27,18 @@
             ],
         ],
         [
+            'key'=>'apps',
+            'label_en'=>'Apps', 'label_de'=>'Apps', 'label_ar'=>'التطبيقات',
+            'items'=>array_merge(
+                [['en'=>'All apps', 'de'=>'Alle Apps', 'ar'=>'كل التطبيقات', 'route'=>'apps.index']],
+                $navPlatformApps->map(fn ($app) => [
+                    'en'=>$app->name_en, 'de'=>$app->name_de ?: $app->name_en, 'ar'=>$app->name_ar ?: $app->name_en,
+                    'route'=>'apps.show', 'params'=>['slug'=>$app->slug],
+                ])->all()
+            ),
+        ],
+        [
+            'key'=>'ecosystem',
             'label_en'=>'Ecosystem', 'label_de'=>'Ökosystem', 'label_ar'=>'النظام البيئي',
             'items'=>[
                 ['en'=>'Industries',        'de'=>'Branchen',           'ar'=>'القطاعات',          'route'=>'industries.index'],
@@ -33,9 +50,11 @@
             ],
         ],
         [
+            'key'=>'company',
             'label_en'=>'Company', 'label_de'=>'Unternehmen', 'label_ar'=>'الشركة',
             'items'=>[
                 ['en'=>'About',    'de'=>'Über uns',   'ar'=>'من نحن',       'route'=>'about'],
+                ['en'=>'HOPn Labs','de'=>'HOPn Labs',  'ar'=>'مختبرات HOPn', 'route'=>'labs.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
                 ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
                 ['en'=>'Careers',  'de'=>'Karriere',   'ar'=>'وظائف',        'route'=>'careers.index'],
@@ -43,6 +62,28 @@
             ],
         ],
     ];
+
+    // Admin-added header items (Navigation → Header, with a Dropdown Group
+    // set) get appended to the matching dropdown's built-in list above —
+    // additive only, nothing hardcoded is ever removed or replaced.
+    $headerNavItems = \App\Models\NavigationItem::where('menu_location', 'header')
+        ->whereNotNull('dropdown_group')
+        ->where('visible_' . $lang, true)
+        ->orderBy('sort_order')
+        ->get();
+
+    foreach ($groups as &$group) {
+        $extra = $headerNavItems->where('dropdown_group', $group['key'])->map(function ($navItem) use ($lang) {
+            return [
+                'en'   => $navItem->label_en,
+                'de'   => $navItem->label_de ?: $navItem->label_en,
+                'ar'   => $navItem->label_ar ?: $navItem->label_en,
+                'href' => $navItem->hrefFor($lang),
+            ];
+        })->values()->all();
+        $group['items'] = array_merge($group['items'], $extra);
+    }
+    unset($group);
 @endphp
 
 <style>
@@ -107,7 +148,7 @@
                 <div class="hopn-dropdown">
                     <div class="hopn-dropdown-header">{{ $group['label_en'] }}</div>
                     @foreach($group['items'] as $item)
-                    <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}">
+                    <a href="{{ isset($item['href']) ? $item['href'] : route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}">
                         {{ $activeLang==='ar'?$item['ar']:($activeLang==='de'?$item['de']:$item['en']) }}
                     </a>
                     @endforeach
@@ -180,7 +221,7 @@
                 </button>
                 <div x-show="sub" style="padding-left:20px;">
                     @foreach($group['items'] as $item)
-                    <a href="{{ route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}"
+                    <a href="{{ isset($item['href']) ? $item['href'] : route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}"
                        style="display:block; padding:10px 14px; border-radius:8px; color:#CBD5E1; font-size:13px; text-decoration:none;"
                        onmouseover="this.style.color='white'; this.style.background='rgba(255,255,255,0.04)'"
                        onmouseout="this.style.color='#CBD5E1'; this.style.background='transparent'">
@@ -212,3 +253,4 @@
         </div>
     </div>
 </header>
+

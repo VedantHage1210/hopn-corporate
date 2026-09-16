@@ -43,12 +43,30 @@
         <p class="text-xs text-slate-500 mt-1">Paste image URL (Cloudinary, ImgBB, Unsplash etc.)</p>
     </div>
 
-    {{-- Published --}}
+    {{-- Publishing --}}
+    <div class="md:col-span-2 mt-2">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Publishing</p>
+    </div>
+    @php $currentStatus = old('status', $page->status ?? 'draft'); @endphp
+    <div class="md:col-span-2 grid gap-4 md:grid-cols-2" x-data="{ status: '{{ $currentStatus }}' }">
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Status</label>
+            <select name="status" x-model="status"
+                    class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                <option value="draft" @selected($currentStatus==='draft')>Draft</option>
+                <option value="published" @selected($currentStatus==='published')>Published</option>
+                <option value="scheduled" @selected($currentStatus==='scheduled')>Scheduled</option>
+            </select>
+        </div>
+        <div x-show="status === 'scheduled'" x-cloak>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Publish at</label>
+            <input type="datetime-local" name="scheduled_at"
+                   value="{{ old('scheduled_at', isset($page->scheduled_at) ? $page->scheduled_at?->format('Y-m-d\TH:i') : '') }}"
+                   class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+            <p class="text-xs text-slate-500 mt-1">Page goes live automatically at this date/time — no manual step needed.</p>
+        </div>
+    </div>
     <div class="md:col-span-2 flex items-center gap-4 mt-2">
-        <label class="flex items-center gap-2 text-sm text-slate-300">
-            <input type="checkbox" name="is_published" value="1" {{ old('is_published', $page->is_published ?? false) ? 'checked' : '' }}>
-            Published
-        </label>
         <label class="flex items-center gap-2 text-sm text-slate-300">
             <input type="checkbox" name="is_visible" value="1" {{ old('is_visible', $page->is_visible ?? true) ? 'checked' : '' }}>
             Visible

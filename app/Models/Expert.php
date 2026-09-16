@@ -9,6 +9,7 @@ class Expert extends Model
     use HasFactory;
 
     protected $fillable = [
+        'consulting_category_id',
         'name',
         'initials',
         'specialization_en',
@@ -36,5 +37,20 @@ class Expert extends Model
         if ($value) return $value;
         $words = explode(' ', $this->name);
         return strtoupper(substr($words[0], 0, 1) . (isset($words[1]) ? substr($words[1], 0, 1) : ''));
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ConsultingCategory::class, 'consulting_category_id');
+    }
+
+    public function availabilities()
+    {
+        return $this->hasMany(ExpertAvailability::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(ConsultingBooking::class);
     }
 }

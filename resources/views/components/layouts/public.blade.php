@@ -183,6 +183,9 @@
     </main>
     <x-footer />
     <x-cookie-banner />
+    @if(session('status'))
+        <div id="hopn-flash-status" data-message="{{ session('status') }}" data-type="success" style="display:none;"></div>
+    @endif
     @stack('scripts')
 </body>
 </html>
