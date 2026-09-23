@@ -87,6 +87,22 @@
 @endphp
 
 <style>
+
+@keyframes hopnLogoSpin {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+}
+.hopn-logo-3d-inner { transition: animation-duration 0.3s ease; }
+.hopn-logo-3d:hover .hopn-logo-3d-inner { animation-duration: 1.4s; }
+@media (prefers-reduced-motion: reduce) {
+    .hopn-logo-3d-inner { animation: none; }
+}
+
+
+
+
+
+
 .hopn-nav-item { position:relative; }
 .hopn-dropdown {
     position:absolute; top:100%; left:50%; transform:translateX(-50%);
@@ -125,12 +141,27 @@
         style="background:#030712; border-bottom:1px solid rgba(255,255,255,0.06); transform:translateZ(0);">
     <div class="container-shell" style="display:flex; align-items:center; justify-content:space-between; height:60px;">
 
-        {{-- Logo --}}
-        <a href="{{ route('home', ['lang'=>$lang]) }}"
-           style="display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
-            <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; background:#4F6EF7; color:white; font-size:13px; font-weight:900; box-shadow:0 0 16px rgba(79,110,247,0.4);">H</span>
-            <span style="font-size:17px; font-weight:800; color:white; letter-spacing:-0.4px;">HOPn</span>
-        </a>
+       {{-- Logo --}}
+<a href="{{ route('home', ['lang'=>$lang]) }}"
+   style="display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
+    <span class="hopn-logo-3d" style="display:inline-block; width:32px; height:32px; perspective:220px;" aria-hidden="true">
+        <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite;">
+            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 6px rgba(139,92,246,0.55));">
+                <path d="M20 5 L34 32 L6 32 Z" fill="none" stroke="#A78BFA" stroke-width="2.4" stroke-linejoin="round"/>
+                <circle cx="20" cy="5" r="3.4" fill="#8B5CF6"/>
+                <circle cx="6" cy="32" r="3.4" fill="#8B5CF6"/>
+                <circle cx="34" cy="32" r="3.4" fill="#8B5CF6"/>
+            </svg>
+            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 6px rgba(79,110,247,0.55));">
+                <path d="M20 5 L34 32 L6 32 Z" fill="none" stroke="#4F6EF7" stroke-width="2.4" stroke-linejoin="round"/>
+                <circle cx="20" cy="5" r="3.4" fill="#4F6EF7"/>
+                <circle cx="6" cy="32" r="3.4" fill="#4F6EF7"/>
+                <circle cx="34" cy="32" r="3.4" fill="#4F6EF7"/>
+            </svg>
+        </span>
+    </span>
+    <span style="font-size:17px; font-weight:800; color:white; letter-spacing:-0.4px;">HOPn</span>
+</a>
 
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="align-items:center; gap:2px;">
