@@ -50,4 +50,4 @@
 <link rel="alternate" hreflang="x-default" href="{{ url(preg_replace('#^/(en|de|ar)#', '/en', $currentPath)) }}">
 
 {{-- Favicon --}}
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234F6EF7'/><text y='.9em' font-size='80' font-weight='900' fill='white' font-family='Arial'>H</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23030712'/><path d='M20 8 L32 30 L8 30 Z' fill='none' stroke='%238B5CF6' stroke-width='3.4' stroke-linejoin='round'/><circle cx='20' cy='8' r='3.4' fill='%238B5CF6'/><circle cx='8' cy='30' r='3.4' fill='%238B5CF6'/><circle cx='32' cy='30' r='3.4' fill='%238B5CF6'/></svg>">

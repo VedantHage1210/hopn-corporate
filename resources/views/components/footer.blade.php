@@ -56,8 +56,35 @@
             <div style="grid-column: span 2;">
                 <a href="{{ route('home', ['lang' => $lang]) }}"
                    style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; margin-bottom:16px;">
-                    <span style="display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:900;">H</span>
-                    <span style="font-size:18px; font-weight:700; color:white;">HOPn</span>
+
+
+
+
+
+                 <span class="hopn-logo-3d" style="display:inline-block; width:36px; height:36px; perspective:220px; position:relative;" aria-hidden="true">
+    <span style="position:absolute; inset:-6px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%); animation:hopnLogoGlow 2.4s ease-in-out infinite;"></span>
+    <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite; position:relative;">
+        <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 8px rgba(139,92,246,0.75));">
+            <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#A78BFA" stroke-width="3.2" stroke-linejoin="round"/>
+            <circle cx="20" cy="4" r="4.2" fill="#8B5CF6"/>
+            <circle cx="4.5" cy="33" r="4.2" fill="#8B5CF6"/>
+            <circle cx="35.5" cy="33" r="4.2" fill="#8B5CF6"/>
+        </svg>
+        <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 8px rgba(79,110,247,0.75));">
+            <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#4F6EF7" stroke-width="3.2" stroke-linejoin="round"/>
+            <circle cx="20" cy="4" r="4.2" fill="#4F6EF7"/>
+            <circle cx="4.5" cy="33" r="4.2" fill="#4F6EF7"/>
+            <circle cx="35.5" cy="33" r="4.2" fill="#4F6EF7"/>
+        </svg>
+    </span>
+</span>
+
+
+
+
+
+
+
                 </a>
                 <p style="font-size:13px; color:#CBD5E1; line-height:1.7; max-width:220px; margin-bottom:20px;">
                     {{ $lang === 'ar' ? 'مركز الابتكار الأوروبي يربط الأعمال والتعليم والبحث.' : ($lang === 'de' ? 'Europäischer Innovationshub für Business, Bildung und Forschung.' : 'European innovation hub connecting business, education, and research.') }}

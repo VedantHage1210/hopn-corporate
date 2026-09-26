@@ -88,6 +88,10 @@
 
 <style>
 
+@keyframes hopnLogoGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
 @keyframes hopnLogoSpin {
     from { transform: rotateY(0deg); }
     to   { transform: rotateY(360deg); }
@@ -141,26 +145,27 @@
         style="background:#030712; border-bottom:1px solid rgba(255,255,255,0.06); transform:translateZ(0);">
     <div class="container-shell" style="display:flex; align-items:center; justify-content:space-between; height:60px;">
 
-       {{-- Logo --}}
+      {{-- Logo --}}
 <a href="{{ route('home', ['lang'=>$lang]) }}"
    style="display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
-    <span class="hopn-logo-3d" style="display:inline-block; width:32px; height:32px; perspective:220px;" aria-hidden="true">
-        <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite;">
-            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 6px rgba(139,92,246,0.55));">
-                <path d="M20 5 L34 32 L6 32 Z" fill="none" stroke="#A78BFA" stroke-width="2.4" stroke-linejoin="round"/>
-                <circle cx="20" cy="5" r="3.4" fill="#8B5CF6"/>
-                <circle cx="6" cy="32" r="3.4" fill="#8B5CF6"/>
-                <circle cx="34" cy="32" r="3.4" fill="#8B5CF6"/>
+    <span class="hopn-logo-3d" style="display:inline-block; width:38px; height:38px; perspective:220px; position:relative;" aria-hidden="true">
+        <span style="position:absolute; inset:-6px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%); animation:hopnLogoGlow 2.4s ease-in-out infinite;"></span>
+        <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite; position:relative;">
+            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 8px rgba(139,92,246,0.75));">
+                <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#A78BFA" stroke-width="3.2" stroke-linejoin="round"/>
+                <circle cx="20" cy="4" r="4.2" fill="#8B5CF6"/>
+                <circle cx="4.5" cy="33" r="4.2" fill="#8B5CF6"/>
+                <circle cx="35.5" cy="33" r="4.2" fill="#8B5CF6"/>
             </svg>
-            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 6px rgba(79,110,247,0.55));">
-                <path d="M20 5 L34 32 L6 32 Z" fill="none" stroke="#4F6EF7" stroke-width="2.4" stroke-linejoin="round"/>
-                <circle cx="20" cy="5" r="3.4" fill="#4F6EF7"/>
-                <circle cx="6" cy="32" r="3.4" fill="#4F6EF7"/>
-                <circle cx="34" cy="32" r="3.4" fill="#4F6EF7"/>
+            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 8px rgba(79,110,247,0.75));">
+                <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#4F6EF7" stroke-width="3.2" stroke-linejoin="round"/>
+                <circle cx="20" cy="4" r="4.2" fill="#4F6EF7"/>
+                <circle cx="4.5" cy="33" r="4.2" fill="#4F6EF7"/>
+                <circle cx="35.5" cy="33" r="4.2" fill="#4F6EF7"/>
             </svg>
         </span>
     </span>
-    <span style="font-size:17px; font-weight:800; color:white; letter-spacing:-0.4px;">HOPn</span>
+    <span style="font-size:19px; font-weight:900; color:white; letter-spacing:-0.5px;">HOPn</span>
 </a>
 
         {{-- Desktop Nav --}}
