@@ -19,8 +19,6 @@ class Product extends Model
         'solution_en', 'solution_de', 'solution_ar',
         'features_en', 'features_de', 'features_ar',
         'use_cases_en', 'use_cases_de', 'use_cases_ar',
-        'cta_label_en', 'cta_label_de', 'cta_label_ar',
-        'cta_url',
         'hero_image_url',
         'target_audience',
         'industry_ids',
@@ -28,7 +26,6 @@ class Product extends Model
         'features',
         'pricing_tiers',
         'screenshots',
-        'cta_type',
         'is_published',
         'published_at',
     ];

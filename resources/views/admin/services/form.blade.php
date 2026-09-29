@@ -158,5 +158,10 @@
         </div>
     </div>
 </div>
+
+        <div class="flex gap-3">
+            <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update Service' : 'Create Service' }}</button>
+            <a href="{{ route('admin.services.index') }}" class="rounded border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:text-white">Cancel</a>
+        </div>
     </form>
 </x-layouts.admin>

@@ -3,104 +3,28 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\PermissionRegistrar;
 
+/**
+ * Retired.
+ *
+ * This seeder used to assign a granular set of permission names
+ * (e.g. "view pages", "create services", "publish blog") to the
+ * Editor/Publisher/Translator roles. Nothing in the app ever checked
+ * those permission names — every route and @can() check in the app
+ * uses a different, simpler set: content.edit / content.delete /
+ * system.manage (see database/seeders/AdminUserSeeder.php).
+ *
+ * Running this seeder on its own (e.g. `php artisan db:seed
+ * --class=RolesPermissionsSeeder`) would overwrite the real
+ * permissions those roles depend on and lock those users out of the
+ * admin panel with 403 errors. AdminUserSeeder is now the single
+ * source of truth for roles and permissions, so this class is kept
+ * only so old references to it don't break, and does nothing.
+ */
 class RolesPermissionsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        app(PermissionRegistrar::class)->forgetCachedPermissions();
-
-        $modules = [
-            'pages',
-            'services',
-            'blog',
-            'jobs',
-            'leads',
-            'media',
-            'redirects',
-            'settings',
-            'languages',
-            'users',
-        ];
-
-        $actions = ['view', 'create', 'update', 'delete', 'publish'];
-
-        $permissions = [];
-
-        foreach ($modules as $module) {
-            foreach ($actions as $action) {
-                $permissions[] = Permission::firstOrCreate([
-                    'name' => "{$action} {$module}",
-                    'guard_name' => 'web',
-                ]);
-            }
-        }
-
-        $superAdmin = Role::firstOrCreate([
-            'name' => 'superadmin',
-            'guard_name' => 'web',
-        ]);
-
-        $admin = Role::firstOrCreate([
-            'name' => 'admin',
-            'guard_name' => 'web',
-        ]);
-
-        $editor = Role::firstOrCreate([
-            'name' => 'editor',
-            'guard_name' => 'web',
-        ]);
-
-        $publisher = Role::firstOrCreate([
-            'name' => 'publisher',
-            'guard_name' => 'web',
-        ]);
-
-        $translator = Role::firstOrCreate([
-            'name' => 'translator',
-            'guard_name' => 'web',
-        ]);
-
-        $superAdmin->syncPermissions($permissions);
-        $admin->syncPermissions($permissions);
-        $editor->syncPermissions(Permission::whereIn('name', [
-            'view pages',
-            'create pages',
-            'update pages',
-            'publish pages',
-            'view services',
-            'create services',
-            'update services',
-            'publish services',
-            'view blog',
-            'create blog',
-            'update blog',
-            'publish blog',
-            'view jobs',
-            'create jobs',
-            'update jobs',
-            'publish jobs',
-            'view media',
-            'create media',
-            'update media',
-            'delete media',
-        ])->get());
-        $publisher->syncPermissions(Permission::where('name', 'like', '% publish%')->orWhere('name', 'like', 'view %')->get());
-        $translator->syncPermissions(Permission::whereIn('name', [
-            'view pages',
-            'update pages',
-            'view services',
-            'update services',
-            'view blog',
-            'update blog',
-            'view jobs',
-            'update jobs',
-        ])->get());
+        // Intentionally a no-op. See class docblock above.
     }
 }

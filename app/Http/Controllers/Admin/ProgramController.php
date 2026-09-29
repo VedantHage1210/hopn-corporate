@@ -35,10 +35,6 @@ class ProgramController extends Controller
             'duration'       => ['nullable', 'string', 'max:255'],
             'duration_weeks' => ['nullable', 'integer'],
             'image_url'      => ['nullable', 'url', 'max:500'],
-            'cta_label_en'   => ['nullable', 'string', 'max:100'],
-            'cta_label_de'   => ['nullable', 'string', 'max:100'],
-            'cta_label_ar'   => ['nullable', 'string', 'max:100'],
-            'cta_url'        => ['nullable', 'string', 'max:500'],
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
@@ -80,10 +76,6 @@ class ProgramController extends Controller
             'duration'       => ['nullable', 'string', 'max:255'],
             'duration_weeks' => ['nullable', 'integer'],
             'image_url'      => ['nullable', 'url', 'max:500'],
-            'cta_label_en'   => ['nullable', 'string', 'max:100'],
-            'cta_label_de'   => ['nullable', 'string', 'max:100'],
-            'cta_label_ar'   => ['nullable', 'string', 'max:100'],
-            'cta_url'        => ['nullable', 'string', 'max:500'],
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
