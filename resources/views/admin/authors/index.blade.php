@@ -23,8 +23,8 @@
                     <td class="px-3 py-3 text-slate-400">{{ $author->id }}</td>
                     <td class="px-3 py-3">
                         <div class="flex items-center gap-3">
-                            @if($author->avatar)
-                            <img src="{{ Storage::url($author->avatar) }}" alt="{{ $author->name }}" class="h-8 w-8 rounded-full object-cover">
+                            @if($author->avatar_path)
+                            <img src="{{ $author->avatar_path }}" alt="{{ $author->name }}" class="h-8 w-8 rounded-full object-cover">
                             @else
                             <div class="h-8 w-8 rounded-full bg-indigo-900 flex items-center justify-center text-xs font-bold text-indigo-300">
                                 {{ strtoupper(substr($author->name, 0, 2)) }}

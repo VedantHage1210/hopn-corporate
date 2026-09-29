@@ -17,6 +17,7 @@ class Author extends Model
         'bio',       // bio_en stored as bio in DB
         'bio_en',
         'bio_de',
+        'bio_ar',
         'avatar_path',
         'linkedin_url',
         'twitter_url',

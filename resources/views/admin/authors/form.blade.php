@@ -38,17 +38,17 @@
             </div>
 
             <div>
-                <label class="mb-1 block text-sm font-medium text-slate-200">Avatar Photo</label>
-                @if(!empty($author->avatar))
+                <label class="mb-1 block text-sm font-medium text-slate-200">Avatar Image URL</label>
+                @if(!empty($author->avatar_path))
                     <div class="mb-2">
-                        <img src="{{ Storage::url($author->avatar) }}" alt="Current avatar" class="h-16 w-16 rounded-full object-cover border border-slate-700">
-                        <p class="mt-1 text-xs text-slate-400">Upload a new file to replace.</p>
+                        <img src="{{ $author->avatar_path }}" alt="Current avatar" class="h-16 w-16 rounded-full object-cover border border-slate-700">
                     </div>
                 @endif
-                <input type="file" name="avatar" accept="image/*"
+                <input type="url" name="avatar_path" value="{{ old('avatar_path', $author->avatar_path ?? '') }}"
+                    placeholder="https://example.com/photo.jpg"
                     class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
-                <p class="mt-1 text-xs text-slate-500">JPG, PNG or WebP. Max 2 MB.</p>
-                @error('avatar')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
+                <p class="mt-1 text-xs text-slate-500">Paste image URL from Cloudinary, ImgBB, etc.</p>
+                @error('avatar_path')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
             </div>
 
             <div class="grid gap-5 md:grid-cols-3">

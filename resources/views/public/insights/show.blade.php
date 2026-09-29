@@ -11,6 +11,25 @@
         <a href="{{ route('insights.index', ['lang' => $lang]) }}" class="text-sm text-slate-400 hover:text-white">
             ← @if($lang === 'ar') العودة إلى الرؤى @elseif($lang === 'de') Zurück zu Insights @else Back to Insights @endif
         </a>
+        @if($post->author)
+        <div class="mt-4 flex items-center gap-3">
+            @if($post->author->avatar_path)
+            <img src="{{ $post->author->avatar_path }}" alt="{{ $post->author->name }}"
+                 style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+            @else
+            <div style="width:40px; height:40px; border-radius:50%; background:#1E293B; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#94A3B8;">
+                {{ strtoupper(substr($post->author->name, 0, 2)) }}
+            </div>
+            @endif
+            <div>
+                <p style="font-size:14px; font-weight:600; color:white; margin:0;">{{ $post->author->name }}</p>
+                @if($post->published_at)
+                <p style="font-size:12px; color:#94A3B8; margin:0;">{{ $post->published_at->format('d M Y') }}</p>
+                @endif
+            </div>
+        </div>
+        @endif
+
         <article class="card-panel p-6 md:p-10 mt-4 text-slate-300 leading-relaxed" @if($lang === 'ar') dir="rtl" @endif>
             {!! nl2br(e($postContent)) !!}
         </article>

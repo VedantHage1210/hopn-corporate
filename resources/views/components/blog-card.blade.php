@@ -6,9 +6,12 @@
 @endphp
 <article class="card-panel p-5">
     @if(!empty($post->featured_image_path))
-        <img loading="lazy" decoding="async" src="{{ Storage::url($post->featured_image_path) }}" alt="{{ $cardTitle }}" class="mb-3 h-40 w-full rounded object-cover" loading="lazy">
+        <img loading="lazy" decoding="async" src="{{ $post->featured_image_path }}" alt="{{ $cardTitle }}" class="mb-3 h-40 w-full rounded object-cover">
     @endif
     <h3 class="text-lg font-semibold text-white">{{ $cardTitle }}</h3>
+    @if($post->author)
+    <p class="mt-1 text-xs text-slate-400">{{ $post->author->name }}</p>
+    @endif
     <p class="mt-2 text-sm text-slate-300">{{ $cardExcerpt }}</p>
     <a href="{{ route('insights.show', ['lang' => $lang, 'slug' => $post->slug]) }}" class="mt-4 inline-block text-sm text-indigo-300">{{ $lang === 'ar' ? 'اقرأ المزيد' : ($lang === 'de' ? 'Weiterlesen' : 'Read more') }}</a>
 </article>

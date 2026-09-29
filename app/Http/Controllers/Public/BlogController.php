@@ -53,7 +53,7 @@ class BlogController extends Controller
                         ->where('is_published', true)
                         ->firstOrFail();
 
-        $related = BlogPost::with('category')
+        $related = BlogPost::with(['category', 'author'])
                            ->where('is_published', true)
                            ->where('id', '!=', $post->id)
                            ->when($post->blog_category_id, fn($q) =>
