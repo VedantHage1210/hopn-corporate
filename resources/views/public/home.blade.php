@@ -187,6 +187,7 @@
             </a>
         </div>
 
+        @if($siteSettings['stats_home_top_visible'] ?? false)
         <div class="hopn-hero-in hopn-hero-in-5" style="display:inline-flex; flex-wrap:wrap; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); border-radius:16px; overflow:hidden;">
             @foreach([
                 ['50+', $lang==='ar'?'منظمة':($lang==='de'?'Organisationen':'Organizations')],
@@ -200,6 +201,7 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -438,6 +440,7 @@
 </section>
 
 {{-- 7. ANIMATED LOGO MARQUEE --}}
+@if($partners->count() > 0)
 <section style="padding:80px 0; background:#030712; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); overflow:hidden;">
     <div class="container-shell hopn-reveal" style="margin-bottom:48px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
@@ -447,6 +450,7 @@
                     @if($lang==='ar') موثوق به من قادة الصناعة @elseif($lang==='de') Vertrauen von Industrieführern @else Trusted by industry leaders @endif
                 </h2>
             </div>
+            @if($siteSettings['stats_home_bottom_visible'] ?? false)
             <div style="display:flex; flex-wrap:wrap; gap:28px; align-items:center;">
                 @foreach([['50+','Partners'],['12+','Countries'],['15+','Universities'],['€500M+','Innovation Capital']] as $s)
                 <div style="text-align:center;">
@@ -455,11 +459,10 @@
                 </div>
                 @endforeach
             </div>
+            @endif
         </div>
     </div>
 
-    {{-- DB partners first if available, otherwise marquee --}}
-    @if($partners->count() > 0)
     <div style="margin-bottom:12px;">
         <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Our Partners</div>
         <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
@@ -477,49 +480,8 @@
             </div>
         </div>
     </div>
-    @else
-    {{-- Animated marquee fallback --}}
-    <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Industry Leaders</div>
-        <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
-            <div style="display:flex; animation:marquee 30s linear infinite; width:fit-content;">
-                @php $b1=['Bosch','BMW Group','Mercedes-Benz','Audi','Volkswagen','Allianz','Deutsche Bahn','Infineon','SAP','Siemens','Continental','Deutsche Telekom']; @endphp
-                @foreach(array_merge($b1,$b1) as $brand)
-                <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Technology Partners</div>
-        <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
-            <div style="display:flex; animation:marquee2 28s linear infinite; width:fit-content;">
-                @php $b2=['Microsoft','Google','Google Cloud','AWS','IBM','Intel','NVIDIA','Oracle','Cisco','Lenovo','Neo4j','Datadog']; @endphp
-                @foreach(array_merge($b2,$b2) as $brand)
-                <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div>
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Research & Academic Excellence</div>
-        <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
-            <div style="display:flex; animation:marquee 35s linear infinite; width:fit-content;">
-                @php $b3=['TU München','ETH Zürich','MIT','Stanford','RWTH Aachen','TU Berlin','Fraunhofer','Max Planck','KIT','HU Berlin','LMU München','TU Dresden']; @endphp
-                @foreach(array_merge($b3,$b3) as $brand)
-                <div style="min-width:190px; padding:16px 20px; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(255,255,255,0.04);">
-                    <span class="hopn-marquee-item" style="font-size:14px; font-weight:700; color:#475569; white-space:nowrap;">{{ $brand }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    @endif
 </section>
+@endif
 
 @if($featuredStartups->count() > 0 || $featuredInvestors->count() > 0)
 {{-- STARTUP & INVESTOR ECOSYSTEM --}}
@@ -619,6 +581,7 @@
 @endif
 
 {{-- 8. CONSULTING EXPERTS --}}
+@if(isset($experts) && $experts->count() > 0)
 <section id="consulting-experts" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
@@ -639,7 +602,6 @@
             </a>
         </div>
 
-        @if(isset($experts) && $experts->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @foreach($experts as $expert)
             @php $c = $expert->accent_color ?? '#4F6EF7'; @endphp
@@ -685,19 +647,16 @@
             </div>
             @endforeach
         </div>
-        @else
-        <div style="text-align:center; padding:60px; border:1px solid rgba(255,255,255,0.06); border-radius:16px; background:#0A0F1E;">
-            <p style="font-size:15px; color:#94A3B8;">
-                @if($lang==='ar') أضف خبراء الاستشارة من لوحة الإدارة.
-                @elseif($lang==='de') Beratungsexperten über das Admin-Panel hinzufügen.
-                @else Add consulting experts from the Admin Panel → Experts. @endif
-            </p>
-        </div>
-        @endif
     </div>
 </section>
+@endif
 
 {{-- 9. WORKSHOPS --}}
+@php
+    $homeWorkshops = \App\Models\Workshop::published()->orderBy('sort_order')->limit(3)->get();
+    $wsColors = ['#4F6EF7','#10B981','#8B5CF6'];
+@endphp
+@if($homeWorkshops->count() > 0)
 <section style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
@@ -718,11 +677,7 @@
             </a>
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
-            @php
-                $homeWorkshops = \App\Models\Workshop::published()->orderBy('sort_order')->limit(3)->get();
-                $wsColors = ['#4F6EF7','#10B981','#8B5CF6'];
-            @endphp
-            @forelse($homeWorkshops as $ws)
+            @foreach($homeWorkshops as $ws)
             <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$ws->slug]) }}" data-tilt class="hopn-lift-card" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $wsColors[$loop->index % 3] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
@@ -735,9 +690,7 @@
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                 </span>
             </a>
-            @empty
-            <p style="color:#64748B; grid-column:1/-1; text-align:center; padding:20px 0;">No workshops published yet — add them from Admin → Workshops.</p>
-            @endforelse
+            @endforeach
         </div>
         <div style="display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;">
             <a href="{{ route('workshops.index', ['lang'=>$lang]) }}"
@@ -753,6 +706,7 @@
         </div>
     </div>
 </section>
+@endif
 
 {{-- 10. EVENTS --}}
 <section style="padding:100px 0; background:#050A14;">
@@ -797,6 +751,7 @@
 </section>
 
 {{-- 11. NEWSROOM --}}
+@if($latestPosts->count() > 0)
 <section style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
@@ -813,7 +768,6 @@
                 @if($lang==='ar') جميع الأخبار @elseif($lang==='de') Alle Neuigkeiten @else All News @endif →
             </a>
         </div>
-        @if($latestPosts->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($latestPosts as $post)
             @php $c=['#4F6EF7','#10B981','#8B5CF6'][$loop->index%3]; @endphp
@@ -838,13 +792,9 @@
             </a>
             @endforeach
         </div>
-        @else
-        <div style="text-align:center; padding:48px; color:#64748B;">
-            <p>@if($lang==='ar') الأخبار قادمة قريباً @elseif($lang==='de') Neuigkeiten folgen in Kürze @else Latest news coming soon @endif</p>
-        </div>
-        @endif
     </div>
 </section>
+@endif
 
 {{-- 12. TESTIMONIALS --}}
 @if($testimonials->count() > 0)

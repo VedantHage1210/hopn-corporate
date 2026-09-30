@@ -22,9 +22,12 @@ class SiteSettingsSeeder extends Seeder
                 'default_locale' => 'en',
                 'timezone' => 'Europe/Berlin',
                 'contact_email' => 'hello@hopn.eu',
-                'contact_phone' => '+49-30-123456',
-                'office_address' => 'Alexanderplatz 1, 10178 Berlin, Germany',
-                'office_address_de' => 'Alexanderplatz 1, 10178 Berlin, Deutschland',
+                // Left blank on purpose: unverified placeholder numbers/address
+                // were live on the site. Fill these in via Admin > Settings
+                // once the founder confirms the real phone and office address.
+                'contact_phone' => null,
+                'office_address' => null,
+                'office_address_de' => null,
                 'social_links' => [
                     'linkedin' => 'https://www.linkedin.com/company/hopn',
                     'x' => 'https://x.com/hopn_eu',

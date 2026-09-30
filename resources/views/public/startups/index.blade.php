@@ -47,6 +47,7 @@
         </div>
 
         {{-- Stats --}}
+        @if($siteSettings['stats_startups_visible'] ?? false)
         <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; max-width:700px; margin:0 auto; overflow:hidden;">
             @foreach([
                 ['num'=>'50+', 'label'=>$lang==='ar'?'شركة ناشئة':($lang==='de'?'Startups':'Startups')],
@@ -60,6 +61,7 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -167,9 +169,6 @@
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') الشركات الناشئة قادمة قريباً @elseif($lang==='de') Startups folgen in Kürze @else Startups Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#64748B;">
-                @if($lang==='ar') أضف الشركات الناشئة من لوحة الإدارة @elseif($lang==='de') Startups über das Admin-Panel hinzufügen @else Add startups from the admin panel @endif
-            </p>
         </div>
         @endif
     </div>

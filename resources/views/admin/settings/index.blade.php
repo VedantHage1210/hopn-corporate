@@ -184,6 +184,27 @@
             </div>
         </div>
 
+        <div class="card-panel p-6 mt-4">
+            <h2 class="mb-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Stats Sections</h2>
+            <p class="mb-4 text-xs text-slate-500">All hidden by default. Only turn a strip on once the numbers are real and confirmed &mdash; do not show placeholder figures.</p>
+            <div class="grid gap-3 md:grid-cols-2">
+                @foreach([
+                    'stats_hero_visible'         => 'Hero stats strip',
+                    'stats_home_top_visible'     => 'Homepage &mdash; top stats row',
+                    'stats_home_bottom_visible'  => 'Homepage &mdash; bottom stats row',
+                    'stats_about_visible'        => 'About page stats',
+                    'stats_startups_visible'     => 'Startups page stats',
+                    'stats_case_studies_visible' => 'Case Studies page stats',
+                ] as $key => $label)
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" name="{{ $key }}" id="{{ $key }}" value="1"
+                        {{ ($settings[$key] ?? false) ? 'checked' : '' }}>
+                    <label for="{{ $key }}" class="text-sm text-slate-300">{!! $label !!}</label>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
         <div class="flex gap-3">
             <button type="submit" class="btn-primary">Save Settings</button>
         </div>

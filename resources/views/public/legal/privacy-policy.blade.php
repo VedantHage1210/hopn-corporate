@@ -24,8 +24,8 @@
                     {{ $lang === 'ar' ? '1. مسؤول معالجة البيانات' : ($lang === 'de' ? '1. Verantwortlicher' : '1. Data Controller') }}
                 </h2>
                 <p style="color:#CBD5E1;">
-                    HOPn Corporate GmbH<br>
-                    Musterstraße 1, 10115 Berlin, Germany<br>
+                    HOPn UG (haftungsbeschränkt)<br>
+                    {{ $siteSettings['office_address'] ?? '[Address pending — to be confirmed by founder]' }}<br>
                     Email: <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a>
                 </p>
             </div>
@@ -101,7 +101,7 @@
                 </h2>
                 <p style="color:#CBD5E1;">
                     Email: <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a><br>
-                    HOPn Corporate GmbH, Musterstraße 1, 10115 Berlin, Germany
+                    HOPn UG (haftungsbeschränkt), {{ $siteSettings['office_address'] ?? '[Address pending]' }}
                 </p>
             </div>
 

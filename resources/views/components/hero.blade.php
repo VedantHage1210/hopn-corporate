@@ -66,6 +66,7 @@
             </a>
         </div>
 
+        @if($siteSettings['stats_hero_visible'] ?? false)
         <div style="margin-top:60px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:700px; margin-left:auto; margin-right:auto;">
            
             @foreach($heroStats as $stat)
@@ -75,6 +76,7 @@
             </div>
             @endforeach
         </div>
+        @endif
 
     </div>
 

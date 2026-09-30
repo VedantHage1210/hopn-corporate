@@ -24,7 +24,7 @@
             @empty
             <div class="card-panel" style="grid-column:1/-1; padding:40px; text-align:center;">
                 <p style="color:#94A3B8; font-size:14px; margin:0;">
-                    @if($lang==='ar') لا توجد تطبيقات منشورة بعد. @elseif($lang==='de') Noch keine Apps veröffentlicht. @else No apps published yet — add them from Admin → Apps. @endif
+                    @if($lang==='ar') لا توجد تطبيقات منشورة بعد. @elseif($lang==='de') Noch keine Apps veröffentlicht. @else No apps published yet. @endif
                 </p>
             </div>
             @endforelse

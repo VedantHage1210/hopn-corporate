@@ -66,6 +66,15 @@ class SettingController extends Controller
         $data['social_links']     = json_encode($request->input('social_links', []));
         $data['seo_defaults']     = json_encode($request->input('seo_defaults', []));
 
+        // Stat strips default to hidden; each one is turned on manually once
+        // the founder confirms the numbers are real and current.
+        $data['stats_hero_visible']         = $request->boolean('stats_hero_visible');
+        $data['stats_home_top_visible']     = $request->boolean('stats_home_top_visible');
+        $data['stats_home_bottom_visible']  = $request->boolean('stats_home_bottom_visible');
+        $data['stats_about_visible']        = $request->boolean('stats_about_visible');
+        $data['stats_startups_visible']     = $request->boolean('stats_startups_visible');
+        $data['stats_case_studies_visible'] = $request->boolean('stats_case_studies_visible');
+
         $setting = SiteSetting::first();
         if ($setting) {
             $setting->update($data);

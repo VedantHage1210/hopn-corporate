@@ -22,21 +22,18 @@
             <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:16px;">
                 {{ $lang === 'ar' ? 'بيانات الناشر' : ($lang === 'de' ? 'Angaben gemäß § 5 TMG' : 'Information pursuant to § 5 TMG') }}
             </h2>
-            <p>HOPn Corporate GmbH<br>
-            Musterstraße 1<br>
-            10115 Berlin<br>
-            Germany</p>
+            <p>HOPn UG (haftungsbeschränkt)<br>
+            {{ $siteSettings['office_address'] ?? '[Address pending — to be confirmed by founder]' }}</p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
                 {{ $lang === 'ar' ? 'ممثل الشركة' : ($lang === 'de' ? 'Vertreten durch' : 'Represented by') }}
             </h2>
-            <p>{{ $lang === 'ar' ? 'المدير العام: د. ماكس موستيرمان' : ($lang === 'de' ? 'Geschäftsführer: Dr. Max Mustermann' : 'Managing Director: Dr. Max Mustermann') }}</p>
+            <p>[{{ $lang === 'ar' ? 'اسم المدير العام قيد التأكيد' : ($lang === 'de' ? 'Name des Geschäftsführers ausstehend' : 'Managing Director name pending — to be confirmed by founder') }}]</p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
                 {{ $lang === 'ar' ? 'التواصل' : ($lang === 'de' ? 'Kontakt' : 'Contact') }}
             </h2>
             <p>
-                {{ $lang === 'ar' ? 'الهاتف' : ($lang === 'de' ? 'Telefon' : 'Phone') }}: +49 30 123456789<br>
                 Email: <a href="mailto:legal@hopn.eu" style="color:#4F6EF7;">legal@hopn.eu</a><br>
                 Web: <a href="https://www.hopn.eu" style="color:#4F6EF7;">www.hopn.eu</a>
             </p>
@@ -46,8 +43,8 @@
             </h2>
             <p>
                 {{ $lang === 'ar' ? 'مسجل في:' : ($lang === 'de' ? 'Eingetragen im Handelsregister.' : 'Registered in the Commercial Register.') }}<br>
-                {{ $lang === 'ar' ? 'محكمة التسجيل: محكمة برلين' : ($lang === 'de' ? 'Registergericht: Amtsgericht Berlin' : 'Register Court: District Court Berlin') }}<br>
-                {{ $lang === 'ar' ? 'رقم التسجيل:' : ($lang === 'de' ? 'Registernummer:' : 'Registration Number:') }} HRB 123456
+                {{ $lang === 'ar' ? 'محكمة التسجيل: محكمة كيمبتن' : ($lang === 'de' ? 'Registergericht: Amtsgericht Kempten' : 'Register Court: Amtsgericht Kempten') }}<br>
+                {{ $lang === 'ar' ? 'رقم التسجيل:' : ($lang === 'de' ? 'Registernummer:' : 'Registration Number:') }} HRB 17191
             </p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
@@ -55,7 +52,7 @@
             </h2>
             <p>
                 {{ $lang === 'ar' ? 'رقم تعريف ضريبة المبيعات وفقاً للمادة 27 أ من قانون ضريبة المبيعات:' : ($lang === 'de' ? 'Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:' : 'VAT identification number pursuant to § 27 a of the German VAT Act:') }}<br>
-                DE 123456789
+                [{{ $lang === 'ar' ? 'قيد التأكيد' : ($lang === 'de' ? 'ausstehend' : 'pending — to be confirmed by founder') }}]
             </p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">

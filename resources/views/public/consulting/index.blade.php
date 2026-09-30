@@ -68,7 +68,7 @@
             </div>
             @empty
             <p style="color:#64748B; grid-column:1/-1; text-align:center; padding:40px 0;">
-                @if($lang==='ar') لا يوجد خبراء حاليًا. @elseif($lang==='de') Aktuell keine Experten verfügbar. @else No experts published yet — add them from Admin → Experts. @endif
+                @if($lang==='ar') لا يوجد خبراء حاليًا. @elseif($lang==='de') Aktuell keine Experten verfügbar. @else No experts published yet. @endif
             </p>
             @endforelse
         </div>

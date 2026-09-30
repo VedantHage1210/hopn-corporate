@@ -16,7 +16,7 @@
 
 {{-- Basic Meta --}}
 <meta name="description" content="{{ $pageDesc }}">
-<meta name="keywords" content="HOPn, innovation ecosystem, AI, robotics, digital twins, startups, Europe, Germany, Berlin">
+<meta name="keywords" content="HOPn, innovation ecosystem, AI, robotics, digital twins, startups, Europe, Germany">
 <meta name="author" content="HOPn Corporate GmbH">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ $pageUrl }}">

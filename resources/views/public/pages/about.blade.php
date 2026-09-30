@@ -32,6 +32,7 @@
             @else Connecting business, education, and research to build intelligent digital solutions across Europe and beyond. @endif
         </p>
         {{-- Stats --}}
+        @if($siteSettings['stats_about_visible'] ?? false)
         <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; max-width:800px; margin:0 auto; overflow:hidden;">
             @foreach([
                 ['num'=>'50+',  'label'=>$lang==='ar'?'عميل مؤسسي':($lang==='de'?'Unternehmenskunden':'Enterprise Clients')],
@@ -46,6 +47,7 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -128,6 +130,7 @@
 </section>
 
 {{-- TEAM --}}
+@if($teamMembers->count() > 0)
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
@@ -143,7 +146,6 @@
                 @else Experts in AI, robotics, data, and digital innovation @endif
             </p>
         </div>
-        @if($teamMembers->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;">
             @foreach($teamMembers as $member)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
@@ -174,15 +176,9 @@
             </div>
             @endforeach
         </div>
-        @else
-        <div style="text-align:center; padding:60px; border:1px solid rgba(255,255,255,0.06); border-radius:16px; background:#0A0F1E;">
-            <p style="font-size:15px; color:#94A3B8;">
-                @if($lang==='ar') الفريق قادم قريباً @elseif($lang==='de') Team folgt in Kürze @else Team members coming soon @endif
-            </p>
-        </div>
-        @endif
     </div>
 </section>
+@endif
 
 {{-- CORE VALUES --}}
 <section style="padding:100px 0; background:#030712;">
@@ -263,7 +259,7 @@
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
             @foreach([
-                ['flag'=>'🇩🇪','city'=>'Berlin','en'=>'Germany','de'=>'Deutschland','ar'=>'ألمانيا','type_en'=>'Headquarters','type_de'=>'Hauptsitz','type_ar'=>'المقر الرئيسي','color'=>'#4F6EF7'],
+                ['flag'=>'🇩🇪','city'=>$siteSettings['office_address'] ?? 'Germany','en'=>'Germany','de'=>'Deutschland','ar'=>'ألمانيا','type_en'=>'Headquarters','type_de'=>'Hauptsitz','type_ar'=>'المقر الرئيسي','color'=>'#4F6EF7'],
                 ['flag'=>'🇪🇺','city'=>'European Union','en'=>'EU Markets','de'=>'EU-Märkte','ar'=>'أسواق الاتحاد الأوروبي','type_en'=>'Regional Operations','type_de'=>'Regionalbetrieb','type_ar'=>'العمليات الإقليمية','color'=>'#10B981'],
                 ['flag'=>'🌍','city'=>'MENA Region','en'=>'Middle East & North Africa','de'=>'Naher Osten & Nordafrika','ar'=>'الشرق الأوسط وشمال أفريقيا','type_en'=>'Partner Network','type_de'=>'Partnernetzwerk','type_ar'=>'شبكة الشركاء','color'=>'#F59E0B'],
             ] as $loc)

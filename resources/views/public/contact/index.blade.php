@@ -34,10 +34,11 @@
             @php
             $infos=[
                 ['icon'=>'📧','color'=>'#4F6EF7','en'=>'Email','de'=>'E-Mail','ar'=>'البريد الإلكتروني','value'=>'contact@hopn.eu','link'=>'mailto:contact@hopn.eu'],
-                ['icon'=>'📍','color'=>'#10B981','en'=>'Location','de'=>'Standort','ar'=>'الموقع','value'=>'Berlin, Germany','link'=>null],
+                ['icon'=>'📍','color'=>'#10B981','en'=>'Location','de'=>'Standort','ar'=>'الموقع','value'=>$siteSettings['office_address'] ?? null,'link'=>null],
                 ['icon'=>'💼','color'=>'#8B5CF6','en'=>'Partnerships','de'=>'Partnerschaften','ar'=>'الشراكات','value'=>'Partner Inquiry','link'=>route('partner-inquiry.index',['lang'=>$lang])],
                 ['icon'=>'🚀','color'=>'#F59E0B','en'=>'Startups','de'=>'Startups','ar'=>'الشركات الناشئة','value'=>'Apply Now','link'=>route('startups.index',['lang'=>$lang])],
             ];
+            $infos = array_filter($infos, fn($i) => !empty($i['value']));
             @endphp
             @foreach($infos as $info)
             <div class="hopn-lift-card-nobg" style="border:1px solid {{ $info['color'] }}20; background:#0A0F1E; border-radius:14px; padding:24px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">

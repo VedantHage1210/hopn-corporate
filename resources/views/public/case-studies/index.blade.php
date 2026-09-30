@@ -114,9 +114,6 @@
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') دراسات الحالة قادمة قريباً @elseif($lang==='de') Fallstudien folgen in Kürze @else Case Studies Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#64748B;">
-                @if($lang==='ar') أضف دراسات الحالة من لوحة الإدارة @elseif($lang==='de') Über das Admin-Panel hinzufügen @else Add from the admin panel @endif
-            </p>
         </div>
         @endif
     </div>
@@ -125,6 +122,7 @@
 {{-- STATS --}}
 <section style="padding:80px 0; background:#030712; border-top:1px solid rgba(255,255,255,0.04);">
     <div class="container-shell">
+        @if($siteSettings['stats_case_studies_visible'] ?? false)
         <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; overflow:hidden; max-width:800px; margin:0 auto 64px;">
             @foreach([
                 ['num'=>'50+','label'=>$lang==='ar'?'مشروع منجز':($lang==='de'?'Abgeschlossene Projekte':'Projects Delivered')],
@@ -138,6 +136,7 @@
             </div>
             @endforeach
         </div>
+        @endif
 
         {{-- CTA --}}
         <div style="text-align:center;">

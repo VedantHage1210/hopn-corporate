@@ -197,9 +197,6 @@
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') المستثمرون قادمون قريباً @elseif($lang==='de') Investoren folgen in Kürze @else Investors Coming Soon @endif
             </h3>
-            <p style="font-size:14px; color:#64748B;">
-                @if($lang==='ar') أضف المستثمرين من لوحة الإدارة @elseif($lang==='de') Investoren über das Admin-Panel hinzufügen @else Add investors from the admin panel @endif
-            </p>
         </div>
         @endif
     </div>
