@@ -128,6 +128,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         })->name('digital-twins.index');
 
         Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->middleware('throttle:5,1')->name('newsletter.subscribe');
+        Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');
 
         Route::post('/training-application', [LeadController::class, 'trainingApplication'])
             ->middleware('throttle:5,1')

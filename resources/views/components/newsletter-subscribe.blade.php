@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (result.ok) {
                     if (errorBox) errorBox.style.display = 'none';
                     email.value = '';
-                    window.hopnShowToast('Subscribed! Thank you for subscribing.', 'success');
+                    window.hopnShowToast(result.data.message || 'Thank you!', 'success');
                 } else {
                     var msg = (result.data.errors && result.data.errors.email && result.data.errors.email[0]) || 'Something went wrong — please try again.';
                     if (errorBox) { errorBox.textContent = msg; errorBox.style.display = 'block'; }
