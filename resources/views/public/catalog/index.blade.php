@@ -120,10 +120,17 @@
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
-                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
-                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
-                            @if($lang==='ar') منتج @elseif($lang==='de') Produkt @else Product @endif
-                        </span>
+                    <div style="display:flex; gap:6px; margin-bottom:14px;">
+                        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; width:fit-content;">
+                            <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
+                                @if($lang==='ar') منتج @elseif($lang==='de') Produkt @else Product @endif
+                            </span>
+                        </div>
+                        <div style="display:inline-flex; align-items:center; gap:6px; background:{{ $product->statusColor() }}15; border:1px solid {{ $product->statusColor() }}30; border-radius:6px; padding:3px 10px; width:fit-content;">
+                            <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:{{ $product->statusColor() }}; letter-spacing:0.08em;">
+                                {{ $product->statusLabel($lang) }}
+                            </span>
+                        </div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
                         <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:900; color:{{ $c }}; flex-shrink:0;">

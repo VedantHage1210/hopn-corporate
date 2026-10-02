@@ -15,6 +15,7 @@
                     <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Slug</th>
                     <th class="px-3 py-2">Status</th>
+                    <th class="px-3 py-2">Venture Stage</th>
                     <th class="px-3 py-2">Actions</th>
                 </tr>
             </thead>
@@ -36,6 +37,11 @@
                         </span>
                     </td>
                     <td class="px-3 py-3">
+                        <span class="rounded-full px-2 py-0.5 text-xs font-semibold" style="background:{{ $item->statusColor() }}22; color:{{ $item->statusColor() }};">
+                            {{ $item->statusLabel() }}
+                        </span>
+                    </td>
+                    <td class="px-3 py-3">
                         <div class="flex gap-3">
                             <a href="{{ route('admin.products.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                             <a href="{{ url('/en/products/'.$item->slug) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
@@ -49,7 +55,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" class="px-3 py-6 text-center text-slate-500">No products found.</td></tr>
+                <tr><td colspan="7" class="px-3 py-6 text-center text-slate-500">No products found.</td></tr>
                 @endforelse
             </tbody>
         </table>

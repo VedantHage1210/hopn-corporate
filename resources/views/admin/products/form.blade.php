@@ -204,6 +204,16 @@
                         class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white font-mono">
                 </div>
                 <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Status</label>
+                    <select name="status" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                        @php $currentStatus = old('status', $item->status ?? 'concept'); @endphp
+                        <option value="concept" @selected($currentStatus === 'concept')>Concept</option>
+                        <option value="pilot" @selected($currentStatus === 'pilot')>Pilot</option>
+                        <option value="live" @selected($currentStatus === 'live')>Live</option>
+                    </select>
+                    <p class="mt-1 text-xs text-slate-500">Shown as a badge on the public page — keep it honest.</p>
+                </div>
+                <div>
                     <label class="mb-1 block text-sm font-medium text-slate-200">Target Audience</label>
                     <input type="text" name="target_audience" value="{{ old('target_audience', $item->target_audience ?? '') }}"
                         placeholder="e.g. Enterprises, CTOs"

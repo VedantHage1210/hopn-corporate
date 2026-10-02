@@ -53,6 +53,10 @@
             <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-lift-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; position:relative;">
 
+                <span style="position:absolute; top:12px; right:12px; z-index:2; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
+                    {{ $product->statusLabel($lang) }}
+                </span>
+
                 {{-- Image or gradient --}}
                 @if($product->hero_image_url)
                 <div style="height:180px; overflow:hidden; position:relative;">

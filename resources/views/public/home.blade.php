@@ -374,6 +374,9 @@
             <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card" data-tilt
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $c }}60, transparent);"></div>
+                <span style="position:absolute; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
+                    {{ $product->statusLabel($lang) }}
+                </span>
                 <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:{{ $c }}; margin-bottom:12px; opacity:0.85;">{{ $cat }}</div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     <div class="hopn-product-icon" style="width:44px; height:44px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">

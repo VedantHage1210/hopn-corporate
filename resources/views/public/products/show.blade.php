@@ -33,6 +33,13 @@
                style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة @elseif($lang === 'de') Zurück @else Back to Products @endif
             </a>
+            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid {{ $product->statusColor() }}55; background:{{ $product->statusColor() }}1A; border-radius:999px; padding:4px 14px; margin-bottom:20px;">
+                <span style="width:7px; height:7px; border-radius:50%; background:{{ $product->statusColor() }};"></span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:{{ $product->statusColor() }};">
+                    {{ $product->statusLabel($lang) }}
+                </span>
+            </div>
+
             @if(!empty($product->tagline_en))
             <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
                 <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#818CF8;">
