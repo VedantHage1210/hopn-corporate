@@ -55,6 +55,7 @@
                     <th class="px-3 py-2">Type</th>
                     <th class="px-3 py-2">Company</th>
                     <th class="px-3 py-2">Status</th>
+                    <th class="px-3 py-2">Lang</th>
                     <th class="px-3 py-2">Received</th>
                     <th class="px-3 py-2">Actions</th>
                 </tr>
@@ -106,6 +107,7 @@
                             {{ ucfirst(str_replace('-', ' ', $lead->status)) }}
                         </span>
                     </td>
+                    <td class="px-3 py-3 text-slate-400 text-xs uppercase">{{ $lead->locale ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400 text-xs">{{ $lead->created_at->format('d M Y') }}</td>
                     <td class="px-3 py-3">
                         <a href="{{ route('admin.leads.show', $lead) }}" class="text-indigo-300 hover:text-indigo-200">View</a>

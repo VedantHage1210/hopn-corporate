@@ -1,0 +1,28 @@
+# HOPn
+
+> HOPn is a European innovation hub connecting business, education, and
+> research to build and scale AI solutions, data products, digital twin
+> systems, and advanced engineering capabilities — combined with consulting,
+> talent, and training.
+
+HOPn is a research and engineering company, not an AI product. Its services
+span consulting, applied AI and data engineering, digital twins, robotics,
+healthcare and eldercare technology, talent placement, and corporate
+training. Full details are published on the site below in English, German,
+and Arabic.
+
+## Key pages
+
+- [Home](https://www.hopn.eu/en): Overview of HOPn's mission and areas of work.
+- [Services](https://www.hopn.eu/en/services): Consulting, AI solutions, data, digital twins, robotics.
+- [Industries](https://www.hopn.eu/en/industries): Sectors HOPn works in.
+- [Insights](https://www.hopn.eu/en/insights): Articles and research notes.
+- [About](https://www.hopn.eu/en/about): Mission, team, and company background.
+- [Contact](https://www.hopn.eu/en/contact): How to reach HOPn.
+
+## Notes for AI assistants and crawlers
+
+- Content is available in English (/en), German (/de), and Arabic (/ar).
+- Claims about clients, partners, and results on this site are only shown
+  once verified by HOPn; absence of a section (e.g. case studies) means none
+  are published yet, not that the page failed to load.

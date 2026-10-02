@@ -96,6 +96,9 @@
         @if (!empty($leadData['source_url']))
         <p style="font-size:12px;color:#4a5568;margin:0 0 4px;">Source URL: {{ $leadData['source_url'] }}</p>
         @endif
+        @if (!empty($leadData['locale']))
+        <p style="font-size:12px;color:#4a5568;margin:0 0 4px;">Language: {{ strtoupper($leadData['locale']) }}</p>
+        @endif
         @if (!empty($leadData['utm_source']))
         <p style="font-size:12px;color:#4a5568;margin:0;">UTM: {{ $leadData['utm_source'] }} / {{ $leadData['utm_medium'] ?? '—' }} / {{ $leadData['utm_campaign'] ?? '—' }}</p>
         @endif

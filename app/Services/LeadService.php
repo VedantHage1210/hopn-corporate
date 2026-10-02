@@ -22,6 +22,7 @@ class LeadService
             'company'      => $validated['company'] ?? null,
             'message'      => $validated['message'] ?? null,
             'source_url'   => $request->url(),
+            'locale'       => app()->getLocale(),
             'utm_source'   => $request->input('utm_source', session('utm_source')),
             'utm_medium'   => $request->input('utm_medium', session('utm_medium')),
             'utm_campaign' => $request->input('utm_campaign', session('utm_campaign')),
