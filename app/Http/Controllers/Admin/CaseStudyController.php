@@ -46,12 +46,20 @@ class CaseStudyController extends Controller
             'tech_stack'     => ['nullable', 'string'],
             'image_url'      => ['nullable', 'url'],
             'pdf_url'        => ['nullable', 'url'],
+            'quote_en'       => ['nullable', 'string', 'max:1000'],
+            'quote_de'       => ['nullable', 'string', 'max:1000'],
+            'quote_ar'       => ['nullable', 'string', 'max:1000'],
+            'quote_author'   => ['nullable', 'string', 'max:255'],
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
         $data['is_published'] = $request->boolean('is_published');
         $data['industry_ids'] = $request->industry_ids ?? [];
         $data['service_ids']  = $request->service_ids ?? [];
+        // A quote can only go live once someone has explicitly ticked that
+        // permission to publish it was given — never implied by just filling
+        // the text field in.
+        $data['published_with_permission'] = $request->boolean('published_with_permission');
 
         CaseStudy::create($data);
         return redirect()->route('admin.case-studies.index')->with('status', 'Case study created successfully.');
@@ -98,12 +106,20 @@ class CaseStudyController extends Controller
             'tech_stack'     => ['nullable', 'string'],
             'image_url'      => ['nullable', 'url'],
             'pdf_url'        => ['nullable', 'url'],
+            'quote_en'       => ['nullable', 'string', 'max:1000'],
+            'quote_de'       => ['nullable', 'string', 'max:1000'],
+            'quote_ar'       => ['nullable', 'string', 'max:1000'],
+            'quote_author'   => ['nullable', 'string', 'max:255'],
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
         $data['is_published'] = $request->boolean('is_published');
         $data['industry_ids'] = $request->industry_ids ?? [];
         $data['service_ids']  = $request->service_ids ?? [];
+        // A quote can only go live once someone has explicitly ticked that
+        // permission to publish it was given — never implied by just filling
+        // the text field in.
+        $data['published_with_permission'] = $request->boolean('published_with_permission');
 
         $caseStudy->update($data);
         return redirect()->route('admin.case-studies.index')->with('status', 'Case study updated successfully.');

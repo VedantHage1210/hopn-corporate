@@ -4,6 +4,7 @@
     $csChallenge  = $lang === 'ar' && $caseStudy->challenge_ar ? $caseStudy->challenge_ar : ($lang === 'de' && $caseStudy->challenge_de ? $caseStudy->challenge_de : $caseStudy->challenge_en);
     $csSolution   = $lang === 'ar' && $caseStudy->solution_ar ? $caseStudy->solution_ar : ($lang === 'de' && $caseStudy->solution_de ? $caseStudy->solution_de : $caseStudy->solution_en);
     $csOutcomes   = $lang === 'ar' && $caseStudy->outcomes_ar ? $caseStudy->outcomes_ar : ($lang === 'de' && $caseStudy->outcomes_de ? $caseStudy->outcomes_de : $caseStudy->outcomes_en);
+    $csQuote      = $lang === 'ar' && $caseStudy->quote_ar ? $caseStudy->quote_ar : ($lang === 'de' && $caseStudy->quote_de ? $caseStudy->quote_de : $caseStudy->quote_en);
 @endphp
 <x-layouts.public :title="$csTitle">
     <x-hero :title="$csTitle" :subtitle="$caseStudy->industry" />
@@ -76,6 +77,18 @@
                         <div class="mt-6 p-4 bg-indigo-900/20 border-l-4 border-indigo-500 rounded">
                             <p class="font-semibold text-white">{{ $caseStudy->metrics }}</p>
                         </div>
+                    @endif
+
+                    @if($caseStudy->published_with_permission && !empty($csQuote))
+                        <blockquote class="mt-6 p-5 border-l-4 border-indigo-500 bg-[#0F172A] rounded italic text-slate-200">
+                            &ldquo;{{ $csQuote }}&rdquo;
+                            @if(!empty($caseStudy->quote_author))
+                                <footer class="mt-3 not-italic text-sm text-slate-400">— {{ $caseStudy->quote_author }}</footer>
+                            @endif
+                        </blockquote>
+                        <p class="mt-2 text-xs text-slate-500">
+                            @if($lang === 'ar') نُشر بإذن @elseif($lang === 'de') Veröffentlicht mit Genehmigung @else Published with permission @endif
+                        </p>
                     @endif
                 </div>
             </div>

@@ -205,6 +205,10 @@
                        class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
                         {{ $lang === 'ar' ? 'سياسة الكوكيز' : ($lang === 'de' ? 'Cookie-Richtlinie' : 'Cookie Policy') }}
                     </a>
+                    <a href="{{ route('legal.security', ['lang' => $lang]) }}"
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
+                        {{ $lang === 'ar' ? 'الأمان والثقة' : ($lang === 'de' ? 'Sicherheit & Vertrauen' : 'Security & Trust') }}
+                    </a>
                     @foreach($footerLegal as $item)
                     <a href="{{ $item->hrefFor($lang) }}"
                        class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">

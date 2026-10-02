@@ -139,6 +139,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         Route::get('/legal/impressum', [LegalController::class, 'impressum'])->name('legal.impressum');
         Route::get('/legal/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
         Route::get('/legal/cookie-policy', [LegalController::class, 'cookie'])->name('legal.cookie');
+        Route::get('/security', [LegalController::class, 'security'])->name('legal.security');
         
         // Public Page Show Route (Localized)
         Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');

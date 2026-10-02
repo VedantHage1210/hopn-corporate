@@ -59,13 +59,21 @@ Lead::create([
     'status'     => 'new',
 ]);
 
-        \App\Jobs\SendCareerApplicationJob::dispatch([
-            'name'            => $data['name'],
-            'email'           => $data['email'],
-            'phone'           => $data['phone'] ?? null,
-            'cover_letter'    => $data['cover_letter'] ?? null,
-            'tracking_token'  => $token,
-        ], $job->title);
+        // Application + lead are already saved above — that must never fail
+        // for the applicant. QUEUE_CONNECTION=sync runs this mail send
+        // inline; if SMTP has an issue, log it and still let the submission
+        // succeed rather than showing the applicant a broken error page.
+        try {
+            \App\Jobs\SendCareerApplicationJob::dispatch([
+                'name'            => $data['name'],
+                'email'           => $data['email'],
+                'phone'           => $data['phone'] ?? null,
+                'cover_letter'    => $data['cover_letter'] ?? null,
+                'tracking_token'  => $token,
+            ], $job->title);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('SendCareerApplicationJob dispatch failed', ['error' => $e->getMessage(), 'email' => $data['email']]);
+        }
 
         return back()->with([
             'status'         => 'Your application has been submitted successfully!',

@@ -108,6 +108,38 @@
             </div>
         </div>
 
+        <div class="card-panel p-6 mt-4">
+            <h2 class="mb-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Client Quote</h2>
+            <p class="mb-4 text-xs text-slate-500">Optional. Only include a quote if the client has explicitly agreed to it — tick the permission box below before this case study can go live with a quote.</p>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Quote (EN)</label>
+                    <textarea name="quote_en" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('quote_en', $item->quote_en ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Quote (DE)</label>
+                    <textarea name="quote_de" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('quote_de', $item->quote_de ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Quote (AR)</label>
+                    <textarea name="quote_ar" rows="3" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('quote_ar', $item->quote_ar ?? '') }}</textarea>
+                </div>
+            </div>
+            <div class="mt-4 grid gap-4 md:grid-cols-2 items-end">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Quote Author (name, title)</label>
+                    <input type="text" name="quote_author" value="{{ old('quote_author', $item->quote_author ?? '') }}"
+                        placeholder="e.g. Jane Doe, CTO at Client Co."
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                </div>
+                <div class="flex items-center gap-3 pb-2">
+                    <input type="checkbox" name="published_with_permission" id="published_with_permission" value="1"
+                        {{ old('published_with_permission', $item->published_with_permission ?? false) ? 'checked' : '' }}>
+                    <label for="published_with_permission" class="text-sm text-slate-300">Client has given permission to publish this quote</label>
+                </div>
+            </div>
+        </div>
+
 
 {{-- Industries & Services --}}
 <div class="card-panel p-6">

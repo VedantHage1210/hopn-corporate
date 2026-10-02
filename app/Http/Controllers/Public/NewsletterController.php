@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendNewsletterConfirmationJob;
 use App\Models\Lead;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NewsletterController extends Controller
@@ -50,7 +51,15 @@ class NewsletterController extends Controller
 
         $confirmUrl = route('newsletter.confirm', ['token' => $token, 'lang' => $locale]);
 
-        SendNewsletterConfirmationJob::dispatch($data['email'], $confirmUrl, $locale);
+        // The signup is already saved above — that must never fail for the
+        // visitor. QUEUE_CONNECTION=sync means this dispatch runs the mail
+        // send inline; if SMTP has an issue, log it and still return success
+        // rather than surfacing a broken "Something went wrong" to them.
+        try {
+            SendNewsletterConfirmationJob::dispatch($data['email'], $confirmUrl, $locale);
+        } catch (\Throwable $e) {
+            Log::error('SendNewsletterConfirmationJob dispatch failed', ['error' => $e->getMessage(), 'email' => $data['email']]);
+        }
 
         return $this->respond($request, pending: true);
     }

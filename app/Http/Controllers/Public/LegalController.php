@@ -20,4 +20,9 @@ class LegalController extends Controller
     {
         return view('public.legal.cookie-policy');
     }
+
+    public function security()
+    {
+        return view('public.legal.security-trust');
+    }
 }

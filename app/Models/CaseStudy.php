@@ -22,6 +22,8 @@ class CaseStudy extends Model
         'challenge_en', 'challenge_de', 'challenge_ar',
         'solution_en', 'solution_de', 'solution_ar',
         'outcomes_en', 'outcomes_de', 'outcomes_ar',
+        'quote_en', 'quote_de', 'quote_ar', 'quote_author',
+        'published_with_permission',
         'tech_stack',
         'image_url',
         'pdf_url',
@@ -36,6 +38,7 @@ class CaseStudy extends Model
         'industry_ids' => 'array',
         'service_ids'  => 'array',
         'is_published' => 'boolean',
+        'published_with_permission' => 'boolean',
         'published_at' => 'datetime',
     ];
 
