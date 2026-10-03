@@ -35,7 +35,12 @@
                             </div>
                         @endif
                     </td>
-                    <td class="px-3 py-3 font-medium text-white">{{ $member->name }}</td>
+                    <td class="px-3 py-3 font-medium text-white">
+                        {{ $member->name }}
+                        @if($member->is_founder)
+                            <span class="ml-1 rounded-full bg-indigo-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-indigo-300">Founder</span>
+                        @endif
+                    </td>
                     <td class="px-3 py-3 text-slate-400">{{ $member->role_en ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ $member->role_de ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400">{{ $member->role_ar ?? '—' }}</td>
@@ -47,7 +52,7 @@
                     <td class="px-3 py-3 text-slate-400">{{ $member->sort_order ?? 0 }}</td>
                     <td class="px-3 py-3 flex gap-3 items-center">
                         <a href="{{ route('admin.team-members.edit', $member) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
-                      <a href="{{ route('about', ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                      <a href="{{ route('team.index', ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         @can('content.delete')
 <form method="POST" action="{{ route('admin.team-members.destroy', $member) }}" class="inline-block">
                             @csrf @method('DELETE')

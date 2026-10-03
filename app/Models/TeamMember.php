@@ -15,13 +15,15 @@ class TeamMember extends Model
         'role_en', 'role_de', 'role_ar',
         'bio_en',  'bio_de',  'bio_ar',
         'photo',
+        'is_founder',
         'linkedin',
         'sort_order',
         'visible',
     ];
 
     protected $casts = [
-        'visible' => 'boolean',
+        'visible'    => 'boolean',
+        'is_founder' => 'boolean',
     ];
 
     public function getActivitylogOptions(): LogOptions

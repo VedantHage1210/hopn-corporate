@@ -54,6 +54,7 @@
             'label_en'=>'Company', 'label_de'=>'Unternehmen', 'label_ar'=>'الشركة',
             'items'=>[
                 ['en'=>'About',    'de'=>'Über uns',   'ar'=>'من نحن',       'route'=>'about'],
+                ['en'=>'Founder & Team', 'de'=>'Gründer & Team', 'ar'=>'المؤسس والفريق', 'route'=>'team.index'],
                 ['en'=>'HOPn Labs','de'=>'HOPn Labs',  'ar'=>'مختبرات HOPn', 'route'=>'labs.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
                 ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
@@ -289,4 +290,3 @@
         </div>
     </div>
 </header>
-

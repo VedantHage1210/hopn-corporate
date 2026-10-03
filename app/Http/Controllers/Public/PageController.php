@@ -15,6 +15,25 @@ class PageController extends Controller
         return view('public.pages.about', compact('page', 'teamMembers'));
     }
 
+    /**
+     * Dedicated Founder & Team page (brief item 13) — separate from the
+     * About page's team strip, with the founder(s) featured first.
+     */
+    public function team()
+    {
+        $founders = TeamMember::where('visible', true)
+                               ->where('is_founder', true)
+                               ->orderBy('sort_order')
+                               ->get();
+
+        $teamMembers = TeamMember::where('visible', true)
+                                  ->where('is_founder', false)
+                                  ->orderBy('sort_order')
+                                  ->get();
+
+        return view('public.pages.team', compact('founders', 'teamMembers'));
+    }
+
     public function show(string $lang, string $slug)
     {
         $page = Page::with('blocks')->where('slug', $slug)

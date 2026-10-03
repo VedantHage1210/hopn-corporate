@@ -40,6 +40,7 @@ Route::prefix('{lang}')
          
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [PageController::class, 'about'])->name('about');
+        Route::get('/team', [PageController::class, 'team'])->name('team.index');
 
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');

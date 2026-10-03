@@ -99,6 +99,11 @@
                         {{ old('visible', $item->visible ?? true) ? 'checked' : '' }}>
                     <label for="visible" class="text-sm text-slate-300">Visible on website</label>
                 </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" name="is_founder" id="is_founder"
+                        {{ old('is_founder', $item->is_founder ?? false) ? 'checked' : '' }}>
+                    <label for="is_founder" class="text-sm text-slate-300">Show as Founder (featured separately on Team page)</label>
+                </div>
             </div>
             <div class="mt-6">
                 <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update Member' : 'Save Member' }}</button>

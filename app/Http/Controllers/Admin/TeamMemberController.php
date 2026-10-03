@@ -45,6 +45,7 @@ class TeamMemberController extends Controller
             'linkedin'   => $request->linkedin,
             'sort_order' => $request->sort_order ?? 0,
             'visible'    => $request->boolean('visible', true),
+            'is_founder' => $request->boolean('is_founder'),
         ]);
 
         return redirect()->route('admin.team-members.index')->with('status', 'Team member created.');
@@ -90,6 +91,7 @@ class TeamMemberController extends Controller
             'linkedin'   => $request->linkedin,
             'sort_order' => $request->sort_order ?? 0,
             'visible'    => $request->boolean('visible'),
+            'is_founder' => $request->boolean('is_founder'),
         ]);
 
         return redirect()->route('admin.team-members.index')->with('status', 'Team member updated.');

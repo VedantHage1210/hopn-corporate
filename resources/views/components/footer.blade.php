@@ -26,6 +26,7 @@
     ];
     $defaultCompany = [
         ['route' => 'about',          'en' => 'About HOPn', 'de' => 'Über Uns',  'ar' => 'من نحن'],
+        ['route' => 'team.index',     'en' => 'Founder & Team', 'de' => 'Gründer & Team', 'ar' => 'المؤسس والفريق'],
         ['route' => 'partners.index', 'en' => 'Partners',   'de' => 'Partner',   'ar' => 'الشركاء'],
         ['route' => 'careers.index',  'en' => 'Careers',    'de' => 'Karriere',  'ar' => 'وظائف'],
     ];
