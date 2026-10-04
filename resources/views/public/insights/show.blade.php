@@ -47,4 +47,26 @@
         </div>
         @endif
     </section>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": {{ json_encode($postTitle) }},
+        @if(!empty($postExcerpt))
+        "description": {{ json_encode($postExcerpt) }},
+        @endif
+        "inLanguage": "{{ $lang }}",
+        @if($post->published_at)
+        "datePublished": "{{ $post->published_at->toIso8601String() }}",
+        @endif
+        @if($post->author)
+        "author": { "@type": "Person", "name": {{ json_encode($post->author->name) }} },
+        @endif
+        @if(!empty($post->featured_image_path))
+        "image": {{ json_encode($post->featured_image_path) }},
+        @endif
+        "publisher": { "@type": "Organization", "name": "HOPn" }
+    }
+    </script>
 </x-layouts.public>

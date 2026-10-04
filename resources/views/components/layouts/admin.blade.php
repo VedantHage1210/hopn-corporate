@@ -69,6 +69,8 @@
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.consulting-packages.index') }}">Consulting Packages</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.consulting-bookings.index') }}">Consulting Bookings</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.case-studies.index') }}">Case Studies</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.research-publications.index') }}">Research Publications</a>
+                <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.academic-partners.index') }}">Academic Partners</a>
                 <a class="block hover:text-white transition-colors duration-200" href="{{ route('admin.pages.index') }}">Pages</a>
 
                 <div class="pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500">Ecosystem</div>

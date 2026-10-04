@@ -259,6 +259,45 @@
                 @if($lang==='ar') عرض الشركات الناشئة @elseif($lang==='de') Startups ansehen @else View Startups @endif
             </a>
         </div>
+
+        {{-- Request a Deck --}}
+        <div style="max-width:520px; margin:56px auto 0; text-align:left; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); border-radius:16px; padding:32px;" @if($lang==='ar') dir="rtl" style="text-align:right;" @endif>
+            <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:8px;">
+                @if($lang==='ar') اطلب عرض المستثمرين @elseif($lang==='de') Investoren-Deck anfordern @else Request the Investor Deck @endif
+            </h3>
+            <p style="font-size:13px; color:#94A3B8; margin-bottom:20px; line-height:1.6;">
+                @if($lang==='ar') سيتم إرسال نظرة عامة موجزة إلى بريدك الإلكتروني. تتوفر غرفة بيانات كاملة عند الطلب بعد محادثة أولية.
+                @elseif($lang==='de') Eine kurze Übersicht wird an Ihre E-Mail gesendet. Ein vollständiger Datenraum ist nach einem ersten Gespräch auf Anfrage verfügbar.
+                @else A short overview will be sent to your email. A full data room is available on request, following an initial conversation. @endif
+            </p>
+            <form action="{{ route('investors.request-deck', ['lang'=>$lang]) }}" method="POST">
+                @csrf
+                <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;" aria-hidden="true">
+                <div style="display:grid; gap:12px;">
+                    <input type="text" name="name" required
+                        aria-label="{{ $lang==='ar' ? 'الاسم الكامل' : ($lang==='de' ? 'Vollständiger Name' : 'Full name') }}"
+                        placeholder="{{ $lang==='ar' ? 'الاسم الكامل' : ($lang==='de' ? 'Vollständiger Name' : 'Full name') }}"
+                        style="width:100%; padding:11px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#0A0F1E; color:white; font-size:14px;">
+                    <input type="email" name="email" required
+                        aria-label="{{ $lang==='ar' ? 'البريد الإلكتروني' : ($lang==='de' ? 'E-Mail' : 'Email') }}"
+                        placeholder="{{ $lang==='ar' ? 'البريد الإلكتروني' : ($lang==='de' ? 'E-Mail' : 'Email') }}"
+                        style="width:100%; padding:11px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#0A0F1E; color:white; font-size:14px;">
+                    <input type="text" name="company"
+                        aria-label="{{ $lang==='ar' ? 'الشركة (اختياري)' : ($lang==='de' ? 'Unternehmen (optional)' : 'Firm (optional)') }}"
+                        placeholder="{{ $lang==='ar' ? 'الشركة (اختياري)' : ($lang==='de' ? 'Unternehmen (optional)' : 'Firm (optional)') }}"
+                        style="width:100%; padding:11px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#0A0F1E; color:white; font-size:14px;">
+                    <label style="display:flex; align-items:start; gap:8px; font-size:12px; color:#94A3B8;">
+                        <input type="checkbox" name="gdpr_consent" required style="margin-top:3px;">
+                        <span>@if($lang==='ar') أوافق على معالجة بياناتي وفقًا لسياسة الخصوصية.
+                              @elseif($lang==='de') Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu.
+                              @else I agree to my data being processed per the Privacy Policy. @endif</span>
+                    </label>
+                    <button type="submit" style="padding:12px; border-radius:8px; background:#10B981; color:white; font-weight:700; font-size:14px; border:none; cursor:pointer;">
+                        @if($lang==='ar') إرسال الطلب @elseif($lang==='de') Anfordern @else Request Deck @endif
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 

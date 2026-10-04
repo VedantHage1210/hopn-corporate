@@ -55,6 +55,7 @@
             'items'=>[
                 ['en'=>'About',    'de'=>'Über uns',   'ar'=>'من نحن',       'route'=>'about'],
                 ['en'=>'Founder & Team', 'de'=>'Gründer & Team', 'ar'=>'المؤسس والفريق', 'route'=>'team.index'],
+                ['en'=>'Research', 'de'=>'Forschung', 'ar'=>'البحث', 'route'=>'research.index'],
                 ['en'=>'HOPn Labs','de'=>'HOPn Labs',  'ar'=>'مختبرات HOPn', 'route'=>'labs.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
                 ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
@@ -223,16 +224,18 @@
             </a>
 
             {{-- Mobile toggle --}}
-            <button @click="open=!open" class="md:hidden"
+            <button @click="open=!open" class="md:hidden" type="button"
+                    :aria-expanded="open.toString()" aria-controls="hopn-mobile-menu"
+                    :aria-label="open ? '{{ $activeLang==='ar' ? 'إغلاق القائمة' : ($activeLang==='de' ? 'Menü schließen' : 'Close menu') }}' : '{{ $activeLang==='ar' ? 'افتح القائمة' : ($activeLang==='de' ? 'Menü öffnen' : 'Open menu') }}'"
                     style="width:38px; height:38px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#CBD5E1; display:flex; align-items:center; justify-content:center; cursor:pointer;">
-                <svg x-show="!open" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                <svg x-show="open" style="width:16px;height:16px;display:none;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg x-show="!open" aria-hidden="true" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg x-show="open" aria-hidden="true" style="width:16px;height:16px;display:none;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
     </div>
 
     {{-- Mobile Menu --}}
-    <div x-show="open"
+    <div x-show="open" id="hopn-mobile-menu"
          x-transition:enter="transition ease-out duration-150"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"

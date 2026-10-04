@@ -431,4 +431,26 @@ document.addEventListener('DOMContentLoaded', function() {
 @endif
 </script>
 
+@foreach($events as $event)
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": {{ json_encode($lang==='de'&&$event->title_de ? $event->title_de : ($lang==='ar'&&$event->title_ar ? $event->title_ar : $event->title)) }},
+    @if($event->date)
+    "startDate": "{{ $event->date->toIso8601String() }}",
+    @endif
+    @if($event->location)
+    "location": { "@type": "Place", "name": {{ json_encode($event->location) }} },
+    @endif
+    @if(!empty($event->image_url))
+    "image": {{ json_encode($event->image_url) }},
+    @endif
+    "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "organizer": { "@type": "Organization", "name": "HOPn", "url": "{{ url('/') }}" }
+}
+</script>
+@endforeach
+
 </x-layouts.public>

@@ -17,8 +17,14 @@
 {{-- Basic Meta --}}
 <meta name="description" content="{{ $pageDesc }}">
 <meta name="keywords" content="HOPn, innovation ecosystem, AI, robotics, digital twins, startups, Europe, Germany">
-<meta name="author" content="HOPn Corporate GmbH">
-<meta name="robots" content="index, follow">
+<meta name="author" content="HOPn UG (haftungsbeschränkt)">
+{{--
+    Staging/preview environments must never be indexed. Set APP_ENV=staging
+    (or STAGING=true) in Railway's environment variables for the staging
+    deployment, and this automatically switches to noindex — no code change
+    needed when promoting to production.
+--}}
+<meta name="robots" content="{{ (app()->environment('staging') || env('STAGING')) ? 'noindex, nofollow' : 'index, follow' }}">
 <link rel="canonical" href="{{ $pageUrl }}">
 
 {{-- Language --}}
@@ -48,6 +54,35 @@
 <link rel="alternate" hreflang="de" href="{{ url(preg_replace('#^/(en|de|ar)#', '/de', $currentPath)) }}">
 <link rel="alternate" hreflang="ar" href="{{ url(preg_replace('#^/(en|de|ar)#', '/ar', $currentPath)) }}">
 <link rel="alternate" hreflang="x-default" href="{{ url(preg_replace('#^/(en|de|ar)#', '/en', $currentPath)) }}">
+
+{{-- Schema.org structured data --}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HOPn",
+    "legalName": "HOPn UG (haftungsbeschränkt)",
+    "url": "{{ url('/') }}",
+    @if(!empty($siteSettings['office_address'] ?? null))
+    "address": {!! json_encode(['@type' => 'PostalAddress', 'streetAddress' => $siteSettings['office_address']]) !!},
+    @endif
+    "sameAs": [
+        "https://www.linkedin.com/company/hopn-ug/"
+    ]
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "HOPn",
+    "url": "{{ url('/') }}",
+    "inLanguage": ["en", "de", "ar"]
+}
+</script>
+@isset($schemaExtra)
+<script type="application/ld+json">{!! $schemaExtra !!}</script>
+@endisset
 
 {{-- Favicon --}}
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23030712'/><path d='M20 8 L32 30 L8 30 Z' fill='none' stroke='%238B5CF6' stroke-width='3.4' stroke-linejoin='round'/><circle cx='20' cy='8' r='3.4' fill='%238B5CF6'/><circle cx='8' cy='30' r='3.4' fill='%238B5CF6'/><circle cx='32' cy='30' r='3.4' fill='%238B5CF6'/></svg>">

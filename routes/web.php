@@ -41,6 +41,7 @@ Route::prefix('{lang}')
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [PageController::class, 'about'])->name('about');
         Route::get('/team', [PageController::class, 'team'])->name('team.index');
+        Route::get('/research', [\App\Http\Controllers\Public\ResearchController::class, 'index'])->name('research.index');
 
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
@@ -100,6 +101,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
             ->name('leads.partner');
 
         Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware('throttle:5,1')->name('leads.book-call');
+        Route::post('/investors/request-deck', [LeadController::class, 'requestDeck'])->middleware('throttle:5,1')->name('investors.request-deck');
         
         Route::get('/training', function () {
             return view('public.training.index');

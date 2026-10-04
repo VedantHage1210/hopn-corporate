@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BlogTagController;
 use App\Http\Controllers\Admin\CaseStudyController;
+use App\Http\Controllers\Admin\ResearchPublicationController;
+use App\Http\Controllers\Admin\AcademicPartnerController;
 use App\Http\Controllers\Admin\StartupController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\EventController;
@@ -98,6 +100,8 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::put('solution-pages/{page}/blocks/{block}', [SolutionBlockController::class, 'update'])->name('solution-blocks.update');
         Route::delete('solution-pages/{page}/blocks/{block}', [SolutionBlockController::class, 'destroy'])->name('solution-blocks.destroy');
         Route::resource('case-studies', CaseStudyController::class)->except(['destroy']);
+        Route::resource('research-publications', ResearchPublicationController::class)->except(['destroy']);
+        Route::resource('academic-partners', AcademicPartnerController::class)->except(['destroy']);
         Route::resource('startups', StartupController::class)->except(['destroy']);
         Route::resource('investors', InvestorController::class)->except(['destroy']);
         Route::resource('events', EventController::class)->except(['destroy']);
@@ -148,6 +152,8 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
         Route::delete('workshops/{workshop}', [WorkshopController::class, 'destroy'])->name('workshops.destroy');
         Route::delete('case-studies/{case_study}', [CaseStudyController::class, 'destroy'])->name('case-studies.destroy');
+        Route::delete('research-publications/{research_publication}', [ResearchPublicationController::class, 'destroy'])->name('research-publications.destroy');
+        Route::delete('academic-partners/{academic_partner}', [AcademicPartnerController::class, 'destroy'])->name('academic-partners.destroy');
         Route::delete('startups/{startup}', [StartupController::class, 'destroy'])->name('startups.destroy');
         Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('investors.destroy');
         Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy');

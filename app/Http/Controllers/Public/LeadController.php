@@ -91,6 +91,31 @@ public function eventRegistration(Request $request, string $lang)
         return back()->with('startup_success', 'Thank you! Your startup application has been received.');
     }
 
+    public function requestDeck(Request $request, string $lang)
+    {
+        $request->validate([
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|email|max:255',
+            'company'      => 'nullable|string|max:255',
+            'gdpr_consent' => 'required|accepted',
+            // Honeypot: real visitors never see or fill this field.
+            'website'      => 'prohibited',
+        ]);
+
+        $this->leadService->store([
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'company' => $request->company,
+            'message' => 'Requested the investor deck.' . ($request->message ? "\n\n" . $request->message : ''),
+        ], 'investor-deck-request', $request);
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Thank you — the deck will be sent to you shortly.']);
+        }
+
+        return back()->with('status', 'Thank you — the deck will be sent to you shortly.');
+    }
+
   public function bookCall(Request $request, string $lang)
 {
     $request->validate([
