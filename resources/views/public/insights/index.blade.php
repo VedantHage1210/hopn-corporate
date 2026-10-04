@@ -30,7 +30,10 @@
                     <svg style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:#94A3B8;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/>
                     </svg>
-                    <input type="text" name="search" value="{{ $search ?? '' }}"
+                    <label for="hopn-insights-search" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">
+                        {{ $lang==='ar'?'بحث في المقالات':($lang==='de'?'Artikel durchsuchen':'Search articles') }}
+                    </label>
+                    <input type="text" id="hopn-insights-search" name="search" value="{{ $search ?? '' }}"
                            placeholder="{{ $lang==='ar'?'بحث...':($lang==='de'?'Suchen...':'Search articles...') }}"
                            style="padding:10px 12px 10px 36px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; width:200px; outline:none;"
                            onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
