@@ -46,7 +46,7 @@
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Which header dropdown does this belong to? *</label>
                     <select name="dropdown_group" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                         <option value="">— choose a dropdown —</option>
-                        @foreach(['solutions'=>'Solutions','products'=>'Products','apps'=>'Apps','ecosystem'=>'Ecosystem','company'=>'Company'] as $val => $label)
+                        @foreach(['solutions'=>'Solutions','ventures'=>'Ventures','research'=>'Research','events'=>'Events','company'=>'Company'] as $val => $label)
                             <option value="{{ $val }}" {{ old('dropdown_group', $item->dropdown_group ?? '') === $val ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
                     </select>

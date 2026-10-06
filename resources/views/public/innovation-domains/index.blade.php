@@ -44,7 +44,7 @@
             <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
-                <div style="font-size:40px; margin-bottom:16px;">{{ $domain->icon ?? '🔬' }}</div>
+                <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">{{ strtoupper(substr($domain->name, 0, 1)) }}</div>
                 <h3 style="font-size:20px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">
                     @if($lang==='de'&&$domain->name_de) {{ $domain->name_de }}
                     @elseif($lang==='ar'&&$domain->name_ar) {{ $domain->name_ar }}
@@ -63,7 +63,7 @@
         </div>
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">🔬</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">I</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') المجالات قادمة قريباً @elseif($lang==='de') Domänen folgen @else Domains Coming Soon @endif
             </h3>

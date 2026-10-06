@@ -85,12 +85,12 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @php
             $offerings = [
-                ['icon'=>'🚀','color'=>'#4F6EF7','en'=>'Venture Building','de'=>'Venture Building','ar'=>'بناء المشاريع','desc_en'=>'Co-build your startup from idea to product with HOPn engineering and design teams.','desc_de'=>'Gemeinsam Ihr Startup von der Idee zum Produkt aufbauen.','desc_ar'=>'بناء مشتركة من الفكرة إلى المنتج مع فرق هندسة HOPn.'],
+                ['icon'=>'V','color'=>'#4F6EF7','en'=>'Venture Building','de'=>'Venture Building','ar'=>'بناء المشاريع','desc_en'=>'Co-build your startup from idea to product with HOPn engineering and design teams.','desc_de'=>'Gemeinsam Ihr Startup von der Idee zum Produkt aufbauen.','desc_ar'=>'بناء مشتركة من الفكرة إلى المنتج مع فرق هندسة HOPn.'],
                 ['icon'=>'🧠','color'=>'#8B5CF6','en'=>'Mentoring & Advisory','de'=>'Mentoring & Beratung','ar'=>'الإرشاد والاستشارة','desc_en'=>'Access a network of industry experts, CTOs, and serial entrepreneurs.','desc_de'=>'Zugang zu Branchenexperten, CTOs und Serienunternehmern.','desc_ar'=>'الوصول إلى شبكة من الخبراء والمسؤولين التقنيين.'],
-                ['icon'=>'💰','color'=>'#10B981','en'=>'Investor Access','de'=>'Investorenzugang','ar'=>'الوصول للمستثمرين','desc_en'=>'Connect with HOPn investor network and funding partners across Europe.','desc_de'=>'Verbindung zum HOPn-Investorennetzwerk in ganz Europa.','desc_ar'=>'التواصل مع شبكة مستثمري HOPn في أوروبا.'],
-                ['icon'=>'🔬','color'=>'#F59E0B','en'=>'Research & Innovation','de'=>'Forschung & Innovation','ar'=>'البحث والابتكار','desc_en'=>'Collaborate with universities and R&D labs to build cutting-edge solutions.','desc_de'=>'Zusammenarbeit mit Universitäten und F&E-Labors.','desc_ar'=>'التعاون مع الجامعات ومختبرات البحث والتطوير.'],
+                ['icon'=>'C','color'=>'#10B981','en'=>'Investor Access','de'=>'Investorenzugang','ar'=>'الوصول للمستثمرين','desc_en'=>'Connect with HOPn investor network and funding partners across Europe.','desc_de'=>'Verbindung zum HOPn-Investorennetzwerk in ganz Europa.','desc_ar'=>'التواصل مع شبكة مستثمري HOPn في أوروبا.'],
+                ['icon'=>'R','color'=>'#F59E0B','en'=>'Research & Innovation','de'=>'Forschung & Innovation','ar'=>'البحث والابتكار','desc_en'=>'Collaborate with universities and R&D labs to build cutting-edge solutions.','desc_de'=>'Zusammenarbeit mit Universitäten und F&E-Labors.','desc_ar'=>'التعاون مع الجامعات ومختبرات البحث والتطوير.'],
                 ['icon'=>'🛠','color'=>'#06B6D4','en'=>'Tech Infrastructure','de'=>'Tech-Infrastruktur','ar'=>'البنية التحتية التقنية','desc_en'=>'AI, data, cloud, and DevOps infrastructure to accelerate your build.','desc_de'=>'KI-, Daten-, Cloud- und DevOps-Infrastruktur für schnellere Entwicklung.','desc_ar'=>'بنية تحتية للذكاء الاصطناعي والبيانات والسحابة.'],
-                ['icon'=>'🌍','color'=>'#EF4444','en'=>'Market Access','de'=>'Marktzugang','ar'=>'الوصول للسوق','desc_en'=>'Enter European, MENA, and global markets with HOPn partner network.','desc_de'=>'Eintritt in europäische, MENA- und globale Märkte.','desc_ar'=>'الدخول إلى الأسواق الأوروبية والشرق أوسطية والعالمية.'],
+                ['icon'=>'M','color'=>'#EF4444','en'=>'Market Access','de'=>'Marktzugang','ar'=>'الوصول للسوق','desc_en'=>'Enter European, MENA, and global markets with HOPn partner network.','desc_de'=>'Eintritt in europäische, MENA- und globale Märkte.','desc_ar'=>'الدخول إلى الأسواق الأوروبية والشرق أوسطية والعالمية.'],
             ];
             @endphp
             @foreach($offerings as $item)
@@ -165,7 +165,7 @@
         </div>
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">🚀</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">V</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') الشركات الناشئة قادمة قريباً @elseif($lang==='de') Startups folgen in Kürze @else Startups Coming Soon @endif
             </h3>
@@ -261,7 +261,7 @@
 
                 @if(session('startup_success'))
                 <div style="margin-bottom:24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; color:#10B981; font-size:14px;">
-                    ✅ {{ session('startup_success') }}
+                    {{ session('startup_success') }}
                 </div>
                 @endif
 

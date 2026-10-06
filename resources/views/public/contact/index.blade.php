@@ -33,17 +33,17 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:60px;">
             @php
             $infos=[
-                ['icon'=>'📧','color'=>'#4F6EF7','en'=>'Email','de'=>'E-Mail','ar'=>'البريد الإلكتروني','value'=>'contact@hopn.eu','link'=>'mailto:contact@hopn.eu'],
-                ['icon'=>'📍','color'=>'#10B981','en'=>'Location','de'=>'Standort','ar'=>'الموقع','value'=>$siteSettings['office_address'] ?? null,'link'=>null],
-                ['icon'=>'💼','color'=>'#8B5CF6','en'=>'Partnerships','de'=>'Partnerschaften','ar'=>'الشراكات','value'=>'Partner Inquiry','link'=>route('partner-inquiry.index',['lang'=>$lang])],
-                ['icon'=>'🚀','color'=>'#F59E0B','en'=>'Startups','de'=>'Startups','ar'=>'الشركات الناشئة','value'=>'Apply Now','link'=>route('startups.index',['lang'=>$lang])],
+                ['mark'=>'E','color'=>'#4F6EF7','en'=>'Email','de'=>'E-Mail','ar'=>'البريد الإلكتروني','value'=>$siteSettings['contact_email'] ?? 'contact@hopn.eu','link'=>'mailto:'.($siteSettings['contact_email'] ?? 'contact@hopn.eu')],
+                ['mark'=>'L','color'=>'#10B981','en'=>'Location','de'=>'Standort','ar'=>'الموقع','value'=>$siteSettings['office_address'] ?? null,'link'=>null],
+                ['mark'=>'P','color'=>'#8B5CF6','en'=>'Partnerships','de'=>'Partnerschaften','ar'=>'الشراكات','value'=>'Partner Inquiry','link'=>route('partner-inquiry.index',['lang'=>$lang])],
+                ['mark'=>'V','color'=>'#F59E0B','en'=>'Startups','de'=>'Startups','ar'=>'الشركات الناشئة','value'=>'Apply Now','link'=>route('startups.index',['lang'=>$lang])],
             ];
             $infos = array_filter($infos, fn($i) => !empty($i['value']));
             @endphp
             @foreach($infos as $info)
             <div class="hopn-lift-card-nobg" style="border:1px solid {{ $info['color'] }}20; background:#0A0F1E; border-radius:14px; padding:24px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $info['color'] }}50,transparent);"></div>
-                <div style="width:48px; height:48px; border-radius:12px; background:{{ $info['color'] }}15; border:1px solid {{ $info['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin:0 auto 16px;">{{ $info['icon'] }}</div>
+                <div aria-hidden="true" style="width:48px; height:48px; border-radius:12px; background:{{ $info['color'] }}15; border:1px solid {{ $info['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:{{ $info['color'] }}; margin:0 auto 16px;">{{ $info['mark'] }}</div>
                 <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94A3B8; margin-bottom:8px;">{{ $info[$lang] ?? $info['en'] }}</div>
                 @if($info['link'])
                 <a href="{{ $info['link'] }}" style="font-size:14px; font-weight:600; color:{{ $info['color'] }}; text-decoration:none;">{{ $info['value'] }} →</a>

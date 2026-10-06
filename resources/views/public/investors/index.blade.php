@@ -46,19 +46,22 @@
         </div>
 
         {{-- Stats --}}
+        @if($siteSettings['stats_hero_visible'] ?? false)
         <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; max-width:700px; margin:0 auto; overflow:hidden;">
             @foreach([
-                ['num'=>'€50M+','en'=>'Capital Network',     'de'=>'Kapitalnetzwerk',    'ar'=>'شبكة رأس المال'],
-                ['num'=>'30+',  'en'=>'VC Partners',         'de'=>'VC-Partner',         'ar'=>'شركاء VC'],
-                ['num'=>'6',    'en'=>'Investment Domains',  'de'=>'Investitionsbereiche','ar'=>'مجالات الاستثمار'],
-                ['num'=>'EU',   'en'=>'& MENA Reach',        'de'=>'& MENA Reichweite',  'ar'=>'وامتداد MENA'],
+                [$siteSettings['stat_innovation_capital'] ?? null, 'Capital Network', 'Kapitalnetzwerk', 'شبكة رأس المال'],
+                [$siteSettings['stat_organizations'] ?? null, 'VC Partners', 'VC-Partner', 'شركاء VC'],
+                [$siteSettings['stat_countries'] ?? null, 'Investment Domains', 'Investitionsbereiche', 'مجالات الاستثمار'],
             ] as $stat)
+            @if(filled($stat[0]))
             <div style="flex:1; min-width:140px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
-                <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat[$lang] ?? $stat['en'] }}</div>
+                <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat[0] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $lang === 'de' ? $stat[2] : ($lang === 'ar' ? $stat[3] : $stat[1]) }}</div>
             </div>
+            @endif
             @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -81,12 +84,12 @@
                  'desc_en'=>'Access pre-vetted startups across AI, robotics, data, and deep-tech verticals.',
                  'desc_de'=>'Zugang zu vorgeprüften Startups in KI, Robotik, Daten und Deep-Tech.',
                  'desc_ar'=>'الوصول إلى شركات ناشئة تم التحقق منها مسبقاً في مجالات الذكاء الاصطناعي والروبوتيكا.'],
-                ['icon'=>'🌍','color'=>'#4F6EF7',
+                ['icon'=>'G','color'=>'#4F6EF7',
                  'en'=>'European Market Access','de'=>'Europäischer Marktzugang','ar'=>'الوصول للسوق الأوروبي',
                  'desc_en'=>'HOPn operates across Germany, EU, and MENA with strong local networks.',
                  'desc_de'=>'HOPn ist in Deutschland, der EU und MENA mit starken lokalen Netzwerken tätig.',
                  'desc_ar'=>'HOPn تعمل في ألمانيا والاتحاد الأوروبي ومنطقة الشرق الأوسط.'],
-                ['icon'=>'🔬','color'=>'#8B5CF6',
+                ['icon'=>'R','color'=>'#8B5CF6',
                  'en'=>'Deep Tech Focus','de'=>'Deep-Tech-Fokus','ar'=>'التركيز على التكنولوجيا العميقة',
                  'desc_en'=>'Specialized in AI, robotics, digital twins, and data platforms.',
                  'desc_de'=>'Spezialisiert auf KI, Robotik, digitale Zwillinge und Datenplattformen.',
@@ -101,7 +104,7 @@
                  'desc_en'=>'Full operational and technical support for portfolio companies.',
                  'desc_de'=>'Vollständige operative und technische Unterstützung für Portfoliounternehmen.',
                  'desc_ar'=>'دعم تشغيلي وتقني كامل لشركات المحفظة.'],
-                ['icon'=>'⚡','color'=>'#EF4444',
+                ['icon'=>'I','color'=>'#EF4444',
                  'en'=>'Fast Execution','de'=>'Schnelle Umsetzung','ar'=>'التنفيذ السريع',
                  'desc_en'=>'HOPn moves fast — from deal sourcing to closing with minimal friction.',
                  'desc_de'=>'HOPn handelt schnell — von der Deal-Suche bis zum Abschluss.',
@@ -171,7 +174,7 @@
                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
                     @if($investor->region)
                     <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ $c }}10; color:{{ $c }}; border:1px solid {{ $c }}20;">
-                        📍 {{ $investor->region }}
+                        {{ $investor->region }}
                     </span>
                     @endif
                     @if($investor->focus)
@@ -193,7 +196,7 @@
         </div>
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">💰</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">C</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') المستثمرون قادمون قريباً @elseif($lang==='de') Investoren folgen in Kürze @else Investors Coming Soon @endif
             </h3>
@@ -216,12 +219,12 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px;">
             @php
             $areas = [
-                ['icon'=>'🤖','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#4F6EF7'],
+                ['icon'=>'A','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#4F6EF7'],
                 ['icon'=>'🦾','en'=>'Robotics & Automation','de'=>'Robotik & Automatisierung','ar'=>'الروبوتيكا والأتمتة','color'=>'#8B5CF6'],
                 ['icon'=>'📊','en'=>'Data Platforms','de'=>'Datenplattformen','ar'=>'منصات البيانات','color'=>'#06B6D4'],
-                ['icon'=>'🏭','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#10B981'],
+                ['icon'=>'D','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#10B981'],
                 ['icon'=>'🏥','en'=>'Healthcare Tech','de'=>'Gesundheitstechnologie','ar'=>'تكنولوجيا الصحة','color'=>'#EF4444'],
-                ['icon'=>'🎓','en'=>'EdTech','de'=>'EdTech','ar'=>'تكنولوجيا التعليم','color'=>'#F59E0B'],
+                ['icon'=>'E','en'=>'EdTech','de'=>'EdTech','ar'=>'تكنولوجيا التعليم','color'=>'#F59E0B'],
                 ['icon'=>'💳','en'=>'FinTech','de'=>'FinTech','ar'=>'التكنولوجيا المالية','color'=>'#10B981'],
                 ['icon'=>'🚚','en'=>'Logistics & Supply Chain','de'=>'Logistik & Lieferkette','ar'=>'اللوجستيات وسلسلة الإمداد','color'=>'#4F6EF7'],
             ];

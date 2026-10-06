@@ -42,6 +42,8 @@ Route::prefix('{lang}')
         Route::get('/about', [PageController::class, 'about'])->name('about');
         Route::get('/team', [PageController::class, 'team'])->name('team.index');
         Route::get('/research', [\App\Http\Controllers\Public\ResearchController::class, 'index'])->name('research.index');
+        Route::get('/research/publication/{id}', [\App\Http\Controllers\Public\ResearchController::class, 'show'])->name('research.publications.show');
+        Route::get('/research/publications/{id}', [\App\Http\Controllers\Public\ResearchController::class, 'show'])->name('research.publications.show.legacy');
 
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');

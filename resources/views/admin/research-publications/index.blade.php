@@ -12,6 +12,7 @@
                 <tr>
                     <th class="px-3 py-2">ID</th>
                     <th class="px-3 py-2">Title</th>
+                    <th class="px-3 py-2">Image</th>
                     <th class="px-3 py-2">Project</th>
                     <th class="px-3 py-2">Published</th>
                     <th class="px-3 py-2">Status</th>
@@ -23,6 +24,13 @@
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400 text-xs">{{ $item->id }}</td>
                     <td class="px-3 py-3 font-medium text-white">{{ $item->title_en }}</td>
+                    <td class="px-3 py-3">
+                        @if($item->image_url)
+                            <img src="{{ $item->image_url }}" alt="{{ $item->title_en }}" class="h-10 w-16 rounded object-cover">
+                        @else
+                            <span class="text-xs text-slate-500">No image</span>
+                        @endif
+                    </td>
                     <td class="px-3 py-3 text-slate-400">{{ $item->project ?? '—' }}</td>
                     <td class="px-3 py-3 text-slate-400 text-xs">{{ $item->published_on?->format('d M Y') ?? '—' }}</td>
                     <td class="px-3 py-3">
@@ -33,6 +41,9 @@
                     <td class="px-3 py-3">
                         <div class="flex gap-3">
                             <a href="{{ route('admin.research-publications.edit', $item) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                            @if($item->is_visible)
+                                <a href="{{ route('research.publications.show', ['lang' => 'en', 'id' => $item->id]) }}" target="_blank" rel="noopener" class="text-slate-300 hover:text-white">View</a>
+                            @endif
                             <form action="{{ route('admin.research-publications.destroy', $item) }}" method="POST" onsubmit="return confirm('Delete this publication?');">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="text-rose-400 hover:text-rose-300">Delete</button>

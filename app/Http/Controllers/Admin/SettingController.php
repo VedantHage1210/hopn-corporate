@@ -45,6 +45,7 @@ class SettingController extends Controller
             'site_tagline_ar' => 'nullable|string|max:255',
             'contact_email'   => 'nullable|email|max:255',
             'contact_phone'   => 'nullable|string|max:50',
+                'scheduling_url'  => 'nullable|url|max:500',
             'office_address'  => 'nullable|string|max:500',
             'office_address_de' => 'nullable|string|max:500',
             'office_address_ar' => 'nullable|string|max:500',
@@ -52,19 +53,27 @@ class SettingController extends Controller
             'timezone'        => 'nullable|string|max:100',
             'social_links'    => 'nullable|array',
             'seo_defaults'    => 'nullable|array',
+            'stat_organizations' => 'nullable|string|max:50',
+            'stat_countries' => 'nullable|string|max:50',
+            'stat_universities' => 'nullable|string|max:50',
+            'stat_innovation_capital' => 'nullable|string|max:50',
+            'security_content' => 'nullable|array',
         ]);
 
         $data = $request->only([
             'site_name', 'site_name_de', 'site_name_ar',
             'site_tagline', 'site_tagline_de', 'site_tagline_ar',
             'contact_email', 'contact_phone',
+                'scheduling_url',
             'office_address', 'office_address_de', 'office_address_ar',
             'default_locale', 'timezone',
+            'stat_organizations', 'stat_countries', 'stat_universities', 'stat_innovation_capital',
         ]);
 
         $data['maintenance_mode'] = $request->boolean('maintenance_mode');
         $data['social_links']     = json_encode($request->input('social_links', []));
         $data['seo_defaults']     = json_encode($request->input('seo_defaults', []));
+        $data['security_content'] = $request->input('security_content', []);
 
         // Stat strips default to hidden; each one is turned on manually once
         // the founder confirms the numbers are real and current.

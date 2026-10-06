@@ -4,7 +4,7 @@
 {{-- Success Toast --}}
 @if(session('event_success'))
 <div id="success-toast" style="display:flex; position:fixed; top:24px; right:24px; z-index:2000; align-items:center; gap:12px; background:#111827; border:1px solid rgba(16,185,129,0.4); border-radius:12px; padding:16px 20px; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:380px;">
-    <div style="font-size:24px;">✅</div>
+    <div aria-hidden="true" style="font-size:18px; font-weight:800;">OK</div>
     <div>
         <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">
             @if($lang==='ar') تم التسجيل! @elseif($lang==='de') Registrierung erhalten! @else Registration Received! @endif
@@ -113,7 +113,7 @@
                         </span>
                         @if($event->date)
                         <span style="font-size:12px; color:#94A3B8; font-weight:500;">
-                            📅 {{ $event->date->format('d M Y') }}
+                            {{ $event->date->format('d M Y') }}
                         </span>
                         @endif
                     </div>
@@ -129,7 +129,7 @@
                     {{-- Location --}}
                     @if($event->location)
                     <div style="display:flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1;">
-                        <span>📍</span> {{ $event->location }}
+                        <span>{{ $event->location }}</span>
                     </div>
                     @endif
 
@@ -152,7 +152,7 @@
                     {{-- Attendees --}}
                     @if($event->max_attendees)
                     <div style="font-size:12px; color:#94A3B8;">
-                        👥 @if($lang==='ar') حد أقصى @elseif($lang==='de') Max. @else Max @endif {{ number_format($event->max_attendees) }} @if($lang==='ar') مشارك @elseif($lang==='de') Teilnehmer @else attendees @endif
+                        @if($lang==='ar') حد أقصى @elseif($lang==='de') Max. @else Max @endif {{ number_format($event->max_attendees) }} @if($lang==='ar') مشارك @elseif($lang==='de') Teilnehmer @else attendees @endif
                     </div>
                     @endif
 
@@ -215,15 +215,15 @@
                  'desc_en'=>'Online knowledge sessions with industry experts accessible from anywhere.',
                  'desc_de'=>'Online-Wissenssitzungen mit Branchenexperten von überall zugänglich.',
                  'desc_ar'=>'جلسات معرفية عبر الإنترنت مع خبراء الصناعة من أي مكان.'],
-                ['icon'=>'⚡','color'=>'#8B5CF6','en'=>'Hackathons','de'=>'Hackathons','ar'=>'الهاكاثون',
+                ['icon'=>'H','color'=>'#8B5CF6','en'=>'Hackathons','de'=>'Hackathons','ar'=>'الهاكاثون',
                  'desc_en'=>'Intensive innovation sprints where teams build solutions to real-world challenges.',
                  'desc_de'=>'Intensive Innovations-Sprints, bei denen Teams Lösungen entwickeln.',
                  'desc_ar'=>'سباقات ابتكار مكثفة يبني فيها الفرق حلولاً للتحديات الواقعية.'],
-                ['icon'=>'🚀','color'=>'#EF4444','en'=>'Startup Events','de'=>'Startup-Events','ar'=>'فعاليات الشركات الناشئة',
+                ['icon'=>'S','color'=>'#EF4444','en'=>'Startup Events','de'=>'Startup-Events','ar'=>'فعاليات الشركات الناشئة',
                  'desc_en'=>'Demo days, pitch competitions, and networking events for the startup ecosystem.',
                  'desc_de'=>'Demo Days, Pitch-Wettbewerbe und Networking für das Startup-Ökosystem.',
                  'desc_ar'=>'أيام العرض ومسابقات العروض التقديمية وفعاليات التواصل للشركات الناشئة.'],
-                ['icon'=>'🔬','color'=>'#A855F7','en'=>'Research Events','de'=>'Forschungsevents','ar'=>'الفعاليات البحثية',
+                ['icon'=>'R','color'=>'#A855F7','en'=>'Research Events','de'=>'Forschungsevents','ar'=>'الفعاليات البحثية',
                  'desc_en'=>'Academic and industry research presentations, paper sessions, and innovation showcases.',
                  'desc_de'=>'Akademische und industrielle Forschungspräsentationen.',
                  'desc_ar'=>'عروض الأبحاث الأكاديمية والصناعية وجلسات الأوراق البحثية.'],
@@ -399,8 +399,8 @@ function openEventForm(id, title, type, date, location) {
     typeEl.style.color = c;
     typeEl.style.borderColor = c + '30';
     document.getElementById('modal-event-title').textContent = title;
-    document.getElementById('modal-event-date').textContent = date ? '📅 ' + date : '';
-    document.getElementById('modal-event-location').textContent = location ? '📍 ' + location : '';
+    document.getElementById('modal-event-date').textContent = date || '';
+    document.getElementById('modal-event-location').textContent = location || '';
     document.getElementById('modal-event-type-input').value = type;
     document.getElementById('modal-event-title-input').value = title;
     document.getElementById('event-modal').style.display = 'block';

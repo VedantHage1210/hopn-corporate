@@ -94,7 +94,7 @@
                 @endif
                 @if(!empty($product->solution_en))
                 <div class="product-hover-card" style="border:1px solid rgba(16,185,129,0.2); background:#111827; border-radius:16px; padding:32px;">
-                    <div style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; background:rgba(16,185,129,0.1); font-size:18px; margin-bottom:16px;">✅</div>
+                    <div aria-hidden="true" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; background:rgba(16,185,129,0.1); font-size:16px; font-weight:800; margin-bottom:16px;">P</div>
                     <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                         @if($lang === 'ar') الحل @elseif($lang === 'de') Lösung @else Our Solution @endif
                     </h3>
@@ -181,7 +181,7 @@
                 @foreach($productIndustries as $industry)
                 <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}" class="hopn-pill-hover"
                    style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;">
-                    {{ $industry->icon ?? '🏭' }} {{ $industry->name }}
+                    {{ $industry->name }}
                 </a>
                 @endforeach
             </div>

@@ -15,4 +15,11 @@ class ResearchController extends Controller
 
         return view('public.research.index', compact('publications', 'academicPartners'));
     }
+
+    public function show(string $lang, string $id)
+    {
+        $publication = ResearchPublication::findOrFail($id);
+
+        return view('public.research.show', compact('publication'));
+    }
 }

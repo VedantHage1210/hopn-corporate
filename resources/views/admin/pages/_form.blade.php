@@ -25,6 +25,17 @@
                class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono" required>
     </div>
 
+    {{-- External Redirect --}}
+    <div class="md:col-span-2 mt-2 rounded-lg border border-indigo-500/30 bg-indigo-950/20 p-4">
+        <p class="text-xs font-bold uppercase tracking-wider text-indigo-300 mb-2">External Redirect</p>
+        <p class="text-xs text-slate-400 mb-3">Use this for venture pages that should send visitors directly to an external website after publication.</p>
+        <label class="block text-xs font-semibold text-slate-400 mb-1">Destination URL</label>
+        <input type="url" name="external_url" value="{{ old('external_url', $page->external_url ?? '') }}"
+               placeholder="https://example.com"
+               class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+        <p class="mt-2 text-xs text-slate-500">Paste the confirmed website URL. When this page is viewed after publication, visitors are redirected there.</p>
+    </div>
+
     {{-- Featured Image --}}
     <div class="md:col-span-2 mt-2">
         <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Featured Image</p>

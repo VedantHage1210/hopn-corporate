@@ -62,10 +62,10 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
             @php
             $perks=[
-                ['icon'=>'🤖','color'=>'#4F6EF7','en'=>'Cutting-Edge Tech','de'=>'Modernste Technologie','ar'=>'تكنولوجيا متطورة','desc_en'=>'Work with AI, robotics, digital twins, and data platforms.','desc_de'=>'Arbeiten mit KI, Robotik, digitalen Zwillingen und Datenplattformen.','desc_ar'=>'العمل مع الذكاء الاصطناعي والروبوتيكا والتوائم الرقمية.'],
-                ['icon'=>'🌍','color'=>'#10B981','en'=>'Global Impact','de'=>'Globale Wirkung','ar'=>'تأثير عالمي','desc_en'=>'Build solutions used across Europe, MENA, and beyond.','desc_de'=>'Lösungen für Europa, MENA und darüber hinaus entwickeln.','desc_ar'=>'بناء حلول تُستخدم في أوروبا والشرق الأوسط وما وراءها.'],
-                ['icon'=>'🎓','color'=>'#8B5CF6','en'=>'Learning Culture','de'=>'Lernkultur','ar'=>'ثقافة التعلم','desc_en'=>'Continuous learning, research, and innovation encouraged.','desc_de'=>'Kontinuierliches Lernen, Forschen und Innovieren wird gefördert.','desc_ar'=>'التعلم المستمر والبحث والابتكار مشجَّع.'],
-                ['icon'=>'🚀','color'=>'#F59E0B','en'=>'Startup Energy','de'=>'Startup-Energie','ar'=>'طاقة الشركات الناشئة','desc_en'=>'Fast-moving environment with real ownership and impact.','desc_de'=>'Schnelles Umfeld mit echtem Ownership und Wirkung.','desc_ar'=>'بيئة سريعة مع ملكية حقيقية وتأثير فعلي.'],
+                ['icon'=>'T','color'=>'#4F6EF7','en'=>'Cutting-Edge Tech','de'=>'Modernste Technologie','ar'=>'تكنولوجيا متطورة','desc_en'=>'Work with AI, robotics, digital twins, and data platforms.','desc_de'=>'Arbeiten mit KI, Robotik, digitalen Zwillingen und Datenplattformen.','desc_ar'=>'العمل مع الذكاء الاصطناعي والروبوتيكا والتوائم الرقمية.'],
+                ['icon'=>'G','color'=>'#10B981','en'=>'Global Impact','de'=>'Globale Wirkung','ar'=>'تأثير عالمي','desc_en'=>'Build solutions used across Europe, MENA, and beyond.','desc_de'=>'Lösungen für Europa, MENA und darüber hinaus entwickeln.','desc_ar'=>'بناء حلول تُستخدم في أوروبا والشرق الأوسط وما وراءها.'],
+                ['icon'=>'L','color'=>'#8B5CF6','en'=>'Learning Culture','de'=>'Lernkultur','ar'=>'ثقافة التعلم','desc_en'=>'Continuous learning, research, and innovation encouraged.','desc_de'=>'Kontinuierliches Lernen, Forschen und Innovieren wird gefördert.','desc_ar'=>'التعلم المستمر والبحث والابتكار مشجَّع.'],
+                ['icon'=>'S','color'=>'#F59E0B','en'=>'Startup Energy','de'=>'Startup-Energie','ar'=>'طاقة الشركات الناشئة','desc_en'=>'Fast-moving environment with real ownership and impact.','desc_de'=>'Schnelles Umfeld mit echtem Ownership und Wirkung.','desc_ar'=>'بيئة سريعة مع ملكية حقيقية وتأثير فعلي.'],
             ];
             @endphp
             @foreach($perks as $p)
@@ -102,7 +102,7 @@
                 <h3 style="font-size:17px; font-weight:700; color:white; margin-bottom:8px;">{{ $job->title }}</h3>
                 <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
                     @if($job->location)
-                    <span style="font-size:12px; color:#94A3B8;">📍 {{ $job->location }}</span>
+                    <span style="font-size:12px; color:#94A3B8;">{{ $job->location }}</span>
                     @endif
                     @if($job->department)
                     <span style="font-size:11px; font-weight:600; padding:2px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">{{ $job->department }}</span>
@@ -122,7 +122,7 @@
         </div>
         @empty
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">💼</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">C</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد وظائف متاحة حالياً @elseif($lang==='de') Derzeit keine offenen Stellen @else No Open Positions Right Now @endif
             </h3>

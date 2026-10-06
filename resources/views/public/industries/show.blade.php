@@ -14,7 +14,14 @@
                style="display:inline-flex; align-items:center; gap:6px; color:#CBD5E1; font-size:13px; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') جميع القطاعات @elseif($lang === 'de') Alle Branchen @else All Industries @endif
             </a>
-            <div style="font-size:56px; margin-bottom:20px;">{{ $industry->icon }}</div>
+            @if($industry->image_url)
+                <img loading="eager" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
+                     style="width:128px; height:128px; border-radius:18px; object-fit:cover; margin:0 auto 20px; background:#FFFFFF;">
+            @else
+                <div aria-hidden="true" style="width:128px; height:128px; border-radius:18px; background:#E8EEF5; color:#18324A; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:800; margin:0 auto 20px;">
+                    {{ strtoupper(substr($industry->name, 0, 1)) }}
+                </div>
+            @endif
             <h1 style="font-size:clamp(28px,5vw,56px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 auto 20px;">
                 @if($lang === 'de' && $industry->name_de) {{ $industry->name_de }}
                 @elseif($lang === 'ar' && $industry->name_ar) {{ $industry->name_ar }}

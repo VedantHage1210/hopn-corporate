@@ -18,34 +18,33 @@
             ],
         ],
         [
-            'key'=>'products',
-            'label_en'=>'Products', 'label_de'=>'Produkte', 'label_ar'=>'المنتجات',
+            'key'=>'ventures',
+            'label_en'=>'Ventures', 'label_de'=>'Venture', 'label_ar'=>'المشاريع',
             'items'=>[
-                ['en'=>'All Products',  'de'=>'Alle Produkte',  'ar'=>'جميع المنتجات', 'route'=>'products.index'],
-                ['en'=>'Catalog',       'de'=>'Katalog',        'ar'=>'الكتالوج',      'route'=>'catalog.index'],
-                ['en'=>'Innovation',    'de'=>'Innovation',     'ar'=>'الابتكار',      'route'=>'innovation.index'],
+                ['en'=>'Products',          'de'=>'Produkte',            'ar'=>'المنتجات',          'route'=>'products.index'],
+                ['en'=>'Apps',              'de'=>'Apps',                'ar'=>'التطبيقات',         'route'=>'apps.index'],
+                ['en'=>'Catalog',           'de'=>'Katalog',              'ar'=>'الكتالوج',          'route'=>'catalog.index'],
+                ['en'=>'Innovation Domains','de'=>'Innovationsdomänen',   'ar'=>'مجالات الابتكار',   'route'=>'innovation.index'],
+                ['en'=>'Startups',          'de'=>'Startups',             'ar'=>'الشركات الناشئة',   'route'=>'startups.index'],
+                ['en'=>'Investors & Funds', 'de'=>'Investoren & Fonds', 'ar'=>'المستثمرون',        'route'=>'investors.index'],
             ],
         ],
         [
-            'key'=>'apps',
-            'label_en'=>'Apps', 'label_de'=>'Apps', 'label_ar'=>'التطبيقات',
-            'items'=>array_merge(
-                [['en'=>'All apps', 'de'=>'Alle Apps', 'ar'=>'كل التطبيقات', 'route'=>'apps.index']],
-                $navPlatformApps->map(fn ($app) => [
-                    'en'=>$app->name_en, 'de'=>$app->name_de ?: $app->name_en, 'ar'=>$app->name_ar ?: $app->name_en,
-                    'route'=>'apps.show', 'params'=>['slug'=>$app->slug],
-                ])->all()
-            ),
+            'key'=>'research',
+            'label_en'=>'Research', 'label_de'=>'Forschung', 'label_ar'=>'البحث',
+            'items'=>[
+                ['en'=>'Research & Publications', 'de'=>'Forschung & Publikationen', 'ar'=>'البحث والمنشورات', 'route'=>'research.index'],
+                ['en'=>'HOPn Labs',              'de'=>'HOPn Labs',                'ar'=>'مختبرات HOPn',     'route'=>'labs.index'],
+                ['en'=>'Programs',               'de'=>'Programme',                 'ar'=>'البرامج',           'route'=>'programs.index'],
+                ['en'=>'Industries',             'de'=>'Branchen',                  'ar'=>'القطاعات',         'route'=>'industries.index'],
+            ],
         ],
         [
-            'key'=>'ecosystem',
-            'label_en'=>'Ecosystem', 'label_de'=>'Ökosystem', 'label_ar'=>'النظام البيئي',
+            'key'=>'events',
+            'label_en'=>'Events', 'label_de'=>'Events', 'label_ar'=>'الفعاليات',
             'items'=>[
-                ['en'=>'Industries',        'de'=>'Branchen',           'ar'=>'القطاعات',          'route'=>'industries.index'],
-                ['en'=>'Startups',          'de'=>'Startups',           'ar'=>'الشركات الناشئة',   'route'=>'startups.index'],
-                ['en'=>'Investors & Funds', 'de'=>'Investoren & Fonds', 'ar'=>'المستثمرون',        'route'=>'investors.index'],
-                ['en'=>'Programs',          'de'=>'Programme',          'ar'=>'البرامج',            'route'=>'programs.index'],
                 ['en'=>'Events',            'de'=>'Events',             'ar'=>'الفعاليات',         'route'=>'events.index'],
+                ['en'=>'Workshops & Training','de'=>'Workshops & Training','ar'=>'ورش العمل',         'route'=>'workshops.index'],
                 ['en'=>'Partners',          'de'=>'Partner',            'ar'=>'الشركاء',           'route'=>'partners.index'],
             ],
         ],
@@ -55,12 +54,11 @@
             'items'=>[
                 ['en'=>'About',    'de'=>'Über uns',   'ar'=>'من نحن',       'route'=>'about'],
                 ['en'=>'Founder & Team', 'de'=>'Gründer & Team', 'ar'=>'المؤسس والفريق', 'route'=>'team.index'],
-                ['en'=>'Research', 'de'=>'Forschung', 'ar'=>'البحث', 'route'=>'research.index'],
-                ['en'=>'HOPn Labs','de'=>'HOPn Labs',  'ar'=>'مختبرات HOPn', 'route'=>'labs.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
                 ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
                 ['en'=>'Careers',  'de'=>'Karriere',   'ar'=>'وظائف',        'route'=>'careers.index'],
                 ['en'=>'Contact',  'de'=>'Kontakt',    'ar'=>'تواصل معنا',   'route'=>'contact.index'],
+                ['en'=>'Security & Trust', 'de'=>'Sicherheit & Vertrauen', 'ar'=>'الأمن والثقة', 'route'=>'legal.security'],
             ],
         ],
     ];
@@ -172,9 +170,6 @@
 
         {{-- Desktop Nav --}}
         <nav class="hidden md:flex" style="align-items:center; gap:2px;">
-            <a href="{{ route('home', ['lang'=>$lang]) }}" class="hopn-trigger" style="text-decoration:none;">
-                @if($activeLang==='ar') الرئيسية @elseif($activeLang==='de') Startseite @else Home @endif
-            </a>
             @foreach($groups as $group)
             <div class="hopn-nav-item">
                 <button class="hopn-trigger">
@@ -214,6 +209,12 @@
                 </div>
             </div>
 
+            <button id="hopn-theme-toggle" type="button" class="hopn-theme-toggle inline-flex"
+                    aria-label="Switch to dark theme" title="Toggle theme">
+                <svg class="theme-sun" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3l1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3l1.42-1.42"/></svg>
+                <svg class="theme-moon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.8A8.5 8.5 0 0 1 9.2 3.5 8.5 8.5 0 1 0 20.5 14.8Z"/></svg>
+            </button>
+
             {{-- CTA --}}
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
                class="hidden md:inline-flex"
@@ -224,7 +225,7 @@
             </a>
 
             {{-- Mobile toggle --}}
-            <button @click="open=!open" class="md:hidden" type="button"
+            <button @click="open=!open" class="hopn-mobile-toggle" type="button"
                     :aria-expanded="open.toString()" aria-controls="hopn-mobile-menu"
                     :aria-label="open ? '{{ $activeLang==='ar' ? 'إغلاق القائمة' : ($activeLang==='de' ? 'Menü schließen' : 'Close menu') }}' : '{{ $activeLang==='ar' ? 'افتح القائمة' : ($activeLang==='de' ? 'Menü öffnen' : 'Open menu') }}'"
                     style="width:38px; height:38px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#CBD5E1; display:flex; align-items:center; justify-content:center; cursor:pointer;">
@@ -244,12 +245,6 @@
          x-transition:leave-end="opacity-0"
          style="display:none; border-top:1px solid rgba(255,255,255,0.06); background:rgba(3,7,18,0.98); backdrop-filter:blur(24px); max-height:80vh; overflow-y:auto;">
         <div class="container-shell" style="padding:16px; display:flex; flex-direction:column; gap:2px;">
-            <a href="{{ route('home', ['lang'=>$lang]) }}"
-               style="display:block; padding:12px 14px; border-radius:8px; color:#CBD5E1; font-size:14px; font-weight:600; text-decoration:none;"
-               onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.color='white'"
-               onmouseout="this.style.background='transparent'; this.style.color='#CBD5E1'">
-                @if($activeLang==='ar') الرئيسية @elseif($activeLang==='de') Startseite @else Home @endif
-            </a>
             @foreach($groups as $group)
             <div x-data="{sub:false}">
                 <button @click="sub=!sub"

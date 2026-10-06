@@ -18,6 +18,7 @@ class Page extends Model
         'excerpt', 'excerpt_de', 'excerpt_ar',
         'content_en', 'content_de', 'content_ar',
         'featured_image',
+        'external_url',
         'seo_meta',
         'is_visible',
         'is_landing_page',
@@ -61,7 +62,7 @@ class Page extends Model
                     'title', 'title_de', 'title_ar',
                     'excerpt', 'excerpt_de', 'excerpt_ar',
                     'content_en', 'content_de', 'content_ar',
-                    'featured_image', 'seo_meta', 'is_visible',
+                    'featured_image', 'external_url', 'seo_meta', 'is_visible',
                     'is_landing_page', 'status', 'scheduled_at',
                 ]),
                 'blocks' => $this->blocks()->get()->map->only([

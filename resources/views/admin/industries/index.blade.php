@@ -11,7 +11,7 @@
             <thead class="text-left text-xs uppercase text-slate-400">
                 <tr>
                     <th class="px-3 py-2">ID</th>
-                    <th class="px-3 py-2">Icon</th>
+                    <th class="px-3 py-2">Image</th>
                     <th class="px-3 py-2">Name</th>
                     <th class="px-3 py-2">Languages</th>
                     <th class="px-3 py-2">Slug</th>
@@ -23,7 +23,13 @@
                 @forelse($items as $industry)
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $industry->id }}</td>
-                    <td class="px-3 py-3 text-2xl">{{ $industry->icon }}</td>
+                    <td class="px-3 py-3">
+                        @if($industry->image_url)
+                            <img src="{{ $industry->image_url }}" alt="{{ $industry->name }}" class="h-10 w-10 rounded-lg object-cover">
+                        @else
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-700 text-sm font-semibold text-slate-300">{{ strtoupper(substr($industry->name, 0, 1)) }}</span>
+                        @endif
+                    </td>
                     <td class="px-3 py-3">
                         <div class="font-medium text-white">{{ $industry->name }}</div>
                         <div class="text-xs text-slate-400">{{ $industry->name_de }}</div>

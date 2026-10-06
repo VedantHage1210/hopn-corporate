@@ -28,13 +28,13 @@
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
                 {{ $lang === 'ar' ? 'ممثل الشركة' : ($lang === 'de' ? 'Vertreten durch' : 'Represented by') }}
             </h2>
-            <p>[{{ $lang === 'ar' ? 'اسم المدير العام قيد التأكيد' : ($lang === 'de' ? 'Name des Geschäftsführers ausstehend' : 'Managing Director name pending — to be confirmed by founder') }}]</p>
+            <p>HOPn UG (haftungsbeschränkt)</p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
                 {{ $lang === 'ar' ? 'التواصل' : ($lang === 'de' ? 'Kontakt' : 'Contact') }}
             </h2>
             <p>
-                Email: <a href="mailto:legal@hopn.eu" style="color:#4F6EF7;">legal@hopn.eu</a><br>
+                Email: <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#4F6EF7;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a><br>
                 Web: <a href="https://www.hopn.eu" style="color:#4F6EF7;">www.hopn.eu</a>
             </p>
 
@@ -60,9 +60,8 @@
             </h2>
             <p>
                 {{ $lang === 'ar' ? 'وفقاً للمادة 55 الفقرة 2 من اتفاقية الإذاعة بين الولايات الألمانية:' : ($lang === 'de' ? 'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:' : 'Responsible for content pursuant to § 55 para. 2 RStV:') }}<br>
-                Dr. Max Mustermann<br>
-                HOPn Corporate GmbH<br>
-                Musterstraße 1, 10115 Berlin
+                HOPn UG (haftungsbeschränkt)<br>
+                {{ $siteSettings['office_address'] ?? '' }}
             </p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">

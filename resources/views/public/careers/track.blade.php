@@ -132,7 +132,7 @@
                     @endphp
                     <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:12px; background:{{ $active?'rgba(16,185,129,0.08)':'rgba(255,255,255,0.02)' }}; border:1px solid {{ $border }}; transition:all 0.2s;">
                         <div style="width:36px; height:36px; border-radius:50%; background:{{ $done?'rgba(16,185,129,0.2)':'rgba(255,255,255,0.05)' }}; border:1px solid {{ $border }}; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
-                            @if($done) ✅ @else {{ $step['icon'] }} @endif
+                            @if($done) Done @else {{ $step['icon'] }} @endif
                         </div>
                         <div style="flex:1;">
                             <p style="font-size:14px; font-weight:{{ $active?'700':'500' }}; color:{{ $txt }}; margin:0;">{{ $step[$lang] ?? $step['en'] }}</p>

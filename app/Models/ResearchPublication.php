@@ -10,6 +10,7 @@ class ResearchPublication extends Model
         'title_en', 'title_de', 'title_ar',
         'project',
         'authors',
+        'image_url',
         'summary_en', 'summary_de', 'summary_ar',
         'published_on',
         'pdf_url',

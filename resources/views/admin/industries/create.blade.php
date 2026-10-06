@@ -22,8 +22,8 @@
                     <input type="text" name="name_ar" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Icon (Emoji)</label>
-                    <input type="text" name="icon" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white" placeholder="🚗">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Image URL</label>
+                    <input type="url" name="image_url" value="{{ old('image_url') }}" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white" placeholder="https://...">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Sort Order</label>

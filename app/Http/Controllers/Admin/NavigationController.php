@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class NavigationController extends Controller
 {
-    const HEADER_DROPDOWNS = ['solutions', 'products', 'apps', 'ecosystem', 'company'];
+    const HEADER_DROPDOWNS = ['solutions', 'ventures', 'research', 'events', 'company'];
 
     public function index()
     {

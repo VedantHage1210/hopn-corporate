@@ -114,6 +114,42 @@
 .hopn-product-card:hover .hopn-product-icon { transform:scale(1.08); }
 .hopn-product-icon { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1); }
 
+/* Calm institute-style homepage surface. Content and actions stay unchanged. */
+html[data-theme="light"] .hopn-homepage section { background:#F6F7F4 !important; color:#172331; }
+html[data-theme="light"] .hopn-homepage section[style*="background:#030712"],
+html[data-theme="light"] .hopn-homepage section[style*="background:#050A14"],
+html[data-theme="light"] .hopn-homepage section[style*="background:#080D1A"] { background:#F6F7F4 !important; }
+html[data-theme="light"] .hopn-homepage section[style*="background-image"] { background-image:none !important; }
+html[data-theme="light"] .hopn-homepage section h1,
+html[data-theme="light"] .hopn-homepage section h2,
+html[data-theme="light"] .hopn-homepage section h3,
+html[data-theme="light"] .hopn-homepage section h4 { color:#172331 !important; }
+html[data-theme="light"] .hopn-homepage section h1 span { background-image:none !important; -webkit-text-fill-color:#172331 !important; color:#172331 !important; }
+html[data-theme="light"] .hopn-homepage section p { color:#526170 !important; }
+html[data-theme="light"] .hopn-homepage section span { color:#526170 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-partner-card span,
+html[data-theme="light"] .hopn-homepage .hopn-industry-card > div:not([aria-hidden="true"]) { color:#172331 !important; font-weight:700 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-partner-card span { text-shadow:none !important; opacity:1 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-btn-secondary { color:#FFFFFF !important; background:#245B78 !important; border-color:#245B78 !important; font-weight:800 !important; }
+html[data-theme="light"] .hopn-homepage section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green) { color:#245B78 !important; }
+html[data-theme="light"] .hopn-homepage section div[style*="background:#0A0F1E"],
+html[data-theme="light"] .hopn-homepage section div[style*="background:#0D1425"],
+html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,255,255,0.02)"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
+html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,255,255,0.05)"] { background:#E8EDF0 !important; }
+html[data-theme="light"] .hopn-homepage section div[style*="radial-gradient"],
+html[data-theme="light"] .hopn-homepage .hopn-hero-orbit { display:none !important; }
+html[data-theme="light"] .hopn-homepage .hopn-strategy-step { background:#FFFFFF !important; }
+html[data-theme="light"] .hopn-homepage .hopn-industry-card { background:#FFFFFF !important; border-color:#D7DEE3 !important; padding:30px 20px !important; min-height:190px; }
+html[data-theme="light"] .hopn-homepage .hopn-industry-card img,
+html[data-theme="light"] .hopn-homepage .hopn-industry-card > div[aria-hidden="true"] { width:96px !important; height:96px !important; border-radius:14px !important; margin-bottom:16px !important; }
+html[data-theme="light"] .hopn-homepage .hopn-partner-card { border-color:#D7DEE3 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:1; }
+@media (max-width:640px) {
+    html[data-theme="light"] .hopn-homepage .hopn-industry-card { min-height:165px; padding:24px 14px !important; }
+    html[data-theme="light"] .hopn-homepage .hopn-industry-card img,
+    html[data-theme="light"] .hopn-homepage .hopn-industry-card > div[aria-hidden="true"] { width:76px !important; height:76px !important; }
+}
+
 /* Feature card grids: fixed column counts caused cards to be cut off / partially
    visible on mobile viewports (BUG-010). Make them responsive. */
 .hopn-strategy-grid { grid-template-columns:repeat(3,1fr); }
@@ -126,6 +162,8 @@
     .hopn-ecosystem-grid { grid-template-columns:repeat(2,1fr); }
 }
 </style>
+
+<div class="hopn-homepage">
 
 {{-- 1. HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; min-height:94vh; display:flex; align-items:center;">
@@ -188,25 +226,31 @@
         </div>
 
         @if($siteSettings['stats_home_top_visible'] ?? false)
+        @php
+            $homeStats = array_filter([
+                [$siteSettings['stat_organizations'] ?? null, $lang==='ar'?'منظمة':($lang==='de'?'Organisationen':'Organizations')],
+                [$siteSettings['stat_countries'] ?? null, $lang==='ar'?'دولة':($lang==='de'?'Länder':'Countries')],
+                [$siteSettings['stat_universities'] ?? null, $lang==='ar'?'جامعة':($lang==='de'?'Universitäten':'Universities')],
+                [$siteSettings['stat_innovation_capital'] ?? null, $lang==='ar'?'رأس مال الابتكار':($lang==='de'?'Innovationskapital':'Innovation Capital')],
+            ], fn ($stat) => filled($stat[0]));
+        @endphp
+        @if(count($homeStats) > 0)
         <div class="hopn-hero-in hopn-hero-in-5" style="display:inline-flex; flex-wrap:wrap; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); border-radius:16px; overflow:hidden;">
-            @foreach([
-                ['50+', $lang==='ar'?'منظمة':($lang==='de'?'Organisationen':'Organizations')],
-                ['6',   $lang==='ar'?'منتجات':($lang==='de'?'Produkte':'Products')],
-                ['12+', $lang==='ar'?'مجالات ابتكار':($lang==='de'?'Innovationsdomänen':'Innovation Domains')],
-                ['€500M+', $lang==='ar'?'رأس مال ابتكار':($lang==='de'?'Innovationskapital':'Innovation Capital')],
-            ] as $stat)
+            @foreach($homeStats as $stat)
             <div style="padding:22px 36px; text-align:center; border-right:1px solid rgba(255,255,255,0.06);">
-                <div style="font-size:28px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat[0] }}</div>
-                <div style="font-size:11px; color:#94A3B8; margin-top:5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap;">{{ $stat[1] }}</div>
+                <div style="font-size:28px; font-weight:900; color:white;">{{ $stat[0] }}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">{{ $stat[1] }}</div>
             </div>
             @endforeach
         </div>
         @endif
+        @endif
+
     </div>
 </section>
 
 {{-- 2. STRATEGY > BUILD > SCALE --}}
-<section style="padding:100px 0; background:#050A14;">
+<section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#4F6EF7; display:block; margin-bottom:16px;">
@@ -240,7 +284,6 @@
 
 {{-- 3. INNOVATION ECOSYSTEM --}}
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
-    <x-particle-network height="100%" color="79,110,247" :density="22" />
     <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
@@ -262,22 +305,18 @@
         <div class="hopn-ecosystem-grid hopn-reveal" style="display:grid; gap:12px; max-width:1120px; margin:0 auto 64px;">
             @php
             $ecosystem = [
-                ['icon'=>'🏢','label'=>$lang==='ar'?'الأعمال':($lang==='de'?'Wirtschaft':'Business'),'color'=>'#4F6EF7','desc'=>$lang==='ar'?'مؤسسات وشركات':($lang==='de'?'Unternehmen':'Enterprises & Firms')],
-                ['icon'=>'🎓','label'=>$lang==='ar'?'التعليم':($lang==='de'?'Bildung':'Education'),'color'=>'#10B981','desc'=>$lang==='ar'?'جامعات وبرامج':($lang==='de'?'Unis & Programme':'Universities & Programs')],
-                ['icon'=>'⚡','label'=>'HOPn','color'=>'#8B5CF6','desc'=>$lang==='ar'?'المنصة المحورية':($lang==='de'?'Zentrale Plattform':'Central Platform')],
-                ['icon'=>'🔬','label'=>$lang==='ar'?'البحث':($lang==='de'?'Forschung':'Research'),'color'=>'#F59E0B','desc'=>$lang==='ar'?'مراكز البحث والتطوير':($lang==='de'?'F&E-Zentren':'R&D Centers')],
-                ['icon'=>'🚀','label'=>$lang==='ar'?'الشركات الناشئة':($lang==='de'?'Startups':'Startups'),'color'=>'#EF4444','desc'=>$lang==='ar'?'ريادة الأعمال':($lang==='de'?'Ventures':'Ventures')],
-                ['icon'=>'💰','label'=>$lang==='ar'?'المستثمرون':($lang==='de'?'Investoren':'Investors'),'color'=>'#06B6D4','desc'=>$lang==='ar'?'رأس المال الاستثماري':($lang==='de'?'Kapitalgeber':'Capital & Funds')],
-                ['icon'=>'👥','label'=>$lang==='ar'?'المواهب':($lang==='de'?'Talente':'Talent'),'color'=>'#EC4899','desc'=>$lang==='ar'?'خبراء ومحترفون':($lang==='de'?'Experten & Fachkräfte':'Experts & Professionals')],
+                ['mark'=>'B','label'=>$lang==='ar'?'الأعمال':($lang==='de'?'Wirtschaft':'Business'),'color'=>'#4F6EF7','desc'=>$lang==='ar'?'مؤسسات وشركات':($lang==='de'?'Unternehmen':'Enterprises & Firms')],
+                ['mark'=>'E','label'=>$lang==='ar'?'التعليم':($lang==='de'?'Bildung':'Education'),'color'=>'#10B981','desc'=>$lang==='ar'?'جامعات وبرامج':($lang==='de'?'Unis & Programme':'Universities & Programs')],
+                ['mark'=>'H','label'=>'HOPn','color'=>'#8B5CF6','desc'=>$lang==='ar'?'المنصة المحورية':($lang==='de'?'Zentrale Plattform':'Central Platform')],
+                ['mark'=>'R','label'=>$lang==='ar'?'البحث':($lang==='de'?'Forschung':'Research'),'color'=>'#F59E0B','desc'=>$lang==='ar'?'مراكز البحث والتطوير':($lang==='de'?'F&E-Zentren':'R&D Centers')],
+                ['mark'=>'V','label'=>$lang==='ar'?'الشركات الناشئة':($lang==='de'?'Startups':'Startups'),'color'=>'#EF4444','desc'=>$lang==='ar'?'ريادة الأعمال':($lang==='de'?'Ventures':'Ventures')],
+                ['mark'=>'C','label'=>$lang==='ar'?'المستثمرون':($lang==='de'?'Investoren':'Investors'),'color'=>'#06B6D4','desc'=>$lang==='ar'?'رأس المال الاستثماري':($lang==='de'?'Kapitalgeber':'Capital & Funds')],
+                ['mark'=>'T','label'=>$lang==='ar'?'المواهب':($lang==='de'?'Talente':'Talent'),'color'=>'#EC4899','desc'=>$lang==='ar'?'خبراء ومحترفون':($lang==='de'?'Experten & Fachkräfte':'Experts & Professionals')],
             ];
             @endphp
             @foreach($ecosystem as $node)
             <div class="hopn-ecosystem-node" style="border:1px solid {{ $node['color'] }}30; background:{{ $node['color'] }}08; border-radius:16px; padding:20px 12px; text-align:center;">
-                @if($node['label']==='HOPn')
-                <div style="width:48px; height:48px; border-radius:12px; background:#8B5CF6; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:white; box-shadow:0 0 20px rgba(139,92,246,0.4);">H</div>
-                @else
-                <div style="font-size:28px; margin-bottom:10px;">{{ $node['icon'] }}</div>
-                @endif
+                <div style="width:48px; height:48px; border-radius:12px; background:{{ $node['color'] }}15; border:1px solid {{ $node['color'] }}45; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $node['color'] }};">{{ $node['mark'] }}</div>
                 <div style="font-size:13px; font-weight:700; color:white; margin-bottom:4px;">{{ $node['label'] }}</div>
                 <div style="font-size:11px; color:#94A3B8; line-height:1.4;">{{ $node['desc'] }}</div>
             </div>
@@ -289,7 +328,7 @@
             @foreach($homeDomains as $domain)
             <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}" class="hopn-domain-link"
                style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:12px; padding:20px 16px; text-decoration:none; display:flex; align-items:center; gap:12px;">
-                <span style="font-size:22px;">{{ $domain->icon ?? '🔬' }}</span>
+                <span aria-hidden="true" style="width:32px; height:32px; border-radius:8px; background:#E8EEF5; color:#18324A; display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:800;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
                 <span style="font-size:14px; font-weight:600; color:#CBD5E1;">{{ $domain->name }}</span>
             </a>
             @endforeach
@@ -306,7 +345,8 @@
 </section>
 
 {{-- 4. CORE SERVICES --}}
-<section style="padding:100px 0; background:#050A14;">
+@if($services->count() > 0)
+<section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
@@ -327,7 +367,7 @@
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card" data-tilt
                style="display:block; padding:28px; background:#050A14; text-decoration:none; position:relative; overflow:hidden;">
-                <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:18px;">⚡</div>
+                <div aria-hidden="true" style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:16px; font-weight:800; color:{{ $c }};">S</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
                     @if($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
                     @elseif($lang==='de'&&$service->name_de) {{ $service->name_de }}
@@ -342,8 +382,10 @@
         </div>
     </div>
 </section>
+@endif
 
 {{-- 5. HOPN PRODUCTS --}}
+@if($homeProducts->count() > 0)
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     <div style="position:absolute; top:0; right:0; width:600px; height:600px; background:radial-gradient(circle at top right, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
@@ -360,7 +402,6 @@
                 @else Intelligent platforms built for the future of business and education @endif
             </p>
         </div>
-        @if($homeProducts->count() > 0)
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($homeProducts as $product)
             @php
@@ -392,7 +433,6 @@
             </a>
             @endforeach
         </div>
-        @endif
         <div class="hopn-reveal" style="text-align:center; margin-top:40px;">
             <a href="{{ route('products.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-purple"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); color:#A78BFA; font-size:15px; font-weight:600; text-decoration:none; background:transparent;">
@@ -401,8 +441,10 @@
         </div>
     </div>
 </section>
+@endif
 
 {{-- 6. INDUSTRIES --}}
+@if($homeIndustries->count() > 0)
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:48px;">
@@ -413,26 +455,20 @@
                 @if($lang==='ar') القطاعات التي نخدمها @elseif($lang==='de') Branchen, die wir bedienen @else Industries We Serve @endif
             </h2>
         </div>
-        @if($homeIndustries->count() > 0)
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;">
             @foreach($homeIndustries as $industry)
-            <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card" data-tilt
-               style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center; text-decoration:none;">
-                <div style="font-size:28px; margin-bottom:10px;">{{ $industry->icon ?? '🏭' }}</div>
+              <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card" data-tilt
+                style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center; text-decoration:none;">
+                @if($industry->image_url)
+                <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
+                     style="width:96px; height:96px; margin:0 auto 16px; border-radius:14px; object-fit:cover; background:#FFFFFF;">
+                @else
+                 <div aria-hidden="true" style="width:96px; height:96px; margin:0 auto 16px; border-radius:14px; background:#E8EEF5; color:#18324A; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800;">{{ strtoupper(substr($industry->name, 0, 1)) }}</div>
+                @endif
                 <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $industry->name }}</div>
             </a>
             @endforeach
         </div>
-        @else
-        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;">
-            @foreach([['🚗','Automotive'],['🏥','Healthcare'],['🏭','Manufacturing'],['🛒','E-Commerce'],['🎓','Education'],['💳','Finance'],['🚚','Logistics'],['🔬','Research']] as [$icon,$name])
-            <div class="hopn-industry-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center;">
-                <div style="font-size:28px; margin-bottom:10px;">{{ $icon }}</div>
-                <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $name }}</div>
-            </div>
-            @endforeach
-        </div>
-        @endif
         <div class="hopn-reveal" style="text-align:center; margin-top:36px;">
             <a href="{{ route('industries.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-blue"
                style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.3); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
@@ -441,6 +477,7 @@
         </div>
     </div>
 </section>
+@endif
 
 {{-- 7. ANIMATED LOGO MARQUEE --}}
 @if($partners->count() > 0)
@@ -453,16 +490,6 @@
                     @if($lang==='ar') موثوق به من قادة الصناعة @elseif($lang==='de') Vertrauen von Industrieführern @else Trusted by industry leaders @endif
                 </h2>
             </div>
-            @if($siteSettings['stats_home_bottom_visible'] ?? false)
-            <div style="display:flex; flex-wrap:wrap; gap:28px; align-items:center;">
-                @foreach([['50+','Partners'],['12+','Countries'],['15+','Universities'],['€500M+','Innovation Capital']] as $s)
-                <div style="text-align:center;">
-                    <div style="font-size:20px; font-weight:900; color:white; letter-spacing:-0.5px;">{{ $s[0] }}</div>
-                    <div style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $s[1] }}</div>
-                </div>
-                @endforeach
-            </div>
-            @endif
         </div>
     </div>
 
@@ -488,7 +515,7 @@
 
 @if($featuredStartups->count() > 0 || $featuredInvestors->count() > 0)
 {{-- STARTUP & INVESTOR ECOSYSTEM --}}
-<section style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
+<section class="homepage-secondary" style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
     <div class="container-shell" style="position:relative; z-index:10;">
         <div style="text-align:center; margin-bottom:56px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
@@ -514,7 +541,7 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">
                         @if($lang==='ar') شركات ناشئة مميزة @elseif($lang==='de') Ausgewählte Startups @else Featured Startups @endif
                     </h3>
-                    <span style="font-size:24px;">🚀</span>
+                    <span aria-hidden="true" style="width:32px; height:32px; border:1px solid rgba(239,68,68,0.4); border-radius:8px; display:inline-flex; align-items:center; justify-content:center; color:#EF4444; font-size:13px; font-weight:800;">V</span>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @foreach($featuredStartups as $startup)
@@ -549,7 +576,7 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">
                         @if($lang==='ar') مستثمرون رئيسيون @elseif($lang==='de') Wichtige Investoren @else Key Investors @endif
                     </h3>
-                    <span style="font-size:24px;">💰</span>
+                    <span aria-hidden="true" style="width:32px; height:32px; border:1px solid rgba(6,182,212,0.4); border-radius:8px; display:inline-flex; align-items:center; justify-content:center; color:#06B6D4; font-size:13px; font-weight:800;">C</span>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @foreach($featuredInvestors as $investor)
@@ -585,7 +612,7 @@
 
 {{-- 8. CONSULTING EXPERTS --}}
 @if(isset($experts) && $experts->count() > 0)
-<section id="consulting-experts" style="padding:100px 0; background:#050A14;">
+<section id="consulting-experts" class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
@@ -660,7 +687,7 @@
     $wsColors = ['#4F6EF7','#10B981','#8B5CF6'];
 @endphp
 @if($homeWorkshops->count() > 0)
-<section style="padding:100px 0; background:#030712;">
+<section class="homepage-secondary" style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
@@ -712,7 +739,7 @@
 @endif
 
 {{-- 10. EVENTS --}}
-<section style="padding:100px 0; background:#050A14;">
+<section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
@@ -740,7 +767,7 @@
                         @if($event->date)<span style="font-size:12px; color:#94A3B8;">{{ $event->date->format('d M Y') }}</span>@endif
                     </div>
                     <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $event->title }}</h3>
-                    @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">📍 {{ $event->location }}</div>@endif
+                    @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">{{ $event->location }}</div>@endif
                     <a href="{{ route('events.index', ['lang'=>$lang]) }}"
                        style="font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;">
                         @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
@@ -755,7 +782,7 @@
 
 {{-- 11. NEWSROOM --}}
 @if($latestPosts->count() > 0)
-<section style="padding:100px 0; background:#030712;">
+<section class="homepage-secondary" style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
@@ -801,7 +828,7 @@
 
 {{-- 12. TESTIMONIALS --}}
 @if($testimonials->count() > 0)
-<section style="padding:100px 0; background:#050A14;">
+<section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
@@ -821,7 +848,7 @@
 @endif
 
 {{-- 13. TALENT --}}
-<section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
+<section class="homepage-secondary" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     <div style="position:absolute; bottom:0; left:0; width:500px; height:500px; background:radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
@@ -840,16 +867,16 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:48px;">
             @php
             $talentItems = [
-                ['icon'=>'🌍','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#4F6EF7'],
-                ['icon'=>'🏢','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#10B981'],
-                ['icon'=>'🤖','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8B5CF6'],
-                ['icon'=>'👥','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#F59E0B'],
+                ['mark'=>'R','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#4F6EF7'],
+                ['mark'=>'L','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#10B981'],
+                ['mark'=>'E','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8B5CF6'],
+                ['mark'=>'D','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#F59E0B'],
             ];
             @endphp
             @foreach($talentItems as $item)
             <div class="hopn-lift-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $item['color'] }}40, transparent);"></div>
-                <div style="font-size:32px; margin-bottom:16px;">{{ $item['icon'] }}</div>
+                <div aria-hidden="true" style="width:42px; height:42px; border:1px solid {{ $item['color'] }}55; border-radius:10px; display:flex; align-items:center; justify-content:center; color:{{ $item['color'] }}; font-size:16px; font-weight:800; margin-bottom:16px;">{{ $item['mark'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
                 <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc'] }}</p>
             </div>
@@ -942,5 +969,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 @endpush
+
+</div>
 
 </x-layouts.public>

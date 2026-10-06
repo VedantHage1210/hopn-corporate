@@ -182,7 +182,7 @@
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
                         <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">
-                            {{ $service->icon ?? '⚡' }}
+                            {{ strtoupper(substr($service->name, 0, 1)) }}
                         </div>
                         <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $svcTitle }}</h3>
                     </div>
@@ -259,7 +259,7 @@
                 @foreach($domains as $domain)
                 <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
                    class="hopn-lift-card" style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:18px 20px; text-decoration:none; transition:all 0.25s;">
-                    <span style="font-size:24px;">{{ $domain->icon ?? '🔬' }}</span>
+                    <span aria-hidden="true" style="font-size:18px; font-weight:800;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
                     <span style="font-size:14px; font-weight:600; color:#CBD5E1;">{{ $domain->name }}</span>
                 </a>
                 @endforeach

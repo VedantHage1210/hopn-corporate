@@ -91,11 +91,11 @@
                     {{ $lang === 'ar' ? 'مركز الابتكار الأوروبي يربط الأعمال والتعليم والبحث.' : ($lang === 'de' ? 'Europäischer Innovationshub für Business, Bildung und Forschung.' : 'European innovation hub connecting business, education, and research.') }}
                 </p>
                 <div style="font-size:13px; color:#CBD5E1; margin-bottom:8px;">
-                    📧 <a href="mailto:contact@hopn.eu" style="color:#818CF8; text-decoration:none;">contact@hopn.eu</a>
+                    <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#818CF8; text-decoration:none;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a>
                 </div>
                 @if(!empty($siteSettings['office_address'] ?? null))
                 <div style="font-size:13px; color:#CBD5E1; margin-bottom:24px;">
-                    📍 {{ $siteSettings['office_address'] }}
+                    {{ $siteSettings['office_address'] }}
                 </div>
                 @endif
                 <div style="margin-bottom:24px; max-width:340px;">
@@ -114,6 +114,12 @@
                     </a>
                     @endforeach
                 </div>
+                @if(!empty($siteSettings['scheduling_url'] ?? null))
+                <a href="{{ $siteSettings['scheduling_url'] }}" target="_blank" rel="noopener noreferrer"
+                   style="display:inline-flex; margin-top:16px; color:#818CF8; font-size:13px; text-decoration:none;">
+                    {{ $lang === 'ar' ? 'احجز مكالمة' : ($lang === 'de' ? 'Gespräch buchen' : 'Book a call') }}
+                </a>
+                @endif
             </div>
 
             {{-- Solutions --}}
@@ -241,7 +247,7 @@
             @endforeach
         </div>
         @else
-        <p style="font-size:12px; color:#64748B;">Built for enterprise innovation in Europe 🇪🇺</p>
+        <p style="font-size:12px; color:#64748B;">Built for enterprise innovation in Europe.</p>
         @endif
     </div>
 </div>

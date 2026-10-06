@@ -1,5 +1,11 @@
 <x-layouts.public :title="'Security & Trust'">
-@php $lang = request()->route('lang', 'en'); @endphp
+@php
+    $lang = request()->route('lang', 'en');
+    $securityContent = is_array($siteSettings['security_content'] ?? null)
+        ? $siteSettings['security_content']
+        : json_decode($siteSettings['security_content'] ?? '{}', true);
+    $securityOverride = trim($securityContent[$lang] ?? '');
+@endphp
 
 <section style="padding:60px 0; background:#080D1A;">
     <div class="container-shell hopn-reveal" style="max-width:800px;" @if($lang === 'ar') dir="rtl" @endif>
@@ -22,6 +28,9 @@
             </p>
         </div>
 
+        @if($securityOverride)
+        <div style="color:#CBD5E1; font-size:15px; line-height:1.8; white-space:pre-line;">{{ $securityOverride }}</div>
+        @else
         <div style="color:#CBD5E1; font-size:15px; line-height:1.8;">
 
             <h2 style="font-size:20px; font-weight:700; color:white; margin:32px 0 12px;">GDPR</h2>
@@ -88,6 +97,7 @@
                 @endif
             </p>
         </div>
+        @endif
 
         <div style="margin-top:32px;">
             <a href="{{ route('home', ['lang' => $lang]) }}" class="hopn-link-accent"

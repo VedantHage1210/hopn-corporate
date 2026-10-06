@@ -28,7 +28,12 @@
                 $pubTitle = $lang==='ar' && !empty($pub->title_ar) ? $pub->title_ar : ($lang==='de' && !empty($pub->title_de) ? $pub->title_de : $pub->title_en);
                 $pubSummary = $lang==='ar' && !empty($pub->summary_ar) ? $pub->summary_ar : ($lang==='de' && !empty($pub->summary_de) ? $pub->summary_de : $pub->summary_en);
             @endphp
-            <div class="hopn-reveal" style="border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:16px; padding:28px;">
+            <a href="{{ route('research.publications.show', ['lang' => $lang, 'id' => $pub->id]) }}" class="hopn-reveal" style="display:block; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:16px; padding:18px; text-decoration:none;">
+                @if($pub->image_url)
+                <img loading="lazy" decoding="async" src="{{ $pub->image_url }}" alt="{{ $pubTitle }}" style="width:100%; height:190px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
+                @else
+                <div aria-hidden="true" style="height:190px; border-radius:10px; margin-bottom:20px; background:#172331; color:#CBD5E1; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:800;">R</div>
+                @endif
                 @if($pub->project)
                 <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#4F6EF7; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.25); border-radius:999px; padding:3px 10px; margin-bottom:12px;">
                     {{ $pub->project }}
@@ -43,19 +48,8 @@
                 @if(!empty($pubSummary))
                 <p style="font-size:14px; color:#CBD5E1; line-height:1.7; margin-bottom:14px;">{{ $pubSummary }}</p>
                 @endif
-                <div style="display:flex; gap:16px;">
-                    @if($pub->pdf_url)
-                    <a href="{{ $pub->pdf_url }}" target="_blank" rel="noopener" style="font-size:13px; font-weight:600; color:#4F6EF7; text-decoration:none;">
-                        @if($lang==='ar') تحميل PDF @elseif($lang==='de') PDF herunterladen @else Download PDF @endif →
-                    </a>
-                    @endif
-                    @if($pub->external_url)
-                    <a href="{{ $pub->external_url }}" target="_blank" rel="noopener" style="font-size:13px; font-weight:600; color:#94A3B8; text-decoration:none;">
-                        @if($lang==='ar') رابط خارجي @elseif($lang==='de') Externer Link @else External Link @endif →
-                    </a>
-                    @endif
-                </div>
-            </div>
+                <span style="display:inline-block; margin-top:18px; color:#4F6EF7; font-size:13px; font-weight:700;">@if($lang==='ar') اقرأ البحث @elseif($lang==='de') Beitrag öffnen @else Read publication @endif →</span>
+            </a>
             @endforeach
         </div>
     </div>

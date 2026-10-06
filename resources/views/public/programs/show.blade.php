@@ -46,7 +46,7 @@
     <section style="padding:60px 0; background:#080D1A;">
         <div class="container-shell">
             <div style="max-width:800px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
-                <div style="font-size:28px; flex-shrink:0;">👥</div>
+                <div aria-hidden="true" style="font-size:20px; font-weight:800; flex-shrink:0;">T</div>
                 <div>
                     <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
                         @if($lang === 'ar') الجمهور المستهدف @elseif($lang === 'de') Zielgruppe @else Target Audience @endif
@@ -95,7 +95,7 @@
             </div>
             @if(session('status'))
             <div style="max-width:600px; margin:0 auto 24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
-                ✅ {{ session('status') }}
+                {{ session('status') }}
             </div>
             @endif
             <div style="max-width:600px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:20px; padding:40px;">

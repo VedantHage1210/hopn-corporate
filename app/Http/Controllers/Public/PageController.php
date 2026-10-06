@@ -40,6 +40,10 @@ class PageController extends Controller
                     ->published()
                     ->firstOrFail();
 
+        if ($page->external_url) {
+            return redirect()->away($page->external_url);
+        }
+
         return view('public.pages.show', compact('page', 'lang'));
     }
 
@@ -52,6 +56,10 @@ class PageController extends Controller
     public function preview(string $lang, string $slug)
     {
         $page = Page::with('blocks')->where('slug', $slug)->firstOrFail();
+
+        if ($page->external_url) {
+            return redirect()->away($page->external_url);
+        }
 
         return view('public.pages.show', compact('page', 'lang'))
             ->with('isPreview', true);

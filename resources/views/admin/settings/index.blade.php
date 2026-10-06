@@ -55,6 +55,12 @@
                     <input type="text" name="contact_phone" value="{{ old('contact_phone', $settings['contact_phone'] ?? '') }}"
                         class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Scheduling Link</label>
+                        <input type="url" name="scheduling_url" value="{{ old('scheduling_url', $settings['scheduling_url'] ?? 'http://meet.ebada.de') }}"
+                            placeholder="https://meet.example.com"
+                            class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                    </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Office Address (EN)</label>
                     <input type="text" name="office_address" value="{{ old('office_address', $settings['office_address'] ?? '') }}"
@@ -187,6 +193,24 @@
         <div class="card-panel p-6 mt-4">
             <h2 class="mb-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Stats Sections</h2>
             <p class="mb-4 text-xs text-slate-500">All hidden by default. Only turn a strip on once the numbers are real and confirmed &mdash; do not show placeholder figures.</p>
+            <div class="mb-5 grid gap-4 md:grid-cols-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Organizations</label>
+                    <input type="text" name="stat_organizations" value="{{ old('stat_organizations', $settings['stat_organizations'] ?? '') }}" placeholder="e.g. 50+" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Countries</label>
+                    <input type="text" name="stat_countries" value="{{ old('stat_countries', $settings['stat_countries'] ?? '') }}" placeholder="e.g. 12+" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Universities</label>
+                    <input type="text" name="stat_universities" value="{{ old('stat_universities', $settings['stat_universities'] ?? '') }}" placeholder="e.g. 15+" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Innovation Capital</label>
+                    <input type="text" name="stat_innovation_capital" value="{{ old('stat_innovation_capital', $settings['stat_innovation_capital'] ?? '') }}" placeholder="e.g. €500M+" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
+                </div>
+            </div>
             <div class="grid gap-3 md:grid-cols-2">
                 @foreach([
                     'stats_hero_visible'         => 'Hero stats strip',
@@ -202,6 +226,21 @@
                     <label for="{{ $key }}" class="text-sm text-slate-300">{!! $label !!}</label>
                 </div>
                 @endforeach
+            </div>
+        </div>
+
+        @php
+            $securityContent = is_array($settings['security_content'] ?? null)
+                ? $settings['security_content']
+                : json_decode($settings['security_content'] ?? '{}', true);
+        @endphp
+        <div class="card-panel p-6 mt-4">
+            <h2 class="mb-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Security &amp; Trust Page</h2>
+            <p class="mb-4 text-xs text-slate-500">Optional full-page content. Leave a language blank to keep the verified default wording.</p>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div><label class="block text-xs font-semibold text-slate-400 mb-1">English</label><textarea name="security_content[en]" rows="8" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('security_content.en', $securityContent['en'] ?? '') }}</textarea></div>
+                <div><label class="block text-xs font-semibold text-slate-400 mb-1">Deutsch</label><textarea name="security_content[de]" rows="8" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('security_content.de', $securityContent['de'] ?? '') }}</textarea></div>
+                <div><label class="block text-xs font-semibold text-slate-400 mb-1">العربية</label><textarea name="security_content[ar]" rows="8" dir="rtl" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ old('security_content.ar', $securityContent['ar'] ?? '') }}</textarea></div>
             </div>
         </div>
 

@@ -45,9 +45,14 @@
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                    <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">
-                        {{ $industry->icon ?? '🏭' }}
-                    </div>
+                    @if($industry->image_url)
+                        <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
+                             style="width:88px; height:88px; border-radius:12px; object-fit:cover; flex-shrink:0; background:#FFFFFF;">
+                    @else
+                        <div aria-hidden="true" style="width:88px; height:88px; border-radius:12px; background:#E8EEF5; color:#18324A; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800; flex-shrink:0;">
+                            {{ strtoupper(substr($industry->name, 0, 1)) }}
+                        </div>
+                    @endif
                     <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3; margin:0;">
                         @if($lang==='de'&&$industry->name_de) {{ $industry->name_de }}
                         @elseif($lang==='ar'&&$industry->name_ar) {{ $industry->name_ar }}
@@ -68,7 +73,6 @@
         </div>
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">🏭</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') القطاعات قادمة قريباً @elseif($lang==='de') Branchen folgen @else Industries Coming Soon @endif
             </h3>

@@ -20,13 +20,13 @@
             <h1 style="font-size:clamp(24px,5vw,48px); font-weight:800; color:white; line-height:1.15; margin:0 auto 16px;">{{ $jobTitle }}</h1>
             <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:16px;">
                 @if($job->location)
-                <span style="font-size:13px; color:#CBD5E1;">📍 {{ $job->location }}</span>
+                <span style="font-size:13px; color:#CBD5E1;">{{ $job->location }}</span>
                 @endif
                 @if($job->type)
-                <span style="font-size:13px; color:#CBD5E1;">💼 {{ ucfirst($job->type) }}</span>
+                <span style="font-size:13px; color:#CBD5E1;">{{ ucfirst($job->type) }}</span>
                 @endif
                 @if($job->department)
-                <span style="font-size:13px; color:#CBD5E1;">🏢 {{ $job->department }}</span>
+                <span style="font-size:13px; color:#CBD5E1;">{{ $job->department }}</span>
                 @endif
             </div>
         </div>
@@ -43,7 +43,7 @@
                     @if(session('tracking_token'))
                     <div style="padding:20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px;">
                         <div style="font-size:16px; font-weight:700; color:#10B981; margin-bottom:8px;">
-                            ✅ @if($lang === 'ar') تم إرسال الطلب! @elseif($lang === 'de') Bewerbung eingereicht! @else Application Submitted! @endif
+                            @if($lang === 'ar') تم إرسال الطلب! @elseif($lang === 'de') Bewerbung eingereicht! @else Application Submitted! @endif
                         </div>
                         <p style="font-size:14px; color:#CBD5E1; margin-bottom:8px;">
                             @if($lang === 'ar') رقم طلبك: @elseif($lang === 'de') Ihre Bewerbungs-ID: @else Your Application ID: @endif
@@ -61,7 +61,7 @@
 
                     @if(session('status') && !session('tracking_token'))
                     <div style="padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px;">
-                        ✅ {{ session('status') }}
+                        {{ session('status') }}
                     </div>
                     @endif
 
@@ -120,16 +120,16 @@
                     {{-- Meta --}}
                     <div style="border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px; display:flex; flex-wrap:wrap; gap:12px;">
                         @if($job->location)
-                        <span style="font-size:12px; color:#CBD5E1;">📍 {{ $job->location }}</span>
+                        <span style="font-size:12px; color:#CBD5E1;">{{ $job->location }}</span>
                         @endif
                         @if($job->type)
-                        <span style="font-size:12px; color:#CBD5E1;">💼 {{ ucfirst($job->type) }}</span>
+                        <span style="font-size:12px; color:#CBD5E1;">{{ ucfirst($job->type) }}</span>
                         @endif
                         @if($job->department)
-                        <span style="font-size:12px; color:#CBD5E1;">🏢 {{ $job->department }}</span>
+                        <span style="font-size:12px; color:#CBD5E1;">{{ $job->department }}</span>
                         @endif
                         @if($job->close_date)
-                        <span style="font-size:12px; color:#CBD5E1;">📅 @if($lang === 'ar') يغلق في @elseif($lang === 'de') Bewerbungsschluss @else Closes @endif: {{ \Carbon\Carbon::parse($job->close_date)->format('d M Y') }}</span>
+                        <span style="font-size:12px; color:#CBD5E1;">@if($lang === 'ar') يغلق في @elseif($lang === 'de') Bewerbungsschluss @else Closes @endif: {{ \Carbon\Carbon::parse($job->close_date)->format('d M Y') }}</span>
                         @endif
                     </div>
                 </div>

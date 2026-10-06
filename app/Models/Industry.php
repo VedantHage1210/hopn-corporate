@@ -10,7 +10,7 @@ class Industry extends Model
 
     protected $fillable = [
         'name', 'name_de', 'name_ar',
-        'slug', 'icon',
+        'slug', 'icon', 'image_url',
         'description', 'description_de', 'description_ar',
         'challenges', 'challenges_de', 'challenges_ar',
         'solutions', 'solutions_de', 'solutions_ar',

@@ -52,7 +52,11 @@
                         <a href="{{ route('admin.pages.edit', $page->id) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
                         <a href="{{ route('admin.pages.preview', $page->id) }}" target="_blank" class="text-slate-400 hover:text-white">Preview</a>
                         <a href="{{ route('admin.pages.versions', $page->id) }}" class="text-slate-400 hover:text-white">History</a>
-                      <a href="{{ route('pages.show', ['lang' => 'en', 'slug' => $page->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        @if($page->isCurrentlyPublished())
+                            <a href="{{ route('pages.show', ['lang' => 'en', 'slug' => $page->slug]) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        @else
+                            <a href="{{ route('admin.pages.preview', $page->id) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
+                        @endif
                         @can('content.delete')
 <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}" class="inline-block">
                             @csrf @method('DELETE')

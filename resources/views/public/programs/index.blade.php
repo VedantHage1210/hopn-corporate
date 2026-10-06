@@ -83,7 +83,7 @@
         @endif
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">🎓</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">P</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') البرامج قادمة قريباً @elseif($lang==='de') Programme folgen @else Programs Coming Soon @endif
             </h3>
@@ -111,7 +111,7 @@
 
         @if(session('status'))
         <div style="max-width:680px; margin:0 auto 24px; padding:16px 20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; color:#10B981; font-size:14px; text-align:center;">
-            ✅ {{ session('status') }}
+            {{ session('status') }}
         </div>
         @endif
 

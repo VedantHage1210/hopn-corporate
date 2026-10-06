@@ -52,6 +52,7 @@ class ResearchPublicationController extends Controller
             'title_ar'     => ['nullable', 'string', 'max:255'],
             'project'      => ['nullable', 'string', 'max:100'],
             'authors'      => ['nullable', 'string', 'max:255'],
+            'image_url'    => ['nullable', 'url', 'max:500'],
             'summary_en'   => ['nullable', 'string', 'max:2000'],
             'summary_de'   => ['nullable', 'string', 'max:2000'],
             'summary_ar'   => ['nullable', 'string', 'max:2000'],

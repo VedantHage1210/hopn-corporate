@@ -14,7 +14,7 @@ class SiteSetting extends Model
     'site_tagline', 'site_tagline_de', 'site_tagline_ar',
     'default_locale', 'timezone',
     'contact_email', 'contact_phone',
-    'office_address', 'office_address_de', 'office_address_ar',
+    'office_address', 'office_address_de', 'office_address_ar', 'scheduling_url',
     'social_links', 'seo_defaults',
     'seo_default_title', 'seo_default_title_de', 'seo_default_title_ar',
     'seo_default_description', 'seo_default_description_de', 'seo_default_description_ar',
@@ -26,6 +26,8 @@ class SiteSetting extends Model
     'stats_about_visible',
     'stats_startups_visible',
     'stats_case_studies_visible',
+    'stat_organizations', 'stat_countries', 'stat_universities', 'stat_innovation_capital',
+    'security_content',
 ];
 
     protected $casts = [
@@ -38,5 +40,6 @@ class SiteSetting extends Model
         'stats_about_visible' => 'boolean',
         'stats_startups_visible' => 'boolean',
         'stats_case_studies_visible' => 'boolean',
+        'security_content' => 'array',
     ];
 }

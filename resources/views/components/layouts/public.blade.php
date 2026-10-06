@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('hopn_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        }());
+    </script>
     <title>{{ ($title ?? 'HOPn') . ' | HOPn' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.seo-head')
@@ -123,9 +129,141 @@
         html, body { max-width: 100%; overflow-x: hidden; }
         img, video { max-width: 100%; height: auto; }
         table { max-width: 100%; display: block; overflow-x: auto; }
+
+        /* Public theme system: light is the default, dark remains available. */
+        html[data-theme="light"] body { background:#F6F7F4 !important; color:#172331; }
+        html[data-theme="light"] header { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
+        html[data-theme="light"] header a, html[data-theme="light"] header button { color:#243746 !important; }
+        html[data-theme="light"] header .hopn-dropdown,
+        html[data-theme="light"] header [x-show="langOpen"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; box-shadow:0 18px 36px rgba(23,35,49,.14) !important; }
+        html[data-theme="light"] header .hopn-dropdown a:hover,
+        html[data-theme="light"] header .hopn-trigger:hover { background:#EEF3F5 !important; color:#172331 !important; }
+        html[data-theme="light"] main section[style*="background:#030712"],
+        html[data-theme="light"] main section[style*="background:#050A14"],
+        html[data-theme="light"] main section[style*="background:#080D1A"] { background:#F6F7F4 !important; }
+        html[data-theme="light"] main section[style*="background:#111827"],
+        html[data-theme="light"] main section[style*="background:#0A0F1E"],
+        html[data-theme="light"] main section[style*="background:#0D1425"],
+        html[data-theme="light"] main div[style*="background:#111827"],
+        html[data-theme="light"] main div[style*="background:#0A0F1E"],
+        html[data-theme="light"] main div[style*="background:#0D1425"],
+        html[data-theme="light"] main [style*="background:#111827"],
+        html[data-theme="light"] main [style*="background:#0A0F1E"],
+        html[data-theme="light"] main [style*="background:#0D1425"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
+        html[data-theme="light"] main [style*="background-image:linear-gradient"],
+        html[data-theme="light"] main [style*="background-image:radial-gradient"],
+        html[data-theme="light"] main [style*="background:linear-gradient"],
+        html[data-theme="light"] main [style*="background:radial-gradient"] { background-image:none !important; }
+        html[data-theme="light"] main [style*="box-shadow:0 0"],
+        html[data-theme="light"] main [style*="filter:blur"] { filter:none !important; box-shadow:0 8px 22px rgba(23,35,49,.08) !important; }
+        html[data-theme="light"] main section h1,
+        html[data-theme="light"] main section h2,
+        html[data-theme="light"] main section h3,
+        html[data-theme="light"] main section h4,
+        html[data-theme="light"] main section h5 { color:#172331 !important; text-shadow:none !important; font-weight:750; }
+        html[data-theme="light"] main section h1 span,
+        html[data-theme="light"] main section h2 span { -webkit-text-fill-color:#172331 !important; color:#172331 !important; background-image:none !important; }
+        html[data-theme="light"] main section p { color:#526170 !important; }
+        html[data-theme="light"] main section label,
+        html[data-theme="light"] main section small,
+        html[data-theme="light"] main section figcaption { color:#526170 !important; }
+        html[data-theme="light"] main section span[style*="color:#E2E8F0"],
+        html[data-theme="light"] main section span[style*="color:white"],
+        html[data-theme="light"] main section span[style*="color:#CBD5E1"],
+        html[data-theme="light"] main section span[style*="color:#94A3B8"],
+        html[data-theme="light"] main section div[style*="color:#CBD5E1"],
+        html[data-theme="light"] main section div[style*="color:#94A3B8"],
+        html[data-theme="light"] main section div[style*="color:white"] { color:#243746 !important; opacity:1 !important; font-weight:600; }
+        html[data-theme="light"] main form input:not([type="checkbox"]):not([type="radio"]),
+        html[data-theme="light"] main form textarea,
+        html[data-theme="light"] main form select { background:#FFFFFF !important; color:#172331 !important; border-color:#AEBCC5 !important; caret-color:#172331; }
+        html[data-theme="light"] main form input::placeholder,
+        html[data-theme="light"] main form textarea::placeholder { color:#607180 !important; opacity:1 !important; }
+        html[data-theme="light"] main form input:focus,
+        html[data-theme="light"] main form textarea:focus,
+        html[data-theme="light"] main form select:focus { border-color:#245B78 !important; box-shadow:0 0 0 3px rgba(36,91,120,.16) !important; outline:none; }
+        html[data-theme="light"] main .hopn-lift-card,
+        html[data-theme="light"] main [class*="card"],
+        html[data-theme="light"] main [class*="panel"] { color:#243746; }
+        html[data-theme="light"] main [class*="card"] h1,
+        html[data-theme="light"] main [class*="card"] h2,
+        html[data-theme="light"] main [class*="card"] h3,
+        html[data-theme="light"] main [class*="card"] h4,
+        html[data-theme="light"] main [class*="card"] strong { color:#172331 !important; opacity:1 !important; }
+        html[data-theme="light"] main [class*="card"] p,
+        html[data-theme="light"] main [class*="card"] li,
+        html[data-theme="light"] main [class*="card"] span,
+        html[data-theme="light"] main [class*="card"] div { color:#526170 !important; opacity:1 !important; }
+        html[data-theme="light"] main [class*="card"] a { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main .card-panel {
+            background:#FFFFFF !important;
+            border-color:#D7DEE3 !important;
+            color:#243746 !important;
+            backdrop-filter:none !important;
+            opacity:1 !important;
+        }
+        html[data-theme="light"] main .card-panel h1,
+        html[data-theme="light"] main .card-panel h2,
+        html[data-theme="light"] main .card-panel h3,
+        html[data-theme="light"] main .card-panel h4,
+        html[data-theme="light"] main .card-panel strong { color:#172331 !important; opacity:1 !important; }
+        html[data-theme="light"] main .card-panel p,
+        html[data-theme="light"] main .card-panel li,
+        html[data-theme="light"] main .card-panel span,
+        html[data-theme="light"] main .card-panel div { color:#526170 !important; opacity:1 !important; }
+        html[data-theme="light"] main .card-panel a { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main [style*="background:#111827"] h1,
+        html[data-theme="light"] main [style*="background:#111827"] h2,
+        html[data-theme="light"] main [style*="background:#111827"] h3,
+        html[data-theme="light"] main [style*="background:#111827"] h4,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] h1,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] h2,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] h3,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] h4,
+        html[data-theme="light"] main [style*="background:#0D1425"] h1,
+        html[data-theme="light"] main [style*="background:#0D1425"] h2,
+        html[data-theme="light"] main [style*="background:#0D1425"] h3,
+        html[data-theme="light"] main [style*="background:#0D1425"] h4 { color:#172331 !important; opacity:1 !important; }
+        html[data-theme="light"] main [style*="background:#111827"] p,
+        html[data-theme="light"] main [style*="background:#111827"] span,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] p,
+        html[data-theme="light"] main [style*="background:#0A0F1E"] span,
+        html[data-theme="light"] main [style*="background:#0D1425"] p,
+        html[data-theme="light"] main [style*="background:#0D1425"] span { color:#526170 !important; opacity:1 !important; }
+        html[data-theme="light"] main section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not(.hopn-lift-btn) { color:#245B78 !important; }
+        html[data-theme="light"] footer { background:#EAF0F2 !important; border-color:#D7DEE3 !important; }
+        html[data-theme="light"] footer p, html[data-theme="light"] footer span,
+        html[data-theme="light"] footer a, html[data-theme="light"] footer div[style*="color:#CBD5E1"],
+        html[data-theme="light"] footer div[style*="color:#94A3B8"] { color:#243746 !important; font-weight:600; opacity:1 !important; }
+        html[data-theme="light"] footer a[mailto] { color:#245B78 !important; }
+        html[data-theme="light"] footer h1, html[data-theme="light"] footer h2,
+        html[data-theme="light"] footer h3, html[data-theme="light"] footer strong { color:#172331 !important; font-weight:800; }
+        html[data-theme="light"] .hopn-btn-secondary { background:#245B78 !important; border-color:#245B78 !important; color:#FFFFFF !important; box-shadow:0 8px 22px rgba(36,91,120,.22); font-weight:800; }
+        html[data-theme="light"] .hopn-btn-primary { color:#FFFFFF !important; font-weight:800; }
+        html[data-theme="light"] .hopn-dropdown-header { color:#526170 !important; border-color:#D7DEE3 !important; }
+        html[data-theme="light"] .hopn-theme-toggle { background:#EEF3F5 !important; border-color:#C8D2D8 !important; color:#172331 !important; }
+        html[data-theme="dark"] .hopn-theme-toggle { background:#0D1425; border-color:rgba(255,255,255,.14); color:#CBD5E1; }
+        .hopn-theme-toggle { display:inline-flex; align-items:center; justify-content:center; width:42px; height:34px; border:1px solid; border-radius:9px; cursor:pointer; }
+        .hopn-theme-toggle svg { width:16px; height:16px; }
+        html[data-theme="light"] .hopn-theme-toggle .theme-moon { display:none; }
+        html[data-theme="dark"] .hopn-theme-toggle .theme-sun { display:none; }
+        .hopn-mobile-toggle { display:none !important; }
+        @media (max-width:767px) { .hopn-mobile-toggle { display:flex !important; } }
     </style>
 
     <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var themeButton = document.getElementById('hopn-theme-toggle');
+        if (themeButton) {
+            themeButton.addEventListener('click', function() {
+                var nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', nextTheme);
+                localStorage.setItem('hopn_theme', nextTheme);
+                themeButton.setAttribute('aria-label', nextTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+            });
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         // Global scroll-reveal animation (used across all pages via .hopn-reveal)
         var revealEls = document.querySelectorAll('.hopn-reveal');

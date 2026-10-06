@@ -110,10 +110,10 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                 @php
                 $domains=[
-                    ['icon'=>'🤖','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#4F6EF7'],
+                    ['icon'=>'A','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#4F6EF7'],
                     ['icon'=>'🦾','en'=>'Robotics','de'=>'Robotik','ar'=>'الروبوتات','color'=>'#10B981'],
                     ['icon'=>'🐝','en'=>'Swarming Systems','de'=>'Schwarmsysteme','ar'=>'أنظمة السرب','color'=>'#8B5CF6'],
-                    ['icon'=>'🏭','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#F59E0B'],
+                    ['icon'=>'D','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#F59E0B'],
                     ['icon'=>'🏥','en'=>'Healthcare Tech','de'=>'Gesundheitstechnologie','ar'=>'تكنولوجيا الصحة','color'=>'#EF4444'],
                     ['icon'=>'📊','en'=>'Data Platforms','de'=>'Datenplattformen','ar'=>'منصات البيانات','color'=>'#06B6D4'],
                 ];
@@ -195,11 +195,11 @@
             @php
             $values=[
                 ['icon'=>'🎯','color'=>'#4F6EF7','en'=>'Impact First','de'=>'Wirkung zuerst','ar'=>'الأثر أولاً','desc_en'=>'Every solution must create measurable, real-world impact.','desc_de'=>'Jede Lösung muss messbare Wirkung erzielen.','desc_ar'=>'كل حل يجب أن يحقق تأثيراً حقيقياً.'],
-                ['icon'=>'🔬','color'=>'#10B981','en'=>'Research-Driven','de'=>'Forschungsgetrieben','ar'=>'مدفوع بالبحث','desc_en'=>'We ground our work in academic research and proven methodologies.','desc_de'=>'Wir stützen unsere Arbeit auf akademische Forschung.','desc_ar'=>'نستند إلى البحث الأكاديمي والمنهجيات المثبتة.'],
+                ['icon'=>'R','color'=>'#10B981','en'=>'Research-Driven','de'=>'Forschungsgetrieben','ar'=>'مدفوع بالبحث','desc_en'=>'We ground our work in academic research and proven methodologies.','desc_de'=>'Wir stützen unsere Arbeit auf akademische Forschung.','desc_ar'=>'نستند إلى البحث الأكاديمي والمنهجيات المثبتة.'],
                 ['icon'=>'🤝','color'=>'#8B5CF6','en'=>'Ecosystem Thinking','de'=>'Ökosystem-Denken','ar'=>'التفكير البيئي','desc_en'=>'We believe in collaboration over competition — building together.','desc_de'=>'Zusammenarbeit statt Wettbewerb — gemeinsam aufbauen.','desc_ar'=>'نؤمن بالتعاون على التنافس.'],
-                ['icon'=>'⚡','color'=>'#F59E0B','en'=>'Speed & Discipline','de'=>'Geschwindigkeit & Disziplin','ar'=>'السرعة والانضباط','desc_en'=>'Enterprise-grade outcomes with startup-level speed.','desc_de'=>'Unternehmensergebnisse mit Startup-Geschwindigkeit.','desc_ar'=>'نتائج على مستوى المؤسسات بسرعة الشركات الناشئة.'],
-                ['icon'=>'🌍','color'=>'#06B6D4','en'=>'European Values','de'=>'Europäische Werte','ar'=>'القيم الأوروبية','desc_en'=>'Privacy, transparency, and ethical AI are non-negotiable.','desc_de'=>'Datenschutz, Transparenz und ethische KI sind nicht verhandelbar.','desc_ar'=>'الخصوصية والشفافية والذكاء الاصطناعي الأخلاقي.'],
-                ['icon'=>'🚀','color'=>'#EF4444','en'=>'Continuous Innovation','de'=>'Kontinuierliche Innovation','ar'=>'الابتكار المستمر','desc_en'=>'We never stop learning, experimenting, and pushing boundaries.','desc_de'=>'Wir hören nie auf zu lernen und Grenzen zu erweitern.','desc_ar'=>'لا نتوقف عن التعلم والتجريب.'],
+                ['icon'=>'S','color'=>'#F59E0B','en'=>'Speed & Discipline','de'=>'Geschwindigkeit & Disziplin','ar'=>'السرعة والانضباط','desc_en'=>'Enterprise-grade outcomes with startup-level speed.','desc_de'=>'Unternehmensergebnisse mit Startup-Geschwindigkeit.','desc_ar'=>'نتائج على مستوى المؤسسات بسرعة الشركات الناشئة.'],
+                ['icon'=>'E','color'=>'#06B6D4','en'=>'European Values','de'=>'Europäische Werte','ar'=>'القيم الأوروبية','desc_en'=>'Privacy, transparency, and ethical AI are non-negotiable.','desc_de'=>'Datenschutz, Transparenz und ethische KI sind nicht verhandelbar.','desc_ar'=>'الخصوصية والشفافية والذكاء الاصطناعي الأخلاقي.'],
+                ['icon'=>'I','color'=>'#EF4444','en'=>'Continuous Innovation','de'=>'Kontinuierliche Innovation','ar'=>'الابتكار المستمر','desc_en'=>'We never stop learning, experimenting, and pushing boundaries.','desc_de'=>'Wir hören nie auf zu lernen und Grenzen zu erweitern.','desc_ar'=>'لا نتوقف عن التعلم والتجريب.'],
             ];
             @endphp
             @foreach($values as $v)
@@ -228,10 +228,10 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
             @php
             $collab=[
-                ['icon'=>'🎓','color'=>'#4F6EF7','en'=>'University Collaboration','de'=>'Universitätszusammenarbeit','ar'=>'التعاون الجامعي','desc_en'=>'Joint research programs, thesis supervision, and industry-academia innovation bridges.','desc_de'=>'Gemeinsame Forschungsprogramme und Industrie-Akademie-Brücken.','desc_ar'=>'برامج بحثية مشتركة وجسور الابتكار.'],
-                ['icon'=>'🔬','color'=>'#10B981','en'=>'Applied Research','de'=>'Angewandte Forschung','ar'=>'البحث التطبيقي','desc_en'=>'Turning academic research into real-world products and enterprise solutions.','desc_de'=>'Akademische Forschung in reale Produkte verwandeln.','desc_ar'=>'تحويل البحث الأكاديمي إلى منتجات حقيقية.'],
+                ['icon'=>'U','color'=>'#4F6EF7','en'=>'University Collaboration','de'=>'Universitätszusammenarbeit','ar'=>'التعاون الجامعي','desc_en'=>'Joint research programs, thesis supervision, and industry-academia innovation bridges.','desc_de'=>'Gemeinsame Forschungsprogramme und Industrie-Akademie-Brücken.','desc_ar'=>'برامج بحثية مشتركة وجسور الابتكار.'],
+                ['icon'=>'R','color'=>'#10B981','en'=>'Applied Research','de'=>'Angewandte Forschung','ar'=>'البحث التطبيقي','desc_en'=>'Turning academic research into real-world products and enterprise solutions.','desc_de'=>'Akademische Forschung in reale Produkte verwandeln.','desc_ar'=>'تحويل البحث الأكاديمي إلى منتجات حقيقية.'],
                 ['icon'=>'🤝','color'=>'#8B5CF6','en'=>'Strategic Partnerships','de'=>'Strategische Partnerschaften','ar'=>'الشراكات الاستراتيجية','desc_en'=>'Long-term partnerships with enterprises, investors, and technology companies.','desc_de'=>'Langfristige Partnerschaften mit Unternehmen und Investoren.','desc_ar'=>'شراكات طويلة الأمد مع المؤسسات والمستثمرين.'],
-                ['icon'=>'🌍','color'=>'#F59E0B','en'=>'European Network','de'=>'Europäisches Netzwerk','ar'=>'الشبكة الأوروبية','desc_en'=>'Active network across Germany, EU, and MENA with local presence and global reach.','desc_de'=>'Aktives Netzwerk in Deutschland, EU und MENA.','desc_ar'=>'شبكة نشطة في ألمانيا والاتحاد الأوروبي والشرق الأوسط.'],
+                ['icon'=>'N','color'=>'#F59E0B','en'=>'European Network','de'=>'Europäisches Netzwerk','ar'=>'الشبكة الأوروبية','desc_en'=>'Active network across Germany, EU, and MENA with local presence and global reach.','desc_de'=>'Aktives Netzwerk in Deutschland, EU und MENA.','desc_ar'=>'شبكة نشطة في ألمانيا والاتحاد الأوروبي والشرق الأوسط.'],
             ];
             @endphp
             @foreach($collab as $item)
@@ -260,8 +260,8 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
             @foreach([
                 ['flag'=>'🇩🇪','city'=>$siteSettings['office_address'] ?? 'Germany','en'=>'Germany','de'=>'Deutschland','ar'=>'ألمانيا','type_en'=>'Headquarters','type_de'=>'Hauptsitz','type_ar'=>'المقر الرئيسي','color'=>'#4F6EF7'],
-                ['flag'=>'🇪🇺','city'=>'European Union','en'=>'EU Markets','de'=>'EU-Märkte','ar'=>'أسواق الاتحاد الأوروبي','type_en'=>'Regional Operations','type_de'=>'Regionalbetrieb','type_ar'=>'العمليات الإقليمية','color'=>'#10B981'],
-                ['flag'=>'🌍','city'=>'MENA Region','en'=>'Middle East & North Africa','de'=>'Naher Osten & Nordafrika','ar'=>'الشرق الأوسط وشمال أفريقيا','type_en'=>'Partner Network','type_de'=>'Partnernetzwerk','type_ar'=>'شبكة الشركاء','color'=>'#F59E0B'],
+                ['flag'=>'EU','city'=>'European Union','en'=>'EU Markets','de'=>'EU-Märkte','ar'=>'أسواق الاتحاد الأوروبي','type_en'=>'Regional Operations','type_de'=>'Regionalbetrieb','type_ar'=>'العمليات الإقليمية','color'=>'#10B981'],
+                ['flag'=>'MENA','city'=>'MENA Region','en'=>'Middle East & North Africa','de'=>'Naher Osten & Nordafrika','ar'=>'الشرق الأوسط وشمال أفريقيا','type_en'=>'Partner Network','type_de'=>'Partnernetzwerk','type_ar'=>'شبكة الشركاء','color'=>'#F59E0B'],
             ] as $loc)
             <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s;">
                 <div style="font-size:40px; margin-bottom:16px;">{{ $loc['flag'] }}</div>

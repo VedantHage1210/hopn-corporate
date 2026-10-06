@@ -14,7 +14,7 @@ class NewsletterConfirmationMail extends Mailable
 
     public function __construct(
         public readonly string $confirmUrl,
-        public readonly string $locale = 'en',
+        public readonly string $emailLocale = 'en',
     ) {}
 
     public function envelope(): Envelope
@@ -26,7 +26,7 @@ class NewsletterConfirmationMail extends Mailable
         ];
 
         return new Envelope(
-            subject: $subjects[$this->locale] ?? $subjects['en'],
+            subject: $subjects[$this->emailLocale] ?? $subjects['en'],
         );
     }
 
@@ -34,6 +34,7 @@ class NewsletterConfirmationMail extends Mailable
     {
         return new Content(
             html: 'emails.newsletter-confirmation',
+            with: ['locale' => $this->emailLocale],
         );
     }
 

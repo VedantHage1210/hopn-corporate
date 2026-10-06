@@ -62,7 +62,7 @@
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="width:48px; height:48px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; flex-shrink:0;">
-                    {{ $service->icon ?? '⚡' }}
+                    {{ strtoupper(substr($service->name, 0, 1)) }}
                 </div>
                 <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:10px; line-height:1.3;">{{ $svcTitle }}</h3>
                 <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($svcSummary ?? '',100) }}</p>
@@ -77,7 +77,7 @@
         @endif
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">⚡</div>
+            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">S</div>
             <p style="font-size:16px; color:#94A3B8;">
                 @if($lang==='ar') لا توجد خدمات حالياً @elseif($lang==='de') Keine Leistungen gefunden @else No services found @endif
             </p>
