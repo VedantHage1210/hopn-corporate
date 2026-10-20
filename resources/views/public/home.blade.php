@@ -96,8 +96,6 @@
 
 .hopn-strategy-step { background:#0A0F1E; transition:background 0.4s cubic-bezier(0.16,1,0.3,1); position:relative; }
 .hopn-strategy-step:hover { background:#0D1425; }
-.hopn-strategy-step:hover .hopn-strategy-icon { transform:scale(1.08); }
-.hopn-strategy-icon { transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
 
 /* 3D tilt-on-hover — hero/feature cards only (Strategy/Build/Scale, HOPn Products) */
 [data-tilt] { position:relative; transform-style:preserve-3d; will-change:transform; transition:transform 0.15s ease; }
@@ -111,8 +109,6 @@
 }
 .hopn-service-card:hover { background:#0A1628; }
 .hopn-product-card:hover { border-color:rgba(255,255,255,0.14); background:#0D1425; transform:translateY(-5px); }
-.hopn-product-card:hover .hopn-product-icon { transform:scale(1.08); }
-.hopn-product-icon { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1); }
 
 /* Calm institute-style homepage surface. Content and actions stay unchanged. */
 html[data-theme="light"] .hopn-homepage section { background:#F6F7F4 !important; color:#172331; }
@@ -138,7 +134,19 @@ html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,
 html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,255,255,0.05)"] { background:#E8EDF0 !important; }
 html[data-theme="light"] .hopn-homepage section div[style*="radial-gradient"],
 html[data-theme="light"] .hopn-homepage .hopn-hero-orbit { display:none !important; }
-html[data-theme="light"] .hopn-homepage .hopn-strategy-step { background:#FFFFFF !important; }
+html[data-theme="light"] .hopn-homepage .hopn-strategy-step,
+html[data-theme="light"] .hopn-homepage .hopn-strategy-step:hover,
+html[data-theme="light"] .hopn-homepage .hopn-lift-card,
+html[data-theme="light"] .hopn-homepage .hopn-lift-card:hover,
+html[data-theme="light"] .hopn-homepage .hopn-service-card,
+html[data-theme="light"] .hopn-homepage .hopn-service-card:hover,
+html[data-theme="light"] .hopn-homepage .hopn-product-card,
+html[data-theme="light"] .hopn-homepage .hopn-product-card:hover { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-lift-card:hover,
+html[data-theme="light"] .hopn-homepage .hopn-product-card:hover { transform:none; }
+html[data-theme="light"] .hopn-homepage .hopn-lift-card h3,
+html[data-theme="light"] .hopn-homepage .hopn-lift-card p { color:#172331 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-lift-card p { color:#526170 !important; }
 html[data-theme="light"] .hopn-homepage .hopn-industry-card { background:#FFFFFF !important; border-color:#D7DEE3 !important; padding:30px 20px !important; min-height:190px; }
 html[data-theme="light"] .hopn-homepage .hopn-industry-card img,
 html[data-theme="light"] .hopn-homepage .hopn-industry-card > div[aria-hidden="true"] { width:96px !important; height:96px !important; border-radius:14px !important; margin-bottom:16px !important; }
@@ -272,8 +280,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                  $lang==='ar'?'التوسع':($lang==='de'?'Skalierung':'Scale'),
                  $lang==='ar'?'حقق التأثير مع المنصات والشراكات والنتائج القابلة للقياس.':($lang==='de'?'Wirkung mit Plattformen und messbaren Ergebnissen operationalisieren.':'Operationalize impact with platforms, partnerships, and measurable outcomes.')],
             ] as $step)
-            <div class="hopn-strategy-step" data-tilt style="padding:48px 40px; text-align:center;">
-                <div class="hopn-strategy-icon" style="width:56px; height:56px; border-radius:14px; background:{{ $step[1] }}15; border:1px solid {{ $step[1] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:{{ $step[1] }}; margin:0 auto 20px;">{{ $step[0] }}</div>
+            <div class="hopn-strategy-step" style="padding:48px 40px; text-align:center;">
                 <h3 style="font-size:22px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">{{ $step[2] }}</h3>
                 <p style="font-size:14px; color:#94A3B8; line-height:1.75; max-width:280px; margin:0 auto;">{{ $step[3] }}</p>
             </div>
@@ -315,8 +322,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
             ];
             @endphp
             @foreach($ecosystem as $node)
-            <div class="hopn-ecosystem-node" style="border:1px solid {{ $node['color'] }}30; background:{{ $node['color'] }}08; border-radius:16px; padding:20px 12px; text-align:center;">
-                <div style="width:48px; height:48px; border-radius:12px; background:{{ $node['color'] }}15; border:1px solid {{ $node['color'] }}45; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $node['color'] }};">{{ $node['mark'] }}</div>
+            <div class="hopn-ecosystem-node" style="border:1px solid #245B7830; background:#245B7808; border-radius:16px; padding:20px 12px; text-align:center;">
                 <div style="font-size:13px; font-weight:700; color:white; margin-bottom:4px;">{{ $node['label'] }}</div>
                 <div style="font-size:11px; color:#94A3B8; line-height:1.4;">{{ $node['desc'] }}</div>
             </div>
@@ -328,7 +334,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
             @foreach($homeDomains as $domain)
             <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}" class="hopn-domain-link"
                style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:12px; padding:20px 16px; text-decoration:none; display:flex; align-items:center; gap:12px;">
-                <span aria-hidden="true" style="width:32px; height:32px; border-radius:8px; background:#E8EEF5; color:#18324A; display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:800;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
                 <span style="font-size:14px; font-weight:600; color:#CBD5E1;">{{ $domain->name }}</span>
             </a>
             @endforeach
@@ -365,9 +370,8 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); border-radius:16px; overflow:hidden;">
             @foreach($services as $service)
             @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
-            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card" data-tilt
+            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card"
                style="display:block; padding:28px; background:#050A14; text-decoration:none; position:relative; overflow:hidden;">
-                <div aria-hidden="true" style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:16px; font-weight:800; color:{{ $c }};">S</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
                     @if($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
                     @elseif($lang==='de'&&$service->name_de) {{ $service->name_de }}
@@ -412,7 +416,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                 $categories=['Innovation Project Management','AI-Powered Fintech Platform','AI Tools & Certification','AI Governance & Compliance','Sports Performance Analytics','Education–Industry Bridge'];
                 $cat=$categories[$loop->index] ?? 'Platform';
             @endphp
-            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card" data-tilt
+            <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $c }}60, transparent);"></div>
                 <span style="position:absolute; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
@@ -420,9 +424,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                 </span>
                 <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:{{ $c }}; margin-bottom:12px; opacity:0.85;">{{ $cat }}</div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                    <div class="hopn-product-icon" style="width:44px; height:44px; border-radius:12px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
-                        {{ strtoupper(substr($title,0,1)) }}
-                    </div>
                     <div style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.5px;">{{ $title }}</div>
                 </div>
                 <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($summary,100) }}</p>
@@ -457,13 +458,11 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         </div>
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;">
             @foreach($homeIndustries as $industry)
-              <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card" data-tilt
+              <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-industry-card"
                 style="border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); border-radius:14px; padding:24px 16px; text-align:center; text-decoration:none;">
                 @if($industry->image_url)
                 <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
                      style="width:96px; height:96px; margin:0 auto 16px; border-radius:14px; object-fit:cover; background:#FFFFFF;">
-                @else
-                 <div aria-hidden="true" style="width:96px; height:96px; margin:0 auto 16px; border-radius:14px; background:#E8EEF5; color:#18324A; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800;">{{ strtoupper(substr($industry->name, 0, 1)) }}</div>
                 @endif
                 <div style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $industry->name }}</div>
             </a>
@@ -541,17 +540,12 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">
                         @if($lang==='ar') شركات ناشئة مميزة @elseif($lang==='de') Ausgewählte Startups @else Featured Startups @endif
                     </h3>
-                    <span aria-hidden="true" style="width:32px; height:32px; border:1px solid rgba(239,68,68,0.4); border-radius:8px; display:inline-flex; align-items:center; justify-content:center; color:#EF4444; font-size:13px; font-weight:800;">V</span>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @foreach($featuredStartups as $startup)
                     <div class="hopn-row-hover" style="display:flex; align-items:center; gap:14px; padding:12px; border-radius:12px;">
                         @if($startup->logo)
                         <img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $startup->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
-                        @else
-                        <div style="width:40px; height:40px; border-radius:10px; background:rgba(239,68,68,0.12); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#EF4444; flex-shrink:0;">
-                            {{ strtoupper(substr($startup->name,0,1)) }}
-                        </div>
                         @endif
                         <div style="flex:1; min-width:0;">
                             <div style="font-size:14px; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $startup->name }}</div>
@@ -576,17 +570,12 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">
                         @if($lang==='ar') مستثمرون رئيسيون @elseif($lang==='de') Wichtige Investoren @else Key Investors @endif
                     </h3>
-                    <span aria-hidden="true" style="width:32px; height:32px; border:1px solid rgba(6,182,212,0.4); border-radius:8px; display:inline-flex; align-items:center; justify-content:center; color:#06B6D4; font-size:13px; font-weight:800;">C</span>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     @foreach($featuredInvestors as $investor)
                     <div class="hopn-row-hover" style="display:flex; align-items:center; gap:14px; padding:12px; border-radius:12px;">
                         @if($investor->logo)
                         <img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $investor->name }}" style="width:40px; height:40px; border-radius:10px; object-fit:cover; background:white; flex-shrink:0;">
-                        @else
-                        <div style="width:40px; height:40px; border-radius:10px; background:rgba(6,182,212,0.12); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#06B6D4; flex-shrink:0;">
-                            {{ strtoupper(substr($investor->name,0,1)) }}
-                        </div>
                         @endif
                         <div style="flex:1; min-width:0;">
                             <div style="font-size:14px; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $investor->name }}</div>
@@ -635,7 +624,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @foreach($experts as $expert)
             @php $c = $expert->accent_color ?? '#4F6EF7'; @endphp
-            <div class="hopn-lift-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}60,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($expert->photo_url)
@@ -708,7 +697,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($homeWorkshops as $ws)
-            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$ws->slug]) }}" data-tilt class="hopn-lift-card" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$ws->slug]) }}" class="hopn-lift-card" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $wsColors[$loop->index % 3] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
                     <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $wsColors[$loop->index % 3] }}15; color:{{ $wsColors[$loop->index % 3] }}; border:1px solid {{ $wsColors[$loop->index % 3] }}30;">{{ $ws->duration_label_en ?? $ws->format }}</span>
@@ -874,9 +863,8 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
             ];
             @endphp
             @foreach($talentItems as $item)
-            <div class="hopn-lift-card" data-tilt style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+            <div class="hopn-lift-card hopn-talent-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
                 <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $item['color'] }}40, transparent);"></div>
-                <div aria-hidden="true" style="width:42px; height:42px; border:1px solid {{ $item['color'] }}55; border-radius:10px; display:flex; align-items:center; justify-content:center; color:{{ $item['color'] }}; font-size:16px; font-weight:800; margin-bottom:16px;">{{ $item['mark'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
                 <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc'] }}</p>
             </div>

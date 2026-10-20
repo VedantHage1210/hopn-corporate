@@ -236,7 +236,7 @@
     </div>
 
     {{-- Mobile Menu --}}
-    <div x-show="open" id="hopn-mobile-menu"
+    <div x-show="open" id="hopn-mobile-menu" class="hopn-mobile-menu"
          x-transition:enter="transition ease-out duration-150"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"

@@ -134,6 +134,14 @@
         html[data-theme="light"] body { background:#F6F7F4 !important; color:#172331; }
         html[data-theme="light"] header { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
         html[data-theme="light"] header a, html[data-theme="light"] header button { color:#243746 !important; }
+        html[data-theme="light"] header .hopn-mobile-menu { background:#FFFFFF !important; border-top-color:#D7DEE3 !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+        html[data-theme="light"] header .hopn-mobile-menu a,
+        html[data-theme="light"] header .hopn-mobile-menu button,
+        html[data-theme="light"] header .hopn-mobile-menu span { color:#243746 !important; }
+        html[data-theme="light"] header .hopn-mobile-menu a:hover,
+        html[data-theme="light"] header .hopn-mobile-menu button:hover { background:#EEF3F5 !important; color:#172331 !important; }
+        html[data-theme="light"] header .hopn-mobile-menu [style*="border-top"] { border-top-color:#D7DEE3 !important; }
+        html[data-theme="light"] header .hopn-mobile-menu .hopn-lang-item.active { background:#E8EEF2 !important; color:#245B78 !important; }
         html[data-theme="light"] header .hopn-dropdown,
         html[data-theme="light"] header [x-show="langOpen"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; box-shadow:0 18px 36px rgba(23,35,49,.14) !important; }
         html[data-theme="light"] header .hopn-dropdown a:hover,
