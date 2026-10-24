@@ -41,6 +41,7 @@ class PartnerController extends Controller
             'description_ar' => $request->description_ar,
             'sort_order'     => $request->sort_order ?? 0,
             'visible'        => $request->boolean('visible', true),
+            'verified'       => $request->boolean('verified'),
         ]);
 
         return redirect()->route('admin.partners.index')->with('status', 'Partner created.');
@@ -82,9 +83,22 @@ class PartnerController extends Controller
             'description_ar' => $request->description_ar,
             'sort_order'     => $request->sort_order ?? 0,
             'visible'        => $request->boolean('visible'),
+            'verified'       => $request->boolean('verified'),
         ]);
 
         return redirect()->route('admin.partners.index')->with('status', 'Partner updated.');
+    }
+
+    /**
+     * One-click "verified by the founder" switch. Only verified partners appear in the homepage logo strip.
+     */
+    public function toggleVerified(string $id)
+    {
+        $partner = Partner::findOrFail($id);
+        $partner->update(['verified' => ! $partner->verified]);
+
+        return redirect()->route('admin.partners.index')
+            ->with('status', $partner->name . ($partner->verified ? ' is now verified and can appear on the homepage.' : ' is no longer verified.'));
     }
 
     public function destroy(string $id)

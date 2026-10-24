@@ -88,35 +88,16 @@
 
 <style>
 
-@keyframes hopnLogoGlow {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
-}
-@keyframes hopnLogoSpin {
-    from { transform: rotateY(0deg); }
-    to   { transform: rotateY(360deg); }
-}
-.hopn-logo-3d-inner { transition: animation-duration 0.3s ease; }
-.hopn-logo-3d:hover .hopn-logo-3d-inner { animation-duration: 1.4s; }
-@media (prefers-reduced-motion: reduce) {
-    .hopn-logo-3d-inner { animation: none; }
-}
-
-
-
-
-
-
 .hopn-nav-item { position:relative; }
 .hopn-dropdown {
     position:absolute; top:100%; left:50%; transform:translateX(-50%);
     margin-top:0; padding:18px 8px 8px 8px; min-width:220px; background:#0D1425; border:1px solid rgba(255,255,255,0.09);
-    border-radius:12px; box-shadow:0 24px 48px rgba(0,0,0,0.6);
+    border-radius:12px; box-shadow:0 8px 24px rgba(15,23,42,0.18);
     background-clip:padding-box;
     opacity:0; pointer-events:none; transition:opacity 0.15s ease, transform 0.15s ease;
     transform:translateX(-50%) translateY(4px); z-index:200;
 }
-.hopn-nav-item:hover .hopn-dropdown {
+.hopn-nav-item:hover .hopn-dropdown, .hopn-nav-item:focus-within .hopn-dropdown {
     opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0);
 }
 .hopn-dropdown a {
@@ -133,9 +114,9 @@
     color:#CBD5E1; font-size:13px; font-weight:500; cursor:pointer;
     background:none; border:none; transition:all 0.15s; white-space:nowrap;
 }
-.hopn-trigger:hover, .hopn-nav-item:hover .hopn-trigger { color:white; background:rgba(255,255,255,0.05); }
+.hopn-trigger:hover, .hopn-nav-item:hover .hopn-trigger, .hopn-nav-item:focus-within .hopn-trigger { color:white; background:rgba(255,255,255,0.05); }
 .hopn-trigger svg { transition:transform 0.2s; }
-.hopn-nav-item:hover .hopn-trigger svg { transform:rotate(180deg); }
+.hopn-nav-item:hover .hopn-trigger svg, .hopn-nav-item:focus-within .hopn-trigger svg { transform:rotate(180deg); }
 .hopn-lang-item { display:block; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#CBD5E1; text-decoration:none; transition:all 0.15s; }
 .hopn-lang-item:hover { background:rgba(79,110,247,0.1); color:white; }
 .hopn-lang-item.active { background:rgba(79,110,247,0.15); color:#818CF8; }
@@ -148,31 +129,20 @@
       {{-- Logo --}}
 <a href="{{ route('home', ['lang'=>$lang]) }}"
    style="display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
-    <span class="hopn-logo-3d" style="display:inline-block; width:38px; height:38px; perspective:220px; position:relative;" aria-hidden="true">
-        <span style="position:absolute; inset:-6px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%); animation:hopnLogoGlow 2.4s ease-in-out infinite;"></span>
-        <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite; position:relative;">
-            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 8px rgba(139,92,246,0.75));">
-                <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#A78BFA" stroke-width="3.2" stroke-linejoin="round"/>
-                <circle cx="20" cy="4" r="4.2" fill="#8B5CF6"/>
-                <circle cx="4.5" cy="33" r="4.2" fill="#8B5CF6"/>
-                <circle cx="35.5" cy="33" r="4.2" fill="#8B5CF6"/>
-            </svg>
-            <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 8px rgba(79,110,247,0.75));">
-                <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#4F6EF7" stroke-width="3.2" stroke-linejoin="round"/>
-                <circle cx="20" cy="4" r="4.2" fill="#4F6EF7"/>
-                <circle cx="4.5" cy="33" r="4.2" fill="#4F6EF7"/>
-                <circle cx="35.5" cy="33" r="4.2" fill="#4F6EF7"/>
-            </svg>
-        </span>
-    </span>
-    <span style="font-size:19px; font-weight:900; color:white; letter-spacing:-0.5px;">HOPn</span>
+    <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true" focusable="false" style="display:block; flex-shrink:0;">
+        <path d="M20 5 L34.5 33 L5.5 33 Z" fill="none" stroke="#245B78" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="20" cy="5" r="3.6" fill="#245B78"/>
+        <circle cx="5.5" cy="33" r="3.6" fill="#245B78"/>
+        <circle cx="34.5" cy="33" r="3.6" fill="#245B78"/>
+    </svg>
+    <span class="hopn-wordmark" style="font-size:19px; font-weight:900; color:white; letter-spacing:-0.5px;">HOPn</span>
 </a>
 
         {{-- Desktop Nav --}}
-        <nav class="hidden md:flex" style="align-items:center; gap:2px;">
+        <nav class="hidden md:flex" aria-label="{{ $activeLang==='ar' ? 'التنقل الرئيسي' : ($activeLang==='de' ? 'Hauptnavigation' : 'Main navigation') }}" style="align-items:center; gap:2px;">
             @foreach($groups as $group)
             <div class="hopn-nav-item">
-                <button class="hopn-trigger">
+                <button class="hopn-trigger" type="button" aria-haspopup="true">
                     {{ $activeLang==='ar'?$group['label_ar']:($activeLang==='de'?$group['label_de']:$group['label_en']) }}
                     <svg style="width:13px;height:13px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
@@ -216,12 +186,18 @@
             </button>
 
             {{-- CTA --}}
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
+            @php
+                $bookUrl = !empty($siteSettings['scheduling_url'] ?? null) ? $siteSettings['scheduling_url'] : null;
+                $bookLabel = $activeLang==='ar' ? 'احجز مكالمة' : ($activeLang==='de' ? 'Termin buchen' : 'Book a Call');
+            @endphp
+            <a href="{{ $bookUrl ?: route('contact.index', ['lang'=>$lang]) }}"
+               @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif
+               data-hopn-event="Book Call"
                class="hidden md:inline-flex"
-               style="align-items:center; gap:6px; padding:8px 20px; border-radius:8px; background:#4F6EF7; color:white; font-size:13px; font-weight:700; text-decoration:none; box-shadow:0 0 20px rgba(79,110,247,0.3); transition:opacity 0.2s; white-space:nowrap;"
-               onmouseover="this.style.opacity='0.85'"
-               onmouseout="this.style.opacity='1'">
-                @if($activeLang==='ar') احجز مكالمة @elseif($activeLang==='de') Termin buchen @else Book a Call @endif
+               style="align-items:center; gap:6px; padding:8px 20px; border-radius:8px; background:#245B78; color:#FFFFFF; font-size:13px; font-weight:700; text-decoration:none; transition:background-color 0.2s; white-space:nowrap;"
+               onmouseover="this.style.background='#1D4D66'"
+               onmouseout="this.style.background='#245B78'">
+                {{ $bookLabel }}
             </a>
 
             {{-- Mobile toggle --}}
@@ -243,7 +219,7 @@
          x-transition:leave="transition ease-in duration-100"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         style="display:none; border-top:1px solid rgba(255,255,255,0.06); background:rgba(3,7,18,0.98); backdrop-filter:blur(24px); max-height:80vh; overflow-y:auto;">
+         style="display:none; border-top:1px solid rgba(255,255,255,0.06); background:rgba(3,7,18,0.98); max-height:80vh; overflow-y:auto;">
         <div class="container-shell" style="padding:16px; display:flex; flex-direction:column; gap:2px;">
             @foreach($groups as $group)
             <div x-data="{sub:false}">
@@ -266,6 +242,13 @@
                 </div>
             </div>
             @endforeach
+
+            <a href="{{ $bookUrl ?: route('contact.index', ['lang'=>$lang]) }}"
+               @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif
+               data-hopn-event="Book Call"
+               style="display:flex; align-items:center; justify-content:center; margin:12px 14px 4px; padding:12px 20px; border-radius:8px; background:#245B78; color:#FFFFFF; font-size:14px; font-weight:700; text-decoration:none;">
+                {{ $bookLabel }}
+            </a>
 
             <div x-data="{ mLangOpen:false }" style="padding:12px 14px; border-top:1px solid rgba(255,255,255,0.05); margin-top:8px;">
                 <button type="button" @click="mLangOpen=!mLangOpen"

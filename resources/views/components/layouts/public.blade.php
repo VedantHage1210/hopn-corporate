@@ -14,22 +14,16 @@
     <title>{{ ($title ?? 'HOPn') . ' | HOPn' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.seo-head')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    {{-- Arabic font --}}
-    @if($lang === 'ar')
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    @else
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @endif
+    {{-- Self-hosted fonts (no request to Google): Inter for Latin, Cairo for Arabic --}}
+    <link rel="preload" href="/fonts/{{ $lang === 'ar' ? 'cairo-arabic' : 'inter-latin' }}-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/fonts/fonts.css">
 
     <style>
         /* Font family based on language */
         @if($lang === 'ar')
-        * { font-family: 'Cairo', sans-serif !important; }
+        * { font-family: 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif !important; }
         @else
-        * { font-family: 'Inter', sans-serif !important; }
+        * { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif !important; }
         @endif
 
         /* RTL specific fixes */
@@ -67,10 +61,10 @@
         .hopn-link-accent { transition:color 0.25s ease; }
         .hopn-link-accent:hover { color:white !important; }
 
-        .hopn-btn-primary { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1); }
-        .hopn-btn-primary:hover { transform:translateY(-3px); box-shadow:0 0 64px rgba(79,110,247,0.65); }
-        .hopn-btn-primary-green { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1); }
-        .hopn-btn-primary-green:hover { transform:translateY(-3px); box-shadow:0 0 60px rgba(16,185,129,0.4); }
+        .hopn-btn-primary { transition:background-color 0.2s ease; }
+        .hopn-btn-primary:hover { background:#1D4D66 !important; }
+        .hopn-btn-primary-green { transition:background-color 0.2s ease; }
+        .hopn-btn-primary-green:hover { background:#1D4D66 !important; }
         .hopn-btn-secondary { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.25s ease, border-color 0.25s ease; }
         .hopn-btn-secondary:hover { transform:translateY(-3px); background:rgba(255,255,255,0.09); border-color:rgba(255,255,255,0.28); }
         .hopn-btn-outline-blue { transition:background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -142,6 +136,8 @@
         html[data-theme="light"] header .hopn-mobile-menu button:hover { background:#EEF3F5 !important; color:#172331 !important; }
         html[data-theme="light"] header .hopn-mobile-menu [style*="border-top"] { border-top-color:#D7DEE3 !important; }
         html[data-theme="light"] header .hopn-mobile-menu .hopn-lang-item.active { background:#E8EEF2 !important; color:#245B78 !important; }
+        html[data-theme="light"] main a[style*="background:#4F6EF7"],
+        html[data-theme="light"] main a[style*="background:#245B78"] { background:#245B78 !important; color:#FFFFFF !important; }
         html[data-theme="light"] header .hopn-dropdown,
         html[data-theme="light"] header [x-show="langOpen"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; box-shadow:0 18px 36px rgba(23,35,49,.14) !important; }
         html[data-theme="light"] header .hopn-dropdown a:hover,
@@ -202,7 +198,7 @@
         html[data-theme="light"] main [class*="card"] li,
         html[data-theme="light"] main [class*="card"] span,
         html[data-theme="light"] main [class*="card"] div { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main [class*="card"] a { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main [class*="card"] a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; opacity:1 !important; }
         html[data-theme="light"] main .card-panel {
             background:#FFFFFF !important;
             border-color:#D7DEE3 !important;
@@ -219,7 +215,7 @@
         html[data-theme="light"] main .card-panel li,
         html[data-theme="light"] main .card-panel span,
         html[data-theme="light"] main .card-panel div { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main .card-panel a { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main .card-panel a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; opacity:1 !important; }
         html[data-theme="light"] main [style*="background:#111827"] h1,
         html[data-theme="light"] main [style*="background:#111827"] h2,
         html[data-theme="light"] main [style*="background:#111827"] h3,
@@ -238,7 +234,7 @@
         html[data-theme="light"] main [style*="background:#0A0F1E"] span,
         html[data-theme="light"] main [style*="background:#0D1425"] p,
         html[data-theme="light"] main [style*="background:#0D1425"] span { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not(.hopn-lift-btn) { color:#245B78 !important; }
+        html[data-theme="light"] main section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; }
         html[data-theme="light"] footer { background:#EAF0F2 !important; border-color:#D7DEE3 !important; }
         html[data-theme="light"] footer p, html[data-theme="light"] footer span,
         html[data-theme="light"] footer a, html[data-theme="light"] footer div[style*="color:#CBD5E1"],
@@ -246,7 +242,8 @@
         html[data-theme="light"] footer a[mailto] { color:#245B78 !important; }
         html[data-theme="light"] footer h1, html[data-theme="light"] footer h2,
         html[data-theme="light"] footer h3, html[data-theme="light"] footer strong { color:#172331 !important; font-weight:800; }
-        html[data-theme="light"] .hopn-btn-secondary { background:#245B78 !important; border-color:#245B78 !important; color:#FFFFFF !important; box-shadow:0 8px 22px rgba(36,91,120,.22); font-weight:800; }
+        html[data-theme="light"] .hopn-btn-secondary { background:#FFFFFF !important; border:1.5px solid #245B78 !important; color:#245B78 !important; box-shadow:none !important; font-weight:700; }
+        html[data-theme="light"] .hopn-btn-secondary:hover { background:#EEF3F5 !important; transform:none; }
         html[data-theme="light"] .hopn-btn-primary { color:#FFFFFF !important; font-weight:800; }
         html[data-theme="light"] .hopn-dropdown-header { color:#526170 !important; border-color:#D7DEE3 !important; }
         html[data-theme="light"] .hopn-theme-toggle { background:#EEF3F5 !important; border-color:#C8D2D8 !important; color:#172331 !important; }
@@ -257,6 +254,203 @@
         html[data-theme="dark"] .hopn-theme-toggle .theme-sun { display:none; }
         .hopn-mobile-toggle { display:none !important; }
         @media (max-width:767px) { .hopn-mobile-toggle { display:flex !important; } }
+
+        /* ===== Cookie banner: calm surface, no shadow glow ===== */
+        #cookie-banner { box-shadow:none !important; }
+        html[data-theme="light"] #cookie-banner { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
+        html[data-theme="light"] #cookie-banner p { color:#243746 !important; }
+        html[data-theme="light"] #cookie-banner a { color:#245B78 !important; }
+        html[data-theme="light"] #cookie-banner button { color:#243746 !important; border-color:#B9C4CB !important; background:#FFFFFF !important; }
+        html[data-theme="light"] #cookie-banner button:hover { background:#EEF3F5 !important; }
+        #cookie-banner #cookie-accept { background:#245B78 !important; color:#FFFFFF !important; border-color:#245B78 !important; }
+        #cookie-banner #cookie-accept:hover { background:#1D4D66 !important; }
+
+
+        /* ===== Contrast (WCAG 2.2 AA): one accent colour, readable on light surfaces ===== */
+        html[data-theme="light"] main [style*=" color:#818CF8"],
+        html[data-theme="light"] main [style^="color:#818CF8"],
+        html[data-theme="light"] main [style*=" color:#A78BFA"],
+        html[data-theme="light"] main [style^="color:#A78BFA"],
+        html[data-theme="light"] main [style*=" color:#4F6EF7"],
+        html[data-theme="light"] main [style^="color:#4F6EF7"],
+        html[data-theme="light"] main [style*=" color:#8B5CF6"],
+        html[data-theme="light"] main [style^="color:#8B5CF6"],
+        html[data-theme="light"] main [style*=" color:#6366F1"],
+        html[data-theme="light"] main [style^="color:#6366F1"],
+        html[data-theme="light"] main [style*=" color:#10B981"],
+        html[data-theme="light"] main [style^="color:#10B981"],
+        html[data-theme="light"] main [style*=" color:#34D399"],
+        html[data-theme="light"] main [style^="color:#34D399"],
+        html[data-theme="light"] main [style*=" color:#06B6D4"],
+        html[data-theme="light"] main [style^="color:#06B6D4"],
+        html[data-theme="light"] main [style*=" color:#22D3EE"],
+        html[data-theme="light"] main [style^="color:#22D3EE"],
+        html[data-theme="light"] main [style*=" color:#F59E0B"],
+        html[data-theme="light"] main [style^="color:#F59E0B"],
+        html[data-theme="light"] main [style*=" color:#FBBF24"],
+        html[data-theme="light"] main [style^="color:#FBBF24"],
+        html[data-theme="light"] main [style*=" color:#EC4899"],
+        html[data-theme="light"] main [style^="color:#EC4899"],
+        html[data-theme="light"] main [style*=" color:#F472B6"],
+        html[data-theme="light"] main [style^="color:#F472B6"],
+        html[data-theme="light"] main [style*=" color:#3B82F6"],
+        html[data-theme="light"] main [style^="color:#3B82F6"],
+        html[data-theme="light"] main [style*=" color:#60A5FA"],
+        html[data-theme="light"] main [style^="color:#60A5FA"],
+        html[data-theme="light"] main [style*=" color:#F97316"],
+        html[data-theme="light"] main [style^="color:#F97316"],
+        html[data-theme="light"] main [style*=" color:#FB923C"],
+        html[data-theme="light"] main [style^="color:#FB923C"],
+        html[data-theme="light"] main [style*=" color:#A855F7"],
+        html[data-theme="light"] main [style^="color:#A855F7"],
+        html[data-theme="light"] main [style*=" color:#C084FC"],
+        html[data-theme="light"] main [style^="color:#C084FC"],
+        html[data-theme="light"] main [style*=" color:#14B8A6"],
+        html[data-theme="light"] main [style^="color:#14B8A6"],
+        html[data-theme="light"] main [style*=" color:#2DD4BF"],
+        html[data-theme="light"] main [style^="color:#2DD4BF"],
+        html[data-theme="light"] main [style*=" color:#84CC16"],
+        html[data-theme="light"] main [style^="color:#84CC16"],
+        html[data-theme="light"] main [style*=" color:#EAB308"],
+        html[data-theme="light"] main [style^="color:#EAB308"],
+        html[data-theme="light"] main [style*=" color:#38BDF8"],
+        html[data-theme="light"] main [style^="color:#38BDF8"],
+        html[data-theme="light"] main [style*=" color:#7C3AED"],
+        html[data-theme="light"] main [style^="color:#7C3AED"],
+        html[data-theme="light"] main [style*=" color:#0EA5E9"],
+        html[data-theme="light"] main [style^="color:#0EA5E9"] { color:#245B78 !important; }
+        main form label a, main form p a, main form span a, main p a:not([style*="background"]), main li a:not([style*="background"]) { text-decoration:underline; }
+        .btn-primary, main .hopn-lift-btn { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; }
+        .btn-primary:hover, main .hopn-lift-btn:hover { background:#1D4D66 !important; }
+        html[data-theme="light"] .hopn-status-badge { background:#EEF3F5 !important; color:#243746 !important; border:1px solid #D7DEE3 !important; }
+        #cookie-banner a { text-decoration:underline; }
+
+
+        /* ===== More contrast fixes: one accent colour on buttons, readable muted text ===== */
+        main button[style*="background:#10B981"], main a[style*="background:#10B981"],
+        main button[style*="background:#8B5CF6"], main a[style*="background:#8B5CF6"],
+        main button[style*="background:#06B6D4"], main a[style*="background:#06B6D4"],
+        main button[style*="background:#4F6EF7"] { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; }
+        html[data-theme="light"] main [style*=" color:#64748B"], html[data-theme="light"] main [style^="color:#64748B"] { color:#526170 !important; }
+
+        html[data-theme="light"] footer button.hopn-link-accent { color:#243746 !important; text-decoration:underline; }
+        html[data-theme="light"] footer button.hopn-link-accent:hover { color:#245B78 !important; }
+        #hopn-newsletter-submit { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; }
+        #hopn-newsletter-submit:hover { background:#1D4D66 !important; }
+
+        html[data-theme="light"] header a[data-hopn-event] { color:#FFFFFF !important; }
+
+        html[data-theme="light"] header .hopn-wordmark { color:#172331 !important; }
+
+
+        /* ===== HOPn design tokens (single source for colour, type, spacing) =====
+           See docs/DESIGN-SYSTEM.md. One accent colour, one heading/body family, 4px spacing grid. */
+        :root {
+            --hopn-accent: #245B78;       --hopn-accent-hover: #1D4D66;  --hopn-accent-soft: #8FB8CC;
+            --hopn-ink: #172331;          --hopn-ink-muted: #526170;     --hopn-line: #D7DEE3;
+            --hopn-surface: #FFFFFF;      --hopn-surface-alt: #F6F7F4;   --hopn-surface-tint: #EEF3F5;
+            --hopn-radius-sm: 6px;        --hopn-radius-md: 8px;         --hopn-radius-lg: 12px;
+            --hopn-space-1: 4px;  --hopn-space-2: 8px;  --hopn-space-3: 12px; --hopn-space-4: 16px;
+            --hopn-space-6: 24px; --hopn-space-8: 32px; --hopn-space-12: 48px; --hopn-space-16: 64px;
+            --hopn-text-sm: 14px; --hopn-text-base: 16px; --hopn-text-lg: 18px;
+        }
+        /* Typography polish: balanced headings (no one-word last lines), calmer paragraphs, safe wrapping in DE/AR */
+        main h1, main h2, main h3 { text-wrap: balance; overflow-wrap: break-word; }
+        main p, main li { text-wrap: pretty; overflow-wrap: break-word; }
+        html[lang="de"] main p, html[lang="de"] main li { hyphens: auto; }
+        body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-variant-numeric: tabular-nums; }
+
+        /* ===== Visible keyboard focus everywhere ===== */
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+            outline:3px solid #245B78 !important; outline-offset:2px !important; border-radius:4px;
+        }
+        html[data-theme="dark"] a:focus-visible, html[data-theme="dark"] button:focus-visible { outline-color:#8FB8CC !important; }
+        .hopn-skip-link { position:fixed; top:8px; inset-inline-start:8px; z-index:1000; transform:translateY(-300%); background:#245B78; color:#FFFFFF; padding:10px 16px; border-radius:6px; font-weight:700; text-decoration:none; }
+        .hopn-skip-link:focus { transform:none; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; } }
+
+
+        /* ===== Single accent also in dark theme: purple/indigo/green/amber text becomes the soft accent ===== */
+        html[data-theme="dark"] main [style*=" color:#818CF8"],
+        html[data-theme="dark"] main [style^="color:#818CF8"],
+        html[data-theme="dark"] main [style*=" color:#A78BFA"],
+        html[data-theme="dark"] main [style^="color:#A78BFA"],
+        html[data-theme="dark"] main [style*=" color:#4F6EF7"],
+        html[data-theme="dark"] main [style^="color:#4F6EF7"],
+        html[data-theme="dark"] main [style*=" color:#8B5CF6"],
+        html[data-theme="dark"] main [style^="color:#8B5CF6"],
+        html[data-theme="dark"] main [style*=" color:#6366F1"],
+        html[data-theme="dark"] main [style^="color:#6366F1"],
+        html[data-theme="dark"] main [style*=" color:#10B981"],
+        html[data-theme="dark"] main [style^="color:#10B981"],
+        html[data-theme="dark"] main [style*=" color:#34D399"],
+        html[data-theme="dark"] main [style^="color:#34D399"],
+        html[data-theme="dark"] main [style*=" color:#06B6D4"],
+        html[data-theme="dark"] main [style^="color:#06B6D4"],
+        html[data-theme="dark"] main [style*=" color:#22D3EE"],
+        html[data-theme="dark"] main [style^="color:#22D3EE"],
+        html[data-theme="dark"] main [style*=" color:#F59E0B"],
+        html[data-theme="dark"] main [style^="color:#F59E0B"],
+        html[data-theme="dark"] main [style*=" color:#FBBF24"],
+        html[data-theme="dark"] main [style^="color:#FBBF24"],
+        html[data-theme="dark"] main [style*=" color:#EC4899"],
+        html[data-theme="dark"] main [style^="color:#EC4899"],
+        html[data-theme="dark"] main [style*=" color:#F472B6"],
+        html[data-theme="dark"] main [style^="color:#F472B6"],
+        html[data-theme="dark"] main [style*=" color:#3B82F6"],
+        html[data-theme="dark"] main [style^="color:#3B82F6"],
+        html[data-theme="dark"] main [style*=" color:#60A5FA"],
+        html[data-theme="dark"] main [style^="color:#60A5FA"],
+        html[data-theme="dark"] main [style*=" color:#F97316"],
+        html[data-theme="dark"] main [style^="color:#F97316"] { color:#8FB8CC !important; }
+        /* Tinted chips and hairlines that still carry a rainbow tint use the accent tint instead (both themes) */
+        main [style*="rgba(79,110,247"], main [style*="rgba(139,92,246"], main [style*="rgba(99,102,241"], main [style*="rgba(16,185,129"],
+        main [style*="rgba(6,182,212"], main [style*="rgba(245,158,11"], main [style*="rgba(236,72,153"] { border-color:rgba(143,184,204,0.35) !important; }
+        html[data-theme="light"] main [style*=" color:#8FB8CC"], html[data-theme="light"] main [style^="color:#8FB8CC"] { color:#245B78 !important; }
+
+        main [style*="background:rgba(79,110,247,"],
+        main [style*="background:rgba(139,92,246,"],
+        main [style*="background:rgba(99,102,241,"],
+        main [style*="background:rgba(16,185,129,"],
+        main [style*="background:rgba(6,182,212,"],
+        main [style*="background:rgba(245,158,11,"],
+        main [style*="background:rgba(236,72,153,"] { background-color:rgba(143,184,204,0.10) !important; }
+        main span[style*="width:6px"][style*="border-radius:50%"], main span[style*="width:7px"][style*="border-radius:50%"], main span[style*="width:8px"][style*="border-radius:50%"] { background:#8FB8CC !important; box-shadow:none !important; }
+        html[data-theme="light"] main span[style*="width:6px"][style*="border-radius:50%"], html[data-theme="light"] main span[style*="width:7px"][style*="border-radius:50%"], html[data-theme="light"] main span[style*="width:8px"][style*="border-radius:50%"] { background:#245B78 !important; }
+
+        /* ===== Filled buttons: always accent background with white text (wins over card/link colour rules) ===== */
+        html[data-theme] main a[style*="background:#245B78"],
+        html[data-theme] main a[style*="background:#4F6EF7"],
+        html[data-theme] main a[style*="background:#8B5CF6"],
+        html[data-theme] main a[style*="background:#F59E0B"],
+        html[data-theme] main a[style*="background:#10B981"],
+        html[data-theme] main a[style*="background:#06B6D4"],
+        html[data-theme] main button[style*="background:#245B78"],
+        html[data-theme] main button[style*="background:#4F6EF7"],
+        html[data-theme] main button[style*="background:#8B5CF6"],
+        html[data-theme] main button[style*="background:#F59E0B"],
+        html[data-theme] main button[style*="background:#10B981"],
+        html[data-theme] main button[style*="background:#06B6D4"],
+        html[data-theme] main a.hopn-lift-btn,
+        html[data-theme] main .hopn-lift-btn { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; border-color:#245B78 !important; }
+        html[data-theme] main a[style*="background:#245B78"]:hover,
+        html[data-theme] main a[style*="background:#4F6EF7"]:hover,
+        html[data-theme] main a[style*="background:#8B5CF6"]:hover,
+        html[data-theme] main a[style*="background:#F59E0B"]:hover,
+        html[data-theme] main a[style*="background:#10B981"]:hover,
+        html[data-theme] main a[style*="background:#06B6D4"]:hover,
+        html[data-theme] main button[style*="background:#245B78"]:hover,
+        html[data-theme] main button[style*="background:#4F6EF7"]:hover,
+        html[data-theme] main button[style*="background:#8B5CF6"]:hover,
+        html[data-theme] main button[style*="background:#F59E0B"]:hover,
+        html[data-theme] main button[style*="background:#10B981"]:hover,
+        html[data-theme] main button[style*="background:#06B6D4"]:hover,
+        html[data-theme] main a.hopn-lift-btn:hover { background:#1D4D66 !important; color:#FFFFFF !important; }
+        html[data-theme="light"] main .hopn-avatar { background:#E3EAEE !important; color:#243746 !important; }
+        html[data-theme="light"] footer a[aria-label="HOPn"] svg path { stroke:#245B78 !important; }
+        html[data-theme="light"] footer a[aria-label="HOPn"] svg circle { fill:#245B78 !important; }
+        /* Required-field asterisks and small red/rose text must stay readable on light surfaces */
+        html[data-theme="light"] main .text-rose-400, html[data-theme="light"] main .text-red-400 { color:#B42318 !important; }
     </style>
 
     <script type="text/javascript">
@@ -323,12 +517,14 @@
     @stack('head')
 </head>
 <body @if($lang === 'ar') style="direction:rtl;" @endif>
+    <a href="#main-content" class="hopn-skip-link">{{ $lang === 'ar' ? 'تخطَّ إلى المحتوى' : ($lang === 'de' ? 'Zum Inhalt springen' : 'Skip to content') }}</a>
     <x-nav />
-    <main class="min-h-[70vh] @if($lang !== 'ar') py-10 @endif">
+    <main id="main-content" tabindex="-1" class="min-h-[70vh] @if($lang !== 'ar') py-10 @endif">
         {{ $slot }}
     </main>
     <x-footer />
     <x-cookie-banner />
+    <x-analytics />
     @if(session('status'))
         <div id="hopn-flash-status" data-message="{{ session('status') }}" data-type="success" style="display:none;"></div>
     @endif

@@ -39,10 +39,15 @@
                         <span class="rounded-full px-2 py-0.5 text-xs {{ $partner->visible ? 'bg-green-900 text-green-200' : 'bg-slate-700 text-slate-400' }}">
                             {{ $partner->visible ? 'Visible' : 'Hidden' }}
                         </span>
+                            @if($partner->verified ?? false)<span class="ml-1 rounded-full bg-sky-900 px-2 py-0.5 text-xs text-sky-200">Verified</span>@endif
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $partner->sort_order ?? 0 }}</td>
                     <td class="px-3 py-3 flex gap-3">
                         <a href="{{ route('admin.partners.edit', $partner) }}" class="text-indigo-300 hover:text-indigo-200">Edit</a>
+                        <form method="POST" action="{{ route('admin.partners.verify', $partner) }}" class="inline-block">
+                            @csrf @method('PATCH')
+                            <button type="submit" class="text-sky-300 hover:text-sky-200">{{ ($partner->verified ?? false) ? 'Unverify' : 'Verify' }}</button>
+                        </form>
                         <a href="{{ route('partners.index', ['lang' => 'en']) }}" target="_blank" class="text-slate-400 hover:text-white">View</a>
                         @can('content.delete')
 <form method="POST" action="{{ route('admin.partners.destroy', $partner) }}" class="inline-block">

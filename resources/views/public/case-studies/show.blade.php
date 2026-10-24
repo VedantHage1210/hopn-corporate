@@ -83,7 +83,7 @@
                         <blockquote class="mt-6 p-5 border-l-4 border-indigo-500 bg-[#0F172A] rounded italic text-slate-200">
                             &ldquo;{{ $csQuote }}&rdquo;
                             @if(!empty($caseStudy->quote_author))
-                                <footer class="mt-3 not-italic text-sm text-slate-400">— {{ $caseStudy->quote_author }}</footer>
+                                <div class="mt-3 not-italic text-sm text-slate-400">— {{ $caseStudy->quote_author }}</div>
                             @endif
                         </blockquote>
                         <p class="mt-2 text-xs text-slate-500">

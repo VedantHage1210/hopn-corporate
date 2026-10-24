@@ -13,25 +13,26 @@
                 <h2 class="mb-4 text-xl font-bold text-white">{{ $lang === 'ar' ? 'نموذج الطلب' : ($lang === 'de' ? 'Anmeldeformular' : 'Application Form') }}</h2>
                 <form action="{{ route('leads.training', ['lang' => $lang]) }}" method="POST" class="space-y-4">
                     @csrf
+                    <x-turnstile />
                     <input type="text" name="honeypot" style="display:none">
                     <div>
-                        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
-                        <input type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <label for="hopn-name-514871" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
+                        <input id="hopn-name-514871" type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                         @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email') }} *</label>
-                        <input type="email" name="email" value="{{ old('email') }}" required class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <label for="hopn-email-514872" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email') }} *</label>
+                        <input id="hopn-email-514872" type="email" name="email" value="{{ old('email') }}" required class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                         @error('email')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الهاتف' : ($lang === 'de' ? 'Telefon' : 'Phone') }}</label>
-                        <input type="text" name="phone" value="{{ old('phone') }}" pattern="[0-9+\-\s()]*" inputmode="tel" title="{{ $lang === 'ar' ? 'يُسمح فقط بالأرقام والمسافات و + و - و ()' : ($lang === 'de' ? 'Nur Zahlen, Leerzeichen, +, - und () sind erlaubt.' : 'Only numbers, spaces, +, -, and () are allowed.') }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <label for="hopn-phone-514873" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الهاتف' : ($lang === 'de' ? 'Telefon' : 'Phone') }}</label>
+                        <input id="hopn-phone-514873" type="text" name="phone" value="{{ old('phone') }}" pattern="[0-9+\-\s()]*" inputmode="tel" title="{{ $lang === 'ar' ? 'يُسمح فقط بالأرقام والمسافات و + و - و ()' : ($lang === 'de' ? 'Nur Zahlen, Leerzeichen, +, - und () sind erlaubt.' : 'Only numbers, spaces, +, -, and () are allowed.') }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                         @error('phone')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البرنامج المهتم به' : ($lang === 'de' ? 'Interessiertes Programm' : 'Program of Interest') }}</label>
-                        <select name="program_of_interest" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <label for="hopn-program-of-interest-514874" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البرنامج المهتم به' : ($lang === 'de' ? 'Interessiertes Programm' : 'Program of Interest') }}</label>
+                        <select id="hopn-program-of-interest-514874" name="program_of_interest" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                             <option value="">{{ $lang === 'ar' ? 'اختر برنامجاً' : ($lang === 'de' ? 'Bitte wählen' : 'Select program') }}</option>
                             @foreach(\App\Models\Program::where('is_published', true)->get() as $program)
                                 <option value="{{ $program->slug }}">{{ $lang === 'ar' && $program->title_ar ? $program->title_ar : ($lang === 'de' && $program->title_de ? $program->title_de : $program->title_en) }}</option>
@@ -39,8 +40,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} *</label>
-                        <textarea name="message" rows="4" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">{{ old('message') }}</textarea>
+                        <label for="hopn-message-514875" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} *</label>
+                        <textarea id="hopn-message-514875" name="message" rows="4" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-white transition-colors focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">{{ old('message') }}</textarea>
                         @error('message')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
                     </div>
                     <input type="hidden" name="utm_source" value="{{ request('utm_source') }}">

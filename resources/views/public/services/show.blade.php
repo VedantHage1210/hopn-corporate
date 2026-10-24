@@ -11,8 +11,6 @@
         @if($service->hero_image)
       <div style="position:absolute; inset:0; background:url('{{ $service->hero_image }}') center/cover no-repeat; opacity:0.15;"></div>
         @endif
-        <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
-        <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px);"></div>
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('services.index', ['lang' => $lang]) }}" class="hopn-link-accent"
                style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">

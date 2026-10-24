@@ -1,9 +1,6 @@
 @props(['testimonial'])
 @php($lang = request()->route('lang', 'en'))
-<blockquote data-tilt style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:all 0.25s; overflow:hidden;"
-            onmouseover="this.style.borderColor='rgba(79,110,247,0.4)'; this.style.background='#141D2E'; this.style.transform='translateY(-3px)'; this.querySelector('.top-line').style.opacity='1';"
-            onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'; this.style.transform='translateY(0)'; this.querySelector('.top-line').style.opacity='0';">
-    <div class="top-line" style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6); opacity:0; transition:opacity 0.25s; border-radius:16px 16px 0 0;"></div>
+<blockquote style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:border-color 0.2s; overflow:hidden;">
 
     {{-- Quote icon --}}
     <svg style="width:24px; height:24px; color:rgba(79,110,247,0.4); margin-bottom:16px; flex-shrink:0;" fill="currentColor" viewBox="0 0 24 24">
@@ -16,7 +13,7 @@
     </p>
 
     {{-- Author --}}
-    <footer style="display:flex; align-items:center; gap:12px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+    <div style="display:flex; align-items:center; gap:12px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
         @if(!empty($testimonial->avatar))
             <img loading="lazy" decoding="async" src="{{ $testimonial->avatar }}" alt="{{ $testimonial->author_name }}"
                  style="width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0;">
@@ -29,5 +26,5 @@
             <p style="font-size:14px; font-weight:600; color:white; margin-bottom:2px;">{{ $testimonial->author_name }}</p>
             <p style="font-size:12px; color:#94A3B8;">{{ $testimonial->author_role }} · {{ $testimonial->company }}</p>
         </div>
-    </footer>
+    </div>
 </blockquote>

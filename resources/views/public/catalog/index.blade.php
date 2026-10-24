@@ -3,8 +3,6 @@
 
 {{-- Hero --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse, rgba(79,110,247,0.1) 0%, transparent 70%); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
@@ -112,14 +110,13 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($products as $product)
                 @php
-                    $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                    $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC'];
                     $c=$colors[$loop->index%6];
                     $title=$lang==='ar'&&$product->title_ar?$product->title_ar:($lang==='de'&&$product->title_de?$product->title_de:$product->title_en);
                     $summary=$lang==='ar'&&$product->summary_ar?$product->summary_ar:($lang==='de'&&$product->summary_de?$product->summary_de:($product->summary_en??''));
                 @endphp
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
-                    <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:flex; gap:6px; margin-bottom:14px;">
                         <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; width:fit-content;">
                             <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
@@ -133,9 +130,6 @@
                         </div>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-                        <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
-                            {{ strtoupper(substr($title,0,1)) }}
-                        </div>
                         <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $title }}</h3>
                     </div>
                     <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($summary,90) }}</p>
@@ -167,23 +161,19 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($services as $service)
                 @php
-                    $colors=['#10B981','#4F6EF7','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                    $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC'];
                     $c=$colors[$loop->index%6];
                     $svcTitle=$lang==='ar'&&$service->name_ar?$service->name_ar:($lang==='de'&&$service->name_de?$service->name_de:$service->name);
                     $svcSummary=$lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:($service->summary??''));
                 @endphp
                 <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
-                    <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#10B981; letter-spacing:0.08em;">
                             @if($lang==='ar') خدمة @elseif($lang==='de') Leistung @else Service @endif
                         </span>
                     </div>
                     <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-                        <div style="width:40px; height:40px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">
-                            {{ strtoupper(substr($service->name, 0, 1)) }}
-                        </div>
                         <h3 style="font-size:17px; font-weight:700; color:white; margin:0;">{{ $svcTitle }}</h3>
                     </div>
                     <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($svcSummary,90) }}</p>
@@ -215,14 +205,13 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($programs as $program)
                 @php
-                    $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4'];
+                    $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC'];
                     $c=$colors[$loop->index%6];
                     $pTitle=$lang==='ar'&&$program->title_ar?$program->title_ar:($lang==='de'&&$program->title_de?$program->title_de:$program->title_en);
                     $pSummary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??''));
                 @endphp
                 <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
-                    <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#A78BFA; letter-spacing:0.08em;">
                             @if($lang==='ar') برنامج @elseif($lang==='de') Programm @else Program @endif
@@ -270,7 +259,6 @@
         {{-- Empty State --}}
         @if($products->count()===0 && $services->count()===0 && $programs->count()===0 && $domains->count()===0)
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">🔍</div>
             <h3 style="font-size:20px; font-weight:700; color:#CBD5E1; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد نتائج @elseif($lang==='de') Keine Ergebnisse @else No results found @endif
             </h3>
@@ -300,7 +288,7 @@
             @else Contact us and we'll help you find the right solution @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

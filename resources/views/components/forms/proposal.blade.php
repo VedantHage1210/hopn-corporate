@@ -1,33 +1,34 @@
 @props(['lang' => 'en'])
 <form action="{{ route('leads.proposal', ['lang' => $lang]) }}" method="POST" class="space-y-4">
     @csrf
+    <x-turnstile />
     <input type="text" name="honeypot" style="display:none">
     @if(session('proposal_status'))
         <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('proposal_status') }}</div>
     @endif
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
-        <input type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
+        <label for="hopn-name-0cf6d1" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
+        <input id="hopn-name-0cf6d1" type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
             class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email Address') }} *</label>
-        <input type="email" name="email" value="{{ old('email') }}" required
+        <label for="hopn-email-0cf6d2" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email Address') }} *</label>
+        <input id="hopn-email-0cf6d2" type="email" name="email" value="{{ old('email') }}" required
             class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الشركة' : ($lang === 'de' ? 'Unternehmen' : 'Company') }} *</label>
-        <input type="text" name="company" value="{{ old('company') }}" required
+        <label for="hopn-company-0cf6d3" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الشركة' : ($lang === 'de' ? 'Unternehmen' : 'Company') }} *</label>
+        <input id="hopn-company-0cf6d3" type="text" name="company" value="{{ old('company') }}" required
             class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الخدمة المطلوبة' : ($lang === 'de' ? 'Gewünschte Leistung' : 'Service of Interest') }}</label>
-        <input type="text" name="service_interest" value="{{ old('service_interest') }}" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
+        <label for="hopn-service-interest-0cf6d4" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الخدمة المطلوبة' : ($lang === 'de' ? 'Gewünschte Leistung' : 'Service of Interest') }}</label>
+        <input id="hopn-service-interest-0cf6d4" type="text" name="service_interest" value="{{ old('service_interest') }}" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
             class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الميزانية المتوقعة' : ($lang === 'de' ? 'Budgetrahmen' : 'Budget Range') }}</label>
-        <select name="budget_range" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+        <label for="hopn-budget-range-0cf6d5" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الميزانية المتوقعة' : ($lang === 'de' ? 'Budgetrahmen' : 'Budget Range') }}</label>
+        <select id="hopn-budget-range-0cf6d5" name="budget_range" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
             <option value="">{{ $lang === 'ar' ? 'اختر نطاقاً' : ($lang === 'de' ? 'Bitte wählen' : 'Select range') }}</option>
             <option value="< 10k">{{ $lang === 'ar' ? 'أقل من 10,000 يورو' : 'Under €10,000' }}</option>
             <option value="10k-50k">€10,000 - €50,000</option>
@@ -36,8 +37,8 @@
         </select>
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} *</label>
-        <textarea name="message" rows="4" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
+        <label for="hopn-message-0cf6d6" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} *</label>
+        <textarea id="hopn-message-0cf6d6" name="message" rows="4" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
             class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">{{ old('message') }}</textarea>
     </div>
     <input type="hidden" name="utm_source" value="{{ request('utm_source') }}">

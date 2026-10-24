@@ -3,12 +3,10 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block; box-shadow:0 0 8px #8B5CF6;"></span>
+            <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
                 @if($lang==='ar') التدريب والبرامج @elseif($lang==='de') Training & Programme @else Training & Programs @endif
             </span>
@@ -16,13 +14,13 @@
         <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
             @if($lang==='ar')
                 <span style="color:white;">برامج التدريب</span><br>
-                <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">والتحول الرقمي</span>
+                <span style="color:#8FB8CC;">والتحول الرقمي</span>
             @elseif($lang==='de')
                 <span style="color:white;">Weiterbildungs-</span><br>
-                <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">&amp; Transformationsprogramme</span>
+                <span style="color:#8FB8CC;">&amp; Transformationsprogramme</span>
             @else
                 <span style="color:white;">Upskilling &amp;</span><br>
-                <span style="background:linear-gradient(135deg,#8B5CF6,#4F6EF7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Transformation Programs</span>
+                <span style="color:#8FB8CC;">Transformation Programs</span>
             @endif
         </h1>
         <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto 40px; line-height:1.7;">
@@ -31,7 +29,7 @@
             @else Upskilling and transformation programs for enterprise teams and professionals. @endif
         </p>
         <a href="#apply"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.4); transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt anmelden @else Apply Now @endif →
         </a>
     </div>
@@ -43,22 +41,17 @@
         @if($programs->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px;">
             @foreach($programs as $program)
-            @php $colors=['#8B5CF6','#4F6EF7','#10B981','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; $title=$lang==='de'&&$program->title_de?$program->title_de:($lang==='ar'&&$program->title_ar?$program->title_ar:$program->title_en); $summary=$lang==='de'&&$program->summary_de?$program->summary_de:($lang==='ar'&&$program->summary_ar?$program->summary_ar:($program->summary_en??'')); @endphp
+            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; $title=$lang==='de'&&$program->title_de?$program->title_de:($lang==='ar'&&$program->title_ar?$program->title_ar:$program->title_en); $summary=$lang==='de'&&$program->summary_de?$program->summary_de:($lang==='ar'&&$program->summary_ar?$program->summary_ar:($program->summary_en??'')); @endphp
             <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;">
 
                 @if($program->image_url)
                 <div style="height:180px; overflow:hidden; position:relative;">
                     <img loading="lazy" decoding="async" src="{{ $program->image_url }}" alt="{{ $title }}"
-                         class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(10,15,30,0.8));"></div>
+                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
                 </div>
                 @else
                 <div style="height:100px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center; position:relative;">
-                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
-                    <div style="width:48px; height:48px; border-radius:14px; background:{{ $c }}20; border:1px solid {{ $c }}40; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:900; color:{{ $c }};">
-                        {{ strtoupper(substr($title,0,1)) }}
-                    </div>
                 </div>
                 @endif
 
@@ -67,7 +60,7 @@
                     <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin:0;">{{ Str::limit($summary,100) }}</p>
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05);">
                         @if($program->duration)
-                        <span style="font-size:12px; color:#94A3B8;">🕐 {{ $program->duration }}</span>
+                        <span style="font-size:12px; color:#94A3B8;">{{ $program->duration }}</span>
                         @endif
                         <span style="font-size:13px; font-weight:600; color:{{ $c }}; display:flex; align-items:center; gap:6px;">
                             @if($lang==='ar') عرض البرنامج @elseif($lang==='de') Programm ansehen @else View Program @endif
@@ -116,28 +109,28 @@
         @endif
 
         <div style="max-width:680px; margin:0 auto; position:relative; border:1px solid rgba(139,92,246,0.2); background:#0A0F1E; border-radius:20px; padding:40px; overflow:hidden;">
-            <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#8B5CF6,#4F6EF7,#06B6D4);"></div>
 
             <form action="{{ route('leads.training', ['lang'=>$lang]) }}" method="POST">
                 @csrf
+                <x-turnstile />
                 <input type="text" name="honeypot" style="display:none">
                 <div style="display:grid; gap:20px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label for="hopn-name-16fc11" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') الاسم الكامل @elseif($lang==='de') Name @else Full Name @endif *
                             </label>
-                            <input type="text" name="name" value="{{ old('name') }}" required
+                            <input id="hopn-name-16fc11" type="text" name="name" value="{{ old('name') }}" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                    onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             @error('name')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label for="hopn-email-16fc12" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') البريد الإلكتروني @elseif($lang==='de') E-Mail @else Email @endif *
                             </label>
-                            <input type="email" name="email" value="{{ old('email') }}" required
+                            <input id="hopn-email-16fc12" type="email" name="email" value="{{ old('email') }}" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                    onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
@@ -145,19 +138,19 @@
                         </div>
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label for="hopn-phone-16fc13" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') الهاتف @elseif($lang==='de') Telefon @else Phone @endif
                         </label>
-                        <input type="text" name="phone" value="{{ old('phone') }}"
+                        <input id="hopn-phone-16fc13" type="text" name="phone" value="{{ old('phone') }}"
                                style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label for="hopn-program-of-interest-16fc14" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') البرنامج المطلوب @elseif($lang==='de') Interessiertes Programm @else Program of Interest @endif
                         </label>
-                        <select name="program_of_interest"
+                        <select id="hopn-program-of-interest-16fc14" name="program_of_interest"
                                 style="width:100%; padding:12px 16px; background:#0D1425; border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;">
                             <option value="">
                                 @if($lang==='ar') اختر البرنامج @elseif($lang==='de') Bitte wählen @else Select a program @endif
@@ -169,10 +162,10 @@
                         </select>
                     </div>
                     <div>
-                        <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                        <label for="hopn-message-16fc15" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                             @if($lang==='ar') رسالة @elseif($lang==='de') Nachricht @else Message @endif *
                         </label>
-                        <textarea name="message" rows="5" required
+                        <textarea id="hopn-message-16fc15" name="message" rows="5" required
                                   style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none; resize:vertical;"
                                   onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
                                   onblur="this.style.borderColor='rgba(255,255,255,0.08)'">{{ old('message') }}</textarea>
@@ -191,7 +184,7 @@
                     </div>
                     @error('gdpr')<p style="font-size:11px; color:#F87171;">{{ $message }}</p>@enderror
                     <button type="submit"
-                            class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 40px rgba(139,92,246,0.3); transition:all 0.2s;">
+                            class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                         @if($lang==='ar') إرسال الطلب @elseif($lang==='de') Bewerbung absenden @else Submit Application @endif
                     </button>
                 </div>

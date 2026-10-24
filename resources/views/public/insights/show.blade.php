@@ -17,7 +17,7 @@
             <img src="{{ $post->author->avatar_path }}" alt="{{ $post->author->name }}"
                  style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
             @else
-            <div style="width:40px; height:40px; border-radius:50%; background:#1E293B; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#94A3B8;">
+            <div class="hopn-avatar" style="width:40px; height:40px; border-radius:50%; background:#1E293B; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#94A3B8;">
                 {{ strtoupper(substr($post->author->name, 0, 2)) }}
             </div>
             @endif

@@ -3,8 +3,6 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:60px 0 40px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-100px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:40px;">
@@ -71,13 +69,11 @@
 <section style="padding:40px 0 0; background:#030712;">
     <div class="container-shell">
         <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$featured->slug]) }}"
-           class="hopn-lift-btn" style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;">
+           style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;">
             <div style="position:relative; min-height:280px; background:linear-gradient(135deg,rgba(79,110,247,0.15),rgba(139,92,246,0.15)); display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 @if($featured->featured_image_path)
                 <img loading="lazy" decoding="async" src="{{ $featured->featured_image_path }}" alt="{{ $featured->title }}"
                      style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
-                @else
-                <span style="font-size:64px;">✍️</span>
                 @endif
                 <div style="position:absolute; top:16px; left:16px;">
                     <span style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(79,110,247,0.9); color:white; text-transform:uppercase;">
@@ -126,17 +122,16 @@
         @if($posts->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px;">
             @foreach($posts as $post)
-            @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$post->slug]) }}"
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden; text-decoration:none; transition:all 0.25s;">
                 @if($post->featured_image_path)
                 <div style="height:180px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $post->featured_image_path }}" alt="{{ $post->title }}"
-                         class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
+                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
                 </div>
                 @else
                 <div style="height:100px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center;">
-                    <span style="font-size:32px;">✍️</span>
                 </div>
                 @endif
                 <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:12px;">
@@ -168,7 +163,6 @@
         @endif
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">✍️</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد مقالات @elseif($lang==='de') Keine Artikel @else No articles found @endif
             </h3>

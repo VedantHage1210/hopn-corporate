@@ -7,10 +7,7 @@
     <title>{{ ($title ?? 'HOPn') . ' | HOPn' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.seo-head')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     @stack('head')
     <style>
         .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease,transform 0.6s ease; }
@@ -66,40 +63,41 @@
                 @endif
                 <form method="POST" action="{{ route('leads.book-call', ['lang' => app()->getLocale()]) }}">
                     @csrf
+                    <x-turnstile />
                     <div style="display:grid; gap:14px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">First Name *</label>
-                                <input type="text" name="first_name" required
+                                <label for="hopn-first-name-d61ac1" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">First Name *</label>
+                                <input id="hopn-first-name-d61ac1" type="text" name="first_name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                        onfocus="this.style.borderColor='#4F6EF7'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Last Name *</label>
-                                <input type="text" name="last_name" required
+                                <label for="hopn-last-name-d61ac2" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Last Name *</label>
+                                <input id="hopn-last-name-d61ac2" type="text" name="last_name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                        onfocus="this.style.borderColor='#4F6EF7'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Email Address *</label>
-                            <input type="email" name="email" required
+                            <label for="hopn-email-d61ac3" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Email Address *</label>
+                            <input id="hopn-email-d61ac3" type="email" name="email" required
                                    style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                    onfocus="this.style.borderColor='#4F6EF7'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Company</label>
-                            <input type="text" name="company"
+                            <label for="hopn-company-d61ac4" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Company</label>
+                            <input id="hopn-company-d61ac4" type="text" name="company"
                                    style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                    onfocus="this.style.borderColor='#4F6EF7'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Topic</label>
-                            <select name="topic" style="width:100%; padding:10px 12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
+                            <label for="hopn-topic-d61ac5" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Topic</label>
+                            <select id="hopn-topic-d61ac5" name="topic" style="width:100%; padding:10px 12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
                                 <option value="">Select a topic</option>
                                 <option value="ai-consulting">AI & Data Consulting</option>
                                 <option value="digital-twins">Digital Twins</option>
@@ -112,8 +110,8 @@
                             </select>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Preferred Time</label>
-                            <select name="preferred_time" style="width:100%; padding:10px 12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
+                            <label for="hopn-preferred-time-d61ac6" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Preferred Time</label>
+                            <select id="hopn-preferred-time-d61ac6" name="preferred_time" style="width:100%; padding:10px 12px; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;">
                                 <option value="">Select preferred time</option>
                                 <option value="morning">Morning (9:00 - 12:00 CET)</option>
                                 <option value="afternoon">Afternoon (13:00 - 17:00 CET)</option>
@@ -122,8 +120,8 @@
                             </select>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Message (Optional)</label>
-                            <textarea name="message" rows="3"
+                            <label for="hopn-message-d61ac7" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Message (Optional)</label>
+                            <textarea id="hopn-message-d61ac7" name="message" rows="3"
                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
                                       onfocus="this.style.borderColor='#4F6EF7'"
                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>

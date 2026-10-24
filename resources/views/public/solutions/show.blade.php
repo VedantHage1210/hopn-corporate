@@ -9,7 +9,6 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
         @if($page->t('hero_eyebrow', $lang))
         <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">{{ $page->t('hero_eyebrow', $lang) }}</span>
@@ -49,7 +48,7 @@
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px;">
             @foreach($capabilities as $cap)
-            <div data-tilt class="card-panel" style="padding:26px;">
+            <div class="card-panel" style="padding:26px;">
                 @if($cap->number)<div style="font-size:12px; font-weight:800; color:#4F6EF7; margin-bottom:10px;">{{ str_pad($cap->number, 2, '0', STR_PAD_LEFT) }}</div>@endif
                 <h3 style="color:white; font-size:16px; font-weight:800; margin:0 0 10px;">{{ $cap->titleFor($lang) }}</h3>
                 @if($cap->descriptionFor($lang))<p style="color:#94A3B8; font-size:13px; line-height:1.6; margin:0 0 14px;">{{ $cap->descriptionFor($lang) }}</p>@endif

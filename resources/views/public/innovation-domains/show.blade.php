@@ -7,7 +7,6 @@
             background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
             background-size: 48px 48px;"></div>
-        <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.12); filter:blur(80px);"></div>
 
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
             <a href="{{ route('innovation.index', ['lang' => $lang]) }}"

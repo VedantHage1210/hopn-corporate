@@ -74,15 +74,15 @@ Route::prefix('{lang}')
 Route::get('/careers/track/{token}', [CareerController::class, 'track'])->name('careers.track');
 Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('careers.show');
 Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
-    ->middleware('throttle:5,1')
+    ->middleware(['throttle:5,1', 'turnstile'])
     ->name('careers.apply');
 
         Route::get('/startups', [StartupController::class, 'index'])->name('startups.index');
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
 
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
-        Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware('throttle:5,1')->name('leads.event-registration');
-        Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware('throttle:5,1')->name('leads.startup-application');
+        Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware(['throttle:5,1', 'turnstile'])->name('leads.event-registration');
+        Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware(['throttle:5,1', 'turnstile'])->name('leads.startup-application');
 
         Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
         Route::get('/industries/{slug}', [IndustryController::class, 'show'])->name('industries.show');
@@ -92,18 +92,18 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         
         Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
         Route::post('/contact', [ContactController::class, 'submit'])
-            ->middleware('throttle:5,1')
+            ->middleware(['throttle:5,1', 'turnstile'])
             ->name('contact.submit');
 
         Route::post('/request-proposal', [LeadController::class, 'proposal'])
-            ->middleware('throttle:5,1')
+            ->middleware(['throttle:5,1', 'turnstile'])
             ->name('leads.proposal');
         Route::post('/partner-inquiry', [LeadController::class, 'partnerInquiry'])
-            ->middleware('throttle:5,1')
+            ->middleware(['throttle:5,1', 'turnstile'])
             ->name('leads.partner');
 
-        Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware('throttle:5,1')->name('leads.book-call');
-        Route::post('/investors/request-deck', [LeadController::class, 'requestDeck'])->middleware('throttle:5,1')->name('investors.request-deck');
+        Route::post('/book-call', [LeadController::class, 'bookCall'])->middleware(['throttle:5,1', 'turnstile'])->name('leads.book-call');
+        Route::post('/investors/request-deck', [LeadController::class, 'requestDeck'])->middleware(['throttle:5,1', 'turnstile'])->name('investors.request-deck');
         
         Route::get('/training', function () {
             return view('public.training.index');
@@ -111,7 +111,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
 
         Route::get('/workshops', [WorkshopController::class, 'index'])->name('workshops.index');
         Route::get('/workshops/{slug}/book', [WorkshopController::class, 'book'])->name('workshops.book');
-        Route::post('/workshops/{slug}/book', [WorkshopController::class, 'storeBooking'])->middleware('throttle:5,1')->name('workshops.book.store');
+        Route::post('/workshops/{slug}/book', [WorkshopController::class, 'storeBooking'])->middleware(['throttle:5,1', 'turnstile'])->name('workshops.book.store');
         Route::get('/workshops/{slug}', [WorkshopController::class, 'show'])->name('workshops.show');
 
         Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
@@ -121,7 +121,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
 
         Route::get('/consulting', [ConsultingController::class, 'index'])->name('consulting.index');
         Route::get('/consulting/experts/{id}/book', [ConsultingController::class, 'book'])->name('consulting.book');
-        Route::post('/consulting/experts/{id}/book', [ConsultingController::class, 'storeBooking'])->middleware('throttle:5,1')->name('consulting.book.store');
+        Route::post('/consulting/experts/{id}/book', [ConsultingController::class, 'storeBooking'])->middleware(['throttle:5,1', 'turnstile'])->name('consulting.book.store');
         Route::get('/consulting/experts/{id}', [ConsultingController::class, 'showExpert'])->name('consulting.expert');
 
         Route::get('/engineering', function (string $lang) {
@@ -132,11 +132,11 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
             return app(SolutionPageController::class)->show($lang, 'digital-twins-oems');
         })->name('digital-twins.index');
 
-        Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->middleware('throttle:5,1')->name('newsletter.subscribe');
+        Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->middleware(['throttle:5,1', 'turnstile'])->name('newsletter.subscribe');
         Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');
 
         Route::post('/training-application', [LeadController::class, 'trainingApplication'])
-            ->middleware('throttle:5,1')
+            ->middleware(['throttle:5,1', 'turnstile'])
             ->name('leads.training');
 
 

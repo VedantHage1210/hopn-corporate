@@ -41,11 +41,11 @@
                 </h2>
                 <div style="display:flex; flex-direction:column; gap:16px;">
                     @foreach([
-                        ['label_en' => 'Essential Cookies', 'label_de' => 'Notwendige Cookies', 'label_ar' => 'الكوكيز الأساسية', 'color' => '#10B981',
+                        ['label_en' => 'Essential Cookies', 'label_de' => 'Notwendige Cookies', 'label_ar' => 'الكوكيز الأساسية', 'color' => '#8FB8CC',
                          'desc_en' => 'Required for the website to function. Cannot be disabled.', 'desc_de' => 'Für den Betrieb der Website erforderlich. Können nicht deaktiviert werden.', 'desc_ar' => 'مطلوبة لتشغيل الموقع. لا يمكن تعطيلها.'],
-                        ['label_en' => 'Analytics Cookies', 'label_de' => 'Analyse-Cookies', 'label_ar' => 'كوكيز التحليل', 'color' => '#4F6EF7',
+                        ['label_en' => 'Analytics Cookies', 'label_de' => 'Analyse-Cookies', 'label_ar' => 'كوكيز التحليل', 'color' => '#8FB8CC',
                          'desc_en' => 'Help us understand how visitors interact with our website. Used with consent only.', 'desc_de' => 'Helfen uns zu verstehen, wie Besucher mit unserer Website interagieren. Nur mit Zustimmung.', 'desc_ar' => 'تساعدنا على فهم كيفية تفاعل الزوار مع موقعنا. تُستخدم بموافقتك فقط.'],
-                        ['label_en' => 'Preference Cookies', 'label_de' => 'Präferenz-Cookies', 'label_ar' => 'كوكيز التفضيلات', 'color' => '#8B5CF6',
+                        ['label_en' => 'Preference Cookies', 'label_de' => 'Präferenz-Cookies', 'label_ar' => 'كوكيز التفضيلات', 'color' => '#8FB8CC',
                          'desc_en' => 'Remember your language and display preferences across visits.', 'desc_de' => 'Speichern Ihre Sprach- und Anzeigeeinstellungen.', 'desc_ar' => 'تتذكر تفضيلات اللغة والعرض الخاصة بك.'],
                     ] as $cookie)
                     <div style="border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:16px 20px;">
@@ -90,6 +90,19 @@
                 </p>
             </div>
 
+            {{-- Section 5: manage consent --}}
+            <div>
+                <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
+                    {{ $lang === 'ar' ? '5. إدارة موافقتك' : ($lang === 'de' ? '5. Ihre Einwilligung verwalten' : '5. Manage your consent') }}
+                </h2>
+                <p style="color:#CBD5E1; margin-bottom:16px;">
+                    {{ $lang === 'ar' ? 'يمكنك تغيير اختيارك أو سحب موافقتك في أي وقت.' : ($lang === 'de' ? 'Sie können Ihre Auswahl jederzeit ändern oder Ihre Einwilligung widerrufen.' : 'You can change your choice or withdraw your consent at any time.') }}
+                </p>
+                <button type="button" onclick="window.hopnOpenCookieSettings && window.hopnOpenCookieSettings()"
+                        style="padding:10px 20px; border-radius:8px; background:#245B78; color:#FFFFFF; font-size:14px; font-weight:700; border:none; cursor:pointer;">
+                    {{ $lang === 'ar' ? 'إعدادات الكوكيز' : ($lang === 'de' ? 'Cookie-Einstellungen öffnen' : 'Open cookie settings') }}
+                </button>
+            </div>
         </div>
 
         <div style="margin-top:32px;">

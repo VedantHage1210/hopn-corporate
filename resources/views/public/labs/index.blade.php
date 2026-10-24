@@ -9,7 +9,6 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#A78BFA;">{{ $heroEyebrow }}</span>
         <h1 style="font-size:clamp(32px,5vw,56px); font-weight:900; color:white; margin:16px 0 20px; max-width:800px; margin-left:auto; margin-right:auto;">{{ $heroTitle }}</h1>
@@ -47,7 +46,7 @@
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
                 $color = $item->accent_color ?: '#8B5CF6';
             @endphp
-            <div data-tilt class="card-panel" style="padding:26px;">
+            <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>
                 @if($desc)<p style="color:#94A3B8; font-size:13px; line-height:1.6; margin:0 0 16px;">{{ $desc }}</p>@endif
                 @if(!empty($tags))
@@ -123,7 +122,7 @@
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
                 $color = $item->accent_color ?: '#10B981';
             @endphp
-            <div data-tilt class="card-panel" style="padding:26px;">
+            <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>
                 @if($desc)<p style="color:#94A3B8; font-size:13px; line-height:1.6; margin:0 0 16px;">{{ $desc }}</p>@endif
                 @if(!empty($tags))

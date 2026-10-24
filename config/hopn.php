@@ -111,4 +111,28 @@ return [
         'rejected'  => 'Rejected',
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Privacy-friendly analytics (Plausible, EU-hosted or self-hosted)
+    |--------------------------------------------------------------------------
+    | Off until PLAUSIBLE_DOMAIN is set. The script is only loaded after the
+    | visitor accepts analytics cookies in the consent banner.
+    */
+    'analytics' => [
+        'plausible_domain' => env('PLAUSIBLE_DOMAIN'),
+        'plausible_script' => env('PLAUSIBLE_SCRIPT', 'https://plausible.io/js/script.js'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cloudflare Turnstile (spam protection for public forms)
+    |--------------------------------------------------------------------------
+    | Off until both keys are set. The honeypot and rate limits stay active.
+    */
+    'turnstile' => [
+        'site_key'   => env('TURNSTILE_SITE_KEY'),
+        'secret_key' => env('TURNSTILE_SECRET_KEY'),
+    ],
+
 ];

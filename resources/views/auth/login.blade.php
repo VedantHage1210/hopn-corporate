@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Login | HOPn</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     <style>
         * { font-family: 'Inter', sans-serif !important; box-sizing: border-box; }
         body { margin: 0; background: #030712; min-height: 100vh; display: flex; align-items: center; justify-content: center; }

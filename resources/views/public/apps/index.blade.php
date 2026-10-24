@@ -11,12 +11,10 @@
                 $tagline = $lang==='de' ? ($app->tagline_de ?: $app->tagline_en) : ($lang==='ar' ? ($app->tagline_ar ?: $app->tagline_en) : $app->tagline_en);
                 $href = $app->external_url ?: route('apps.show', ['lang'=>$lang, 'slug'=>$app->slug]);
             @endphp
-            <a href="{{ $href }}" @if($app->external_url) target="_blank" @endif data-tilt class="card-panel"
+            <a href="{{ $href }}" @if($app->external_url) target="_blank" @endif class="card-panel"
                style="display:block; padding:26px; text-decoration:none;">
                 @if($app->logo_url)
                 <img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $name }}" style="width:44px; height:44px; border-radius:12px; object-fit:cover; margin-bottom:14px;">
-                @else
-                <div style="width:44px; height:44px; border-radius:12px; background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); display:flex; align-items:center; justify-content:center; font-weight:800; color:#A78BFA; margin-bottom:14px;">{{ strtoupper(substr($name,0,1)) }}</div>
                 @endif
                 <h3 style="color:white; font-size:16px; font-weight:700; margin:0 0 8px;">{{ $name }}</h3>
                 @if($tagline)<p style="color:#94A3B8; font-size:13px; line-height:1.6; margin:0;">{{ $tagline }}</p>@endif

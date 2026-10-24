@@ -3,12 +3,10 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
+            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
                 @if($lang==='ar') دراسات الحالة @elseif($lang==='de') Fallstudien @else Case Studies @endif
             </span>
@@ -16,13 +14,13 @@
         <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
             @if($lang==='ar')
                 <span style="color:white;">نتائج حقيقية</span>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#10B981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> لعملاء حقيقيين</span>
+                <span style="color:#8FB8CC;"> لعملاء حقيقيين</span>
             @elseif($lang==='de')
                 <span style="color:white;">Echte Ergebnisse</span>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#10B981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> für echte Kunden</span>
+                <span style="color:#8FB8CC;"> für echte Kunden</span>
             @else
                 <span style="color:white;">Real Results</span>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#10B981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"> for Real Clients</span>
+                <span style="color:#8FB8CC;"> for Real Clients</span>
             @endif
         </h1>
         <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:600px; margin:0 auto; line-height:1.7;">
@@ -39,7 +37,7 @@
         @if($caseStudies->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:20px;">
             @foreach($caseStudies as $caseStudy)
-            @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('case-studies.show', ['lang'=>$lang,'slug'=>$caseStudy->slug]) }}"
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;">
 
@@ -47,13 +45,10 @@
                 @if(!empty($caseStudy->image_url))
                 <div style="height:200px; overflow:hidden; position:relative;">
                     <img loading="lazy" decoding="async" src="{{ $caseStudy->image_url }}" alt="{{ $caseStudy->title }}"
-                         class="hopn-lift-btn" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, rgba(10,15,30,0.9));"></div>
+                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
                 </div>
                 @else
                 <div style="height:120px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center; position:relative;">
-                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
-                    <span style="font-size:48px;">💡</span>
                 </div>
                 @endif
 
@@ -110,7 +105,6 @@
 
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div style="font-size:48px; margin-bottom:16px;">💡</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 @if($lang==='ar') دراسات الحالة قادمة قريباً @elseif($lang==='de') Fallstudien folgen in Kürze @else Case Studies Coming Soon @endif
             </h3>
@@ -150,7 +144,7 @@
             </p>
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
                 <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-                   class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
+                   class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                     @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
                 </a>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"

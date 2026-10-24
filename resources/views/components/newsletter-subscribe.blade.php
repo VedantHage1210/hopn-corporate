@@ -2,6 +2,7 @@
 <div>
     <form id="hopn-newsletter-form" method="POST" action="{{ route('newsletter.subscribe', ['lang' => $lang]) }}" style="display:flex; gap:10px; flex-wrap:wrap;">
         @csrf
+        <x-turnstile />
         <label for="hopn-newsletter-email" class="sr-only">
             {{ $lang==='ar' ? 'البريد الإلكتروني للاشتراك في النشرة' : ($lang==='de' ? 'E-Mail für Newsletter-Anmeldung' : 'Email address for newsletter signup') }}
         </label>
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Accept': 'application/json',
                     'X-CSRF-TOKEN': token
                 },
-                body: JSON.stringify({ email: email.value })
+                body: JSON.stringify({ email: email.value, 'cf-turnstile-response': (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '' })
             }).then(function (res) {
                 return res.json().then(function (data) { return { ok: res.ok, data: data }; });
             }).then(function (result) {

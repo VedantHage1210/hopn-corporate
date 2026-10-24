@@ -1,6 +1,7 @@
 @props(['lang' => 'en'])
 <form method="POST" action="{{ route('leads.partner', ['lang' => $lang]) }}" class="space-y-4">
     @csrf
+    <x-turnstile />
     <input type="text" name="honeypot" style="display:none">
     <input type="hidden" name="utm_source" value="{{ request('utm_source') }}">
     <input type="hidden" name="utm_medium" value="{{ request('utm_medium') }}">
@@ -14,14 +15,14 @@
 
     <div class="grid gap-4 md:grid-cols-2">
         <div>
-            <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Vollständiger Name' : 'Full Name') }} <span class="text-rose-400">*</span></label>
-            <input type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
+            <label for="hopn-name-5995e1" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Vollständiger Name' : 'Full Name') }} <span class="text-rose-400">*</span></label>
+            <input id="hopn-name-5995e1" type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
                 class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
             @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
         </div>
         <div>
-            <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail-Adresse' : 'Email Address') }} <span class="text-rose-400">*</span></label>
-            <input type="email" name="email" value="{{ old('email') }}" required
+            <label for="hopn-email-5995e2" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail-Adresse' : 'Email Address') }} <span class="text-rose-400">*</span></label>
+            <input id="hopn-email-5995e2" type="email" name="email" value="{{ old('email') }}" required
                 class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
             @error('email')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
         </div>
@@ -29,14 +30,14 @@
 
     <div class="grid gap-4 md:grid-cols-2">
         <div>
-            <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الشركة' : ($lang === 'de' ? 'Unternehmen' : 'Company') }} <span class="text-rose-400">*</span></label>
-            <input type="text" name="company" value="{{ old('company') }}" required
+            <label for="hopn-company-5995e3" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الشركة' : ($lang === 'de' ? 'Unternehmen' : 'Company') }} <span class="text-rose-400">*</span></label>
+            <input id="hopn-company-5995e3" type="text" name="company" value="{{ old('company') }}" required
                 class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
             @error('company')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
         </div>
         <div>
-            <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'نوع الشراكة' : ($lang === 'de' ? 'Partnertyp' : 'Partner Type') }}</label>
-            <select name="partner_type" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            <label for="hopn-partner-type-5995e4" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'نوع الشراكة' : ($lang === 'de' ? 'Partnertyp' : 'Partner Type') }}</label>
+            <select id="hopn-partner-type-5995e4" name="partner_type" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
                 <option value="">{{ $lang === 'ar' ? 'اختر نوعاً' : ($lang === 'de' ? 'Bitte wählen' : 'Select type') }}</option>
                 <option value="customer" @selected(old('partner_type') === 'customer')>{{ $lang === 'ar' ? 'عميل' : ($lang === 'de' ? 'Kunde' : 'Customer') }}</option>
                 <option value="tech_partner" @selected(old('partner_type') === 'tech_partner')>{{ $lang === 'ar' ? 'شريك تقني' : ($lang === 'de' ? 'Technologiepartner' : 'Technology Partner') }}</option>
@@ -48,8 +49,8 @@
     </div>
 
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} <span class="text-rose-400">*</span></label>
-        <textarea name="message" rows="5" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
+        <label for="hopn-message-5995e5" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الرسالة' : ($lang === 'de' ? 'Nachricht' : 'Message') }} <span class="text-rose-400">*</span></label>
+        <textarea id="hopn-message-5995e5" name="message" rows="5" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}"
             class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('message') }}</textarea>
         @error('message')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
     </div>

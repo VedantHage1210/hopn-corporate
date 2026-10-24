@@ -3,13 +3,10 @@
 
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; min-height:80vh; display:flex; align-items:center;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-150px; left:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.12) 0%, transparent 70%); pointer-events:none;"></div>
-    <div style="position:absolute; bottom:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 8px #4F6EF7;"></span>
+            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
                 @if($lang==='ar') النظام البيئي للشركات الناشئة @elseif($lang==='de') Startup-Ökosystem @else Startup Ecosystem @endif
             </span>
@@ -18,13 +15,13 @@
         <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
             @if($lang==='ar')
                 <span style="color:white;">بناء الجيل القادم</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">من الشركات الناشئة</span>
+                <span style="color:#8FB8CC;">من الشركات الناشئة</span>
             @elseif($lang==='de')
                 <span style="color:white;">Die nächste Generation</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">von Startups aufbauen</span>
+                <span style="color:#8FB8CC;">von Startups aufbauen</span>
             @else
                 <span style="color:white;">Building the Next</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7,#8B5CF6,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Generation of Startups</span>
+                <span style="color:#8FB8CC;">Generation of Startups</span>
             @endif
         </h1>
 
@@ -37,7 +34,7 @@
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
             <a href="#apply"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.4); transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Apply Now @endif →
             </a>
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
@@ -85,18 +82,16 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @php
             $offerings = [
-                ['icon'=>'V','color'=>'#4F6EF7','en'=>'Venture Building','de'=>'Venture Building','ar'=>'بناء المشاريع','desc_en'=>'Co-build your startup from idea to product with HOPn engineering and design teams.','desc_de'=>'Gemeinsam Ihr Startup von der Idee zum Produkt aufbauen.','desc_ar'=>'بناء مشتركة من الفكرة إلى المنتج مع فرق هندسة HOPn.'],
-                ['icon'=>'🧠','color'=>'#8B5CF6','en'=>'Mentoring & Advisory','de'=>'Mentoring & Beratung','ar'=>'الإرشاد والاستشارة','desc_en'=>'Access a network of industry experts, CTOs, and serial entrepreneurs.','desc_de'=>'Zugang zu Branchenexperten, CTOs und Serienunternehmern.','desc_ar'=>'الوصول إلى شبكة من الخبراء والمسؤولين التقنيين.'],
-                ['icon'=>'C','color'=>'#10B981','en'=>'Investor Access','de'=>'Investorenzugang','ar'=>'الوصول للمستثمرين','desc_en'=>'Connect with HOPn investor network and funding partners across Europe.','desc_de'=>'Verbindung zum HOPn-Investorennetzwerk in ganz Europa.','desc_ar'=>'التواصل مع شبكة مستثمري HOPn في أوروبا.'],
-                ['icon'=>'R','color'=>'#F59E0B','en'=>'Research & Innovation','de'=>'Forschung & Innovation','ar'=>'البحث والابتكار','desc_en'=>'Collaborate with universities and R&D labs to build cutting-edge solutions.','desc_de'=>'Zusammenarbeit mit Universitäten und F&E-Labors.','desc_ar'=>'التعاون مع الجامعات ومختبرات البحث والتطوير.'],
-                ['icon'=>'🛠','color'=>'#06B6D4','en'=>'Tech Infrastructure','de'=>'Tech-Infrastruktur','ar'=>'البنية التحتية التقنية','desc_en'=>'AI, data, cloud, and DevOps infrastructure to accelerate your build.','desc_de'=>'KI-, Daten-, Cloud- und DevOps-Infrastruktur für schnellere Entwicklung.','desc_ar'=>'بنية تحتية للذكاء الاصطناعي والبيانات والسحابة.'],
-                ['icon'=>'M','color'=>'#EF4444','en'=>'Market Access','de'=>'Marktzugang','ar'=>'الوصول للسوق','desc_en'=>'Enter European, MENA, and global markets with HOPn partner network.','desc_de'=>'Eintritt in europäische, MENA- und globale Märkte.','desc_ar'=>'الدخول إلى الأسواق الأوروبية والشرق أوسطية والعالمية.'],
+                ['icon'=>'V','color'=>'#8FB8CC','en'=>'Venture Building','de'=>'Venture Building','ar'=>'بناء المشاريع','desc_en'=>'Co-build your startup from idea to product with HOPn engineering and design teams.','desc_de'=>'Gemeinsam Ihr Startup von der Idee zum Produkt aufbauen.','desc_ar'=>'بناء مشتركة من الفكرة إلى المنتج مع فرق هندسة HOPn.'],
+                ['icon'=>'','color'=>'#8FB8CC','en'=>'Mentoring & Advisory','de'=>'Mentoring & Beratung','ar'=>'الإرشاد والاستشارة','desc_en'=>'Access a network of industry experts, CTOs, and serial entrepreneurs.','desc_de'=>'Zugang zu Branchenexperten, CTOs und Serienunternehmern.','desc_ar'=>'الوصول إلى شبكة من الخبراء والمسؤولين التقنيين.'],
+                ['icon'=>'C','color'=>'#8FB8CC','en'=>'Investor Access','de'=>'Investorenzugang','ar'=>'الوصول للمستثمرين','desc_en'=>'Connect with HOPn investor network and funding partners across Europe.','desc_de'=>'Verbindung zum HOPn-Investorennetzwerk in ganz Europa.','desc_ar'=>'التواصل مع شبكة مستثمري HOPn في أوروبا.'],
+                ['icon'=>'R','color'=>'#8FB8CC','en'=>'Research & Innovation','de'=>'Forschung & Innovation','ar'=>'البحث والابتكار','desc_en'=>'Collaborate with universities and R&D labs to build cutting-edge solutions.','desc_de'=>'Zusammenarbeit mit Universitäten und F&E-Labors.','desc_ar'=>'التعاون مع الجامعات ومختبرات البحث والتطوير.'],
+                ['icon'=>'','color'=>'#8FB8CC','en'=>'Tech Infrastructure','de'=>'Tech-Infrastruktur','ar'=>'البنية التحتية التقنية','desc_en'=>'AI, data, cloud, and DevOps infrastructure to accelerate your build.','desc_de'=>'KI-, Daten-, Cloud- und DevOps-Infrastruktur für schnellere Entwicklung.','desc_ar'=>'بنية تحتية للذكاء الاصطناعي والبيانات والسحابة.'],
+                ['icon'=>'M','color'=>'#8FB8CC','en'=>'Market Access','de'=>'Marktzugang','ar'=>'الوصول للسوق','desc_en'=>'Enter European, MENA, and global markets with HOPn partner network.','desc_de'=>'Eintritt in europäische, MENA- und globale Märkte.','desc_ar'=>'الدخول إلى الأسواق الأوروبية والشرق أوسطية والعالمية.'],
             ];
             @endphp
             @foreach($offerings as $item)
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $item['color'] }}50,transparent);"></div>
-                <div style="width:48px; height:48px; border-radius:12px; background:{{ $item['color'] }}15; border:1px solid {{ $item['color'] }}30; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">{{ $item['icon'] }}</div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:10px;">{{ $item[$lang] ?? $item['en'] }}</h3>
                 <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc_'.$lang] ?? $item['desc_en'] }}</p>
             </div>
@@ -123,21 +118,16 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
             @foreach($startups as $startup)
             @php
-                $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6];
+                $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6];
                 $sName = $lang==='ar' && $startup->name_ar ? $startup->name_ar : ($lang==='de' && $startup->name_de ? $startup->name_de : $startup->name);
                 $sIndustry = $lang==='ar' && $startup->industry_ar ? $startup->industry_ar : ($lang==='de' && $startup->industry_de ? $startup->industry_de : $startup->industry);
                 $sDesc = $lang==='ar' && $startup->description_ar ? $startup->description_ar : ($lang==='de' && $startup->description_de ? $startup->description_de : $startup->description);
             @endphp
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column; gap:14px;">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}50,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px;">
                     @if($startup->logo)
                     <img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $sName }}"
                          style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08);">
-                    @else
-                    <div style="width:44px; height:44px; border-radius:10px; background:{{ $c }}15; border:1px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:{{ $c }}; flex-shrink:0;">
-                        {{ strtoupper(substr($sName,0,1)) }}
-                    </div>
                     @endif
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $sName }}</h3>
@@ -189,9 +179,8 @@
         @if($programs->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($programs as $program)
-            @php $colors=['#4F6EF7','#8B5CF6','#10B981']; $c=$colors[$loop->index%3]; $title=$lang==='ar'&&$program->title_ar?$program->title_ar:($lang==='de'&&$program->title_de?$program->title_de:$program->title_en); $summary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??'')); @endphp
+            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%3]; $title=$lang==='ar'&&$program->title_ar?$program->title_ar:($lang==='de'&&$program->title_de?$program->title_de:$program->title_en); $summary=$lang==='ar'&&$program->summary_ar?$program->summary_ar:($lang==='de'&&$program->summary_de?$program->summary_de:($program->summary_en??'')); @endphp
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;">
-                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">{{ $title }}</h3>
                     <span style="font-size:10px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $c }}15; color:{{ $c }}; border:1px solid {{ $c }}30; text-transform:uppercase;">
@@ -209,12 +198,11 @@
         @else
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach([
-                ['name'=>'HOPn Launchpad','desc'=>'12-week intensive program to validate and launch your startup idea.','badge'=>'Applications Open','color'=>'#4F6EF7'],
-                ['name'=>'AI Founders Track','desc'=>'Specialized program for AI and data-driven startups with technical mentorship.','badge'=>'Coming Soon','color'=>'#8B5CF6'],
-                ['name'=>'Deep Tech Studio','desc'=>'Co-building program for robotics, digital twins, and hardware startups.','badge'=>'Invite Only','color'=>'#10B981'],
+                ['name'=>'HOPn Launchpad','desc'=>'12-week intensive program to validate and launch your startup idea.','badge'=>'Applications Open','color'=>'#8FB8CC'],
+                ['name'=>'AI Founders Track','desc'=>'Specialized program for AI and data-driven startups with technical mentorship.','badge'=>'Coming Soon','color'=>'#8FB8CC'],
+                ['name'=>'Deep Tech Studio','desc'=>'Co-building program for robotics, digital twins, and hardware startups.','badge'=>'Invite Only','color'=>'#8FB8CC'],
             ] as $program)
             <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:16px; overflow:hidden; transition:all 0.25s;">
-                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $program['color'] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
                     <h3 style="font-size:18px; font-weight:700; color:white; margin:0;">{{ $program['name'] }}</h3>
                     <span style="font-size:10px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $program['color'] }}15; color:{{ $program['color'] }}; border:1px solid {{ $program['color'] }}30; text-transform:uppercase;">{{ $program['badge'] }}</span>
@@ -257,7 +245,6 @@
             </div>
 
             <div style="border:1px solid rgba(79,110,247,0.2); background:#0A0F1E; border-radius:20px; padding:40px; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#4F6EF7,#8B5CF6,#06B6D4);"></div>
 
                 @if(session('startup_success'))
                 <div style="margin-bottom:24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; color:#10B981; font-size:14px;">
@@ -267,52 +254,53 @@
 
                 <form method="POST" action="{{ route('leads.startup-application', ['lang'=>$lang]) }}">
                     @csrf
+                    <x-turnstile />
                     <div style="display:grid; gap:20px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label for="hopn-founder-name-699be1" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') اسم المؤسس @elseif($lang==='de') Gründername @else Founder Name @endif *
                                 </label>
-                                <input type="text" name="founder_name" required
+                                <input id="hopn-founder-name-699be1" type="text" name="founder_name" required
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                        onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label for="hopn-email-699be2" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') البريد الإلكتروني @elseif($lang==='de') E-Mail @else Email @endif *
                                 </label>
-                                <input type="email" name="email" required
+                                <input id="hopn-email-699be2" type="email" name="email" required
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                        onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label for="hopn-startup-name-699be3" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') اسم الشركة الناشئة @elseif($lang==='de') Startup-Name @else Startup Name @endif *
                             </label>
-                            <input type="text" name="startup_name" required
+                            <input id="hopn-startup-name-699be3" type="text" name="startup_name" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                    onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         </div>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label for="hopn-industry-699be4" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') القطاع @elseif($lang==='de') Branche @else Industry @endif
                                 </label>
-                                <input type="text" name="industry"
+                                <input id="hopn-industry-699be4" type="text" name="industry"
                                        placeholder="AI, HealthTech, FinTech..."
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
                                        onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                                <label for="hopn-stage-699be5" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                     @if($lang==='ar') المرحلة @elseif($lang==='de') Phase @else Stage @endif
                                 </label>
-                                <select name="stage"
+                                <select id="hopn-stage-699be5" name="stage"
                                         style="width:100%; padding:12px 16px; background:#0D1425; border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;">
                                     <option value="idea">Idea</option>
                                     <option value="mvp">MVP</option>
@@ -323,10 +311,10 @@
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
+                            <label for="hopn-message-699be6" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">
                                 @if($lang==='ar') رسالة @elseif($lang==='de') Nachricht @else Tell us about your startup @endif
                             </label>
-                            <textarea name="message" rows="5"
+                            <textarea id="hopn-message-699be6" name="message" rows="5"
                                       placeholder="{{ $lang==='ar'?'ما المشكلة التي تحلها؟':($lang==='de'?'Welches Problem lösen Sie?':'What problem are you solving? What stage are you at?') }}"
                                       style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none; resize:vertical;"
                                       onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
@@ -341,7 +329,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
+                                class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                             @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Submit Application @endif
                         </button>
                     </div>
@@ -353,7 +341,6 @@
 
 {{-- FINAL CTA --}}
 <section style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
             @if($lang==='ar') هل أنت مستعد لبناء المستقبل؟ @elseif($lang==='de') Bereit, die Zukunft zu bauen? @else Ready to Build the Future? @endif
@@ -364,7 +351,7 @@
             @else Get in touch with the HOPn startup team today. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

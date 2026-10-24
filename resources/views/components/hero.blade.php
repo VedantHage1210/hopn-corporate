@@ -21,8 +21,6 @@
         background-size: 48px 48px;">
     </div>
 
-    <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(79,110,247,0.12); filter:blur(80px); pointer-events:none;"></div>
-    <div style="position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.10); filter:blur(80px); pointer-events:none;"></div>
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
 
@@ -70,7 +68,7 @@
         <div style="margin-top:60px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:700px; margin-left:auto; margin-right:auto;">
            
             @foreach($heroStats as $stat)
-            <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px; backdrop-filter:blur(8px);">
+            <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px;">
                 <div style="font-size:28px; font-weight:800; color:white;">{{ $stat['value'] }}</div>
                 <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat[$lang] ?? $stat['en'] }}</div>
             </div>
@@ -80,7 +78,6 @@
 
     </div>
 
-    <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to bottom, transparent, #0A0F1E); pointer-events:none;"></div>
 
     <style>
         @keyframes pulse {

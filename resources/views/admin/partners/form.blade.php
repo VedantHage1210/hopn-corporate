@@ -50,6 +50,10 @@
                     <input type="checkbox" name="visible" value="1" @checked(old('visible', $item->visible ?? true))>
                     Visible on website
                 </label>
+                <label class="flex items-center gap-2 text-sm text-slate-300">
+                    <input type="checkbox" name="verified" value="1" @checked(old('verified', $item->verified ?? false))>
+                    Verified by the founder
+                </label>
             </div>
 
             <div class="pt-2 flex gap-3">

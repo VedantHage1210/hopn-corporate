@@ -1,31 +1,32 @@
 @props(['job', 'lang' => 'en'])
 <form action="{{ route('careers.apply', ['lang' => $lang, 'slug' => $job->slug]) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf
+    <x-turnstile />
     <input type="text" name="honeypot" style="display:none">
     @if(session('status'))
         <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
     @endif
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
-        <input type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+        <label for="hopn-name-d24f71" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>
+        <input id="hopn-name-d24f71" type="text" name="name" value="{{ old('name') }}" required dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
         @error('name')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email') }} *</label>
-        <input type="email" name="email" value="{{ old('email') }}" required class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+        <label for="hopn-email-d24f72" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'البريد الإلكتروني' : ($lang === 'de' ? 'E-Mail' : 'Email') }} *</label>
+        <input id="hopn-email-d24f72" type="email" name="email" value="{{ old('email') }}" required class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
         @error('email')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الهاتف' : ($lang === 'de' ? 'Telefon' : 'Phone') }}</label>
-        <input type="text" name="phone" value="{{ old('phone') }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+        <label for="hopn-phone-d24f73" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الهاتف' : ($lang === 'de' ? 'Telefon' : 'Phone') }}</label>
+        <input id="hopn-phone-d24f73" type="text" name="phone" value="{{ old('phone') }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'خطاب التقديم' : ($lang === 'de' ? 'Anschreiben' : 'Cover Letter') }}</label>
-        <textarea name="cover_letter" rows="4" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('cover_letter') }}</textarea>
+        <label for="hopn-cover-letter-d24f74" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'خطاب التقديم' : ($lang === 'de' ? 'Anschreiben' : 'Cover Letter') }}</label>
+        <textarea id="hopn-cover-letter-d24f74" name="cover_letter" rows="4" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}" class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('cover_letter') }}</textarea>
     </div>
     <div>
-        <label class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'السيرة الذاتية' : ($lang === 'de' ? 'Lebenslauf' : 'CV / Resume') }} * <span class="text-xs text-slate-400">(PDF, DOC, DOCX)</span></label>
-        <input type="file" name="cv" accept=".pdf,.doc,.docx" required class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+        <label for="hopn-cv-d24f75" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'السيرة الذاتية' : ($lang === 'de' ? 'Lebenslauf' : 'CV / Resume') }} * <span class="text-xs text-slate-400">(PDF, DOC, DOCX)</span></label>
+        <input id="hopn-cv-d24f75" type="file" name="cv" accept=".pdf,.doc,.docx" required class="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
         @error('cv')<p class="mt-1 text-xs text-rose-300">{{ $message }}</p>@enderror
     </div>
     <div class="flex items-start gap-2">

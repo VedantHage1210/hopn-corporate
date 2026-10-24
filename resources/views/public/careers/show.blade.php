@@ -9,7 +9,6 @@
             background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
             background-size: 48px 48px;"></div>
-        <div style="position:absolute; top:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:rgba(245,158,11,0.10); filter:blur(80px);"></div>
         <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
             <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.35); background:rgba(245,158,11,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
                 <span style="width:7px; height:7px; border-radius:50%; background:#F59E0B; display:inline-block;"></span>

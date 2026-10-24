@@ -1,11 +1,11 @@
 @php($lang = request()->route('lang', 'en'))
-<div id="cookie-banner" class="fixed bottom-4 left-1/2 z-40 hidden w-[94%] max-w-2xl -translate-x-1/2 rounded-lg border border-slate-700 bg-slate-900 p-5 shadow-xl" @if($lang === 'ar') dir="rtl" @endif>
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent" class="fixed bottom-4 left-1/2 z-40 hidden w-[94%] max-w-2xl -translate-x-1/2 rounded-lg border border-slate-700 bg-slate-900 p-5 shadow-xl" @if($lang === 'ar') dir="rtl" @endif>
     <p class="text-sm text-slate-300">
         @if($lang === 'ar') نستخدم ملفات تعريف الارتباط الضرورية لتشغيل الموقع، وملفات اختيارية لتحسين تجربتك. يمكنك قبول الكل أو رفض غير الضروري منها.
         @elseif($lang === 'de') Wir verwenden essenzielle Cookies für den Betrieb der Website und optionale Cookies zur Verbesserung Ihrer Erfahrung. Sie können alle akzeptieren oder nicht notwendige ablehnen.
         @else We use essential cookies to run this site, and optional cookies to improve your experience. You can accept all, or reject non-essential ones. @endif
         <a href="{{ route('legal.cookie', ['lang' => $lang]) }}" class="text-indigo-300 hover:underline">
-            @if($lang === 'ar') اعرف المزيد @elseif($lang === 'de') Mehr erfahren @else Learn more @endif
+            @if($lang === 'ar') سياسة الكوكيز @elseif($lang === 'de') Cookie-Richtlinie @else Cookie policy @endif
         </a>
     </p>
     <div class="mt-4 flex flex-wrap gap-2 {{ $lang === 'ar' ? 'justify-start' : 'justify-end' }}">
@@ -37,6 +37,7 @@
         // window.hopnCookieConsent before loading (e.g. only load ads/analytics if 'all').
         window.hopnCookieConsent = value;
         banner.style.display = 'none';
+        document.dispatchEvent(new CustomEvent('hopn:consent', { detail: value }));
     }
 
     if (!getConsent()) {
@@ -44,6 +45,12 @@
     } else {
         window.hopnCookieConsent = getConsent();
     }
+
+    // Lets the footer "Cookie settings" link reopen the banner so consent can be changed or withdrawn.
+    window.hopnOpenCookieSettings = function () {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        banner.style.display = 'block';
+    };
 
     var acceptBtn = document.getElementById('cookie-accept');
     var necessaryBtn = document.getElementById('cookie-necessary');

@@ -55,30 +55,19 @@
 
             {{-- Brand Column --}}
             <div style="grid-column: span 2;">
-                <a href="{{ route('home', ['lang' => $lang]) }}"
+                <a href="{{ route('home', ['lang' => $lang]) }}" aria-label="HOPn"
                    style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; margin-bottom:16px;">
 
 
 
 
 
-                 <span class="hopn-logo-3d" style="display:inline-block; width:36px; height:36px; perspective:220px; position:relative;" aria-hidden="true">
-    <span style="position:absolute; inset:-6px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%); animation:hopnLogoGlow 2.4s ease-in-out infinite;"></span>
-    <span class="hopn-logo-3d-inner" style="display:block; width:100%; height:100%; transform-style:preserve-3d; animation:hopnLogoSpin 7s linear infinite; position:relative;">
-        <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; filter:drop-shadow(0 0 8px rgba(139,92,246,0.75));">
-            <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#A78BFA" stroke-width="3.2" stroke-linejoin="round"/>
-            <circle cx="20" cy="4" r="4.2" fill="#8B5CF6"/>
-            <circle cx="4.5" cy="33" r="4.2" fill="#8B5CF6"/>
-            <circle cx="35.5" cy="33" r="4.2" fill="#8B5CF6"/>
-        </svg>
-        <svg viewBox="0 0 40 40" style="position:absolute; inset:0; width:100%; height:100%; backface-visibility:hidden; transform:rotateY(180deg); filter:drop-shadow(0 0 8px rgba(79,110,247,0.75));">
-            <path d="M20 4 L35.5 33 L4.5 33 Z" fill="none" stroke="#4F6EF7" stroke-width="3.2" stroke-linejoin="round"/>
-            <circle cx="20" cy="4" r="4.2" fill="#4F6EF7"/>
-            <circle cx="4.5" cy="33" r="4.2" fill="#4F6EF7"/>
-            <circle cx="35.5" cy="33" r="4.2" fill="#4F6EF7"/>
-        </svg>
-    </span>
-</span>
+                <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true" focusable="false" style="display:block; flex-shrink:0;">
+                    <path d="M20 5 L34.5 33 L5.5 33 Z" fill="none" stroke="#8FB8CC" stroke-width="3" stroke-linejoin="round"/>
+                    <circle cx="20" cy="5" r="3.6" fill="#8FB8CC"/>
+                    <circle cx="5.5" cy="33" r="3.6" fill="#8FB8CC"/>
+                    <circle cx="34.5" cy="33" r="3.6" fill="#8FB8CC"/>
+                </svg>
 
 
 

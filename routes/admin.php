@@ -122,6 +122,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
         Route::resource('authors', AuthorController::class)->except(['destroy']);
 
         Route::resource('partners', PartnerController::class)->except(['destroy']);
+        Route::patch('partners/{partner}/verify', [PartnerController::class, 'toggleVerified'])->name('partners.verify');
         Route::resource('testimonials', TestimonialController::class)->except(['destroy']);
         Route::resource('team-members', TeamMemberController::class)->except(['destroy']);
         Route::resource('experts', ExpertController::class)->except(['destroy']);

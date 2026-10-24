@@ -7,10 +7,10 @@
     <title>404 — @if($lang==='ar') الصفحة غير موجودة @elseif($lang==='de') Seite nicht gefunden @else Page Not Found @endif | HOPn</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @if($lang === 'ar')
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     <style>* { font-family: 'Cairo', sans-serif !important; }</style>
     @else
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fonts/fonts.css">
     <style>* { font-family: 'Inter', sans-serif !important; }</style>
     @endif
     <style>
@@ -22,13 +22,11 @@
     <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden; background:#030712;">
 
         {{-- Background --}}
-        <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:800px; height:800px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
 
         <div style="position:relative; z-index:10; text-align:center; padding:40px 24px;">
 
             {{-- 404 Number --}}
-            <div style="font-size:clamp(120px,20vw,200px); font-weight:900; line-height:1; letter-spacing:-8px; margin-bottom:0; background:linear-gradient(135deg,rgba(79,110,247,0.3),rgba(139,92,246,0.2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+            <div style="font-size:clamp(120px,20vw,200px); font-weight:900; line-height:1; letter-spacing:-8px; margin-bottom:0; color:#8FB8CC;">
                 404
             </div>
 
@@ -53,7 +51,7 @@
             {{-- Actions --}}
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
                 <a href="/{{ $lang ?? 'en' }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.3); transition:all 0.2s;"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;"
                    onmouseover="this.style.transform='translateY(-2px)'"
                    onmouseout="this.style.transform='translateY(0)'">
                     @if($lang==='ar') العودة للرئيسية @elseif($lang==='de') Zur Startseite @else Go Home @endif

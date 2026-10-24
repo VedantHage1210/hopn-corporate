@@ -4,7 +4,7 @@
 <section style="background:#030712; padding:80px 0 60px;">
     <div class="container-shell" style="max-width:820px; margin:0 auto;">
         <div style="display:flex; align-items:center; gap:20px; margin-bottom:24px;">
-            <div style="width:64px; height:64px; border-radius:50%; background:{{ $expert->accent_color ?? '#8B5CF6' }}22; border:1px solid {{ $expert->accent_color ?? '#8B5CF6' }}55; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:{{ $expert->accent_color ?? '#A78BFA' }};">{{ $expert->initials }}</div>
+            <div style="width:64px; height:64px; border-radius:50%; background:{{ $expert->accent_color ?? '#8FB8CC' }}22; border:1px solid {{ $expert->accent_color ?? '#8FB8CC' }}55; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:{{ $expert->accent_color ?? '#8FB8CC' }};">{{ $expert->initials }}</div>
             <div>
                 <h1 style="font-size:26px; font-weight:900; color:white; margin:0;">{{ $expert->name }}</h1>
                 <p style="color:#94A3B8; font-size:14px; margin:4px 0 0;">{{ $expert->specialization_en }}</p>

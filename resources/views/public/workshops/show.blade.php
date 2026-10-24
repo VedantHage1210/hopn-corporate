@@ -21,7 +21,7 @@
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;">
             <a href="{{ route('workshops.book', ['lang'=>$lang, 'slug'=>$workshop->slug]) }}" class="hopn-lift-btn"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 40px rgba(139,92,246,0.4);">
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') احجز الآن @elseif($lang==='de') Jetzt buchen @else Book this workshop @endif →
             </a>
             <span style="display:inline-flex; align-items:center; gap:8px; padding:14px 24px; color:#94A3B8; font-size:14px;">

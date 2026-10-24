@@ -6,8 +6,6 @@
         @if($program->image_url)
         <div style="position:absolute; inset:0; background:url('{{ $program->image_url }}') center/cover no-repeat; opacity:0.15;"></div>
         @endif
-        <div style="position:absolute; inset:0; pointer-events:none; background-image: linear-gradient(rgba(139,92,246,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.06) 1px, transparent 1px); background-size: 48px 48px;"></div>
-        <div style="position:absolute; top:-100px; left:-100px; width:400px; height:400px; border-radius:50%; background:rgba(139,92,246,0.12); filter:blur(80px);"></div>
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('programs.index', ['lang' => $lang]) }}"
                class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
@@ -30,7 +28,7 @@
             <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
                 @if($program->duration)
                 <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.1); color:#A78BFA; font-size:13px; font-weight:600;">
-                    🕐 {{ $program->duration }}
+                    {{ $program->duration }}
                 </span>
                 @endif
                 <a href="#apply"
@@ -69,7 +67,6 @@
 <section style="padding:40px 0; background:#0A0F1E;">
     <div class="container-shell">
         <div style="max-width:800px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
-            <div style="font-size:28px; flex-shrink:0;">🕐</div>
             <div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
                     @if($lang === 'ar') المدة @elseif($lang === 'de') Dauer @else Duration @endif
@@ -101,33 +98,34 @@
             <div style="max-width:600px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:20px; padding:40px;">
                 <form action="{{ route('leads.training', ['lang' => $lang]) }}" method="POST">
                     @csrf
+                    <x-turnstile />
                     <input type="hidden" name="program_of_interest" value="{{ $program->slug }}">
                     <div style="display:grid; gap:16px;">
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
+                                <label for="hopn-name-53efd1" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
                                     @if($lang === 'ar') الاسم @elseif($lang === 'de') Name @else Full Name @endif *
                                 </label>
-                                <input type="text" name="name" required
+                                <input id="hopn-name-53efd1" type="text" name="name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                        onfocus="this.style.borderColor='#8B5CF6'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                             <div>
-                                <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
+                                <label for="hopn-email-53efd2" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
                                     @if($lang === 'ar') البريد @elseif($lang === 'de') E-Mail @else Email @endif *
                                 </label>
-                                <input type="email" name="email" required
+                                <input id="hopn-email-53efd2" type="email" name="email" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
                                        onfocus="this.style.borderColor='#8B5CF6'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
+                            <label for="hopn-message-53efd3" style="display:block; font-size:12px; font-weight:600; color:#CBD5E1; margin-bottom:6px;">
                                 @if($lang === 'ar') رسالة @elseif($lang === 'de') Nachricht @else Message @endif *
                             </label>
-                            <textarea name="message" rows="4" required
+                            <textarea id="hopn-message-53efd3" name="message" rows="4" required
                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
                                       onfocus="this.style.borderColor='#8B5CF6'"
                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>

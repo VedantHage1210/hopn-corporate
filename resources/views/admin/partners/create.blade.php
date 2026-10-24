@@ -59,6 +59,10 @@
                     <input type="checkbox" name="visible" id="visible" checked>
                     <label for="visible" class="text-sm text-slate-300">Visible on website</label>
                 </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" name="verified" id="verified" >
+                    <label for="verified" class="text-sm text-slate-300">Verified by the founder (shown in the homepage logo strip)</label>
+                </div>
             </div>
             <div class="mt-6">
                 <button type="submit" class="btn-primary">Save Partner</button>

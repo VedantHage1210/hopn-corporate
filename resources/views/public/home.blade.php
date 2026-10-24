@@ -2,12 +2,7 @@
 <x-layouts.public :title="'HOPn — Innovation Ecosystem Platform'">
 
 <style>
-@keyframes marquee  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-@keyframes marquee2 { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
 @keyframes heroFadeUp { from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
-@keyframes heroOrbitSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-@keyframes heroOrbitSpinReverse { from{transform:rotate(0deg);} to{transform:rotate(-360deg);} }
-@keyframes heroGlowFloat { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,-24px);} }
 
 .hopn-hero-in { opacity:0; animation:heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .hopn-hero-in-1 { animation-delay:0.05s; }
@@ -34,7 +29,7 @@
 .hopn-btn-outline-neutral2:hover { background:rgba(255,255,255,0.08); }
 
 .hopn-btn-primary-green { transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1); }
-.hopn-btn-primary-green:hover { transform:translateY(-3px); box-shadow:0 0 60px rgba(16,185,129,0.4); }
+.hopn-btn-primary-green:hover { background:#1D4D66 !important; }
 
 .hopn-row-hover { transition:background 0.25s ease; }
 .hopn-row-hover:hover { background:rgba(255,255,255,0.03); }
@@ -42,21 +37,10 @@
 .hopn-btn-primary, .hopn-btn-secondary {
     transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), background 0.25s ease, border-color 0.25s ease;
 }
-.hopn-btn-primary:hover { transform:translateY(-3px); box-shadow:0 0 64px rgba(79,110,247,0.65); }
+.hopn-btn-primary:hover { background:#1D4D66 !important; }
 .hopn-btn-secondary:hover { transform:translateY(-3px); background:rgba(255,255,255,0.09); border-color:rgba(255,255,255,0.28); }
 
-.hopn-hero-orbit { position:absolute; top:50%; left:50%; border:1px solid rgba(79,110,247,0.14); border-radius:50%; pointer-events:none; }
-.hopn-hero-orbit-1 { width:560px; height:560px; margin:-280px 0 0 -280px; animation:heroOrbitSpin 46s linear infinite; }
-.hopn-hero-orbit-2 { width:820px; height:820px; margin:-410px 0 0 -410px; border-color:rgba(139,92,246,0.10); animation:heroOrbitSpinReverse 64s linear infinite; }
-.hopn-hero-orbit-3 { width:1060px; height:1060px; margin:-530px 0 0 -530px; border-color:rgba(6,182,212,0.08); animation:heroOrbitSpin 84s linear infinite; }
-.hopn-hero-node { position:absolute; width:8px; height:8px; border-radius:50%; box-shadow:0 0 12px currentColor; }
 
-@media (max-width:900px) {
-    .hopn-hero-orbit { transform:translate(-50%,-50%) scale(0.62); }
-}
-@media (max-width:480px) {
-    .hopn-hero-orbit { transform:translate(-50%,-50%) scale(0.4); opacity:0.7; }
-}
 @media (prefers-reduced-motion: reduce) {
     .hopn-hero-in { animation:none; opacity:1; }
 }
@@ -68,7 +52,7 @@
 }
 
 .hopn-btn-outline-blue { transition:background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-.hopn-btn-outline-blue:hover { background:rgba(79,110,247,0.08); transform:translateY(-2px); }
+.hopn-btn-outline-blue:hover { background:rgba(143,184,204,0.1); }
 
 .hopn-btn-outline-purple { transition:background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
 .hopn-btn-outline-purple:hover { background:rgba(139,92,246,0.08); transform:translateY(-2px); }
@@ -83,8 +67,6 @@
 .hopn-partner-card img { transition:filter 0.3s ease; }
 .hopn-partner-card:hover img { filter:brightness(1) grayscale(0) !important; }
 
-.hopn-marquee-item { transition:color 0.25s ease; }
-.hopn-marquee-item:hover { color:#CBD5E1 !important; }
 
 .hopn-ecosystem-node { transition:background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
 .hopn-ecosystem-node:hover { transform:translateY(-4px); }
@@ -126,14 +108,13 @@ html[data-theme="light"] .hopn-homepage section span { color:#526170 !important;
 html[data-theme="light"] .hopn-homepage .hopn-partner-card span,
 html[data-theme="light"] .hopn-homepage .hopn-industry-card > div:not([aria-hidden="true"]) { color:#172331 !important; font-weight:700 !important; }
 html[data-theme="light"] .hopn-homepage .hopn-partner-card span { text-shadow:none !important; opacity:1 !important; }
-html[data-theme="light"] .hopn-homepage .hopn-btn-secondary { color:#FFFFFF !important; background:#245B78 !important; border-color:#245B78 !important; font-weight:800 !important; }
-html[data-theme="light"] .hopn-homepage section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green) { color:#245B78 !important; }
+html[data-theme="light"] .hopn-homepage .hopn-btn-secondary { color:#245B78 !important; background:#FFFFFF !important; border:1.5px solid #245B78 !important; font-weight:700 !important; }
+html[data-theme="light"] .hopn-homepage section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]) { color:#245B78 !important; }
 html[data-theme="light"] .hopn-homepage section div[style*="background:#0A0F1E"],
 html[data-theme="light"] .hopn-homepage section div[style*="background:#0D1425"],
 html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,255,255,0.02)"] { background:#FFFFFF !important; border-color:#D7DEE3 !important; }
 html[data-theme="light"] .hopn-homepage section div[style*="background:rgba(255,255,255,0.05)"] { background:#E8EDF0 !important; }
 html[data-theme="light"] .hopn-homepage section div[style*="radial-gradient"],
-html[data-theme="light"] .hopn-homepage .hopn-hero-orbit { display:none !important; }
 html[data-theme="light"] .hopn-homepage .hopn-strategy-step,
 html[data-theme="light"] .hopn-homepage .hopn-strategy-step:hover,
 html[data-theme="light"] .hopn-homepage .hopn-lift-card,
@@ -175,27 +156,10 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
 {{-- 1. HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; min-height:94vh; display:flex; align-items:center;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.05) 1px, transparent 1px); background-size:64px 64px; pointer-events:none;"></div>
-    <div style="position:absolute; top:-300px; left:50%; width:1000px; height:1000px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.10) 0%, transparent 65%); pointer-events:none; animation:heroGlowFloat 12s ease-in-out infinite;"></div>
-    <div style="position:absolute; bottom:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%); pointer-events:none;"></div>
-
-    {{-- Abstract orbiting ecosystem graphic --}}
-    <div class="hopn-hero-orbit hopn-hero-orbit-1" aria-hidden="true">
-        <span class="hopn-hero-node" style="top:-4px; left:50%; margin-left:-4px; color:#4F6EF7; background:#4F6EF7;"></span>
-        <span class="hopn-hero-node" style="bottom:8%; right:6%; color:#06B6D4; background:#06B6D4;"></span>
-    </div>
-    <div class="hopn-hero-orbit hopn-hero-orbit-2" aria-hidden="true">
-        <span class="hopn-hero-node" style="top:14%; left:4%; color:#8B5CF6; background:#8B5CF6;"></span>
-        <span class="hopn-hero-node" style="bottom:-4px; left:50%; margin-left:-4px; color:#EC4899; background:#EC4899;"></span>
-    </div>
-    <div class="hopn-hero-orbit hopn-hero-orbit-3" aria-hidden="true">
-        <span class="hopn-hero-node" style="top:50%; right:-4px; margin-top:-4px; color:#F59E0B; background:#F59E0B;"></span>
-    </div>
 
     <div class="container-shell" style="position:relative; z-index:10; padding:100px 0 80px; text-align:center;">
-        <div class="hopn-hero-in hopn-hero-in-1" style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.07); border-radius:999px; padding:6px 20px; margin-bottom:36px;">
-            <span style="width:7px; height:7px; border-radius:50%; background:#4F6EF7; display:inline-block; box-shadow:0 0 10px #4F6EF7;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#818CF8;">
+        <div class="hopn-hero-in hopn-hero-in-1" style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 20px; margin-bottom:36px;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') منصة النظام البيئي الأوروبي للابتكار
                 @elseif($lang==='de') Europäische Innovations-Ökosystem-Plattform
                 @else Innovation Ecosystem Platform @endif
@@ -205,13 +169,13 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <h1 class="hopn-hero-in hopn-hero-in-2" style="font-size:clamp(38px,6.5vw,84px); font-weight:900; color:white; line-height:1.04; letter-spacing:-2.5px; margin:0 auto 28px; max-width:960px;">
             @if($lang==='ar')
                 <span style="color:white;">حيث تتلاقى المؤسسات والشركات الناشئة</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7 0%,#8B5CF6 50%,#06B6D4 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">ورأس المال لبناء المستقبل</span>
+                <span style="color:#8FB8CC;">ورأس المال لبناء المستقبل</span>
             @elseif($lang==='de')
                 <span style="color:white;">Wo Unternehmen, Startups</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7 0%,#8B5CF6 50%,#06B6D4 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">und Kapital zusammenkommen.</span>
+                <span style="color:#8FB8CC;">und Kapital zusammenkommen.</span>
             @else
                 <span style="color:white;">Where enterprises, startups,</span><br>
-                <span style="background:linear-gradient(135deg,#4F6EF7 0%,#8B5CF6 50%,#06B6D4 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">and capital converge.</span>
+                <span style="color:#8FB8CC;">and capital converge.</span>
             @endif
         </h1>
 
@@ -223,7 +187,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
         <div class="hopn-hero-in hopn-hero-in-4" style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:72px;">
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}" class="hopn-btn-primary"
-               style="display:inline-flex; align-items:center; gap:8px; padding:15px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 0 48px rgba(79,110,247,0.45);">
+               style="display:inline-flex; align-items:center; gap:8px; padding:15px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') استكشف النظام البيئي @elseif($lang==='de') Ökosystem erkunden @else Explore the Ecosystem @endif
                 <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
@@ -291,42 +255,21 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
 {{-- 3. INNOVATION ECOSYSTEM --}}
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
-    <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(79,110,247,0.06) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
-                @if($lang==='ar') مركز واحد للابتكار @elseif($lang==='de') Ein Hub für Innovation @else One Hub for Innovation @endif
+                @if($lang==='ar') المنهجية @elseif($lang==='de') Vorgehen @else Approach @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
-                @if($lang==='ar') حيث يلتقي عالم الأعمال والتعليم والبحث العلمي
-                @elseif($lang==='de') Wo Wirtschaft, Bildung &amp; Forschung zusammenkommen
-                @else Where Business, Education &amp; Research Meet @endif
+                @if($lang==='ar') كيف نعمل وما نبنيه @elseif($lang==='de') Wie wir arbeiten und was wir entwickeln @else How we work and what we build @endif
             </h2>
             <p style="color:#CBD5E1; max-width:560px; margin:0 auto; font-size:17px; line-height:1.7;">
-                @if($lang==='ar') HOPn يمثل الجسر بين المؤسسات والجامعات والشركات الناشئة والمستثمرين
-                @elseif($lang==='de') HOPn verbindet Unternehmen, Universitäten, Startups und Investoren
-                @else HOPn bridges enterprises, universities, startups, and investors @endif
+                @if($lang==='ar') ثلاث مراحل من البحث إلى التنفيذ. @elseif($lang==='de') Drei Stufen von der Forschung bis zur Umsetzung. @else Three stages from research to implementation. @endif
             </p>
         </div>
 
-        <div class="hopn-ecosystem-grid hopn-reveal" style="display:grid; gap:12px; max-width:1120px; margin:0 auto 64px;">
-            @php
-            $ecosystem = [
-                ['mark'=>'B','label'=>$lang==='ar'?'الأعمال':($lang==='de'?'Wirtschaft':'Business'),'color'=>'#4F6EF7','desc'=>$lang==='ar'?'مؤسسات وشركات':($lang==='de'?'Unternehmen':'Enterprises & Firms')],
-                ['mark'=>'E','label'=>$lang==='ar'?'التعليم':($lang==='de'?'Bildung':'Education'),'color'=>'#10B981','desc'=>$lang==='ar'?'جامعات وبرامج':($lang==='de'?'Unis & Programme':'Universities & Programs')],
-                ['mark'=>'H','label'=>'HOPn','color'=>'#8B5CF6','desc'=>$lang==='ar'?'المنصة المحورية':($lang==='de'?'Zentrale Plattform':'Central Platform')],
-                ['mark'=>'R','label'=>$lang==='ar'?'البحث':($lang==='de'?'Forschung':'Research'),'color'=>'#F59E0B','desc'=>$lang==='ar'?'مراكز البحث والتطوير':($lang==='de'?'F&E-Zentren':'R&D Centers')],
-                ['mark'=>'V','label'=>$lang==='ar'?'الشركات الناشئة':($lang==='de'?'Startups':'Startups'),'color'=>'#EF4444','desc'=>$lang==='ar'?'ريادة الأعمال':($lang==='de'?'Ventures':'Ventures')],
-                ['mark'=>'C','label'=>$lang==='ar'?'المستثمرون':($lang==='de'?'Investoren':'Investors'),'color'=>'#06B6D4','desc'=>$lang==='ar'?'رأس المال الاستثماري':($lang==='de'?'Kapitalgeber':'Capital & Funds')],
-                ['mark'=>'T','label'=>$lang==='ar'?'المواهب':($lang==='de'?'Talente':'Talent'),'color'=>'#EC4899','desc'=>$lang==='ar'?'خبراء ومحترفون':($lang==='de'?'Experten & Fachkräfte':'Experts & Professionals')],
-            ];
-            @endphp
-            @foreach($ecosystem as $node)
-            <div class="hopn-ecosystem-node" style="border:1px solid #245B7830; background:#245B7808; border-radius:16px; padding:20px 12px; text-align:center;">
-                <div style="font-size:13px; font-weight:700; color:white; margin-bottom:4px;">{{ $node['label'] }}</div>
-                <div style="font-size:11px; color:#94A3B8; line-height:1.4;">{{ $node['desc'] }}</div>
-            </div>
-            @endforeach
+        <div class="hopn-reveal" style="margin:0 auto 64px;">
+            <x-architecture-figure :lang="$lang" />
         </div>
 
         @if($homeDomains->count() > 0)
@@ -342,7 +285,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
         <div class="hopn-reveal" style="text-align:center;">
             <a href="{{ route('innovation.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-blue"
-               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.3); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(143,184,204,0.4); color:#8FB8CC; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
                 @if($lang==='ar') استكشف مجالات الابتكار @elseif($lang==='de') Innovationsdomänen erkunden @else Explore Innovation Domains @endif →
             </a>
         </div>
@@ -367,17 +310,17 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                 @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
             </a>
         </div>
-        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); border-radius:16px; overflow:hidden;">
+        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;">
             @foreach($services as $service)
-            @php $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4']; $c=$colors[$loop->index%6]; @endphp
+            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-service-card"
-               style="display:block; padding:28px; background:#050A14; text-decoration:none; position:relative; overflow:hidden;">
+               style="display:flex; flex-direction:column; padding:32px 28px; background:#050A14; border:1px solid rgba(255,255,255,0.08); border-radius:14px; text-decoration:none; position:relative; overflow:hidden; min-height:200px;">
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
                     @if($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
                     @elseif($lang==='de'&&$service->name_de) {{ $service->name_de }}
                     @else {{ $service->name }} @endif
                 </h3>
-                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary)??'', 80) }}</p>
+                <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px; flex:1;">{{ Str::limit($lang==='ar'&&$service->summary_ar?$service->summary_ar:($lang==='de'&&$service->summary_de?$service->summary_de:$service->summary)??'', 80) }}</p>
                 <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr lesen @else Learn more @endif →
                 </span>
@@ -391,7 +334,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 {{-- 5. HOPN PRODUCTS --}}
 @if($homeProducts->count() > 0)
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
-    <div style="position:absolute; top:0; right:0; width:600px; height:600px; background:radial-gradient(circle at top right, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8B5CF6; margin-bottom:16px;">
@@ -409,7 +351,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($homeProducts as $product)
             @php
-                $colors=['#4F6EF7','#10B981','#8B5CF6','#F59E0B','#EF4444','#06B6D4'];
+                $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC'];
                 $c=$colors[$loop->index%6];
                 $title=$lang==='ar'&&$product->title_ar?$product->title_ar:($lang==='de'&&$product->title_de?$product->title_de:$product->title_en);
                 $summary=$lang==='ar'&&$product->summary_ar?$product->summary_ar:($lang==='de'&&$product->summary_de?$product->summary_de:($product->summary_en??''));
@@ -417,11 +359,16 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                 $cat=$categories[$loop->index] ?? 'Platform';
             @endphp
             <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $c }}60, transparent);"></div>
-                <span style="position:absolute; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
+                @if(!empty($product->hero_image_url))
+                <div style="height:180px; overflow:hidden;">
+                    <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+                @endif
+                <span class="hopn-status-badge" style="position:absolute; z-index:2; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
                     {{ $product->statusLabel($lang) }}
                 </span>
+                <div style="padding:28px; display:flex; flex-direction:column; flex:1;">
                 <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:{{ $c }}; margin-bottom:12px; opacity:0.85;">{{ $cat }}</div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     <div style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.5px;">{{ $title }}</div>
@@ -431,6 +378,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
                     @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif
                     <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </span>
+                </div>
             </a>
             @endforeach
         </div>
@@ -470,7 +418,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         </div>
         <div class="hopn-reveal" style="text-align:center; margin-top:36px;">
             <a href="{{ route('industries.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-blue"
-               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(79,110,247,0.3); color:#818CF8; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(143,184,204,0.4); color:#8FB8CC; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
                 @if($lang==='ar') عرض جميع القطاعات @elseif($lang==='de') Alle Branchen @else View All Industries @endif →
             </a>
         </div>
@@ -478,35 +426,64 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 </section>
 @endif
 
-{{-- 7. ANIMATED LOGO MARQUEE --}}
-@if($partners->count() > 0)
-<section style="padding:80px 0; background:#030712; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); overflow:hidden;">
-    <div class="container-shell hopn-reveal" style="margin-bottom:48px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+{{-- 7. PARTNERS: moving card carousel (original spec: "Carousel + grid, admin-controlled").
+        Shows partners marked "Verified" in the admin panel. While none is verified yet, all visible partners are shown,
+        so the section is never empty on a fresh install. Pauses on hover and stops moving when the visitor prefers reduced motion. --}}
+@php
+    $stripPartners = $partners->where('verified', true);
+    if ($stripPartners->isEmpty()) { $stripPartners = $partners; }
+    $stripPartners = $stripPartners->values();
+    $stripReps = $stripPartners->count() > 0 ? max(1, (int) ceil(8 / $stripPartners->count())) : 1;
+@endphp
+@if($stripPartners->count() > 0)
+<style>
+    .hopn-partners { --pt-line:rgba(255,255,255,0.12); --pt-ink:#E2E8F0; --pt-bg:rgba(255,255,255,0.03); }
+    html[data-theme="light"] .hopn-partners { --pt-line:#D7DEE3; --pt-ink:#172331; --pt-bg:#FFFFFF; }
+    .hopn-partner-marquee { overflow:hidden; }
+    .hopn-partner-track { display:flex; width:max-content; gap:16px; padding:4px 0; animation:hopnPartners 45s linear infinite; }
+    html[dir="rtl"] .hopn-partner-track { animation-name:hopnPartnersRtl; }
+    .hopn-partner-marquee:hover .hopn-partner-track, .hopn-partner-marquee:focus-within .hopn-partner-track { animation-play-state:paused; }
+    .hopn-partner-item { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; min-width:220px; padding:22px 28px; border:1px solid var(--pt-line); background:var(--pt-bg); border-radius:12px; flex-shrink:0; }
+    .hopn-partner-item img { height:64px; width:auto; max-width:180px; object-fit:contain; display:block; }
+    .hopn-partner-item span { font-size:14px; font-weight:600; color:var(--pt-ink); text-align:center; }
+    @keyframes hopnPartners { from { transform:translateX(0); } to { transform:translateX(calc(-50% - 8px)); } }
+    @keyframes hopnPartnersRtl { from { transform:translateX(0); } to { transform:translateX(calc(50% + 8px)); } }
+    @media (prefers-reduced-motion: reduce) {
+        .hopn-partner-track { animation:none; width:auto; flex-wrap:wrap; justify-content:center; }
+        .hopn-partner-track .hopn-partner-copy { display:none; }
+    }
+    @media (max-width:640px) { .hopn-partner-item { min-width:170px; padding:18px 20px; } .hopn-partner-item img { height:52px; max-width:140px; } }
+</style>
+<section class="hopn-partners" style="padding:72px 0; background:#030712; border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04);">
+    <div class="container-shell">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; margin-bottom:28px;">
             <div>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748B; display:block; margin-bottom:10px;">Partners & Trust</span>
-                <h2 style="font-size:clamp(22px,3vw,36px); font-weight:800; color:white; letter-spacing:-0.5px; margin:0;">
-                    @if($lang==='ar') موثوق به من قادة الصناعة @elseif($lang==='de') Vertrauen von Industrieführern @else Trusted by industry leaders @endif
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#94A3B8; display:block; margin-bottom:10px;">
+                    @if($lang==='ar') الشركاء @elseif($lang==='de') Partner @else Partners @endif
+                </span>
+                <h2 style="font-size:clamp(24px,3vw,34px); font-weight:800; color:white; letter-spacing:-0.5px; margin:0;">
+                    @if($lang==='ar') جهات نعمل معها @elseif($lang==='de') Organisationen, mit denen wir arbeiten @else Organisations we work with @endif
                 </h2>
             </div>
+            <a href="{{ route('partners.index', ['lang'=>$lang]) }}" style="font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
+                @if($lang==='ar') جميع الشركاء @elseif($lang==='de') Alle Partner @else All partners @endif →
+            </a>
         </div>
     </div>
-
-    <div style="margin-bottom:12px;">
-        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:#475569; text-align:center; margin-bottom:14px;">Our Partners</div>
-        <div style="overflow:hidden; mask-image:linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);">
-            <div style="display:flex; align-items:center; animation:marquee {{ max(20, $partners->count() * 4) }}s linear infinite; width:fit-content;">
-                @foreach($partners->concat($partners) as $partner)
-                <a href="{{ route('partners.index', ['lang'=>$lang]) }}"
-                    class="hopn-partner-card" style="min-width:240px; padding:28px 32px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; border-right:1px solid rgba(255,255,255,0.04); text-decoration:none;">
-                    @if($partner->logo)
-                    <img loading="lazy" decoding="async" src="{{ $partner->logo }}" alt="{{ $partner->name }}"
-                         style="height:44px; width:auto; max-width:170px; object-fit:contain; filter:brightness(0.75) grayscale(0.25);">
-                    @endif
-                    <span style="font-size:15px; font-weight:700; color:#E2E8F0; letter-spacing:0.02em; white-space:nowrap;">{{ $partner->name }}</span>
-                </a>
-                @endforeach
-            </div>
+    <div class="hopn-partner-marquee">
+        <div class="hopn-partner-track">
+            @foreach([0, 1] as $copy)
+                @for($rep = 0; $rep < $stripReps; $rep++)
+                    @foreach($stripPartners as $partner)
+                    <div class="hopn-partner-item {{ $copy === 1 ? 'hopn-partner-copy' : '' }}" @if($copy === 1) aria-hidden="true" @endif>
+                        @if($partner->logo)
+                        <img loading="lazy" decoding="async" src="{{ $partner->logo }}" alt="{{ $copy === 1 ? '' : $partner->name }}">
+                        @endif
+                        <span>{{ $partner->name }}</span>
+                    </div>
+                    @endforeach
+                @endfor
+            @endforeach
         </div>
     </div>
 </section>
@@ -623,9 +600,8 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @foreach($experts as $expert)
-            @php $c = $expert->accent_color ?? '#4F6EF7'; @endphp
+            @php $c = $expert->accent_color ?? '#8FB8CC'; @endphp
             <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,{{ $c }}60,transparent);"></div>
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($expert->photo_url)
                         <img loading="lazy" decoding="async" src="{{ $expert->photo_url }}" alt="{{ $expert->name }}"
@@ -673,7 +649,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 {{-- 9. WORKSHOPS --}}
 @php
     $homeWorkshops = \App\Models\Workshop::published()->orderBy('sort_order')->limit(3)->get();
-    $wsColors = ['#4F6EF7','#10B981','#8B5CF6'];
+    $wsColors = ['#8FB8CC','#8FB8CC','#8FB8CC'];
 @endphp
 @if($homeWorkshops->count() > 0)
 <section class="homepage-secondary" style="padding:100px 0; background:#030712;">
@@ -698,7 +674,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($homeWorkshops as $ws)
             <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$ws->slug]) }}" class="hopn-lift-card" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,{{ $wsColors[$loop->index % 3] }},transparent);"></div>
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
                     <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $wsColors[$loop->index % 3] }}15; color:{{ $wsColors[$loop->index % 3] }}; border:1px solid {{ $wsColors[$loop->index % 3] }}30;">{{ $ws->duration_label_en ?? $ws->format }}</span>
                     <span style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $ws->category }}</span>
@@ -728,6 +703,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 @endif
 
 {{-- 10. EVENTS --}}
+@if($upcomingEvents->count() > 0)
 <section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
@@ -747,9 +723,8 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         @if($upcomingEvents->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($upcomingEvents as $event)
-            @php $typeColors=['conference'=>'#4F6EF7','workshop'=>'#10B981','webinar'=>'#06B6D4','hackathon'=>'#8B5CF6','startup'=>'#F59E0B','networking'=>'#EF4444','research'=>'#A855F7']; $c=$typeColors[$event->type]??'#F59E0B'; @endphp
+            @php $typeColors=['conference'=>'#8FB8CC','workshop'=>'#8FB8CC','webinar'=>'#8FB8CC','hackathon'=>'#8FB8CC','startup'=>'#8FB8CC','networking'=>'#8FB8CC','research'=>'#A855F7']; $c=$typeColors[$event->type]??'#8FB8CC'; @endphp
             <div class="hopn-lift-card-nobg" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
-                <div style="height:3px; background:linear-gradient(90deg, {{ $c }}, transparent);"></div>
                 <div style="padding:24px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
                         <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $c }}15; color:{{ $c }}; border:1px solid {{ $c }}30; text-transform:uppercase;">{{ ucfirst($event->type) }}</span>
@@ -768,6 +743,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         @endif
     </div>
 </section>
+@endif
 
 {{-- 11. NEWSROOM --}}
 @if($latestPosts->count() > 0)
@@ -789,7 +765,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($latestPosts as $post)
-            @php $c=['#4F6EF7','#10B981','#8B5CF6'][$loop->index%3]; @endphp
+            @php $c=['#8FB8CC','#8FB8CC','#8FB8CC'][$loop->index%3]; @endphp
             <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$post->slug]) }}"
                class="hopn-lift-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none;">
@@ -838,7 +814,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
 {{-- 13. TALENT --}}
 <section class="homepage-secondary" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
-    <div style="position:absolute; bottom:0; left:0; width:500px; height:500px; background:radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
@@ -856,15 +831,14 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:48px;">
             @php
             $talentItems = [
-                ['mark'=>'R','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#4F6EF7'],
-                ['mark'=>'L','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#10B981'],
-                ['mark'=>'E','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8B5CF6'],
-                ['mark'=>'D','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#F59E0B'],
+                ['mark'=>'R','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#8FB8CC'],
+                ['mark'=>'L','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#8FB8CC'],
+                ['mark'=>'E','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8FB8CC'],
+                ['mark'=>'D','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#8FB8CC'],
             ];
             @endphp
             @foreach($talentItems as $item)
             <div class="hopn-lift-card hopn-talent-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, {{ $item['color'] }}40, transparent);"></div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
                 <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc'] }}</p>
             </div>
@@ -873,7 +847,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div style="text-align:center;">
             <a href="{{ route('careers.index', ['lang'=>$lang]) }}"
                class="hopn-btn-primary-green"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 36px; border-radius:10px; background:#10B981; color:white; font-size:15px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(16,185,129,0.3);">
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 36px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:700; text-decoration:none;">
                 @if($lang==='ar') عرض الوظائف المفتوحة @elseif($lang==='de') Offene Stellen ansehen @else View Open Positions @endif →
             </a>
         </div>
@@ -882,8 +856,6 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 
 {{-- 14. FINAL CTA --}}
 <section style="padding:120px 0; background:#030712; position:relative; overflow:hidden;">
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none;"></div>
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:800px; height:400px; background:radial-gradient(ellipse, rgba(79,110,247,0.08) 0%, transparent 70%); pointer-events:none;"></div>
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(32px,5vw,64px); font-weight:900; color:white; letter-spacing:-2px; margin-bottom:20px; line-height:1.1;">
             @if($lang==='ar') هل أنت مستعد لتنسيق اختراقك التالي؟
@@ -898,7 +870,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
                class="hopn-btn-primary"
-               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; box-shadow:0 0 40px rgba(79,110,247,0.4);">
+               style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none;">
                 @if($lang==='ar') احجز مكالمة استراتيجية @elseif($lang==='de') Strategiegespräch buchen @else Book a Strategy Call @endif
             </a>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"

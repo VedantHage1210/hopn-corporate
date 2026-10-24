@@ -15,11 +15,12 @@ class Partner extends Model
   protected $fillable = [
     'name', 'type', 'url', 'logo',
     'description_en', 'description_de', 'description_ar',
-    'sort_order', 'visible',
+    'sort_order', 'visible', 'verified',
 ];
 
     protected $casts = [
         'visible' => 'boolean',
+        'verified' => 'boolean',
     ];
     public function getActivitylogOptions(): LogOptions
     {
