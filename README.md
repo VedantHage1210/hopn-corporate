@@ -77,7 +77,7 @@ php artisan storage:link
 php artisan queue:work
 ```
 
-Admin login: `superadmin@hopn.eu` / `Admin@123`
+Admin login: `Admin@123` / `Admin123`
 
 See [INSTALL.md](INSTALL.md) for full step-by-step instructions.
 
