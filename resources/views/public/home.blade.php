@@ -4,6 +4,19 @@
 <style>
 @keyframes heroFadeUp { from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
 
+/* Hero: text left, founder card right on wide screens; stacked and centred below 1080px */
+.hopn-hero-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:56px; align-items:center; text-align:center; }
+.hopn-hero-title { font-size:clamp(38px,6.5vw,84px); margin:0 auto 28px; max-width:960px; }
+.hopn-hero-lead { font-size:clamp(16px,2.2vw,20px); max-width:640px; margin:0 auto 48px; }
+.hopn-hero-actions { justify-content:center; margin-bottom:72px; }
+.hopn-hero-founder { display:flex; justify-content:center; }
+@media (min-width:1080px) {
+    .hopn-hero-grid { grid-template-columns:minmax(0,1.25fr) minmax(360px,0.75fr); gap:72px; text-align:start; padding-top:88px !important; padding-bottom:72px !important; }
+    .hopn-hero-title { font-size:clamp(40px,4.7vw,68px); margin:0 0 26px; max-width:none; letter-spacing:-2px !important; }
+    .hopn-hero-lead { max-width:600px; margin:0 0 40px; }
+    .hopn-hero-actions { justify-content:flex-start; margin-bottom:48px; }
+    .hopn-hero-founder { justify-content:flex-end; }
+}
 .hopn-hero-in { opacity:0; animation:heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .hopn-hero-in-1 { animation-delay:0.05s; }
 .hopn-hero-in-2 { animation-delay:0.16s; }
@@ -157,7 +170,8 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
 {{-- 1. HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; min-height:94vh; display:flex; align-items:center;">
 
-    <div class="container-shell" style="position:relative; z-index:10; padding:100px 0 80px; text-align:center;">
+    <div class="container-shell hopn-hero-grid" style="position:relative; z-index:10; padding:100px 0 80px;">
+      <div class="hopn-hero-text">
         <div class="hopn-hero-in hopn-hero-in-1" style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 20px; margin-bottom:36px;">
             <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') منصة النظام البيئي الأوروبي للابتكار
@@ -166,7 +180,7 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
             </span>
         </div>
 
-        <h1 class="hopn-hero-in hopn-hero-in-2" style="font-size:clamp(38px,6.5vw,84px); font-weight:900; color:white; line-height:1.04; letter-spacing:-2.5px; margin:0 auto 28px; max-width:960px;">
+        <h1 class="hopn-hero-in hopn-hero-in-2 hopn-hero-title" style="font-weight:900; color:white; line-height:1.04; letter-spacing:-2.5px;">
             @if($lang==='ar')
                 <span style="color:white;">حيث تتلاقى المؤسسات والشركات الناشئة</span><br>
                 <span style="color:#8FB8CC;">ورأس المال لبناء المستقبل</span>
@@ -179,13 +193,13 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
             @endif
         </h1>
 
-        <p class="hopn-hero-in hopn-hero-in-3" style="font-size:clamp(16px,2.2vw,20px); color:#CBD5E1; max-width:640px; margin:0 auto 48px; line-height:1.75;">
+        <p class="hopn-hero-in hopn-hero-in-3 hopn-hero-lead" style="color:#CBD5E1; line-height:1.75;">
             @if($lang==='ar') HOPn ينسّق الاستراتيجية والتكنولوجيا والأنظمة البيئية — يربط الشركات الكبرى والمؤسسين والمستثمرين والجامعات في نظام تشغيل ابتكار متكامل.
             @elseif($lang==='de') HOPn orchestriert Strategie, Technologie und Ökosysteme — verbindet Unternehmen, Gründer, Investoren und Universitäten zu einem integrierten Innovationsbetriebssystem.
             @else HOPn orchestrates strategy, technology, and ecosystems — connecting corporates, founders, investors, and universities into one integrated innovation operating system. @endif
         </p>
 
-        <div class="hopn-hero-in hopn-hero-in-4" style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:72px;">
+        <div class="hopn-hero-in hopn-hero-in-4 hopn-hero-actions" style="display:flex; flex-wrap:wrap; gap:14px;">
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}" class="hopn-btn-primary"
                style="display:inline-flex; align-items:center; gap:8px; padding:15px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') استكشف النظام البيئي @elseif($lang==='de') Ökosystem erkunden @else Explore the Ecosystem @endif
@@ -217,6 +231,11 @@ html[data-theme="light"] .hopn-homepage .hopn-hero-in { animation:none; opacity:
         </div>
         @endif
         @endif
+      </div>
+
+      <div class="hopn-hero-in hopn-hero-in-4 hopn-hero-founder">
+          <x-founder-card :lang="$lang" />
+      </div>
 
     </div>
 </section>

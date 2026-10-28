@@ -29,7 +29,7 @@
             @else Connecting business, education, and research to build intelligent digital solutions across Europe and beyond. @endif
         </p>
         {{-- Stats --}}
-        @if($siteSettings['stats_about_visible'] ?? false)
+        @if(config('hopn.secondary_sections') && ($siteSettings['stats_about_visible'] ?? false))
         <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; max-width:800px; margin:0 auto; overflow:hidden;">
             @foreach([
                 ['num'=>'50+',  'label'=>$lang==='ar'?'عميل مؤسسي':($lang==='de'?'Unternehmenskunden':'Enterprise Clients')],
@@ -71,51 +71,6 @@
                     @elseif($lang==='de') Die führende europäische Plattform zu werden, die Business-Innovation, akademische Forschung und Unternehmertum in einem integrierten Ökosystem verbindet.
                     @else To become the leading European platform that bridges business innovation, academic research, and entrepreneurship — creating a complete innovation ecosystem for the digital age. @endif
                 </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- WHO WE ARE --}}
-<section style="padding:100px 0; background:#030712;">
-    <div class="container-shell">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
-            <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
-                    @if($lang==='ar') من نحن @elseif($lang==='de') Wer wir sind @else Who We Are @endif
-                </span>
-                <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:24px; line-height:1.2;">
-                    @if($lang==='ar') مركز ابتكار متعدد التخصصات
-                    @elseif($lang==='de') Ein multidisziplinärer Innovationshub
-                    @else A Multidisciplinary Innovation Hub @endif
-                </h2>
-                <p style="font-size:16px; color:#CBD5E1; line-height:1.8; margin-bottom:20px;">
-                    @if($lang==='ar') HOPn هو شريك مؤسسي متعدد التخصصات يجمع الاستشارات والمنتجات الرقمية وبناء القدرات في منظومة ابتكار متكاملة.
-                    @elseif($lang==='de') HOPn ist ein multidisziplinärer Unternehmenspartner, der Beratung, digitale Produkte und Kompetenzaufbau in einem integrierten Innovationsökosystem vereint.
-                    @else HOPn is a multidisciplinary corporate partner that combines consulting, digital products, and capability building into one integrated innovation ecosystem — serving enterprises, universities, startups, and investors across Europe and MENA. @endif
-                </p>
-                <p style="font-size:16px; color:#CBD5E1; line-height:1.8;">
-                    @if($lang==='ar') نتخصص في الذكاء الاصطناعي والروبوتات والتوائم الرقمية ومنصات البيانات.
-                    @elseif($lang==='de') Wir sind spezialisiert auf KI, Robotik, digitale Zwillinge und Datenplattformen.
-                    @else We specialize in AI, robotics, swarming systems, digital twins, healthcare technology, and data platforms. @endif
-                </p>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                @php
-                $domains=[
-                    ['icon'=>'A','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#8FB8CC'],
-                    ['icon'=>'','en'=>'Robotics','de'=>'Robotik','ar'=>'الروبوتات','color'=>'#8FB8CC'],
-                    ['icon'=>'','en'=>'Swarming Systems','de'=>'Schwarmsysteme','ar'=>'أنظمة السرب','color'=>'#8FB8CC'],
-                    ['icon'=>'D','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#8FB8CC'],
-                    ['icon'=>'','en'=>'Healthcare Tech','de'=>'Gesundheitstechnologie','ar'=>'تكنولوجيا الصحة','color'=>'#8FB8CC'],
-                    ['icon'=>'','en'=>'Data Platforms','de'=>'Datenplattformen','ar'=>'منصات البيانات','color'=>'#8FB8CC'],
-                ];
-                @endphp
-                @foreach($domains as $d)
-                <div class="hopn-lift-card-nobg" style="border:1px solid {{ $d['color'] }}20; background:{{ $d['color'] }}08; border-radius:12px; padding:16px; display:flex; align-items:center; gap:10px; transition:all 0.25s;">
-                    <span style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $d[$lang] ?? $d['en'] }}</span>
-                </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -170,6 +125,54 @@
     </div>
 </section>
 @endif
+
+
+{{-- Older sections kept but hidden until the founder confirms their claims (HOPN_SECONDARY_SECTIONS=true shows them) --}}
+@if(config('hopn.secondary_sections'))
+{{-- WHO WE ARE --}}
+<section style="padding:100px 0; background:#030712;">
+    <div class="container-shell">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+            <div>
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+                    @if($lang==='ar') من نحن @elseif($lang==='de') Wer wir sind @else Who We Are @endif
+                </span>
+                <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:24px; line-height:1.2;">
+                    @if($lang==='ar') مركز ابتكار متعدد التخصصات
+                    @elseif($lang==='de') Ein multidisziplinärer Innovationshub
+                    @else A Multidisciplinary Innovation Hub @endif
+                </h2>
+                <p style="font-size:16px; color:#CBD5E1; line-height:1.8; margin-bottom:20px;">
+                    @if($lang==='ar') HOPn هو شريك مؤسسي متعدد التخصصات يجمع الاستشارات والمنتجات الرقمية وبناء القدرات في منظومة ابتكار متكاملة.
+                    @elseif($lang==='de') HOPn ist ein multidisziplinärer Unternehmenspartner, der Beratung, digitale Produkte und Kompetenzaufbau in einem integrierten Innovationsökosystem vereint.
+                    @else HOPn is a multidisciplinary corporate partner that combines consulting, digital products, and capability building into one integrated innovation ecosystem — serving enterprises, universities, startups, and investors across Europe and MENA. @endif
+                </p>
+                <p style="font-size:16px; color:#CBD5E1; line-height:1.8;">
+                    @if($lang==='ar') نتخصص في الذكاء الاصطناعي والروبوتات والتوائم الرقمية ومنصات البيانات.
+                    @elseif($lang==='de') Wir sind spezialisiert auf KI, Robotik, digitale Zwillinge und Datenplattformen.
+                    @else We specialize in AI, robotics, swarming systems, digital twins, healthcare technology, and data platforms. @endif
+                </p>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                @php
+                $domains=[
+                    ['icon'=>'A','en'=>'Artificial Intelligence','de'=>'Künstliche Intelligenz','ar'=>'الذكاء الاصطناعي','color'=>'#8FB8CC'],
+                    ['icon'=>'','en'=>'Robotics','de'=>'Robotik','ar'=>'الروبوتات','color'=>'#8FB8CC'],
+                    ['icon'=>'','en'=>'Swarming Systems','de'=>'Schwarmsysteme','ar'=>'أنظمة السرب','color'=>'#8FB8CC'],
+                    ['icon'=>'D','en'=>'Digital Twins','de'=>'Digitale Zwillinge','ar'=>'التوائم الرقمية','color'=>'#8FB8CC'],
+                    ['icon'=>'','en'=>'Healthcare Tech','de'=>'Gesundheitstechnologie','ar'=>'تكنولوجيا الصحة','color'=>'#8FB8CC'],
+                    ['icon'=>'','en'=>'Data Platforms','de'=>'Datenplattformen','ar'=>'منصات البيانات','color'=>'#8FB8CC'],
+                ];
+                @endphp
+                @foreach($domains as $d)
+                <div class="hopn-lift-card-nobg" style="border:1px solid {{ $d['color'] }}20; background:{{ $d['color'] }}08; border-radius:12px; padding:16px; display:flex; align-items:center; gap:10px; transition:all 0.25s;">
+                    <span style="font-size:13px; font-weight:600; color:#CBD5E1;">{{ $d[$lang] ?? $d['en'] }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
 
 {{-- CORE VALUES --}}
 <section style="padding:100px 0; background:#030712;">
@@ -262,6 +265,9 @@
     </div>
 </section>
 
+
+@endif
+
 {{-- CTA --}}
 <section style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
     <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
@@ -273,6 +279,11 @@
             @elseif($lang==='de') Kontaktieren Sie uns für Partnerschaftsmöglichkeiten.
             @else Get in touch to discuss partnership, research, or innovation opportunities. @endif
         </p>
+        @if(!empty($siteSettings['contact_email']))
+        <p style="margin:0 0 28px; font-size:15px;">
+            <a href="mailto:{{ $siteSettings['contact_email'] }}" style="font-weight:700; color:#8FB8CC; text-decoration:underline;">{{ $siteSettings['contact_email'] }}</a>
+        </p>
+        @endif
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
                class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">

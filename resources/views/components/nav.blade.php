@@ -139,7 +139,7 @@
 </a>
 
         {{-- Desktop Nav --}}
-        <nav class="hidden md:flex" aria-label="{{ $activeLang==='ar' ? 'التنقل الرئيسي' : ($activeLang==='de' ? 'Hauptnavigation' : 'Main navigation') }}" style="align-items:center; gap:2px;">
+        <nav class="hopn-nav-desktop hopn-nav-desktop-flex" aria-label="{{ $activeLang==='ar' ? 'التنقل الرئيسي' : ($activeLang==='de' ? 'Hauptnavigation' : 'Main navigation') }}" style="align-items:center; gap:2px;">
             @foreach($groups as $group)
             <div class="hopn-nav-item">
                 <button class="hopn-trigger" type="button" aria-haspopup="true">
@@ -163,7 +163,7 @@
         {{-- Right --}}
         <div style="display:flex; align-items:center; gap:12px;">
             {{-- Language Dropdown --}}
-            <div class="hidden md:block" x-data="{ langOpen:false }" @click.away="langOpen=false" style="position:relative;">
+            <div class="hopn-nav-desktop hopn-nav-desktop-block" x-data="{ langOpen:false }" @click.away="langOpen=false" style="position:relative;">
                 <button type="button" @click="langOpen=!langOpen"
                         style="display:flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; background:rgba(255,255,255,0.04); color:#CBD5E1; font-size:12px; font-weight:700; cursor:pointer;">
                     {{ strtoupper($activeLang) }}
@@ -193,7 +193,7 @@
             <a href="{{ $bookUrl ?: route('contact.index', ['lang'=>$lang]) }}"
                @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif
                data-hopn-event="Book Call"
-               class="hidden md:inline-flex"
+               class="hopn-nav-desktop hopn-nav-desktop-inline"
                style="align-items:center; gap:6px; padding:8px 20px; border-radius:8px; background:#245B78; color:#FFFFFF; font-size:13px; font-weight:700; text-decoration:none; transition:background-color 0.2s; white-space:nowrap;"
                onmouseover="this.style.background='#1D4D66'"
                onmouseout="this.style.background='#245B78'">

@@ -135,4 +135,16 @@ return [
         'secret_key' => env('TURNSTILE_SECRET_KEY'),
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Secondary page sections
+    |--------------------------------------------------------------------------
+    | The homepage and About page follow the founder's brief (homepage: hero, partners, what we build,
+    | how we work, case studies, events, team, contact). Older sections that carry claims the founder
+    | has not confirmed yet are kept in the templates but hidden. Set HOPN_SECONDARY_SECTIONS=true
+    | to show them again.
+    */
+    'secondary_sections' => (bool) env('HOPN_SECONDARY_SECTIONS', false),
+
 ];

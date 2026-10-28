@@ -70,7 +70,8 @@
                         @if($workshop->price_on_request)
                             @if($lang==='ar') عند الطلب @elseif($lang==='de') Auf Anfrage @else On request @endif
                         @elseif($workshop->price)
-                            {{ $workshop->currency }} {{ number_format($workshop->price, 0) }}
+                            @php $__p = (float) $workshop->price; $__amount = number_format($__p, floor($__p) == $__p ? 0 : 2); $__cur = $workshop->currency ?: 'EUR'; @endphp
+                            {{ $__amount }} {{ $__cur }}
                         @endif
                     </span>
                 </div>

@@ -44,7 +44,7 @@
                 </ul>
                 @endif
                 <div style="color:#6EE7B7; font-weight:700; font-size:14px;">
-                    @if($pkg->price_on_request) On request @elseif($pkg->price) {{ $pkg->currency }} {{ number_format($pkg->price,0) }} @endif
+                    @if($pkg->price_on_request) On request @elseif($pkg->price) @php $__p = (float) $pkg->price; $__amount = number_format($__p, floor($__p) == $__p ? 0 : 2); $__cur = $pkg->currency ?: 'EUR'; @endphp {{ $__amount }} {{ $__cur }} @endif
                 </div>
             </div>
             @endforeach

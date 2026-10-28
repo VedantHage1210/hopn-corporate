@@ -27,7 +27,7 @@
             <span style="display:inline-flex; align-items:center; gap:8px; padding:14px 24px; color:#94A3B8; font-size:14px;">
                 {{ $workshop->duration_label_en ?? '' }}
                 @if($workshop->price_on_request) · @if($lang==='ar') السعر عند الطلب @elseif($lang==='de') Preis auf Anfrage @else Price on request @endif
-                @elseif($workshop->price) · {{ $workshop->currency }} {{ number_format($workshop->price, 0) }}
+                @elseif($workshop->price) · @php $__p = (float) $workshop->price; $__amount = number_format($__p, floor($__p) == $__p ? 0 : 2); $__cur = $workshop->currency ?: 'EUR'; @endphp {{ $__amount }} {{ $__cur }}
                 @endif
             </span>
         </div>

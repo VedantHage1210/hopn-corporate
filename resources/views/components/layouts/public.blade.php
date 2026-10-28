@@ -252,8 +252,14 @@
         .hopn-theme-toggle svg { width:16px; height:16px; }
         html[data-theme="light"] .hopn-theme-toggle .theme-moon { display:none; }
         html[data-theme="dark"] .hopn-theme-toggle .theme-sun { display:none; }
-        .hopn-mobile-toggle { display:none !important; }
-        @media (max-width:767px) { .hopn-mobile-toggle { display:flex !important; } }
+        .hopn-mobile-toggle { display:flex !important; }
+        .hopn-nav-desktop { display:none !important; }
+        @media (min-width:1024px) {
+            .hopn-mobile-toggle, #hopn-mobile-menu { display:none !important; }
+            .hopn-nav-desktop-flex { display:flex !important; }
+            .hopn-nav-desktop-block { display:block !important; }
+            .hopn-nav-desktop-inline { display:inline-flex !important; }
+        }
 
         /* ===== Cookie banner: calm surface, no shadow glow ===== */
         #cookie-banner { box-shadow:none !important; }
