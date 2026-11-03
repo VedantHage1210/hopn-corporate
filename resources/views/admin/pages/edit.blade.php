@@ -108,8 +108,8 @@
                                     class="w-full rounded bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                             @elseif($block->block_type === 'cards')
                                 <textarea name="content_{{ $langCode }}_items" rows="4" dir="{{ $langCode==='ar'?'rtl':'ltr' }}"
-                                    placeholder="One card per line: Title | Description"
-                                    class="w-full rounded bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ collect($c['items'] ?? [])->map(fn($i) => ($i['title'] ?? '').' | '.($i['description'] ?? ''))->implode("\n") }}</textarea>
+                                    placeholder="One card per line: Title | Description | optional link (https://...)"
+                                    class="w-full rounded bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">{{ collect($c['items'] ?? [])->map(fn($i) => ($i['title'] ?? '').' | '.($i['description'] ?? '').(!empty($i['url']) ? ' | '.$i['url'] : ''))->implode("\n") }}</textarea>
                             @endif
                         </div>
                         @endforeach

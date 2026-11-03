@@ -6,26 +6,19 @@
 ])
 @php
     $lang = request()->route('lang', app()->getLocale());
-    $heroStats = [
-        ['value' => '50+',  'en' => 'Enterprise Clients',   'de' => 'Unternehmenskunden',      'ar' => 'عملاء المؤسسات'],
-        ['value' => '10+',  'en' => 'AI Products',          'de' => 'KI-Produkte',             'ar' => 'منتجات الذكاء الاصطناعي'],
-        ['value' => '6',    'en' => 'Innovation Domains',   'de' => 'Innovationsbereiche',     'ar' => 'مجالات الابتكار'],
-        ['value' => 'EU',   'en' => 'Based & Trusted',      'de' => 'Ansässig & Vertrauenswürdig', 'ar' => 'موثوق ومقره أوروبا'],
-    ];
+    // Stats are now editable from admin panel — no hardcoded values
+    $heroStats = array_filter([
+        [$siteSettings['stat_organizations'] ?? null, $lang==='ar'?'منظمة':($lang==='de'?'Organisationen':'Organizations')],
+        [$siteSettings['stat_countries'] ?? null, $lang==='ar'?'دولة':($lang==='de'?'Länder':'Countries')],
+        [$siteSettings['stat_universities'] ?? null, $lang==='ar'?'جامعة':($lang==='de'?'Universitäten':'Universities')],
+        [$siteSettings['stat_innovation_capital'] ?? null, $lang==='ar'?'رأس مال الابتكار':($lang==='de'?'Innovationskapital':'Innovation Capital')],
+    ], fn ($stat) => filled($stat[0]));
 @endphp
 <section style="position:relative; overflow:hidden; background:#0A0F1E; padding: 80px 0 100px;">
-
-    <div style="position:absolute; inset:0; pointer-events:none;
-        background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
-        background-size: 48px 48px;">
-    </div>
-
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
 
         <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
-            <span style="width:7px; height:7px; border-radius:50%; background:#4F6EF7; display:inline-block; animation: pulse 2s infinite;"></span>
             <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8;">
                 @if($lang === 'ar') مركز الابتكار الأوروبي @elseif($lang === 'de') Europäisches Innovationszentrum @else European Innovation Hub @endif
             </span>
@@ -64,13 +57,12 @@
             </a>
         </div>
 
-        @if($siteSettings['stats_hero_visible'] ?? false)
+        @if(($siteSettings['stats_hero_visible'] ?? false) && count($heroStats) > 0)
         <div style="margin-top:60px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:700px; margin-left:auto; margin-right:auto;">
-           
             @foreach($heroStats as $stat)
             <div style="border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04); border-radius:12px; padding:20px 16px;">
-                <div style="font-size:28px; font-weight:800; color:white;">{{ $stat['value'] }}</div>
-                <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat[$lang] ?? $stat['en'] }}</div>
+                <div style="font-size:28px; font-weight:800; color:white;">{{ $stat[0] }}</div>
+                <div style="margin-top:4px; font-size:12px; color:#CBD5E1;">{{ $stat[1] }}</div>
             </div>
             @endforeach
         </div>
@@ -78,12 +70,5 @@
 
     </div>
 
-
-    <style>
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-    </style>
 
 </section>

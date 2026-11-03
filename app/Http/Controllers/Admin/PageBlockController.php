@@ -50,8 +50,10 @@ class PageBlockController extends Controller
                         ->map(fn ($l) => trim($l))
                         ->filter()
                         ->map(function ($line) {
-                            [$title, $desc] = array_pad(explode('|', $line, 2), 2, '');
-                            return ['title' => trim($title), 'description' => trim($desc)];
+                            [$title, $desc, $url] = array_pad(explode('|', $line, 3), 3, '');
+                            $item = ['title' => trim($title), 'description' => trim($desc)];
+                            if (trim($url) !== '') { $item['url'] = trim($url); }
+                            return $item;
                         })->values()->all();
                     $content[$lang]['items'] = $lines;
                 } else {

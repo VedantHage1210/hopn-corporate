@@ -57,7 +57,7 @@
                 </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 mb-1">Scheduling Link</label>
-                        <input type="url" name="scheduling_url" value="{{ old('scheduling_url', $settings['scheduling_url'] ?? 'http://meet.ebada.de') }}"
+                        <input type="url" name="scheduling_url" value="{{ old('scheduling_url', $settings['scheduling_url'] ?? 'https://meet.ebada.de') }}"
                             placeholder="https://meet.example.com"
                             class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                     </div>

@@ -3,6 +3,7 @@
         <h1 class="text-xl font-semibold text-white">New Page</h1>
         <a href="{{ route('admin.pages.index') }}" class="text-sm text-slate-400 hover:text-white">← Back</a>
     </div>
+    <p class="mb-4 text-sm text-slate-400">After you save, you land on the edit page. There you can add blocks (Hero, Text, Image, Call to Action, Quote, Cards) and drag them into the order you want.</p>
     <div class="card-panel p-6">
         <form method="POST" action="{{ route('admin.pages.store') }}">
             @csrf
