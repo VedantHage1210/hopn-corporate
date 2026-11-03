@@ -1,5 +1,15 @@
 <x-layouts.public :title="'Founder & Team'">
 @php $lang = request()->route('lang', 'en'); @endphp
+<style>
+    .hopn-team-feature-card { position:relative; overflow:hidden; }
+    .hopn-team-feature-card::before,
+    .hopn-team-feature-card::after { content:''; position:absolute; pointer-events:none; border:1px solid #9FB5C0; border-radius:50%; opacity:.45; }
+    .hopn-team-feature-card::before { width:125%; height:90%; left:-12%; top:5%; animation:hopnTeamField 18s ease-in-out infinite; }
+    .hopn-team-feature-card::after { width:105%; height:125%; left:-3%; top:-12%; animation:hopnTeamField 24s ease-in-out infinite reverse; }
+    .hopn-team-feature-card > * { position:relative; z-index:1; }
+    @keyframes hopnTeamField { 0%,100% { transform:rotate(-12deg) translate(0,0); } 50% { transform:rotate(-5deg) translate(8px,6px); } }
+    @media (prefers-reduced-motion: reduce) { .hopn-team-feature-card::before, .hopn-team-feature-card::after { animation:none; } }
+</style>
 
 {{-- Header --}}
 <section style="padding:80px 0 40px; background:#050A14;" @if($lang === 'ar') dir="rtl" @endif>
@@ -23,7 +33,7 @@
 <section style="padding:20px 0 80px; background:#050A14;" @if($lang === 'ar') dir="rtl" @endif>
     <div class="container-shell">
         @foreach($founders as $founder)
-        <div class="hopn-reveal" style="display:flex; flex-wrap:wrap; gap:40px; align-items:center; max-width:880px; margin:0 auto {{ $loop->last ? '0' : '48px' }}; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; padding:40px;">
+        <div class="hopn-reveal hopn-team-feature-card" style="display:flex; flex-wrap:wrap; gap:40px; align-items:center; max-width:880px; margin:0 auto {{ $loop->last ? '0' : '48px' }}; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; padding:40px;">
             @if($founder->photo)
             <img loading="lazy" decoding="async" src="{{ $founder->photo }}" alt="{{ $founder->name }}"
                  style="width:160px; height:160px; border-radius:16px; object-fit:cover; flex-shrink:0; border:2px solid rgba(79,110,247,0.3);">

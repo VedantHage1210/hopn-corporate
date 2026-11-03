@@ -95,12 +95,11 @@
                 $title = $lang==='de'&&$event->title_de ? $event->title_de : ($lang==='ar'&&$event->title_ar ? $event->title_ar : $event->title);
                 $desc = $lang==='de'&&$event->description_de ? $event->description_de : ($lang==='ar'&&$event->description_ar ? $event->description_ar : $event->description);
             @endphp
-            <div class="event-card"
-                 data-type="{{ $event->type }}"
-                 class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; transition:all 0.3s;">
+              <div class="event-card hopn-lift-card"
+                  data-type="{{ $event->type }}" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:8px; overflow:hidden;">
 
                 {{-- Top color bar --}}
-                <div style="height:3px; background:linear-gradient(90deg,{{ $c }},transparent);"></div>
+                <div style="height:3px; background:#245B78;"></div>
 
                 {{-- Image --}}
                 @if($event->image_url)

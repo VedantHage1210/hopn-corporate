@@ -43,7 +43,7 @@
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($industry->image_url)
                         <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
-                             style="width:88px; height:88px; border-radius:12px; object-fit:cover; flex-shrink:0; background:#FFFFFF;">
+                             style="width:132px; height:118px; border-radius:12px; object-fit:cover; flex-shrink:0; background:#FFFFFF;">
                     @endif
                     <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3; margin:0;">
                         @if($lang==='de'&&$industry->name_de) {{ $industry->name_de }}

@@ -1,14 +1,10 @@
 @props(['service'])
 @php($lang = request()->route('lang', 'en'))
 
-<article style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px; transition:border-color 0.2s; overflow:hidden;">
+<article class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:8px; padding:24px; overflow:hidden;">
 
 
-    <div style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); margin-bottom:16px;">
-        <svg style="width:18px; height:18px; color:#818CF8;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-        </svg>
-    </div>
+    <div style="width:36px; height:2px; background:#245B78; margin-bottom:20px;"></div>
 
     <h3 style="font-size:15px; font-weight:700; color:white; margin-bottom:8px; line-height:1.4;">
         {{ $lang === 'ar' && !empty($service->name_ar) ? $service->name_ar : ($lang === 'de' && !empty($service->name_de) ? $service->name_de : $service->name) }}

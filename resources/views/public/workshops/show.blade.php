@@ -67,7 +67,7 @@
 <section style="background:#030712; padding:0 0 80px;">
     <div class="container-shell" style="max-width:900px; margin:0 auto;">
         <div class="card-panel" style="padding:28px; display:flex; gap:16px; align-items:center;">
-            <div style="width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#8B5CF6,#4F6EF7); flex-shrink:0;"></div>
+            <div style="width:52px; height:52px; border-radius:50%; background:#245B78; flex-shrink:0;"></div>
             <div>
                 <div style="color:white; font-weight:700; font-size:15px;">{{ $workshop->instructor_name }}</div>
                 @if($workshop->instructor_bio)<div style="color:#94A3B8; font-size:13px; margin-top:2px;">{{ $workshop->instructor_bio }}</div>@endif
@@ -85,7 +85,7 @@
         </h2>
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px;">
             @foreach($related as $r)
-            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$r->slug]) }}" class="card-panel" style="display:block; padding:22px; text-decoration:none;">
+            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$r->slug]) }}" class="card-panel hopn-lift-card" style="display:block; padding:22px; text-decoration:none;">
                 <h3 style="font-size:16px; font-weight:700; color:white; margin:0 0 8px;">{{ $r->title_en }}</h3>
                 <p style="font-size:13px; color:#94A3B8; margin:0;">{{ \Illuminate\Support\Str::limit($r->summary_en, 80) }}</p>
             </a>

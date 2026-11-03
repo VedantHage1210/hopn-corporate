@@ -52,8 +52,18 @@
     <div class="container-shell">
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px;">
             @forelse($workshops as $workshop)
-            <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$workshop->slug]) }}"
-               class="card-panel" style="display:block; padding:28px; text-decoration:none; transition:transform .2s;">
+                <a href="{{ route('workshops.show', ['lang'=>$lang, 'slug'=>$workshop->slug]) }}"
+                    class="card-panel hopn-lift-card hopn-workshop-card" style="display:block; padding:0; text-decoration:none; overflow:hidden;">
+                @if($workshop->hero_image_url)
+                <div style="height:210px; overflow:hidden; background:#EEF3F5;">
+                    <img loading="lazy" decoding="async" src="{{ $workshop->hero_image_url }}" alt="{{ $workshop->title_en }}" style="width:100%; height:100%; display:block; object-fit:cover; transition:transform .45s ease;">
+                </div>
+                @else
+                <div style="height:150px; background:#EEF3F5; position:relative; overflow:hidden;">
+                    <div style="position:absolute; width:150%; height:100%; left:-25%; top:0; border:1px solid #B9CBD2; border-radius:50%; transform:rotate(-12deg);"></div>
+                </div>
+                @endif
+                <div style="padding:28px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                     <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#A78BFA;">{{ $workshop->category ?? 'Workshop' }}</span>
                     <span style="font-size:11px; color:#64748B;">{{ str_replace('_',' ',$workshop->format) }}</span>
@@ -74,6 +84,7 @@
                             {{ $__amount }} {{ $__cur }}
                         @endif
                     </span>
+                </div>
                 </div>
             </a>
             @empty

@@ -63,9 +63,9 @@
 @if($featured && (!$category || $category==='all') && !$search)
 <section style="padding:40px 0 0; background:#030712;">
     <div class="container-shell">
-        <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$featured->slug]) }}"
-           style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s;">
-            <div style="position:relative; min-height:300px; background:linear-gradient(135deg,rgba(79,110,247,0.2),rgba(139,92,246,0.2)); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+          <a href="{{ route('insights.show', ['lang'=>$lang,'slug'=>$featured->slug]) }}" class="hopn-lift-card"
+              style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.07); background:#0A0F1E; border-radius:8px; overflow:hidden; text-decoration:none;">
+            <div style="position:relative; min-height:300px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 @if($featured->featured_image_path)
                 <img loading="lazy" decoding="async" src="{{ $featured->featured_image_path }}" alt="{{ $featured->title }}"
                      style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
@@ -129,7 +129,7 @@
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
                 </div>
                 @else
-                <div style="height:100px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div style="height:100px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.04);">
                 </div>
                 @endif
 

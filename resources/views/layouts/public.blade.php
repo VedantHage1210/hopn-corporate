@@ -44,7 +44,7 @@
     {{-- Book a Call Modal --}}
     <div id="book-call-modal">
         <div style="width:100%; max-width:560px; background:#111827; border:1px solid rgba(79,110,247,0.2); border-radius:20px; overflow:hidden; position:relative;">
-            <div style="height:3px; background:linear-gradient(90deg, #4F6EF7, #8B5CF6);"></div>
+            <div style="height:3px; background:#245B78;"></div>
             <div style="padding:28px 32px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06);">
                 <div>
                     <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8; margin-bottom:6px;">HOPn</div>
@@ -58,7 +58,7 @@
             <div style="padding:28px 32px 32px;">
                 @if(session('book_call_success'))
                 <div style="margin-bottom:20px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
-                    ✅ {{ session('book_call_success') }}
+                    {{ session('book_call_success') }}
                 </div>
                 @endif
                 <form method="POST" action="{{ route('leads.book-call', ['lang' => app()->getLocale()]) }}">

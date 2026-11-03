@@ -5,13 +5,14 @@
     $svcMetaDesc = $lang==='ar' && $service->meta_description_ar ? $service->meta_description_ar : ($lang==='de' && $service->meta_description_de ? $service->meta_description_de : ($service->meta_description ?: null));
 @endphp
 <x-layouts.public :title="$svcMetaTitle ?? 'Service'" :description="$svcMetaDesc">
+    <style>
+        @media (max-width:760px) { .hopn-service-detail-hero { grid-template-columns:1fr !important; gap:28px !important; } .hopn-service-detail-hero > div:last-child { height:230px !important; } }
+    </style>
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-        @if($service->hero_image)
-      <div style="position:absolute; inset:0; background:url('{{ $service->hero_image }}') center/cover no-repeat; opacity:0.15;"></div>
-        @endif
-        <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
+                <div class="container-shell hopn-reveal hopn-service-detail-hero" style="position:relative; z-index:10; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.82fr); gap:48px; align-items:center;">
+                    <div>
             <a href="{{ route('services.index', ['lang' => $lang]) }}" class="hopn-link-accent"
                style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة إلى الخدمات @elseif($lang === 'de') Zurück zu Leistungen @else Back to Services @endif
@@ -35,6 +36,12 @@
                 @endif
             </p>
             @endif
+          </div>
+          @if($service->hero_image)
+          <div style="height:320px; overflow:hidden; border:1px solid rgba(255,255,255,.16); border-radius:12px; background:#111827;">
+              <img loading="eager" decoding="async" src="{{ $service->hero_image }}" alt="{{ $svcName }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+          </div>
+          @endif
         </div>
     </section>
 

@@ -198,7 +198,7 @@
         html[data-theme="light"] main [class*="card"] li,
         html[data-theme="light"] main [class*="card"] span,
         html[data-theme="light"] main [class*="card"] div { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main [class*="card"] a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main [class*="card"] a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn):not(.hopn-cms-btn) { color:#245B78 !important; opacity:1 !important; }
         html[data-theme="light"] main .card-panel {
             background:#FFFFFF !important;
             border-color:#D7DEE3 !important;
@@ -215,7 +215,7 @@
         html[data-theme="light"] main .card-panel li,
         html[data-theme="light"] main .card-panel span,
         html[data-theme="light"] main .card-panel div { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main .card-panel a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; opacity:1 !important; }
+        html[data-theme="light"] main .card-panel a:not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn):not(.hopn-cms-btn) { color:#245B78 !important; opacity:1 !important; }
         html[data-theme="light"] main [style*="background:#111827"] h1,
         html[data-theme="light"] main [style*="background:#111827"] h2,
         html[data-theme="light"] main [style*="background:#111827"] h3,
@@ -234,7 +234,7 @@
         html[data-theme="light"] main [style*="background:#0A0F1E"] span,
         html[data-theme="light"] main [style*="background:#0D1425"] p,
         html[data-theme="light"] main [style*="background:#0D1425"] span { color:#526170 !important; opacity:1 !important; }
-        html[data-theme="light"] main section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn) { color:#245B78 !important; }
+        html[data-theme="light"] main section a:not(.hopn-btn-primary):not(.hopn-btn-secondary):not(.hopn-btn-primary-green):not([style*="background:#245B78"]):not([style*="background:#4F6EF7"]):not([style*="background:#8B5CF6"]):not([style*="background:#F59E0B"]):not([style*="background:#10B981"]):not([style*="background:#06B6D4"]):not(.hopn-lift-btn):not(.hopn-cms-btn) { color:#245B78 !important; }
         html[data-theme="light"] footer { background:#EAF0F2 !important; border-color:#D7DEE3 !important; }
         html[data-theme="light"] footer p, html[data-theme="light"] footer span,
         html[data-theme="light"] footer a, html[data-theme="light"] footer div[style*="color:#CBD5E1"],
@@ -457,6 +457,53 @@
         html[data-theme="light"] footer a[aria-label="HOPn"] svg circle { fill:#245B78 !important; }
         /* Required-field asterisks and small red/rose text must stay readable on light surfaces */
         html[data-theme="light"] main .text-rose-400, html[data-theme="light"] main .text-red-400 { color:#B42318 !important; }
+
+        /* Shared editorial cards: quiet surfaces, precise rules, restrained motion. */
+        main .hopn-lift-card,
+        main .hopn-lift-card-nobg,
+        main .card-panel {
+            border-radius:8px !important;
+            border-color:#D7DEE3 !important;
+            box-shadow:0 6px 18px rgba(23,35,49,.04);
+            transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, background-color .28s ease !important;
+        }
+        html[data-theme="light"] main .hopn-lift-card,
+        html[data-theme="light"] main .hopn-lift-card-nobg,
+        html[data-theme="light"] main .card-panel { background:#FFFFFF !important; }
+        html[data-theme="dark"] main .hopn-lift-card,
+        html[data-theme="dark"] main .hopn-lift-card-nobg,
+        html[data-theme="dark"] main .card-panel {
+            background:#111827 !important;
+            border-color:rgba(255,255,255,.14) !important;
+            box-shadow:0 8px 22px rgba(0,0,0,.18);
+        }
+        main .hopn-lift-card:hover,
+        main .hopn-lift-card-nobg:hover,
+        main .card-panel:not(form):hover {
+            transform:translateY(-4px) !important;
+            border-color:#9FB5C0 !important;
+            box-shadow:0 16px 30px rgba(23,35,49,.10);
+        }
+        main .hopn-lift-card img,
+        main .hopn-lift-card-nobg img,
+        main .card-panel img { transition:transform .35s ease, filter .35s ease; }
+        main .hopn-lift-card:hover img,
+        main .hopn-lift-card-nobg:hover img,
+        main .card-panel:hover img { transform:scale(1.025); }
+        main .hopn-lift-card:focus-visible,
+        main .hopn-lift-card-nobg:focus-visible,
+        main .card-panel:focus-within { outline:3px solid #245B78; outline-offset:3px; }
+        main .hopn-lift-card [style*="linear-gradient"],
+        main .hopn-lift-card [style*="radial-gradient"] { background-image:none !important; background-color:#EEF3F5 !important; }
+        main .hopn-lift-card > [style*="height:3px"] { background:#245B78 !important; }
+        @media (prefers-reduced-motion: reduce) {
+            main .hopn-lift-card:hover,
+            main .hopn-lift-card-nobg:hover,
+            main .card-panel:not(form):hover { transform:none !important; box-shadow:none; }
+            main .hopn-lift-card:hover img,
+            main .hopn-lift-card-nobg:hover img,
+            main .card-panel:hover img { transform:none; }
+        }
     </style>
 
     <script type="text/javascript">

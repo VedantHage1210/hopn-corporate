@@ -142,7 +142,7 @@
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
                     @if($investor->logo)
                     <img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $iName }}"
-                         style="width:44px; height:44px; border-radius:10px; object-fit:contain; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08); flex-shrink:0;">
+                        style="width:92px; height:92px; border-radius:14px; object-fit:cover; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08); flex-shrink:0;">
                     @endif
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $iName }}</h3>

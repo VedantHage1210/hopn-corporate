@@ -117,6 +117,11 @@
                 @endphp
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
+                    @if($product->hero_image_url)
+                    <div style="height:170px; margin:-24px -24px 24px; overflow:hidden; background:#EEF3F5;">
+                        <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+                    </div>
+                    @endif
                     <div style="display:flex; gap:6px; margin-bottom:14px;">
                         <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; width:fit-content;">
                             <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
@@ -168,6 +173,11 @@
                 @endphp
                 <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
+                    @if($service->hero_image)
+                    <div style="height:170px; margin:-24px -24px 24px; overflow:hidden; background:#EEF3F5;">
+                        <img loading="lazy" decoding="async" src="{{ $service->hero_image }}" alt="{{ $svcTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+                    </div>
+                    @endif
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#10B981; letter-spacing:0.08em;">
                             @if($lang==='ar') خدمة @elseif($lang==='de') Leistung @else Service @endif
@@ -212,6 +222,11 @@
                 @endphp
                 <a href="{{ route('programs.show', ['lang'=>$lang,'slug'=>$program->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
+                    @if($program->image_url)
+                    <div style="height:170px; margin:-24px -24px 24px; overflow:hidden; background:#EEF3F5;">
+                        <img loading="lazy" decoding="async" src="{{ $program->image_url }}" alt="{{ $pTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+                    </div>
+                    @endif
                     <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
                         <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#A78BFA; letter-spacing:0.08em;">
                             @if($lang==='ar') برنامج @elseif($lang==='de') Programm @else Program @endif
@@ -247,9 +262,14 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;">
                 @foreach($domains as $domain)
                 <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
-                   class="hopn-lift-card" style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:18px 20px; text-decoration:none; transition:all 0.25s;">
-                    <span aria-hidden="true" style="font-size:18px; font-weight:800;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
-                    <span style="font-size:14px; font-weight:600; color:#CBD5E1;">{{ $domain->name }}</span>
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:0 20px 20px; text-decoration:none; transition:all 0.25s; overflow:hidden;">
+                    <div style="height:110px; margin:0 -20px; background:#EEF3F5; position:relative; overflow:hidden;">
+                        <div style="position:absolute; width:150%; height:100%; left:-25%; top:0; border:1px solid #9FB5C0; border-radius:50%; transform:rotate(-14deg);"></div>
+                        <span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:800; color:#245B78;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
+                    </div>
+                    <span style="font-size:16px; font-weight:700; color:#CBD5E1;">{{ $domain->name }}</span>
+                    @if($domain->description)<span style="font-size:13px; line-height:1.6; color:#94A3B8;">{{ Str::limit($domain->description, 85) }}</span>@endif
+                    <span style="font-size:13px; font-weight:700; color:#F59E0B;">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →</span>
                 </a>
                 @endforeach
             </div>

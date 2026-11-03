@@ -3,14 +3,16 @@
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-        @if($program->image_url)
-        <div style="position:absolute; inset:0; background:url('{{ $program->image_url }}') center/cover no-repeat; opacity:0.15;"></div>
-        @endif
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
             <a href="{{ route('programs.index', ['lang' => $lang]) }}"
                class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') رجوع @elseif($lang === 'de') Zurück @else Back to Programs @endif
             </a>
+            @if($program->image_url)
+            <div style="height:300px; margin:8px 0 32px; overflow:hidden; border:1px solid rgba(255,255,255,.16); border-radius:12px; background:#111827;">
+                <img loading="eager" decoding="async" src="{{ $program->image_url }}" alt="{{ $program->title_en }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+            </div>
+            @endif
             <h1 style="font-size:clamp(28px,5vw,52px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 0 20px;">
                 @if($lang === 'de' && $program->title_de) {{ $program->title_de }}
                 @elseif($lang === 'ar' && $program->title_ar) {{ $program->title_ar }}

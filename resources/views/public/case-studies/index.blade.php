@@ -48,7 +48,7 @@
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
                 </div>
                 @else
-                <div style="height:120px; background:linear-gradient(135deg,{{ $c }}20,{{ $c }}05); display:flex; align-items:center; justify-content:center; position:relative;">
+                <div style="height:120px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; position:relative;">
                 </div>
                 @endif
 

@@ -15,7 +15,7 @@
             </a>
             @if($industry->image_url)
                 <img loading="eager" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
-                     style="width:128px; height:128px; border-radius:18px; object-fit:cover; margin:0 auto 20px; background:#FFFFFF;">
+                     style="width:min(360px,90vw); height:240px; border-radius:14px; object-fit:cover; margin:0 auto 28px; background:#FFFFFF; border:1px solid rgba(255,255,255,.16); display:block;">
             @endif
             <h1 style="font-size:clamp(28px,5vw,56px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 auto 20px;">
                 @if($lang === 'de' && $industry->name_de) {{ $industry->name_de }}

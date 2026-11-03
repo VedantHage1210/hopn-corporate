@@ -62,10 +62,21 @@
                         $pTitle = $lang === 'ar' && $program->title_ar ? $program->title_ar : ($lang === 'de' && $program->title_de ? $program->title_de : $program->title_en);
                         $pSummary = $lang === 'ar' && $program->summary_ar ? $program->summary_ar : ($lang === 'de' && $program->summary_de ? $program->summary_de : $program->summary_en);
                     @endphp
-                    <div class="card-panel p-4 transition-all duration-300 hover:border-indigo-500/30 hover:-translate-y-0.5">
+                    <div class="card-panel p-0 overflow-hidden transition-all duration-300 hover:border-indigo-500/30 hover:-translate-y-0.5">
+                        @if($program->image_url)
+                        <div style="height:180px; overflow:hidden; background:#EEF3F5;">
+                            <img loading="lazy" decoding="async" src="{{ $program->image_url }}" alt="{{ $pTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;">
+                        </div>
+                        @else
+                        <div style="height:120px; background:#EEF3F5; position:relative; overflow:hidden;">
+                            <div style="position:absolute; width:140%; height:100%; left:-20%; border:1px solid #B9CBD2; border-radius:50%; transform:rotate(-12deg);"></div>
+                        </div>
+                        @endif
+                        <div class="p-5">
                         <h3 class="font-semibold text-white">{{ $pTitle }}</h3>
                         <p class="mt-1 text-sm text-slate-400">{{ $pSummary }}</p>
                         <p class="mt-2 text-xs text-indigo-300">{{ $program->duration }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>

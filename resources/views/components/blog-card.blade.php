@@ -4,7 +4,7 @@
     $cardTitle = $lang === 'ar' && !empty($post->title_ar) ? $post->title_ar : ($lang === 'de' && !empty($post->title_de) ? $post->title_de : $post->title);
     $cardExcerpt = $lang === 'ar' && !empty($post->excerpt_ar) ? $post->excerpt_ar : ($lang === 'de' && !empty($post->excerpt_de) ? $post->excerpt_de : $post->excerpt);
 @endphp
-<article class="card-panel p-5">
+<article class="card-panel hopn-lift-card p-5">
     @if(!empty($post->featured_image_path))
         <img loading="lazy" decoding="async" src="{{ $post->featured_image_path }}" alt="{{ $cardTitle }}" class="mb-3 h-40 w-full rounded object-cover">
     @endif

@@ -5,7 +5,7 @@
     $title = $caseStudy->{'title' . $suffix} ?? $caseStudy->title_en;
 @endphp
 
-<article style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:16px; padding:24px;">
+<article class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:8px; padding:24px;">
     @if(!empty($caseStudy->image_url))
     <div style="height:150px; overflow:hidden; border-radius:12px; margin-bottom:16px;">
         <img loading="lazy" decoding="async" src="{{ $caseStudy->image_url }}" alt="{{ $title }}" style="width:100%; height:100%; object-fit:cover;">
