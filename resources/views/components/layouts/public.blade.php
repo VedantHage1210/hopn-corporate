@@ -568,6 +568,9 @@
     </script>
 
     @stack('head')
+    {{-- Homepage polish: static assets, no build step. Safe to remove both lines to revert. --}}
+    <link rel="stylesheet" href="/css/hopn-polish.css?v={{ @filemtime(public_path('css/hopn-polish.css')) ?: 1 }}">
+    <script src="/js/hopn-polish.js?v={{ @filemtime(public_path('js/hopn-polish.js')) ?: 1 }}" defer></script>
 </head>
 <body @if($lang === 'ar') style="direction:rtl;" @endif>
     <a href="#main-content" class="hopn-skip-link">{{ $lang === 'ar' ? 'تخطَّ إلى المحتوى' : ($lang === 'de' ? 'Zum Inhalt springen' : 'Skip to content') }}</a>

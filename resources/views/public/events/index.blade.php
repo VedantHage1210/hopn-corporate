@@ -107,6 +107,8 @@
                     <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $title }}"
                          class="hopn-link-fade-in" style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:opacity 0.3s;">
                 </div>
+                @else
+                <div style="height:140px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="/images/illustrations/events.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
                 @endif
 
                 <div style="padding:24px; display:flex; flex-direction:column; flex:1; gap:14px;">

@@ -129,7 +129,7 @@
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;">
                 </div>
                 @else
-                <div style="height:100px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div style="height:140px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.04); overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/insights.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;">
                 </div>
                 @endif
 

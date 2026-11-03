@@ -376,44 +376,64 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <div class="hopn-homepage">
 
 {{-- 1. HERO --}}
-<section class="hopn-hero-section" style="position:relative; overflow:hidden; background:#030712; min-height:94vh; display:flex; align-items:center;">
+@php
+    $hxArt = function ($text, $i = 0) {
+        $map = [
+            ['/twin|digital/i', 'digital-twin'], ['/robot|automation/i', 'robotics'], ['/\bai\b|artificial|machine|data|intellig/i', 'ai'],
+            ['/consult|strateg|govern|advis/i', 'consulting'], ['/research|science|academ|univers/i', 'research'],
+            ['/talent|hiring|career|recruit|people/i', 'talent'], ['/train|educat|learn|skill|workshop|course/i', 'education'],
+            ['/startup|invest|venture|capital|fund/i', 'startups'], ['/health|medic|pharma|care/i', 'health'],
+            ['/energy|utilit|power|grid/i', 'energy'], ['/manufact|industr|engineer|factory|product/i', 'manufacturing'],
+            ['/mobil|auto|transport|logist|vehicle/i', 'mobility'], ['/financ|bank|business|insur/i', 'business'],
+            ['/lab|innovat/i', 'lab'], ['/event|conference|summit/i', 'events'], ['/news|insight|blog|report/i', 'insights'],
+        ];
+        $t = (string) $text;
+        foreach ($map as $row) { if (preg_match($row[0], $t)) { return $row[1]; } }
+        $fallback = ['ai', 'research', 'digital-twin', 'consulting', 'lab', 'business'];
+        return $fallback[((int) $i) % count($fallback)];
+    };
+@endphp
+<section class="hx-hero hopn-hero-section">
 
     <div class="hopn-hero-field" aria-hidden="true"><i></i><i></i><i></i></div>
 
-    <div class="container-shell hopn-hero-grid" style="position:relative; z-index:10; padding:100px 0 80px;">
+    <div class="container-shell hx-hero-grid">
       <div class="hopn-hero-text">
-        <div class="hopn-hero-in hopn-hero-in-1" style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 20px; margin-bottom:36px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC;">
-                @if($lang==='ar') البحث والهندسة والتنفيذ
-                @elseif($lang==='de') Forschung, Engineering und Umsetzung
-                @else Research, engineering and implementation @endif
+        <div class="hopn-hero-in hopn-hero-in-1 hx-badge">
+            <i aria-hidden="true"></i>
+            <span>
+                @if($lang==='ar') مركز ابتكار يربط الأعمال والتعليم والبحث
+                @elseif($lang==='de') Innovationsplattform für Wirtschaft, Bildung und Forschung
+                @else Innovation hub for business, education and research @endif
             </span>
         </div>
 
-        <h1 class="hopn-hero-in hopn-hero-in-2 hopn-hero-title" style="font-weight:900; color:white; line-height:1.04; letter-spacing:-2.5px;">
+        <h1 class="hopn-hero-in hopn-hero-in-2 hx-h1">
             @if($lang==='ar')
-                <span style="color:white;">من البحث التطبيقي</span><br>
-                <span style="color:#8FB8CC;">إلى أنظمة تعمل في الواقع.</span>
+                <span>من البحث التطبيقي</span><br>
+                <span class="hx-em">إلى أنظمة تعمل في الواقع.</span>
             @elseif($lang==='de')
-                <span style="color:white;">Forschung, die in</span><br>
-                <span style="color:#8FB8CC;">der Praxis ankommt.</span>
+                <span>Forschung, die in</span><br>
+                <span class="hx-em">der Praxis ankommt.</span>
             @else
-                <span style="color:white;">Research that becomes</span><br>
-                <span style="color:#8FB8CC;">working practice.</span>
+                <span>Research that becomes</span><br>
+                <span class="hx-em">working practice.</span>
             @endif
         </h1>
 
-        <p class="hopn-hero-in hopn-hero-in-3 hopn-hero-lead" style="color:#CBD5E1; line-height:1.75;">
+        <p class="hopn-hero-in hopn-hero-in-3 hx-lead">
             @if($lang==='ar') تعمل HOPn مع المؤسسات في البحث التطبيقي والهندسة والحوكمة والتنفيذ، وتحول الأسئلة التقنية المعقدة إلى برامج وأنظمة عملية.
             @elseif($lang==='de') HOPn arbeitet mit Organisationen an angewandter Forschung, Engineering, Governance und Umsetzung. Aus komplexen technischen Fragen werden klare Programme und funktionierende Systeme.
             @else HOPn works with organisations on applied research, engineering, governance, and implementation. We turn complex technical questions into clear programmes and working systems. @endif
         </p>
 
-        <div class="hopn-hero-in hopn-hero-in-4 hopn-hero-actions" style="display:flex; flex-wrap:wrap; gap:14px;">
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-btn-primary"
-               style="display:inline-flex; align-items:center; gap:8px; padding:15px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none;">
+        <div class="hopn-hero-in hopn-hero-in-4 hx-actions">
+            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-solid hopn-btn-primary">
                 @if($lang==='ar') احجز مكالمة @elseif($lang==='de') Gespräch buchen @else Book a Call @endif
-                <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="{{ route('services.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-ghost hopn-btn-secondary">
+                @if($lang==='ar') استكشف أعمالنا @elseif($lang==='de') Unsere Arbeit entdecken @else Explore our work @endif
             </a>
         </div>
 
@@ -427,11 +447,11 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             ], fn ($stat) => filled($stat[0]));
         @endphp
         @if(count($homeStats) > 0)
-        <div class="hopn-hero-in hopn-hero-in-5" style="display:inline-flex; flex-wrap:wrap; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); border-radius:16px; overflow:hidden;">
+        <div class="hopn-hero-in hopn-hero-in-5 hx-stats">
             @foreach($homeStats as $stat)
-            <div style="padding:22px 36px; text-align:center; border-right:1px solid rgba(255,255,255,0.06);">
-                <div style="font-size:28px; font-weight:900; color:white;">{{ $stat[0] }}</div>
-                <div style="font-size:11px; color:#94A3B8; margin-top:5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">{{ $stat[1] }}</div>
+            <div>
+                <b>{{ $stat[0] }}</b>
+                <small>{{ $stat[1] }}</small>
             </div>
             @endforeach
         </div>
@@ -439,19 +459,181 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         @endif
       </div>
 
-      <div class="hopn-hero-figure hopn-hero-in hopn-hero-in-4" aria-label="Research to implementation figure">
-          <div class="hopn-hero-figure-content">
-              <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--hopn-muted);">
-                  <span>HOPn / Applied systems</span><span>01—03</span>
+      <div class="hx-scene hopn-hero-in hopn-hero-in-4" role="img" aria-label="@if($lang==='ar') طبقات الأعمال والتعليم والبحث متصلة بمنصة واحدة @elseif($lang==='de') Wirtschaft, Bildung und Forschung als verbundene Ebenen einer Plattform @else Business, education and research as connected layers of one platform @endif">
+          <div class="hx-stage" aria-hidden="true">
+              <div class="hx-plate hx-p1">
+                  <svg viewBox="0 0 290 290" fill="none">
+                      <g stroke="#9FE0F2" stroke-opacity=".7" stroke-width="1.4"><path d="M40 220 L110 170 L170 205 L250 120"/><path d="M60 80 L110 170 M170 205 L190 250"/></g>
+                      <g fill="#fff"><circle cx="40" cy="220" r="6"/><circle cx="110" cy="170" r="7"/><circle cx="170" cy="205" r="6"/><circle cx="250" cy="120" r="7"/><circle cx="60" cy="80" r="5"/><circle cx="190" cy="250" r="5"/></g>
+                  </svg>
               </div>
-              <div>
-                  <div class="hopn-hero-figure-line" style="margin-bottom:20px;"></div>
-                  <div class="hopn-hero-figure-grid" aria-hidden="true"><span></span><span></span><span></span></div>
-                  <div style="display:flex; justify-content:space-between; margin-top:16px; font-size:12px; color:var(--hopn-muted);"><span>Research</span><span>Engineering</span><span>Implementation</span></div>
+              <div class="hx-plate hx-p2">
+                  <svg viewBox="0 0 290 290" fill="none">
+                      <g stroke="#fff" stroke-opacity=".55" stroke-width="1.4"><rect x="50" y="60" width="70" height="70" rx="8"/><rect x="160" y="60" width="70" height="70" rx="8"/><rect x="105" y="160" width="80" height="70" rx="8"/><path d="M120 95 H160 M85 130 L120 160 M195 130 L170 160"/></g>
+                  </svg>
               </div>
+              <div class="hx-plate hx-p3">
+                  <svg viewBox="0 0 290 290" fill="none">
+                      <g stroke="#fff" stroke-opacity=".7" stroke-width="1.4"><circle cx="145" cy="145" r="52"/><circle cx="145" cy="145" r="96" stroke-dasharray="3 7"/><path d="M145 49 V93 M145 197 V241 M49 145 H93 M197 145 H241"/></g>
+                      <g fill="#fff" class="hx-pulse"><circle cx="145" cy="49" r="6"/><circle cx="145" cy="241" r="6"/><circle cx="49" cy="145" r="6"/><circle cx="241" cy="145" r="6"/></g>
+                  </svg>
+              </div>
+              <div class="hx-beam"></div>
+              <div class="hx-core"></div>
+          </div>
+          <div class="hx-chips" aria-hidden="true">
+              <div class="hx-chip hx-chip-1"><i></i><span>@if($lang==='ar') البحث @elseif($lang==='de') Forschung @else Research @endif</span></div>
+              <div class="hx-chip hx-chip-2"><i></i><span>@if($lang==='ar') التعليم @elseif($lang==='de') Bildung @else Education @endif</span></div>
+              <div class="hx-chip hx-chip-3"><i></i><span>@if($lang==='ar') الأعمال @elseif($lang==='de') Wirtschaft @else Business @endif</span></div>
           </div>
       </div>
 
+    </div>
+</section>
+
+{{-- 1b. POSITIONING: business / education / research --}}
+<section class="hx-sec">
+    <div class="container-shell">
+        <div class="hx-head hx-split hopn-reveal">
+            <div>
+                <div class="hx-eyebrow"><span>@if($lang==='ar') من نحن @elseif($lang==='de') Wer wir sind @else Who we are @endif</span></div>
+                <h2 class="hx-h2">
+                    @if($lang==='ar') منصة ابتكار تقني عميق تربط الأعمال والتعليم والبحث.
+                    @elseif($lang==='de') Eine Deep-Tech-Innovationsplattform für Wirtschaft, Bildung und Forschung.
+                    @else A deep-tech innovation platform connecting business, education and research. @endif
+                </h2>
+            </div>
+            <p class="hx-sub">
+                @if($lang==='ar') نبني ونوسّع حلول الذكاء الاصطناعي ومنتجات البيانات وأنظمة التوأم الرقمي والروبوتات مع المؤسسات والجامعات وشركاء البحث، ونطوّر المواهب ومنظومات الابتكار التي تُبقيها قيد العمل.
+                @elseif($lang==='de') Gemeinsam mit Unternehmen, Hochschulen und Forschungspartnern entwickeln und skalieren wir KI-Lösungen, Datenprodukte, Digital-Twin-Systeme und Robotik – und bauen die Talente und Ökosysteme auf, die sie tragen.
+                @else We build and scale AI solutions, data products, digital twin systems and robotics with organisations, universities and research partners, and develop the talent and ecosystems that keep them running. @endif
+            </p>
+        </div>
+
+        <div class="hx-grid-3 hopn-reveal">
+            <a class="hx-card" href="{{ route('services.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/business.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <div class="hx-num">01</div>
+                    <h3 class="hx-h3">@if($lang==='ar') الأعمال @elseif($lang==='de') Wirtschaft @else Business @endif</h3>
+                    <p class="hx-p">
+                        @if($lang==='ar') استشارات وتنفيذ للمؤسسات والشركات المتوسطة: الاستراتيجية والمنصات ونتائج تشغيلية قابلة للقياس.
+                        @elseif($lang==='de') Beratung und Umsetzung für Konzerne und Mittelstand: Strategie, Plattformen und messbare operative Ergebnisse.
+                        @else Consulting and implementation for enterprises and SMEs: strategy, platforms and measurable operational results. @endif
+                    </p>
+                    <span class="hx-more">@if($lang==='ar') خدماتنا @elseif($lang==='de') Unsere Leistungen @else Our services @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+            <a class="hx-card" href="{{ route('training.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/education.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <div class="hx-num">02</div>
+                    <h3 class="hx-h3">@if($lang==='ar') التعليم @elseif($lang==='de') Bildung @else Education @endif</h3>
+                    <p class="hx-p">
+                        @if($lang==='ar') تدريب وورش عمل وبرامج تنقل الفرق من الوعي إلى قدرة عملية قائمة.
+                        @elseif($lang==='de') Trainings, Workshops und Programme, die Teams vom Bewusstsein zur belastbaren Handlungsfähigkeit führen.
+                        @else Training, workshops and programmes that move teams from awareness to working capability. @endif
+                    </p>
+                    <span class="hx-more">@if($lang==='ar') التدريب والبرامج @elseif($lang==='de') Training &amp; Programme @else Training &amp; programmes @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+            <a class="hx-card" href="{{ route('research.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/research.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <div class="hx-num">03</div>
+                    <h3 class="hx-h3">@if($lang==='ar') البحث @elseif($lang==='de') Forschung @else Research @endif</h3>
+                    <p class="hx-p">
+                        @if($lang==='ar') تعاون بحثي تطبيقي مع الجامعات والمعاهد، يتحول إلى نماذج أولية وأنظمة قابلة للنشر.
+                        @elseif($lang==='de') Angewandte Forschungskooperationen mit Hochschulen und Instituten, überführt in Prototypen und einsetzbare Systeme.
+                        @else Applied research collaboration with universities and institutes, translated into prototypes and deployable systems. @endif
+                    </p>
+                    <span class="hx-more">@if($lang==='ar') البحث @elseif($lang==='de') Forschung ansehen @else View research @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="hx-chipset hopn-reveal">
+            <span>@if($lang==='ar') حلول الذكاء الاصطناعي @elseif($lang==='de') KI-Lösungen @else AI solutions @endif</span>
+            <span>@if($lang==='ar') منتجات البيانات @elseif($lang==='de') Datenprodukte @else Data products @endif</span>
+            <span>@if($lang==='ar') أنظمة التوأم الرقمي @elseif($lang==='de') Digital-Twin-Systeme @else Digital twin systems @endif</span>
+            <span>@if($lang==='ar') الروبوتات والتقنيات المتقدمة @elseif($lang==='de') Robotik &amp; Spitzentechnologien @else Robotics &amp; advanced technologies @endif</span>
+            <span>@if($lang==='ar') المواهب ومنظومات الابتكار @elseif($lang==='de') Talente &amp; Innovationsökosysteme @else Talent &amp; innovation ecosystems @endif</span>
+        </div>
+    </div>
+</section>
+
+{{-- 1c. ONE INTEGRATED PLATFORM --}}
+<section class="hx-sec hx-tint">
+    <div class="container-shell">
+        <div class="hx-head hx-split hopn-reveal">
+            <div>
+                <div class="hx-eyebrow"><span>@if($lang==='ar') منصة واحدة متكاملة @elseif($lang==='de') Eine integrierte Plattform @else One integrated platform @endif</span></div>
+                <h2 class="hx-h2">
+                    @if($lang==='ar') استشارات وتقنية ومواهب وتدريب وبحث في منصة واحدة.
+                    @elseif($lang==='de') Beratung, Technologie, Talente, Training und Forschung aus einer Hand.
+                    @else Consulting, technology, talent, training and research in one platform. @endif
+                </h2>
+            </div>
+            <p class="hx-sub">
+                @if($lang==='ar') لا تحتاج المؤسسات إلى خمسة موردين لتحول واحد. تجمع HOPn هذه التخصصات وتبقى مسؤولة من السؤال الأول حتى النظام العامل.
+                @elseif($lang==='de') Für eine Transformation braucht es nicht fünf Dienstleister. HOPn verbindet die Disziplinen und bleibt verantwortlich – von der ersten Frage bis zum laufenden System.
+                @else An organisation should not need five suppliers for one transformation. HOPn combines the disciplines and stays accountable from the first question to the working system. @endif
+            </p>
+        </div>
+
+        <div class="hx-grid-4 hopn-reveal">
+            <a class="hx-card" href="{{ route('digital-twins.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/digital-twin.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <h3 class="hx-h3">@if($lang==='ar') التقنية والهندسة @elseif($lang==='de') Technologie &amp; Engineering @else Technology &amp; engineering @endif</h3>
+                    <p class="hx-p">@if($lang==='ar') حلول ذكاء اصطناعي وتوائم رقمية وأنظمة روبوتية مهندسة للتشغيل الفعلي. @elseif($lang==='de') KI-Lösungen, Digital Twins und Robotiksysteme, ausgelegt für den Produktivbetrieb. @else AI solutions, digital twins and robotic systems engineered for production use. @endif</p>
+                    <span class="hx-more">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+            <a class="hx-card" href="{{ route('consulting.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/consulting.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <h3 class="hx-h3">@if($lang==='ar') الاستشارات @elseif($lang==='de') Beratung @else Consulting @endif</h3>
+                    <p class="hx-p">@if($lang==='ar') استراتيجية وحوكمة وخرائط طريق مع خبراء يعرفون الجانب التقني والتنظيمي. @elseif($lang==='de') Strategie, Governance und Roadmaps mit Expertinnen und Experten, die Technik und Organisation verstehen. @else Strategy, governance and roadmaps with experts who understand both the technology and the organisation. @endif</p>
+                    <span class="hx-more">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+            <a class="hx-card" href="{{ route('labs.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/lab.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <h3 class="hx-h3">@if($lang==='ar') مختبر الابتكار @elseif($lang==='de') Innovationslabor @else Innovation lab @endif</h3>
+                    <p class="hx-p">@if($lang==='ar') مساحة لاختبار الأفكار مع الشركاء الأكاديميين قبل الالتزام بالتنفيذ الكامل. @elseif($lang==='de') Ein Raum, um Ideen mit akademischen Partnern zu erproben, bevor die volle Umsetzung beginnt. @else A space to test ideas with academic partners before committing to full implementation. @endif</p>
+                    <span class="hx-more">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+            <a class="hx-card" href="{{ route('careers.index', ['lang'=>$lang]) }}">
+                <div class="hx-art"><img src="/images/illustrations/talent.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-card-body">
+                    <h3 class="hx-h3">@if($lang==='ar') المواهب والتدريب @elseif($lang==='de') Talente &amp; Training @else Talent &amp; training @endif</h3>
+                    <p class="hx-p">@if($lang==='ar') توظيف وتأهيل المتخصصين التقنيين وبناء فرق قادرة على تشغيل ما نبنيه معاً. @elseif($lang==='de') Gewinnung und Qualifizierung technischer Fachkräfte und Teams, die betreiben können, was wir gemeinsam aufbauen. @else Sourcing and upskilling technical specialists, and building teams able to run what we build together. @endif</p>
+                    <span class="hx-more">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="hx-flow hopn-reveal">
+            @php
+                $hxFlow = [
+                    ['1', $lang==='ar'?'الاستشارات':($lang==='de'?'Beratung':'Consulting'), $lang==='ar'?'تحديد المشكلة والنطاق':($lang==='de'?'Fragestellung und Umfang klären':'Frame the problem and scope')],
+                    ['2', $lang==='ar'?'التقنية':($lang==='de'?'Technologie':'Technology'), $lang==='ar'?'التصميم والبناء والتحقق':($lang==='de'?'Entwerfen, bauen, validieren':'Design, build, validate')],
+                    ['3', $lang==='ar'?'المواهب':($lang==='de'?'Talente':'Talent'), $lang==='ar'?'فرق قادرة على التشغيل':($lang==='de'?'Teams, die betreiben können':'Teams able to operate it')],
+                    ['4', $lang==='ar'?'التدريب':($lang==='de'?'Training':'Training'), $lang==='ar'?'نقل المعرفة للمؤسسة':($lang==='de'?'Wissen in die Organisation tragen':'Transfer knowledge in-house')],
+                    ['5', $lang==='ar'?'التعاون البحثي':($lang==='de'?'Forschungskooperation':'Research collaboration'), $lang==='ar'?'تطوير الخطوة التالية':($lang==='de'?'Den nächsten Schritt entwickeln':'Develop the next step')],
+                ];
+            @endphp
+            @foreach($hxFlow as $hxStep)
+            <div class="hx-step">
+                <div class="hx-dot"><span>{{ $hxStep[0] }}</span></div>
+                <b>{{ $hxStep[1] }}</b>
+                <small>{{ $hxStep[2] }}</small>
+            </div>
+            @endforeach
+        </div>
     </div>
 </section>
 
@@ -487,7 +669,9 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                     @if($strategyImages->get($stepIndex))
                     <img loading="lazy" decoding="async" src="{{ $strategyImages->get($stepIndex) }}" alt="{{ $step[2] }}">
                     @else
-                    <div class="hopn-strategy-fallback" aria-hidden="true"></div>
+                    <div class="hx-art" aria-hidden="true">
+                        <img loading="lazy" decoding="async" src="/images/illustrations/{{ ['consulting','digital-twin','business'][$stepIndex % 3] }}.svg" alt="">
+                    </div>
                     @endif
                     <span style="position:absolute; left:18px; top:16px; z-index:1; font-size:11px; font-weight:800; letter-spacing:.14em; color:#245B78;">0{{ $stepIndex + 1 }}</span>
                 </div>
@@ -568,6 +752,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <div style="height:120px; margin:-32px -28px 24px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $service->hero_image }}" alt="{{ $service->name }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
+                @else
+                <div class="hx-art" style="height:150px; margin:-32px -28px 24px;">
+                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($service->name . ' ' . $service->slug, $loop->index) }}.svg" alt="">
+                </div>
                 @endif
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
                     @if($lang==='ar'&&$service->name_ar) {{ $service->name_ar }}
@@ -618,6 +806,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <div style="height:180px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
+                @else
+                <div class="hx-art" style="height:180px;">
+                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($title . ' ' . $cat, $loop->index) }}.svg" alt="">
+                </div>
                 @endif
                 <span class="hopn-status-badge" style="position:absolute; z-index:2; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
                     {{ $product->statusLabel($lang) }}
@@ -666,7 +858,9 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
                      style="width:calc(100% + 56px); height:170px; margin:-32px -28px 24px; border-radius:0; object-fit:cover; background:#FFFFFF; display:block;">
                  @else
-                 <div style="height:110px; margin:-32px -28px 24px; background:#EEF3F5; border-bottom:1px solid #D7DEE3;"></div>
+                 <div class="hx-art" aria-hidden="true">
+                     <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($industry->name . ' ' . $industry->slug, $loop->index) }}.svg" alt="">
+                 </div>
                 @endif
                   <div style="font-size:20px; font-weight:700; color:#CBD5E1; margin-bottom:10px;">{{ $industry->name }}</div>
                  @if($industry->description)
@@ -935,6 +1129,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <div style="height:150px; margin:-28px -28px 24px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $ws->hero_image_url }}" alt="{{ $ws->title_en }}" style="width:100%; height:100%; display:block; object-fit:cover;">
                 </div>
+                @else
+                <div class="hx-art" style="height:150px; margin:-28px -28px 24px;">
+                    <img loading="lazy" decoding="async" src="/images/illustrations/education.svg" alt="">
+                </div>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
                     <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $wsColors[$loop->index % 3] }}15; color:{{ $wsColors[$loop->index % 3] }}; border:1px solid {{ $wsColors[$loop->index % 3] }}30;">{{ $ws->duration_label_en ?? $ws->format }}</span>
@@ -991,6 +1189,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <div style="height:150px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $event->title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
+                @else
+                <div class="hx-art" style="height:150px;">
+                    <img loading="lazy" decoding="async" src="/images/illustrations/events.svg" alt="">
+                </div>
                 @endif
                 <div style="padding:24px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
@@ -1039,6 +1241,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 @if($post->featured_image_path)
                 <div style="height:190px; overflow:hidden; background:#EEF3F5;">
                     <img loading="lazy" decoding="async" src="{{ $post->featured_image_path }}" alt="{{ $post->title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+                @else
+                <div class="hx-art" style="height:190px;">
+                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($post->title, $loop->index + 1) }}.svg" alt="">
                 </div>
                 @endif
                 <div style="display:flex; flex-direction:column; padding:28px; flex:1;">

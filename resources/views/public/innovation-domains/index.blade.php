@@ -39,8 +39,10 @@
             @foreach($domains as $domain)
             @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
-               class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;">
-                <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">{{ strtoupper(substr($domain->name, 0, 1)) }}</div>
+               class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;">
+                <div style="height:170px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/{{ ['ai','robotics','digital-twin','research'][$loop->index % 4] }}.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
+                <div style="padding:28px; display:flex; flex-direction:column; flex:1;">
+                <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px; color:#245B78;">{{ strtoupper(substr($domain->name, 0, 1)) }}</div>
                 <h3 style="font-size:20px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">
                     @if($lang==='de'&&$domain->name_de) {{ $domain->name_de }}
                     @elseif($lang==='ar'&&$domain->name_ar) {{ $domain->name_ar }}
@@ -54,6 +56,7 @@
                 <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn More @endif →
                 </span>
+                </div>
             </a>
             @endforeach
         </div>

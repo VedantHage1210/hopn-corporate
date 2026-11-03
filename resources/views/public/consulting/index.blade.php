@@ -38,10 +38,16 @@
     <div class="container-shell">
         <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px;">
             @forelse($experts as $expert)
-            <div class="card-panel" style="padding:26px;">
+            <div class="card-panel hopn-lift-card" style="padding:0; overflow:hidden;">
+                @if($expert->photo_url)
+                <div style="height:210px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="{{ $expert->photo_url }}" alt="{{ $expert->name }}" style="width:100%; height:100%; display:block; object-fit:cover;"></div>
+                @else
+                <div style="height:150px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="/images/illustrations/talent.svg" alt="" style="width:100%; height:100%; display:block; object-fit:cover; padding:24px;"></div>
+                @endif
+                <div style="padding:26px;">
                 <a href="{{ route('consulting.expert', ['lang'=>$lang, 'id'=>$expert->id]) }}" style="text-decoration:none;">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div style="width:46px; height:46px; border-radius:50%; background:{{ $expert->accent_color ?? '#8FB8CC' }}22; border:1px solid {{ $expert->accent_color ?? '#8FB8CC' }}55; display:flex; align-items:center; justify-content:center; font-weight:800; color:{{ $expert->accent_color ?? '#8FB8CC' }};">{{ $expert->initials }}</div>
+                        <div style="width:10px; height:10px; border-radius:50%; background:{{ $expert->accent_color ?? '#8FB8CC' }}; flex-shrink:0;"></div>
                         <div style="flex:1;">
                             <div style="color:white; font-weight:700; font-size:15px;">{{ $expert->name }}</div>
                             <div style="color:#94A3B8; font-size:12px;">{{ $expert->specialization_en }}</div>
@@ -65,6 +71,7 @@
                    style="display:block; text-align:center; padding:12px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:700; text-decoration:none;">
                     @if($lang==='ar') احجز هذا الخبير @elseif($lang==='de') Diesen Experten buchen @else Book this expert @endif
                 </a>
+                </div>
             </div>
             @empty
             <p style="color:#64748B; grid-column:1/-1; text-align:center; padding:40px 0;">

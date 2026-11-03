@@ -137,13 +137,16 @@
                 $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6];
                 $iName = $lang==='ar' && $investor->name_ar ? $investor->name_ar : ($lang==='de' && $investor->name_de ? $investor->name_de : $investor->name);
             @endphp
-            <div class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden;">
+            <div class="hopn-lift-card" style="position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; transition:all 0.25s; overflow:hidden;">
+
+                @if($investor->logo)
+                <div style="height:190px; background:#FFFFFF; overflow:hidden; display:flex; align-items:center; justify-content:center;"><img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $iName }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                @else
+                <div style="height:140px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/business.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
+                @endif
+                <div style="padding:28px; display:flex; flex-direction:column; flex:1;">
 
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                    @if($investor->logo)
-                    <img loading="lazy" decoding="async" src="{{ $investor->logo }}" alt="{{ $iName }}"
-                        style="width:92px; height:92px; border-radius:14px; object-fit:cover; background:rgba(255,255,255,0.05); padding:4px; border:1px solid rgba(255,255,255,0.08); flex-shrink:0;">
-                    @endif
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $iName }}</h3>
                         @if($investor->type)
@@ -181,6 +184,7 @@
                     @if($lang==='ar') زيارة الموقع @elseif($lang==='de') Website besuchen @else Visit Website @endif →
                 </a>
                 @endif
+                </div>
             </div>
             @endforeach
         </div>

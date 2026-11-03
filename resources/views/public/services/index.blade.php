@@ -57,12 +57,19 @@
                 $svcSummary = $lang==='ar' && $service->summary_ar ? $service->summary_ar : ($lang==='de' && $service->summary_de ? $service->summary_de : $service->summary);
             @endphp
             <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-lift-card"
-               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
+                @if($service->hero_image)
+                <div style="height:210px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="{{ $service->hero_image }}" alt="{{ $svcTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;"></div>
+                @else
+                <div style="height:150px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="/images/illustrations/consulting.svg" alt="" style="width:100%; height:100%; display:block; object-fit:cover; padding:24px;"></div>
+                @endif
+                <div style="padding:28px; display:flex; flex-direction:column; flex:1;">
                 <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:10px; line-height:1.3;">{{ $svcTitle }}</h3>
                 <p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">{{ Str::limit($svcSummary ?? '',100) }}</p>
                 <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:{{ $c }};">
                     @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                 </span>
+                </div>
             </a>
             @endforeach
         </div>
