@@ -1,47 +1,32 @@
 @php $lang = request()->route('lang', 'en'); @endphp
 <x-layouts.public :title="$lang==='ar'?'عن HOPn':($lang==='de'?'Über HOPn':'About HOPn')">
+<div class="hopn-homepage">
     
 {{-- HERO --}}
-<section style="position:relative; overflow:hidden; background:#030712; min-height:70vh; display:flex; align-items:center;">
-
-    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
-                @if($lang==='ar') عن HOPn @elseif($lang==='de') Über HOPn @else About HOPn @endif
-            </span>
-        </div>
-        <h1 style="font-size:clamp(36px,6vw,72px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
-            @if($lang==='ar')
-                <span style="color:white;">نحن HOPn</span><br>
-                <span style="color:#8FB8CC;">مركز الابتكار الأوروبي</span>
-            @elseif($lang==='de')
-                <span style="color:white;">Wir sind HOPn —</span><br>
-                <span style="color:#8FB8CC;">Europäischer Innovationshub</span>
-            @else
-                <span style="color:white;">We are HOPn —</span><br>
-                <span style="color:#8FB8CC;">European Innovation Hub</span>
-            @endif
+<section class="hx-about-hero hx-host hx-hasvideo">
+    <video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/about-team.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/about-team.mp4" type="video/mp4"></video>
+    <div class="hx-scrim" aria-hidden="true"></div>
+    <div class="container-shell hopn-reveal">
+        <div class="hx-badge"><i aria-hidden="true"></i><span>@if($lang==='ar') عن HOPn @elseif($lang==='de') Über HOPn @else About HOPn @endif</span></div>
+        <h1>
+            @if($lang==='ar') <span>نحن HOPn،</span><br><span class="hx-em">مركز الابتكار الأوروبي.</span>
+            @elseif($lang==='de') <span>Wir sind HOPn,</span><br><span class="hx-em">Europas Innovationshub.</span>
+            @else <span>We are HOPn,</span><br><span class="hx-em">a European innovation hub.</span> @endif
         </h1>
-        <p style="font-size:clamp(16px,2vw,20px); color:#CBD5E1; max-width:640px; margin:0 auto 48px; line-height:1.7;">
+        <p class="hx-lead">
             @if($lang==='ar') نربط الأعمال والتعليم والبحث لبناء حلول رقمية ذكية عبر أوروبا والشرق الأوسط.
-            @elseif($lang==='de') Wir verbinden Business, Bildung und Forschung für intelligente digitale Lösungen.
-            @else Connecting business, education, and research to build intelligent digital solutions across Europe and beyond. @endif
+            @elseif($lang==='de') Wir verbinden Wirtschaft, Bildung und Forschung und bauen daraus intelligente digitale Lösungen für Europa und darüber hinaus.
+            @else We connect business, education and research to build and scale intelligent digital solutions across Europe and beyond. @endif
         </p>
-        {{-- Stats --}}
         @if(config('hopn.secondary_sections') && ($siteSettings['stats_about_visible'] ?? false))
-        <div style="display:flex; flex-wrap:wrap; gap:0; justify-content:center; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); border-radius:16px; max-width:800px; margin:0 auto; overflow:hidden;">
+        <div class="hx-facts">
             @foreach([
                 ['num'=>'50+',  'label'=>$lang==='ar'?'عميل مؤسسي':($lang==='de'?'Unternehmenskunden':'Enterprise Clients')],
                 ['num'=>'10+',  'label'=>$lang==='ar'?'منتج ذكاء اصطناعي':($lang==='de'?'KI-Produkte':'AI Products')],
                 ['num'=>'6',    'label'=>$lang==='ar'?'مجالات ابتكار':($lang==='de'?'Innovationsdomänen':'Innovation Domains')],
                 ['num'=>'2020', 'label'=>$lang==='ar'?'تأسست':($lang==='de'?'Gegründet':'Founded')],
-                ['num'=>'EU',   'label'=>$lang==='ar'?'موثوق':($lang==='de'?'Vertrauenswürdig':'Trusted')],
             ] as $stat)
-            <div style="flex:1; min-width:120px; padding:24px 16px; text-align:center; border-right:1px solid rgba(255,255,255,0.05);">
-                <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px;">{{ $stat['num'] }}</div>
-                <div style="font-size:11px; color:#94A3B8; margin-top:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">{{ $stat['label'] }}</div>
-            </div>
+            <div><b>{{ $stat['num'] }}</b><small>{{ $stat['label'] }}</small></div>
             @endforeach
         </div>
         @endif
@@ -49,28 +34,40 @@
 </section>
 
 {{-- MISSION & VISION --}}
-<section style="padding:100px 0; background:#050A14;">
+<section class="hx-sec">
     <div class="container-shell">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-            <div style="position:relative; border:1px solid rgba(79,110,247,0.2); background:#0A0F1E; border-radius:20px; padding:40px; overflow:hidden;">
-                <h2 style="font-size:24px; font-weight:800; color:white; margin-bottom:16px; letter-spacing:-0.5px;">
-                    @if($lang==='ar') مهمتنا @elseif($lang==='de') Unsere Mission @else Our Mission @endif
-                </h2>
-                <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
-                    @if($lang==='ar') تمكين المؤسسات والجامعات والشركات الناشئة من بناء مستقبل رقمي من خلال الذكاء الاصطناعي والبيانات والروبوتات والتوائم الرقمية.
-                    @elseif($lang==='de') Unternehmen, Universitäten und Startups zu befähigen, eine digitale Zukunft durch KI, Daten, Robotik und digitale Zwillinge aufzubauen.
-                    @else To empower enterprises, universities, and startups to build a digital future through AI, data, robotics, and digital twins — delivering measurable impact across Europe and MENA. @endif
-                </p>
+        <div class="hx-head hopn-reveal">
+            <div class="hx-eyebrow"><span>@if($lang==='ar') من نحن @elseif($lang==='de') Wer wir sind @else Who we are @endif</span></div>
+            <h2 class="hx-h2">
+                @if($lang==='ar') منصة ابتكار تقني عميق، لا وكالة تقليدية.
+                @elseif($lang==='de') Eine Deep-Tech-Innovationsplattform, keine klassische Agentur.
+                @else A deep-tech innovation platform, not a simple agency. @endif
+            </h2>
+        </div>
+        <div class="hx-split2 hopn-reveal">
+            <div class="hx-mv">
+                <img src="/images/photos/consulting.jpg" alt="" loading="lazy" decoding="async">
+                <div class="hx-mv-body">
+                    <div class="hx-num">01</div>
+                    <h3>@if($lang==='ar') مهمتنا @elseif($lang==='de') Unsere Mission @else Our Mission @endif</h3>
+                    <p>
+                        @if($lang==='ar') تمكين المؤسسات والجامعات والشركات الناشئة من بناء مستقبل رقمي من خلال الذكاء الاصطناعي والبيانات والروبوتات والتوائم الرقمية.
+                        @elseif($lang==='de') Organisationen, Hochschulen und Start-ups befähigen, mit KI, Daten, Robotik und Digital Twins ihre digitale Zukunft zu gestalten.
+                        @else To help organisations, universities and start-ups build their digital future with AI, data, robotics and digital twins, combining consulting, technology, talent, training and research. @endif
+                    </p>
+                </div>
             </div>
-            <div style="position:relative; border:1px solid rgba(139,92,246,0.2); background:#0A0F1E; border-radius:20px; padding:40px; overflow:hidden;">
-                <h2 style="font-size:24px; font-weight:800; color:white; margin-bottom:16px; letter-spacing:-0.5px;">
-                    @if($lang==='ar') رؤيتنا @elseif($lang==='de') Unsere Vision @else Our Vision @endif
-                </h2>
-                <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
-                    @if($lang==='ar') أن نكون المنصة الرائدة في أوروبا التي تربط ابتكار الأعمال والبحث الأكاديمي وريادة الأعمال في نظام بيئي متكامل.
-                    @elseif($lang==='de') Die führende europäische Plattform zu werden, die Business-Innovation, akademische Forschung und Unternehmertum in einem integrierten Ökosystem verbindet.
-                    @else To become the leading European platform that bridges business innovation, academic research, and entrepreneurship — creating a complete innovation ecosystem for the digital age. @endif
-                </p>
+            <div class="hx-mv">
+                <img src="/images/photos/research.jpg" alt="" loading="lazy" decoding="async">
+                <div class="hx-mv-body">
+                    <div class="hx-num">02</div>
+                    <h3>@if($lang==='ar') رؤيتنا @elseif($lang==='de') Unsere Vision @else Our Vision @endif</h3>
+                    <p>
+                        @if($lang==='ar') أن نكون المنصة الرائدة في أوروبا التي تربط ابتكار الأعمال والبحث الأكاديمي وريادة الأعمال في نظام بيئي متكامل.
+                        @elseif($lang==='de') Europas führende Plattform zu sein, die Unternehmensinnovation, akademische Forschung und Gründergeist in einem Ökosystem verbindet.
+                        @else To be Europe's leading platform connecting business innovation, academic research and entrepreneurship in one integrated ecosystem. @endif
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -297,4 +294,5 @@
     </div>
 </section>
 
+</div>
 </x-layouts.public>

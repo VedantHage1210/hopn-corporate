@@ -392,9 +392,17 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         $fallback = ['ai', 'research', 'digital-twin', 'consulting', 'lab', 'business'];
         return $fallback[((int) $i) % count($fallback)];
     };
+    $hxPhotos = ['ai'=>'ai','consulting'=>'consulting','business'=>'business','education'=>'education','research'=>'research','talent'=>'talent','lab'=>'innovation-lab','digital-twin'=>'technology','robotics'=>'technical-experts','startups'=>'growth','insights'=>'tablet'];
+    $hxImg = function ($key) use ($hxPhotos) {
+        return isset($hxPhotos[$key]) ? '/images/photos/' . $hxPhotos[$key] . '.jpg' : '/images/illustrations/' . $key . '.svg';
+    };
+    $hxVideo = function ($name) {
+        return '<video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/' . $name . '.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/' . $name . '.mp4" type="video/mp4"></video><div class="hx-scrim" aria-hidden="true"></div>';
+    };
 @endphp
-<section class="hx-hero hopn-hero-section">
+<section class="hx-hero hx-host hopn-hero-section">
 
+    {!! $hxVideo('data-dashboard') !!}
     <div class="hopn-hero-field" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <div class="container-shell hx-hero-grid">
@@ -512,7 +520,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 
         <div class="hx-grid-3 hopn-reveal">
             <a class="hx-card" href="{{ route('services.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/business.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/business.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <div class="hx-num">01</div>
                     <h3 class="hx-h3">@if($lang==='ar') الأعمال @elseif($lang==='de') Wirtschaft @else Business @endif</h3>
@@ -525,7 +533,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
             </a>
             <a class="hx-card" href="{{ route('training.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/education.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/education.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <div class="hx-num">02</div>
                     <h3 class="hx-h3">@if($lang==='ar') التعليم @elseif($lang==='de') Bildung @else Education @endif</h3>
@@ -538,7 +546,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
             </a>
             <a class="hx-card" href="{{ route('research.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/research.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/research.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <div class="hx-num">03</div>
                     <h3 class="hx-h3">@if($lang==='ar') البحث @elseif($lang==='de') Forschung @else Research @endif</h3>
@@ -581,9 +589,9 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             </p>
         </div>
 
-        <div class="hx-grid-4 hopn-reveal">
+        <div class="hx-grid-2 hopn-reveal">
             <a class="hx-card" href="{{ route('digital-twins.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/digital-twin.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/technology.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <h3 class="hx-h3">@if($lang==='ar') التقنية والهندسة @elseif($lang==='de') Technologie &amp; Engineering @else Technology &amp; engineering @endif</h3>
                     <p class="hx-p">@if($lang==='ar') حلول ذكاء اصطناعي وتوائم رقمية وأنظمة روبوتية مهندسة للتشغيل الفعلي. @elseif($lang==='de') KI-Lösungen, Digital Twins und Robotiksysteme, ausgelegt für den Produktivbetrieb. @else AI solutions, digital twins and robotic systems engineered for production use. @endif</p>
@@ -591,7 +599,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
             </a>
             <a class="hx-card" href="{{ route('consulting.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/consulting.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/consulting.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <h3 class="hx-h3">@if($lang==='ar') الاستشارات @elseif($lang==='de') Beratung @else Consulting @endif</h3>
                     <p class="hx-p">@if($lang==='ar') استراتيجية وحوكمة وخرائط طريق مع خبراء يعرفون الجانب التقني والتنظيمي. @elseif($lang==='de') Strategie, Governance und Roadmaps mit Expertinnen und Experten, die Technik und Organisation verstehen. @else Strategy, governance and roadmaps with experts who understand both the technology and the organisation. @endif</p>
@@ -599,7 +607,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
             </a>
             <a class="hx-card" href="{{ route('labs.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/lab.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/innovation-lab.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <h3 class="hx-h3">@if($lang==='ar') مختبر الابتكار @elseif($lang==='de') Innovationslabor @else Innovation lab @endif</h3>
                     <p class="hx-p">@if($lang==='ar') مساحة لاختبار الأفكار مع الشركاء الأكاديميين قبل الالتزام بالتنفيذ الكامل. @elseif($lang==='de') Ein Raum, um Ideen mit akademischen Partnern zu erproben, bevor die volle Umsetzung beginnt. @else A space to test ideas with academic partners before committing to full implementation. @endif</p>
@@ -607,7 +615,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
             </a>
             <a class="hx-card" href="{{ route('careers.index', ['lang'=>$lang]) }}">
-                <div class="hx-art"><img src="/images/illustrations/talent.svg" alt="" loading="lazy" decoding="async"></div>
+                <div class="hx-art"><img src="/images/photos/talent.jpg" alt="" loading="lazy" decoding="async"></div>
                 <div class="hx-card-body">
                     <h3 class="hx-h3">@if($lang==='ar') المواهب والتدريب @elseif($lang==='de') Talente &amp; Training @else Talent &amp; training @endif</h3>
                     <p class="hx-p">@if($lang==='ar') توظيف وتأهيل المتخصصين التقنيين وبناء فرق قادرة على تشغيل ما نبنيه معاً. @elseif($lang==='de') Gewinnung und Qualifizierung technischer Fachkräfte und Teams, die betreiben können, was wir gemeinsam aufbauen. @else Sourcing and upskilling technical specialists, and building teams able to run what we build together. @endif</p>
@@ -638,7 +646,8 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 </section>
 
 {{-- 2. STRATEGY > BUILD > SCALE --}}
-<section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
+<section class="homepage-secondary hx-host" style="padding:100px 0; background:#050A14;">
+    {!! $hxVideo('team-whiteboard') !!}
     <div class="container-shell">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#4F6EF7; display:block; margin-bottom:16px;">
@@ -666,11 +675,11 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             @foreach($strategySteps as $stepIndex => $step)
             <article class="hopn-strategy-card">
                 <div class="hopn-strategy-media">
-                    @if($strategyImages->get($stepIndex))
+                    @if(false && $strategyImages->get($stepIndex))
                     <img loading="lazy" decoding="async" src="{{ $strategyImages->get($stepIndex) }}" alt="{{ $step[2] }}">
                     @else
                     <div class="hx-art" aria-hidden="true">
-                        <img loading="lazy" decoding="async" src="/images/illustrations/{{ ['consulting','digital-twin','business'][$stepIndex % 3] }}.svg" alt="">
+                        <img loading="lazy" decoding="async" src="/images/photos/{{ ['strategy','build','scale'][$stepIndex % 3] }}.jpg" alt="{{ $step[2] }}">
                     </div>
                     @endif
                     <span style="position:absolute; left:18px; top:16px; z-index:1; font-size:11px; font-weight:800; letter-spacing:.14em; color:#245B78;">0{{ $stepIndex + 1 }}</span>
@@ -754,7 +763,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
                 @else
                 <div class="hx-art" style="height:150px; margin:-32px -28px 24px;">
-                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($service->name . ' ' . $service->slug, $loop->index) }}.svg" alt="">
+                    <img loading="lazy" decoding="async" src="{{ $hxImg($hxArt($service->name . ' ' . $service->slug, $loop->index)) }}" alt="">
                 </div>
                 @endif
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px; line-height:1.3;">
@@ -808,7 +817,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
                 @else
                 <div class="hx-art" style="height:180px;">
-                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($title . ' ' . $cat, $loop->index) }}.svg" alt="">
+                    <img loading="lazy" decoding="async" src="{{ $hxImg($hxArt($title . ' ' . $cat, $loop->index)) }}" alt="">
                 </div>
                 @endif
                 <span class="hopn-status-badge" style="position:absolute; z-index:2; top:14px; right:14px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:999px; background:{{ $product->statusColor() }}; color:#0A0F1E;">
@@ -859,7 +868,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                      style="width:calc(100% + 56px); height:170px; margin:-32px -28px 24px; border-radius:0; object-fit:cover; background:#FFFFFF; display:block;">
                  @else
                  <div class="hx-art" aria-hidden="true">
-                     <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($industry->name . ' ' . $industry->slug, $loop->index) }}.svg" alt="">
+                     <img loading="lazy" decoding="async" src="{{ $hxImg($hxArt($industry->name . ' ' . $industry->slug, $loop->index)) }}" alt="">
                  </div>
                 @endif
                   <div style="font-size:20px; font-weight:700; color:#CBD5E1; margin-bottom:10px;">{{ $industry->name }}</div>
@@ -1131,7 +1140,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
                 @else
                 <div class="hx-art" style="height:150px; margin:-28px -28px 24px;">
-                    <img loading="lazy" decoding="async" src="/images/illustrations/education.svg" alt="">
+                    <img loading="lazy" decoding="async" src="/images/photos/workshop.jpg" alt="">
                 </div>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
@@ -1244,7 +1253,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </div>
                 @else
                 <div class="hx-art" style="height:190px;">
-                    <img loading="lazy" decoding="async" src="/images/illustrations/{{ $hxArt($post->title, $loop->index + 1) }}.svg" alt="">
+                    <img loading="lazy" decoding="async" src="{{ $hxImg($hxArt($post->title, $loop->index + 1)) }}" alt="">
                 </div>
                 @endif
                 <div style="display:flex; flex-direction:column; padding:28px; flex:1;">
@@ -1339,7 +1348,8 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 @endif
 
 {{-- 14. TALENT --}}
-<section class="homepage-secondary" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
+<section class="homepage-secondary hx-host" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
+    {!! $hxVideo('talent-hiring') !!}
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
@@ -1354,17 +1364,20 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 @else Access top-tier technical talent across Europe and beyond @endif
             </p>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:48px;">
+        <div class="hx-grid-2 hx-talent" style="display:grid; gap:16px; margin-bottom:48px;">
             @php
             $talentItems = [
-                ['mark'=>'R','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#8FB8CC'],
-                ['mark'=>'L','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#8FB8CC'],
-                ['mark'=>'E','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8FB8CC'],
-                ['mark'=>'D','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#8FB8CC'],
+                ['mark'=>'R','photo'=>'remote-team','title'=>$lang==='ar'?'فرق عن بُعد':($lang==='de'?'Remote-Teams':'Remote Teams'),'desc'=>$lang==='ar'?'فرق مُدارة بالكامل من المهندسين وعلماء البيانات':($lang==='de'?'Vollständig verwaltete Remote-Teams':'Fully managed remote teams of engineers'),'color'=>'#8FB8CC'],
+                ['mark'=>'L','photo'=>'local-hiring','title'=>$lang==='ar'?'التوظيف المحلي':($lang==='de'?'Lokale Einstellung':'Local Hiring'),'desc'=>$lang==='ar'?'توظيف في الموقع عبر ألمانيا وأوروبا':($lang==='de'?'Vor-Ort-Talente in Deutschland':'On-site talent across Germany'),'color'=>'#8FB8CC'],
+                ['mark'=>'E','photo'=>'technical-experts','title'=>$lang==='ar'?'خبراء تقنيون':($lang==='de'?'Tech-Experten':'Technical Experts'),'desc'=>$lang==='ar'?'متخصصون في الذكاء الاصطناعي والبيانات والروبوتيكا':($lang==='de'?'KI-, Daten- und Robotik-Spezialisten':'AI, data, and robotics specialists'),'color'=>'#8FB8CC'],
+                ['mark'=>'D','photo'=>'dedicated-teams','title'=>$lang==='ar'?'فرق مخصصة':($lang==='de'?'Dedizierte Teams':'Dedicated Teams'),'desc'=>$lang==='ar'?'فرق تطوير طويلة الأجل مدمجة في مؤسستك':($lang==='de'?'Langfristige Teams in Ihrer Organisation':'Long-term teams in your organization'),'color'=>'#8FB8CC'],
             ];
             @endphp
             @foreach($talentItems as $item)
             <div class="hopn-lift-card hopn-talent-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+                <div class="hx-art" style="height:230px; margin:-28px -28px 22px;">
+                    <img loading="lazy" decoding="async" src="/images/photos/{{ $item['photo'] }}.jpg" alt="{{ $item['title'] }}">
+                </div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">{{ $item['title'] }}</h3>
                 <p style="font-size:13px; color:#94A3B8; line-height:1.7;">{{ $item['desc'] }}</p>
             </div>
@@ -1381,7 +1394,8 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 </section>
 
 {{-- 15. FINAL CTA --}}
-<section style="padding:120px 0; background:#030712; position:relative; overflow:hidden;">
+<section class="hx-host" style="padding:120px 0; background:#030712; position:relative; overflow:hidden;">
+    {!! $hxVideo('consulting-team') !!}
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(32px,5vw,64px); font-weight:900; color:white; letter-spacing:-2px; margin-bottom:20px; line-height:1.1;">
             @if($lang==='ar') هل أنت مستعد لتنسيق اختراقك التالي؟

@@ -70,21 +70,18 @@ $categoryColors = [
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px;">
                     @foreach($items as $item)
-                    <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:0 28px 28px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; text-align:start; transition:all 0.25s; overflow:hidden; min-height:330px;">
+                    <div class="hopn-lift-card hx-partner" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:0 28px 28px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; text-align:start; transition:all 0.25s; overflow:hidden; min-height:330px;">
                         @if($item->logo)
-                        <div style="height:170px; width:calc(100% + 56px); margin:0 -28px 8px; display:flex; align-items:center; justify-content:center; background:#FFFFFF; overflow:hidden;">
-                            <img loading="lazy" decoding="async" src="{{ $item->logo }}" alt="{{ $item->name }}"
-                                 style="width:100%; height:100%; max-height:none; max-width:none; padding:22px; object-fit:contain;">
+                        <div class="hx-art" style="height:230px; width:calc(100% + 56px); margin:0 -28px 8px; overflow:hidden; background:#EEF3F5;">
+                            <img loading="lazy" decoding="async" src="{{ $item->logo }}" alt="{{ $item->name }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                         </div>
-                        @else
-                        <div style="height:110px; width:calc(100% + 56px); margin:0 -28px 8px; background:#EEF3F5; border-bottom:1px solid #D7DEE3;"></div>
                         @endif
-                        <div style="font-size:20px; font-weight:700; color:#E2E8F0;">{{ $item->name }}</div>
+                        <h3 style="font-size:20px; font-weight:700; color:#E2E8F0; margin:0;">{{ $item->name }}</h3>
                         @php
                             $desc = $lang==='ar' && $item->description_ar ? $item->description_ar : ($lang==='de' && $item->description_de ? $item->description_de : ($item->description_en ?? null));
                         @endphp
                         @if($desc)
-                        <div style="font-size:13px; color:#CBD5E1; line-height:1.7; max-width:none;">{{ Str::limit($desc, 105) }}</div>
+                        <p style="font-size:13px; color:#CBD5E1; line-height:1.7; max-width:none; margin:0;">{{ Str::limit($desc, 105) }}</p>
                         @endif
                         @if($item->url)
                         <a href="{{ $item->url }}" target="_blank"
