@@ -173,9 +173,6 @@
         var hero = (i === 0);
         s.classList.add('hx-host'); if (hero) { s.classList.add('hx-hero2'); }
         if (!s.classList.contains('hx-hero')) { s.setAttribute('data-hx-tint', String(i % 4)); }
-        var fx = document.createElement('div');
-        fx.className = 'hx-fx' + (hero ? ' hx-strong' : ''); fx.setAttribute('aria-hidden', 'true'); fx.innerHTML = '<i></i><i></i><i></i>';
-        s.insertBefore(fx, s.firstChild);
       });
     }
 
@@ -192,23 +189,32 @@
         }
         if (name) {
           var v = document.createElement('video');
-          v.className = 'hx-bgvideo'; v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
+          v.className = 'hx-bgvideo'; v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
           v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true'); v.tabIndex = -1;
           v.setAttribute('disablepictureinpicture', ''); v.poster = '/videos/' + name + '.jpg';
-          var src = document.createElement('source'); src.src = '/videos/' + name + '.mp4'; src.type = 'video/mp4';
-          v.appendChild(src); secHero.insertBefore(v, secHero.firstChild);
+          v.setAttribute('data-src', '/videos/' + name + '.mp4');
+          secHero.insertBefore(v, secHero.firstChild);
           var sc = document.createElement('div'); sc.className = 'hx-scrim'; sc.setAttribute('aria-hidden', 'true'); v.after(sc);
           secHero.classList.add('hx-hasvideo');
         }
       }
+      /* Videos: the source is attached only when the section is near the screen, and the clip is paused when it leaves.
+         At most the visible ones are decoded, so scrolling stays smooth. */
       var vids = document.querySelectorAll('video.hx-bgvideo');
-      Array.prototype.forEach.call(vids, function (v) { v.muted = true; var p = v.play(); if (p && p.catch) { p.catch(function () {}); } });
+      function startVideo(v) {
+        if (!v.dataset.loaded) {
+          var u = v.getAttribute('data-src');
+          if (u) { var so = document.createElement('source'); so.src = u; so.type = 'video/mp4'; v.appendChild(so); v.load(); }
+          v.dataset.loaded = '1';
+        }
+        v.muted = true; var p = v.play(); if (p && p.catch) { p.catch(function () {}); }
+      }
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } } else { v.pause(); } });
-        }, { rootMargin: '200px 0px' });
+          es.forEach(function (e) { if (e.isIntersecting) { startVideo(e.target); } else { e.target.pause(); } });
+        }, { rootMargin: '150px 0px' });
         Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
-      }
+      } else { Array.prototype.forEach.call(vids, function (v, i) { if (i === 0) { startVideo(v); } }); }
     }
 
     /* ---------- 4. Pointer tilt ---------- */
@@ -241,6 +247,15 @@
       });
     }
 
+    /* ---------- 5. Animations only run for sections that are on screen ---------- */
+    function pauseOffscreen() {
+      if (!('IntersectionObserver' in window)) { return; }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { e.target.classList.toggle('hx-off', !e.isIntersecting); });
+      }, { rootMargin: '120px 0px' });
+      Array.prototype.forEach.call(document.querySelectorAll('main section'), function (sec) { io.observe(sec); });
+    }
+
     function run() {
       try { var mn = document.querySelector('main'); if (mn && !document.querySelector('.hopn-homepage')) { mn.classList.add('hopn-homepage'); } } catch (e) {}
       try { enhanceSections(); } catch (e) {}
@@ -248,6 +263,7 @@
       try { markGrids(); } catch (e) {}
       try { enhanceCards(document); } catch (e) {}
       try { bindTilt(); } catch (e) {}
+      try { pauseOffscreen(); } catch (e) {}
       if (window.MutationObserver) {
         var t = null;
         new MutationObserver(function () {

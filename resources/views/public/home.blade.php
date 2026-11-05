@@ -396,13 +396,14 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     $hxImg = function ($key) use ($hxPhotos) {
         return isset($hxPhotos[$key]) ? '/images/photos/' . $hxPhotos[$key] . '.jpg' : '/images/illustrations/' . $key . '.svg';
     };
-    $hxVideo = function ($name) {
-        return '<video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/' . $name . '.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/' . $name . '.mp4" type="video/mp4"></video><div class="hx-scrim" aria-hidden="true"></div>';
+    $hxVideo = function ($name, $eager = false) {
+        $attrs = $eager ? 'autoplay preload="auto"' : 'preload="none"';
+        return '<video class="hx-bgvideo" ' . $attrs . ' muted loop playsinline poster="/videos/' . $name . '.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/' . $name . '.mp4" type="video/mp4"></video><div class="hx-scrim" aria-hidden="true"></div>';
     };
 @endphp
 <section class="hx-hero hx-host hopn-hero-section">
 
-    {!! $hxVideo('data-dashboard') !!}
+    {!! $hxVideo('data-dashboard', true) !!}
     <div class="hopn-hero-field" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <div class="container-shell hx-hero-grid">
@@ -437,7 +438,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 
         <div class="hopn-hero-in hopn-hero-in-4 hx-actions">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-solid hopn-btn-primary">
-                @if($lang==='ar') احجز مكالمة @elseif($lang==='de') Gespräch buchen @else Book a Call @endif
+                @if($lang==='ar') تواصل معنا اليوم @elseif($lang==='de') Jetzt Kontakt aufnehmen @else Contact Us Today @endif
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
             <a href="{{ route('services.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-ghost hopn-btn-secondary">

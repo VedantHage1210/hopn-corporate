@@ -4,7 +4,7 @@
     
 {{-- HERO --}}
 <section class="hx-about-hero hx-host hx-hasvideo">
-    <video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/about-team.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/about-team.mp4" type="video/mp4"></video>
+    <video class="hx-bgvideo" muted loop playsinline preload="none" poster="/videos/about-team.jpg" data-src="/videos/about-team.mp4" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
     <div class="hx-scrim" aria-hidden="true"></div>
     <div class="container-shell hopn-reveal">
         <div class="hx-badge"><i aria-hidden="true"></i><span>@if($lang==='ar') عن HOPn @elseif($lang==='de') Über HOPn @else About HOPn @endif</span></div>
@@ -264,7 +264,7 @@
 
 {{-- CTA --}}
 <section class="hx-host hx-vidsec" style="padding:110px 0; position:relative; overflow:hidden;">
-    <video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/partners-meeting.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/partners-meeting.mp4" type="video/mp4"></video>
+    <video class="hx-bgvideo" preload="none" muted loop playsinline poster="/videos/partners-meeting.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/partners-meeting.mp4" type="video/mp4"></video>
     <div class="hx-scrim" aria-hidden="true"></div>
     <div class="container-shell hopn-reveal hx-vidhead" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(30px,4.4vw,56px); font-weight:800; letter-spacing:-1px; margin:0 0 16px;">
