@@ -212,7 +212,7 @@ html[data-theme="light"] header{ background:rgba(255,255,255,.86) !important; ba
   .hx-beam{ height:160px; }
   .hx-chip{ padding:6px 11px 6px 9px; } .hx-chip em{ display:none; }
   .hx-chip-1{ top:calc(50% - 74px); } .hx-chip-2{ top:50%; } .hx-chip-3{ top:calc(50% + 74px); }
-  .hx-stats > div{ padding:14px 18px; flex:1 1 45%; }
+  .hx-stats > div{ padding:14px 18px; flex:1 1 45%; } 
   .hx-actions .hx-btn{ flex:1 1 100%; justify-content:center; }
   html:root[data-theme] .hopn-homepage .hopn-industry-card img, html:root[data-theme] .hopn-homepage .hopn-industry-card .hx-art{ height:150px !important; }
 }
@@ -456,3 +456,69 @@ html:root[data-theme] .hopn-homepage section.hx-about-hero .hx-facts small{ colo
 
 /* injected banners must always span the full card, even inside align-items:flex-start cards */
 .hx-art.hx-auto{ align-self:stretch; max-width:none; }
+
+/* ==========================================================================
+   v6: every video section looks like the About hero (clear footage, dark teal
+   scrim, light text) in BOTH themes. Also applies to pages created in the admin.
+   ========================================================================== */
+/* inner-page heroes that received a video */
+html:root[data-theme] main section.hx-hasvideo .hx-scrim{
+  background:radial-gradient(ellipse 72% 90% at 50% 50%,rgba(6,24,36,.72) 0%,rgba(6,24,36,.46) 55%,rgba(6,24,36,.12) 100%) !important; z-index:-2; }
+html:root[data-theme] main section.hx-hasvideo .hx-bgvideo{ opacity:1; z-index:-3; }
+html:root[data-theme] main section.hx-hasvideo{ background-image:none !important; }
+html:root[data-theme] main section.hx-hasvideo span,
+html:root[data-theme] main section.hx-hasvideo :is(p,li,label,.hopn-cms-lead){ color:#E3EEF3 !important; }
+html:root[data-theme] main section.hx-hasvideo :is(h1,h2,h3){ color:#fff !important; -webkit-text-fill-color:#fff !important; text-shadow:0 2px 26px rgba(0,0,0,.38); }
+html:root[data-theme] main section.hx-hasvideo h1 span{ color:#fff !important; -webkit-text-fill-color:#fff !important; }
+html:root[data-theme] main section.hx-hasvideo h1 span[style*="color"],
+html:root[data-theme] main section.hx-hasvideo h2 span[style*="color"]{ color:#9FE0F2 !important; -webkit-text-fill-color:#9FE0F2 !important; }
+html:root[data-theme] main section.hx-hasvideo span[style*="letter-spacing"]{ color:#BFEAF6 !important; }
+html:root[data-theme] main section.hx-hasvideo .hopn-cms-crumbs, html:root[data-theme] main section.hx-hasvideo .hopn-cms-crumbs a{ color:#D3E6EE !important; }
+html:root[data-theme] main section.hx-hasvideo a[class*="outline"], html:root[data-theme] main section.hx-hasvideo a[class*="secondary"], html:root[data-theme] main section.hx-hasvideo a[class*="ghost"]{
+  color:#fff !important; border-color:rgba(255,255,255,.55) !important; background:rgba(255,255,255,.10) !important; }
+
+/* homepage / about sections with a video behind them */
+html:root[data-theme] .hopn-homepage section.hx-vidsec{ background:#071624 !important; background-image:none !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec > .hx-scrim{ z-index:-2;
+  background:linear-gradient(180deg,rgba(6,22,34,.74) 0%,rgba(6,22,34,.50) 45%,rgba(6,22,34,.74) 100%) !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec > .hx-bgvideo{ opacity:1; z-index:-3; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead :is(h2,h3){ color:#fff !important; -webkit-text-fill-color:#fff !important; text-shadow:0 2px 24px rgba(0,0,0,.4); }
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead p{ color:#E3EEF3 !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead span{ color:#BFEAF6 !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead a[class*="outline"]{ color:#fff !important; border-color:rgba(255,255,255,.55) !important; background:rgba(255,255,255,.10) !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec > .container-shell > a[class*="hopn-btn"]{ color:#fff !important; }
+
+/* ---------- people cards (About) ---------- */
+.hx-people{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; }
+.hx-person{ border-radius:22px; overflow:hidden; background:var(--hx-card); border:1px solid var(--hx-line); box-shadow:var(--hx-shadow); transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s, border-color .3s; }
+.hx-person:hover{ transform:translateY(-6px); box-shadow:var(--hx-shadow-hover); border-color:var(--hx-accent); }
+.hx-person-photo{ aspect-ratio:4/4.2; display:grid; place-items:center; overflow:hidden; background:linear-gradient(135deg,#0C2F40,#1F6585); }
+.hx-person-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; transition:transform .9s cubic-bezier(.16,1,.3,1); }
+.hx-person:hover .hx-person-photo img{ transform:scale(1.05); }
+.hx-initial{ font-size:88px; font-weight:800; color:rgba(255,255,255,.92); letter-spacing:-2px; }
+.hx-person-body{ padding:24px 26px 28px; }
+html:root[data-theme] .hopn-homepage .hx-person h3{ color:var(--hx-ink) !important; font-size:22px; font-weight:750 !important; margin:0 0 4px; letter-spacing:-.01em; }
+html:root[data-theme] .hopn-homepage .hx-person .hx-role{ color:var(--hx-accent) !important; font-size:14px; font-weight:650; margin:0 0 10px; }
+html:root[data-theme] .hopn-homepage .hx-person .hx-bio{ color:var(--hx-mute) !important; font-size:14.5px; line-height:1.7; margin:0 0 14px; }
+html:root[data-theme] .hopn-homepage .hx-person a.hx-more{ color:var(--hx-accent) !important; text-decoration:none; font-weight:700; font-size:13.5px; }
+@media (max-width:1080px){ .hx-people{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:640px){ .hx-people{ grid-template-columns:1fr; } }
+
+/* ---------- pages created in the admin panel (CMS) get the same look ---------- */
+.hopn-cms-panel, .hopn-cms-card, .hopn-cms-cta, .hopn-cms-facts{ border-radius:20px !important; box-shadow:var(--hx-shadow); }
+.hopn-cms-card{ position:relative; overflow:hidden; transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s, border-color .3s; }
+.hopn-cms-card::before{ content:""; position:absolute; left:0; right:0; top:0; height:4px; background:linear-gradient(90deg,var(--hx-c1),var(--hx-c2),var(--hx-c3)); transform:scaleX(.25); transform-origin:left; transition:transform .55s cubic-bezier(.16,1,.3,1); }
+a.hopn-cms-card:hover, .hopn-cms-card:hover{ transform:translateY(-5px); box-shadow:var(--hx-shadow-hover); }
+.hopn-cms-card:hover::before{ transform:scaleX(1); }
+.hopn-cms figure img{ border-radius:20px !important; box-shadow:var(--hx-shadow); }
+.hopn-cms-head{ padding:96px 0 64px !important; }
+.hopn-cms-btn{ border-radius:12px !important; box-shadow:0 12px 26px -12px rgba(29,92,123,.75); transition:transform .3s, box-shadow .3s; }
+.hopn-cms-btn:hover{ transform:translateY(-3px); }
+
+/* buttons/links on top of footage: must beat the theme's "section a:not(...)" colour rule */
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead a[class*="outline"]:not(#hx),
+html:root[data-theme] main section.hx-hasvideo a[class*="outline"]:not(#hx),
+html:root[data-theme] main section.hx-hasvideo a[class*="secondary"]:not(#hx),
+html:root[data-theme] main section.hx-hasvideo a[class*="ghost"]:not(#hx){
+  color:#fff !important; border-color:rgba(255,255,255,.6) !important; background:rgba(255,255,255,.12) !important; }
+html:root[data-theme] .hopn-homepage section.hx-vidsec .hx-vidhead p a:not(#hx){ color:#9FE0F2 !important; }

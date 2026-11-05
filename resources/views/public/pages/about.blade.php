@@ -75,48 +75,45 @@
 
 {{-- TEAM --}}
 @if($teamMembers->count() > 0)
-<section style="padding:100px 0; background:#050A14;">
+<section class="hx-sec">
     <div class="container-shell">
-        <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
-                @if($lang==='ar') فريقنا @elseif($lang==='de') Unser Team @else Our Team @endif
-            </span>
-            <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
-                @if($lang==='ar') تعرف على الفريق @elseif($lang==='de') Das Team @else Meet the Team @endif
-            </h2>
-            <p style="color:#CBD5E1; max-width:500px; margin:0 auto; font-size:17px; line-height:1.7;">
+        <div class="hx-head hx-split hopn-reveal">
+            <div>
+                <div class="hx-eyebrow"><span>@if($lang==='ar') فريقنا @elseif($lang==='de') Unser Team @else Our Team @endif</span></div>
+                <h2 class="hx-h2">@if($lang==='ar') تعرف على الفريق @elseif($lang==='de') Das Team @else Meet the Team @endif</h2>
+            </div>
+            <p class="hx-sub">
                 @if($lang==='ar') خبراء في الذكاء الاصطناعي والروبوتيكا والبيانات والابتكار الرقمي
                 @elseif($lang==='de') Experten für KI, Robotik, Daten und digitale Innovation
                 @else Experts in AI, robotics, data, and digital innovation @endif
             </p>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;">
+        <div class="hx-people hopn-reveal">
             @foreach($teamMembers as $member)
-            @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
-            <div class="hopn-lift-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-align:center; transition:all 0.25s; position:relative; overflow:hidden;">
-                @if($member->photo)
-                <img loading="lazy" decoding="async" src="{{ $member->photo }}" alt="{{ $member->name }}"
-                     style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto 16px; display:block; border:2px solid {{ $c }}30;">
-                @else
-                <div style="width:80px; height:80px; border-radius:50%; background:{{ $c }}15; border:2px solid {{ $c }}30; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; font-weight:900; color:{{ $c }};">
-                    {{ strtoupper(substr($member->name,0,1)) }}
+            <article class="hx-person">
+                <div class="hx-person-photo">
+                    @if($member->photo)
+                    <img loading="lazy" decoding="async" src="{{ $member->photo }}" alt="{{ $member->name }}">
+                    @else
+                    <span class="hx-initial" aria-hidden="true">{{ strtoupper(substr($member->name,0,1)) }}</span>
+                    @endif
                 </div>
-                @endif
-                <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:4px;">{{ $member->name }}</h3>
-                <p style="font-size:13px; color:{{ $c }}; margin-bottom:8px; font-weight:600;">
-                    @if($lang==='ar'&&!empty($member->role_ar)) {{ $member->role_ar }}
-                    @elseif($lang==='de'&&!empty($member->role_de)) {{ $member->role_de }}
-                    @else {{ $member->role_en ?? '' }} @endif
-                </p>
-                @php $bio=$lang==='ar'&&!empty($member->bio_ar)?$member->bio_ar:($lang==='de'&&!empty($member->bio_de)?$member->bio_de:($member->bio_en??'')); @endphp
-                @if($bio)
-                <p style="font-size:12px; color:#94A3B8; line-height:1.6;">{{ Str::limit($bio,80) }}</p>
-                @endif
-                @if($member->linkedin)
-                <a href="{{ $member->linkedin }}" target="_blank"
-                   class="hopn-bg-brighten" style="display:inline-block; margin-top:12px; font-size:12px; font-weight:600; color:{{ $c }}; text-decoration:none; border:1px solid {{ $c }}30; border-radius:6px; padding:4px 12px;">LinkedIn →</a>
-                @endif
-            </div>
+                <div class="hx-person-body">
+                    <h3>{{ $member->name }}</h3>
+                    <p class="hx-role">
+                        @if($lang==='ar'&&!empty($member->role_ar)) {{ $member->role_ar }}
+                        @elseif($lang==='de'&&!empty($member->role_de)) {{ $member->role_de }}
+                        @else {{ $member->role_en ?? '' }} @endif
+                    </p>
+                    @php $bio=$lang==='ar'&&!empty($member->bio_ar)?$member->bio_ar:($lang==='de'&&!empty($member->bio_de)?$member->bio_de:($member->bio_en??'')); @endphp
+                    @if($bio)
+                    <p class="hx-bio">{{ Str::limit($bio,120) }}</p>
+                    @endif
+                    @if($member->linkedin)
+                    <a href="{{ $member->linkedin }}" target="_blank" rel="noopener" class="hx-more">LinkedIn →</a>
+                    @endif
+                </div>
+            </article>
             @endforeach
         </div>
     </div>
@@ -266,28 +263,27 @@
 @endif
 
 {{-- CTA --}}
-<section style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
-    <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
-        <h2 style="font-size:clamp(28px,4vw,52px); font-weight:900; color:white; letter-spacing:-1px; margin-bottom:16px;">
+<section class="hx-host hx-vidsec" style="padding:110px 0; position:relative; overflow:hidden;">
+    <video class="hx-bgvideo" autoplay muted loop playsinline preload="auto" poster="/videos/partners-meeting.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="/videos/partners-meeting.mp4" type="video/mp4"></video>
+    <div class="hx-scrim" aria-hidden="true"></div>
+    <div class="container-shell hopn-reveal hx-vidhead" style="position:relative; z-index:10; text-align:center;">
+        <h2 style="font-size:clamp(30px,4.4vw,56px); font-weight:800; letter-spacing:-1px; margin:0 0 16px;">
             @if($lang==='ar') هل تريد التعاون مع HOPn؟ @elseif($lang==='de') Mit HOPn zusammenarbeiten? @else Want to Partner with HOPn? @endif
         </h2>
-        <p style="color:#CBD5E1; font-size:17px; max-width:500px; margin:0 auto 40px; line-height:1.7;">
+        <p style="font-size:18px; max-width:540px; margin:0 auto 36px; line-height:1.7;">
             @if($lang==='ar') تواصل معنا لمناقشة فرص الشراكة والتعاون.
             @elseif($lang==='de') Kontaktieren Sie uns für Partnerschaftsmöglichkeiten.
             @else Get in touch to discuss partnership, research, or innovation opportunities. @endif
         </p>
         @if(!empty($siteSettings['contact_email']))
-        <p style="margin:0 0 28px; font-size:15px;">
-            <a href="mailto:{{ $siteSettings['contact_email'] }}" style="font-weight:700; color:#8FB8CC; text-decoration:underline;">{{ $siteSettings['contact_email'] }}</a>
-        </p>
+        <p style="margin:0 0 28px; font-size:15px;"><a href="mailto:{{ $siteSettings['contact_email'] }}" style="font-weight:700; color:#9FE0F2; text-decoration:underline;">{{ $siteSettings['contact_email'] }}</a></p>
         @endif
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
-                @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
+            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-solid hopn-btn-primary">
+                @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
-            <a href="{{ route('partners.index', ['lang'=>$lang]) }}"
-               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+            <a href="{{ route('partners.index', ['lang'=>$lang]) }}" class="hx-btn hx-btn-ghost hopn-btn-secondary">
                 @if($lang==='ar') عرض الشركاء @elseif($lang==='de') Partner ansehen @else View Partners @endif
             </a>
         </div>

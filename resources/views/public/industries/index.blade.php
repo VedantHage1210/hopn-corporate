@@ -40,17 +40,16 @@
             @php $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6]; @endphp
             <a href="{{ route('industries.show', ['lang'=>$lang,'slug'=>$industry->slug]) }}" class="hopn-lift-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; text-decoration:none; position:relative; overflow:hidden;">
-                <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                    @if($industry->image_url)
-                        <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}"
-                             style="width:132px; height:118px; border-radius:12px; object-fit:cover; flex-shrink:0; background:#FFFFFF;">
-                    @endif
-                    <h3 style="font-size:18px; font-weight:700; color:white; line-height:1.3; margin:0;">
-                        @if($lang==='de'&&$industry->name_de) {{ $industry->name_de }}
-                        @elseif($lang==='ar'&&$industry->name_ar) {{ $industry->name_ar }}
-                        @else {{ $industry->name }} @endif
-                    </h3>
+                @if($industry->image_url)
+                <div class="hx-art" style="height:230px; margin:-28px -28px 20px;">
+                    <img loading="lazy" decoding="async" src="{{ $industry->image_url }}" alt="{{ $industry->name }}">
                 </div>
+                @endif
+                <h3 style="font-size:20px; font-weight:700; color:white; line-height:1.3; margin:0 0 12px;">
+                    @if($lang==='de'&&$industry->name_de) {{ $industry->name_de }}
+                    @elseif($lang==='ar'&&$industry->name_ar) {{ $industry->name_ar }}
+                    @else {{ $industry->name }} @endif
+                </h3>
                 <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:20px;">
                     @if($lang==='de'&&$industry->description_de) {{ Str::limit($industry->description_de,100) }}
                     @elseif($lang==='ar'&&$industry->description_ar) {{ Str::limit($industry->description_ar,100) }}

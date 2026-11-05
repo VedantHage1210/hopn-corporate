@@ -1,7 +1,7 @@
 /* HOPn polish layer. Progressive enhancement only: the site works without it.
    1. Image banners on listing cards that have no image (never repeats an image on a page).
    2. Soft animated background layers on sections.
-   3. Page-specific background videos (always playing, with a pause control).
+   3. Page-specific background videos (always playing).
    4. Pointer tilt on cards (fine pointers only). */
 (function () {
   'use strict';
@@ -185,6 +185,11 @@
       if (secHero && !secHero.querySelector('.hx-bgvideo')) {
         var name = null;
         HERO_VIDEO.forEach(function (h) { if (!name && h[0].test(path)) { name = h[1]; } });
+        if (!name && !P(/^\/?(en|de|ar)?\/?$/) && !P(/\/(contact|legal|dashboard|profile|careers\/track|newsletter)/)) {
+          var GEN = ['meeting-room', 'office-wide', 'consulting-team', 'team-whiteboard', 'coworking', 'data-dashboard', 'partners-meeting', 'lecture-hall'];
+          var hsh = 0; for (var q = 0; q < path.length; q++) { hsh = (hsh * 31 + path.charCodeAt(q)) >>> 0; }
+          name = GEN[hsh % GEN.length];
+        }
         if (name) {
           var v = document.createElement('video');
           v.className = 'hx-bgvideo'; v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
@@ -203,21 +208,6 @@
           es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } } else { v.pause(); } });
         }, { rootMargin: '200px 0px' });
         Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
-      }
-      if (vids.length && !document.querySelector('.hx-vtoggle')) {
-        var b = document.createElement('button'); b.type = 'button'; b.className = 'hx-vtoggle';
-        var paused = false;
-        var paint = function () {
-          b.setAttribute('aria-label', paused ? 'Play background videos' : 'Pause background videos');
-          b.innerHTML = paused ? '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
-                               : '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
-        };
-        b.addEventListener('click', function () {
-          paused = !paused;
-          Array.prototype.forEach.call(document.querySelectorAll('video.hx-bgvideo'), function (v) { if (paused) { v.pause(); } else { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } } });
-          paint();
-        });
-        paint(); document.body.appendChild(b);
       }
     }
 
@@ -252,6 +242,7 @@
     }
 
     function run() {
+      try { var mn = document.querySelector('main'); if (mn && !document.querySelector('.hopn-homepage')) { mn.classList.add('hopn-homepage'); } } catch (e) {}
       try { enhanceSections(); } catch (e) {}
       try { enhanceVideos(); } catch (e) {}
       try { markGrids(); } catch (e) {}

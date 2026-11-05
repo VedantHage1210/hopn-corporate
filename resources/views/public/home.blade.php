@@ -646,10 +646,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 </section>
 
 {{-- 2. STRATEGY > BUILD > SCALE --}}
-<section class="homepage-secondary hx-host" style="padding:100px 0; background:#050A14;">
+<section class="homepage-secondary hx-host hx-vidsec" style="padding:100px 0; background:#050A14;">
     {!! $hxVideo('team-whiteboard') !!}
     <div class="container-shell">
-        <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
+        <div class="hopn-reveal hx-vidhead" style="text-align:center; margin-bottom:64px;">
             <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#4F6EF7; display:block; margin-bottom:16px;">
                 @if($lang==='ar') كيف نعمل @elseif($lang==='de') Wie wir arbeiten @else How We Work @endif
             </span>
@@ -1348,10 +1348,10 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 @endif
 
 {{-- 14. TALENT --}}
-<section class="homepage-secondary hx-host" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
+<section class="homepage-secondary hx-host hx-vidsec" style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     {!! $hxVideo('talent-hiring') !!}
     <div class="container-shell" style="position:relative; z-index:10;">
-        <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
+        <div class="hopn-reveal hx-vidhead" style="text-align:center; margin-bottom:64px;">
             <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
                 @if($lang==='ar') المواهب والتوظيف @elseif($lang==='de') Talente & Einstellung @else Talent & Hiring @endif
             </span>
@@ -1394,9 +1394,9 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 </section>
 
 {{-- 15. FINAL CTA --}}
-<section class="hx-host" style="padding:120px 0; background:#030712; position:relative; overflow:hidden;">
+<section class="hx-host hx-vidsec" style="padding:120px 0; background:#030712; position:relative; overflow:hidden;">
     {!! $hxVideo('consulting-team') !!}
-    <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
+    <div class="container-shell hopn-reveal hx-vidhead" style="position:relative; z-index:10; text-align:center;">
         <h2 style="font-size:clamp(32px,5vw,64px); font-weight:900; color:white; letter-spacing:-2px; margin-bottom:20px; line-height:1.1;">
             @if($lang==='ar') هل أنت مستعد لتنسيق اختراقك التالي؟
             @elseif($lang==='de') Bereit, Ihren nächsten Durchbruch zu orchestrieren?

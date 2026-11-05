@@ -123,15 +123,13 @@
                 $sIndustry = $lang==='ar' && $startup->industry_ar ? $startup->industry_ar : ($lang==='de' && $startup->industry_de ? $startup->industry_de : $startup->industry);
                 $sDesc = $lang==='ar' && $startup->description_ar ? $startup->description_ar : ($lang==='de' && $startup->description_de ? $startup->description_de : $startup->description);
             @endphp
-            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column;">
+            <div class="hopn-lift-card" style="position:relative; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:28px; transition:all 0.25s; overflow:hidden; display:flex; flex-direction:column; gap:14px;">
                 @if($startup->logo)
-                <div style="height:180px; background:#FFFFFF; overflow:hidden;"><img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $sName }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-                @else
-                <div style="height:140px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/startups.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
+                <div class="hx-art" style="height:230px; margin:-28px -28px 6px;">
+                    <img loading="lazy" decoding="async" src="{{ $startup->logo }}" alt="{{ $sName }}">
+                </div>
                 @endif
-                <div style="padding:28px; display:flex; flex-direction:column; gap:14px; flex:1;">
                 <div style="display:flex; align-items:center; gap:14px;">
-                    <span aria-hidden="true" style="width:10px; height:10px; border-radius:50%; background:#8FB8CC;"></span>
                     <div>
                         <h3 style="font-size:16px; font-weight:700; color:white; margin:0;">{{ $sName }}</h3>
                         @if($sIndustry)
@@ -152,7 +150,6 @@
                         @if($lang==='ar') زيارة @elseif($lang==='de') Besuchen @else Visit @endif →
                     </a>
                     @endif
-                </div>
                 </div>
             </div>
             @endforeach
