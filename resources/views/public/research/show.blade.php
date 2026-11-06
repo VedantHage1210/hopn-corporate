@@ -27,7 +27,7 @@
         @endif
         @if($publication->project)<div style="color:#4F6EF7; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;">{{ $publication->project }}</div>@endif
         <h1 style="color:white; font-size:clamp(30px,5vw,58px); line-height:1.1; margin:0 0 18px;">{{ $title }}</h1>
-        <p style="color:#94A3B8; font-size:14px;">{{ $publication->authors }}{{ $publication->authors && $publication->published_on ? ' · ' : '' }}{{ $publication->published_on?->format('F Y') }}</p>
+        <p style="color:#94A3B8; font-size:14px;">{{ $publication->authors }}{{ $publication->authors && $publication->published_on ? ' · ' : '' }}{{ $publication->published_on?->locale(request()->route('lang','en'))->translatedFormat('F Y') }}</p>
         @if($summary)<div style="margin-top:30px; color:#CBD5E1; font-size:17px; line-height:1.9; white-space:pre-line;">{{ $summary }}</div>@endif
         <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;">
             @if($publication->pdf_url)<a href="{{ $publication->pdf_url }}" target="_blank" rel="noopener" style="padding:12px 18px; background:#4F6EF7; color:white; border-radius:8px; text-decoration:none; font-weight:700;">Download PDF</a>@endif

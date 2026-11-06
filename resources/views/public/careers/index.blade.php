@@ -119,7 +119,7 @@
         <div style="text-align:center; padding:80px; color:#64748B;">
             <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">C</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
-                @if($lang==='ar') لا توجد وظائف متاحة حالياً @elseif($lang==='de') Derzeit keine offenen Stellen @else No Open Positions Right Now @endif
+                <x-coming-soon-text />
             </h3>
             <p style="font-size:14px; color:#64748B;">
                 @if($lang==='ar') تحقق مرة أخرى قريباً @elseif($lang==='de') Schauen Sie bald wieder vorbei @else Check back soon! @endif
@@ -144,7 +144,7 @@
             @elseif($lang==='de') Senden Sie uns Ihren Lebenslauf für zukünftige Möglichkeiten.
             @else Send us your CV and we'll keep you in mind for future opportunities. @endif
         </p>
-        <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
+        <a href="{{ route('careers.apply.general', ['lang'=>$lang]) }}"
            class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') أرسل سيرتك الذاتية @elseif($lang==='de') Lebenslauf senden @else Send Your CV @endif →
         </a>

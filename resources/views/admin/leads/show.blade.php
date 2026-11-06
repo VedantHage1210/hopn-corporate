@@ -49,7 +49,7 @@
             @if($lead->message)
             <div class="card-panel p-6">
                 <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Message</h2>
-                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{{ $lead->message }}</p>
+                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{!! preg_replace('~(https?://[^\s<]+)~', '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-indigo-300 underline hover:text-indigo-200">$1</a>', e($lead->message)) !!}</p>
             </div>
             @endif
 

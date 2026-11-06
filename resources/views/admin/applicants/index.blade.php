@@ -11,6 +11,11 @@
                 <option value="{{ $key }}" @selected(request('status') === $key)>{{ $label }}</option>
             @endforeach
         </select>
+        <select name="kind" class="rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+            <option value="">All Applications</option>
+            <option value="general" @selected(request('kind') === 'general')>General (Send Your CV)</option>
+            <option value="job" @selected(request('kind') === 'job')>Job-specific</option>
+        </select>
         <button type="submit" class="btn-primary text-sm">Filter</button>
         <a href="{{ route('admin.applicants.index') }}" class="rounded border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:text-white">Reset</a>
     </form>
@@ -40,9 +45,7 @@
                         'rejected'  => 'bg-rose-900 text-rose-200',
                     ];
                     // Direct Cloudinary URL — NO fl_attachment (raw files don't support it)
-                    $cvUrl = $applicant->cv_path && str_starts_with($applicant->cv_path, 'http')
-                        ? $applicant->cv_path
-                        : null;
+                    $cvUrl = $applicant->cv_url;
                 @endphp
                 <tr class="border-t border-slate-800 hover:bg-slate-800/30">
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->id }}</td>
@@ -54,7 +57,15 @@
                                class="text-xs text-indigo-400 hover:text-indigo-300">LinkedIn →</a>
                         @endif
                     </td>
-                    <td class="px-3 py-3 text-slate-400">{{ $applicant->job?->title ?? '—' }}</td>
+                    <td class="px-3 py-3 text-slate-400">
+                        @if($applicant->is_general)
+                            <span class="rounded bg-amber-900 px-2 py-0.5 text-xs font-semibold text-amber-200">General application</span>
+                            @if($applicant->interest)<div class="mt-1 text-xs">{{ $applicant->interest }}</div>@endif
+                            @if($applicant->experience)<div class="text-xs text-slate-500">{{ $applicant->experience }} yrs</div>@endif
+                        @else
+                            {{ $applicant->job?->title ?? '—' }}
+                        @endif
+                    </td>
                     <td class="px-3 py-3 text-slate-400">{{ $applicant->phone ?? '—' }}</td>
                     <td class="px-3 py-3">
                         <span class="rounded-full px-2 py-0.5 text-xs font-semibold {{ $colors[$applicant->status] ?? 'bg-slate-700 text-slate-200' }}">

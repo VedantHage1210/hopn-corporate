@@ -13,8 +13,8 @@
                 ['en'=>'AI Solutions',             'de'=>'KI-Lösungen',             'ar'=>'حلول الذكاء الاصطناعي',   'route'=>'services.index', 'params'=>['category'=>'ai-solutions']],
                 ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'digital-twins.index'],
                 ['en'=>'Book an Expert',           'de'=>'Experten buchen',          'ar'=>'احجز خبيرًا',              'route'=>'consulting.index'],
-                ['en'=>'Engineering as a Service', 'de'=>'Engineering as a Service', 'ar'=>'الهندسة كخدمة',            'route'=>'engineering.index'],
-                ['en'=>'Workshops & Training',     'de'=>'Workshops & Training',     'ar'=>'ورش العمل',               'route'=>'workshops.index'],
+                ['en'=>'Engineering as a Service', 'de'=>'Engineering als Service', 'ar'=>'الهندسة كخدمة',            'route'=>'engineering.index'],
+                ['en'=>'Workshops & Training',     'de'=>'Workshops & Schulungen',   'ar'=>'ورش العمل والتدريب',      'route'=>'workshops.index'],
             ],
         ],
         [
@@ -41,10 +41,9 @@
         ],
         [
             'key'=>'events',
-            'label_en'=>'Events', 'label_de'=>'Events', 'label_ar'=>'الفعاليات',
+            'label_en'=>'Events', 'label_de'=>'Veranstaltungen', 'label_ar'=>'الفعاليات',
             'items'=>[
-                ['en'=>'Events',            'de'=>'Events',             'ar'=>'الفعاليات',         'route'=>'events.index'],
-                ['en'=>'Workshops & Training','de'=>'Workshops & Training','ar'=>'ورش العمل',         'route'=>'workshops.index'],
+                ['en'=>'Events',            'de'=>'Veranstaltungen',    'ar'=>'الفعاليات',         'route'=>'events.index'],
                 ['en'=>'Partners',          'de'=>'Partner',            'ar'=>'الشركاء',           'route'=>'partners.index'],
             ],
         ],
@@ -149,7 +148,7 @@
                     </svg>
                 </button>
                 <div class="hopn-dropdown">
-                    <div class="hopn-dropdown-header">{{ $group['label_en'] }}</div>
+                    <div class="hopn-dropdown-header">{{ $activeLang==='ar'?$group['label_ar']:($activeLang==='de'?$group['label_de']:$group['label_en']) }}</div>
                     @foreach($group['items'] as $item)
                     <a href="{{ isset($item['href']) ? $item['href'] : route($item['route'], array_merge(['lang'=>$lang], $item['params'] ?? [])) }}">
                         {{ $activeLang==='ar'?$item['ar']:($activeLang==='de'?$item['de']:$item['en']) }}
@@ -254,7 +253,7 @@
                 <button type="button" @click="mLangOpen=!mLangOpen"
                         style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:none; cursor:pointer; padding:0; color:#CBD5E1; font-size:13px; font-weight:600;">
                     <span style="display:flex; align-items:center; gap:8px;">
-                        <span style="font-size:12px; color:#94A3B8;">Language:</span>
+                        <span style="font-size:12px; color:#94A3B8;">{{ $activeLang==='ar' ? 'اللغة:' : ($activeLang==='de' ? 'Sprache:' : 'Language:') }}</span>
                         <span style="color:white;">{{ strtoupper($activeLang) }}</span>
                     </span>
                     <svg :class="mLangOpen ? 'rotate-180' : ''" style="width:12px;height:12px;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>

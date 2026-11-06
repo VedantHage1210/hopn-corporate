@@ -158,7 +158,7 @@
         <div style="text-align:center; padding:80px; color:#64748B;">
             <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">V</div>
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
-                @if($lang==='ar') الشركات الناشئة قادمة قريباً @elseif($lang==='de') Startups folgen in Kürze @else Startups Coming Soon @endif
+                <x-coming-soon-text />
             </h3>
         </div>
         @endif
@@ -220,7 +220,7 @@
 
         <div style="text-align:center; margin-top:40px;">
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-               class="hopn-bg-brighten" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); color:#A78BFA; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+               class="hopn-bg-brighten hopn-btn-secondary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1.5px solid rgba(139,92,246,0.65); color:#C4B5FD; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') عرض جميع البرامج @elseif($lang==='de') Alle Programme anzeigen @else View All Programs @endif →
             </a>
         </div>
@@ -303,11 +303,11 @@
                                 </label>
                                 <select id="hopn-stage-699be5" name="stage"
                                         style="width:100%; padding:12px 16px; background:#0D1425; border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;">
-                                    <option value="idea">Idea</option>
+                                    <option value="idea">{{ $lang==='ar'?'فكرة':($lang==='de'?'Idee':'Idea') }}</option>
                                     <option value="mvp">MVP</option>
                                     <option value="seed">Seed</option>
                                     <option value="series-a">Series A</option>
-                                    <option value="growth">Growth</option>
+                                    <option value="growth">{{ $lang==='ar'?'النمو':($lang==='de'?'Wachstum':'Growth') }}</option>
                                 </select>
                             </div>
                         </div>

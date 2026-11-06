@@ -28,8 +28,8 @@
             </a>
             @endif
             @if($page->t('cta2_label', $lang))
-            <a href="{{ $page->cta2_url ?: route('contact.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; gap:6px; padding:13px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); color:#CBD5E1; font-weight:600; font-size:14px; text-decoration:none;">
+            <a href="{{ $page->cta2_url ?: route('contact.index', ['lang'=>$lang]) }}" class="hopn-btn-secondary"
+               style="display:inline-flex; align-items:center; gap:6px; padding:13px 28px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.75); background:rgba(255,255,255,0.14); color:#fff; font-weight:600; font-size:14px; text-decoration:none;">
                 {{ $page->t('cta2_label', $lang) }} →
             </a>
             @endif
@@ -135,8 +135,8 @@
             </a>
             @endif
             @if($page->t('final_cta2_label', $lang))
-            <a href="{{ $page->final_cta2_url ?: route('contact.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; align-items:center; padding:13px 28px; color:#CBD5E1; font-weight:600; font-size:14px; text-decoration:none;">
+            <a href="{{ $page->final_cta2_url ?: route('contact.index', ['lang'=>$lang]) }}" class="hopn-btn-secondary"
+               style="display:inline-flex; align-items:center; padding:13px 28px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.75); background:rgba(255,255,255,0.14); color:#fff; font-weight:600; font-size:14px; text-decoration:none;">
                 {{ $page->t('final_cta2_label', $lang) }}
             </a>
             @endif

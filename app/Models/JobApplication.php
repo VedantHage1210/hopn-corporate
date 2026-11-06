@@ -21,11 +21,31 @@ class JobApplication extends Model
         'notes',
         'reviewed_at',
         'tracking_token',
+        'is_general',
+        'experience',
+        'interest',
+        'locale',
     ];
 
     protected $casts = [
         'reviewed_at' => 'datetime',
+        'is_general'  => 'boolean',
     ];
+
+    /**
+     * Downloadable CV link: Cloudinary URL as-is, or local public-disk file.
+     */
+    public function getCvUrlAttribute(): ?string
+    {
+        $path = $this->cv_path;
+        if (!$path) {
+            return null;
+        }
+        if (str_starts_with($path, 'http')) {
+            return $path;
+        }
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($path);
+    }
 
     public function job()
     {

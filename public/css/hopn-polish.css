@@ -57,8 +57,8 @@ html:root[data-theme] .hopn-homepage .hx-btn svg{ width:16px; height:16px; trans
 html:root[data-theme] .hopn-homepage .hx-btn:hover svg{ transform:translateX(4px); }
 html:root[data-theme] .hopn-homepage a.hx-btn-solid{ background:#fff !important; color:#0B3549 !important; box-shadow:0 10px 30px -10px rgba(0,0,0,.5); }
 html:root[data-theme] .hopn-homepage a.hx-btn-solid:hover{ transform:translateY(-3px); box-shadow:0 18px 36px -12px rgba(0,0,0,.55); }
-html:root[data-theme] .hopn-homepage a.hx-btn-ghost{ background:rgba(255,255,255,.06) !important; color:#fff !important; border:1px solid rgba(255,255,255,.35) !important; }
-html:root[data-theme] .hopn-homepage a.hx-btn-ghost:hover{ background:rgba(255,255,255,.14) !important; transform:translateY(-3px); }
+html:root[data-theme] .hopn-homepage a.hx-btn-ghost{ background:rgba(255,255,255,.18) !important; color:#fff !important; border:1.5px solid rgba(255,255,255,.75) !important; }
+html:root[data-theme] .hopn-homepage a.hx-btn-ghost:hover{ background:rgba(255,255,255,.28) !important; transform:translateY(-3px); }
 .hx-stats{ display:flex; flex-wrap:wrap; gap:0; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.05); border-radius:16px; overflow:hidden; width:fit-content; max-width:100%; }
 .hx-stats > div{ padding:18px 28px; border-inline-end:1px solid rgba(255,255,255,.12); }
 .hx-stats > div:last-child{ border-inline-end:0; }
@@ -412,7 +412,7 @@ html:root[data-theme] a.hopn-expert-book:focus-visible{ outline:3px solid #9FE0F
 .hx-about-hero .hx-bgvideo{ z-index:-3; }
 .hx-about-hero .hx-scrim{ z-index:-2; background:linear-gradient(90deg,rgba(6,26,39,.88) 0%,rgba(8,40,58,.58) 48%,rgba(10,58,82,.12) 100%); }
 [dir="rtl"] .hx-about-hero .hx-scrim{ transform:scaleX(-1); }
-.hx-about-hero .container-shell{ position:relative; z-index:2; padding:110px 0 90px; }
+.hx-about-hero .container-shell{ position:relative; z-index:2; padding:110px max(24px, env(safe-area-inset-left)) 90px; }
 html:root[data-theme] .hx-about-hero h1{ color:#fff !important; font-size:clamp(36px,5.4vw,70px); font-weight:800 !important; line-height:1.05; letter-spacing:-.03em; margin:0 0 22px; max-width:16ch; }
 html:root[data-theme] .hx-about-hero h1 span.hx-em{ color:#9FE0F2 !important; }
 html:root[data-theme] .hx-about-hero p.hx-lead{ color:#D3E6EE !important; font-size:clamp(16px,1.7vw,20px); line-height:1.7; max-width:58ch; margin:0 0 38px; }

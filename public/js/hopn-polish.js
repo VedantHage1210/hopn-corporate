@@ -68,7 +68,7 @@
       [/\/(newsroom|insights)/, 'panel-talk'], [/\/(services|solutions)/, 'meeting-room'], [/\/case-studies/, 'meeting-room'],
       [/\/industries/, 'hero-tech'], [/\/careers/, 'talent-hiring'], [/\/(about|team)/, 'about-team']
     ];
-    var NO_BANNER = P(/\/(training|programs|about|team)/);   /* these pages show only images uploaded in the admin panel */
+    var NO_BANNER = P(/\/(training|programs|about|team|security)/);   /* these pages show only images uploaded in the admin panel */
     var isPartners = P(/\/partners/);
 
     /* ---- unique image selection ---- */
@@ -182,7 +182,7 @@
       if (secHero && !secHero.querySelector('.hx-bgvideo')) {
         var name = null;
         HERO_VIDEO.forEach(function (h) { if (!name && h[0].test(path)) { name = h[1]; } });
-        if (!name && !P(/^\/?(en|de|ar)?\/?$/) && !P(/\/(contact|legal|dashboard|profile|careers\/track|newsletter)/)) {
+        if (!name && !P(/^\/?(en|de|ar)?\/?$/) && !P(/\/(contact|legal|security|dashboard|profile|careers\/track|newsletter)/)) {
           var GEN = ['meeting-room', 'office-wide', 'consulting-team', 'team-whiteboard', 'coworking', 'data-dashboard', 'partners-meeting', 'lecture-hall'];
           var hsh = 0; for (var q = 0; q < path.length; q++) { hsh = (hsh * 31 + path.charCodeAt(q)) >>> 0; }
           name = GEN[hsh % GEN.length];

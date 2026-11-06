@@ -66,7 +66,7 @@ $categoryColors = [
                         {{ $categoryLabels[$category] ?? ucfirst($category) }}
                     </span>
                     <div style="height:1px; flex:1; background:rgba(255,255,255,0.05);"></div>
-                    <span style="font-size:12px; color:#64748B; font-weight:600;">{{ $items->count() }} {{ $items->count()===1?'partner':'partners' }}</span>
+                    <span style="font-size:12px; color:#64748B; font-weight:600;">{{ $items->count() }} {{ $lang==='ar' ? ($items->count()===1?'شريك':'شركاء') : ($lang==='de' ? 'Partner' : ($items->count()===1?'partner':'partners')) }}</span>
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px;">
                     @foreach($items as $item)
@@ -101,7 +101,7 @@ $categoryColors = [
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
-                @if($lang==='ar') الشركاء قادمون قريباً @elseif($lang==='de') Partner folgen in Kürze @else Partners Coming Soon @endif
+                <x-coming-soon-text />
             </h3>
         </div>
         @endif

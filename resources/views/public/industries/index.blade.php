@@ -65,7 +65,7 @@
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
-                @if($lang==='ar') القطاعات قادمة قريباً @elseif($lang==='de') Branchen folgen @else Industries Coming Soon @endif
+                <x-coming-soon-text />
             </h3>
         </div>
         @endif

@@ -42,7 +42,7 @@
                 <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:6px;">{{ $pubTitle }}</h3>
                 @if($pub->authors || $pub->published_on)
                 <p style="font-size:12.5px; color:#64748B; margin-bottom:12px;">
-                    {{ $pub->authors }}{{ $pub->authors && $pub->published_on ? ' · ' : '' }}{{ $pub->published_on?->format('M Y') }}
+                    {{ $pub->authors }}{{ $pub->authors && $pub->published_on ? ' · ' : '' }}{{ $pub->published_on?->locale(request()->route('lang','en'))->translatedFormat('M Y') }}
                 </p>
                 @endif
                 @if(!empty($pubSummary))

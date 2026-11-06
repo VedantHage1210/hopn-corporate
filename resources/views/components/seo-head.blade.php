@@ -24,7 +24,7 @@
     deployment, and this automatically switches to noindex — no code change
     needed when promoting to production.
 --}}
-<meta name="robots" content="{{ (app()->environment('staging') || env('STAGING')) ? 'noindex, nofollow' : 'index, follow' }}">
+<meta name="robots" content="{{ config('hopn.staging.enabled') ? 'noindex, nofollow' : 'index, follow' }}">
 <link rel="canonical" href="{{ $pageUrl }}">
 
 {{-- Language --}}

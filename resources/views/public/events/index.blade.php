@@ -120,7 +120,7 @@
                         </span>
                         @if($event->date)
                         <span style="font-size:12px; color:#94A3B8; font-weight:500;">
-                            {{ $event->date->format('d M Y') }}
+                            {{ $event->date->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}
                         </span>
                         @endif
                     </div>
@@ -166,7 +166,7 @@
                     {{-- CTA --}}
                     <div style="margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05);">
                         @if($event->registration_open)
-                        <button onclick="openEventForm({{ $event->id }}, '{{ addslashes($title) }}', '{{ $event->type }}', '{{ $event->date ? $event->date->format('d M Y') : '' }}', '{{ addslashes($event->location ?? '') }}')"
+                        <button onclick="openEventForm({{ $event->id }}, '{{ addslashes($title) }}', '{{ $event->type }}', '{{ $event->date ? $event->date->locale(request()->route('lang','en'))->translatedFormat('d M Y') : '' }}', '{{ addslashes($event->location ?? '') }}')"
                                 class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:8px; background:{{ $c }}; color:white; font-size:13px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                             @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
                         </button>
@@ -183,7 +183,7 @@
         @else
         <div style="text-align:center; padding:100px 40px; color:#64748B;">
             <h2 style="font-size:24px; font-weight:800; color:#94A3B8; margin-bottom:12px;">
-                @if($lang==='ar') لا توجد فعاليات قادمة @elseif($lang==='de') Keine bevorstehenden Events @else No Upcoming Events @endif
+                <x-coming-soon-text />
             </h2>
             <p style="font-size:16px; color:#64748B; max-width:400px; margin:0 auto;">
                 @if($lang==='ar') تحقق مرة أخرى قريباً للاطلاع على الفعاليات القادمة.

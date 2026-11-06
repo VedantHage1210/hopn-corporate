@@ -1207,7 +1207,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <div style="padding:24px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
                         <span style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:{{ $c }}15; color:{{ $c }}; border:1px solid {{ $c }}30; text-transform:uppercase;">{{ ucfirst($event->type) }}</span>
-                        @if($event->date)<span style="font-size:12px; color:#94A3B8;">{{ $event->date->format('d M Y') }}</span>@endif
+                        @if($event->date)<span style="font-size:12px; color:#94A3B8;">{{ $event->date->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</span>@endif
                     </div>
                     <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $event->title }}</h3>
                     @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">{{ $event->location }}</div>@endif
@@ -1268,7 +1268,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 <p style="font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px;">{{ Str::limit($post->excerpt,100) }}</p>
                 @endif
                 <div style="display:flex; align-items:center; justify-content:space-between;">
-                    <span style="font-size:12px; color:#64748B;">{{ $post->published_at?->format('d M Y') }}</span>
+                    <span style="font-size:12px; color:#64748B;">{{ $post->published_at?->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</span>
                     <span style="font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read more @endif →
                     </span>

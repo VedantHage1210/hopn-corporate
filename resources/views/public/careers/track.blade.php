@@ -67,13 +67,13 @@
                             <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') تاريخ التقديم @elseif($lang==='de') Bewerbungsdatum @else Applied On @endif
                             </p>
-                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->created_at->format('d M Y') }}</p>
+                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->created_at->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</p>
                         </div>
                         <div>
                             <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748B; margin-bottom:6px;">
                                 @if($lang==='ar') آخر تحديث @elseif($lang==='de') Zuletzt aktualisiert @else Last Updated @endif
                             </p>
-                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->updated_at->format('d M Y') }}</p>
+                            <p style="font-size:15px; color:#CBD5E1; margin:0;">{{ $application->updated_at->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</p>
                         </div>
                     </div>
                 </div>

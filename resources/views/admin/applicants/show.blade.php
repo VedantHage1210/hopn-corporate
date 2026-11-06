@@ -6,9 +6,7 @@
  
     @php
         // Direct Cloudinary URL — NO fl_attachment (not supported for raw/pdf files)
-        $cvUrl = $applicant->cv_path && str_starts_with($applicant->cv_path, 'http')
-            ? $applicant->cv_path
-            : null;
+        $cvUrl = $applicant->cv_url;
     @endphp
  
     <div class="grid gap-6 lg:grid-cols-3">
@@ -39,8 +37,26 @@
                     </div>
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Position</dt>
-                        <dd class="text-white font-medium">{{ $applicant->job?->title ?? '—' }}</dd>
+                        <dd class="text-white font-medium">{{ $applicant->is_general ? 'General application (Send Your CV)' : ($applicant->job?->title ?? '—') }}</dd>
                     </div>
+                    @if($applicant->interest)
+                    <div class="flex gap-4">
+                        <dt class="w-32 text-slate-400">Interest</dt>
+                        <dd class="text-white">{{ $applicant->interest }}</dd>
+                    </div>
+                    @endif
+                    @if($applicant->experience)
+                    <div class="flex gap-4">
+                        <dt class="w-32 text-slate-400">Experience</dt>
+                        <dd class="text-white">{{ $applicant->experience }} years</dd>
+                    </div>
+                    @endif
+                    @if($applicant->locale)
+                    <div class="flex gap-4">
+                        <dt class="w-32 text-slate-400">Language</dt>
+                        <dd class="text-white uppercase">{{ $applicant->locale }}</dd>
+                    </div>
+                    @endif
                     <div class="flex gap-4">
                         <dt class="w-32 text-slate-400">Applied</dt>
                         <dd class="text-white">{{ $applicant->created_at->format('d M Y, H:i') }}</dd>

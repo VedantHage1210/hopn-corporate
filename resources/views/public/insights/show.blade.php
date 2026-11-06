@@ -24,7 +24,7 @@
             <div>
                 <p style="font-size:14px; font-weight:600; color:white; margin:0;">{{ $post->author->name }}</p>
                 @if($post->published_at)
-                <p style="font-size:12px; color:#94A3B8; margin:0;">{{ $post->published_at->format('d M Y') }}</p>
+                <p style="font-size:12px; color:#94A3B8; margin:0;">{{ $post->published_at->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</p>
                 @endif
             </div>
         </div>

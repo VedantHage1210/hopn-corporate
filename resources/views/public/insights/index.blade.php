@@ -77,7 +77,7 @@
                 @endif
                 <div style="position:absolute; top:16px; left:16px;">
                     <span style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(79,110,247,0.9); color:white; text-transform:uppercase;">
-                        @if($lang==='ar') مميز @elseif($lang==='de') Featured @else Featured @endif
+                        @if($lang==='ar') مميز @elseif($lang==='de') Hervorgehoben @else Featured @endif
                     </span>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                 <p style="font-size:15px; color:#CBD5E1; line-height:1.7; margin:0;">{{ Str::limit($featured->excerpt,150) }}</p>
                 @endif
                 <div style="display:flex; align-items:center; gap:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
-                    <span style="font-size:13px; color:#94A3B8;">{{ $featured->published_at?->format('d M Y') }}</span>
+                    <span style="font-size:13px; color:#94A3B8;">{{ $featured->published_at?->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</span>
                     <span style="font-size:13px; font-weight:600; color:#4F6EF7;">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read more @endif →
                     </span>
@@ -149,7 +149,7 @@
                     <p style="font-size:13px; color:#CBD5E1; line-height:1.6; margin:0;">{{ Str::limit($post->excerpt,90) }}</p>
                     @endif
                     <div style="display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
-                        <span style="font-size:12px; color:#64748B;">{{ $post->published_at?->format('d M Y') }}</span>
+                        <span style="font-size:12px; color:#64748B;">{{ $post->published_at?->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</span>
                         <span style="font-size:12px; font-weight:600; color:{{ $c }};">
                             @if($lang==='ar') اقرأ @elseif($lang==='de') Lesen @else Read @endif →
                         </span>
@@ -164,7 +164,7 @@
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
-                @if($lang==='ar') لا توجد مقالات @elseif($lang==='de') Keine Artikel @else No articles found @endif
+                <x-coming-soon-text />
             </h3>
         </div>
         @endif

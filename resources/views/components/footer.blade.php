@@ -192,7 +192,7 @@
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     <a href="{{ route('legal.impressum', ['lang' => $lang]) }}"
                        class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
-                        Impressum
+                        {{ $lang === 'ar' ? 'البيانات القانونية (Impressum)' : 'Impressum' }}
                     </a>
                     <a href="{{ route('legal.privacy', ['lang' => $lang]) }}"
                        class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
@@ -237,7 +237,7 @@
             @endforeach
         </div>
         @else
-        <p style="font-size:12px; color:#64748B;">Built for enterprise innovation in Europe.</p>
+        <p style="font-size:12px; color:#64748B;">{{ $lang === 'ar' ? 'صُمم لابتكار المؤسسات في أوروبا.' : ($lang === 'de' ? 'Entwickelt für Unternehmensinnovation in Europa.' : 'Built for enterprise innovation in Europe.') }}</p>
         @endif
     </div>
 </div>

@@ -16,6 +16,12 @@ class ApplicantController extends Controller
             $query->where('status', $request->status);
         }
 
+        if ($request->kind === 'general') {
+            $query->where('is_general', true);
+        } elseif ($request->kind === 'job') {
+            $query->where('is_general', false);
+        }
+
         if ($request->filled('job_id')) {
             $query->where('job_id', $request->job_id);
         }

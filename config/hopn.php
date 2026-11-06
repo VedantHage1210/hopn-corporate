@@ -130,6 +130,14 @@ return [
     |--------------------------------------------------------------------------
     | Off until both keys are set. The honeypot and rate limits stay active.
     */
+    // Staging protection: set STAGING=true (or APP_ENV=staging) on the preview/staging server.
+    // Adds noindex + (optional) password. Leave unset on production.
+    'staging' => [
+        'enabled'  => env('APP_ENV') === 'staging' || filter_var(env('STAGING', false), FILTER_VALIDATE_BOOLEAN),
+        'user'     => env('STAGING_USER', 'hopn'),
+        'password' => env('STAGING_PASSWORD'),
+    ],
+
     'turnstile' => [
         'site_key'   => env('TURNSTILE_SITE_KEY'),
         'secret_key' => env('TURNSTILE_SECRET_KEY'),

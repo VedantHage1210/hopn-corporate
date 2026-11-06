@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CareerApplicationFormRequest;
+use App\Http\Requests\GeneralApplicationFormRequest;
 use App\Models\Job;
 use App\Models\Lead;
 use App\Models\JobApplication;
@@ -26,6 +27,83 @@ class CareerController extends Controller
     {
         $job = Job::where('slug', $slug)->where('is_active', true)->firstOrFail();
         return view('public.careers.show', compact('job', 'lang'));
+    }
+
+    public function applyForm()
+    {
+        $lang = request()->route('lang', 'en');
+        return view('public.careers.apply', compact('lang'));
+    }
+
+    /**
+     * "Send Your CV" — spontaneous application, not linked to a job.
+     * Saved as a JobApplication (admin → Applicants, with CV) AND as a Lead
+     * (admin → Leads), so the team sees it in both places.
+     */
+    public function applyGeneral(GeneralApplicationFormRequest $request, string $lang)
+    {
+        $data   = $request->validated();
+        $cvPath = $this->uploadToCloudinary($request->file('cv'));
+        $token  = $this->generateTrackingToken();
+
+        JobApplication::create([
+            'job_id'         => null,
+            'is_general'     => true,
+            'full_name'      => $data['name'],
+            'email'          => $data['email'],
+            'phone'          => $data['phone'] ?? null,
+            'linkedin_url'   => $data['linkedin_url'] ?? null,
+            'experience'     => $data['experience'],
+            'interest'       => $data['interest'],
+            'cover_letter'   => $data['message'] ?? null,
+            'cv_path'        => $cvPath,
+            'status'         => 'new',
+            'tracking_token' => $token,
+            'locale'         => $lang,
+        ]);
+
+        $cvLink = ($cvPath && str_starts_with($cvPath, 'http'))
+            ? $cvPath
+            : ($cvPath ? url('storage/' . ltrim($cvPath, '/')) : 'n/a');
+
+        Lead::create([
+            'type'       => 'career-application',
+            'name'       => $data['name'],
+            'email'      => $data['email'],
+            'phone'      => $data['phone'] ?? null,
+            'company'    => null,
+            'message'    => "General application (Send Your CV)\n"
+                          . 'Interest: ' . $data['interest'] . "\n"
+                          . 'Experience: ' . $data['experience'] . " years\n"
+                          . (!empty($data['linkedin_url']) ? 'LinkedIn: ' . $data['linkedin_url'] . "\n" : '')
+                          . 'CV: ' . $cvLink
+                          . (!empty($data['message']) ? "\n\n" . $data['message'] : ''),
+            'source_url' => $request->url(),
+            'locale'     => $lang,
+            'status'     => 'new',
+        ]);
+
+        try {
+            \App\Jobs\SendCareerApplicationJob::dispatch([
+                'name'           => $data['name'],
+                'email'          => $data['email'],
+                'phone'          => $data['phone'] ?? null,
+                'cover_letter'   => $data['message'] ?? null,
+                'tracking_token' => $token,
+            ], 'General application — ' . $data['interest']);
+        } catch (\Throwable $e) {
+            Log::error('SendCareerApplicationJob (general) dispatch failed', ['error' => $e->getMessage(), 'email' => $data['email']]);
+        }
+
+        $msg = [
+            'en' => 'Thank you! Your CV has been received.',
+            'de' => 'Vielen Dank! Ihr Lebenslauf ist bei uns eingegangen.',
+            'ar' => 'شكرًا لك! تم استلام سيرتك الذاتية.',
+        ];
+
+        return redirect()
+            ->route('careers.apply.general', ['lang' => $lang])
+            ->with(['status' => $msg[$lang] ?? $msg['en'], 'tracking_token' => $token]);
     }
 
     public function apply(CareerApplicationFormRequest $request, string $lang, string $slug)

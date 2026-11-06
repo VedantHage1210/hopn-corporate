@@ -7,7 +7,7 @@
         {{-- Header --}}
         <div style="margin-bottom:40px;">
             <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7;">
-                {{ $lang === 'ar' ? 'قانوني' : 'Legal' }}
+                {{ $lang === 'ar' ? 'قانوني' : ($lang === 'de' ? 'Rechtliches' : 'Legal') }}
             </span>
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
                 Impressum
@@ -34,8 +34,8 @@
                 {{ $lang === 'ar' ? 'التواصل' : ($lang === 'de' ? 'Kontakt' : 'Contact') }}
             </h2>
             <p>
-                Email: <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#4F6EF7;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a><br>
-                Web: <a href="https://www.hopn.eu" style="color:#4F6EF7;">www.hopn.eu</a>
+                {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#4F6EF7;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a><br>
+                {{ $lang==='ar' ? 'الموقع الإلكتروني:' : 'Web:' }} <a href="https://www.hopn.eu" style="color:#4F6EF7;">www.hopn.eu</a>
             </p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">

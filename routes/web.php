@@ -72,6 +72,10 @@ Route::prefix('{lang}')
 
       Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
 Route::get('/careers/track/{token}', [CareerController::class, 'track'])->name('careers.track');
+Route::get('/careers/apply', [CareerController::class, 'applyForm'])->name('careers.apply.general');
+Route::post('/careers/apply', [CareerController::class, 'applyGeneral'])
+    ->middleware(['throttle:5,1', 'turnstile'])
+    ->name('careers.apply.general.submit');
 Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('careers.show');
 Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
     ->middleware(['throttle:5,1', 'turnstile'])

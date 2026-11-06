@@ -87,7 +87,7 @@
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
             <p style="font-size:16px; color:#94A3B8;">
-                @if($lang==='ar') لا توجد منتجات حالياً @elseif($lang==='de') Keine Produkte gefunden @else No products found @endif
+                <x-coming-soon-text />
             </p>
         </div>
         @endif

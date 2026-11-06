@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\TeamMember;
+use App\Models\Partner;
+use App\Models\Job;
 
 class PageController extends Controller
 {
@@ -12,7 +14,9 @@ class PageController extends Controller
         $teamMembers = TeamMember::where('visible', true)
                                  ->orderBy('sort_order')
                                  ->get();
-        return view('public.pages.about', compact('page', 'teamMembers'));
+        $aboutPartners = Partner::where('visible', true)->orderBy('sort_order')->take(8)->get();
+        $openJobs      = Job::where('is_active', true)->count();
+        return view('public.pages.about', compact('page', 'teamMembers', 'aboutPartners', 'openJobs'));
     }
 
     /**

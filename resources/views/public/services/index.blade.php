@@ -80,7 +80,7 @@
         <div style="text-align:center; padding:80px; color:#64748B;">
             <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">S</div>
             <p style="font-size:16px; color:#94A3B8;">
-                @if($lang==='ar') لا توجد خدمات حالياً @elseif($lang==='de') Keine Leistungen gefunden @else No services found @endif
+                <x-coming-soon-text />
             </p>
         </div>
         @endif
