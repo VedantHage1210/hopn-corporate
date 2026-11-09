@@ -582,3 +582,14 @@ html:root[data-theme] a.hx-footcta:hover{ transform:translateY(-3px); box-shadow
 html:root[data-theme] a.hx-footcta:hover svg{ transform:translateX(5px); }
 html:root[data-theme] a.hx-footcta:focus-visible{ outline:3px solid #9FE0F2; outline-offset:3px; }
 [dir="rtl"] a.hx-footcta svg{ transform:scaleX(-1); }
+
+/* Detail pages: item image used as full-width hero background (same size as the list-page video) */
+html:root[data-theme] main section.hx-hero2.hx-detail-bg{ min-height:460px; display:flex; align-items:center; }
+html:root[data-theme] main section.hx-detail-bg > .container-shell{ width:100%; }
+html:root[data-theme] main section.hx-detail-bg [class*="hero-grid"]{ grid-template-columns:minmax(0,1fr) !important; }
+html:root[data-theme] main section.hx-detail-bg .hx-bgimage{ opacity:1; z-index:-3; }
+html:root[data-theme] main section.hx-detail-bg .hx-scrim{ background:linear-gradient(90deg,rgba(6,24,36,.84) 0%,rgba(6,24,36,.62) 55%,rgba(6,24,36,.36) 100%) !important; }
+[dir="rtl"] main section.hx-detail-bg .hx-scrim{ transform:scaleX(-1); }
+html:root[data-theme] main section.hx-detail-bg a:not(#a):not(#b):not([class*="primary"]):not([class*="btn-"]){ color:#F2F8FA !important; }
+html:root[data-theme] main section.hx-detail-bg a.hopn-bg-brighten:not(#a):not(#b){ border:1.5px solid rgba(255,255,255,.75) !important; background:rgba(255,255,255,.14) !important; border-radius:10px; }
+html:root[data-theme] main section.hx-detail-bg a.hopn-bg-brighten:not(#a):not(#b):hover{ background:rgba(255,255,255,.26) !important; }

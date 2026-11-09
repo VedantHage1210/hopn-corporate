@@ -7,6 +7,7 @@
 @endphp
 <x-layouts.public :title="$postMetaTitle" :description="$postMetaDesc">
     <x-hero :title="$postTitle" :subtitle="$postExcerpt" />
+    @if(!empty($post->featured_image_path))<span hidden data-hopn-hero-image="{{ $post->featured_image_path }}"></span>@endif
     <section class="container-shell mt-8 hopn-reveal">
         <a href="{{ route('insights.index', ['lang' => $lang]) }}" class="text-sm text-slate-400 hover:text-white">
             ← @if($lang === 'ar') العودة إلى الرؤى @elseif($lang === 'de') Zurück zu Insights @else Back to Insights @endif

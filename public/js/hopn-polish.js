@@ -179,7 +179,10 @@
     /* ---------- 3. Background videos: always play; pause button for visitors who want it ---------- */
     function enhanceVideos() {
       var secHero = document.querySelector('main .hx-hero2:not(.hx-hero)');
-      if (secHero && !secHero.querySelector('.hx-bgvideo')) {
+      /* Detail pages (e.g. /en/products/some-product): no background video, only the item's own image + info */
+      var segs = path.replace(/^\/(en|de|ar)(?=\/|$)/, '').split('/').filter(Boolean);
+      var isDetailPage = segs.length >= 2;
+      if (secHero && !isDetailPage && !secHero.querySelector('.hx-bgvideo')) {
         var name = null;
         HERO_VIDEO.forEach(function (h) { if (!name && h[0].test(path)) { name = h[1]; } });
         if (!name && !P(/^\/?(en|de|ar)?\/?$/) && !P(/\/(contact|legal|security|dashboard|profile|careers\/track|newsletter)/)) {
@@ -196,6 +199,34 @@
           secHero.insertBefore(v, secHero.firstChild);
           var sc = document.createElement('div'); sc.className = 'hx-scrim'; sc.setAttribute('aria-hidden', 'true'); v.after(sc);
           secHero.classList.add('hx-hasvideo');
+        }
+      }
+      /* Detail pages: show the item's own image as the full-width hero background (same size/look as the list-page video) */
+      if (secHero && isDetailPage && !secHero.classList.contains('hx-hasvideo')) {
+        var himg = secHero.querySelector('img');
+        var hsrc = himg && (himg.currentSrc || himg.getAttribute('src'));
+        var hmark = document.querySelector('main [data-hopn-hero-image]');
+        var fromMark = false;
+        if (!hsrc && hmark) { hsrc = hmark.getAttribute('data-hopn-hero-image'); himg = null; fromMark = true; }
+        if (hsrc) {
+          var bgi = document.createElement('img');
+          bgi.className = 'hx-bgvideo hx-bgimage'; bgi.src = hsrc; bgi.alt = ''; bgi.decoding = 'async';
+          bgi.setAttribute('aria-hidden', 'true'); bgi.tabIndex = -1;
+          secHero.insertBefore(bgi, secHero.firstChild);
+          var sci = document.createElement('div'); sci.className = 'hx-scrim'; sci.setAttribute('aria-hidden', 'true'); bgi.after(sci);
+          /* hide the small side image (and its wrapper if the wrapper holds nothing else) */
+          if (himg) {
+            var media = himg;
+            while (media.parentElement && media.parentElement !== secHero && !media.parentElement.classList.contains('container-shell') &&
+                   !media.parentElement.querySelector('h1,h2,p,a') && !(media.parentElement.innerText || '').trim()) { media = media.parentElement; }
+            media.style.display = 'none';
+          }
+          if (fromMark) {   /* the same image is also shown further down the page -> hide that duplicate */
+            document.querySelectorAll('main img').forEach(function (im) {
+              if (im !== bgi && !secHero.contains(im) && im.getAttribute('src') === hsrc) { im.style.display = 'none'; }
+            });
+          }
+          secHero.classList.add('hx-hasvideo', 'hx-detail-bg');
         }
       }
       /* Videos: the source is attached only when the section is near the screen, and the clip is paused when it leaves.

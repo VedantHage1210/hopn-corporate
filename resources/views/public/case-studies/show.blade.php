@@ -8,6 +8,7 @@
 @endphp
 <x-layouts.public :title="$csTitle">
     <x-hero :title="$csTitle" :subtitle="$caseStudy->industry" />
+    @if($caseStudy->image_url)<span hidden data-hopn-hero-image="{{ $caseStudy->image_url }}"></span>@endif
 
     <section class="container-shell mt-8 hopn-reveal">
         <div class="grid lg:grid-cols-3 gap-8">
