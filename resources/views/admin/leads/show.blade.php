@@ -47,9 +47,13 @@
             </div>
 
             @if($lead->message)
+                @php
+                    // Old CV links pointed to /storage/career-cv/… (404 without the storage symlink) → use the admin download route.
+                    $leadMessage = preg_replace_callback('~https?://[^\s<]+?(?:/storage/(career-cv/[^\s<]+)|/admin/files/cv\?path=(career-cv(?:%2F|/)[^\s<]+))~', fn ($m) => route('admin.files.cv', ['path' => urldecode($m[2] ?? $m[1])]), $lead->message);
+                @endphp
             <div class="card-panel p-6">
                 <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Message</h2>
-                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{!! preg_replace('~(https?://[^\s<]+)~', '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-indigo-300 underline hover:text-indigo-200">$1</a>', e($lead->message)) !!}</p>
+                <p class="whitespace-pre-line text-sm leading-relaxed text-slate-300">{!! preg_replace('~(https?://[^\s<]+)~', '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-indigo-300 underline hover:text-indigo-200">$1</a>', e($leadMessage)) !!}</p>
             </div>
             @endif
 

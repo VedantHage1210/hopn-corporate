@@ -44,7 +44,7 @@ class JobApplication extends Model
         if (str_starts_with($path, 'http')) {
             return $path;
         }
-        return \Illuminate\Support\Facades\Storage::disk('public')->url($path);
+        return route('admin.files.cv', ['path' => ltrim($path, '/')]);
     }
 
     public function job()

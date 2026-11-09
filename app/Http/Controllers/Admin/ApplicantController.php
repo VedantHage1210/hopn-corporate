@@ -8,6 +8,31 @@ use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
 {
+    /**
+     * Streams a locally stored CV (career-cv/…) to a logged-in admin.
+     * Works without the `storage:link` symlink, so downloads don't 404.
+     */
+    public function cv(Request $request)
+    {
+        $path = ltrim((string) $request->query('path', ''), '/');
+
+        if ($path === '' || str_contains($path, '..') || ! str_starts_with($path, 'career-cv/')) {
+            abort(404);
+        }
+
+        $disk = \Illuminate\Support\Facades\Storage::disk('public');
+
+        if (! $disk->exists($path)) {
+            abort(404, 'This CV file is no longer on the server (local files are lost when the server restarts). '
+                . 'Please ask the applicant to resend it. To prevent this, set CLOUDINARY_API_SECRET on the server so CVs are stored permanently.');
+        }
+
+        return response()->file($disk->path($path), [
+            'Content-Disposition' => 'inline; filename="' . basename($path) . '"',
+            'X-Robots-Tag'        => 'noindex, nofollow',
+        ]);
+    }
+
     public function index(Request $request)
     {
         $query = JobApplication::with('job')->latest();

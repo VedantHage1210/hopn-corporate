@@ -182,6 +182,7 @@ Route::middleware(['auth', 'role:superadmin|admin|editor|publisher|translator'])
     // Audit Logs, Leads, Applicants (Admin, Super Admin only)
     // ------------------------------------------------------------------
     Route::middleware('permission:system.manage')->group(function () {
+        Route::get('files/cv', [ApplicantController::class, 'cv'])->name('files.cv');
         Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
         Route::get('applicants/{applicant}', [ApplicantController::class, 'show'])->name('applicants.show');
         Route::patch('applicants/{applicant}', [ApplicantController::class, 'update'])->name('applicants.update');

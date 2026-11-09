@@ -64,7 +64,7 @@ class CareerController extends Controller
 
         $cvLink = ($cvPath && str_starts_with($cvPath, 'http'))
             ? $cvPath
-            : ($cvPath ? url('storage/' . ltrim($cvPath, '/')) : 'n/a');
+            : ($cvPath ? route('admin.files.cv', ['path' => ltrim($cvPath, '/')]) : 'n/a');
 
         Lead::create([
             'type'       => 'career-application',

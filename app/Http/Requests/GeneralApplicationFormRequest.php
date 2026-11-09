@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * "Send Your CV" — open / spontaneous application that is not tied to a job.
@@ -33,8 +34,8 @@ class GeneralApplicationFormRequest extends FormRequest
             'name'         => ['required', 'string', 'max:120'],
             'email'        => ['required', 'email', 'max:190'],
             'phone'        => ['nullable', 'string', 'max:30'],
-            'experience'   => ['required', 'in:' . implode(',', self::EXPERIENCE)],
-            'interest'     => ['required', 'in:' . implode(',', self::INTERESTS)],
+            'experience'   => ['required', Rule::in(self::EXPERIENCE)],
+            'interest'     => ['required', Rule::in(self::INTERESTS)],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
             'message'      => ['nullable', 'string', 'max:5000'],
             'cv'           => [

@@ -28,6 +28,20 @@ use App\Http\Controllers\Public\AppsController;
 use App\Http\Controllers\Public\LabsController;
 use Illuminate\Support\Facades\Route;
 
+// Fallback for uploaded files when the `public/storage` symlink is missing (e.g. fresh Railway deploy).
+// If the symlink exists, the web server serves the file directly and this route is never hit.
+// CVs (career-cv/) are private and are only served through the admin area.
+Route::get('/storage/{path}', function (string $path) {
+    $path = ltrim($path, '/');
+    if (str_contains($path, '..') || str_starts_with($path, 'career-cv/')) {
+        abort(404);
+    }
+    $disk = \Illuminate\Support\Facades\Storage::disk('public');
+    abort_unless($disk->exists($path), 404);
+    return response()->file($disk->path($path));
+})->where('path', '.*')->name('storage.fallback');
+
+
 Route::get('/', function() {
     $lang = request()->getPreferredLanguage(['en', 'de', 'ar']) ?? 'en';
     return redirect('/' . $lang);
