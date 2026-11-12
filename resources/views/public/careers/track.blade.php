@@ -4,9 +4,9 @@
 {{-- Hero --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') تتبع الطلب @elseif($lang==='de') Bewerbungsverfolgung @else Application Tracking @endif
             </span>
         </div>
@@ -29,18 +29,18 @@
                     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
                         <div>
                             <p style="font-size:12px; color:#CBD5E1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.08em;">Application ID</p>
-                            <p style="font-size:22px; font-weight:900; color:#818CF8; font-family:monospace; letter-spacing:2px;">{{ $application->tracking_token }}</p>
+                            <p style="font-size:22px; font-weight:900; color:#8FB8CC; font-family:monospace; letter-spacing:2px;">{{ $application->tracking_token }}</p>
                         </div>
                         @php
                         $statusMap = [
-                            'new'         => ['bg'=>'rgba(79,110,247,0.15)','border'=>'rgba(79,110,247,0.3)','color'=>'#8FB8CC','en'=>'Under Review','de'=>'In Prüfung','ar'=>'قيد المراجعة'],
-                            'reviewed'    => ['bg'=>'rgba(245,158,11,0.15)','border'=>'rgba(245,158,11,0.3)','color'=>'#8FB8CC','en'=>'Being Reviewed','de'=>'Wird geprüft','ar'=>'يتم مراجعته'],
-                            'reviewing'   => ['bg'=>'rgba(245,158,11,0.15)','border'=>'rgba(245,158,11,0.3)','color'=>'#8FB8CC','en'=>'Being Reviewed','de'=>'Wird geprüft','ar'=>'يتم مراجعته'],
-                            'shortlisted' => ['bg'=>'rgba(6,182,212,0.15)','border'=>'rgba(6,182,212,0.3)','color'=>'#8FB8CC','en'=>'Shortlisted','de'=>'Vorselektiert','ar'=>'تم اختياره'],
-                            'interview'   => ['bg'=>'rgba(139,92,246,0.15)','border'=>'rgba(139,92,246,0.3)','color'=>'#8FB8CC','en'=>'Interview Stage','de'=>'Interviewphase','ar'=>'مرحلة المقابلة'],
-                            'offer'       => ['bg'=>'rgba(16,185,129,0.15)','border'=>'rgba(16,185,129,0.3)','color'=>'#8FB8CC','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
-                            'offered'     => ['bg'=>'rgba(16,185,129,0.15)','border'=>'rgba(16,185,129,0.3)','color'=>'#8FB8CC','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
-                            'hired'       => ['bg'=>'rgba(16,185,129,0.2)','border'=>'rgba(16,185,129,0.4)','color'=>'#8FB8CC','en'=>'Hired! ','de'=>'Eingestellt! ','ar'=>'تم التوظيف! '],
+                            'new'         => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Under Review','de'=>'In Prüfung','ar'=>'قيد المراجعة'],
+                            'reviewed'    => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Being Reviewed','de'=>'Wird geprüft','ar'=>'يتم مراجعته'],
+                            'reviewing'   => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Being Reviewed','de'=>'Wird geprüft','ar'=>'يتم مراجعته'],
+                            'shortlisted' => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Shortlisted','de'=>'Vorselektiert','ar'=>'تم اختياره'],
+                            'interview'   => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Interview Stage','de'=>'Interviewphase','ar'=>'مرحلة المقابلة'],
+                            'offer'       => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
+                            'offered'     => ['bg'=>'rgba(143,184,204,0.15)','border'=>'rgba(143,184,204,0.3)','color'=>'#8FB8CC','en'=>'Offer Extended','de'=>'Angebot erhalten','ar'=>'تم تقديم العرض'],
+                            'hired'       => ['bg'=>'rgba(143,184,204,0.2)','border'=>'rgba(143,184,204,0.4)','color'=>'#8FB8CC','en'=>'Hired! ','de'=>'Eingestellt! ','ar'=>'تم التوظيف! '],
                             'rejected'    => ['bg'=>'rgba(239,68,68,0.15)','border'=>'rgba(239,68,68,0.3)','color'=>'#8FB8CC','en'=>'Not Selected','de'=>'Nicht ausgewählt','ar'=>'لم يتم الاختيار'],
                         ];
                         $s = $statusMap[$application->status] ?? $statusMap['new'];
@@ -123,24 +123,24 @@
                     @php
                     $done    = $i <= $currentIndex;
                     $active  = $i === $currentIndex;
-                    $c       = $done ? '#10B981' : '#475569';
-                    $border  = $done ? 'rgba(16,185,129,0.35)' : 'rgba(255,255,255,0.06)';
+                    $c       = $done ? '#245B78' : '#475569';
+                    $border  = $done ? 'rgba(143,184,204,0.35)' : 'rgba(255,255,255,0.06)';
                     $txt     = $done ? 'white' : '#94A3B8';
                     @endphp
-                    <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:12px; background:{{ $active?'rgba(16,185,129,0.08)':'rgba(255,255,255,0.02)' }}; border:1px solid {{ $border }}; transition:all 0.2s;">
-                        <div style="width:36px; height:36px; border-radius:50%; background:{{ $done?'rgba(16,185,129,0.2)':'rgba(255,255,255,0.05)' }}; border:1px solid {{ $border }}; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
+                    <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:12px; background:{{ $active?'rgba(143,184,204,0.08)':'rgba(255,255,255,0.02)' }}; border:1px solid {{ $border }}; transition:all 0.2s;">
+                        <div style="width:36px; height:36px; border-radius:50%; background:{{ $done?'rgba(143,184,204,0.2)':'rgba(255,255,255,0.05)' }}; border:1px solid {{ $border }}; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">
                             @if($done) Done @else {{ $i + 1 }} @endif
                         </div>
                         <div style="flex:1;">
                             <p style="font-size:14px; font-weight:{{ $active?'700':'500' }}; color:{{ $txt }}; margin:0;">{{ $step[$lang] ?? $step['en'] }}</p>
                             @if($active)
-                            <p style="font-size:12px; color:#10B981; margin:4px 0 0;">
+                            <p style="font-size:12px; color:#8FB8CC; margin:4px 0 0;">
                                 @if($lang==='ar') ← المرحلة الحالية @elseif($lang==='de') ← Aktuelle Phase @else ← Current stage @endif
                             </p>
                             @endif
                         </div>
                         @if($done && !$active)
-                        <span style="font-size:14px; color:#10B981;">✓</span>
+                        <span style="font-size:14px; color:#8FB8CC;">✓</span>
                         @endif
                     </div>
                     @endforeach
@@ -172,17 +172,17 @@
                         <input type="text" id="track-input"
                                placeholder="{{ $lang==='ar'?'أدخل معرف الطلب (مثال: ABCD-EFGH)':($lang==='de'?'Bewerbungs-ID eingeben':'Enter Application ID (e.g. ABCD-EFGH)') }}"
                                style="flex:1; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; outline:none;"
-                               onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                               onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         <button type="submit"
-                                class="hopn-link-fade" style="padding:12px 24px; border-radius:10px; background:#F59E0B; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; transition:all 0.2s;">
+                                class="hopn-link-fade" style="padding:12px 24px; border-radius:10px; background:#245B78; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; transition:all 0.2s;">
                             @if($lang==='ar') تتبع @elseif($lang==='de') Verfolgen @else Track @endif
                         </button>
                     </div>
                 </form>
                 <div style="margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06);">
                     <a href="{{ route('careers.index', ['lang'=>$lang]) }}"
-                       class="hopn-link-fade" style="font-size:14px; color:#818CF8; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                       class="hopn-link-fade" style="font-size:14px; color:#8FB8CC; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                         ← @if($lang==='ar') العودة للوظائف @elseif($lang==='de') Zurück zu Jobs @else Back to Jobs @endif
                     </a>
                 </div>

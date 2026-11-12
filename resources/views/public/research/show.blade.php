@@ -19,19 +19,22 @@
 ], fn ($value) => $value !== null && $value !== '')) !!}
 </script>
 @endpush
-<article style="padding:70px 0 100px; background:#050A14;" @if($lang === 'ar') dir="rtl" @endif>
+<x-research-theme />
+<article class="rs-sec" style="padding:70px 0 100px;" @if($lang === 'ar') dir="rtl" @endif>
     <div class="container-shell" style="max-width:900px;">
-        <a href="{{ route('research.index', ['lang' => $lang]) }}" style="color:#94A3B8; text-decoration:none; font-size:13px;">← @if($lang==='ar') العودة إلى البحث @elseif($lang==='de') Zurück zur Forschung @else Back to research @endif</a>
+        <a class="rs-back" href="{{ route('research.index', ['lang' => $lang]) }}">← @if($lang==='ar') العودة إلى البحث @elseif($lang==='de') Zurück zur Forschung @else Back to research @endif</a>
         @if($publication->image_url)
-            <img src="{{ $publication->image_url }}" alt="{{ $title }}" style="width:100%; max-height:430px; object-fit:cover; border-radius:16px; margin:28px 0;">
+            <img class="rs-hero-media" src="{{ $publication->image_url }}" alt="{{ $title }}">
+        @else
+            <x-card-art :seed="$title" :height="260" :radius="16" style="margin:28px 0;" />
         @endif
-        @if($publication->project)<div style="color:#4F6EF7; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;">{{ $publication->project }}</div>@endif
-        <h1 style="color:white; font-size:clamp(30px,5vw,58px); line-height:1.1; margin:0 0 18px;">{{ $title }}</h1>
-        <p style="color:#94A3B8; font-size:14px;">{{ $publication->authors }}{{ $publication->authors && $publication->published_on ? ' · ' : '' }}{{ $publication->published_on?->locale(request()->route('lang','en'))->translatedFormat('F Y') }}</p>
-        @if($summary)<div style="margin-top:30px; color:#CBD5E1; font-size:17px; line-height:1.9; white-space:pre-line;">{{ $summary }}</div>@endif
-        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;">
-            @if($publication->pdf_url)<a href="{{ $publication->pdf_url }}" target="_blank" rel="noopener" style="padding:12px 18px; background:#4F6EF7; color:white; border-radius:8px; text-decoration:none; font-weight:700;">Download PDF</a>@endif
-            @if($publication->external_url)<a href="{{ $publication->external_url }}" target="_blank" rel="noopener" style="padding:12px 18px; border:1px solid #4F6EF7; color:#A5B4FC; border-radius:8px; text-decoration:none; font-weight:700;">External publication link</a>@endif
+        @if($publication->project)<div class="rs-project">{{ $publication->project }}</div>@endif
+        <h1 class="rs-h1">{{ $title }}</h1>
+        <p class="rs-byline">{{ $publication->authors }}{{ $publication->authors && $publication->published_on ? ' · ' : '' }}{{ $publication->published_on?->locale(request()->route('lang','en'))->translatedFormat('F Y') }}</p>
+        @if($summary)<div style="margin-top:30px;"><x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="$summary" /></div>@endif
+        <div class="rs-actions">
+            @if($publication->pdf_url)<a class="rs-btn" href="{{ $publication->pdf_url }}" target="_blank" rel="noopener">@if($lang==='ar') تحميل PDF @elseif($lang==='de') PDF herunterladen @else Download PDF @endif</a>@endif
+            @if($publication->external_url)<a class="rs-btn rs-btn--ghost" href="{{ $publication->external_url }}" target="_blank" rel="noopener">@if($lang==='ar') المصدر الخارجي @elseif($lang==='de') Externe Quelle @else External source @endif</a>@endif
         </div>
     </div>
 </article>

@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') الكتالوج @elseif($lang==='de') Katalog @else Product Catalog @endif
             </span>
         </div>
@@ -33,11 +33,11 @@
                     <input type="text" name="search" value="{{ $search }}"
                            placeholder="{{ $lang==='ar'?'ابحث في الكتالوج...':($lang==='de'?'Katalog durchsuchen...':'Search catalog...') }}"
                            style="width:100%; padding:14px 14px 14px 44px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:15px; outline:none; box-sizing:border-box;"
-                           onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                           onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                            onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                 </div>
                 <button type="submit"
-                        class="hopn-link-fade" style="padding:14px 24px; background:#4F6EF7; color:white; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap;">
+                        class="hopn-link-fade" style="padding:14px 24px; background:#245B78; color:white; border:none; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; white-space:nowrap;">
                     @if($lang==='ar') بحث @elseif($lang==='de') Suchen @else Search @endif
                 </button>
                 @if($search)
@@ -69,7 +69,7 @@
             @if(!$search || $tab['key']==='all' || ($tab['count'] !== null && $tab['count'] > 0))
             <a href="{{ route('catalog.index', ['lang'=>$lang, 'category'=>$tab['key']]) }}"
                style="padding:8px 20px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s;
-               {{ $category===$tab['key'] ? 'background:#4F6EF7; color:white; border:1px solid #4F6EF7;' : 'background:rgba(255,255,255,0.04); color:#CBD5E1; border:1px solid rgba(255,255,255,0.08);' }}">
+               {{ $category===$tab['key'] ? 'background:#245B78; color:white; border:1px solid #2F6F8F;' : 'background:rgba(255,255,255,0.04); color:#CBD5E1; border:1px solid rgba(255,255,255,0.08);' }}">
                 {{ $tab['label'] }}
                 @if($tab['count'] !== null) ({{ $tab['count'] }}) @endif
             </a>
@@ -96,14 +96,14 @@
         <div style="margin-bottom:64px;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <div style="width:32px; height:2px; background:#4F6EF7;"></div>
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') المنتجات @elseif($lang==='de') Produkte @else Products @endif
                     </h2>
                     <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $products->count() }}</span>
                 </div>
                 <a href="{{ route('products.index', ['lang'=>$lang]) }}"
-                   class="hopn-link-fade" style="font-size:13px; color:#818CF8; text-decoration:none; font-weight:600;">
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -123,8 +123,8 @@
                     </div>
                     @endif
                     <div style="display:flex; gap:6px; margin-bottom:14px;">
-                        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(79,110,247,0.08); border:1px solid rgba(79,110,247,0.15); border-radius:6px; padding:3px 10px; width:fit-content;">
-                            <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#818CF8; letter-spacing:0.08em;">
+                        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(143,184,204,0.08); border:1px solid rgba(143,184,204,0.15); border-radius:6px; padding:3px 10px; width:fit-content;">
+                            <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#8FB8CC; letter-spacing:0.08em;">
                                 @if($lang==='ar') منتج @elseif($lang==='de') Produkt @else Product @endif
                             </span>
                         </div>
@@ -152,14 +152,14 @@
         <div style="margin-bottom:64px;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <div style="width:32px; height:2px; background:#10B981;"></div>
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') الخدمات @elseif($lang==='de') Leistungen @else Services @endif
                     </h2>
                     <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $services->count() }}</span>
                 </div>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"
-                   class="hopn-link-fade" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -178,8 +178,8 @@
                         <img loading="lazy" decoding="async" src="{{ $service->hero_image }}" alt="{{ $svcTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;">
                     </div>
                     @endif
-                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
-                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#10B981; letter-spacing:0.08em;">
+                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(143,184,204,0.08); border:1px solid rgba(143,184,204,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
+                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#8FB8CC; letter-spacing:0.08em;">
                             @if($lang==='ar') خدمة @elseif($lang==='de') Leistung @else Service @endif
                         </span>
                     </div>
@@ -201,14 +201,14 @@
         <div style="margin-bottom:64px;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <div style="width:32px; height:2px; background:#8B5CF6;"></div>
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') البرامج @elseif($lang==='de') Programme @else Programs @endif
                     </h2>
                     <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $programs->count() }}</span>
                 </div>
                 <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-                   class="hopn-link-fade" style="font-size:13px; color:#A78BFA; text-decoration:none; font-weight:600;">
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -227,8 +227,8 @@
                         <img loading="lazy" decoding="async" src="{{ $program->image_url }}" alt="{{ $pTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;">
                     </div>
                     @endif
-                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
-                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#A78BFA; letter-spacing:0.08em;">
+                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(143,184,204,0.08); border:1px solid rgba(143,184,204,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
+                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#8FB8CC; letter-spacing:0.08em;">
                             @if($lang==='ar') برنامج @elseif($lang==='de') Programm @else Program @endif
                         </span>
                     </div>
@@ -248,14 +248,14 @@
         <div style="margin-bottom:64px;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <div style="width:32px; height:2px; background:#F59E0B;"></div>
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
                         @if($lang==='ar') مجالات الابتكار @elseif($lang==='de') Innovationsdomänen @else Innovation Domains @endif
                     </h2>
                     <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $domains->count() }}</span>
                 </div>
                 <a href="{{ route('innovation.index', ['lang'=>$lang]) }}"
-                   class="hopn-link-fade" style="font-size:13px; color:#F59E0B; text-decoration:none; font-weight:600;">
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
                     @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
                 </a>
             </div>
@@ -263,13 +263,10 @@
                 @foreach($domains as $domain)
                 <a href="{{ route('innovation.show', ['lang'=>$lang,'slug'=>$domain->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; gap:14px; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:14px; padding:0 20px 20px; text-decoration:none; transition:all 0.25s; overflow:hidden;">
-                    <div style="height:110px; margin:0 -20px; background:#EEF3F5; position:relative; overflow:hidden;">
-                        <div style="position:absolute; width:150%; height:100%; left:-25%; top:0; border:1px solid #9FB5C0; border-radius:50%; transform:rotate(-14deg);"></div>
-                        <span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:800; color:#245B78;">{{ strtoupper(substr($domain->name, 0, 1)) }}</span>
-                    </div>
+                    <x-card-art :seed="$domain->name" :height="110" :radius="0" style="margin:0 -20px;" />
                     <span style="font-size:16px; font-weight:700; color:#CBD5E1;">{{ $domain->name }}</span>
                     @if($domain->description)<span style="font-size:13px; line-height:1.6; color:#94A3B8;">{{ Str::limit($domain->description, 85) }}</span>@endif
-                    <span style="font-size:13px; font-weight:700; color:#F59E0B;">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →</span>
+                    <span style="font-size:13px; font-weight:700; color:#8FB8CC;">@if($lang==='ar') اعرف المزيد @elseif($lang==='de') Mehr erfahren @else Learn more @endif →</span>
                 </a>
                 @endforeach
             </div>
@@ -286,7 +283,7 @@
                 @if($lang==='ar') جرب كلمات بحث مختلفة @elseif($lang==='de') Versuchen Sie andere Suchbegriffe @else Try different search terms @endif
             </p>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"
-               style="display:inline-flex; padding:10px 24px; border-radius:8px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
+               style="display:inline-flex; padding:10px 24px; border-radius:8px; background:#245B78; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') مسح البحث @elseif($lang==='de') Suche löschen @else Clear search @endif
             </a>
         </div>
@@ -308,7 +305,7 @@
             @else Contact us and we'll help you find the right solution @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>

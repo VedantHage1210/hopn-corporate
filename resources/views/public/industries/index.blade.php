@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(6,182,212,0.3); background:rgba(6,182,212,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#06B6D4; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#06B6D4;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') القطاعات @elseif($lang==='de') Branchen @else Industries @endif
             </span>
         </div>
@@ -84,7 +84,7 @@
             @else Contact HOPn to discuss a tailored solution for your industry. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-lift-btn"
-           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#06B6D4; color:white; font-size:16px; font-weight:700; text-decoration:none;">
+           style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
         </a>
     </div>

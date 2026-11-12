@@ -2,7 +2,34 @@
     $lang = request()->route('lang', app()->getLocale());
     $activeLang = $lang;
 
-    $navPlatformApps = \App\Models\PlatformApp::visible()->orderBy('sort_order')->get();
+    try {
+        $navPlatformApps = \App\Models\PlatformApp::visible()->orderBy('sort_order')->get();
+    } catch (\Throwable $e) {
+        $navPlatformApps = collect();
+    }
+    try {
+        $navProducts = \App\Models\Product::where('is_published', true)->orderBy('id')->get();
+    } catch (\Throwable $e) {
+        $navProducts = collect();
+    }
+
+    // Ventures dropdown = published products only (by name), plus an "All products" link.
+    $venturesItems = $navProducts->map(fn ($p) => [
+        'en'   => $p->title_en,
+        'de'   => $p->title_de ?: $p->title_en,
+        'ar'   => $p->title_ar ?: $p->title_en,
+        'href' => route('products.show', ['lang' => $lang, 'slug' => $p->slug]),
+    ])->values()->all();
+    $venturesItems[] = ['en'=>'All products', 'de'=>'Alle Produkte', 'ar'=>'كل المنتجات', 'route'=>'products.index'];
+
+    // Apps dropdown = app names, each opening its own detail page.
+    $appsItems = $navPlatformApps->map(fn ($a) => [
+        'en'   => $a->name_en,
+        'de'   => $a->name_de ?: $a->name_en,
+        'ar'   => $a->name_ar ?: $a->name_en,
+        'href' => route('apps.show', ['lang' => $lang, 'slug' => $a->slug]),
+    ])->values()->all();
+    $appsItems[] = ['en'=>'All apps', 'de'=>'Alle Apps', 'ar'=>'كل التطبيقات', 'route'=>'apps.index'];
 
     $groups = [
         [
@@ -20,14 +47,12 @@
         [
             'key'=>'ventures',
             'label_en'=>'Ventures', 'label_de'=>'Venture', 'label_ar'=>'المشاريع',
-            'items'=>[
-                ['en'=>'Products',          'de'=>'Produkte',            'ar'=>'المنتجات',          'route'=>'products.index'],
-                ['en'=>'Apps',              'de'=>'Apps',                'ar'=>'التطبيقات',         'route'=>'apps.index'],
-                ['en'=>'Catalog',           'de'=>'Katalog',              'ar'=>'الكتالوج',          'route'=>'catalog.index'],
-                ['en'=>'Innovation Domains','de'=>'Innovationsdomänen',   'ar'=>'مجالات الابتكار',   'route'=>'innovation.index'],
-                ['en'=>'Startups',          'de'=>'Startups',             'ar'=>'الشركات الناشئة',   'route'=>'startups.index'],
-                ['en'=>'Investors & Funds', 'de'=>'Investoren & Fonds', 'ar'=>'المستثمرون',        'route'=>'investors.index'],
-            ],
+            'items'=>$venturesItems,
+        ],
+        [
+            'key'=>'apps',
+            'label_en'=>'Apps', 'label_de'=>'Apps', 'label_ar'=>'التطبيقات',
+            'items'=>$appsItems,
         ],
         [
             'key'=>'research',
@@ -53,6 +78,9 @@
             'items'=>[
                 ['en'=>'About',    'de'=>'Über uns',   'ar'=>'من نحن',       'route'=>'about'],
                 ['en'=>'Founder & Team', 'de'=>'Gründer & Team', 'ar'=>'المؤسس والفريق', 'route'=>'team.index'],
+                ['en'=>'Startups',          'de'=>'Startups',            'ar'=>'الشركات الناشئة', 'route'=>'startups.index'],
+                ['en'=>'Investors & Funds', 'de'=>'Investoren & Fonds',  'ar'=>'المستثمرون',      'route'=>'investors.index'],
+                ['en'=>'Catalog',           'de'=>'Katalog',             'ar'=>'الكتالوج',        'route'=>'catalog.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
                 ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
                 ['en'=>'Careers',  'de'=>'Karriere',   'ar'=>'وظائف',        'route'=>'careers.index'],
@@ -103,7 +131,7 @@
     display:flex; align-items:center; padding:9px 14px; border-radius:8px;
     color:#CBD5E1; font-size:13px; text-decoration:none; transition:all 0.15s; white-space:nowrap;
 }
-.hopn-dropdown a:hover { background:rgba(79,110,247,0.1); color:white; }
+.hopn-dropdown a:hover { background:rgba(143,184,204,0.1); color:white; }
 .hopn-dropdown-header {
     padding:6px 14px 10px; font-size:11px; font-weight:700; text-transform:uppercase;
     letter-spacing:0.1em; color:#64748B; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:4px;
@@ -117,8 +145,8 @@
 .hopn-trigger svg { transition:transform 0.2s; }
 .hopn-nav-item:hover .hopn-trigger svg, .hopn-nav-item:focus-within .hopn-trigger svg { transform:rotate(180deg); }
 .hopn-lang-item { display:block; padding:9px 14px; border-radius:8px; font-size:13px; font-weight:600; color:#CBD5E1; text-decoration:none; transition:all 0.15s; }
-.hopn-lang-item:hover { background:rgba(79,110,247,0.1); color:white; }
-.hopn-lang-item.active { background:rgba(79,110,247,0.15); color:#818CF8; }
+.hopn-lang-item:hover { background:rgba(143,184,204,0.1); color:white; }
+.hopn-lang-item.active { background:rgba(143,184,204,0.15); color:#8FB8CC; }
 </style>
 
 <header x-data="{ open: false }" class="sticky top-0 z-50"

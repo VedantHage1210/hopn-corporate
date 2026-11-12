@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') الابتكار @elseif($lang==='de') Innovation @else Innovation @endif
             </span>
         </div>
@@ -42,7 +42,7 @@
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; transition:all 0.3s; position:relative; overflow:hidden;">
                 <div style="height:170px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/{{ ['ai','robotics','digital-twin','research'][$loop->index % 4] }}.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
                 <div style="padding:28px; display:flex; flex-direction:column; flex:1;">
-                <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px; color:#245B78;">{{ strtoupper(substr($domain->name, 0, 1)) }}</div>
+                <x-card-art :seed="$domain->name" :height="96" :radius="10" style="margin-bottom:16px;" />
                 <h3 style="font-size:20px; font-weight:800; color:white; margin-bottom:12px; letter-spacing:-0.5px;">
                     @if($lang==='de'&&$domain->name_de) {{ $domain->name_de }}
                     @elseif($lang==='ar'&&$domain->name_ar) {{ $domain->name_ar }}
@@ -84,7 +84,7 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact HOPn @endif →
             </a>
             <a href="{{ route('catalog.index', ['lang'=>$lang]) }}"

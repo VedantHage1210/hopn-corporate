@@ -66,12 +66,12 @@ class Product extends Model
         return $labels[$status][$lang] ?? $labels[$status]['en'];
     }
 
-    /** Hex color for the status badge — amber (concept) to green (live), never implying more maturity than is set. */
+    /** Hex color for the status badge — slate (concept) to light blue (live), never implying more maturity than is set. */
     public function statusColor(): string
     {
         return match ($this->status) {
-            'live'  => '#10B981',
-            'pilot' => '#F59E0B',
+            'live'  => '#9FE0F2',
+            'pilot' => '#5C93B0',
             default => '#64748B', // concept / unknown
         };
     }

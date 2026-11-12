@@ -11,7 +11,7 @@
 
 {{-- Success Toast --}}
 @if(session('event_success'))
-<div id="success-toast" style="display:flex; position:fixed; top:24px; right:24px; z-index:2000; align-items:center; gap:12px; background:#111827; border:1px solid rgba(16,185,129,0.4); border-radius:12px; padding:16px 20px; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:380px;">
+<div id="success-toast" style="display:flex; position:fixed; top:24px; right:24px; z-index:2000; align-items:center; gap:12px; background:#111827; border:1px solid rgba(143,184,204,0.4); border-radius:12px; padding:16px 20px; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:380px;">
     <div aria-hidden="true" style="font-size:18px; font-weight:800;">OK</div>
     <div>
         <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">
@@ -28,9 +28,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; min-height:70vh; display:flex; align-items:center;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') فعاليات HOPn @elseif($lang==='de') HOPn Events @else HOPn Events @endif
             </span>
         </div>
@@ -64,7 +64,7 @@
                 ['key'=>'webinar',    'en'=>'Webinar',     'de'=>'Webinar',     'ar'=>'ويبينار',       'color'=>'#8FB8CC'],
                 ['key'=>'hackathon',  'en'=>'Hackathon',   'de'=>'Hackathon',   'ar'=>'هاكاثون',       'color'=>'#8FB8CC'],
                 ['key'=>'startup',    'en'=>'Startup',     'de'=>'Startup',     'ar'=>'شركات ناشئة',   'color'=>'#8FB8CC'],
-                ['key'=>'research',   'en'=>'Research',    'de'=>'Forschung',   'ar'=>'بحث',           'color'=>'#A855F7'],
+                ['key'=>'research',   'en'=>'Research',    'de'=>'Forschung',   'ar'=>'بحث',           'color'=>'#245B78'],
             ];
             @endphp
             @foreach($types as $type)
@@ -87,9 +87,9 @@
             @foreach($events as $event)
             @php
                 $typeColors = [
-                    'conference'=>'#4F6EF7','workshop'=>'#10B981','webinar'=>'#06B6D4',
-                    'hackathon'=>'#8B5CF6','startup'=>'#EF4444','networking'=>'#F59E0B',
-                    'research'=>'#A855F7'
+                    'conference'=>'#245B78','workshop'=>'#245B78','webinar'=>'#245B78',
+                    'hackathon'=>'#245B78','startup'=>'#8FB8CC','networking'=>'#245B78',
+                    'research'=>'#245B78'
                 ];
                 $c = $typeColors[$event->type] ?? '#8FB8CC';
                 $title = $lang==='de'&&$event->title_de ? $event->title_de : ($lang==='ar'&&$event->title_ar ? $event->title_ar : $event->title);
@@ -199,7 +199,7 @@
 <section style="padding:80px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') أنواع الفعاليات @elseif($lang==='de') Veranstaltungsformate @else Event Formats @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -229,7 +229,7 @@
                  'desc_en'=>'Demo days, pitch competitions, and networking events for the startup ecosystem.',
                  'desc_de'=>'Demo Days, Pitch-Wettbewerbe und Networking für das Startup-Ökosystem.',
                  'desc_ar'=>'أيام العرض ومسابقات العروض التقديمية وفعاليات التواصل للشركات الناشئة.'],
-                ['icon'=>'R','color'=>'#A855F7','en'=>'Research Events','de'=>'Forschungsevents','ar'=>'الفعاليات البحثية',
+                ['icon'=>'R','color'=>'#245B78','en'=>'Research Events','de'=>'Forschungsevents','ar'=>'الفعاليات البحثية',
                  'desc_en'=>'Academic and industry research presentations, paper sessions, and innovation showcases.',
                  'desc_de'=>'Akademische und industrielle Forschungspräsentationen.',
                  'desc_ar'=>'عروض الأبحاث الأكاديمية والصناعية وجلسات الأوراق البحثية.'],
@@ -252,14 +252,14 @@
         {{-- Left: Event Info --}}
         <div style="background:#0A0F1E; padding:40px; display:flex; flex-direction:column; gap:20px; border-right:1px solid rgba(255,255,255,0.06);">
             <div>
-                <span id="modal-event-type" style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(245,158,11,0.15); color:#F59E0B; border:1px solid rgba(245,158,11,0.3); text-transform:uppercase;"></span>
+                <span id="modal-event-type" style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(143,184,204,0.15); color:#8FB8CC; border:1px solid rgba(143,184,204,0.3); text-transform:uppercase;"></span>
             </div>
             <div>
                 <h2 id="modal-event-title" style="font-size:22px; font-weight:800; color:white; line-height:1.3; margin-bottom:12px;"></h2>
                 <div id="modal-event-date" style="font-size:14px; color:#CBD5E1; margin-bottom:8px;"></div>
                 <div id="modal-event-location" style="font-size:14px; color:#CBD5E1;"></div>
             </div>
-            <div style="padding:20px; background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15); border-radius:12px;">
+            <div style="padding:20px; background:rgba(143,184,204,0.06); border:1px solid rgba(143,184,204,0.15); border-radius:12px;">
                 <p style="font-size:13px; color:#CBD5E1; line-height:1.7; margin:0;">
                     @if($lang==='ar') سجل الآن لتأمين مكانك. الأماكن محدودة.
                     @elseif($lang==='de') Melden Sie sich an, um Ihren Platz zu sichern. Plätze sind begrenzt.
@@ -290,7 +290,7 @@
                             </label>
                             <input id="hopn-first-name-18ea91" type="text" name="first_name" required
                                    style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                   onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                                   onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         </div>
                         <div>
@@ -299,7 +299,7 @@
                             </label>
                             <input id="hopn-last-name-18ea92" type="text" name="last_name" required
                                    style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                   onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                                   onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         </div>
                     </div>
@@ -309,7 +309,7 @@
                         </label>
                         <input id="hopn-email-18ea93" type="email" name="email" required
                                style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                               onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                               onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
@@ -318,7 +318,7 @@
                         </label>
                         <input id="hopn-company-18ea94" type="text" name="company"
                                style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                               onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                               onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
@@ -327,7 +327,7 @@
                         </label>
                         <textarea id="hopn-message-18ea95" name="message" rows="3"
                                   style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical; outline:none;"
-                                  onfocus="this.style.borderColor='rgba(245,158,11,0.5)'"
+                                  onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                   onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
                     </div>
                     <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -339,7 +339,7 @@
                         </label>
                     </div>
                     <button type="submit"
-                            class="hopn-lift-btn" style="width:100%; padding:14px; border-radius:10px; background:#F59E0B; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
+                            class="hopn-lift-btn" style="width:100%; padding:14px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                         @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt registrieren @else Register Now @endif
                     </button>
                 </div>
@@ -360,7 +360,7 @@
             @else Get in touch to discuss event partnerships and sponsorships. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>
@@ -385,8 +385,8 @@ function filterEvents(type) {
 }
 
 function openEventForm(id, title, type, date, location) {
-    var colors = {conference:'#4F6EF7',workshop:'#10B981',webinar:'#06B6D4',hackathon:'#8B5CF6',startup:'#EF4444',research:'#A855F7'};
-    var c = colors[type] || '#F59E0B';
+    var colors = {conference:'#245B78',workshop:'#245B78',webinar:'#245B78',hackathon:'#245B78',startup:'#8FB8CC',research:'#245B78'};
+    var c = colors[type] || '#245B78';
     var typeEl = document.getElementById('modal-event-type');
     typeEl.textContent = type.charAt(0).toUpperCase() + type.slice(1);
     typeEl.style.background = c + '15';

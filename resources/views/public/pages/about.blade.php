@@ -122,35 +122,23 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
                 @else Experts in AI, robotics, data, and digital innovation @endif
             </p>
         </div>
-        <div class="hx-people hopn-reveal">
-            @foreach($teamMembers as $member)
-            <article class="hx-person">
-                <div class="hx-person-photo">
-                    @if($member->photo)
-                    <img loading="lazy" decoding="async" src="{{ $member->photo }}" alt="{{ $member->name }}">
-                    @else
-                    <span class="hx-initial" aria-hidden="true">{{ strtoupper(substr($member->name,0,1)) }}</span>
-                    @endif
-                </div>
-                <div class="hx-person-body">
-                    <h3>{{ $member->name }}</h3>
-                    <p class="hx-role">
-                        @if($lang==='ar'&&!empty($member->role_ar)) {{ $member->role_ar }}
-                        @elseif($lang==='de'&&!empty($member->role_de)) {{ $member->role_de }}
-                        @else {{ $member->role_en ?? '' }} @endif
-                    </p>
-                    @php $bio=$lang==='ar'&&!empty($member->bio_ar)?$member->bio_ar:($lang==='de'&&!empty($member->bio_de)?$member->bio_de:($member->bio_en??'')); @endphp
-                    @if($bio)
-                    <p class="hx-bio">{{ Str::limit($bio,120) }}</p>
-                    @endif
-                    @if($member->linkedin)
-                    <a href="{{ $member->linkedin }}" target="_blank" rel="noopener" class="hx-more">LinkedIn →</a>
-                    @endif
-                </div>
-            </article>
+        @php
+            $aboutLeaders = $teamMembers->filter(fn ($m) => $m->is_founder)->values();
+            $teamMembers  = $teamMembers->reject(fn ($m) => $m->is_founder)->values();
+        @endphp
+        @if($aboutLeaders->count() > 0)
+        <div class="hopn-pleaders {{ $aboutLeaders->count() === 1 ? 'is-single' : '' }}" style="margin-bottom:48px;">
+            @foreach($aboutLeaders as $leader)
+                <x-leader-card :member="$leader" :lang="$lang" />
             @endforeach
         </div>
-        @if($teamMembers->count() === 0)
+        @endif
+        <div class="hopn-pgrid">
+            @foreach($teamMembers as $member)
+                <x-member-card :member="$member" :lang="$lang" />
+            @endforeach
+        </div>
+        @if($teamMembers->count() === 0 && $aboutLeaders->count() === 0)
         <p class="ab-soon"><x-coming-soon-text /></p>
         @endif
         <div class="ab-actions"><a href="{{ route('team.index', ['lang'=>$lang]) }}" class="ab-btn hopn-btn-primary">@if($lang==='ar') الفريق والمؤسسون @elseif($lang==='de') Gründer & Team @else Founder & Team page @endif →</a></div>
@@ -228,7 +216,7 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
     <div class="container-shell">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                     @if($lang==='ar') من نحن @elseif($lang==='de') Wer wir sind @else Who We Are @endif
                 </span>
                 <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:24px; line-height:1.2;">
@@ -272,7 +260,7 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
 <section style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8B5CF6; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') قيمنا الأساسية @elseif($lang==='de') Kernwerte @else Core Values @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -304,7 +292,7 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') البحث والشراكات @elseif($lang==='de') Forschung & Partnerschaften @else Research & Partnerships @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -334,7 +322,7 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
 <section style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#06B6D4; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') مواقعنا @elseif($lang==='de') Standorte @else Locations @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">

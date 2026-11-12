@@ -12,7 +12,7 @@
     <div class="logo-track" style="display:flex; gap:32px; align-items:center; animation:logoScroll 30s linear infinite;">
         @foreach($allItems as $item)
         <div style="flex-shrink:0; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px 24px; display:flex; align-items:center; justify-content:center; min-width:140px; height:64px; transition:all 0.25s;"
-             onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
+             onmouseover="this.style.borderColor='rgba(143,184,204,0.3)'; this.style.background='#141D2E'"
              onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
             @if(isset($item->logo_url) && $item->logo_url)
             <img loading="lazy" decoding="async" src="{{ $item->logo_url }}" alt="{{ $item->name }}"
@@ -27,7 +27,7 @@
 
         @foreach($allItems as $item)
         <div style="flex-shrink:0; border:1px solid rgba(255,255,255,0.07); background:#111827; border-radius:12px; padding:16px 24px; display:flex; align-items:center; justify-content:center; min-width:140px; height:64px;"
-             onmouseover="this.style.borderColor='rgba(79,110,247,0.3)'; this.style.background='#141D2E'"
+             onmouseover="this.style.borderColor='rgba(143,184,204,0.3)'; this.style.background='#141D2E'"
              onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='#111827'">
            @if(isset($item->logo) && $item->logo)
 <img loading="lazy" decoding="async" src="{{ $item->logo }}" alt="{{ $item->name }}"

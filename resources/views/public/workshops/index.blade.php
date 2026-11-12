@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') التدريب وورش العمل @elseif($lang==='de') Training & Workshops @else Training & Workshops @endif
             </span>
         </div>
@@ -35,12 +35,12 @@
 <section style="background:#030712; padding:0 0 20px;">
     <div class="container-shell" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
         <a href="{{ route('workshops.index', ['lang'=>$lang]) }}"
-           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ !request('category') ? '#8B5CF6' : 'rgba(148,163,184,0.25)' }}; color:{{ !request('category') ? '#A78BFA' : '#94A3B8' }};">
+           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ !request('category') ? '#245B78' : 'rgba(148,163,184,0.25)' }}; color:{{ !request('category') ? '#245B78' : '#94A3B8' }};">
             @if($lang==='ar') الكل @elseif($lang==='de') Alle @else All @endif
         </a>
         @foreach($categories as $category)
         <a href="{{ route('workshops.index', ['lang'=>$lang, 'category'=>$category]) }}"
-           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ request('category')===$category ? '#8B5CF6' : 'rgba(148,163,184,0.25)' }}; color:{{ request('category')===$category ? '#A78BFA' : '#94A3B8' }};">
+           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ request('category')===$category ? '#245B78' : 'rgba(148,163,184,0.25)' }}; color:{{ request('category')===$category ? '#245B78' : '#94A3B8' }};">
             {{ $category }}
         </a>
         @endforeach
@@ -65,7 +65,7 @@
                 @endif
                 <div style="padding:28px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#A78BFA;">{{ $workshop->category ?? 'Workshop' }}</span>
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#8FB8CC;">{{ $workshop->category ?? 'Workshop' }}</span>
                     <span style="font-size:11px; color:#64748B;">{{ str_replace('_',' ',$workshop->format) }}</span>
                 </div>
                 <h2 style="font-size:20px; font-weight:800; color:white; margin:0 0 10px;">
@@ -76,7 +76,7 @@
                 </p>
                 <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#64748B;">
                     <span>{{ $workshop->duration_label_en ?? '—' }}</span>
-                    <span style="color:#A78BFA; font-weight:700;">
+                    <span style="color:#8FB8CC; font-weight:700;">
                         @if($workshop->price_on_request)
                             @if($lang==='ar') عند الطلب @elseif($lang==='de') Auf Anfrage @else On request @endif
                         @elseif($workshop->price)

@@ -13,7 +13,7 @@
         @if($expert->bio_en)<p style="color:#CBD5E1; font-size:15px; line-height:1.8; max-width:640px;">{{ $expert->bio_en }}</p>@endif
 
         <a href="{{ route('consulting.book', ['lang'=>$lang, 'id'=>$expert->id]) }}"
-           style="display:inline-flex; margin-top:24px; padding:14px 30px; border-radius:10px; background:#10B981; color:#022C22; font-weight:700; font-size:14px; text-decoration:none;">
+           style="display:inline-flex; margin-top:24px; padding:14px 30px; border-radius:10px; background:#245B78; color:#FFFFFF; font-weight:700; font-size:14px; text-decoration:none;">
             @if($lang==='ar') احجز مكالمة @elseif($lang==='de') Anruf buchen @else Book a call → @endif
         </a>
     </div>
@@ -43,7 +43,7 @@
                     @foreach($pkgInclusions as $point)<li>{{ $point }}</li>@endforeach
                 </ul>
                 @endif
-                <div style="color:#6EE7B7; font-weight:700; font-size:14px;">
+                <div style="color:#8FB8CC; font-weight:700; font-size:14px;">
                     @if($pkg->price_on_request) On request @elseif($pkg->price) @php $__p = (float) $pkg->price; $__amount = number_format($__p, floor($__p) == $__p ? 0 : 2); $__cur = $pkg->currency ?: 'EUR'; @endphp {{ $__amount }} {{ $__cur }} @endif
                 </div>
             </div>
@@ -61,7 +61,7 @@
         </h2>
         <div style="display:flex; flex-wrap:wrap; gap:10px;">
             @foreach($availabilities as $slot)
-            <span style="padding:8px 14px; border-radius:999px; border:1px solid rgba(16,185,129,0.3); color:#6EE7B7; font-size:13px;">
+            <span style="padding:8px 14px; border-radius:999px; border:1px solid rgba(143,184,204,0.3); color:#8FB8CC; font-size:13px;">
                 {{ \App\Models\ExpertAvailability::WEEKDAYS[$slot->weekday] }} {{ \Illuminate\Support\Carbon::parse($slot->start_time)->format('H:i') }}–{{ \Illuminate\Support\Carbon::parse($slot->end_time)->format('H:i') }}
             </span>
             @endforeach

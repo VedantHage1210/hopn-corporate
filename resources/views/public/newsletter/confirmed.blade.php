@@ -5,7 +5,7 @@
     <div class="container-shell hopn-reveal" style="max-width:560px; text-align:center;">
 
         @if($success)
-            <div style="width:64px; height:64px; margin:0 auto 24px; border-radius:50%; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; font-size:28px;">✓</div>
+            <div style="width:64px; height:64px; margin:0 auto 24px; border-radius:50%; background:rgba(143,184,204,0.12); display:flex; align-items:center; justify-content:center; font-size:28px;">✓</div>
             <h1 style="font-size:clamp(26px,4vw,34px); font-weight:800; color:white; margin-bottom:12px;">
                 @if($lang === 'de') Abonnement bestätigt
                 @elseif($lang === 'ar') تم تأكيد اشتراكك

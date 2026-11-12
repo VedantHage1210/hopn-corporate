@@ -33,7 +33,7 @@
 .hopn-lift-card-nobg:hover { transform:translateY(-3px); border-color:rgba(255,255,255,0.14); }
 
 .hopn-btn-outline-amber { transition:background 0.3s ease; }
-.hopn-btn-outline-amber:hover { background:rgba(245,158,11,0.08); }
+.hopn-btn-outline-amber:hover { background:rgba(143,184,204,0.08); }
 .hopn-btn-outline-neutral { transition:color 0.25s ease, border-color 0.25s ease; }
 .hopn-btn-outline-neutral:hover { color:white; border-color:rgba(255,255,255,0.2); }
 .hopn-btn-outline-neutral2 { transition:background 0.3s ease; }
@@ -66,12 +66,12 @@
 .hopn-btn-outline-blue:hover { background:rgba(143,184,204,0.1); }
 
 .hopn-btn-outline-purple { transition:background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-.hopn-btn-outline-purple:hover { background:rgba(139,92,246,0.08); transform:translateY(-2px); }
+.hopn-btn-outline-purple:hover { background:rgba(143,184,204,0.08); transform:translateY(-2px); }
 
 .hopn-industry-card {
     transition:background 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1);
 }
-.hopn-industry-card:hover { background:rgba(79,110,247,0.08); border-color:rgba(79,110,247,0.25); transform:translateY(-4px); }
+.hopn-industry-card:hover { background:rgba(143,184,204,0.08); border-color:rgba(143,184,204,0.25); transform:translateY(-4px); }
 
 .hopn-partner-card { transition:border-color 0.3s ease, background 0.3s ease; }
 .hopn-partner-card:hover { border-color:rgba(255,255,255,0.14); background:rgba(255,255,255,0.045); }
@@ -82,7 +82,7 @@
 .hopn-ecosystem-node { transition:background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
 .hopn-ecosystem-node:hover { transform:translateY(-4px); }
 .hopn-domain-link { transition:background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-.hopn-domain-link:hover { background:rgba(79,110,247,0.08); border-color:rgba(79,110,247,0.3); transform:translateY(-2px); }
+.hopn-domain-link:hover { background:rgba(143,184,204,0.08); border-color:rgba(143,184,204,0.3); transform:translateY(-2px); }
 
 .hopn-link-accent { transition:color 0.25s ease; }
 .hopn-link-accent:hover { color:white !important; }
@@ -651,7 +651,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     {!! $hxVideo('team-whiteboard') !!}
     <div class="container-shell">
         <div class="hopn-reveal hx-vidhead" style="text-align:center; margin-bottom:64px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#4F6EF7; display:block; margin-bottom:16px;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC; display:block; margin-bottom:16px;">
                 @if($lang==='ar') كيف نعمل @elseif($lang==='de') Wie wir arbeiten @else How We Work @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -661,13 +661,13 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         @php
             $strategyImages = $homeProducts->pluck('hero_image_url')->filter()->values();
             $strategySteps = [
-                ['S','#4F6EF7',
+                ['S','#245B78',
                  $lang==='ar'?'الاستراتيجية':($lang==='de'?'Strategie':'Strategy'),
                  $lang==='ar'?'حدد الرؤية ومحافظ المشاريع وحوكمة الابتكار على نطاق المؤسسة.':($lang==='de'?'Vision, Portfolios und Innovationsgovernance auf Unternehmensebene definieren.':'Define vision, portfolios, and innovation governance at enterprise scale.')],
-                ['B','#10B981',
+                ['B','#245B78',
                  $lang==='ar'?'البناء':($lang==='de'?'Aufbau':'Build'),
                  $lang==='ar'?'صمّم ونفّذ بسرعة مؤسسية مع فرق عالمية المستوى.':($lang==='de'?'Entwerfen und liefern mit erstklassigen Teams.':'Design, prototype, and deliver at enterprise velocity with world-class teams.')],
-                ['S','#8B5CF6',
+                ['S','#245B78',
                  $lang==='ar'?'التوسع':($lang==='de'?'Skalierung':'Scale'),
                  $lang==='ar'?'حقق التأثير مع المنصات والشراكات والنتائج القابلة للقياس.':($lang==='de'?'Wirkung mit Plattformen und messbaren Ergebnissen operationalisieren.':'Operationalize impact with platforms, partnerships, and measurable outcomes.')],
             ];
@@ -700,7 +700,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') المنهجية @elseif($lang==='de') Vorgehen @else Approach @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -741,7 +741,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">
                     @if($lang==='ar') ماذا نفعل @elseif($lang==='de') Was wir tun @else What We Do @endif
                 </span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -749,7 +749,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </h2>
             </div>
             <a href="{{ route('services.index', ['lang'=>$lang]) }}" class="hopn-link-accent"
-               style="display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:#818CF8; text-decoration:none;">
+               style="display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
                 @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
             </a>
         </div>
@@ -788,7 +788,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <section style="padding:100px 0; background:#030712; position:relative; overflow:hidden;">
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8B5CF6; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') منصاتنا @elseif($lang==='de') Unsere Plattformen @else Our Platforms @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -840,7 +840,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         </div>
         <div class="hopn-reveal" style="text-align:center; margin-top:40px;">
             <a href="{{ route('products.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-purple"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(139,92,246,0.3); color:#A78BFA; font-size:15px; font-weight:600; text-decoration:none; background:transparent;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(143,184,204,0.3); color:#8FB8CC; font-size:15px; font-weight:600; text-decoration:none; background:transparent;">
                 @if($lang==='ar') عرض جميع المنتجات @elseif($lang==='de') Alle Produkte anzeigen @else View All Products @endif →
             </a>
         </div>
@@ -853,7 +853,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div class="hopn-reveal" style="text-align:center; margin-bottom:48px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') القطاعات @elseif($lang==='de') Branchen @else Industries @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -949,7 +949,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <section class="homepage-secondary" style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
     <div class="container-shell" style="position:relative; z-index:10;">
         <div style="text-align:center; margin-bottom:56px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') الشركات الناشئة والمستثمرون @elseif($lang==='de') Startups &amp; Investoren @else Startups &amp; Investors @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -984,13 +984,13 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                             <div style="font-size:12px; color:#CBD5E1;">{{ $startup->industry }}</div>
                         </div>
                         @if($startup->stage)
-                        <span style="font-size:11px; font-weight:600; color:#EF4444; background:rgba(239,68,68,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $startup->stage }}</span>
+                        <span style="font-size:11px; font-weight:600; color:#8FB8CC; background:rgba(143,184,204,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $startup->stage }}</span>
                         @endif
                     </div>
                     @endforeach
                 </div>
                 <a href="{{ route('startups.index', ['lang'=>$lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:6px; margin-top:20px; color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;">
+                   style="display:inline-flex; align-items:center; gap:6px; margin-top:20px; color:#8FB8CC; font-size:13px; font-weight:600; text-decoration:none;">
                     @if($lang==='ar') عرض جميع الشركات الناشئة @elseif($lang==='de') Alle Startups ansehen @else View all startups @endif →
                 </a>
             </div>
@@ -1014,13 +1014,13 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                             <div style="font-size:12px; color:#CBD5E1;">{{ $investor->type }}</div>
                         </div>
                         @if($investor->region)
-                        <span style="font-size:11px; font-weight:600; color:#06B6D4; background:rgba(6,182,212,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $investor->region }}</span>
+                        <span style="font-size:11px; font-weight:600; color:#8FB8CC; background:rgba(143,184,204,0.1); padding:4px 10px; border-radius:20px; white-space:nowrap;">{{ $investor->region }}</span>
                         @endif
                     </div>
                     @endforeach
                 </div>
                 <a href="{{ route('investors.index', ['lang'=>$lang]) }}"
-                   style="display:inline-flex; align-items:center; gap:6px; margin-top:20px; color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;">
+                   style="display:inline-flex; align-items:center; gap:6px; margin-top:20px; color:#8FB8CC; font-size:13px; font-weight:600; text-decoration:none;">
                     @if($lang==='ar') عرض جميع المستثمرين @elseif($lang==='de') Alle Investoren ansehen @else View all investors @endif →
                 </a>
             </div>
@@ -1037,7 +1037,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#10B981; display:block; margin-bottom:14px;">Consulting</span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC; display:block; margin-bottom:14px;">Consulting</span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:10px;">
                     @if($lang==='ar') احجز خبيراً @elseif($lang==='de') Einen Experten buchen @else Book an Expert @endif
                 </h2>
@@ -1048,7 +1048,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </p>
             </div>
             <a href="{{ route('consulting.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
-               style="font-size:14px; font-weight:600; color:#10B981; text-decoration:none;">
+               style="font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in touch @endif →
             </a>
         </div>
@@ -1117,7 +1117,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#F59E0B; display:block; margin-bottom:14px;">Training & Workshops</span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC; display:block; margin-bottom:14px;">Training & Workshops</span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:10px;">
                     @if($lang==='ar') رفع كفاءة الفرق لعصر الذكاء الاصطناعي @elseif($lang==='de') Teams für das KI-Zeitalter qualifizieren @else Upskill teams for the AI era @endif
                 </h2>
@@ -1128,7 +1128,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </p>
             </div>
             <a href="{{ route('workshops.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
-               style="font-size:14px; font-weight:600; color:#F59E0B; text-decoration:none;">
+               style="font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
                 @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
             </a>
         </div>
@@ -1159,7 +1159,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         <div style="display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;">
             <a href="{{ route('workshops.index', ['lang'=>$lang]) }}"
                class="hopn-btn-outline-amber"
-               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(245,158,11,0.3); color:#F59E0B; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1px solid rgba(143,184,204,0.3); color:#8FB8CC; font-size:14px; font-weight:600; text-decoration:none; background:transparent;">
                 @if($lang==='ar') عرض جميع ورش العمل @elseif($lang==='de') Alle Workshops @else View All Workshops @endif
             </a>
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
@@ -1178,7 +1178,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B; margin-bottom:12px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">
                     @if($lang==='ar') الفعاليات والورش @elseif($lang==='de') Events & Workshops @else Events & Workshops @endif
                 </span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -1186,14 +1186,14 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </h2>
             </div>
             <a href="{{ route('events.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
-               style="font-size:14px; font-weight:600; color:#F59E0B; text-decoration:none;">
+               style="font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
                 @if($lang==='ar') جميع الفعاليات @elseif($lang==='de') Alle Events @else All Events @endif →
             </a>
         </div>
         @if($upcomingEvents->count() > 0)
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($upcomingEvents as $event)
-            @php $typeColors=['conference'=>'#8FB8CC','workshop'=>'#8FB8CC','webinar'=>'#8FB8CC','hackathon'=>'#8FB8CC','startup'=>'#8FB8CC','networking'=>'#8FB8CC','research'=>'#A855F7']; $c=$typeColors[$event->type]??'#8FB8CC'; @endphp
+            @php $typeColors=['conference'=>'#8FB8CC','workshop'=>'#8FB8CC','webinar'=>'#8FB8CC','hackathon'=>'#8FB8CC','startup'=>'#8FB8CC','networking'=>'#8FB8CC','research'=>'#245B78']; $c=$typeColors[$event->type]??'#8FB8CC'; @endphp
             <div class="hopn-lift-card-nobg" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
                 @if($event->image_url)
                 <div style="height:150px; overflow:hidden;">
@@ -1230,7 +1230,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     <div class="container-shell">
         <div class="hopn-reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">
                     @if($lang==='ar') غرفة الأخبار @elseif($lang==='de') Newsroom @else Newsroom @endif
                 </span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -1238,7 +1238,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 </h2>
             </div>
             <a href="{{ route('newsroom.index', ['lang'=>$lang]) }}" class="hopn-link-fade"
-               style="font-size:14px; font-weight:600; color:#818CF8; text-decoration:none;">
+               style="font-size:14px; font-weight:600; color:#8FB8CC; text-decoration:none;">
                 @if($lang==='ar') جميع الأخبار @elseif($lang==='de') Alle Neuigkeiten @else All News @endif →
             </a>
         </div>
@@ -1286,7 +1286,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 <section class="homepage-secondary" style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') أصوات العملاء @elseif($lang==='de') Kundenstimmen @else Client Voice @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -1333,7 +1333,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                     <div class="hopn-field-photo" style="display:flex; align-items:center; justify-content:center; color:#245B78; font-size:30px; font-weight:700; margin-bottom:20px;">{{ $memberInitial }}</div>
                     @endif
                     @if($member->is_founder)
-                    <span style="display:block; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#526170; margin-bottom:8px;">Founder</span>
+                    <span style="display:block; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#526170; margin-bottom:8px;">{{ $member->leaderLabel($lang) }}</span>
                     @endif
                     <h3 style="font-size:20px; margin:0 0 7px;">{{ $member->name }}</h3>
                     @if($memberRole)<p style="font-size:13px; font-weight:700; color:#245B78 !important; margin:0 0 18px;">{{ $memberRole }}</p>@endif
@@ -1353,7 +1353,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
     {!! $hxVideo('talent-hiring') !!}
     <div class="container-shell" style="position:relative; z-index:10;">
         <div class="hopn-reveal hx-vidhead" style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') المواهب والتوظيف @elseif($lang==='de') Talente & Einstellung @else Talent & Hiring @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">

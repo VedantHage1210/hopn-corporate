@@ -32,7 +32,7 @@
 
             {{-- HOPn Logo --}}
             <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:32px;">
-                <div style="width:36px; height:36px; border-radius:10px; background:#4F6EF7; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:white;">H</div>
+                <div style="width:36px; height:36px; border-radius:10px; background:#245B78; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:white;">H</div>
                 <span style="font-size:22px; font-weight:700; color:white;">HOPn</span>
             </div>
 
@@ -51,7 +51,7 @@
             {{-- Actions --}}
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
                 <a href="/{{ $lang ?? 'en' }}"
-                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;"
+                   style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;"
                    onmouseover="this.style.transform='translateY(-2px)'"
                    onmouseout="this.style.transform='translateY(0)'">
                     @if($lang==='ar') العودة للرئيسية @elseif($lang==='de') Zur Startseite @else Go Home @endif

@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; min-height:80vh; display:flex; align-items:center;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(16,185,129,0.3); background:rgba(16,185,129,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#10B981; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') شبكة المستثمرين @elseif($lang==='de') Investorennetzwerk @else Investor Network @endif
             </span>
         </div>
@@ -33,7 +33,7 @@
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#10B981; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') تواصل مع فريق الاستثمار @elseif($lang==='de') Investor Relations kontaktieren @else Contact Investor Relations @endif →
             </a>
             <a href="#investors"
@@ -66,7 +66,7 @@
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') لماذا HOPn @elseif($lang==='de') Warum HOPn @else Why HOPn @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -122,7 +122,7 @@
 <section id="investors" style="padding:100px 0; background:#030712;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') شبكتنا @elseif($lang==='de') Unser Netzwerk @else Our Network @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -170,7 +170,7 @@
                     @endif
                     @if($investor->focus)
                     @php $focus = $lang==='ar'&&$investor->focus_ar ? $investor->focus_ar : ($lang==='de'&&$investor->focus_de ? $investor->focus_de : $investor->focus); @endphp
-                    <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); color:#818CF8; border:1px solid rgba(79,110,247,0.2);">
+                    <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:rgba(143,184,204,0.1); color:#8FB8CC; border:1px solid rgba(143,184,204,0.2);">
                         {{ Str::limit($focus,30) }}
                     </span>
                     @endif
@@ -200,7 +200,7 @@
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') مجالات التركيز @elseif($lang==='de') Schwerpunktbereiche @else Focus Areas @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -242,7 +242,7 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
             <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#10B981; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Contact Investor Relations @endif →
             </a>
             <a href="{{ route('startups.index', ['lang'=>$lang]) }}"
@@ -284,7 +284,7 @@
                               @elseif($lang==='de') Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu.
                               @else I agree to my data being processed per the Privacy Policy. @endif</span>
                     </label>
-                    <button type="submit" style="padding:12px; border-radius:8px; background:#10B981; color:white; font-weight:700; font-size:14px; border:none; cursor:pointer;">
+                    <button type="submit" style="padding:12px; border-radius:8px; background:#245B78; color:white; font-weight:700; font-size:14px; border:none; cursor:pointer;">
                         @if($lang==='ar') إرسال الطلب @elseif($lang==='de') Anfordern @else Request Deck @endif
                     </button>
                 </div>

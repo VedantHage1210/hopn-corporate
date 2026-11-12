@@ -15,13 +15,13 @@
 
 <section style="background:#030712; padding:80px 0 60px;">
     <div class="container-shell" style="max-width:900px; margin:0 auto;">
-        <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#A78BFA;">{{ $workshop->category ?? 'Workshop' }} · {{ str_replace('_',' ',$workshop->format) }}</span>
+        <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#8FB8CC;">{{ $workshop->category ?? 'Workshop' }} · {{ str_replace('_',' ',$workshop->format) }}</span>
         <h1 style="font-size:clamp(32px,5vw,52px); font-weight:900; color:white; line-height:1.1; margin:16px 0 20px;">{{ $title }}</h1>
         <p style="font-size:18px; color:#CBD5E1; line-height:1.7; max-width:700px;">{{ $summary }}</p>
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;">
             <a href="{{ route('workshops.book', ['lang'=>$lang, 'slug'=>$workshop->slug]) }}" class="hopn-lift-btn"
-               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none;">
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') احجز الآن @elseif($lang==='de') Jetzt buchen @else Book this workshop @endif →
             </a>
             <span style="display:inline-flex; align-items:center; gap:8px; padding:14px 24px; color:#94A3B8; font-size:14px;">
@@ -42,7 +42,7 @@
             <h2 style="font-size:16px; font-weight:800; color:white; margin:0 0 16px;">
                 @if($lang==='ar') نظرة عامة @elseif($lang==='de') Überblick @else Overview @endif
             </h2>
-            <div style="color:#94A3B8; font-size:15px; line-height:1.8; white-space:pre-line;">{{ $description }}</div>
+            <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="$description" />
         </div>
         @endif
         @if(!empty($outcomes))
@@ -53,7 +53,7 @@
             <ul style="margin:0; padding:0; list-style:none; display:grid; gap:12px;">
                 @foreach($outcomes as $point)
                 <li style="display:flex; gap:10px; color:#CBD5E1; font-size:14px; line-height:1.6;">
-                    <span style="color:#8B5CF6; flex-shrink:0;">✓</span>{{ $point }}
+                    <span style="color:#8FB8CC; flex-shrink:0;">✓</span>{{ $point }}
                 </li>
                 @endforeach
             </ul>

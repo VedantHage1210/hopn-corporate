@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#F59E0B; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') انضم لفريقنا @elseif($lang==='de') Werde Teil des Teams @else Join Our Team @endif
             </span>
         </div>
@@ -49,7 +49,7 @@
 <section style="padding:80px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') لماذا HOPn @elseif($lang==='de') Warum HOPn @else Why HOPn @endif
             </span>
             <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px;">
@@ -80,7 +80,7 @@
     <div class="container-shell">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:40px;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#F59E0B; margin-bottom:12px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">
                     @if($lang==='ar') الوظائف المتاحة @elseif($lang==='de') Offene Stellen @else Open Positions @endif
                 </span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -100,7 +100,7 @@
                     <span style="font-size:12px; color:#94A3B8;">{{ $job->location }}</span>
                     @endif
                     @if($job->department)
-                    <span style="font-size:11px; font-weight:600; padding:2px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8;">{{ $job->department }}</span>
+                    <span style="font-size:11px; font-weight:600; padding:2px 10px; border-radius:999px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.2); color:#8FB8CC;">{{ $job->department }}</span>
                     @endif
                     @if($job->type)
                     <span style="font-size:11px; font-weight:700; padding:2px 10px; border-radius:999px; background:{{ $tc }}15; border:1px solid {{ $tc }}30; color:{{ $tc }}; text-transform:uppercase; letter-spacing:0.06em;">{{ ucfirst(str_replace('_',' ',$job->type)) }}</span>
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <a href="{{ route('careers.show', ['lang'=>$lang,'slug'=>$job->slug]) }}"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:10px 24px; border-radius:8px; background:#F59E0B; color:white; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:10px 24px; border-radius:8px; background:#245B78; color:white; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:all 0.2s;">
                 @if($lang==='ar') تقدم الآن @elseif($lang==='de') Bewerben @else Apply Now @endif →
             </a>
         </div>
@@ -145,7 +145,7 @@
             @else Send us your CV and we'll keep you in mind for future opportunities. @endif
         </p>
         <a href="{{ route('careers.apply.general', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#F59E0B; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') أرسل سيرتك الذاتية @elseif($lang==='de') Lebenslauf senden @else Send Your CV @endif →
         </a>
     </div>

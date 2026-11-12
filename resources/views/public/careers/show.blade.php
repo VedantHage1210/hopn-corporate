@@ -6,13 +6,13 @@
 
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
         <div style="position:absolute; inset:0; pointer-events:none;
-            background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(143,184,204,0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(143,184,204,0.06) 1px, transparent 1px);
             background-size: 48px 48px;"></div>
         <div class="container-shell" style="position:relative; z-index:10; text-align:center;">
-            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(245,158,11,0.35); background:rgba(245,158,11,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
-                <span style="width:7px; height:7px; border-radius:50%; background:#F59E0B; display:inline-block;"></span>
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#F59E0B;">
+            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.1); border-radius:999px; padding:6px 16px; margin-bottom:24px;">
+                <span style="width:7px; height:7px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC;">
                     @if($lang === 'ar') منصب شاغر @elseif($lang === 'de') Offene Stelle @else Open Position @endif
                 </span>
             </div>
@@ -40,26 +40,26 @@
 
                     {{-- Tracking success --}}
                     @if(session('tracking_token'))
-                    <div style="padding:20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px;">
-                        <div style="font-size:16px; font-weight:700; color:#10B981; margin-bottom:8px;">
+                    <div style="padding:20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px;">
+                        <div style="font-size:16px; font-weight:700; color:#8FB8CC; margin-bottom:8px;">
                             @if($lang === 'ar') تم إرسال الطلب! @elseif($lang === 'de') Bewerbung eingereicht! @else Application Submitted! @endif
                         </div>
                         <p style="font-size:14px; color:#CBD5E1; margin-bottom:8px;">
                             @if($lang === 'ar') رقم طلبك: @elseif($lang === 'de') Ihre Bewerbungs-ID: @else Your Application ID: @endif
                         </p>
-                        <p style="font-size:20px; font-weight:800; color:#10B981; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
+                        <p style="font-size:20px; font-weight:800; color:#8FB8CC; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
                         <p style="font-size:12px; color:#CBD5E1; margin-bottom:12px;">
                             @if($lang === 'ar') احفظ هذا الرقم لتتبع حالة طلبك. @elseif($lang === 'de') Speichern Sie diese ID, um Ihren Bewerbungsstatus zu verfolgen. @else Save this ID to track your application status. @endif
                         </p>
                        <a href="{{ route('careers.track', ['lang' => $lang, 'token' => session('tracking_token')]) }}"
-                           style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#10B981; color:white; font-size:13px; font-weight:600; text-decoration:none;">
+                           style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#245B78; color:white; font-size:13px; font-weight:600; text-decoration:none;">
                             @if($lang === 'ar') تتبع طلبي @elseif($lang === 'de') Meine Bewerbung verfolgen @else Track My Application @endif →
                         </a>
                     </div>
                     @endif
 
                     @if(session('status') && !session('tracking_token'))
-                    <div style="padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px;">
+                    <div style="padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px;">
                         {{ session('status') }}
                     </div>
                     @endif
@@ -69,15 +69,7 @@
                         <h2 style="font-size:17px; font-weight:700; color:white; margin-bottom:16px;">
                             @if($lang === 'ar') الوصف الوظيفي @elseif($lang === 'de') Stellenbeschreibung @else Job Description @endif
                         </h2>
-                        <div style="font-size:14px; color:#CBD5E1; line-height:1.8;" @if($lang === 'ar') dir="rtl" @endif>
-                            @if($lang === 'ar' && $job->description_ar)
-                                {!! nl2br(e($job->description_ar)) !!}
-                            @elseif($lang === 'de' && $job->description_de)
-                                {!! nl2br(e($job->description_de)) !!}
-                            @else
-                                {!! nl2br(e($job->description)) !!}
-                            @endif
-                        </div>
+                        <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="($lang === 'ar' && $job->description_ar) ? $job->description_ar : (($lang === 'de' && $job->description_de) ? $job->description_de : $job->description)" />
                     </div>
 
                     {{-- Requirements --}}
@@ -86,15 +78,7 @@
                         <h2 style="font-size:17px; font-weight:700; color:white; margin-bottom:16px;">
                             @if($lang === 'ar') المتطلبات @elseif($lang === 'de') Anforderungen @else Requirements @endif
                         </h2>
-                        <div style="font-size:14px; color:#CBD5E1; line-height:1.8;" @if($lang === 'ar') dir="rtl" @endif>
-                            @if($lang === 'ar' && $job->requirements_ar)
-                                {!! nl2br(e($job->requirements_ar)) !!}
-                            @elseif($lang === 'de' && $job->requirements_de)
-                                {!! nl2br(e($job->requirements_de)) !!}
-                            @else
-                                {!! nl2br(e($job->requirements)) !!}
-                            @endif
-                        </div>
+                        <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="($lang === 'ar' && $job->requirements_ar) ? $job->requirements_ar : (($lang === 'de' && $job->requirements_de) ? $job->requirements_de : $job->requirements)" />
                     </div>
                     @endif
 
@@ -104,15 +88,7 @@
                         <h2 style="font-size:17px; font-weight:700; color:white; margin-bottom:16px;">
                             @if($lang === 'ar') المزايا @elseif($lang === 'de') Vorteile @else Benefits @endif
                         </h2>
-                        <div style="font-size:14px; color:#CBD5E1; line-height:1.8;" @if($lang === 'ar') dir="rtl" @endif>
-                            @if($lang === 'ar' && $job->benefits_ar)
-                                {!! nl2br(e($job->benefits_ar)) !!}
-                            @elseif($lang === 'de' && $job->benefits_de)
-                                {!! nl2br(e($job->benefits_de)) !!}
-                            @else
-                                {!! nl2br(e($job->benefits)) !!}
-                            @endif
-                        </div>
+                        <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="($lang === 'ar' && $job->benefits_ar) ? $job->benefits_ar : (($lang === 'de' && $job->benefits_de) ? $job->benefits_de : $job->benefits)" />
                     </div>
                     @endif
 
@@ -134,7 +110,7 @@
                 </div>
 
                 {{-- Right: Application Form --}}
-                <div style="border:1px solid rgba(79,110,247,0.2); background:#111827; border-radius:16px; padding:28px; position:sticky; top:80px;">
+                <div style="border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:16px; padding:28px; position:sticky; top:80px;">
                     <h2 style="font-size:18px; font-weight:700; color:white; margin-bottom:20px;">
                         @if($lang === 'ar') قدم الآن @elseif($lang === 'de') Jetzt bewerben @else Apply Now @endif
                     </h2>

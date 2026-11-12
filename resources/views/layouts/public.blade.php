@@ -43,11 +43,11 @@
 
     {{-- Book a Call Modal --}}
     <div id="book-call-modal">
-        <div style="width:100%; max-width:560px; background:#111827; border:1px solid rgba(79,110,247,0.2); border-radius:20px; overflow:hidden; position:relative;">
+        <div style="width:100%; max-width:560px; background:#111827; border:1px solid rgba(143,184,204,0.2); border-radius:20px; overflow:hidden; position:relative;">
             <div style="height:3px; background:#245B78;"></div>
             <div style="padding:28px 32px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06);">
                 <div>
-                    <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#818CF8; margin-bottom:6px;">HOPn</div>
+                    <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC; margin-bottom:6px;">HOPn</div>
                     <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">Book a Call</h2>
                 </div>
                 <button onclick="window.closeBookCall()"
@@ -57,7 +57,7 @@
             </div>
             <div style="padding:28px 32px 32px;">
                 @if(session('book_call_success'))
-                <div style="margin-bottom:20px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
+                <div style="margin-bottom:20px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px; text-align:center;">
                     {{ session('book_call_success') }}
                 </div>
                 @endif
@@ -70,14 +70,14 @@
                                 <label for="hopn-first-name-d61ac1" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">First Name *</label>
                                 <input id="hopn-first-name-d61ac1" type="text" name="first_name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                       onfocus="this.style.borderColor='#4F6EF7'"
+                                       onfocus="this.style.borderColor='#245B78'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                             <div>
                                 <label for="hopn-last-name-d61ac2" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Last Name *</label>
                                 <input id="hopn-last-name-d61ac2" type="text" name="last_name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                       onfocus="this.style.borderColor='#4F6EF7'"
+                                       onfocus="this.style.borderColor='#245B78'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                         </div>
@@ -85,14 +85,14 @@
                             <label for="hopn-email-d61ac3" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Email Address *</label>
                             <input id="hopn-email-d61ac3" type="email" name="email" required
                                    style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                   onfocus="this.style.borderColor='#4F6EF7'"
+                                   onfocus="this.style.borderColor='#245B78'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                         </div>
                         <div>
                             <label for="hopn-company-d61ac4" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Company</label>
                             <input id="hopn-company-d61ac4" type="text" name="company"
                                    style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                   onfocus="this.style.borderColor='#4F6EF7'"
+                                   onfocus="this.style.borderColor='#245B78'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                         </div>
                         <div>
@@ -123,7 +123,7 @@
                             <label for="hopn-message-d61ac7" style="display:block; font-size:12px; font-weight:600; color:#94A3B8; margin-bottom:5px;">Message (Optional)</label>
                             <textarea id="hopn-message-d61ac7" name="message" rows="3"
                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
-                                      onfocus="this.style.borderColor='#4F6EF7'"
+                                      onfocus="this.style.borderColor='#245B78'"
                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -133,7 +133,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                style="width:100%; padding:13px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(79,110,247,0.3);"
+                                style="width:100%; padding:13px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(143,184,204,0.3);"
                                 onmouseover="this.style.opacity='0.88'"
                                 onmouseout="this.style.opacity='1'">
                             Book My Call →

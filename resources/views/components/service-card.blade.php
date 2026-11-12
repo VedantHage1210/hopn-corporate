@@ -16,7 +16,7 @@
 
     @if(!empty($service->slug))
     <a href="{{ route('services.show', ['lang' => $lang, 'slug' => $service->slug]) }}"
-       style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#818CF8; text-decoration:none;">
+       style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:#8FB8CC; text-decoration:none;">
         {{ $lang === 'ar' ? 'اقرأ المزيد' : ($lang === 'de' ? 'Mehr lesen' : 'Read more') }}
         <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>

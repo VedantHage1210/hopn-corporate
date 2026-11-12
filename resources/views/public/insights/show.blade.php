@@ -32,7 +32,7 @@
         @endif
 
         <article class="card-panel p-6 md:p-10 mt-4 text-slate-300 leading-relaxed" @if($lang === 'ar') dir="rtl" @endif>
-            {!! nl2br(e($postContent)) !!}
+            <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="$postContent" />
         </article>
 
         @if($related->count() > 0)

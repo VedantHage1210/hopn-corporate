@@ -12,9 +12,14 @@ export default {
     theme: {
         extend: {
             colors: {
+                // Brand blue replaces Tailwind's indigo everywhere (keeps the site blue/white).
+                indigo: {
+                    50: '#EAF2F5', 100: '#D3E6EE', 200: '#B7D3E0', 300: '#9FC8DA', 400: '#8FB8CC',
+                    500: '#2F6F8F', 600: '#245B78', 700: '#1D4D66', 800: '#153B50', 900: '#0B3549', 950: '#061A27',
+                },
                 hopn: {
                     primary: '#0A0F1E',
-                    accent: '#4F6EF7',
+                    accent: '#245B78',
                     soft: '#111A2F',
                     muted: '#94A3B8',
                 },

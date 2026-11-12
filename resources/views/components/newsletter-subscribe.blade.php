@@ -7,9 +7,9 @@
             {{ $lang==='ar' ? 'البريد الإلكتروني للاشتراك في النشرة' : ($lang==='de' ? 'E-Mail für Newsletter-Anmeldung' : 'Email address for newsletter signup') }}
         </label>
         <input type="email" id="hopn-newsletter-email" name="email" required placeholder="your@email.com"
-            style="flex:1; min-width:220px; padding:12px 16px; border-radius:10px; border:1px solid rgba(139,92,246,0.4); background:transparent; color:white; font-size:14px;">
+            style="flex:1; min-width:220px; padding:12px 16px; border-radius:10px; border:1px solid rgba(143,184,204,0.4); background:transparent; color:white; font-size:14px;">
         <button type="submit" id="hopn-newsletter-submit"
-            style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap;">
+            style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:10px; background:#245B78; color:white; font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap;">
             @if($lang==='ar') اشترك @elseif($lang==='de') Abonnieren @else Subscribe @endif →
         </button>
     </form>
@@ -23,7 +23,7 @@ window.hopnShowToast = function (message, type) {
     var root = document.getElementById('hopn-toast-root');
     if (!root) return;
     var toast = document.createElement('div');
-    var bg = type === 'error' ? 'rgba(244,63,94,0.95)' : 'rgba(16,185,129,0.95)';
+    var bg = type === 'error' ? 'rgba(244,63,94,0.95)' : 'rgba(143,184,204,0.95)';
     toast.style.cssText = 'pointer-events:auto; background:' + bg + '; color:white; padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; box-shadow:0 10px 30px rgba(0,0,0,0.35); max-width:320px; opacity:0; transform:translateY(-10px); transition:opacity .25s ease, transform .25s ease;';
     toast.textContent = message;
     root.appendChild(toast);

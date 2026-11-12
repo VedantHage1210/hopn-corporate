@@ -3,9 +3,10 @@
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
+        <div class="hopn-contours" aria-hidden="true"></div>
         <div style="position:absolute; inset:0; pointer-events:none;
-            background-image: linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(143,184,204,0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(143,184,204,0.06) 1px, transparent 1px);
             background-size: 48px 48px;"></div>
 
         <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
@@ -34,7 +35,7 @@
     <section style="padding:60px 0; background:#080D1A;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:40px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8B5CF6; margin-bottom:12px;">Use Cases</span>
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">Use Cases</span>
                 <h2 style="font-size:clamp(22px,3vw,32px); font-weight:800; color:white;">
                     @if($lang === 'ar') حالات الاستخدام @elseif($lang === 'de') Anwendungsfälle @else Use Cases @endif
                 </h2>
@@ -42,7 +43,7 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; max-width:900px; margin:0 auto;">
                 @foreach(explode("\n", trim($domain->use_cases)) as $useCase)
                 @if(trim($useCase))
-                <div style="border:1px solid rgba(139,92,246,0.2); background:rgba(139,92,246,0.05); border-radius:12px; padding:16px;">
+                <div style="border:1px solid rgba(143,184,204,0.2); background:rgba(143,184,204,0.05); border-radius:12px; padding:16px;">
                     <div style="font-size:13px; font-weight:600; color:white;">{{ trim($useCase) }}</div>
                 </div>
                 @endif
@@ -57,7 +58,7 @@
     <section style="padding:60px 0; background:#0A0F1E;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:40px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Related</span>
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">Related</span>
                 <h2 style="font-size:clamp(22px,3vw,32px); font-weight:800; color:white;">
                     @if($lang === 'ar') الخدمات ذات الصلة @elseif($lang === 'de') Verwandte Dienste @else Related Services @endif
                 </h2>
@@ -65,7 +66,7 @@
             <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
                 @foreach(explode("\n", trim($domain->related_services)) as $service)
                 @if(trim($service))
-                <div style="padding:8px 20px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; font-size:13px; font-weight:600; color:#818CF8;">
+                <div style="padding:8px 20px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; font-size:13px; font-weight:600; color:#8FB8CC;">
                     {{ trim($service) }}
                 </div>
                 @endif
@@ -78,7 +79,7 @@
     {{-- CTA --}}
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell" style="text-align:center;">
-            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:rgba(139,92,246,0.05); border-radius:24px; padding:60px 32px;">
+            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:rgba(143,184,204,0.05); border-radius:24px; padding:60px 32px;">
                 <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') هل تريد استكشاف هذا المجال؟
                     @elseif($lang === 'de') Möchten Sie diesen Bereich erkunden?
@@ -86,7 +87,7 @@
                     @endif
                 </h2>
                 <a href="{{ route('contact.index', ['lang' => $lang]) }}"
-                   class="hopn-link-fade" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(139,92,246,0.3);">
+                   class="hopn-link-fade" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(143,184,204,0.3);">
                     @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Contact HOPn @endif
                 </a>
             </div>

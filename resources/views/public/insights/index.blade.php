@@ -7,9 +7,9 @@
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:40px;">
             <div>
-                <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:20px;">
-                    <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
-                    <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
+                <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:20px;">
+                    <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+                    <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                         @if($lang==='ar') المقالات والرؤى @elseif($lang==='de') Einblicke @else Insights @endif
                     </span>
                 </div>
@@ -34,10 +34,10 @@
                     <input type="text" id="hopn-insights-search" name="search" value="{{ $search ?? '' }}"
                            placeholder="{{ $lang==='ar'?'بحث...':($lang==='de'?'Suchen...':'Search articles...') }}"
                            style="padding:10px 12px 10px 36px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; width:200px; outline:none;"
-                           onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                           onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                            onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                 </div>
-                <button type="submit" style="padding:10px 20px; background:#4F6EF7; color:white; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">
+                <button type="submit" style="padding:10px 20px; background:#245B78; color:white; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">
                     @if($lang==='ar') بحث @elseif($lang==='de') Suchen @else Search @endif
                 </button>
             </form>
@@ -47,12 +47,12 @@
         @if(isset($categories) && $categories->count() > 0)
         <div style="display:flex; flex-wrap:wrap; gap:8px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0;">
             <a href="{{ route('insights.index', ['lang'=>$lang]) }}"
-               style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ !isset($category)||!$category||$category==='all'?'#4F6EF7':'transparent' }}; color:{{ !isset($category)||!$category||$category==='all'?'white':'#CBD5E1' }}; transition:all 0.2s; margin-bottom:-1px;">
+               style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ !isset($category)||!$category||$category==='all'?'#245B78':'transparent' }}; color:{{ !isset($category)||!$category||$category==='all'?'white':'#CBD5E1' }}; transition:all 0.2s; margin-bottom:-1px;">
                 @if($lang==='ar') الكل @elseif($lang==='de') Alle @else All @endif
             </a>
             @foreach($categories as $cat)
             <a href="{{ route('insights.index', ['lang'=>$lang, 'category'=>$cat->slug]) }}"
-               class="hopn-link-accent" style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ isset($category)&&$category===$cat->slug?'#4F6EF7':'transparent' }}; color:{{ isset($category)&&$category===$cat->slug?'white':'#CBD5E1' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;">
+               class="hopn-link-accent" style="padding:10px 18px; font-size:13px; font-weight:600; text-decoration:none; border-bottom:2px solid {{ isset($category)&&$category===$cat->slug?'#245B78':'transparent' }}; color:{{ isset($category)&&$category===$cat->slug?'white':'#CBD5E1' }}; transition:all 0.2s; margin-bottom:-1px; white-space:nowrap;">
                 {{ $cat->name }}
                 @if($cat->posts_count > 0)
                 <span style="font-size:11px; opacity:0.6;">({{ $cat->posts_count }})</span>
@@ -76,14 +76,14 @@
                      style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
                 @endif
                 <div style="position:absolute; top:16px; left:16px;">
-                    <span style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(79,110,247,0.9); color:white; text-transform:uppercase;">
+                    <span style="font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(143,184,204,0.9); color:white; text-transform:uppercase;">
                         @if($lang==='ar') مميز @elseif($lang==='de') Hervorgehoben @else Featured @endif
                     </span>
                 </div>
             </div>
             <div style="padding:40px; display:flex; flex-direction:column; justify-content:center; gap:16px;">
                 @if($featured->category)
-                <span style="display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(79,110,247,0.1); border:1px solid rgba(79,110,247,0.2); color:#818CF8; width:fit-content;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.2); color:#8FB8CC; width:fit-content;">
                     {{ $featured->category->name }}
                 </span>
                 @endif
@@ -97,7 +97,7 @@
                 @endif
                 <div style="display:flex; align-items:center; gap:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
                     <span style="font-size:13px; color:#94A3B8;">{{ $featured->published_at?->locale(request()->route('lang','en'))->translatedFormat('d M Y') }}</span>
-                    <span style="font-size:13px; font-weight:600; color:#4F6EF7;">
+                    <span style="font-size:13px; font-weight:600; color:#8FB8CC;">
                         @if($lang==='ar') اقرأ المزيد @elseif($lang==='de') Lesen @else Read more @endif →
                     </span>
                 </div>
@@ -115,7 +115,7 @@
         <div style="margin-bottom:24px; color:#CBD5E1; font-size:14px;">
             @if($lang==='ar') نتائج: @elseif($lang==='de') Ergebnisse für: @else Results for: @endif
             <span style="color:white; font-weight:600;">"{{ $search }}"</span>
-            <a href="{{ route('insights.index', ['lang'=>$lang]) }}" style="margin-left:12px; color:#EF4444; font-size:12px;">✕ Clear</a>
+            <a href="{{ route('insights.index', ['lang'=>$lang]) }}" style="margin-left:12px; color:#8FB8CC; font-size:12px;">✕ Clear</a>
         </div>
         @endif
 

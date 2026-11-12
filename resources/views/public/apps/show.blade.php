@@ -14,7 +14,7 @@
             @if($tagline)<p style="color:#CBD5E1; font-size:17px; margin:0 0 28px;">{{ $tagline }}</p>@endif
             @if($app->external_url)
             <a href="{{ $app->external_url }}" target="_blank"
-               style="display:inline-flex; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-weight:700; font-size:14px; text-decoration:none;">
+               style="display:inline-flex; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-weight:700; font-size:14px; text-decoration:none;">
                 {{ ($lang==='de' ? ($app->cta_label_de ?: $app->cta_label_en) : ($lang==='ar' ? ($app->cta_label_ar ?: $app->cta_label_en) : $app->cta_label_en)) ?: 'Open app' }} →
             </a>
             @endif
@@ -23,8 +23,8 @@
 
     @if($description)
     <section style="background:#030712; padding:0 0 100px;">
-        <div class="container-shell card-panel" style="max-width:800px; margin:0 auto; padding:32px;">
-            <div style="color:#94A3B8; font-size:15px; line-height:1.8; white-space:pre-line;">{{ $description }}</div>
+        <div class="container-shell" style="max-width:1000px; margin:0 auto;" @if($lang === 'ar') dir="rtl" @endif>
+            <x-doc-body :body="$description" />
         </div>
     </section>
     @endif

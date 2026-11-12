@@ -6,7 +6,7 @@
 
         {{-- Header --}}
         <div style="margin-bottom:40px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC;">
                 {{ $lang === 'ar' ? 'قانوني' : ($lang === 'de' ? 'Rechtliches' : 'Legal') }}
             </span>
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
@@ -34,8 +34,8 @@
                 {{ $lang === 'ar' ? 'التواصل' : ($lang === 'de' ? 'Kontakt' : 'Contact') }}
             </h2>
             <p>
-                {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#4F6EF7;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a><br>
-                {{ $lang==='ar' ? 'الموقع الإلكتروني:' : 'Web:' }} <a href="https://www.hopn.eu" style="color:#4F6EF7;">www.hopn.eu</a>
+                {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#8FB8CC;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a><br>
+                {{ $lang==='ar' ? 'الموقع الإلكتروني:' : 'Web:' }} <a href="https://www.hopn.eu" style="color:#8FB8CC;">www.hopn.eu</a>
             </p>
 
             <h2 style="font-size:18px; font-weight:700; color:white; margin:32px 0 16px;">
@@ -81,7 +81,7 @@
         {{-- Back --}}
         <div style="margin-top:32px;">
             <a href="{{ route('home', ['lang' => $lang]) }}" class="hopn-link-accent"
-               style="font-size:13px; color:#4F6EF7; text-decoration:none;">
+               style="font-size:13px; color:#8FB8CC; text-decoration:none;">
                 ← {{ $lang === 'ar' ? 'العودة للرئيسية' : ($lang === 'de' ? 'Zurück zur Startseite' : 'Back to Home') }}
             </a>
         </div>

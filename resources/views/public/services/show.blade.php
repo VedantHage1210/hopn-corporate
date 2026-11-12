@@ -11,15 +11,16 @@
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-                <div class="container-shell hopn-reveal hopn-service-detail-hero" style="position:relative; z-index:10; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.82fr); gap:48px; align-items:center;">
+        <div class="hopn-contours" aria-hidden="true"></div>
+                <div class="container-shell hopn-enter hopn-service-detail-hero" style="position:relative; z-index:10; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.82fr); gap:48px; align-items:center;">
                     <div>
             <a href="{{ route('services.index', ['lang' => $lang]) }}" class="hopn-link-accent"
                style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') العودة إلى الخدمات @elseif($lang === 'de') Zurück zu Leistungen @else Back to Services @endif
             </a>
             @if($service->category)
-            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#818CF8;">{{ $lang==='ar' && $service->category->name_ar ? $service->category->name_ar : ($lang==='de' && $service->category->name_de ? $service->category->name_de : $service->category->name) }}</span>
+            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">{{ $lang==='ar' && $service->category->name_ar ? $service->category->name_ar : ($lang==='de' && $service->category->name_de ? $service->category->name_de : $service->category->name) }}</span>
             </div>
             @endif
             <h1 style="font-size:clamp(28px,5vw,52px); font-weight:800; color:white; line-height:1.15; max-width:800px; margin:0 0 20px;">
@@ -46,28 +47,40 @@
     </section>
 
     {{-- Body --}}
-    <section style="padding:80px 0; background:#080D1A;">
-        <div class="container-shell hopn-reveal">
-            <div style="max-width:800px; margin:0 auto;">
-                @if($service->body || $service->body_de || $service->body_ar)
-                <div style="font-size:16px; color:#CBD5E1; line-height:1.8;">
-                    @if($lang === 'de' && $service->body_de) {!! nl2br(e($service->body_de)) !!}
-                    @elseif($lang === 'ar' && $service->body_ar) {!! nl2br(e($service->body_ar)) !!}
-                    @else {!! nl2br(e($service->body)) !!}
-                    @endif
-                </div>
-                @else
+    @php
+        $svcBody = $lang === 'de' && $service->body_de ? $service->body_de
+                 : ($lang === 'ar' && $service->body_ar ? $service->body_ar : $service->body);
+    @endphp
+    <section style="padding:72px 0 40px; background:#080D1A;" @if($lang === 'ar') dir="rtl" @endif>
+        <div class="container-shell" style="max-width:1040px;">
+            @if(!empty(trim((string) $svcBody)))
+                <x-doc-body :body="$svcBody" />
+            @else
                 <p style="color:#CBD5E1;">@if($lang === 'ar') سيتم نشر التفاصيل قريباً. @elseif($lang === 'de') Details werden in Kürze veröffentlicht. @else Details will be published soon. @endif</p>
-                @endif
+            @endif
+        </div>
+    </section>
 
-                <div style="margin-top:48px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.07);">
-                    <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-btn-primary"
-                       style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#4F6EF7; color:white; font-size:14px; font-weight:600; text-decoration:none;">
-                        @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Get in Touch →  @endif
-                    </a>
+    {{-- Call to action --}}
+    <section style="padding:0 0 96px; background:#080D1A;" @if($lang === 'ar') dir="rtl" @endif>
+        <div class="container-shell" style="max-width:1040px;">
+            <div class="hopn-reveal hopn-doc-cta">
+                <div>
+                    <h2>@if($lang === 'ar') هل تريد معرفة المزيد؟ @elseif($lang === 'de') Möchten Sie mehr erfahren? @else Want to see how this fits your organisation? @endif</h2>
+                    <p>@if($lang === 'ar') تواصل معنا لمناقشة متطلباتك. @elseif($lang === 'de') Sprechen Sie mit uns über Ihre Anforderungen. @else Talk to us about your requirements and we will come back with a clear plan. @endif</p>
                 </div>
+                <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-btn-primary hopn-doc-cta-btn">
+                    @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt aufnehmen @else Get in touch @endif
+                </a>
             </div>
         </div>
     </section>
+    <style>
+        .hopn-doc-cta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:36px 40px; border-radius:20px; background:linear-gradient(135deg,#0B3549 0%,#245B78 100%); color:#fff; }
+        .hopn-doc-cta h2 { margin:0 0 6px; font-size:clamp(20px,2.4vw,28px); font-weight:800; letter-spacing:-.02em; color:#fff; }
+        .hopn-doc-cta p { margin:0; color:#D3E6EE; font-size:15px; max-width:52ch; }
+        .hopn-doc-cta-btn { display:inline-flex; align-items:center; padding:13px 28px; border-radius:10px; background:#FFFFFF !important; color:#0B3549 !important; font-size:14px; font-weight:700; text-decoration:none; transition:transform .25s ease, box-shadow .25s ease; }
+        .hopn-doc-cta-btn:hover { transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(0,0,0,.45); }
+    </style>
 
 </x-layouts.public>

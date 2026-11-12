@@ -3,7 +3,7 @@
 
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#10B981;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC;">
             @if($lang==='ar') الاستشارات @elseif($lang==='de') Beratung @else Consulting @endif
         </span>
         <h1 style="font-size:clamp(32px,5vw,56px); font-weight:900; color:white; margin:16px 0 20px;">
@@ -21,12 +21,12 @@
 <section style="background:#030712; padding:0 0 30px;">
     <div class="container-shell" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
         <a href="{{ route('consulting.index', ['lang'=>$lang]) }}"
-           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ !request('category') ? '#10B981' : 'rgba(148,163,184,0.25)' }}; color:{{ !request('category') ? '#6EE7B7' : '#94A3B8' }};">
+           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ !request('category') ? '#245B78' : 'rgba(148,163,184,0.25)' }}; color:{{ !request('category') ? '#245B78' : '#94A3B8' }};">
             @if($lang==='ar') الكل @elseif($lang==='de') Alle @else All @endif
         </a>
         @foreach($categories as $cat)
         <a href="{{ route('consulting.index', ['lang'=>$lang, 'category'=>$cat->slug]) }}"
-           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ request('category')===$cat->slug ? '#10B981' : 'rgba(148,163,184,0.25)' }}; color:{{ request('category')===$cat->slug ? '#6EE7B7' : '#94A3B8' }};">
+           style="padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; border:1px solid {{ request('category')===$cat->slug ? '#245B78' : 'rgba(148,163,184,0.25)' }}; color:{{ request('category')===$cat->slug ? '#245B78' : '#94A3B8' }};">
             {{ $lang==='de' ? ($cat->name_de ?: $cat->name_en) : ($lang==='ar' ? ($cat->name_ar ?: $cat->name_en) : $cat->name_en) }}
         </a>
         @endforeach
@@ -68,7 +68,7 @@
                     @endif
                 </a>
                 <a href="{{ route('consulting.book', ['lang'=>$lang, 'id'=>$expert->id]) }}"
-                   style="display:block; text-align:center; padding:12px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:700; text-decoration:none;">
+                   style="display:block; text-align:center; padding:12px; border-radius:10px; background:#245B78; color:white; font-size:14px; font-weight:700; text-decoration:none;">
                     @if($lang==='ar') احجز هذا الخبير @elseif($lang==='de') Diesen Experten buchen @else Book this expert @endif
                 </a>
                 </div>

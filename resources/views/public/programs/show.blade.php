@@ -3,7 +3,8 @@
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
-        <div class="container-shell hopn-reveal" style="position:relative; z-index:10;">
+        <div class="hopn-contours" aria-hidden="true"></div>
+        <div class="container-shell hopn-enter" style="position:relative; z-index:10;">
             <a href="{{ route('programs.index', ['lang' => $lang]) }}"
                class="hopn-link-accent" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#CBD5E1; text-decoration:none; margin-bottom:24px;">
                 ← @if($lang === 'ar') رجوع @elseif($lang === 'de') Zurück @else Back to Programs @endif
@@ -29,12 +30,12 @@
             @endif
             <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
                 @if($program->duration)
-                <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.1); color:#A78BFA; font-size:13px; font-weight:600;">
+                <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.1); color:#8FB8CC; font-size:13px; font-weight:600;">
                     {{ $program->duration }}
                 </span>
                 @endif
                 <a href="#apply"
-                   class="hopn-link-fade" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#8B5CF6; color:white; font-size:14px; font-weight:600; text-decoration:none;">
+                   class="hopn-link-fade" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#245B78; color:white; font-size:14px; font-weight:600; text-decoration:none;">
                     @if($lang === 'ar') سجل الآن @elseif($lang === 'de') Jetzt anmelden @else Apply Now @endif →
                 </a>
             </div>
@@ -45,7 +46,7 @@
     @if($program->audience_en)
     <section style="padding:60px 0; background:#080D1A;">
         <div class="container-shell">
-            <div style="max-width:800px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
+            <div style="max-width:800px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
                 <div aria-hidden="true" style="font-size:20px; font-weight:800; flex-shrink:0;">T</div>
                 <div>
                     <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
@@ -68,7 +69,7 @@
 @if($program->duration || $program->duration_weeks)
 <section style="padding:40px 0; background:#0A0F1E;">
     <div class="container-shell">
-        <div style="max-width:800px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
+        <div style="max-width:800px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
             <div>
                 <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
                     @if($lang === 'ar') المدة @elseif($lang === 'de') Dauer @else Duration @endif
@@ -93,11 +94,11 @@
                 </h2>
             </div>
             @if(session('status'))
-            <div style="max-width:600px; margin:0 auto 24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; color:#10B981; font-size:14px; text-align:center;">
+            <div style="max-width:600px; margin:0 auto 24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px; text-align:center;">
                 {{ session('status') }}
             </div>
             @endif
-            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:20px; padding:40px;">
+            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:20px; padding:40px;">
                 <form action="{{ route('leads.training', ['lang' => $lang]) }}" method="POST">
                     @csrf
                     <x-turnstile />
@@ -110,7 +111,7 @@
                                 </label>
                                 <input id="hopn-name-53efd1" type="text" name="name" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                       onfocus="this.style.borderColor='#8B5CF6'"
+                                       onfocus="this.style.borderColor='#245B78'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                             <div>
@@ -119,7 +120,7 @@
                                 </label>
                                 <input id="hopn-email-53efd2" type="email" name="email" required
                                        style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box;"
-                                       onfocus="this.style.borderColor='#8B5CF6'"
+                                       onfocus="this.style.borderColor='#245B78'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
                         </div>
@@ -129,7 +130,7 @@
                             </label>
                             <textarea id="hopn-message-53efd3" name="message" rows="4" required
                                       style="width:100%; padding:10px 12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:14px; box-sizing:border-box; resize:vertical;"
-                                      onfocus="this.style.borderColor='#8B5CF6'"
+                                      onfocus="this.style.borderColor='#245B78'"
                                       onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -142,7 +143,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                class="hopn-link-fade" style="width:100%; padding:13px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer;">
+                                class="hopn-link-fade" style="width:100%; padding:13px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; border:none; cursor:pointer;">
                             @if($lang === 'ar') إرسال @elseif($lang === 'de') Absenden @else Submit Application @endif
                         </button>
                     </div>

@@ -12,15 +12,15 @@ $categoryLabels = [
     'delivery'     => $lang==='ar'?'شركاء التوصيل':($lang==='de'?'Lieferpartner':'Delivery Partners'),
 ];
 $categoryColors = [
-    'customer'     => '#4F6EF7',
-    'partner'      => '#10B981',
-    'tech_partner' => '#10B981',
-    'investor'     => '#F59E0B',
-    'startup'      => '#8B5CF6',
-    'university'   => '#06B6D4',
-    'academic'     => '#06B6D4',
-    'research'     => '#EF4444',
-    'delivery'     => '#F97316',
+    'customer'     => '#245B78',
+    'partner'      => '#245B78',
+    'tech_partner' => '#245B78',
+    'investor'     => '#245B78',
+    'startup'      => '#245B78',
+    'university'   => '#245B78',
+    'academic'     => '#245B78',
+    'research'     => '#8FB8CC',
+    'delivery'     => '#245B78',
 ];
 @endphp
 <x-layouts.public :title="$lang==='ar'?'الشركاء والعملاء':($lang==='de'?'Partner & Kunden':'Partners & Clients')">
@@ -29,9 +29,9 @@ $categoryColors = [
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(16,185,129,0.3); background:rgba(16,185,129,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#10B981; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#10B981;">Partners & Clients</span>
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">Partners & Clients</span>
         </div>
         <h1 style="font-size:clamp(36px,6vw,64px); font-weight:900; color:white; line-height:1.05; letter-spacing:-2px; margin:0 auto 24px; max-width:900px;">
             @if($lang==='ar')
@@ -120,7 +120,7 @@ $categoryColors = [
             @else Join HOPn's growing network of enterprise partners and innovators. @endif
         </p>
         <a href="{{ route('partner-inquiry.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#10B981; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') استفسار شراكة @elseif($lang==='de') Partneranfrage @else Partner Inquiry @endif →
         </a>
     </div>

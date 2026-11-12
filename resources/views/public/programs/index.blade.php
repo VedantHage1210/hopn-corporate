@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#A78BFA;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') التدريب والبرامج @elseif($lang==='de') Training & Programme @else Training & Programs @endif
             </span>
         </div>
@@ -29,7 +29,7 @@
             @else Upskilling and transformation programs for enterprise teams and professionals. @endif
         </p>
         <a href="#apply"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') سجل الآن @elseif($lang==='de') Jetzt anmelden @else Apply Now @endif →
         </a>
     </div>
@@ -90,7 +90,7 @@
 <section id="apply" style="padding:80px 0 100px; background:#030712;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8B5CF6; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Apply Now @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -104,12 +104,12 @@
         </div>
 
         @if(session('status'))
-        <div style="max-width:680px; margin:0 auto 24px; padding:16px 20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; color:#10B981; font-size:14px; text-align:center;">
+        <div style="max-width:680px; margin:0 auto 24px; padding:16px 20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px; color:#8FB8CC; font-size:14px; text-align:center;">
             {{ session('status') }}
         </div>
         @endif
 
-        <div style="max-width:680px; margin:0 auto; position:relative; border:1px solid rgba(139,92,246,0.2); background:#0A0F1E; border-radius:20px; padding:40px; overflow:hidden;">
+        <div style="max-width:680px; margin:0 auto; position:relative; border:1px solid rgba(143,184,204,0.2); background:#0A0F1E; border-radius:20px; padding:40px; overflow:hidden;">
 
             <form action="{{ route('leads.training', ['lang'=>$lang]) }}" method="POST">
                 @csrf
@@ -123,7 +123,7 @@
                             </label>
                             <input id="hopn-name-16fc11" type="text" name="name" value="{{ old('name') }}" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                   onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
+                                   onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             @error('name')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
                         </div>
@@ -133,7 +133,7 @@
                             </label>
                             <input id="hopn-email-16fc12" type="email" name="email" value="{{ old('email') }}" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                   onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
+                                   onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             @error('email')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
                         </div>
@@ -144,7 +144,7 @@
                         </label>
                         <input id="hopn-phone-16fc13" type="text" name="phone" value="{{ old('phone') }}"
                                style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                               onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
+                               onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                     </div>
                     <div>
@@ -168,7 +168,7 @@
                         </label>
                         <textarea id="hopn-message-16fc15" name="message" rows="5" required
                                   style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none; resize:vertical;"
-                                  onfocus="this.style.borderColor='rgba(139,92,246,0.5)'"
+                                  onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                   onblur="this.style.borderColor='rgba(255,255,255,0.08)'">{{ old('message') }}</textarea>
                         @error('message')<p style="font-size:11px; color:#F87171; margin-top:4px;">{{ $message }}</p>@enderror
                     </div>
@@ -185,7 +185,7 @@
                     </div>
                     @error('gdpr')<p style="font-size:11px; color:#F87171;">{{ $message }}</p>@enderror
                     <button type="submit"
-                            class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#8B5CF6; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
+                            class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                         @if($lang==='ar') إرسال الطلب @elseif($lang==='de') Bewerbung absenden @else Submit Application @endif
                     </button>
                 </div>

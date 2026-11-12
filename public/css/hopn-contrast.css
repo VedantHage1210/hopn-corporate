@@ -1,0 +1,52 @@
+/* HOPn contrast safety net — loaded last. Guarantees buttons/cards stay readable in BOTH themes. */
+
+/* ---------- 1. Page heroes are always dark (navy or photo/video): force readable light content ---------- */
+html:root[data-theme] main section.hopn-hero:not(.hx-hasvideo):not(#hx) {
+  background:linear-gradient(135deg,#061A27 0%,#0B3549 55%,#124D6C 100%) !important;
+}
+html:root[data-theme] main section.hopn-hero h1:not(#hx) { color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; text-shadow:0 2px 14px rgba(0,0,0,.35); }
+html:root[data-theme] main section.hopn-hero p:not(#hx),
+html:root[data-theme] main section.hopn-hero span:not(#hx) { color:#E3EEF3 !important; }
+html:root[data-theme] main section.hopn-hero .hopn-hero-stat:not(#hx) { background:rgba(255,255,255,.14) !important; border:1px solid rgba(255,255,255,.35) !important; backdrop-filter:blur(6px); }
+html:root[data-theme] main section.hopn-hero .hopn-hero-stat-num:not(#hx) { color:#FFFFFF !important; text-shadow:0 1px 8px rgba(0,0,0,.35); }
+html:root[data-theme] main section.hopn-hero .hopn-hero-stat-label:not(#hx) { color:#E3EEF3 !important; font-weight:600; }
+
+/* hero buttons: solid white primary, glass outline secondary (same language as the homepage) */
+html:root[data-theme] main section.hopn-hero a.hopn-hero-btn:not(#hx) {
+  color:#FFFFFF !important; background:rgba(255,255,255,.14) !important; border:1.5px solid rgba(255,255,255,.75) !important;
+  font-weight:700 !important; text-shadow:none; backdrop-filter:blur(6px);
+}
+html:root[data-theme] main section.hopn-hero a.hopn-hero-btn:not(#hx):hover { background:rgba(255,255,255,.26) !important; }
+html:root[data-theme] main section.hopn-hero a.hopn-hero-btn--primary:not(#hx) { background:#FFFFFF !important; color:#0B3549 !important; border-color:#FFFFFF !important; }
+html:root[data-theme] main section.hopn-hero a.hopn-hero-btn--primary:not(#hx):hover { background:#E6F0F4 !important; }
+
+/* ---------- 2. Translucent "ghost" buttons anywhere else ---------- */
+/* Light theme: translucent-white buttons vanish on a light page. Give them a visible brand outline. */
+html[data-theme="light"] main a[style*="background:rgba(255,255,255,0.0"]:not(.hopn-hero-btn):not(#hx),
+html[data-theme="light"] main button[style*="background:rgba(255,255,255,0.0"]:not(#hx) {
+  background:#FFFFFF !important; color:#245B78 !important; border:1.5px solid #245B78 !important; font-weight:700 !important;
+}
+html[data-theme="light"] main a[style*="background:rgba(255,255,255,0.0"]:not(.hopn-hero-btn):not(#hx):hover { background:#E6F0F4 !important; }
+/* Dark theme: raise the hairline border so ghost buttons are findable */
+html[data-theme="dark"] main a[style*="background:rgba(255,255,255,0.0"][style*="border:1px solid rgba(255,255,255,0.1"]:not(.hopn-hero-btn):not(#hx) {
+  border-color:rgba(159,224,242,.55) !important; color:#FFFFFF !important;
+}
+html[data-theme="light"] main .hopn-bg-brighten:not(.hopn-hero-btn):not(#hx) { filter:none; }
+
+/* Outline button variants used on the homepage and others */
+html[data-theme="light"] main :is(.hopn-btn-outline-blue,.hopn-btn-outline-purple,.hopn-btn-outline-amber,.hopn-btn-outline-neutral,.hopn-btn-outline-neutral2):not(#hx) {
+  background:#FFFFFF !important; color:#245B78 !important; border:1.5px solid #245B78 !important; font-weight:700 !important;
+}
+html[data-theme="dark"] main :is(.hopn-btn-outline-blue,.hopn-btn-outline-purple,.hopn-btn-outline-amber,.hopn-btn-outline-neutral,.hopn-btn-outline-neutral2):not(#hx) {
+  color:#FFFFFF !important; border:1.5px solid rgba(159,224,242,.6) !important; font-weight:700 !important;
+}
+
+/* ---------- 3. Small text links in cards: keep them readable on both themes ---------- */
+html[data-theme="dark"] main .card-panel a:not([class*="btn"]):not(.hopn-lift-btn):not(#hx) { color:#9FE0F2; }
+html[data-theme="light"] main .card-panel p, html[data-theme="light"] main .card-panel li { color:#43515F !important; }
+
+/* Keyboard focus is always visible */
+main a:focus-visible, main button:focus-visible { outline:2px solid #2F7FA6; outline-offset:3px; }
+
+/* Video/photo heroes: keep a brand-navy base so the hero never turns white if the media is slow or missing */
+html:root[data-theme] main section.hopn-hero.hx-hasvideo:not(#hx) { background-color:#0B3549 !important; }

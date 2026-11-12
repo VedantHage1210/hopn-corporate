@@ -10,7 +10,7 @@
 {{-- HERO --}}
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#A78BFA;">{{ $heroEyebrow }}</span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8FB8CC;">{{ $heroEyebrow }}</span>
         <h1 style="font-size:clamp(32px,5vw,56px); font-weight:900; color:white; margin:16px 0 20px; max-width:800px; margin-left:auto; margin-right:auto;">{{ $heroTitle }}</h1>
         @if($heroSubtitle)
         <p style="font-size:17px; color:#CBD5E1; max-width:640px; margin:0 auto 24px;">{{ $heroSubtitle }}</p>
@@ -18,7 +18,7 @@
         @if(!empty($heroTags))
         <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
             @foreach($heroTags as $tag)
-            <span style="padding:6px 16px; border-radius:999px; border:1px solid rgba(139,92,246,0.3); background:rgba(139,92,246,0.08); color:#A78BFA; font-size:12px; font-weight:600;">{{ $tag }}</span>
+            <span style="padding:6px 16px; border-radius:999px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); color:#8FB8CC; font-size:12px; font-weight:600;">{{ $tag }}</span>
             @endforeach
         </div>
         @endif
@@ -30,7 +30,7 @@
 <section style="background:#030712; padding:20px 0 80px;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:40px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#A78BFA;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') مجالات التركيز الرئيسية @elseif($lang==='de') Wichtige Schwerpunkte @else Key Focus Areas @endif
             </span>
             <h2 style="font-size:28px; font-weight:900; color:white; margin:12px 0 0;">
@@ -44,7 +44,7 @@
                 $desc  = $lang==='de' ? ($item->description_de ?: $item->description_en) : ($lang==='ar' ? ($item->description_ar ?: $item->description_en) : $item->description_en);
                 $tags  = $lang==='de' ? ($item->tags_de ?: $item->tags_en) : ($lang==='ar' ? ($item->tags_ar ?: $item->tags_en) : $item->tags_en);
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
-                $color = $item->accent_color ?: '#8B5CF6';
+                $color = $item->accent_color ?: '#245B78';
             @endphp
             <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>
@@ -71,7 +71,7 @@
 <section style="background:#050A14; padding:80px 0;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:48px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#06B6D4;">HOPn Labs</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">HOPn Labs</span>
             <h2 style="font-size:28px; font-weight:900; color:white; margin:12px 0 8px;">
                 @if($lang==='ar') كيف نعمل @elseif($lang==='de') Wie wir arbeiten @else How We Work @endif
             </h2>
@@ -88,7 +88,7 @@
                 $sDesc  = $lang==='de' ? ($step->description_de ?: $step->description_en) : ($lang==='ar' ? ($step->description_ar ?: $step->description_en) : $step->description_en);
             @endphp
             <div>
-                <div style="font-size:32px; font-weight:900; color:rgba(6,182,212,0.35); margin-bottom:10px;">{{ str_pad($step->step_number, 2, '0', STR_PAD_LEFT) }}</div>
+                <div style="font-size:32px; font-weight:900; color:rgba(143,184,204,0.35); margin-bottom:10px;">{{ str_pad($step->step_number, 2, '0', STR_PAD_LEFT) }}</div>
                 <h3 style="color:white; font-size:16px; font-weight:800; margin:0 0 8px;">{{ $sTitle }}</h3>
                 @if($sDesc)<p style="color:#94A3B8; font-size:13px; line-height:1.6; margin:0;">{{ $sDesc }}</p>@endif
             </div>
@@ -103,7 +103,7 @@
 <section style="background:#030712; padding:80px 0;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:40px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#10B981;">HOPn Labs</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">HOPn Labs</span>
             <h2 style="font-size:28px; font-weight:900; color:white; margin:12px 0 8px;">
                 @if($lang==='ar') البرامج والمبادرات @elseif($lang==='de') Programme & Initiativen @else Programs & Initiatives @endif
             </h2>
@@ -120,7 +120,7 @@
                 $desc  = $lang==='de' ? ($item->description_de ?: $item->description_en) : ($lang==='ar' ? ($item->description_ar ?: $item->description_en) : $item->description_en);
                 $tags  = $lang==='de' ? ($item->tags_de ?: $item->tags_en) : ($lang==='ar' ? ($item->tags_ar ?: $item->tags_en) : $item->tags_en);
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
-                $color = $item->accent_color ?: '#10B981';
+                $color = $item->accent_color ?: '#245B78';
             @endphp
             <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>
@@ -147,7 +147,7 @@
 <section style="background:#050A14; padding:80px 0;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:40px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#F59E0B;">HOPn Labs</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">HOPn Labs</span>
             <h2 style="font-size:28px; font-weight:900; color:white; margin:12px 0 0;">
                 @if($lang==='ar') ماذا يقول الناس @elseif($lang==='de') Was Leute sagen @else What People Say @endif
             </h2>

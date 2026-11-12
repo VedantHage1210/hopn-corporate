@@ -66,13 +66,13 @@
             <div class="lg:col-span-2 space-y-6 hopn-reveal">
                 <div class="card-panel p-8 text-slate-300 bg-[#0B1120] border border-slate-800 rounded-2xl" @if($lang === 'ar') dir="rtl" @endif>
                     <h3 class="text-xl font-bold text-indigo-400">@if($lang === 'ar') التحدي @elseif($lang === 'de') Herausforderung @else Challenge @endif</h3>
-                    <p class="mt-2 leading-relaxed">{{ $csChallenge }}</p>
+                    <div class="mt-2"><x-doc-body variant="stack" :body="$csChallenge" /></div>
 
                     <h3 class="text-xl font-bold text-indigo-400 mt-6">@if($lang === 'ar') الحل @elseif($lang === 'de') Lösung @else Solution @endif</h3>
-                    <p class="mt-2 leading-relaxed">{{ $csSolution }}</p>
+                    <div class="mt-2"><x-doc-body variant="stack" :body="$csSolution" /></div>
 
                     <h3 class="text-xl font-bold text-indigo-400 mt-6">@if($lang === 'ar') النتائج والمؤشرات @elseif($lang === 'de') Ergebnisse & Kennzahlen @else Outcomes & Metrics @endif</h3>
-                    <p class="mt-2 leading-relaxed">{{ $csOutcomes }}</p>
+                    <div class="mt-2"><x-doc-body variant="stack" :body="$csOutcomes" /></div>
 
                     @if(!empty($caseStudy->metrics))
                         <div class="mt-6 p-4 bg-indigo-900/20 border-l-4 border-indigo-500 rounded">

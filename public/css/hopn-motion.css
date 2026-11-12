@@ -1,0 +1,65 @@
+/* HOPn motion layer — subtle, blue/white only. Loaded after hopn-polish.css. */
+
+/* Scroll progress line */
+.hopn-progress { position:fixed; top:0; left:0; height:2px; width:100%; z-index:300; transform-origin:0 50%; transform:scaleX(0);
+  background:linear-gradient(90deg,#245B78,#9FE0F2); pointer-events:none; }
+html[dir="rtl"] .hopn-progress, body[style*="rtl"] .hopn-progress { transform-origin:100% 50%; }
+
+/* Staggered reveal: JS sets --hopn-i on siblings that share a parent */
+.hopn-reveal { transition-delay:calc(var(--hopn-i, 0) * 70ms); }
+
+/* Cards: soft lift + brand border on hover (opt-in via existing card classes) */
+.hopn-lift-card, .hopn-service-card, .hopn-product-card { transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .3s ease, box-shadow .35s ease; }
+.hopn-lift-card:hover, .hopn-service-card:hover, .hopn-product-card:hover { transform:translateY(-4px); border-color:rgba(143,184,204,.55) !important; }
+
+/* Hero entrance: one orchestrated moment on load */
+@keyframes hopnRise { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+.hopn-enter > * { opacity:0; animation:hopnRise .9s cubic-bezier(.16,1,.3,1) forwards; }
+.hopn-enter > *:nth-child(1) { animation-delay:.05s; } .hopn-enter > *:nth-child(2) { animation-delay:.18s; }
+.hopn-enter > *:nth-child(3) { animation-delay:.31s; } .hopn-enter > *:nth-child(4) { animation-delay:.44s; }
+.hopn-enter > *:nth-child(n+5) { animation-delay:.55s; }
+
+/* Slow drifting contour lines behind page heroes */
+@keyframes hopnDrift { 0%,100% { transform:translate3d(0,0,0) rotate(0deg); } 50% { transform:translate3d(14px,-10px,0) rotate(1.2deg); } }
+.hopn-contours { position:absolute; z-index:-1; inset:-10% -5%; pointer-events:none; opacity:.5; animation:hopnDrift 22s ease-in-out infinite;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600' fill='none' stroke='%239FE0F2' stroke-opacity='.16'><path d='M-20 420C160 330 260 540 460 460S760 230 980 320 1160 460 1240 400'/><path d='M-20 360C170 270 270 480 470 400S770 170 990 260 1170 400 1240 340'/><path d='M-20 300C180 210 280 420 480 340S780 110 1000 200 1180 340 1240 280'/></svg>");
+  background-size:cover; background-position:center; }
+
+/* Link underline sweep for in-content links */
+.hopn-doc a { background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat; text-decoration:none !important; transition:background-size .35s ease; }
+.hopn-doc a:hover { background-size:100% 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hopn-progress, .hopn-contours { display:none; }
+  .hopn-enter > * { opacity:1; animation:none; }
+  .hopn-reveal { transition-delay:0s; }
+  .hopn-lift-card:hover, .hopn-service-card:hover, .hopn-product-card:hover { transform:none; }
+}
+
+/* Section headings: short accent rule that draws in (JS adds .hopn-h2 and .is-in) */
+.hopn-h2::before { content:""; display:block; height:3px; width:0; border-radius:2px; background:#8FB8CC; margin-bottom:14px; transition:width .8s cubic-bezier(.16,1,.3,1) .1s; }
+html[data-theme="light"] .hopn-h2::before { background:#245B78; }
+.hopn-h2.is-in::before { width:40px; }
+.hopn-h2--center::before { margin-inline:auto; }
+
+/* Numbered steps: vertical connector that fills with scroll (--p set by JS) */
+.hopn-doc-sec[data-kind="steps"] ol { position:relative; }
+.hopn-doc-sec[data-kind="steps"] ol::before, .hopn-doc-sec[data-kind="steps"] ol::after { content:""; position:absolute; left:36px; top:34px; bottom:34px; width:2px; border-radius:2px; }
+.hopn-doc-sec[data-kind="steps"] ol::before { background:rgba(143,184,204,.25); }
+.hopn-doc-sec[data-kind="steps"] ol::after { background:#2F7FA6; transform-origin:50% 0; transform:scaleY(var(--p,0)); }
+.hopn-doc-sec[data-kind="steps"] ol > li { z-index:1; }
+.hopn-doc--stack .hopn-doc-sec[data-kind="steps"] ol::before, .hopn-doc--stack .hopn-doc-sec[data-kind="steps"] ol::after { left:29px; top:30px; bottom:30px; }
+.hopn-doc[dir="rtl"] .hopn-doc-sec[data-kind="steps"] ol::before, .hopn-doc[dir="rtl"] .hopn-doc-sec[data-kind="steps"] ol::after { left:auto; right:36px; }
+.hopn-doc--stack[dir="rtl"] .hopn-doc-sec[data-kind="steps"] ol::before, .hopn-doc--stack[dir="rtl"] .hopn-doc-sec[data-kind="steps"] ol::after { right:29px; }
+
+/* Buttons: soft sheen sweep on hover (primary actions only) */
+.hopn-lift-btn, .hopn-btn-primary, .rs-btn { position:relative; overflow:hidden; }
+.hopn-lift-btn::after, .hopn-btn-primary::after, .rs-btn::after { content:""; position:absolute; inset:0; background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%); transform:translateX(-120%); transition:transform .7s ease; pointer-events:none; }
+.hopn-lift-btn:hover::after, .hopn-btn-primary:hover::after, .rs-btn:hover::after { transform:translateX(120%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hopn-h2::before { width:40px; transition:none; }
+  .hopn-doc-sec[data-kind="steps"] ol::after { transform:scaleY(1); }
+  .hopn-lift-btn::after, .hopn-btn-primary::after, .rs-btn::after { display:none; }
+}
+section.hx-hasvideo .hopn-contours{display:none;}

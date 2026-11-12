@@ -65,7 +65,7 @@
     .hopn-cms-panel { border:1px solid var(--c-line); background:var(--c-panel); border-radius:14px; padding:30px; }
     .hopn-cms h2 { font-size:21px; font-weight:800; line-height:1.3; color:var(--c-ink); margin:0 0 12px; letter-spacing:-0.3px; }
     .hopn-cms h3 { font-size:16px; font-weight:700; line-height:1.35; color:var(--c-ink); margin:0 0 8px; }
-    .hopn-cms-text { color:var(--c-muted); font-size:15.5px; line-height:1.85; white-space:pre-line; margin:0; }
+    .hopn-cms-text { color:var(--c-muted); font-size:15.5px; line-height:1.85; margin:0; }
     .hopn-cms-hero-block { padding:12px 0; }
     .hopn-cms-hero-block h2 { font-size:clamp(24px,3.4vw,34px); letter-spacing:-0.8px; margin-bottom:10px; }
     .hopn-cms-hero-block p { color:var(--c-muted); font-size:16px; line-height:1.7; margin:0; max-width:680px; }
@@ -103,7 +103,7 @@
 </style>
 
 @if(!empty($isPreview))
-<div style="background:#F59E0B; color:#022C22; text-align:center; padding:10px; font-size:13px; font-weight:700;">
+<div style="background:#245B78; color:#FFFFFF; text-align:center; padding:10px; font-size:13px; font-weight:700;">
     PREVIEW MODE — this page is {{ strtoupper($page->status) }} and not publicly visible yet. This link expires in 24 hours.
 </div>
 @endif
@@ -149,7 +149,7 @@
                         @if(!empty($bc['body']))
                         <div class="hopn-cms-panel">
                             @if($bTitle)<h2>{{ $bTitle }}</h2>@endif
-                            <p class="hopn-cms-text">{{ $bc['body'] }}</p>
+                            <div class="hopn-cms-text"><x-doc-body variant="stack" :body="$bc['body']" /></div>
                         </div>
                         @endif
 
@@ -199,7 +199,7 @@
                     @endforeach
 
                     @if(!empty($content))
-                    <div class="hopn-cms-panel"><p class="hopn-cms-text">{{ $content }}</p></div>
+                    <div class="hopn-cms-panel"><div class="hopn-cms-text"><x-doc-body variant="stack" :body="$content" /></div></div>
                     @elseif(!$hasBody && !$externalUrl)
                     <div class="hopn-cms-panel"><p class="hopn-cms-text">{{ $t('Content coming soon.', 'Inhalt kommt bald.', 'المحتوى قادم قريباً.') }}</p></div>
                     @endif

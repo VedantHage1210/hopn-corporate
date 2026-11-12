@@ -76,7 +76,7 @@
                     style="width:100%; padding:12px 14px; border-radius:8px; border:1px solid rgba(148,163,184,0.25); background:#0B1120; color:white; font-size:14px;">{{ old('message') }}</textarea>
             </div>
             <button type="submit"
-                style="margin-top:8px; padding:14px; border-radius:10px; background:#8B5CF6; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer;">
+                style="margin-top:8px; padding:14px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:700; border:none; cursor:pointer;">
                 @if($lang==='ar') إرسال طلب الحجز @elseif($lang==='de') Buchungsanfrage senden @else Send booking request @endif
             </button>
         </form>

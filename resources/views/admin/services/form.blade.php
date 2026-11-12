@@ -30,6 +30,7 @@
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Body (EN)</label>
                         <textarea name="body" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body', $item->body ?? '') }}</textarea>
+<p class="mt-1 text-xs text-slate-500">Formatting: <code>## Heading</code> starts a new section · <code>1. </code> numbered steps · <code>- </code> bullet list · <code>**bold**</code></p>
                     </div>
                 </div>
                 {{-- German --}}
@@ -47,6 +48,7 @@
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Body (DE)</label>
                         <textarea name="body_de" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('body_de', $item->body_de ?? '') }}</textarea>
+<p class="mt-1 text-xs text-slate-500">Formatting: <code>## Heading</code> starts a new section · <code>1. </code> numbered steps · <code>- </code> bullet list · <code>**bold**</code></p>
                     </div>
                 </div>
                 {{-- Arabic --}}
@@ -64,6 +66,7 @@
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-200">Body (AR)</label>
                         <textarea name="body_ar" rows="6" class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" dir="rtl">{{ old('body_ar', $item->body_ar ?? '') }}</textarea>
+<p class="mt-1 text-xs text-slate-500">Formatting: <code>## Heading</code> starts a new section · <code>1. </code> numbered steps · <code>- </code> bullet list · <code>**bold**</code></p>
                     </div>
                 </div>
             </div>

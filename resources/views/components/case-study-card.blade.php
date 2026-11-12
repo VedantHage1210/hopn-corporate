@@ -15,7 +15,7 @@
     <h3 style="font-size:15px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $title }}</h3>
 
     <a href="{{ route('case-studies.show', ['lang' => $lang, 'slug' => $caseStudy->slug]) }}"
-       style="margin-top:16px; font-size:13px; font-weight:600; color:#A78BFA; text-decoration:none;">
+       style="margin-top:16px; font-size:13px; font-weight:600; color:#8FB8CC; text-decoration:none;">
         Read case study →
     </a>
 </article>

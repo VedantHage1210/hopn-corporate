@@ -8,17 +8,17 @@
         }
         .product-hover-card:hover {
             transform: translateY(-5px) !important;
-            box-shadow: 0 12px 24px rgba(79, 110, 247, 0.15) !important;
-            border-color: rgba(79, 110, 247, 0.4) !important;
+            box-shadow: 0 12px 24px rgba(143,184,204, 0.15) !important;
+            border-color: rgba(143,184,204, 0.4) !important;
         }
         .hopn-back-link { transition:color 0.25s ease; }
         .hopn-back-link:hover { color:white; }
         .hopn-opacity-btn { transition:opacity 0.25s ease; }
         .hopn-opacity-btn:hover { opacity:0.88; }
         .hopn-pill-hover { transition:background 0.25s ease; }
-        .hopn-pill-hover:hover { background:rgba(79,110,247,0.15); }
+        .hopn-pill-hover:hover { background:rgba(143,184,204,0.15); }
         .hopn-related-card { transition:border-color 0.3s ease, background 0.3s ease; }
-        .hopn-related-card:hover { border-color:rgba(79,110,247,0.3); background:#141D2E; }
+        .hopn-related-card:hover { border-color:rgba(143,184,204,0.3); background:#141D2E; }
     </style>
 
     {{-- Hero --}}
@@ -30,6 +30,7 @@
         @media (max-width:860px) { .hopn-product-hero-grid { grid-template-columns:minmax(0,1fr); gap:32px; } }
     </style>
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">
+        <div class="hopn-contours" aria-hidden="true"></div>
         <div class="container-shell hopn-product-hero-grid {{ empty($product->hero_image_url) ? 'no-media' : '' }}" style="position:relative; z-index:10;">
           <div>
             <a href="{{ route('products.index', ['lang' => $lang]) }}" class="hopn-back-link"
@@ -44,8 +45,8 @@
             </div>
 
             @if(!empty($product->tagline_en))
-            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.35); background:rgba(79,110,247,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
-                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#818CF8;">
+            <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.35); background:rgba(143,184,204,0.1); border-radius:999px; padding:4px 14px; margin-bottom:20px; margin-left:12px;">
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8FB8CC;">
                     @if($lang === 'de' && !empty($product->tagline_de)) {{ $product->tagline_de }}
                     @elseif($lang === 'ar' && !empty($product->tagline_ar)) {{ $product->tagline_ar }}
                     @else {{ $product->tagline_en }}
@@ -92,25 +93,15 @@
                     <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                         @if($lang === 'ar') المشكلة @elseif($lang === 'de') Problem @else The Problem @endif
                     </h3>
-                    <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
-                        @if($lang === 'de' && !empty($product->problem_de)) {{ $product->problem_de }}
-                        @elseif($lang === 'ar' && !empty($product->problem_ar)) {{ $product->problem_ar }}
-                        @else {{ $product->problem_en }}
-                        @endif
-                    </p>
+                    <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="($lang === 'de' && !empty($product->problem_de)) ? $product->problem_de : (($lang === 'ar' && !empty($product->problem_ar)) ? $product->problem_ar : $product->problem_en)" />
                 </div>
                 @endif
                 @if(!empty($product->solution_en))
-                <div class="product-hover-card" style="border:1px solid rgba(16,185,129,0.2); background:#111827; border-radius:16px; padding:32px;">
+                <div class="product-hover-card" style="border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:16px; padding:32px;">
                     <h3 style="font-size:18px; font-weight:700; color:white; margin-bottom:12px;">
                         @if($lang === 'ar') الحل @elseif($lang === 'de') Lösung @else Our Solution @endif
                     </h3>
-                    <p style="font-size:15px; color:#CBD5E1; line-height:1.8;">
-                        @if($lang === 'de' && !empty($product->solution_de)) {{ $product->solution_de }}
-                        @elseif($lang === 'ar' && !empty($product->solution_ar)) {{ $product->solution_ar }}
-                        @else {{ $product->solution_en }}
-                        @endif
-                    </p>
+                    <x-doc-body variant="stack" :dir="$lang === 'ar' ? 'rtl' : 'ltr'" :body="($lang === 'de' && !empty($product->solution_de)) ? $product->solution_de : (($lang === 'ar' && !empty($product->solution_ar)) ? $product->solution_ar : $product->solution_en)" />
                 </div>
                 @endif
             </div>
@@ -123,7 +114,7 @@
     <section style="padding:80px 0; background:#0A0F1E;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:48px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">Features</span>
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">Features</span>
                 <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white;">
                     @if($lang === 'ar') المميزات @elseif($lang === 'de') Funktionen @else Key Features @endif
                 </h2>
@@ -136,7 +127,7 @@
             ?>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($featureList as $feature)
-                <div class="product-hover-card" style="border:1px solid rgba(79,110,247,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
+                <div class="product-hover-card" style="border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
                     <span style="font-size:14px; color:#CBD5E1; line-height:1.6;">{{ trim($feature) }}</span>
                 </div>
                 @endforeach
@@ -150,7 +141,7 @@
     <section style="padding:80px 0; background:#080D1A;">
         <div class="container-shell">
             <div style="text-align:center; margin-bottom:48px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8B5CF6; margin-bottom:12px;">Use Cases</span>
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">Use Cases</span>
                 <h2 style="font-size:clamp(24px,4vw,36px); font-weight:800; color:white;">
                     @if($lang === 'ar') حالات الاستخدام @elseif($lang === 'de') Anwendungsfälle @else Use Cases @endif
                 </h2>
@@ -163,8 +154,8 @@
             ?>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
                 @foreach($useCaseList as $useCase)
-                <div class="product-hover-card" style="border:1px solid rgba(139,92,246,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
-                    <span style="color:#8B5CF6; font-size:18px; flex-shrink:0;">→</span>
+                <div class="product-hover-card" style="border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:14px; padding:20px; display:flex; align-items:flex-start; gap:12px;">
+                    <span style="color:#8FB8CC; font-size:18px; flex-shrink:0;">→</span>
                     <span style="font-size:14px; color:#CBD5E1; line-height:1.6;">{{ trim($useCase) }}</span>
                 </div>
                 @endforeach
@@ -186,7 +177,7 @@
             <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
                 @foreach($productIndustries as $industry)
                 <a href="{{ route('industries.show', ['lang' => $lang, 'slug' => $industry->slug]) }}" class="hopn-pill-hover"
-                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); color:#818CF8; font-size:13px; font-weight:600; text-decoration:none;">
+                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); color:#8FB8CC; font-size:13px; font-weight:600; text-decoration:none;">
                     {{ $industry->name }}
                 </a>
                 @endforeach
@@ -213,7 +204,7 @@
                     @if(!empty($service->summary))
                     <p style="font-size:13px; color:#CBD5E1; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
                     @endif
-                    <span style="display:inline-block; margin-top:10px; font-size:12px; color:#818CF8; font-weight:600;">Learn more →</span>
+                    <span style="display:inline-block; margin-top:10px; font-size:12px; color:#8FB8CC; font-weight:600;">Learn more →</span>
                 </a>
                 @endforeach
             </div>
@@ -224,7 +215,7 @@
     {{-- CTA --}}
     <section style="padding:80px 0; background:#0A0F1E;">
         <div class="container-shell" style="text-align:center;">
-            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(79,110,247,0.2); background:rgba(79,110,247,0.05); border-radius:24px; padding:60px 32px;">
+            <div style="max-width:600px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:rgba(143,184,204,0.05); border-radius:24px; padding:60px 32px;">
                 <h2 style="font-size:clamp(22px,4vw,32px); font-weight:800; color:white; margin-bottom:16px;">
                     @if($lang === 'ar') هل أنت مهتم؟ @elseif($lang === 'de') Interesse? @else Interested? @endif
                 </h2>

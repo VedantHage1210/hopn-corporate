@@ -49,14 +49,14 @@
         <div class="container-shell" style="max-width:760px;">
 
             @if(session('tracking_token'))
-            <div role="status" style="padding:20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; margin-bottom:24px;">
-                <div style="font-size:16px; font-weight:700; color:#10B981; margin-bottom:8px;">{{ session('status') }}</div>
+            <div role="status" style="padding:20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px; margin-bottom:24px;">
+                <div style="font-size:16px; font-weight:700; color:#8FB8CC; margin-bottom:8px;">{{ session('status') }}</div>
                 <p style="font-size:14px; color:#CBD5E1; margin-bottom:8px;">
                     {{ $L(['en' => 'Your Application ID:', 'de' => 'Ihre Bewerbungs-ID:', 'ar' => 'رقم طلبك:']) }}
                 </p>
-                <p style="font-size:20px; font-weight:800; color:#10B981; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
+                <p style="font-size:20px; font-weight:800; color:#8FB8CC; font-family:monospace; margin-bottom:12px;">{{ session('tracking_token') }}</p>
                 <a href="{{ route('careers.track', ['lang' => $lang, 'token' => session('tracking_token')]) }}"
-                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#10B981; color:white; font-size:13px; font-weight:600; text-decoration:none;">
+                   style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; background:#245B78; color:white; font-size:13px; font-weight:600; text-decoration:none;">
                     {{ $L(['en' => 'Track My Application', 'de' => 'Meine Bewerbung verfolgen', 'ar' => 'تتبع طلبي']) }} →
                 </a>
             </div>

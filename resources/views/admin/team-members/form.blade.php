@@ -102,7 +102,7 @@
                 <div class="flex items-center gap-2">
                     <input type="checkbox" name="is_founder" id="is_founder"
                         {{ old('is_founder', $item->is_founder ?? false) ? 'checked' : '' }}>
-                    <label for="is_founder" class="text-sm text-slate-300">Show as Founder (featured separately on Team page)</label>
+                    <label for="is_founder" class="text-sm text-slate-300">Show as Founder / Co-founder (large card at the top of Team and About pages)</label>
                 </div>
             </div>
             <div class="mt-6">

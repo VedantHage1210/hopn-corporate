@@ -5,7 +5,7 @@
     <div class="container-shell hopn-reveal" style="max-width:800px;">
 
         <div style="margin-bottom:40px;">
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#4F6EF7;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8FB8CC;">
                 {{ $lang === 'ar' ? 'قانوني' : ($lang === 'de' ? 'Rechtliches' : 'Legal') }}
             </span>
             <h1 style="font-size:clamp(28px,4vw,42px); font-weight:800; color:white; margin-top:8px;">
@@ -26,7 +26,7 @@
                 <p style="color:#CBD5E1;">
                     HOPn UG (haftungsbeschränkt)<br>
                     {{ $siteSettings['office_address'] ?? '[Address pending — to be confirmed by founder]' }}<br>
-                    {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a>
+                    {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:privacy@hopn.eu" style="color:#8FB8CC;">privacy@hopn.eu</a>
                 </p>
             </div>
 
@@ -100,7 +100,7 @@
                     {{ $lang === 'ar' ? '6. التواصل' : ($lang === 'de' ? '6. Kontakt' : '6. Contact') }}
                 </h2>
                 <p style="color:#CBD5E1;">
-                    {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:privacy@hopn.eu" style="color:#4F6EF7;">privacy@hopn.eu</a><br>
+                    {{ $lang==='ar' ? 'البريد الإلكتروني:' : ($lang==='de' ? 'E-Mail:' : 'Email:') }} <a href="mailto:privacy@hopn.eu" style="color:#8FB8CC;">privacy@hopn.eu</a><br>
                     HOPn UG (haftungsbeschränkt), {{ $siteSettings['office_address'] ?? '[Address pending]' }}
                 </p>
             </div>
@@ -109,7 +109,7 @@
 
         <div style="margin-top:32px;">
             <a href="{{ route('home', ['lang' => $lang]) }}" class="hopn-link-accent"
-               style="font-size:13px; color:#4F6EF7; text-decoration:none;">
+               style="font-size:13px; color:#8FB8CC; text-decoration:none;">
                 ← {{ $lang === 'ar' ? 'العودة للرئيسية' : ($lang === 'de' ? 'Zurück zur Startseite' : 'Back to Home') }}
             </a>
         </div>

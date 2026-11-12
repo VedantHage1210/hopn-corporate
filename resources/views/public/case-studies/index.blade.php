@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; padding:80px 0 60px;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:24px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') دراسات الحالة @elseif($lang==='de') Fallstudien @else Case Studies @endif
             </span>
         </div>
@@ -76,7 +76,7 @@
                     @if(!empty($caseStudy->results))
                     <div style="display:flex; flex-wrap:wrap; gap:8px;">
                         @foreach(array_slice(explode(',', $caseStudy->results), 0, 2) as $result)
-                        <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:6px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); color:#10B981;">
+                        <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:6px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.2); color:#8FB8CC;">
                             ✓ {{ trim($result) }}
                         </span>
                         @endforeach
@@ -144,7 +144,7 @@
             </p>
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
                 <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-                   class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+                   class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
                     @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
                 </a>
                 <a href="{{ route('services.index', ['lang'=>$lang]) }}"

@@ -80,7 +80,7 @@
                     {{ $lang === 'ar' ? 'مركز الابتكار الأوروبي يربط الأعمال والتعليم والبحث.' : ($lang === 'de' ? 'Europäischer Innovationshub für Business, Bildung und Forschung.' : 'European innovation hub connecting business, education, and research.') }}
                 </p>
                 <div style="font-size:13px; color:#CBD5E1; margin-bottom:8px;">
-                    <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#818CF8; text-decoration:none;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a>
+                    <a href="mailto:{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}" style="color:#8FB8CC; text-decoration:none;">{{ $siteSettings['contact_email'] ?? 'contact@hopn.eu' }}</a>
                 </div>
                 @if(!empty($siteSettings['office_address'] ?? null))
                 <div style="font-size:13px; color:#CBD5E1; margin-bottom:24px;">
@@ -105,7 +105,7 @@
                 </div>
                 @if(!empty($siteSettings['scheduling_url'] ?? null))
                 <a href="{{ $siteSettings['scheduling_url'] }}" target="_blank" rel="noopener noreferrer" class="hx-footcta"
-                   style="display:inline-flex; margin-top:16px; color:#818CF8; font-size:13px; text-decoration:none;">
+                   style="display:inline-flex; margin-top:16px; color:#8FB8CC; font-size:13px; text-decoration:none;">
                     {{ $lang === 'ar' ? 'احجز مكالمة' : ($lang === 'de' ? 'Gespräch buchen' : 'Book a call') }}
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
@@ -132,6 +132,12 @@
                             {{ $link[$lang] ?? $link['en'] }}
                         </a>
                         @endforeach
+                    @endif
+                    @if(!$footerSolutions->contains(fn ($i) => str_contains((string) $i->hrefFor($lang), '/innovation')))
+                    <a href="{{ route('innovation.index', ['lang' => $lang]) }}"
+                       class="hopn-link-accent" style="font-size:13px; color:#CBD5E1; text-decoration:none; transition:color 0.2s;">
+                        {{ $lang === 'ar' ? 'مجالات الابتكار' : ($lang === 'de' ? 'Innovationsdomänen' : 'Innovation Domains') }}
+                    </a>
                     @endif
                 </div>
             </div>

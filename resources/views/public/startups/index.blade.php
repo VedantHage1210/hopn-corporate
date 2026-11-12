@@ -5,9 +5,9 @@
 <section style="position:relative; overflow:hidden; background:#030712; min-height:80vh; display:flex; align-items:center;">
 
     <div class="container-shell hopn-reveal" style="position:relative; z-index:10; padding:80px 0; text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(79,110,247,0.3); background:rgba(79,110,247,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
-            <span style="width:6px; height:6px; border-radius:50%; background:#4F6EF7; display:inline-block;"></span>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#818CF8;">
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(143,184,204,0.3); background:rgba(143,184,204,0.08); border-radius:999px; padding:6px 18px; margin-bottom:32px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#245B78; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC;">
                 @if($lang==='ar') النظام البيئي للشركات الناشئة @elseif($lang==='de') Startup-Ökosystem @else Startup Ecosystem @endif
             </span>
         </div>
@@ -34,7 +34,7 @@
 
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:64px;">
             <a href="#apply"
-               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#4F6EF7; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+               class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Apply Now @endif →
             </a>
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
@@ -66,7 +66,7 @@
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') ما نقدمه @elseif($lang==='de') Was wir bieten @else What We Offer @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -105,7 +105,7 @@
     <div class="container-shell">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:48px;">
             <div>
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:12px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:12px;">
                     @if($lang==='ar') شركاتنا الناشئة @elseif($lang==='de') Unsere Startups @else Our Startups @endif
                 </span>
                 <h2 style="font-size:clamp(26px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin:0;">
@@ -169,7 +169,7 @@
 <section style="padding:100px 0; background:#050A14;">
     <div class="container-shell">
         <div style="text-align:center; margin-bottom:64px;">
-            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8B5CF6; margin-bottom:16px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                 @if($lang==='ar') البرامج @elseif($lang==='de') Programme @else Programs @endif
             </span>
             <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -220,7 +220,7 @@
 
         <div style="text-align:center; margin-top:40px;">
             <a href="{{ route('programs.index', ['lang'=>$lang]) }}"
-               class="hopn-bg-brighten hopn-btn-secondary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1.5px solid rgba(139,92,246,0.65); color:#C4B5FD; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;">
+               class="hopn-bg-brighten hopn-btn-secondary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; border:1.5px solid rgba(143,184,204,0.65); color:#9FE0F2; font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s;">
                 @if($lang==='ar') عرض جميع البرامج @elseif($lang==='de') Alle Programme anzeigen @else View All Programs @endif →
             </a>
         </div>
@@ -232,7 +232,7 @@
     <div class="container-shell">
         <div style="max-width:680px; margin:0 auto;">
             <div style="text-align:center; margin-bottom:48px;">
-                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#4F6EF7; margin-bottom:16px;">
+                <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
                     @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Apply Now @endif
                 </span>
                 <h2 style="font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
@@ -245,10 +245,10 @@
                 </p>
             </div>
 
-            <div style="border:1px solid rgba(79,110,247,0.2); background:#0A0F1E; border-radius:20px; padding:40px; position:relative; overflow:hidden;">
+            <div style="border:1px solid rgba(143,184,204,0.2); background:#0A0F1E; border-radius:20px; padding:40px; position:relative; overflow:hidden;">
 
                 @if(session('startup_success'))
-                <div style="margin-bottom:24px; padding:14px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; color:#10B981; font-size:14px;">
+                <div style="margin-bottom:24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:10px; color:#8FB8CC; font-size:14px;">
                     {{ session('startup_success') }}
                 </div>
                 @endif
@@ -264,7 +264,7 @@
                                 </label>
                                 <input id="hopn-founder-name-699be1" type="text" name="founder_name" required
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                       onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                                       onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
@@ -273,7 +273,7 @@
                                 </label>
                                 <input id="hopn-email-699be2" type="email" name="email" required
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                       onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                                       onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                         </div>
@@ -283,7 +283,7 @@
                             </label>
                             <input id="hopn-startup-name-699be3" type="text" name="startup_name" required
                                    style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                   onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                                   onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                    onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                         </div>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
@@ -294,7 +294,7 @@
                                 <input id="hopn-industry-699be4" type="text" name="industry"
                                        placeholder="AI, HealthTech, FinTech..."
                                        style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none;"
-                                       onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                                       onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                        onblur="this.style.borderColor='rgba(255,255,255,0.08)'">
                             </div>
                             <div>
@@ -318,7 +318,7 @@
                             <textarea id="hopn-message-699be6" name="message" rows="5"
                                       placeholder="{{ $lang==='ar'?'ما المشكلة التي تحلها؟':($lang==='de'?'Welches Problem lösen Sie?':'What problem are you solving? What stage are you at?') }}"
                                       style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:white; font-size:14px; box-sizing:border-box; outline:none; resize:vertical;"
-                                      onfocus="this.style.borderColor='rgba(79,110,247,0.5)'"
+                                      onfocus="this.style.borderColor='rgba(143,184,204,0.5)'"
                                       onblur="this.style.borderColor='rgba(255,255,255,0.08)'"></textarea>
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -330,7 +330,7 @@
                             </label>
                         </div>
                         <button type="submit"
-                                class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
+                                class="hopn-lift-btn" style="width:100%; padding:16px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;">
                             @if($lang==='ar') قدم الآن @elseif($lang==='de') Jetzt bewerben @else Submit Application @endif
                         </button>
                     </div>
@@ -352,7 +352,7 @@
             @else Get in touch with the HOPn startup team today. @endif
         </p>
         <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
-           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#4F6EF7; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
+           class="hopn-lift-btn" style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none; transition:all 0.2s;">
             @if($lang==='ar') تواصل معنا @elseif($lang==='de') Kontakt aufnehmen @else Get in Touch @endif →
         </a>
     </div>
