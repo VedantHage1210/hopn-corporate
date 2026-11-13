@@ -99,11 +99,27 @@
                         {{ old('visible', $item->visible ?? true) ? 'checked' : '' }}>
                     <label for="visible" class="text-sm text-slate-300">Visible on website</label>
                 </div>
-                <div class="flex items-center gap-2">
-                    <input type="checkbox" name="is_founder" id="is_founder"
-                        {{ old('is_founder', $item->is_founder ?? false) ? 'checked' : '' }}>
-                    <label for="is_founder" class="text-sm text-slate-300">Show as Founder / Co-founder (large card at the top of Team and About pages)</label>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" name="is_founder" id="is_founder" value="1" data-leader-toggle
+                            {{ old('is_founder', $item->is_founder ?? false) ? 'checked' : '' }}>
+                        <label for="is_founder" class="text-sm text-slate-300">Founder (large card, labelled "Founder")</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" name="is_cofounder" id="is_cofounder" value="1" data-leader-toggle
+                            {{ old('is_cofounder', $item->is_cofounder ?? false) ? 'checked' : '' }}>
+                        <label for="is_cofounder" class="text-sm text-slate-300">Co-founder (large card, labelled "Co-founder")</label>
+                    </div>
+                    <p class="text-xs text-slate-500">Leave both unticked for a normal team member. Pick only one.</p>
                 </div>
+                <script>
+                    document.querySelectorAll('[data-leader-toggle]').forEach(function (box) {
+                        box.addEventListener('change', function () {
+                            if (!box.checked) return;
+                            document.querySelectorAll('[data-leader-toggle]').forEach(function (o) { if (o !== box) o.checked = false; });
+                        });
+                    });
+                </script>
             </div>
             <div class="mt-6">
                 <button type="submit" class="btn-primary">{{ isset($item->id) ? 'Update Member' : 'Save Member' }}</button>

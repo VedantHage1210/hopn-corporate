@@ -49,14 +49,14 @@
 <section style="padding:60px 0 100px; background:#050A14;">
     <div class="container-shell">
         @if($services->count() > 0)
-        <div class="hopn-reveal" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;">
             @foreach($services as $service)
             @php
                 $colors=['#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC','#8FB8CC']; $c=$colors[$loop->index%6];
                 $svcTitle = $lang==='ar' && $service->name_ar ? $service->name_ar : ($lang==='de' && $service->name_de ? $service->name_de : $service->name);
                 $svcSummary = $lang==='ar' && $service->summary_ar ? $service->summary_ar : ($lang==='de' && $service->summary_de ? $service->summary_de : $service->summary);
             @endphp
-            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-lift-card"
+            <a href="{{ route('services.show', ['lang'=>$lang,'slug'=>$service->slug]) }}" class="hopn-lift-card hopn-reveal"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
                 @if($service->hero_image)
                 <div style="height:210px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="{{ $service->hero_image }}" alt="{{ $svcTitle }}" style="width:100%; height:100%; display:block; object-fit:cover;"></div>

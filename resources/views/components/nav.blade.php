@@ -82,7 +82,6 @@
                 ['en'=>'Investors & Funds', 'de'=>'Investoren & Fonds',  'ar'=>'المستثمرون',      'route'=>'investors.index'],
                 ['en'=>'Catalog',           'de'=>'Katalog',             'ar'=>'الكتالوج',        'route'=>'catalog.index'],
                 ['en'=>'Newsroom', 'de'=>'Newsroom',   'ar'=>'غرفة الأخبار', 'route'=>'newsroom.index'],
-                ['en'=>'Insights', 'de'=>'Einblicke',  'ar'=>'المقالات',     'route'=>'insights.index'],
                 ['en'=>'Careers',  'de'=>'Karriere',   'ar'=>'وظائف',        'route'=>'careers.index'],
                 ['en'=>'Contact',  'de'=>'Kontakt',    'ar'=>'تواصل معنا',   'route'=>'contact.index'],
                 ['en'=>'Security & Trust', 'de'=>'Sicherheit & Vertrauen', 'ar'=>'الأمن والثقة', 'route'=>'legal.security'],

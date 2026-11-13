@@ -16,6 +16,7 @@ class TeamMember extends Model
         'bio_en',  'bio_de',  'bio_ar',
         'photo',
         'is_founder',
+        'is_cofounder',
         'linkedin',
         'sort_order',
         'visible',
@@ -23,7 +24,8 @@ class TeamMember extends Model
 
     protected $casts = [
         'visible'    => 'boolean',
-        'is_founder' => 'boolean',
+        'is_founder'   => 'boolean',
+        'is_cofounder' => 'boolean',
     ];
 
     public function getActivitylogOptions(): LogOptions
@@ -31,12 +33,16 @@ class TeamMember extends Model
         return LogOptions::defaults()->logAll();
     }
 
-    /** True when the role text says "Co-Founder" / "Mitgründer" / "شريك مؤسس" etc. */
+    /** Founder or co-founder: shown as a large leader card. */
+    public function isLeader(): bool
+    {
+        return (bool) ($this->is_founder || $this->is_cofounder);
+    }
+
+    /** Explicit co-founder flag (set in the admin form). */
     public function isCoFounder(): bool
     {
-        $role = mb_strtolower(trim(($this->role_en ?? '') . ' ' . ($this->role_de ?? '') . ' ' . ($this->role_ar ?? '')));
-
-        return (bool) preg_match('/co[\s\-\.]*found|mitgr[üu]nd|mitbegr[üu]nd|شريك\s+مؤسس|مؤسس\s+مشارك|مؤسس\s+مشترك/u', $role);
+        return (bool) $this->is_cofounder && ! $this->is_founder;
     }
 
     /** Badge text for founder-type members: "Founder" or "Co-founder", in the given language. */

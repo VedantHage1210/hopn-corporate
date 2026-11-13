@@ -123,8 +123,8 @@ html[data-theme="dark"] body main section a.ab-btn:hover{background:#E2F3F9!impo
             </p>
         </div>
         @php
-            $aboutLeaders = $teamMembers->filter(fn ($m) => $m->is_founder)->values();
-            $teamMembers  = $teamMembers->reject(fn ($m) => $m->is_founder)->values();
+            $aboutLeaders = $teamMembers->filter(fn ($m) => $m->isLeader())->sortByDesc('is_founder')->values();
+            $teamMembers  = $teamMembers->reject(fn ($m) => $m->isLeader())->values();
         @endphp
         @if($aboutLeaders->count() > 0)
         <div class="hopn-pleaders {{ $aboutLeaders->count() === 1 ? 'is-single' : '' }}" style="margin-bottom:48px;">

@@ -36,12 +36,6 @@ html[dir="rtl"] .hopn-progress, body[style*="rtl"] .hopn-progress { transform-or
   .hopn-lift-card:hover, .hopn-service-card:hover, .hopn-product-card:hover { transform:none; }
 }
 
-/* Section headings: short accent rule that draws in (JS adds .hopn-h2 and .is-in) */
-.hopn-h2::before { content:""; display:block; height:3px; width:0; border-radius:2px; background:#8FB8CC; margin-bottom:14px; transition:width .8s cubic-bezier(.16,1,.3,1) .1s; }
-html[data-theme="light"] .hopn-h2::before { background:#245B78; }
-.hopn-h2.is-in::before { width:40px; }
-.hopn-h2--center::before { margin-inline:auto; }
-
 /* Numbered steps: vertical connector that fills with scroll (--p set by JS) */
 .hopn-doc-sec[data-kind="steps"] ol { position:relative; }
 .hopn-doc-sec[data-kind="steps"] ol::before, .hopn-doc-sec[data-kind="steps"] ol::after { content:""; position:absolute; left:36px; top:34px; bottom:34px; width:2px; border-radius:2px; }
@@ -58,7 +52,6 @@ html[data-theme="light"] .hopn-h2::before { background:#245B78; }
 .hopn-lift-btn:hover::after, .hopn-btn-primary:hover::after, .rs-btn:hover::after { transform:translateX(120%); }
 
 @media (prefers-reduced-motion: reduce) {
-  .hopn-h2::before { width:40px; transition:none; }
   .hopn-doc-sec[data-kind="steps"] ol::after { transform:scaleY(1); }
   .hopn-lift-btn::after, .hopn-btn-primary::after, .rs-btn::after { display:none; }
 }

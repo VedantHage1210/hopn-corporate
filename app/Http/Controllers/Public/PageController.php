@@ -26,12 +26,16 @@ class PageController extends Controller
     public function team()
     {
         $founders = TeamMember::where('visible', true)
-                               ->where('is_founder', true)
+                               ->where(function ($q) {
+                                   $q->where('is_founder', true)->orWhere('is_cofounder', true);
+                               })
+                               ->orderByDesc('is_founder')
                                ->orderBy('sort_order')
                                ->get();
 
         $teamMembers = TeamMember::where('visible', true)
                                   ->where('is_founder', false)
+                                  ->where('is_cofounder', false)
                                   ->orderBy('sort_order')
                                   ->get();
 

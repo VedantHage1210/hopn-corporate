@@ -83,22 +83,6 @@
     });
   }
 
-  // Section headings get a short accent rule that draws in when they appear
-  function headings() {
-    var hs = document.querySelectorAll('main section h2, main article h2');
-    var list = [];
-    hs.forEach(function (h) {
-      if (h.closest('.hopn-doc, .hopn-leader, .hopn-hero, .hopn-doc-cta, footer')) return;
-      if (h.classList.contains('hopn-h2')) return;
-      h.classList.add('hopn-h2');
-      if (getComputedStyle(h).textAlign === 'center') h.classList.add('hopn-h2--center');
-      list.push(h);
-    });
-    if (reduce || !('IntersectionObserver' in window)) { list.forEach(function (h) { h.classList.add('is-in'); }); return; }
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.4 });
-    list.forEach(function (h) { io.observe(h); });
-  }
-
   // Numbered steps: the connecting line fills as the reader scrolls through the list
   function stepLines() {
     var lists = document.querySelectorAll('.hopn-doc-sec[data-kind="steps"] ol');
@@ -116,6 +100,6 @@
     upd();
   }
 
-  function init() { try { heroes(); cards(); headings(); progress(); stagger(); countUp(); stepLines(); } catch (e) {} }
+  function init() { try { heroes(); cards(); progress(); stagger(); countUp(); stepLines(); } catch (e) {} }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

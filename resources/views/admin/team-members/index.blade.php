@@ -37,8 +37,8 @@
                     </td>
                     <td class="px-3 py-3 font-medium text-white">
                         {{ $member->name }}
-                        @if($member->is_founder)
-                            <span class="ml-1 rounded-full bg-indigo-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-indigo-300">Founder</span>
+                        @if($member->isLeader())
+                            <span class="ml-1 rounded-full bg-indigo-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-indigo-300">{{ $member->isCoFounder() ? 'Co-founder' : 'Founder' }}</span>
                         @endif
                     </td>
                     <td class="px-3 py-3 text-slate-400">{{ $member->role_en ?? '—' }}</td>

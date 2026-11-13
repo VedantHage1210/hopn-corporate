@@ -1325,14 +1325,14 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                 $memberRole = $lang==='ar' && $member->role_ar ? $member->role_ar : ($lang==='de' && $member->role_de ? $member->role_de : $member->role_en);
                 $memberInitial = strtoupper(substr($member->name, 0, 1));
             @endphp
-            <article class="hopn-field-card {{ $member->is_founder ? 'hopn-field-card-founder' : '' }}" style="padding:28px; min-height:250px;">
+            <article class="hopn-field-card {{ $member->isLeader() ? 'hopn-field-card-founder' : '' }}" style="padding:28px; min-height:250px;">
                 <div class="hopn-field-content">
                     @if($member->photo)
                     <img class="hopn-field-photo" loading="lazy" decoding="async" src="{{ $member->photo }}" alt="{{ $member->name }}" style="margin-bottom:20px;">
                     @else
                     <div class="hopn-field-photo" style="display:flex; align-items:center; justify-content:center; color:#245B78; font-size:30px; font-weight:700; margin-bottom:20px;">{{ $memberInitial }}</div>
                     @endif
-                    @if($member->is_founder)
+                    @if($member->isLeader())
                     <span style="display:block; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#526170; margin-bottom:8px;">{{ $member->leaderLabel($lang) }}</span>
                     @endif
                     <h3 style="font-size:20px; margin:0 0 7px;">{{ $member->name }}</h3>

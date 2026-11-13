@@ -50,3 +50,10 @@ main a:focus-visible, main button:focus-visible { outline:2px solid #2F7FA6; out
 
 /* Video/photo heroes: keep a brand-navy base so the hero never turns white if the media is slow or missing */
 html:root[data-theme] main section.hopn-hero.hx-hasvideo:not(#hx) { background-color:#0B3549 !important; }
+
+/* Call-to-action panel (service detail pages): always navy with light text and a solid white button */
+html:root[data-theme] main .hopn-doc-cta:not(#hx) h2 { color:#FFFFFF !important; }
+html:root[data-theme] main .hopn-doc-cta:not(#hx) p { color:#D3E6EE !important; }
+html:root[data-theme] main a.hopn-doc-cta-btn:not(#hx) { background:#FFFFFF !important; color:#0B3549 !important; border:1.5px solid #FFFFFF; font-weight:700; }
+html:root[data-theme] main a.hopn-doc-cta-btn:not(#hx):hover { background:#E6F0F4 !important; }
+

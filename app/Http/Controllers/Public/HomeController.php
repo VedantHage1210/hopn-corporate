@@ -37,7 +37,7 @@ $experts = \App\Models\Expert::where('is_visible', true)
        $latestPosts = BlogPost::where('is_published', true)->latest('published_at')->take(3)->get();
        $featuredStartups = Startup::where('is_visible', true)->latest()->take(6)->get();
        $featuredInvestors = Investor::where('is_visible', true)->orderBy('sort_order')->take(6)->get();
-    $teamMembers = TeamMember::where('visible', true)->orderByDesc('is_founder')->orderBy('sort_order')->take(5)->get();
+    $teamMembers = TeamMember::where('visible', true)->orderByRaw('(is_founder OR is_cofounder) DESC')->orderByDesc('is_founder')->orderBy('sort_order')->take(5)->get();
        return view('public.home', compact(
     'services', 'caseStudies', 'partners','logos', 'testimonials',
     'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts','experts',

@@ -1,4 +1,11 @@
 @props(['lang' => 'en'])
+<style>
+    .hopn-consent-label { font-size:12.5px; line-height:1.5; color:#94A3B8; }
+    .hopn-consent-label a { color:#9FE0F2; text-decoration:underline; text-underline-offset:2px; font-weight:600; }
+    html[data-theme="light"] .hopn-consent-label { color:#43515F; }
+    html[data-theme="light"] .hopn-consent-label a { color:#245B78; }
+    .hopn-consent-box { width:16px; height:16px; accent-color:#245B78; flex:none; }
+</style>
 <form action="{{ route('leads.proposal', ['lang' => $lang]) }}" method="POST" class="space-y-4">
     @csrf
     <x-turnstile />
@@ -45,8 +52,14 @@
     <input type="hidden" name="utm_medium" value="{{ request('utm_medium') }}">
     <input type="hidden" name="utm_campaign" value="{{ request('utm_campaign') }}">
     <div class="flex items-start gap-2">
-        <input type="checkbox" name="gdpr" id="gdpr_proposal" value="1" class="mt-1" required>
-        <label for="gdpr_proposal" class="text-xs text-slate-400">{{ $lang === 'ar' ? 'أوافق على سياسة الخصوصية.' : ($lang === 'de' ? 'Ich stimme der Datenschutzerklärung zu.' : 'I agree to the Privacy Policy.') }}</label>
+        <input type="checkbox" name="gdpr" id="gdpr_proposal" value="1" class="hopn-consent-box mt-1" required @checked(old('gdpr'))>
+        <label for="gdpr_proposal" class="hopn-consent-label">
+            @if($lang === 'ar') أوافق على <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener">سياسة الخصوصية</a>.
+            @elseif($lang === 'de') Ich stimme der <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.
+            @else I agree to the <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener">Privacy Policy</a>.
+            @endif
+        </label>
     </div>
+    @error('gdpr')<p class="text-xs text-rose-300">{{ $message }}</p>@enderror
     <button type="submit" class="btn-primary w-full">{{ $lang === 'ar' ? 'طلب عرض سعر' : ($lang === 'de' ? 'Angebot anfordern' : 'Request Proposal') }}</button>
 </form>
