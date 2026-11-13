@@ -9,9 +9,9 @@
             @php
                 $name = $lang==='de' ? ($app->name_de ?: $app->name_en) : ($lang==='ar' ? ($app->name_ar ?: $app->name_en) : $app->name_en);
                 $tagline = $lang==='de' ? ($app->tagline_de ?: $app->tagline_en) : ($lang==='ar' ? ($app->tagline_ar ?: $app->tagline_en) : $app->tagline_en);
-                $href = $app->external_url ?: route('apps.show', ['lang'=>$lang, 'slug'=>$app->slug]);
+                $href = route('apps.show', ['lang'=>$lang, 'slug'=>$app->slug]);
             @endphp
-            <a href="{{ $href }}" @if($app->external_url) target="_blank" @endif class="card-panel hopn-lift-card"
+            <a href="{{ $href }}" class="card-panel hopn-lift-card"
                style="display:block; padding:0; text-decoration:none; overflow:hidden;">
                 @if($app->logo_url)
                 <div style="height:180px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $name }}" style="width:100%; height:100%; border-radius:0; object-fit:cover; display:block;"></div>
