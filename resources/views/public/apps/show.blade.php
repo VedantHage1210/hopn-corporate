@@ -14,12 +14,18 @@
             @endif
             <h1 style="font-size:clamp(30px,5vw,48px); font-weight:900; color:white; margin:0 0 14px;">{{ $name }}</h1>
             @if($tagline)<p style="color:#CBD5E1; font-size:17px; margin:0 0 28px;">{{ $tagline }}</p>@endif
-            @if($extUrl)
-            <a href="{{ $extUrl }}" target="_blank" rel="noopener"
-               style="display:inline-flex; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-weight:700; font-size:14px; text-decoration:none;">
-                {{ ($lang==='de' ? ($app->cta_label_de ?: $app->cta_label_en) : ($lang==='ar' ? ($app->cta_label_ar ?: $app->cta_label_en) : $app->cta_label_en)) ?: 'Open app' }} →
-            </a>
-            @endif
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+                @if($extUrl)
+                <a href="{{ $extUrl }}" target="_blank" rel="noopener"
+                   style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-weight:700; font-size:14px; text-decoration:none;">
+                    {{ ($lang==='de' ? ($app->cta_label_de ?: $app->cta_label_en) : ($lang==='ar' ? ($app->cta_label_ar ?: $app->cta_label_en) : $app->cta_label_en)) ?: 'Open app' }} →
+                </a>
+                @endif
+                <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-opacity-btn"
+                   style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:10px; background:#245B78; color:#FFFFFF; font-weight:700; font-size:14px; text-decoration:none;">
+                    @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt @else Contact Us @endif
+                </a>
+            </div>
         </div>
     </section>
 
