@@ -12,7 +12,7 @@
 {{-- Success Toast --}}
 @if(session('event_success'))
 <div id="success-toast" style="display:flex; position:fixed; top:24px; right:24px; z-index:2000; align-items:center; gap:12px; background:#111827; border:1px solid rgba(143,184,204,0.4); border-radius:12px; padding:16px 20px; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:380px;">
-    <div aria-hidden="true" style="font-size:18px; font-weight:800;">OK</div>
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#9FE0F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-7"/></svg>
     <div>
         <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">
             @if($lang==='ar') تم التسجيل! @elseif($lang==='de') Registrierung erhalten! @else Registration Received! @endif
@@ -333,9 +333,9 @@
                     <div style="display:flex; align-items:flex-start; gap:10px;">
                         <input type="checkbox" name="gdpr_consent" id="gdpr_event" required style="margin-top:3px; flex-shrink:0;">
                         <label for="gdpr_event" style="font-size:12px; color:#94A3B8; line-height:1.6;">
-                            @if($lang==='ar') أوافق على سياسة الخصوصية. *
-                            @elseif($lang==='de') Ich stimme der Datenschutzerklärung zu. *
-                            @else I agree to the Privacy Policy and consent to data processing. * @endif
+                            @if($lang==='ar') أوافق على <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">سياسة الخصوصية</a>. *
+                            @elseif($lang==='de') Ich stimme der <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Datenschutzerklärung</a> zu. *
+                            @else I agree to the <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Privacy Policy</a> and consent to data processing. * @endif
                         </label>
                     </div>
                     <button type="submit"

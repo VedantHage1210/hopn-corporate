@@ -78,7 +78,7 @@
         @endif
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">S</div>
+            <x-empty-mark />
             <p style="font-size:16px; color:#94A3B8;">
                 <x-coming-soon-text />
             </p>

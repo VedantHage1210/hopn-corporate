@@ -47,13 +47,13 @@
                 <div style="padding:26px;">
                 <a href="{{ route('consulting.expert', ['lang'=>$lang, 'id'=>$expert->id]) }}" style="text-decoration:none;">
                     <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-                        <div style="width:10px; height:10px; border-radius:50%; background:{{ $expert->accent_color ?? '#8FB8CC' }}; flex-shrink:0;"></div>
+                        <div style="width:10px; height:10px; border-radius:50%; background:{{ '#8FB8CC' }}; flex-shrink:0;"></div>
                         <div style="flex:1;">
                             <div style="color:white; font-weight:700; font-size:15px;">{{ $expert->name }}</div>
                             <div style="color:#94A3B8; font-size:12px;">{{ $expert->specialization_en }}</div>
                         </div>
                         @if($expert->hourly_rate)
-                        <div style="font-size:14px; font-weight:800; color:{{ $expert->accent_color ?? '#8FB8CC' }}; white-space:nowrap;">€{{ $expert->hourly_rate }}{{ str_contains($expert->hourly_rate, '/') ? '' : '/hr' }}</div>
+                        <div style="font-size:14px; font-weight:800; color:{{ '#8FB8CC' }}; white-space:nowrap;">€{{ $expert->hourly_rate }}{{ str_contains($expert->hourly_rate, '/') ? '' : '/hr' }}</div>
                         @endif
                     </div>
                     @if($expert->bio_en)
@@ -62,7 +62,7 @@
                     @if($expert->tags && count($expert->tags) > 0)
                     <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;">
                         @foreach($expert->tags as $tag)
-                        <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ $expert->accent_color ?? '#8FB8CC' }}12; border:1px solid {{ $expert->accent_color ?? '#8FB8CC' }}25; color:{{ $expert->accent_color ?? '#8FB8CC' }};">{{ $tag }}</span>
+                        <span style="font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; background:{{ '#8FB8CC' }}12; border:1px solid {{ '#8FB8CC' }}25; color:{{ '#8FB8CC' }};">{{ $tag }}</span>
                         @endforeach
                     </div>
                     @endif

@@ -5,6 +5,7 @@ use App\Models\CaseStudy;
 use App\Models\Partner;
 use App\Models\Service;
 use App\Models\Product;
+use App\Models\PlatformApp;
 use App\Models\Testimonial;
 use App\Models\Event;
 use App\Models\Industry;
@@ -28,6 +29,7 @@ $experts = \App\Models\Expert::where('is_visible', true)
         $services        = Service::where('is_published', true)->latest()->take(6)->get();
         $caseStudies     = CaseStudy::where('is_published', true)->latest()->take(3)->get();
         $homeProducts = Product::where('is_published', true)->latest()->take(6)->get();
+        $homeApps     = PlatformApp::visible()->orderBy('sort_order')->take(6)->get();
         $partners        = Partner::where('visible', true)->orderBy('sort_order')->get();
       $logos = Partner::where('visible', true)->orderBy('sort_order')->take(20)->get();
         $testimonials    = Testimonial::where('visible', true)->orderBy('sort_order')->get();
@@ -40,7 +42,7 @@ $experts = \App\Models\Expert::where('is_visible', true)
     $teamMembers = TeamMember::where('visible', true)->orderByRaw('(is_founder OR is_cofounder) DESC')->orderByDesc('is_founder')->orderBy('sort_order')->take(5)->get();
        return view('public.home', compact(
     'services', 'caseStudies', 'partners','logos', 'testimonials',
-    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts','experts',
+    'upcomingEvents', 'homeIndustries', 'homeDomains', 'latestPosts', 'homeProducts', 'homeApps', 'experts',
     'featuredStartups', 'featuredInvestors', 'teamMembers'
 ));
     }

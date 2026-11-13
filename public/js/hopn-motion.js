@@ -100,6 +100,49 @@
     upd();
   }
 
-  function init() { try { heroes(); cards(); progress(); stagger(); countUp(); stepLines(); } catch (e) {} }
+  // Content blocks on inner pages (detail pages, forms, lists) fade up as they enter the viewport
+  function blocks() {
+    if (reduce || document.querySelector('.hopn-homepage')) return;
+    var secs = document.querySelectorAll('main > section');
+    secs.forEach(function (sec, i) {
+      if (i === 0) return; // hero has its own entrance
+      var shell = sec.querySelector(':scope > .container-shell');
+      if (!shell) return;
+      Array.prototype.forEach.call(shell.children, function (el) {
+        if (el.classList.contains('hopn-reveal') || el.classList.contains('hopn-enter') || el.closest('.hopn-reveal')) return;
+        if (el.querySelector('[style*="position:fixed"], .fixed, dialog')) return;
+        if (getComputedStyle(el).position === 'sticky') return;
+        el.classList.add('hopn-reveal');
+      });
+    });
+  }
+
+  // Cursor spotlight on interactive cards (pointer devices only)
+  function spotlight() {
+    if (reduce || !window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+    var SEL = '.hopn-lift-card, .hopn-product-card, .hopn-service-card, .rs-item';
+    document.addEventListener('pointermove', function (e) {
+      var card = e.target.closest && e.target.closest(SEL);
+      if (!card) return;
+      if (!card.classList.contains('hopn-spot')) card.classList.add('hopn-spot');
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+  }
+
+  // Slow parallax on the hero contour lines
+  function parallax() {
+    if (reduce) return;
+    var art = document.querySelector('.hopn-contours');
+    if (!art) return;
+    var t = false;
+    window.addEventListener('scroll', function () {
+      if (t) return; t = true;
+      requestAnimationFrame(function () { art.style.setProperty('--par', Math.min(window.scrollY, 700) * 0.12 + 'px'); t = false; });
+    }, { passive: true });
+  }
+
+  function init() { try { heroes(); blocks(); cards(); spotlight(); parallax(); progress(); stagger(); countUp(); stepLines(); } catch (e) {} }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

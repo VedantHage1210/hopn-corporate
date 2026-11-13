@@ -57,3 +57,7 @@ html:root[data-theme] main .hopn-doc-cta:not(#hx) p { color:#D3E6EE !important; 
 html:root[data-theme] main a.hopn-doc-cta-btn:not(#hx) { background:#FFFFFF !important; color:#0B3549 !important; border:1.5px solid #FFFFFF; font-weight:700; }
 html:root[data-theme] main a.hopn-doc-cta-btn:not(#hx):hover { background:#E6F0F4 !important; }
 
+
+/* Privacy-policy links inside consent labels (all forms) */
+html:root[data-theme] main .hopn-consent-link:not(#hx) { text-decoration:underline; text-underline-offset:2px; font-weight:600; color:#9FE0F2 !important; }
+html:root[data-theme="light"] main .hopn-consent-link:not(#hx) { color:#245B78 !important; }

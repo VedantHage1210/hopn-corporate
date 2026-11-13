@@ -49,7 +49,9 @@
                     <input type="hidden" name="utm_campaign" value="{{ request('utm_campaign') }}">
                     <div class="flex items-start gap-2">
                         <input type="checkbox" name="gdpr" id="gdpr_training" value="1" class="mt-1" required>
-                        <label for="gdpr_training" class="text-xs text-slate-400">{{ $lang === 'ar' ? 'أوافق على سياسة الخصوصية.' : ($lang === 'de' ? 'Ich stimme der Datenschutzerklärung zu.' : 'I agree to the Privacy Policy.') }}</label>
+                        <label for="gdpr_training" class="text-xs text-slate-400">@if($lang === 'ar') أوافق على <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">سياسة الخصوصية</a>.
+                        @elseif($lang === 'de') Ich stimme der <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Datenschutzerklärung</a> zu.
+                        @else I agree to the <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Privacy Policy</a>. @endif</label>
                     </div>
                     @error('gdpr')<p class="text-xs text-rose-300">{{ $message }}</p>@enderror
                     <button type="submit" class="btn-primary w-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/30">{{ $lang === 'ar' ? 'إرسال الطلب' : ($lang === 'de' ? 'Bewerbung absenden' : 'Submit Application') }}</button>

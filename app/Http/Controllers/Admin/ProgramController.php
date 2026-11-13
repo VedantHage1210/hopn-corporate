@@ -44,6 +44,7 @@ class ProgramController extends Controller
             $data['image_url'] = $request->image_url;
         }
 
+        $this->applyExtras($data, $request);
         Program::create($data);
         return redirect()->route('admin.programs.index')->with('status', 'Program created.');
     }
@@ -81,8 +82,33 @@ class ProgramController extends Controller
         $data['slug']         = $data['slug'] ?: Str::slug($data['title_en']);
         $data['is_published'] = $request->boolean('is_published');
 
+        $this->applyExtras($data, $request);
         $item->update($data);
         return redirect()->route('admin.programs.index')->with('status', 'Program updated.');
+    }
+
+    /** Turn the two admin textareas into the array columns (outcomes, pricing_tiers). */
+    private function applyExtras(array &$data, Request $request): void
+    {
+        $lines = fn (string $key) => collect(preg_split('/\r\n|\r|\n/', (string) $request->input($key, '')))
+            ->map(fn ($l) => trim($l))
+            ->filter()
+            ->values();
+
+        $outcomes = $lines('outcomes_text')->all();
+
+        $tiers = $lines('pricing_text')->map(function ($line) {
+            $parts = array_map('trim', explode('|', $line));
+
+            return [
+                'name'     => $parts[0] ?? '',
+                'price'    => $parts[1] ?? '',
+                'features' => collect(explode(';', $parts[2] ?? ''))->map(fn ($f) => trim($f))->filter()->values()->all(),
+            ];
+        })->filter(fn ($t) => $t['name'] !== '')->values()->all();
+
+        $data['outcomes']      = $outcomes ?: null;
+        $data['pricing_tiers'] = $tiers ?: null;
     }
 
     public function destroy(string $id)

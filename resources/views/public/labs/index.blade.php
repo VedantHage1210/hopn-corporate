@@ -44,7 +44,7 @@
                 $desc  = $lang==='de' ? ($item->description_de ?: $item->description_en) : ($lang==='ar' ? ($item->description_ar ?: $item->description_en) : $item->description_en);
                 $tags  = $lang==='de' ? ($item->tags_de ?: $item->tags_en) : ($lang==='ar' ? ($item->tags_ar ?: $item->tags_en) : $item->tags_en);
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
-                $color = $item->accent_color ?: '#245B78';
+                $color = '#2F7FA6'; // brand blue: ignore admin-chosen accent colours
             @endphp
             <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>
@@ -120,7 +120,7 @@
                 $desc  = $lang==='de' ? ($item->description_de ?: $item->description_en) : ($lang==='ar' ? ($item->description_ar ?: $item->description_en) : $item->description_en);
                 $tags  = $lang==='de' ? ($item->tags_de ?: $item->tags_en) : ($lang==='ar' ? ($item->tags_ar ?: $item->tags_en) : $item->tags_en);
                 $cta   = $lang==='de' ? ($item->cta_label_de ?: $item->cta_label_en) : ($lang==='ar' ? ($item->cta_label_ar ?: $item->cta_label_en) : $item->cta_label_en);
-                $color = $item->accent_color ?: '#245B78';
+                $color = '#2F7FA6'; // brand blue: ignore admin-chosen accent colours
             @endphp
             <div class="card-panel" style="padding:26px;">
                 <h3 style="color:white; font-size:17px; font-weight:800; margin:0 0 10px;">{{ $title }}</h3>

@@ -848,6 +848,60 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 </section>
 @endif
 
+{{-- 5b. HOPN APPS --}}
+@if($homeApps->count() > 0)
+<section style="padding:100px 0; background:#050A14; position:relative; overflow:hidden;">
+    <div class="container-shell" style="position:relative; z-index:10;">
+        <div class="hopn-reveal" style="text-align:center; margin-bottom:64px;">
+            <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#8FB8CC; margin-bottom:16px;">
+                @if($lang==='ar') التطبيقات @elseif($lang==='de') Apps @else Apps @endif
+            </span>
+            <h2 style="font-size:clamp(28px,4vw,52px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:16px;">
+                @if($lang==='ar') تطبيقات HOPn @elseif($lang==='de') HOPn Apps @else HOPn Apps @endif
+            </h2>
+            <p style="color:#CBD5E1; max-width:520px; margin:0 auto; font-size:17px; line-height:1.7;">
+                @if($lang==='ar') أدوات وتطبيقات مصممة لدعم النظام البيئي للابتكار.
+                @elseif($lang==='de') Tools und Apps, die das HOPn-Innovationsökosystem unterstützen.
+                @else Tools and apps built to support the HOPn innovation ecosystem. @endif
+            </p>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+            @foreach($homeApps as $app)
+            @php
+                $appName = $lang==='ar' && $app->name_ar ? $app->name_ar : ($lang==='de' && $app->name_de ? $app->name_de : $app->name_en);
+                $appTag  = $lang==='ar' && $app->tagline_ar ? $app->tagline_ar : ($lang==='de' && $app->tagline_de ? $app->tagline_de : ($app->tagline_en ?? ''));
+                $appHref = $app->external_url ?: route('apps.show', ['lang'=>$lang,'slug'=>$app->slug]);
+            @endphp
+            <a href="{{ $appHref }}" @if($app->external_url) target="_blank" rel="noopener" @endif class="hopn-product-card hopn-lift-card hopn-reveal"
+               style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
+                @if(!empty($app->logo_url))
+                <div style="height:170px; overflow:hidden; background:#EEF3F5;">
+                    <img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $appName }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+                @else
+                <x-card-art :seed="$appName" :height="170" :radius="0" />
+                @endif
+                <div style="padding:26px; display:flex; flex-direction:column; flex:1;">
+                    <div style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.5px; margin-bottom:10px;">{{ $appName }}</div>
+                    @if($appTag)<p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin:0 0 18px;">{{ Str::limit($appTag, 110) }}</p>@else<div style="flex:1;"></div>@endif
+                    <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#8FB8CC;">
+                        @if($lang==='ar') افتح التطبيق @elseif($lang==='de') App öffnen @else Open app @endif
+                        <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </div>
+            </a>
+            @endforeach
+        </div>
+        <div class="hopn-reveal" style="text-align:center; margin-top:40px;">
+            <a href="{{ route('apps.index', ['lang'=>$lang]) }}" class="hopn-btn-outline-blue"
+               style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; border:1px solid rgba(143,184,204,0.4); color:#8FB8CC; font-size:15px; font-weight:600; text-decoration:none; background:transparent;">
+                @if($lang==='ar') عرض جميع التطبيقات @elseif($lang==='de') Alle Apps anzeigen @else View All Apps @endif →
+            </a>
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- 6. INDUSTRIES --}}
 @if($homeIndustries->count() > 0)
 <section style="padding:100px 0; background:#050A14;">
@@ -1055,7 +1109,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
             @foreach($experts as $expert)
-            @php $c = $expert->accent_color ?? '#8FB8CC'; @endphp
+            @php $c = '#8FB8CC'; @endphp
             <div class="hopn-lift-card hopn-expert-card" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; position:relative; overflow:hidden;">
                 @if($expert->photo_url)
                 <div style="height:190px; overflow:hidden; background:#EEF3F5;">

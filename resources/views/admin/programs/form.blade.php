@@ -68,6 +68,33 @@
             </div>
         </div>
 
+        {{-- Outcomes & pricing (optional) --}}
+        @php
+            $outLines = collect((array) ($item->outcomes ?? []))->map(fn ($o) => is_array($o) ? ($o['text'] ?? $o['title'] ?? '') : (string) $o)->filter()->implode("\n");
+            $priceLines = collect((array) ($item->pricing_tiers ?? []))->map(function ($t) {
+                $t = (array) $t;
+                $feat = collect((array) ($t['features'] ?? []))->implode('; ');
+                return trim(($t['name'] ?? $t['title'] ?? '') . ' | ' . ($t['price'] ?? '') . ' | ' . $feat);
+            })->filter()->implode("\n");
+        @endphp
+        <div class="card-panel p-6">
+            <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Outcomes &amp; Pricing (optional)</h2>
+            <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Outcomes: what participants achieve</label>
+                    <textarea name="outcomes_text" rows="6" placeholder="One outcome per line"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">{{ old('outcomes_text', $outLines) }}</textarea>
+                    <p class="mt-1 text-xs text-slate-500">One outcome per line. Shown as a checklist on the program page. Leave empty to hide the section.</p>
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-slate-200">Pricing tiers</label>
+                    <textarea name="pricing_text" rows="6" placeholder="Standard | EUR 1,200 | Live sessions; Course material; Certificate"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white font-mono">{{ old('pricing_text', $priceLines) }}</textarea>
+                    <p class="mt-1 text-xs text-slate-500">One tier per line: <code>Name | Price | feature one; feature two</code>. Leave empty to hide pricing. Only publish prices that are confirmed.</p>
+                </div>
+            </div>
+        </div>
+
         {{-- Settings --}}
         <div class="card-panel p-6">
             <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">Settings</h2>

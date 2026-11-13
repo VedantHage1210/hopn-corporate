@@ -47,7 +47,7 @@
     <section style="padding:60px 0; background:#080D1A;">
         <div class="container-shell">
             <div style="max-width:800px; margin:0 auto; border:1px solid rgba(143,184,204,0.2); background:#111827; border-radius:16px; padding:32px; display:flex; gap:20px; align-items:flex-start;">
-                <div aria-hidden="true" style="font-size:20px; font-weight:800; flex-shrink:0;">T</div>
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#8FB8CC" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="#8FB8CC"/></svg>
                 <div>
                     <h3 style="font-size:16px; font-weight:700; color:white; margin-bottom:8px;">
                         @if($lang === 'ar') الجمهور المستهدف @elseif($lang === 'de') Zielgruppe @else Target Audience @endif
@@ -84,6 +84,80 @@
 @endif
 
     
+
+    @php
+        $progOutcomes = collect((array) ($program->outcomes ?? []))->map(fn ($o) => is_array($o) ? ($o['text'] ?? $o['title'] ?? '') : (string) $o)->filter()->values();
+        $progTiers    = collect((array) ($program->pricing_tiers ?? []))->map(fn ($t) => (array) $t)->filter(fn ($t) => !empty($t['name'] ?? $t['title'] ?? null))->values();
+    @endphp
+    <style>
+        .hopn-prog { --pg-line:rgba(143,184,204,.22); --pg-bg:rgba(255,255,255,.04); --pg-ink:#F1F5F9; --pg-muted:#CBD5E1; --pg-accent:#9FE0F2; --pg-eyebrow:#8FB8CC; }
+        html[data-theme="light"] .hopn-prog { --pg-line:#D3DEE2; --pg-bg:#FFFFFF; --pg-ink:#0F2230; --pg-muted:#43515F; --pg-accent:#245B78; --pg-eyebrow:#245B78; }
+        .hopn-prog-eyebrow { display:block; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--pg-eyebrow); margin-bottom:12px; }
+        .hopn-prog-title { font-size:clamp(24px,3.4vw,38px); font-weight:800; letter-spacing:-.02em; color:var(--pg-ink); margin:0 0 36px; }
+        .hopn-prog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:16px; }
+        .hopn-prog-item { position:relative; display:flex; gap:14px; align-items:flex-start; padding:20px 22px; border:1px solid var(--pg-line); background:var(--pg-bg); border-radius:14px; color:var(--pg-muted); font-size:15px; line-height:1.6; transition:transform .3s ease, border-color .3s ease; }
+        html[data-theme="light"] .hopn-prog-item { box-shadow:0 1px 2px rgba(15,34,48,.05); }
+        .hopn-prog-item:hover { transform:translateY(-3px); border-color:#8FB8CC; }
+        .hopn-prog-check { flex:none; width:28px; height:28px; border-radius:50%; background:#245B78; color:#fff; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+        .hopn-prog-check svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+        .hopn-prog-tier { display:flex; flex-direction:column; padding:28px 26px; border:1px solid var(--pg-line); background:var(--pg-bg); border-radius:18px; transition:transform .3s ease, border-color .3s ease; }
+        html[data-theme="light"] .hopn-prog-tier { box-shadow:0 1px 2px rgba(15,34,48,.05), 0 16px 34px -24px rgba(15,34,48,.28); }
+        .hopn-prog-tier:hover { transform:translateY(-4px); border-color:#8FB8CC; }
+        .hopn-prog-tier-name { font-size:15px; font-weight:700; color:var(--pg-accent); margin:0 0 6px; }
+        .hopn-prog-tier-price { font-size:clamp(26px,3vw,34px); font-weight:800; letter-spacing:-.02em; color:var(--pg-ink); margin:0 0 18px; }
+        .hopn-prog-tier ul { list-style:none; margin:0 0 24px; padding:0; display:grid; gap:10px; }
+        .hopn-prog-tier li { display:flex; gap:10px; align-items:flex-start; font-size:14px; line-height:1.55; color:var(--pg-muted); }
+        .hopn-prog-tier li::before { content:""; flex:none; width:7px; height:7px; margin-top:7px; border-radius:50%; background:var(--pg-accent); }
+        html:root[data-theme] main .hopn-prog-tier-cta:not(#hx) { margin-top:auto; display:inline-flex; justify-content:center; padding:12px 20px; border-radius:10px; background:#245B78 !important; color:#FFFFFF !important; font-weight:700; font-size:14px; text-decoration:none; }
+        html:root[data-theme] main .hopn-prog-tier-cta:not(#hx):hover { background:#1D4D66 !important; }
+        html:root[data-theme] main .hopn-prog-tier-price:not(#hx), html:root[data-theme] main .hopn-prog-title:not(#hx) { color:var(--pg-ink) !important; }
+        html:root[data-theme] main .hopn-prog-tier-name:not(#hx), html:root[data-theme] main .hopn-prog-eyebrow:not(#hx) { color:var(--pg-accent) !important; }
+        html:root[data-theme] main .hopn-prog-item:not(#hx), html:root[data-theme] main .hopn-prog-tier li:not(#hx) { color:var(--pg-muted) !important; }
+        @media (prefers-reduced-motion: reduce) { .hopn-prog-item, .hopn-prog-tier { transition:none; } .hopn-prog-item:hover, .hopn-prog-tier:hover { transform:none; } }
+    </style>
+
+    {{-- Outcomes --}}
+    @if($progOutcomes->count() > 0)
+    <section class="hopn-prog" style="padding:70px 0; background:#050A14;" @if($lang === 'ar') dir="rtl" @endif>
+        <div class="container-shell" style="max-width:1000px;">
+            <span class="hopn-prog-eyebrow">@if($lang === 'ar') النتائج @elseif($lang === 'de') Ergebnisse @else Outcomes @endif</span>
+            <h2 class="hopn-prog-title">@if($lang === 'ar') ما ستحققه @elseif($lang === 'de') Was Sie erreichen @else What you will achieve @endif</h2>
+            <div class="hopn-prog-grid">
+                @foreach($progOutcomes as $outcome)
+                <div class="hopn-prog-item hopn-reveal">
+                    <span class="hopn-prog-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+                    <span>{{ $outcome }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- Pricing --}}
+    @if($progTiers->count() > 0)
+    <section class="hopn-prog" style="padding:70px 0; background:#080D1A;" @if($lang === 'ar') dir="rtl" @endif>
+        <div class="container-shell" style="max-width:1000px;">
+            <span class="hopn-prog-eyebrow">@if($lang === 'ar') الأسعار @elseif($lang === 'de') Preise @else Pricing @endif</span>
+            <h2 class="hopn-prog-title">@if($lang === 'ar') خيارات المشاركة @elseif($lang === 'de') Teilnahmeoptionen @else Ways to take part @endif</h2>
+            <div class="hopn-prog-grid">
+                @foreach($progTiers as $tier)
+                @php $tierFeatures = collect((array) ($tier['features'] ?? []))->filter()->values(); @endphp
+                <div class="hopn-prog-tier hopn-reveal">
+                    <h3 class="hopn-prog-tier-name">{{ $tier['name'] ?? $tier['title'] ?? '' }}</h3>
+                    @if(!empty($tier['price']))<p class="hopn-prog-tier-price">{{ $tier['price'] }}</p>@endif
+                    @if($tierFeatures->count() > 0)
+                    <ul>
+                        @foreach($tierFeatures as $feature)<li>{{ $feature }}</li>@endforeach
+                    </ul>
+                    @endif
+                    <a href="#apply" class="hopn-prog-tier-cta">@if($lang === 'ar') سجل الآن @elseif($lang === 'de') Jetzt anmelden @else Apply now @endif</a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
 
     {{-- Apply Form --}}
     <section style="padding:80px 0; background:#0A0F1E;" id="apply">
@@ -136,9 +210,9 @@
                         <div style="display:flex; align-items:flex-start; gap:10px;">
                             <input type="checkbox" name="gdpr" id="gdpr_show" value="1" required style="margin-top:3px;">
                             <label for="gdpr_show" style="font-size:12px; color:#CBD5E1; line-height:1.5;">
-                                @if($lang === 'ar') أوافق على سياسة الخصوصية. *
-                                @elseif($lang === 'de') Ich stimme der Datenschutzerklärung zu. *
-                                @else I agree to the Privacy Policy. *
+                                @if($lang === 'ar') أوافق على <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">سياسة الخصوصية</a>. *
+                                @elseif($lang === 'de') Ich stimme der <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Datenschutzerklärung</a> zu. *
+                                @else I agree to the <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Privacy Policy</a>. *
                                 @endif
                             </label>
                         </div>

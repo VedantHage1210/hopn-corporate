@@ -77,7 +77,7 @@
         @endif
         @else
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">P</div>
+            <x-empty-mark />
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 <x-coming-soon-text />
             </h3>
@@ -178,9 +178,9 @@
                     <div style="display:flex; align-items:flex-start; gap:10px;">
                         <input type="checkbox" name="gdpr" id="gdpr_programs" value="1" required style="margin-top:3px; flex-shrink:0;">
                         <label for="gdpr_programs" style="font-size:12px; color:#94A3B8; line-height:1.6;">
-                            @if($lang==='ar') أوافق على سياسة الخصوصية ومعالجة البيانات. *
-                            @elseif($lang==='de') Ich stimme der Datenschutzerklärung und Datenverarbeitung zu. *
-                            @else I agree to the Privacy Policy and consent to data processing. * @endif
+                            @if($lang==='ar') أوافق على <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">سياسة الخصوصية</a> ومعالجة البيانات. *
+                            @elseif($lang==='de') Ich stimme der <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Datenschutzerklärung</a> und Datenverarbeitung zu. *
+                            @else I agree to the <a href="{{ route('legal.privacy', ['lang' => $lang]) }}" target="_blank" rel="noopener" class="hopn-consent-link">Privacy Policy</a> and consent to data processing. * @endif
                         </label>
                     </div>
                     @error('gdpr')<p style="font-size:11px; color:#F87171;">{{ $message }}</p>@enderror

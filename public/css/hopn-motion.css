@@ -21,7 +21,7 @@ html[dir="rtl"] .hopn-progress, body[style*="rtl"] .hopn-progress { transform-or
 
 /* Slow drifting contour lines behind page heroes */
 @keyframes hopnDrift { 0%,100% { transform:translate3d(0,0,0) rotate(0deg); } 50% { transform:translate3d(14px,-10px,0) rotate(1.2deg); } }
-.hopn-contours { position:absolute; z-index:-1; inset:-10% -5%; pointer-events:none; opacity:.5; animation:hopnDrift 22s ease-in-out infinite;
+.hopn-contours { translate:0 var(--par,0px); position:absolute; z-index:-1; inset:-10% -5%; pointer-events:none; opacity:.5; animation:hopnDrift 22s ease-in-out infinite;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600' fill='none' stroke='%239FE0F2' stroke-opacity='.16'><path d='M-20 420C160 330 260 540 460 460S760 230 980 320 1160 460 1240 400'/><path d='M-20 360C170 270 270 480 470 400S770 170 990 260 1170 400 1240 340'/><path d='M-20 300C180 210 280 420 480 340S780 110 1000 200 1180 340 1240 280'/></svg>");
   background-size:cover; background-position:center; }
 
@@ -56,3 +56,12 @@ html[dir="rtl"] .hopn-progress, body[style*="rtl"] .hopn-progress { transform-or
   .hopn-lift-btn::after, .hopn-btn-primary::after, .rs-btn::after { display:none; }
 }
 section.hx-hasvideo .hopn-contours{display:none;}
+
+/* Cursor spotlight on cards (JS adds .hopn-spot and --mx/--my) */
+.hopn-lift-card, .hopn-product-card, .hopn-service-card { position:relative; }
+.hopn-spot::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:2; opacity:0; transition:opacity .35s ease;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(159,224,242,.14), transparent 45%); }
+html[data-theme="light"] .hopn-spot::after { background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(36,91,120,.10), transparent 45%); }
+.hopn-spot:hover::after { opacity:1; }
+@media (prefers-reduced-motion: reduce) { .hopn-spot::after { display:none; } }
+

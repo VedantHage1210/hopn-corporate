@@ -117,7 +117,7 @@
         </div>
         @empty
         <div style="text-align:center; padding:80px; color:#64748B;">
-            <div aria-hidden="true" style="font-size:28px; font-weight:800; margin-bottom:16px;">C</div>
+            <x-empty-mark />
             <h3 style="font-size:20px; font-weight:700; color:#94A3B8; margin-bottom:8px;">
                 <x-coming-soon-text />
             </h3>
