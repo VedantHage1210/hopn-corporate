@@ -21,6 +21,7 @@ class Product extends Model
         'features_en', 'features_de', 'features_ar',
         'use_cases_en', 'use_cases_de', 'use_cases_ar',
         'hero_image_url',
+        'external_url',
         'target_audience',
         'industry_ids',
         'service_ids',

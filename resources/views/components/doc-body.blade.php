@@ -15,8 +15,6 @@
     .hopn-doc-sec { display:grid; grid-template-columns:minmax(180px,.34fr) minmax(0,1fr); gap:20px 56px; padding:40px 0; border-bottom:1px solid var(--d-line); }
     .hopn-doc-sec:last-child { border-bottom:0; }
     .hopn-doc-sec > h2 { margin:0; font-size:clamp(20px,2.2vw,26px); line-height:1.25; font-weight:800; letter-spacing:-.02em; color:var(--d-ink); position:sticky; top:96px; align-self:start; }
-    .hopn-doc-sec > h2::before { content:""; display:block; width:36px; height:3px; border-radius:2px; background:var(--d-num-bg); margin-bottom:14px; }
-    html:not([data-theme="light"]) .hopn-doc-sec > h2::before { background:#8FB8CC; }
 
     /* Numbered steps: the content really is a sequence */
     .hopn-doc-sec[data-kind="steps"] ol { list-style:none; margin:0; padding:0; counter-reset:dstep; display:grid; gap:14px; }
@@ -43,7 +41,6 @@
     .hopn-doc--stack .hopn-doc-sec { grid-template-columns:minmax(0,1fr); gap:12px; padding:22px 0 0; border-bottom:0; }
     .hopn-doc--stack .hopn-doc-lead + .hopn-doc-sec, .hopn-doc--stack .hopn-doc-sec:first-child { padding-top:0; }
     .hopn-doc--stack .hopn-doc-sec > h2 { position:static; font-size:17px; letter-spacing:-.01em; }
-    .hopn-doc--stack .hopn-doc-sec > h2::before { display:none; }
     .hopn-doc--stack .hopn-doc-sec[data-kind="steps"] ol > li { padding:14px 16px 14px 58px; }
     .hopn-doc--stack .hopn-doc-sec[data-kind="steps"] ol > li::before { left:14px; top:14px; width:30px; height:30px; font-size:14px; }
     .hopn-doc--stack .hopn-doc-sec ul > li { padding:12px 14px 12px 38px; }

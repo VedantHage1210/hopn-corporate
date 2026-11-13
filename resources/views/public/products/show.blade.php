@@ -21,6 +21,13 @@
         .hopn-related-card:hover { border-color:rgba(143,184,204,0.3); background:#141D2E; }
     </style>
 
+    <style>
+        a.hopn-open-product { transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease; }
+        a.hopn-open-product:hover { transform:translateY(-2px); box-shadow:0 14px 26px -12px rgba(0,0,0,.6); }
+        a.hopn-open-product svg { width:16px; height:16px; flex:none; transition:transform .25s ease; }
+        a.hopn-open-product:hover svg { transform:translateX(4px); }
+    </style>
+
     {{-- Hero --}}
     <style>
         .hopn-product-hero-grid { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:56px; align-items:center; }
@@ -68,7 +75,22 @@
                 @endif
             </p>
             @endif
+            @php
+                $prodExtUrl = $product->external_url;
+                if ($prodExtUrl && !preg_match('#^https?://#i', $prodExtUrl)) { $prodExtUrl = null; }
+            @endphp
             <div style="display:flex; flex-wrap:wrap; gap:12px;">
+                @if($prodExtUrl)
+                @php
+                    $prodOpenName = $lang === 'de' && !empty($product->title_de) ? $product->title_de
+                        : ($lang === 'ar' && !empty($product->title_ar) ? $product->title_ar : $product->title_en);
+                @endphp
+                <a href="{{ $prodExtUrl }}" target="_blank" rel="noopener" class="hopn-open-product"
+                   style="display:inline-flex; align-items:center; gap:10px; padding:12px 28px; border-radius:10px; background:#245B78; color:#FFFFFF; font-size:14px; font-weight:600; text-decoration:none;">
+                    @if($lang === 'ar') افتح {{ $prodOpenName }} @elseif($lang === 'de') {{ $prodOpenName }} öffnen @else Open {{ $prodOpenName }} @endif
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                @endif
                 <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-opacity-btn"
                    style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; background:#245B78; color:#FFFFFF; font-size:14px; font-weight:600; text-decoration:none;">
                     @if($lang === 'ar') تواصل معنا @elseif($lang === 'de') Kontakt @else Contact Us @endif

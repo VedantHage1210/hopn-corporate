@@ -231,6 +231,14 @@
                     </div>
                     @endif
                 </div>
+                <div class="md:col-span-2">
+                    <label class="mb-1 block text-sm font-medium text-slate-200">External URL (optional)</label>
+                    <input type="url" name="external_url" value="{{ old('external_url', $item->external_url ?? '') }}"
+                        placeholder="https://carbon.ehopn.com"
+                        class="w-full rounded border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white">
+                    <p class="mt-1 text-xs text-slate-500">Product's live website/app link. Shows an "Open product" button on the product detail page. Leave empty to hide it.</p>
+                    @error('external_url')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
+                </div>
             </div>
             <div class="mt-4">
                 <label class="flex items-center gap-2 text-sm text-slate-300">

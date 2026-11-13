@@ -50,6 +50,7 @@ class ProductController extends Controller
             'use_cases_de'  => ['nullable', 'string'],
             'use_cases_ar'  => ['nullable', 'string'],
             'hero_image_url'=> ['nullable', 'url', 'max:500'],
+            'external_url'  => ['nullable', 'url', 'max:500'],
             'target_audience'=> ['nullable', 'string', 'max:500'],
         ]);
 
@@ -103,6 +104,7 @@ class ProductController extends Controller
             'use_cases_de'  => ['nullable', 'string'],
             'use_cases_ar'  => ['nullable', 'string'],
             'hero_image_url'=> ['nullable', 'url', 'max:500'],
+            'external_url'  => ['nullable', 'url', 'max:500'],
             'target_audience'=> ['nullable', 'string', 'max:500'],
         ]);
 
