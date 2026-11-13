@@ -226,7 +226,7 @@
                     @if(!empty($service->summary))
                     <p style="font-size:13px; color:#CBD5E1; line-height:1.6;">{{ Str::limit($service->summary, 80) }}</p>
                     @endif
-                    <span style="display:inline-block; margin-top:10px; font-size:12px; color:#8FB8CC; font-weight:600;">Learn more →</span>
+                    <span style="display:inline-block; margin-top:10px; font-size:12px; color:#8FB8CC; font-weight:600;">@if($lang === 'ar') اقرأ المزيد @elseif($lang === 'de') Mehr erfahren @else Learn more @endif →</span>
                 </a>
                 @endforeach
             </div>

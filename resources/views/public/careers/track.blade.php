@@ -28,7 +28,7 @@
                 <div style="padding:32px;">
                     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
                         <div>
-                            <p style="font-size:12px; color:#CBD5E1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.08em;">Application ID</p>
+                            <p style="font-size:12px; color:#CBD5E1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.08em;">@if($lang === 'ar') رقم الطلب @elseif($lang === 'de') Bewerbungs-ID @else Application ID @endif</p>
                             <p style="font-size:22px; font-weight:900; color:#8FB8CC; font-family:monospace; letter-spacing:2px;">{{ $application->tracking_token }}</p>
                         </div>
                         @php

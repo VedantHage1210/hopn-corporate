@@ -100,6 +100,10 @@
             [style*="grid-template-columns:1fr 1fr 1fr"] {
                 grid-template-columns: 1fr !important;
             }
+            /* Large column gaps (e.g. About page 80px) become huge vertical gaps once stacked. */
+            [style*="gap:80px"] {
+                gap: 32px !important;
+            }
             /* Sticky sidebars (e.g. application forms next to job details) shouldn't stay
                pinned on mobile - there isn't enough vertical room and it can trap the layout. */
             [style*="position:sticky"] {
