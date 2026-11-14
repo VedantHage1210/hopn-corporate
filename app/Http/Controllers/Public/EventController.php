@@ -14,9 +14,8 @@ class EventController extends Controller
         return view('public.events.index', compact('events', 'lang'));
     }
 
-    public function show(string $event)
+    public function show(string $lang, string $event)
     {
-        $lang  = request()->route('lang', 'en');
         $query = Event::where('is_published', true);
 
         $found = Event::hasSlugColumn() ? (clone $query)->where('slug', $event)->first() : null;
