@@ -46,7 +46,9 @@
             </a>
             @endif
 
-           <a href="{{ route('contact.index', ['lang' => $lang]) }}" class="hopn-bg-brighten hopn-hero-btn"
+           @php $bookUrl = !empty($siteSettings['scheduling_url'] ?? null) ? $siteSettings['scheduling_url'] : null; @endphp
+<a href="{{ $bookUrl ?: route('contact.index', ['lang' => $lang]) }}"
+               @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif data-hopn-event="Book Call" class="hopn-bg-brighten hopn-hero-btn"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang === 'ar') احجز مكالمة @elseif($lang === 'de') Termin buchen @else Book a Call @endif
             </a>

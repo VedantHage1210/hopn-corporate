@@ -14,7 +14,7 @@
             <a href="{{ $href }}" class="card-panel hopn-lift-card"
                style="display:flex; flex-direction:column; padding:0; text-decoration:none; overflow:hidden;">
                 @if($app->logo_url)
-                <div style="height:180px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $name }}" style="width:100%; height:100%; border-radius:0; object-fit:cover; display:block;"></div>
+                <div class="hopn-media-fit" style="height:180px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $name }}" style="width:100%; height:100%; border-radius:0; object-fit:cover; display:block;"></div>
                 @else
                 <div style="height:140px; background:#EEF3F5; overflow:hidden;"><img loading="lazy" decoding="async" src="/images/illustrations/digital-twin.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>
                 @endif

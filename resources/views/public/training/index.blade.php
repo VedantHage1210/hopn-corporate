@@ -6,7 +6,7 @@
             :subtitle="$lang === 'ar' ? 'قدم طلبًا للانضمام إلى برامجنا التدريبية.' : ($lang === 'de' ? 'Melden Sie sich für unsere Programme an.' : 'Apply for our training programs.')" />
     <section class="container-shell mt-8 hopn-reveal">
         @if(session('status'))
-            <div class="mb-6 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
+            <div class="hopn-flash mb-6 rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
         @endif
         <div class="grid gap-8 lg:grid-cols-2">
             <div>

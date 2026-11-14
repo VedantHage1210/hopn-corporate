@@ -813,7 +813,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}" class="hopn-product-card hopn-lift-card"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
                 @if(!empty($product->hero_image_url))
-                <div style="height:180px; overflow:hidden;">
+                <div class="hopn-media-fit" style="height:180px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
                 @else
@@ -870,12 +870,12 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             @php
                 $appName = $lang==='ar' && $app->name_ar ? $app->name_ar : ($lang==='de' && $app->name_de ? $app->name_de : $app->name_en);
                 $appTag  = $lang==='ar' && $app->tagline_ar ? $app->tagline_ar : ($lang==='de' && $app->tagline_de ? $app->tagline_de : ($app->tagline_en ?? ''));
-                $appHref = $app->external_url ?: route('apps.show', ['lang'=>$lang,'slug'=>$app->slug]);
+                $appHref = route('apps.show', ['lang'=>$lang,'slug'=>$app->slug]);
             @endphp
-            <a href="{{ $appHref }}" @if($app->external_url) target="_blank" rel="noopener" @endif class="hopn-product-card hopn-lift-card hopn-reveal"
+            <a href="{{ $appHref }}" class="hopn-product-card hopn-lift-card hopn-reveal"
                style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:0; text-decoration:none; position:relative; overflow:hidden;">
                 @if(!empty($app->logo_url))
-                <div style="height:170px; overflow:hidden; background:#EEF3F5;">
+                <div class="hopn-media-fit" style="height:170px; overflow:hidden; background:#EEF3F5;">
                     <img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $appName }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
                 @else
@@ -885,7 +885,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                     <div style="font-size:18px; font-weight:800; color:white; letter-spacing:-0.5px; margin-bottom:10px;">{{ $appName }}</div>
                     @if($appTag)<p style="font-size:14px; color:#CBD5E1; line-height:1.7; flex:1; margin:0 0 18px;">{{ Str::limit($appTag, 110) }}</p>@else<div style="flex:1;"></div>@endif
                     <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#8FB8CC;">
-                        @if($lang==='ar') افتح التطبيق @elseif($lang==='de') App öffnen @else Open app @endif
+                        @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif
                         <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </span>
                 </div>
@@ -1248,9 +1248,9 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($upcomingEvents as $event)
             @php $typeColors=['conference'=>'#8FB8CC','workshop'=>'#8FB8CC','webinar'=>'#8FB8CC','hackathon'=>'#8FB8CC','startup'=>'#8FB8CC','networking'=>'#8FB8CC','research'=>'#245B78']; $c=$typeColors[$event->type]??'#8FB8CC'; @endphp
-            <div class="hopn-lift-card-nobg" style="border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
+            <a href="{{ route('events.index', ['lang'=>$lang]) }}" class="hopn-lift-card-nobg" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
                 @if($event->image_url)
-                <div style="height:150px; overflow:hidden;">
+                <div class="hopn-media-fit" style="height:150px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $event->title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
                 </div>
                 @else
@@ -1265,12 +1265,11 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                     </div>
                     <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $event->title }}</h3>
                     @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">{{ $event->location }}</div>@endif
-                    <a href="{{ route('events.index', ['lang'=>$lang]) }}"
-                       style="font-size:13px; font-weight:600; color:{{ $c }}; text-decoration:none;">
+                    <span style="display:inline-block; font-size:13px; font-weight:600; color:{{ $c }};">
                         @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
-                    </a>
+                    </span>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
         @endif
@@ -1463,7 +1462,8 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
             @else Connect with HOPn strategists to scope your innovation initiative — from AI governance to ecosystem partnerships. @endif
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}"
+            @php $bookUrl = !empty($siteSettings['scheduling_url'] ?? null) ? $siteSettings['scheduling_url'] : null; @endphp
+<a href="{{ $bookUrl ?: route('contact.index', ['lang'=>$lang]) }}" @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif data-hopn-event="Book Call"
                class="hopn-btn-primary"
                style="display:inline-flex; align-items:center; gap:8px; padding:16px 36px; border-radius:10px; background:#245B78; color:white; font-size:16px; font-weight:700; text-decoration:none;">
                 @if($lang==='ar') احجز مكالمة استراتيجية @elseif($lang==='de') Strategiegespräch buchen @else Book a Strategy Call @endif

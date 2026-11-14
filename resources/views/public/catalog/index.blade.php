@@ -61,6 +61,8 @@
                 ['key'=>'products', 'label'=>$lang==='ar'?'المنتجات':($lang==='de'?'Produkte':'Products'),                              'count'=>$products->count()],
                 ['key'=>'services', 'label'=>$lang==='ar'?'الخدمات':($lang==='de'?'Leistungen':'Services'),                            'count'=>$services->count()],
                 ['key'=>'programs', 'label'=>$lang==='ar'?'البرامج':($lang==='de'?'Programme':'Programs'),                              'count'=>$programs->count()],
+                ['key'=>'apps',     'label'=>$lang==='ar'?'التطبيقات':($lang==='de'?'Apps':'Apps'),                                       'count'=>$apps->count()],
+                ['key'=>'events',   'label'=>$lang==='ar'?'الفعاليات':($lang==='de'?'Events':'Events'),                                    'count'=>$events->count()],
                 ['key'=>'domains',  'label'=>$lang==='ar'?'مجالات الابتكار':($lang==='de'?'Innovationsdomänen':'Innovation Domains'),   'count'=>$domains->count()],
             ];
             @endphp
@@ -118,7 +120,7 @@
                 <a href="{{ route('products.show', ['lang'=>$lang,'slug'=>$product->slug]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     @if($product->hero_image_url)
-                    <div style="height:170px; margin:-24px -24px 24px; overflow:hidden; background:#EEF3F5;">
+                    <div class="hopn-media-fit" style="height:170px; margin:-24px -24px 24px; overflow:hidden; background:#EEF3F5;">
                         <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}" style="width:100%; height:100%; display:block; object-fit:cover;">
                     </div>
                     @endif
@@ -243,6 +245,90 @@
         </div>
         @endif
 
+        {{-- APPS --}}
+        @if(in_array($category, ['all','apps']) && $apps->count() > 0)
+        <div style="margin-bottom:64px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
+                    <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">
+                        @if($lang==='ar') التطبيقات @else Apps @endif
+                    </h2>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $apps->count() }}</span>
+                </div>
+                <a href="{{ route('apps.index', ['lang'=>$lang]) }}"
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
+                    @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
+                </a>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
+                @foreach($apps as $app)
+                @php
+                    $aName = $lang==='ar'&&$app->name_ar?$app->name_ar:($lang==='de'&&$app->name_de?$app->name_de:$app->name_en);
+                    $aTag  = $lang==='ar'&&$app->tagline_ar?$app->tagline_ar:($lang==='de'&&$app->tagline_de?$app->tagline_de:($app->tagline_en??''));
+                @endphp
+                <a href="{{ route('apps.show', ['lang'=>$lang,'slug'=>$app->slug]) }}"
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
+                    @if($app->logo_url)
+                    <div class="hopn-media-fit" style="height:170px; margin:-24px -24px 24px;">
+                        <img loading="lazy" decoding="async" src="{{ $app->logo_url }}" alt="{{ $aName }}">
+                    </div>
+                    @endif
+                    <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(143,184,204,0.08); border:1px solid rgba(143,184,204,0.15); border-radius:6px; padding:3px 10px; margin-bottom:14px; width:fit-content;">
+                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#8FB8CC; letter-spacing:0.08em;">
+                            @if($lang==='ar') تطبيق @else App @endif
+                        </span>
+                    </div>
+                    <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 12px; line-height:1.3;">{{ $aName }}</h3>
+                    <p style="font-size:13px; color:#CBD5E1; line-height:1.7; flex:1; margin-bottom:16px;">{{ Str::limit($aTag,90) }}</p>
+                    <span style="font-size:13px; font-weight:600; color:#8FB8CC;">
+                        @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
+                    </span>
+                </a>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
+        {{-- EVENTS --}}
+        @if(in_array($category, ['all','events']) && $events->count() > 0)
+        <div style="margin-bottom:64px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:32px; height:2px; background:#245B78;"></div>
+                    <h2 style="font-size:22px; font-weight:800; color:white; margin:0;">Events</h2>
+                    <span style="font-size:12px; color:#94A3B8; border:1px solid rgba(255,255,255,0.08); border-radius:999px; padding:2px 10px;">{{ $events->count() }}</span>
+                </div>
+                <a href="{{ route('events.index', ['lang'=>$lang]) }}"
+                   class="hopn-link-fade" style="font-size:13px; color:#8FB8CC; text-decoration:none; font-weight:600;">
+                    @if($lang==='ar') عرض الكل @elseif($lang==='de') Alle anzeigen @else View all @endif →
+                </a>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
+                @foreach($events as $event)
+                @php $eTitle = $lang==='ar'&&$event->title_ar?$event->title_ar:($lang==='de'&&$event->title_de?$event->title_de:$event->title); @endphp
+                <a href="{{ route('events.index', ['lang'=>$lang]) }}"
+                   class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
+                    @if($event->image_url)
+                    <div class="hopn-media-fit" style="height:170px; margin:-24px -24px 24px;">
+                        <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $eTitle }}">
+                    </div>
+                    @endif
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:14px;">
+                        <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:#8FB8CC; letter-spacing:0.08em; background:rgba(143,184,204,0.08); border:1px solid rgba(143,184,204,0.15); border-radius:6px; padding:3px 10px;">{{ ucfirst($event->type) }}</span>
+                        @if($event->date)<span style="font-size:12px; color:#94A3B8;">{{ $event->date->locale($lang)->translatedFormat('d M Y') }}</span>@endif
+                    </div>
+                    <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 10px; line-height:1.3;">{{ $eTitle }}</h3>
+                    @if($event->location)<p style="font-size:13px; color:#CBD5E1; line-height:1.6; flex:1; margin-bottom:16px;">{{ $event->location }}</p>@else<div style="flex:1;"></div>@endif
+                    <span style="font-size:13px; font-weight:600; color:#8FB8CC;">
+                        @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
+                    </span>
+                </a>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
         {{-- INNOVATION DOMAINS --}}
         @if(in_array($category, ['all','domains']) && $domains->count() > 0)
         <div style="margin-bottom:64px;">
@@ -274,7 +360,7 @@
         @endif
 
         {{-- Empty State --}}
-        @if($products->count()===0 && $services->count()===0 && $programs->count()===0 && $domains->count()===0)
+        @if($products->count()===0 && $services->count()===0 && $programs->count()===0 && $domains->count()===0 && $apps->count()===0 && $events->count()===0)
         <div style="text-align:center; padding:80px; color:#64748B;">
             <h3 style="font-size:20px; font-weight:700; color:#CBD5E1; margin-bottom:8px;">
                 @if($lang==='ar') لا توجد نتائج @elseif($lang==='de') Keine Ergebnisse @else No results found @endif

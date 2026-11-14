@@ -233,6 +233,8 @@
          At most the visible ones are decoded, so scrolling stays smooth. */
       var vids = document.querySelectorAll('video.hx-bgvideo');
       function startVideo(v) {
+        /* Phones and data-saver mode keep the light poster image: no 1-2 MB video download or decoding while scrolling */
+        if ((navigator.connection && navigator.connection.saveData) || (window.matchMedia && window.matchMedia('(max-width: 820px)').matches)) { return; }
         if (!v.dataset.loaded) {
           var u = v.getAttribute('data-src');
           if (u) { var so = document.createElement('source'); so.src = u; so.type = 'video/mp4'; v.appendChild(so); v.load(); }

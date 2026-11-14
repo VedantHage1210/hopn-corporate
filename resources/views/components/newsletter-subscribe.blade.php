@@ -23,9 +23,9 @@ window.hopnShowToast = function (message, type) {
     var root = document.getElementById('hopn-toast-root');
     if (!root) return;
     var toast = document.createElement('div');
-    var bg = type === 'error' ? 'rgba(244,63,94,0.95)' : 'rgba(143,184,204,0.95)';
-    toast.style.cssText = 'pointer-events:auto; background:' + bg + '; color:white; padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; box-shadow:0 10px 30px rgba(0,0,0,0.35); max-width:320px; opacity:0; transform:translateY(-10px); transition:opacity .25s ease, transform .25s ease;';
-    toast.textContent = message;
+    var bg = type === 'error' ? '#B42318' : '#1F6B4A';
+    toast.style.cssText = 'pointer-events:auto; background:' + bg + '; color:#FFFFFF; padding:16px 22px; border-radius:12px; font-size:15px; font-weight:700; line-height:1.45; box-shadow:0 14px 36px rgba(0,0,0,0.35); max-width:360px; opacity:0; transform:translateY(-10px); transition:opacity .25s ease, transform .25s ease;';
+    toast.textContent = message; toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
     root.appendChild(toast);
     requestAnimationFrame(function () {
         toast.style.opacity = '1';

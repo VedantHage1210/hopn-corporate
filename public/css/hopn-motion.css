@@ -65,3 +65,6 @@ html[data-theme="light"] .hopn-spot::after { background:radial-gradient(420px ci
 .hopn-spot:hover::after { opacity:1; }
 @media (prefers-reduced-motion: reduce) { .hopn-spot::after { display:none; } }
 
+/* Scroll performance: no endless drifting layer on phones, and long homepage sections far below the fold are not rendered until needed. */
+@media (max-width: 900px) { .hopn-contours { animation:none; translate:none; } }
+section.homepage-secondary { content-visibility:auto; contain-intrinsic-size:auto 720px; }

@@ -343,6 +343,21 @@
         main button[style*="background:#4F6EF7"] { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; }
         html[data-theme="light"] main [style*=" color:#64748B"], html[data-theme="light"] main [style^="color:#64748B"] { color:#526170 !important; }
 
+        /* Footer links: the generic accent hover turns text white, which disappears on the light footer. */
+        html[data-theme="light"] footer a.hopn-link-accent:hover,
+        html[data-theme="light"] footer a.hopn-link-accent:focus-visible { color:#245B78 !important; }
+
+        /* Success / status messages after any form: solid, bold and readable on every theme. */
+        .hopn-flash { background:#E8F5EE !important; border:2px solid #1F7A4D !important; border-radius:12px !important; color:#0E3B26 !important; font-weight:700 !important; box-shadow:0 14px 34px -12px rgba(15,34,48,.35) !important; opacity:1 !important; }
+        .hopn-flash *, .hopn-flash a { color:#0E3B26 !important; font-weight:700 !important; opacity:1 !important; }
+        .hopn-flash svg { stroke:#1F7A4D !important; }
+        .hopn-flash a { text-decoration:underline; }
+        .hopn-flash--error { background:#FDECEC !important; border-color:#B42318 !important; }
+        .hopn-flash--error *, .hopn-flash--error a { color:#7A1710 !important; }
+
+        /* Card images (logos, screenshots): show the whole image, never crop, stretch or blur it. */
+        .hopn-media-fit { display:flex !important; align-items:center; justify-content:center; background:#EEF3F5 !important; overflow:hidden; }
+        html:root[data-theme] main .hopn-media-fit > img:not(#hx) { width:auto !important; height:auto !important; max-width:100% !important; max-height:100% !important; object-fit:contain !important; padding:12px; box-sizing:border-box; opacity:1 !important; filter:none !important; transform:none !important; transition:none !important; margin:0 !important; }
         html[data-theme="light"] footer button.hopn-link-accent { color:#243746 !important; text-decoration:underline; }
         html[data-theme="light"] footer button.hopn-link-accent:hover { color:#245B78 !important; }
         #hopn-newsletter-submit { background:#245B78 !important; background-image:none !important; color:#FFFFFF !important; }

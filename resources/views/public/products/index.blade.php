@@ -57,7 +57,7 @@
 
                 {{-- Image or gradient --}}
                 @if($product->hero_image_url)
-                <div style="height:180px; overflow:hidden; position:relative;">
+                <div class="hopn-media-fit" style="height:180px; overflow:hidden; position:relative;">
                     <img loading="lazy" decoding="async" src="{{ $product->hero_image_url }}" alt="{{ $title }}"
                          style="width:100%; height:100%; object-fit:cover;">
                 </div>

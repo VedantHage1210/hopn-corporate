@@ -75,7 +75,7 @@
                     @if($lang === 'ar') المدة @elseif($lang === 'de') Dauer @else Duration @endif
                 </h3>
                 <p style="font-size:14px; color:#CBD5E1; line-height:1.7;">
-                    {{ $program->duration ?? $program->duration_weeks.' weeks' }}
+                    {{ $program->duration ?: ($program->duration_weeks.' weeks') }}
                 </p>
             </div>
         </div>
@@ -86,8 +86,29 @@
     
 
     @php
-        $progOutcomes = collect((array) ($program->outcomes ?? []))->map(fn ($o) => is_array($o) ? ($o['text'] ?? $o['title'] ?? '') : (string) $o)->filter()->values();
-        $progTiers    = collect((array) ($program->pricing_tiers ?? []))->map(fn ($t) => (array) $t)->filter(fn ($t) => !empty($t['name'] ?? $t['title'] ?? null))->values();
+        // Defensive normaliser: admin data can be plain strings, {text|title|name} objects or {en,de,ar} maps.
+        // Anything that is not printable text is dropped instead of crashing the page (500).
+        $progText = function ($v) use ($lang) {
+            if (is_array($v)) {
+                $v = $v[$lang] ?? $v['en'] ?? $v['text'] ?? $v['title'] ?? $v['name'] ?? '';
+                if (is_array($v)) { $v = $v[$lang] ?? $v['en'] ?? ''; }
+            }
+            return is_scalar($v) ? trim((string) $v) : '';
+        };
+        $progList = function ($raw) {
+            if (is_string($raw)) { $dec = json_decode($raw, true); $raw = is_array($dec) ? $dec : [$raw]; }
+            return is_array($raw) ? $raw : [];
+        };
+        $progOutcomes = collect($progList($program->outcomes ?? []))->map(fn ($o) => $progText($o))->filter()->values();
+        $progTiers = collect($progList($program->pricing_tiers ?? []))
+            ->filter(fn ($t) => is_array($t))
+            ->map(fn ($t) => [
+                'name'     => $progText($t['name'] ?? $t['title'] ?? ''),
+                'price'    => $progText($t['price'] ?? ''),
+                'features' => collect($progList($t['features'] ?? []))->map(fn ($f) => $progText($f))->filter()->values()->all(),
+            ])
+            ->filter(fn ($t) => $t['name'] !== '')
+            ->values();
     @endphp
     <style>
         .hopn-prog { --pg-line:rgba(143,184,204,.22); --pg-bg:rgba(255,255,255,.04); --pg-ink:#F1F5F9; --pg-muted:#CBD5E1; --pg-accent:#9FE0F2; --pg-eyebrow:#8FB8CC; }
@@ -142,10 +163,10 @@
             <h2 class="hopn-prog-title">@if($lang === 'ar') خيارات المشاركة @elseif($lang === 'de') Teilnahmeoptionen @else Ways to take part @endif</h2>
             <div class="hopn-prog-grid">
                 @foreach($progTiers as $tier)
-                @php $tierFeatures = collect((array) ($tier['features'] ?? []))->filter()->values(); @endphp
+                @php $tierFeatures = collect($tier['features']); @endphp
                 <div class="hopn-prog-tier hopn-reveal">
-                    <h3 class="hopn-prog-tier-name">{{ $tier['name'] ?? $tier['title'] ?? '' }}</h3>
-                    @if(!empty($tier['price']))<p class="hopn-prog-tier-price">{{ $tier['price'] }}</p>@endif
+                    <h3 class="hopn-prog-tier-name">{{ $tier['name'] }}</h3>
+                    @if($tier['price'] !== '')<p class="hopn-prog-tier-price">{{ $tier['price'] }}</p>@endif
                     @if($tierFeatures->count() > 0)
                     <ul>
                         @foreach($tierFeatures as $feature)<li>{{ $feature }}</li>@endforeach
@@ -168,7 +189,7 @@
                 </h2>
             </div>
             @if(session('status'))
-            <div style="max-width:600px; margin:0 auto 24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px; text-align:center;">
+            <div class="hopn-flash" style="max-width:600px; margin:0 auto 24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px; text-align:center;">
                 {{ session('status') }}
             </div>
             @endif

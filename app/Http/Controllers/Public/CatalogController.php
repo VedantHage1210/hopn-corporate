@@ -5,6 +5,8 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Program;
 use App\Models\InnovationDomain;
+use App\Models\PlatformApp;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -55,8 +57,28 @@ class CatalogController extends Controller
             })
             ->orderBy('sort_order')->get();
 
+        $apps = PlatformApp::visible()
+            ->when($search !== '', function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('name_en', 'like', "%{$search}%")
+                       ->orWhere('name_de', 'like', "%{$search}%")
+                       ->orWhere('tagline_en', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('sort_order')->get();
+
+        $events = Event::where('is_published', true)
+            ->when($search !== '', function($q) use ($search) {
+                $q->where(function($q2) use ($search) {
+                    $q2->where('title', 'like', "%{$search}%")
+                       ->orWhere('title_de', 'like', "%{$search}%")
+                       ->orWhere('location', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('date')->get();
+
         return view('public.catalog.index', compact(
-            'products', 'services', 'programs', 'domains',
+            'products', 'services', 'programs', 'domains', 'apps', 'events',
             'lang', 'search', 'category'
         ));
     }

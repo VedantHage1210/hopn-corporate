@@ -133,7 +133,7 @@
 
   // Slow parallax on the hero contour lines
   function parallax() {
-    if (reduce) return;
+    if (reduce || window.innerWidth < 900) return;
     var art = document.querySelector('.hopn-contours');
     if (!art) return;
     var t = false;

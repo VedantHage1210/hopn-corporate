@@ -17,7 +17,7 @@
         <div style="font-size:14px; font-weight:700; color:white; margin-bottom:4px;">
             @if($lang==='ar') تم التسجيل! @elseif($lang==='de') Registrierung erhalten! @else Registration Received! @endif
         </div>
-        <div style="font-size:13px; color:#CBD5E1;">{{ session('event_success') }}</div>
+        <div class="hopn-flash" style="font-size:13px; color:#CBD5E1;">{{ session('event_success') }}</div>
     </div>
     <button onclick="document.getElementById('success-toast').style.display='none'"
             style="margin-left:auto; background:none; border:none; color:#CBD5E1; cursor:pointer; font-size:18px;">×</button>
@@ -103,9 +103,9 @@
 
                 {{-- Image --}}
                 @if($event->image_url)
-                <div style="height:180px; overflow:hidden; background:#0D1425;">
+                <div class="hopn-media-fit" style="height:180px; overflow:hidden; background:#0D1425;">
                     <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $title }}"
-                         class="hopn-link-fade-in" style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:opacity 0.3s;">
+                         style="width:100%; height:100%;">
                 </div>
                 @else
                 <div style="height:140px; overflow:hidden; background:#EEF3F5;"><img loading="lazy" decoding="async" src="/images/illustrations/events.svg" alt="" style="width:100%; height:100%; object-fit:cover; padding:24px;"></div>

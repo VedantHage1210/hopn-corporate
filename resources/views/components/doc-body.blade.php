@@ -53,6 +53,15 @@
     .hopn-doc img { max-width:100%; height:auto; border-radius:12px; }
     .hopn-doc code { background:var(--d-tint); padding:2px 6px; border-radius:6px; font-size:.9em; }
 
+
+    /* "Label: link" paragraphs rendered as action buttons */
+    .hopn-doc-actions { display:flex; flex-direction:column; gap:12px; margin:6px 0 14px; max-width:560px; }
+    .hopn-doc a.hopn-doc-action { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:16px 22px; border-radius:12px; background:#245B78; color:#FFFFFF !important; font-size:15px; font-weight:700; line-height:1.4; text-decoration:none; box-shadow:0 10px 24px -14px rgba(15,34,48,.55); transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    .hopn-doc a.hopn-doc-action:hover { background:#1D4D66; transform:translateY(-2px); box-shadow:0 16px 30px -14px rgba(15,34,48,.6); }
+    .hopn-doc a.hopn-doc-action svg { flex:none; transition:transform .25s ease; }
+    .hopn-doc a.hopn-doc-action:hover svg { transform:translateX(4px); }
+    [dir="rtl"] .hopn-doc a.hopn-doc-action:hover svg, .hopn-doc[dir="rtl"] a.hopn-doc-action:hover svg { transform:scaleX(-1) translateX(4px); }
+
     @media (max-width:820px) {
         .hopn-doc-sec { grid-template-columns:minmax(0,1fr); gap:16px; padding:32px 0; }
         .hopn-doc-sec > h2 { position:static; }
@@ -62,12 +71,12 @@
 @endonce
 <div {{ $attributes->class(['hopn-doc', 'hopn-doc--stack' => $variant === 'stack']) }}>
     @if($doc['lead'] !== '')
-        <div @class(['hopn-doc-lead' => count($doc['sections']) > 0])>{!! $doc['lead'] !!}</div>
+        <div @class(['hopn-doc-lead' => count($doc['sections']) > 0])>{!! \App\Support\RichText::actionLinks($doc['lead']) !!}</div>
     @endif
     @foreach($doc['sections'] as $sec)
         <section class="hopn-doc-sec hopn-reveal" data-kind="{{ $sec['kind'] }}">
             <h2>{{ $sec['title'] }}</h2>
-            <div class="hopn-doc-body">{!! $sec['html'] !!}</div>
+            <div class="hopn-doc-body">{!! \App\Support\RichText::actionLinks($sec['html']) !!}</div>
         </section>
     @endforeach
 </div>

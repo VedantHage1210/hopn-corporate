@@ -46,9 +46,9 @@
                class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:20px; overflow:hidden; text-decoration:none; transition:all 0.3s; position:relative;">
 
                 @if($program->image_url)
-                <div style="height:220px; overflow:hidden; position:relative;">
+                <div style="height:220px; overflow:hidden; position:relative; background:#EEF3F5;">
                     <img loading="lazy" decoding="async" src="{{ $program->image_url }}" alt="{{ $title }}"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s;">
+                         style="width:100%; height:100%; display:block; object-fit:cover; transition:transform 0.4s;">
                 </div>
                 @else
                 <div style="height:150px; background:#EEF3F5; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
@@ -104,7 +104,7 @@
         </div>
 
         @if(session('status'))
-        <div style="max-width:680px; margin:0 auto 24px; padding:16px 20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px; color:#8FB8CC; font-size:14px; text-align:center;">
+        <div class="hopn-flash" style="max-width:680px; margin:0 auto 24px; padding:16px 20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px; color:#8FB8CC; font-size:14px; text-align:center;">
             {{ session('status') }}
         </div>
         @endif

@@ -59,7 +59,7 @@
                     @endif
 
                     @if(session('status') && !session('tracking_token'))
-                    <div style="padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px;">
+                    <div class="hopn-flash" style="padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:8px; color:#8FB8CC; font-size:14px;">
                         {{ session('status') }}
                     </div>
                     @endif

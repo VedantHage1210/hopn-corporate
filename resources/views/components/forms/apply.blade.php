@@ -4,7 +4,7 @@
     <x-turnstile />
     <input type="text" name="honeypot" style="display:none">
     @if(session('status'))
-        <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
+        <div class="hopn-flash rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">{{ session('status') }}</div>
     @endif
     <div>
         <label for="hopn-name-d24f71" class="mb-1 block text-sm font-medium text-slate-200">{{ $lang === 'ar' ? 'الاسم الكامل' : ($lang === 'de' ? 'Name' : 'Full Name') }} *</label>

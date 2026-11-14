@@ -71,6 +71,41 @@ class RichText
         return ['lead' => $lead, 'sections' => $sections];
     }
 
+    /**
+     * Turn paragraphs that are just "Label: https://link" (one per line) into proper action buttons,
+     * so plain URLs in admin-written copy ("Book a call: https://...") read as designed calls to action.
+     * Paragraphs that contain anything else are left untouched.
+     */
+    public static function actionLinks(string $html): string
+    {
+        $arrow = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+        $line  = '/^\s*([^<>:]{3,140}?):\s*<a\s[^>]*href="(https?:\/\/[^"]+)"[^>]*>[^<]*<\/a>\s*$/iu';
+
+        return (string) preg_replace_callback('/<p>(.*?)<\/p>/isu', function ($m) use ($line, $arrow) {
+            $parts = preg_split('/<br\s*\/?>\s*/iu', trim($m[1]));
+            $links = [];
+            foreach ($parts as $part) {
+                if (trim($part) === '') {
+                    continue;
+                }
+                if (!preg_match($line, $part, $mm)) {
+                    return $m[0];
+                }
+                $links[] = [trim($mm[1]), html_entity_decode($mm[2], ENT_QUOTES)];
+            }
+            if (!$links) {
+                return $m[0];
+            }
+            $out = '<div class="hopn-doc-actions">';
+            foreach ($links as [$label, $url]) {
+                $event = str_contains($url, 'meet.ebada.de') ? ' data-hopn-event="Book Call"' : '';
+                $out .= '<a class="hopn-doc-action" href="' . e($url) . '" target="_blank" rel="noopener noreferrer"' . $event . '><span>' . $label . '</span>' . $arrow . '</a>';
+            }
+
+            return $out . '</div>';
+        }, $html);
+    }
+
     /** Allow-list sanitiser for HTML bodies: no scripts, no inline handlers, no javascript: links. */
     public static function sanitizeHtml(string $html): string
     {

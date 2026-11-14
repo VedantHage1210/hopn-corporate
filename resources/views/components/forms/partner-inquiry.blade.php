@@ -8,7 +8,7 @@
     <input type="hidden" name="utm_campaign" value="{{ request('utm_campaign') }}">
 
     @if(session('status'))
-        <div class="rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">
+        <div class="hopn-flash rounded-lg bg-green-900/40 border border-green-700 px-4 py-3 text-sm text-green-300">
             {{ session('status') }}
         </div>
     @endif

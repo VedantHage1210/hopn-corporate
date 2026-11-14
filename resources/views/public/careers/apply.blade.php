@@ -50,7 +50,7 @@
 
             @if(session('tracking_token'))
             <div role="status" style="padding:20px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:12px; margin-bottom:24px;">
-                <div style="font-size:16px; font-weight:700; color:#8FB8CC; margin-bottom:8px;">{{ session('status') }}</div>
+                <div class="hopn-flash" style="font-size:16px; font-weight:700; color:#8FB8CC; margin-bottom:8px;">{{ session('status') }}</div>
                 <p style="font-size:14px; color:#CBD5E1; margin-bottom:8px;">
                     {{ $L(['en' => 'Your Application ID:', 'de' => 'Ihre Bewerbungs-ID:', 'ar' => 'رقم طلبك:']) }}
                 </p>

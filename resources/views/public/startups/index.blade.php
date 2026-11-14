@@ -248,7 +248,7 @@
             <div style="border:1px solid rgba(143,184,204,0.2); background:#0A0F1E; border-radius:20px; padding:40px; position:relative; overflow:hidden;">
 
                 @if(session('startup_success'))
-                <div style="margin-bottom:24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:10px; color:#8FB8CC; font-size:14px;">
+                <div class="hopn-flash" style="margin-bottom:24px; padding:14px 16px; background:rgba(143,184,204,0.1); border:1px solid rgba(143,184,204,0.3); border-radius:10px; color:#8FB8CC; font-size:14px;">
                     {{ session('startup_success') }}
                 </div>
                 @endif

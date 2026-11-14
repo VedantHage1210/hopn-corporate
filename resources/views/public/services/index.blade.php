@@ -33,7 +33,8 @@
             @else End-to-end digital transformation services from consulting to implementation. @endif
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
-            <a href="{{ route('contact.index', ['lang'=>$lang]) }}" class="hopn-btn-primary"
+            @php $bookUrl = !empty($siteSettings['scheduling_url'] ?? null) ? $siteSettings['scheduling_url'] : null; @endphp
+<a href="{{ $bookUrl ?: route('contact.index', ['lang'=>$lang]) }}" @if($bookUrl) target="_blank" rel="noopener noreferrer" @endif data-hopn-event="Book Call" class="hopn-btn-primary"
                style="display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; background:#245B78; color:white; font-size:15px; font-weight:600; text-decoration:none;">
                 @if($lang==='ar') احجز مكالمة @elseif($lang==='de') Termin buchen @else Book a Call @endif →
             </a>
