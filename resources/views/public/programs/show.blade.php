@@ -1,5 +1,5 @@
 <x-layouts.public :title="$program->title_en ?? 'Program'">
-@php($lang = request()->route('lang', 'en'))
+@php $lang = request()->route('lang', 'en'); @endphp
 
     {{-- Hero --}}
     <section style="position:relative; overflow:hidden; background:#0A0F1E; padding:80px 0 100px;">

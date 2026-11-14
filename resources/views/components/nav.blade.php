@@ -37,7 +37,6 @@
             'label_en'=>'Solutions', 'label_de'=>'Lösungen', 'label_ar'=>'الحلول',
             'items'=>[
                 ['en'=>'Services Overview',        'de'=>'Leistungsübersicht',      'ar'=>'نظرة عامة على الخدمات',   'route'=>'services.index'],
-                ['en'=>'AI Solutions',             'de'=>'KI-Lösungen',             'ar'=>'حلول الذكاء الاصطناعي',   'route'=>'services.index', 'params'=>['category'=>'ai-solutions']],
                 ['en'=>'Digital Twins',            'de'=>'Digitale Zwillinge',       'ar'=>'التوائم الرقمية',          'route'=>'digital-twins.index'],
                 ['en'=>'Book an Expert',           'de'=>'Experten buchen',          'ar'=>'احجز خبيرًا',              'route'=>'consulting.index'],
                 ['en'=>'Engineering as a Service', 'de'=>'Engineering als Service', 'ar'=>'الهندسة كخدمة',            'route'=>'engineering.index'],

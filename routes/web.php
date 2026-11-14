@@ -99,6 +99,7 @@ Route::post('/careers/{slug}/apply', [CareerController::class, 'apply'])
         Route::get('/investors', [InvestorController::class, 'index'])->name('investors.index');
 
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
+        Route::get('/events/{event}', [EventController::class, 'show'])->where('event', '[A-Za-z0-9_\-]+')->name('events.show');
         Route::post('/event-registration', [LeadController::class, 'eventRegistration'])->middleware(['throttle:5,1', 'turnstile'])->name('leads.event-registration');
         Route::post('/startup-application', [LeadController::class, 'startupApplication'])->middleware(['throttle:5,1', 'turnstile'])->name('leads.startup-application');
 

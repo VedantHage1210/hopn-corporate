@@ -25,6 +25,13 @@
                     <input type="text" name="title_ar" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                 </div>
                 <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Slug (URL)</label>
+                    <input type="text" name="slug" value="{{ old('slug', '') }}" placeholder="auto-generated"
+                           class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white font-mono">
+                    <p class="mt-1 text-xs text-slate-500">Event link: /events/<span class="font-mono">your-slug</span>. Leave empty to generate it from the title.</p>
+                    @error('slug')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Type</label>
                     <select name="type" class="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white">
                         <option value="conference">Conference</option>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -19,8 +20,9 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['title' => 'required|string|max:255']);
-        Event::create([
+        $request->merge(['slug' => $request->filled('slug') ? Str::slug($request->slug) : null]);
+        $request->validate(['title' => 'required|string|max:255'] + (Event::hasSlugColumn() ? ['slug' => ['nullable', 'string', 'max:191', 'unique:events,slug']] : []));
+        Event::create(array_merge(Event::hasSlugColumn() ? ['slug' => $request->slug] : [], [
             'title'             => $request->title,
             'title_de'          => $request->title_de,
             'title_ar'          => $request->title_ar,
@@ -38,7 +40,7 @@ class EventController extends Controller
             'is_published'      => $request->has('is_published'),
             'registration_open' => $request->has('registration_open'),
             'sort_order'        => $request->sort_order ?? 0,
-        ]);
+        ]));
         return redirect()->route('admin.events.index')->with('status', 'Event added!');
     }
 
@@ -51,8 +53,9 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $event = Event::findOrFail($id);
-        $request->validate(['title' => 'required|string|max:255']);
-        $event->update([
+        $request->merge(['slug' => $request->filled('slug') ? Str::slug($request->slug) : null]);
+        $request->validate(['title' => 'required|string|max:255'] + (Event::hasSlugColumn() ? ['slug' => ['nullable', 'string', 'max:191', 'unique:events,slug,' . $event->id]] : []));
+        $event->update(array_merge(Event::hasSlugColumn() ? ['slug' => $request->slug] : [], [
             'title'             => $request->title,
             'title_de'          => $request->title_de,
             'title_ar'          => $request->title_ar,
@@ -70,7 +73,7 @@ class EventController extends Controller
             'is_published'      => $request->has('is_published'),
             'registration_open' => $request->has('registration_open'),
             'sort_order'        => $request->sort_order ?? 0,
-        ]);
+        ]));
         return redirect()->route('admin.events.index')->with('status', 'Event updated!');
     }
 

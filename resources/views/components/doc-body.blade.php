@@ -58,7 +58,10 @@
     .hopn-doc-actions { display:flex; flex-direction:column; gap:12px; margin:6px 0 14px; max-width:560px; }
     .hopn-doc a.hopn-doc-action { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:16px 22px; border-radius:12px; background:#245B78; color:#FFFFFF !important; font-size:15px; font-weight:700; line-height:1.4; text-decoration:none; box-shadow:0 10px 24px -14px rgba(15,34,48,.55); transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease; }
     .hopn-doc a.hopn-doc-action:hover { background:#1D4D66; transform:translateY(-2px); box-shadow:0 16px 30px -14px rgba(15,34,48,.6); }
-    .hopn-doc a.hopn-doc-action svg { flex:none; transition:transform .25s ease; }
+    html:root[data-theme] main .hopn-doc a.hopn-doc-action:not(#hx), html:root[data-theme] main .hopn-doc a.hopn-doc-action:not(#hx):visited, html:root[data-theme] main .hopn-doc a.hopn-doc-action:not(#hx) span { color:#FFFFFF !important; text-decoration:none !important; }
+    html:root[data-theme] main .hopn-doc a.hopn-doc-action:not(#hx):hover { background:#1D4D66 !important; }
+    html:root[data-theme] main .hopn-doc a.hopn-doc-action:not(#hx) { background:#245B78 !important; }
+    .hopn-doc a.hopn-doc-action svg { flex:none; stroke:#FFFFFF; transition:transform .25s ease; }
     .hopn-doc a.hopn-doc-action:hover svg { transform:translateX(4px); }
     [dir="rtl"] .hopn-doc a.hopn-doc-action:hover svg, .hopn-doc[dir="rtl"] a.hopn-doc-action:hover svg { transform:scaleX(-1) translateX(4px); }
 

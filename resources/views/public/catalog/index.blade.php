@@ -307,7 +307,7 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;">
                 @foreach($events as $event)
                 @php $eTitle = $lang==='ar'&&$event->title_ar?$event->title_ar:($lang==='de'&&$event->title_de?$event->title_de:$event->title); @endphp
-                <a href="{{ route('events.index', ['lang'=>$lang]) }}"
+                <a href="{{ route('events.show', ['lang'=>$lang, 'event'=>$event->url_key]) }}"
                    class="hopn-lift-card" style="display:flex; flex-direction:column; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; padding:24px; text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden;">
                     @if($event->image_url)
                     <div class="hopn-media-fit" style="height:170px; margin:-24px -24px 24px;">
@@ -321,7 +321,7 @@
                     <h3 style="font-size:17px; font-weight:700; color:white; margin:0 0 10px; line-height:1.3;">{{ $eTitle }}</h3>
                     @if($event->location)<p style="font-size:13px; color:#CBD5E1; line-height:1.6; flex:1; margin-bottom:16px;">{{ $event->location }}</p>@else<div style="flex:1;"></div>@endif
                     <span style="font-size:13px; font-weight:600; color:#8FB8CC;">
-                        @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
+                        @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                     </span>
                 </a>
                 @endforeach

@@ -1248,7 +1248,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
             @foreach($upcomingEvents as $event)
             @php $typeColors=['conference'=>'#8FB8CC','workshop'=>'#8FB8CC','webinar'=>'#8FB8CC','hackathon'=>'#8FB8CC','startup'=>'#8FB8CC','networking'=>'#8FB8CC','research'=>'#245B78']; $c=$typeColors[$event->type]??'#8FB8CC'; @endphp
-            <a href="{{ route('events.index', ['lang'=>$lang]) }}" class="hopn-lift-card-nobg" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
+            <a href="{{ route('events.show', ['lang'=>$lang, 'event'=>$event->url_key]) }}" class="hopn-lift-card-nobg" style="display:block; text-decoration:none; border:1px solid rgba(255,255,255,0.06); background:#0A0F1E; border-radius:16px; overflow:hidden;">
                 @if($event->image_url)
                 <div class="hopn-media-fit" style="height:150px; overflow:hidden;">
                     <img loading="lazy" decoding="async" src="{{ $event->image_url }}" alt="{{ $event->title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
@@ -1266,7 +1266,7 @@ html[data-theme="dark"] .hopn-homepage > section:not(:first-child)::after { bord
                     <h3 style="font-size:16px; font-weight:700; color:white; line-height:1.4; margin-bottom:10px;">{{ $event->title }}</h3>
                     @if($event->location)<div style="font-size:13px; color:#94A3B8; margin-bottom:16px;">{{ $event->location }}</div>@endif
                     <span style="display:inline-block; font-size:13px; font-weight:600; color:{{ $c }};">
-                        @if($lang==='ar') سجّل الآن @elseif($lang==='de') Jetzt anmelden @else Register Now @endif →
+                        @if($lang==='ar') تعرف أكثر @elseif($lang==='de') Mehr erfahren @else Learn more @endif →
                     </span>
                 </div>
             </a>
